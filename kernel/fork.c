@@ -1319,7 +1319,6 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 {
 	int retval;
 	struct task_struct *p;
-	void *cgrp_ss_priv[CGROUP_CANFORK_COUNT] = {};
 
 	if ((clone_flags & (CLONE_NEWNS|CLONE_FS)) == (CLONE_NEWNS|CLONE_FS))
 		return ERR_PTR(-EINVAL);
@@ -1605,7 +1604,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 	 * between here and cgroup_post_fork() if an organisation operation is in
 	 * progress.
 	 */
-	retval = cgroup_can_fork(p, cgrp_ss_priv);
+	retval = cgroup_can_fork(p);
 	if (retval)
 		goto bad_fork_free_pid;
 
@@ -1692,7 +1691,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 #ifdef CONFIG_HW_VIP_THREAD
 	iaware_proc_fork_connector(p);
 #endif
-	cgroup_post_fork(p, cgrp_ss_priv);
+	cgroup_post_fork(p);
 	threadgroup_change_end(current);
 	perf_event_fork(p);
 	trace_task_newtask(p, clone_flags);
@@ -1703,7 +1702,7 @@ static struct task_struct *copy_process(unsigned long clone_flags,
 bad_fork_cancel_cgroup:
 	spin_unlock(&current->sighand->siglock);
 	write_unlock_irq(&tasklist_lock);
-	cgroup_cancel_fork(p, cgrp_ss_priv);
+	cgroup_cancel_fork(p);
 bad_fork_free_pid:
 	threadgroup_change_end(current);
 	if (pid != &init_struct_pid)
