@@ -14,10 +14,10 @@ const struct cntry_locales_custom hw_translate_custom_table[] = {
     on custom platform regulatory requirement */
     /* default ccode/regrev */
     {"",   "XZ", 11},   /* Universal if Country code is unknown or empty */
-    {"IR", "XZ", 11}, 	/* Universal if Country code is IRAN, (ISLAMIC REPUBLIC OF) */
-    {"SD", "XZ", 11}, 	/* Universal if Country code is SUDAN */
-    {"SY", "XZ", 11}, 	/* Universal if Country code is SYRIAN ARAB REPUBLIC */
-    {"GL", "XZ", 11}, 	/* Universal if Country code is GREENLAND */
+    {"IR", "HK", 2}, 	/* HK(full channels) if Country code is IRAN, (ISLAMIC REPUBLIC OF) */
+    {"SD", "HK", 2}, 	/* HK(full channels) if Country code is SUDAN */
+    {"SY", "HK", 2}, 	/* HK(full channels) if Country code is SYRIAN ARAB REPUBLIC */
+    {"GL", "DE", 7}, 	/* DE if Country code is GREENLAND */
     {"PS", "XZ", 11}, 	/* Universal if Country code is PALESTINIAN TERRITORY, OCCUPIED */
     {"TL", "XZ", 11}, 	/* Universal if Country code is TIMOR-LESTE (EAST TIMOR) */
     {"MH", "XZ", 11}, 	/* Universal if Country code is MARSHALL ISLANDS */
@@ -80,6 +80,7 @@ const struct cntry_locales_custom hw_translate_custom_table[] = {
     {"KE", "SA", 0},
     {"KW", "KW", 5},
     {"LA", "LA", 2},
+    {"LB", "BR", 4},
     {"LV", "LV", 4},
     {"LS", "LS", 2},
     {"LI", "LI", 4},
@@ -145,5 +146,46 @@ const struct cntry_locales_custom hw_translate_custom_table[] = {
     {"NI", "NI", 2},
     {"UZ", "MA", 2},
 };
+
+#ifdef HW_CE_5G_HIGH_BAND
+const struct cntry_locales_custom hw_translate_custom_table_ce[] = {
+    {"AL", "BR", 4},
+    {"AT", "BR", 4},
+    {"BE", "BR", 4},
+    {"BA", "BR", 4},
+    {"BG", "BR", 4},
+    {"HR", "BR", 4},
+    {"CY", "BR", 4},
+    {"CZ", "BR", 4},
+    {"DK", "BR", 4},
+    {"EE", "BR", 4},
+    {"FI", "BR", 4},
+    {"FR", "BR", 4},
+    {"DE", "BR", 4},
+    {"GR", "BR", 4},
+    {"HU", "BR", 4},
+    {"IS", "BR", 4},
+    {"IE", "BR", 4},
+    {"IT", "BR", 4},
+    {"LV", "BR", 4},
+    {"LT", "BR", 4},
+    {"LU", "BR", 4},
+    {"MK", "BR", 4},
+    {"MT", "BR", 4},
+    {"ME", "BR", 4},
+    {"NL", "BR", 4},
+    {"NO", "BR", 4},
+    {"PL", "BR", 4},
+    {"PT", "BR", 4},
+    {"RO", "BR", 4},
+    {"SK", "BR", 4},
+    {"SI", "BR", 4},
+    {"ES", "BR", 4},
+    {"SE", "BR", 4},
+    {"CH", "BR", 4},
+    {"TR", "BR", 4},
+    {"GB", "BR", 4}
+};
+#endif
 
 #endif
