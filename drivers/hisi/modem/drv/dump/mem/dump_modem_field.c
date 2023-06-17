@@ -121,7 +121,7 @@ s32 dump_get_cp_save_done(void)
     memcpy(&flag,(u32*)(((dump_area_head_t*)(area_info.vaddr))->version),sizeof(u32));
 
     /*lint -e650 -esym(650,*)*/
-    if((flag == DUMP_SAVE_SUCCESS ))
+    if (flag == DUMP_SAVE_SUCCESS )
     {
         return BSP_OK;
     }
