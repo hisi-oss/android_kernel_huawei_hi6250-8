@@ -36,6 +36,7 @@
 #include <asm/pgtable-hwdef.h>
 #include <asm/pgtable.h>
 #include <asm/page.h>
+#include <asm/smp.h>
 #include <asm/sysreg.h>
 #include <asm/thread_info.h>
 #include <asm/virt.h>
@@ -209,10 +210,9 @@ efi_header_end:
 
 	__INIT
 
-ENTRY(stext)
+ENTRY_NOTAG(stext)
 	bl	preserve_boot_args
 	bl	el2_setup			// Drop to EL1, w20=cpu_boot_mode
-	mov	x23, xzr			// KASLR offset, defaults to 0
 	adrp	x24, __PHYS_OFFSET
 	and	x23, x24, MIN_KIMG_ALIGN - 1	// KASLR offset, defaults to 0
 	bl	set_cpu_boot_mode_flag
@@ -228,8 +228,6 @@ ENTRY(stext)
 						// MMU has been enabled
 	b	__enable_mmu
 ENDPROC(stext)
-	.align	3
-0:	.quad	__mmap_switched - (_head - TEXT_OFFSET) + KIMAGE_VADDR
 
 /*
  * Preserve the arguments passed by the bootloader in x0 .. x3
@@ -324,14 +322,14 @@ __create_page_tables:
 	 * dirty cache lines being evicted.
 	 */
 	mov	x0, x25
-	add	x1, x26, #SWAPPER_DIR_SIZE
+	add	x1, x26, #SWAPPER_DIR_SIZE + RESERVED_TTBR0_SIZE
 	bl	__inval_cache_range
 
 	/*
 	 * Clear the idmap and swapper page tables.
 	 */
 	mov	x0, x25
-	add	x6, x26, #SWAPPER_DIR_SIZE
+	add	x6, x26, #SWAPPER_DIR_SIZE + RESERVED_TTBR0_SIZE
 1:	stp	xzr, xzr, [x0], #16
 	stp	xzr, xzr, [x0], #16
 	stp	xzr, xzr, [x0], #16
@@ -410,15 +408,12 @@ __create_page_tables:
 	 * tables again to remove any speculatively loaded cache lines.
 	 */
 	mov	x0, x25
-	add	x1, x26, #SWAPPER_DIR_SIZE
+	add	x1, x26, #SWAPPER_DIR_SIZE + RESERVED_TTBR0_SIZE
 	dmb	sy
 	bl	__inval_cache_range
 
 	ret	x28
 ENDPROC(__create_page_tables)
-
-kernel_img_size:
-	.long	_end - (_head - TEXT_OFFSET)
 	.ltorg
 
 /*
@@ -474,7 +469,7 @@ ENDPROC(__primary_switched)
  */
 	.section ".text","ax"
 
-ENTRY(kimage_vaddr)
+ENTRY_NOTAG(kimage_vaddr)
 	.quad		_text - TEXT_OFFSET
 
 /*
@@ -557,8 +552,9 @@ CPU_LE(	movk	x0, #0x30d0, lsl #16	)	// Clear EE and E0E on LE systems
 	b.lt	4f				// Skip if no PMU present
 	mrs	x0, pmcr_el0			// Disable debug access traps
 	ubfx	x0, x0, #11, #5			// to EL2 and allow access to
-	msr	mdcr_el2, x0			// all PMU counters from EL1
 4:
+	csel	x0, xzr, x0, lt			// all PMU counters from EL1
+	msr	mdcr_el2, x0			// (if they exist)
 
 	/* Stage-2 translation */
 	msr	vttbr_el2, xzr
@@ -601,7 +597,7 @@ ENDPROC(set_cpu_boot_mode_flag)
  */
 	.pushsection	.data..cacheline_aligned
 	.align	L1_CACHE_SHIFT
-ENTRY(__boot_cpu_mode)
+ENTRY_NOTAG(__boot_cpu_mode)
 	.long	BOOT_CPU_MODE_EL2
 	.long	BOOT_CPU_MODE_EL1
 	.popsection
@@ -610,7 +606,7 @@ ENTRY(__boot_cpu_mode)
 	 * This provides a "holding pen" for platforms to hold all secondary
 	 * cores are held until we're ready for them to initialise.
 	 */
-ENTRY(secondary_holding_pen)
+ENTRY_NOTAG(secondary_holding_pen)
 	bl	el2_setup			// Drop to EL1, w20=cpu_boot_mode
 	bl	set_cpu_boot_mode_flag
 	mrs	x0, mpidr_el1
@@ -645,20 +641,43 @@ secondary_startup:
 	adr_l	x27, __secondary_switch		// address to jump to after enabling the MMU
 	b	__enable_mmu
 ENDPROC(secondary_startup)
-0:	.long	(_text - TEXT_OFFSET) - __secondary_switched
 
 __secondary_switched:
 	adr_l	x5, vectors
 	msr	vbar_el1, x5
 	isb
 
-	ldr_l	x0, secondary_data		// get secondary_data.stack
+	adr_l	x0, secondary_data
+	ldr	x0, [x0, #CPU_BOOT_STACK]	// get secondary_data.stack
 	mov	sp, x0
 	and	x0, x0, #~(THREAD_SIZE - 1)
 	msr	sp_el0, x0			// save thread_info
 	mov	x29, #0
 	b	secondary_start_kernel
 ENDPROC(__secondary_switched)
+
+/*
+ * The booting CPU updates the failed status @__early_cpu_boot_status,
+ * with MMU turned off.
+ *
+ * update_early_cpu_boot_status tmp, status
+ *  - Corrupts tmp1, tmp2
+ *  - Writes 'status' to __early_cpu_boot_status and makes sure
+ *    it is committed to memory.
+ */
+
+	.macro	update_early_cpu_boot_status status, tmp1, tmp2
+	mov	\tmp2, #\status
+	str_l	\tmp2, __early_cpu_boot_status, \tmp1
+	dmb	sy
+	dc	ivac, \tmp1			// Invalidate potentially stale cache line
+	.endm
+
+	.pushsection	.data..cacheline_aligned
+	.align	L1_CACHE_SHIFT
+ENTRY_NOTAG(__early_cpu_boot_status)
+	.long 	0
+	.popsection
 
 /*
  * Enable the MMU.
@@ -678,6 +697,7 @@ __enable_mmu:
 	ubfx	x2, x1, #ID_AA64MMFR0_TGRAN_SHIFT, 4
 	cmp	x2, #ID_AA64MMFR0_TGRAN_SUPPORTED
 	b.ne	__no_granule_support
+	update_early_cpu_boot_status 0, x1, x2
 	msr	ttbr0_el1, x25			// load TTBR0
 	msr	ttbr1_el1, x26			// load TTBR1
 	isb
@@ -704,6 +724,9 @@ __enable_mmu:
 	isb
 	bl	__create_page_tables		// recreate kernel mapping
 
+	tlbi	vmalle1				// Remove any stale TLB entries
+	dsb	nsh
+
 	msr	sctlr_el1, x19			// re-enable the MMU
 	isb
 	ic	iallu				// flush instructions fetched
@@ -714,8 +737,12 @@ __enable_mmu:
 ENDPROC(__enable_mmu)
 
 __no_granule_support:
+	/* Indicate that this CPU can't boot and is stuck in the kernel */
+	update_early_cpu_boot_status CPU_STUCK_IN_KERNEL, x1, x2
+1:
 	wfe
-	b __no_granule_support
+	wfi
+	b 1b
 ENDPROC(__no_granule_support)
 
 __primary_switch:
