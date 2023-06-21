@@ -73,6 +73,18 @@
 
 #ifdef CONFIG_EFI
 
+__efistub_stext_offset = stext - _text;
+
+/*
+ * Prevent the symbol aliases below from being emitted into the kallsyms
+ * table, by forcing them to be absolute symbols (which are conveniently
+ * ignored by scripts/kallsyms) rather than section relative symbols.
+ * The distinction is only relevant for partial linking, and only for symbols
+ * that are defined within a section declaration (which is not the case for
+ * the definitions below) so the resulting values will be identical.
+ */
+#define KALLSYMS_HIDE(sym)	ABSOLUTE(sym)
+
 /*
  * Prevent the symbol aliases below from being emitted into the kallsyms
  * table, by forcing them to be absolute symbols (which are conveniently
