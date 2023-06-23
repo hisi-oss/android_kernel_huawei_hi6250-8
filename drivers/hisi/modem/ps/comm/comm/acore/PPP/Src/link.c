@@ -28,7 +28,7 @@
  */
 
 /******************************************************************************
-   头文件包含
+   
 ******************************************************************************/
 #include "PPP/Inc/ppp_public.h"
 #include "PPP/Inc/layer.h"
@@ -51,15 +51,15 @@
 
 
 /*****************************************************************************
-   1 协议栈打印打点方式下的.C文件宏定义
+   1 .C
 *****************************************************************************/
-/*lint -e767  修改人: z57034; 检视人: g45205 原因简述: 打点日志文件宏ID定义 */
+/*lint -e767  : z57034; : g45205 : ID */
 #define    THIS_FILE_ID        PS_FILE_ID_LINK_C
-/*lint +e767  修改人: z57034; 检视人: g45205 */
+/*lint +e767  : z57034; : g45205 */
 
 
 /******************************************************************************
-   2 外部函数变量声明
+   2 
 ******************************************************************************/
 extern PPP_ZC_STRU *ipv4_Input(struct link *l, PPP_ZC_STRU *bp);
 
@@ -69,14 +69,14 @@ void ParentLayerDown (void *p, struct fsm *fsm);
 void ParentLayerFinish (void *p, struct fsm *fsm);
 
 /*****************************************************************************
-   3 私有定义
+   3 
 *****************************************************************************/
 #define PROTO_IN  1                       /* third arg to link_ProtocolRecord */
 #define PROTO_OUT 2
 
 
 /*****************************************************************************
-   4 全局变量定义
+   4 
 *****************************************************************************/
 struct link*            pgPppLink = VOS_NULL_PTR;
 
@@ -121,7 +121,7 @@ struct  fsm_parent  parent = {
              };
 
 /******************************************************************************
-   5 函数实现
+   5 
 ******************************************************************************/
 void link_SequenceQueue(struct link *l)
 {
@@ -158,11 +158,11 @@ void link_EmptyStack(struct link *l)
 
 /*****************************************************************************
  Prototype      : ipv4_Input
- Description    : 对于TE发送来的数据报文，如果对应的link中是处于网络阶段并且状
-                  态为open，转发此报文到GGSN。
+ Description    : TElink
+                  openGGSN
 
  Input          : ---
- Output         : ---返回指向mbuf的指针
+ Output         : ---mbuf
  Return Value   : ---
  Calls          : ---
  Called By      : ---
@@ -177,7 +177,7 @@ PPP_ZC_STRU *ipv4_Input(/*struct bundle *bundle, */struct link *l, PPP_ZC_STRU *
     if(l->phase == PHASE_NETWORK
         &&l->ipcp.fsm.state == ST_OPENED)
     {
-        /*将上行数据发往协议栈*/
+        /**/
         PPP_SendPulledData((VOS_UINT16)PPP_LINK_TO_ID(l), bp);
     }
     else
@@ -209,18 +209,18 @@ void ParentLayerFinish (void *p, struct fsm *fsm)        /* tlf */
 }
 
 /*****************************************************************************
- 函 数 名  : PPP_InitSecureData
- 功能描述  : 清除PPP的鉴权信息
- 输入参数  : ucPppId     PPP索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : PPP_InitSecureData
+   : PPP
+   : ucPppId     PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月6日
-    作    者   : c00184031
-    修改内容   : created
+       :
+  1.       : 201686
+           : c00184031
+       : created
 *****************************************************************************/
 VOS_VOID PPP_InitSecureData(VOS_UINT8 ucPppId)
 {
@@ -234,17 +234,17 @@ VOS_VOID PPP_InitSecureData(VOS_UINT8 ucPppId)
 
     pstPppLink = PPP_LINK(ucPppId);
 
-    /* 清除chap鉴权保存的信息 */
+    /* chap */
     PSACORE_MEM_SET(&(pstPppLink->chap.challenge), (VOS_SIZE_T)sizeof(pstPppLink->chap.challenge),
         0, (VOS_SIZE_T)sizeof(pstPppLink->chap.challenge));
     PSACORE_MEM_SET(&(pstPppLink->chap.RecordData), (VOS_SIZE_T)sizeof(pstPppLink->chap.RecordData),
         0, (VOS_SIZE_T)sizeof(pstPppLink->chap.RecordData));
 
-    /* 清除pap鉴权保存的信息 */
+    /* pap */
     PSACORE_MEM_SET(&(pstPppLink->pap.RecordData), (VOS_SIZE_T)sizeof(pstPppLink->pap.RecordData),
         0, (VOS_SIZE_T)sizeof(pstPppLink->pap.RecordData));
 
-    /* 清除鉴权保存的用户名密码信息 */
+    /*  */
     PSACORE_MEM_SET(&(pstPppLink->auth), (VOS_SIZE_T)sizeof(pstPppLink->auth),
         0, (VOS_SIZE_T)sizeof(pstPppLink->auth));
 
@@ -269,7 +269,7 @@ VOS_VOID link_Init(struct link *l)
     PSACORE_MEM_SET(l->proto_out, sizeof l->proto_out, '\0', sizeof l->proto_out);
     link_EmptyStack(l);
 
-    /*依次压入PPP协议的各个处理层*/
+    /*PPP*/
     link_Stack(l, &asynclayer);
     link_Stack(l, &hdlclayer);
     link_Stack(l, &acflayer);
@@ -282,7 +282,7 @@ VOS_VOID link_Init(struct link *l)
     async_Init(&(l->async));
     hdlc_Init(&(l->hdlc),&(l->lcp));
 
-    /*参数const struct fsm_parent * parent不能为空*/
+    /*const struct fsm_parent * parent*/
     lcp_Init(&(l->lcp), l, &parent);
     ipcp_Init(&(l->ipcp), l, &parent);
     pap_Init(&(l->pap));
@@ -294,7 +294,7 @@ void link_PushPacket(struct link *l, struct ppp_mbuf *bp, VOS_INT32 pri, VOS_UIN
     PPP_ID                  usPppId     = (PPP_ID)(PPP_LINK_TO_ID(l));
     PPP_HDLC_CONFIG_STRU   *pstHdlcConfig;
 
-    /* 把PPP协商包作为可维可测信息,IP包不做可维可测维护*/
+    /* PPP,IP*/
     if (PROTO_IP != proto)
     {
         Ppp_MBufFrameMntnInfo(bp, proto, PPP_SEND_OUT_PROTOCOL_FRAME);
@@ -317,20 +317,20 @@ void link_PushPacket(struct link *l, struct ppp_mbuf *bp, VOS_INT32 pri, VOS_UIN
 }
 
 /*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcIpModeUlData
- 功能描述  : IP类型拨号，软件或硬件解封装完成后，调用此接口处理输出数据
- 输入参数  : pstLink    -   PPP链路信息
-             pstMem     -   解封装后单个输出数据包
-             usProto    -   数据包对应的协议
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : PPP_HDLC_ProcIpModeUlData
+   : IP
+   : pstLink    -   PPP
+             pstMem     -   
+             usProto    -   
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
+       :
+  1.       : 2012410
+           : l00164359
+       : 
 
 *****************************************************************************/
 VOS_VOID PPP_HDLC_ProcIpModeUlData
@@ -343,7 +343,7 @@ VOS_VOID PPP_HDLC_ProcIpModeUlData
     VOS_UINT32          f;
     struct ppp_mbuf    *bp;
 
-    /* 把PPP协商包作为可维可测信息,IP包不做可维可测维护*/
+    /* PPP,IP*/
     if (PROTO_IP != usProto)
     {
         Ppp_TtfMemFrameMntnInfo(pstMem, usProto, PPP_RECV_IN_PROTOCOL_FRAME);
@@ -358,7 +358,7 @@ VOS_VOID PPP_HDLC_ProcIpModeUlData
         }
     }
 
-    /* 如果是不支持的协议，向对端发送REJ帧 */
+    /* REJ */
     if (VOS_NULL_PTR != pstMem)
     {
         bp = ppp_m_get_from_ttfmem(pstMem);
@@ -395,19 +395,19 @@ VOS_VOID PPP_HDLC_ProcIpModeUlData
 }
 
 /*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcPppModeUlData
- 功能描述  : PPP类型拨号，软件或硬件解封装完成后，调用此接口处理输出数据
- 输入参数  : usPppId    -   PPP实体ID
-             pstMem     -   解封装后单个输出数据包
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : PPP_HDLC_ProcPppModeUlData
+   : PPP
+   : usPppId    -   PPPID
+             pstMem     -   
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
+       :
+  1.       : 2012410
+           : l00164359
+       : 
 
 *****************************************************************************/
 VOS_VOID PPP_HDLC_ProcPppModeUlData
@@ -421,24 +421,24 @@ VOS_VOID PPP_HDLC_ProcPppModeUlData
 }
 
 /*****************************************************************************
- 函 数 名  : PPP_HDLC_ProcDlData
- 功能描述  : 软件或硬件封装完成后，调用此接口处理输出数据
- 输入参数  : usPppId    -   PPP实体ID
-             pstMem     -   封装后IP包对应的PPP帧数据，可能不是完整PPP帧
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : PPP_HDLC_ProcDlData
+   : 
+   : usPppId    -   PPPID
+             pstMem     -   IPPPPPPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年4月10日
-    作    者   : l00164359
-    修改内容   : 新生成函数
+       :
+  1.       : 2012410
+           : l00164359
+       : 
 
 *****************************************************************************/
 VOS_VOID PPP_HDLC_ProcDlData(VOS_UINT16 usPppId, PPP_ZC_STRU *pstMem)
 {
-    /* 调用AT模块下行数据接收接口 */
+    /* AT */
     AT_SendZcDataToModem(usPppId, pstMem);
 
     return;
@@ -446,19 +446,19 @@ VOS_VOID PPP_HDLC_ProcDlData(VOS_UINT16 usPppId, PPP_ZC_STRU *pstMem)
 
 
 /*****************************************************************************
- 函 数 名  : PPP_SendPulledData
- 功能描述  : 上行发送数据给协议栈
- 输入参数  : ucPppId --- PPP ID
-             pstMem  --- TTF_MEM形式的数据
- 输出参数  :
- 返 回 值  : PS_SUCC 成功；PS_FAIL 失败
- 调用函数  :
- 被调函数  :
+     : PPP_SendPulledData
+   : 
+   : ucPppId --- PPP ID
+             pstMem  --- TTF_MEM
+   :
+     : PS_SUCC PS_FAIL 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
+       :
+  1.       : 2011-03-09
+           : l00164359
+       : Created
 *****************************************************************************/
 VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
 {
@@ -467,7 +467,7 @@ VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
 
 
     /*Add by y45445*/
-    /* 通过usPppId，寻找到usRabId */
+    /* usPppIdusRabId */
     if ( !PPP_PPPID_TO_RAB(usPppId, &ucRabId) )
     {
         g_PppDataQCtrl.stStat.ulUplinkDropCnt++;
@@ -480,7 +480,7 @@ VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
     }
     /*Add by y45445*/
 
-    /* 数据发送给ADS，如果失败则释放内存 */
+    /* ADS */
     ulResult = ADS_UL_SendPacket(pstImmZc, ucRabId);
 
     if ( VOS_OK != ulResult )
@@ -498,20 +498,20 @@ VOS_UINT32 PPP_SendPulledData(VOS_UINT16 usPppId,  PPP_ZC_STRU *pstImmZc)
 
 /*lint -e{429}*/
 /*****************************************************************************
- 函 数 名  : PPP_SendPushedData
- 功能描述  : 下行发送数据给USB
- 输入参数  : ucPppId            -   PPP ID
-             pucDataBuf         -   待发送下行数据内存指针
-             usLen              -   数据长度
- 输出参数  :
- 返 回 值  : PS_SUCC 成功；PS_FAIL 失败
- 调用函数  :
- 被调函数  :
+     : PPP_SendPushedData
+   : USB
+   : ucPppId            -   PPP ID
+             pucDataBuf         -   
+             usLen              -   
+   :
+     : PS_SUCC PS_FAIL 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011-03-09
-    作    者   : l00164359
-    修改内容   : Created
+       :
+  1.       : 2011-03-09
+           : l00164359
+       : Created
 *****************************************************************************/
 VOS_UINT32 PPP_SendPushedData(VOS_UINT16 usPppId, VOS_UINT8 *pucDataBuf, VOS_UINT16 usLen)
 {
@@ -522,7 +522,7 @@ VOS_UINT32 PPP_SendPushedData(VOS_UINT16 usPppId, VOS_UINT8 *pucDataBuf, VOS_UIN
 
     while ( 0 < usRemainLen)
     {
-        /* 零拷贝内存有最大限制，超限分多次发送 */
+        /*  */
         if ( PPP_ZC_MAX_DATA_LEN < usRemainLen)
         {
             pstMem       = PPP_MemCopyAlloc(pucRemainDataBuf, PPP_ZC_MAX_DATA_LEN, PPP_ZC_DL_RESERVE_LEN);

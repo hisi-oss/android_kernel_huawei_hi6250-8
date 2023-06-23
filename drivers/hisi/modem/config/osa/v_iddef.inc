@@ -72,13 +72,13 @@ extern "C" {
 #ifndef _V_IDDEF_INC
 #define _V_IDDEF_INC
 
-/* 单板和PC工程C核请配置这里 */
+/* PCC */
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
-/* FID静态信息表 */
+/* FID */
 FID_Static_Table_Type g_aFidStaticTable[VOS_FID_BUTT] =
 {
     {DOPRA_FID_SYS ,        "fSYS",         VOS_NULL_PTR,           VOS_START_FIRST,    0 ,     0  },
-/* 以上是OSA 保留配置请不要动 */
+/* OSA  */
     {MSP_FID_DIAG_CCPU,     "mspDiag",      MSP_DiagFidInit,        VOS_START_THIRD,    8192,   0  },
     {I0_MAPS_USIMM_FID,     "USIMM_FID",    USIMM_FID_Init,         VOS_START_THIRD,    8192,   0  },
     {I0_MAPS_SI_FID,        "SI_FID",       WuepsSIFidInit,         VOS_START_THIRD,    0,      0  },
@@ -261,13 +261,13 @@ FID_Static_Table_Type g_aFidStaticTable[VOS_FID_BUTT] =
 };
 #endif
 
-/* 单板A核请配置这里 */
+/* A */
 #if (OSA_CPU_ACPU == VOS_OSA_CPU)
-/* FID静态信息表 */
+/* FID */
 FID_Static_Table_Type g_aFidStaticTable[VOS_FID_BUTT] =
 {
     {DOPRA_FID_SYS ,            "fSYS",            VOS_NULL_PTR,            VOS_START_FIRST,    0,     0  },
-/* 以上是OSA 保留配置请不要动 */
+/* OSA  */
     {MSP_FID_DIAG_ACPU,         "mspAppDiag",      MSP_AppDiagFidInit,       VOS_START_THIRD,   16384, 0  },
     {MSP_APP_DS_FID,            "AppDS",           DMS_DsFidInit,           VOS_START_THIRD,    8192,  0  },
     {PS_FID_APP_NDIS_PPP_DIPC,  "AppNdisDipc",     APP_NDIS_FidInit,        VOS_START_THIRD,    16384, 0  },

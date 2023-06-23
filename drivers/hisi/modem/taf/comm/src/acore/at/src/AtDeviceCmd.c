@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 í·???t°üo?
+  1 ???to?
 *****************************************************************************/
 #include "AtParse.h"
 
@@ -67,16 +67,16 @@
 #include "AtTestParaCmd.h"
 
 
-//DTS2012041801532 w00182550 NV1éò??ˉ start in 2012-04-12
+//DTS2012041801532 w00182550 NV1?? start in 2012-04-12
 #include "LNvCommon.h"
 #include "RrcNvInterface.h"
 #include "msp_nvim.h"
-/* DTS2012041801532 w00182550 NV1éò??ˉ start in 2012-04-12 */
+/* DTS2012041801532 w00182550 NV1?? start in 2012-04-12 */
 
-/* Added by l00167671 for NV2e·????? , 2013-05-17, begin */
+/* Added by l00167671 for NV2e????? , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV2e·????? , 2013-05-17, end*/
+/* Added by l00167671 for NV2e????? , 2013-05-17, end*/
 
 #include "AtCmdMiscProc.h"
 
@@ -88,20 +88,20 @@
 
 
 /*****************************************************************************
-    D-òé??′òó?′òμ?·?ê???μ?.C???toê?¨ò?
+    D-?????????.C???to??
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AT_DEVICECMD_C
 
 
 /*****************************************************************************
-  2 è???±?á??¨ò?
+  2 ???????
 *****************************************************************************/
 
-/* ?üá?êü?T±ê??oê?¨ò??μ?÷
-#define CMD_TBL_E5_IS_LOCKED        (0x00000001)     2?êüE5???¨????μ??üá?
-#define CMD_TBL_PIN_IS_LOCKED       (0x00000002)     2?êüPIN?????¨????μ??üá?
-#define CMD_TBL_IS_E5_DOCK          (0x00000004)     E5 DOCK?üá?
-#define CMD_TBL_CLAC_IS_INVISIBLE   (0x00000008)     +CLAC?üá??D2?ê?3???ê?μ??üá?
+/* ???T??o????
+#define CMD_TBL_E5_IS_LOCKED        (0x00000001)     2?E5??????????
+#define CMD_TBL_PIN_IS_LOCKED       (0x00000002)     2?PIN????????????
+#define CMD_TBL_IS_E5_DOCK          (0x00000004)     E5 DOCK??
+#define CMD_TBL_CLAC_IS_INVISIBLE   (0x00000008)     +CLAC???D2??3???????
 */
 
 VOS_UINT32                 g_ulNVRD = 0;
@@ -168,8 +168,8 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^BSN",      VOS_NULL_PTR},
 
-/* Modify by c00172979 for V7′ú??í?2?, 2012-04-13, Begin   */
-/* Modify by c00172979 for V7′ú??í?2?, 2012-04-13, End   */
+/* Modify by c00172979 for V7???2?, 2012-04-13, Begin   */
+/* Modify by c00172979 for V7???2?, 2012-04-13, End   */
     {AT_CMD_SFM,
     At_SetSfm,          AT_SET_PARA_TIME,   At_QrySfm,            AT_NOT_SET_TIME,    VOS_NULL_PTR , AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
@@ -184,13 +184,13 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     (VOS_UINT8*)"^TMODE",    (VOS_UINT8*)"(0,1,2,3,4,11,12,13,14,15,16,17,18,19)"},
     /* Added by f62575 for SMALL IMAGE, 2012-1-3, end   */
 
-    /* DTS2012041801532 w00182550 NV1éò??ˉ start in 2012-04-12 */
+    /* DTS2012041801532 w00182550 NV1?? start in 2012-04-12 */
     {AT_CMD_FCHAN,
     At_SetFChanPara,     AT_SET_PARA_TIME,   At_QryFChanPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_FCHAN_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FCHAN",    (VOS_UINT8*)"(0-7),(0-255),(0-65535),(0-1)"},
-    /* DTS2012041801532 w00182550 NV1éò??ˉ end in 2012-04-12 */
+    /* DTS2012041801532 w00182550 NV1?? end in 2012-04-12 */
 
     {AT_CMD_FTXON,
     At_SetFTxonPara,     AT_SET_PARA_TIME,   At_QryFTxonPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -198,14 +198,14 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_FTXON_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FTXON",    (VOS_UINT8*)"(0,1,2)"},
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, Begin   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, Begin   */
     {AT_CMD_FDAC,
     AT_SetFDac,          AT_SET_PARA_TIME,   AT_QryFDac,            AT_NOT_SET_TIME,    At_TestFdacPara , AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FDAC",     (VOS_UINT8*)"(0-65536)"},
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, End   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, End   */
 
     {AT_CMD_FRXON,
     At_SetFRxonPara,     AT_SET_PARA_TIME,   At_QryFRxonPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -213,14 +213,14 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_FRXON_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FRXON",    (VOS_UINT8*)"(0-1)"},
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, Begin   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, Begin   */
     {AT_CMD_FPA,
     At_SetFpaPara,       AT_SET_PARA_TIME,   At_QryFpaPara,         AT_NOT_SET_TIME,    VOS_NULL_PTR ,    AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_FPA_OTHER_ERR  ,      CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FPA",      (VOS_UINT8*)"(0-255)"},
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, End   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, End   */
 
     {AT_CMD_FLNA,
     At_SetFlnaPara,      AT_SET_PARA_TIME,   At_QryFlnaPara,        AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -259,8 +259,8 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^GPIOPL",   (VOS_UINT8*)"(@GPIOPL)"},
 
-    /* Add by w00199382 for V7′ú??í?2?, 2012-04-07, Begin   */
-    /* DTS2012041801532 w00182550 NV1éò??ˉ start in 2012-04-12 */
+    /* Add by w00199382 for V7???2?, 2012-04-07, Begin   */
+    /* DTS2012041801532 w00182550 NV1?? start in 2012-04-12 */
     {AT_CMD_GETEXBANDINFO,
     AT_SetExbandInfoPara,      AT_NOT_SET_TIME,  VOS_NULL_PTR,            AT_NOT_SET_TIME,   VOS_NULL_PTR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
@@ -272,14 +272,14 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,       CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^GETEXBANDTESTINFO",      (VOS_UINT8*)"(101-116),(14,50,100,150,200)"},
-    /* DTS2012041801532 w00182550 NV1éò??ˉ end in 2012-04-12 */
-    /* éú2úNV???′ */
+    /* DTS2012041801532 w00182550 NV1?? end in 2012-04-12 */
+    /* 2NV??? */
     {AT_CMD_INFORRS,
     At_SetInfoRRS,       AT_SET_PARA_TIME,    VOS_NULL_PTR,          AT_NOT_SET_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^INFORRS",  VOS_NULL_PTR},
-    /* Add by w00199382 for V7′ú??í?2?, 2012-04-07, End   */
+    /* Add by w00199382 for V7???2?, 2012-04-07, End   */
 
     {AT_CMD_INFORBU,
     atSetNVFactoryBack,  AT_SET_PARA_TIME,    VOS_NULL_PTR,          AT_NOT_SET_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -358,14 +358,14 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^TMMI",  (VOS_UINT8*)"(0,1)"},
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT′ú??èúo?*/
-    /* V7R1òa?óê1ó?"=?"2é?ˉ3?μ?ê1?ü×′ì? */
+    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT??o?*/
+    /* V7R1a?1?"=?"2?3??1?? */
     {AT_CMD_TCHRENABLE,
     AT_SetChrgEnablePara,AT_NOT_SET_TIME,    AT_QryChrgEnablePara,  AT_NOT_SET_TIME,   AT_TestChrgEnablePara, AT_SET_PARA_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^TCHRENABLE",(VOS_UINT8*)"(0,1,4)"},
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT??o?*/
 
     {AT_CMD_TCHRINFO,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,    AT_QryChrgInfoPara,    AT_NOT_SET_TIME,   At_CmdTestProcERROR, AT_NOT_SET_TIME,
@@ -451,13 +451,13 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^WIDATARATE",  (VOS_UINT8*)"(0-65535)"},
 
-    /* Modified by L00171473 for DTS2012020106679,AT WT1¤?? 2012-01-17  Begin */
+    /* Modified by L00171473 for DTS2012020106679,AT WT1?? 2012-01-17  Begin */
     {AT_CMD_WIPOW,
     AT_SetWiFiPowerPara,  AT_NOT_SET_TIME, AT_QryWiFiPowerPara,  AT_NOT_SET_TIME, At_CmdTestProcERROR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^WIPOW",    (VOS_UINT8*)"(0-65535)"},
-    /* Modified by L00171473 for DTS2012020106679,AT WT1¤?? 2012-01-17  End */
+    /* Modified by L00171473 for DTS2012020106679,AT WT1?? 2012-01-17  End */
 
     {AT_CMD_WITX,
     AT_SetWiFiTxPara,     AT_NOT_SET_TIME, AT_QryWiFiTxPara,     AT_NOT_SET_TIME, At_CmdTestProcERROR, AT_NOT_SET_TIME,
@@ -521,8 +521,8 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^NVWR",(VOS_UINT8*)"(0-65535),(0-2048),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data)"},
-    /* Added by ?μó3?y/f62575 for AT Project, SIM?¨±￡?¤±ê??è·è?, 2011/11/15, begin */
-	/* Added by s00217060 for ?÷?ˉé?±¨AT?üá???????ò??áCo?, 2013-4-3, begin */
+    /* Added by ?3?y/f62575 for AT Project, SIM?????, 2011/11/15, begin */
+	/* Added by s00217060 for ???AT??????????Co?, 2013-4-3, begin */
 
     {AT_CMD_NVWRPART,
     AT_SetNVWRPartPara,       AT_SET_PARA_TIME,  VOS_NULL_PTR,        AT_NOT_SET_TIME,  VOS_NULL_PTR, AT_NOT_SET_TIME,
@@ -536,10 +536,10 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^CURC", (VOS_UINT8*)"(0-2)"},
-	/* Added by s00217060 for ?÷?ˉé?±¨AT?üá???????ò??áCo?, 2013-4-3, end */
-    /* Added by ?μó3?y/f62575 for AT Project, SIM?¨±￡?¤±ê??è·è?, 2011/11/15, end */
+	/* Added by s00217060 for ???AT??????????Co?, 2013-4-3, end */
+    /* Added by ?3?y/f62575 for AT Project, SIM?????, 2011/11/15, end */
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, Begin   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, Begin   */
 
     {AT_CMD_SN,
     At_SetSnPara,        AT_NOT_SET_TIME,    VOS_NULL_PTR,           AT_NOT_SET_TIME,    At_CmdTestProcOK, AT_NOT_SET_TIME,
@@ -547,7 +547,7 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_DEVICE_OTHER_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^SN",       VOS_NULL_PTR},
 
-    /* Modify by w00199382 for V7′ú??í?2?, 2012-04-07, End   */
+    /* Modify by w00199382 for V7???2?, 2012-04-07, End   */
 
     /* Added by f62575 for SMALL IMAGE, 2012-1-3, begin */
     {AT_CMD_TBAT,
@@ -576,13 +576,13 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^CMDLEN",    (VOS_UINT8 *)"(0-65535),(0-65535)"},
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT??o?*/
     {AT_CMD_TSELRF,
     AT_SetTseLrfPara,        AT_SET_PARA_TIME,   AT_QryTseLrfPara,  AT_QRY_PARA_TIME,  VOS_NULL_PTR, AT_SET_PARA_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^TSELRF",    (VOS_UINT8 *)"(0-255),(0-255)"},
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT??o?*/
     /* Added by f62575 for SMALL IMAGE, 2012-1-3, end   */
 
     {AT_CMD_HUK,
@@ -786,10 +786,10 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
 };
 
 
-/* ê?ày: ^CMDX ?üá?ê?2?êüE5?ü??±￡?¤?üá?￡??ò?ú+CLACáD?ù?ùóD?üá?ê±2???ê?￡?μúò???2?êyê?2?′???òyo?μ?×?·?′?,
-        μú?t??2?êyê?′???òyo?μ?×?·?′?￡?μúèy??2?êyê???êyDí2?êy
+/* ?y: ^CMDX ???2?E5?????????+CLACD??D??2????????2?y?2????yo?????,
+        ?t??2?y????yo??????y??2?y???yD2?y
 
-   !!!!!!!!!!!×￠òa: param1oíparam2ê?ê?ày￡?êμ?ê?¨ò??üá?ê±ó|??á??¨ò?μ??ò?ì(?éìá???a??D§?ê)!!!!!!!!!!!!!
+   !!!!!!!!!!!a: param1oparam2??y??????|????????(????a??D?)!!!!!!!!!!!!!
 
     {AT_CMD_CMDX,
     At_SetCmdxPara, AT_SET_PARA_TIME, At_QryCmdxPara, AT_QRY_PARA_TIME, At_TestCmdxPara, AT_NOT_SET_TIME,
@@ -799,46 +799,46 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
 
 
 /*****************************************************************************
-  3 oˉêyêμ??
+  3 oy??
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : At_QrySecuBootFeaturePara
- 功能描述  : 查询单板软件是否是Secure Boot 版本，是否需要启动Secure Boot 功能
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : At_QrySecuBootFeaturePara
+   : Secure Boot Secure Boot 
+   : 
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年12月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20101218
+           : /f62575
+       : 
 
-  2.日    期   : 2011年10月6日
-    作    者   : 吴敏/w00181244
-    修改内容   : 函数重构，将直接调用底软API改为发消息到C核调用底软API
+  2.       : 2011106
+           : /w00181244
+       : APICAPI
 
-  3.日    期   : 2012年08月08日
-    作    者   : y00213812
-    修改内容   : 根据DTS2012082100431修改，直接读取NV项
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2014年12月15日
-    作    者   : Z00306637
-    修改内容   : DTS2014120903868, 直接调用底软API
-  6.日    期   : 2016年01月26日
-    作    者   : w00249971
-    修改内容   : DTS2016012510143, mbb扩展该AT，使之支持DX安全引擎加密
+  3.       : 20120808
+           : y00213812
+       : DTS2012082100431NV
+  4.       : 20121213
+           : L00171473
+       : DTS2012121802573, TQE
+  5.       : 20141215
+           : Z00306637
+       : DTS2014120903868, API
+  6.       : 20160126
+           : w00249971
+       : DTS2016012510143, mbbATDX
 *****************************************************************************/
 VOS_UINT32 At_QrySecuBootFeaturePara( VOS_UINT8 ucIndex )
 {
     VOS_UINT8                          usSecBootSupportedFlag;
     usSecBootSupportedFlag = 0;
 
-    /* 调用底软接口 */
+    /*  */
     if(MDRV_OK != mdrv_crypto_secboot_supported(&usSecBootSupportedFlag))
     {
         AT_WARN_LOG("At_QrySecuBootFeaturePara: get mdrv_crypto_secboot_supported() failed");
@@ -846,7 +846,7 @@ VOS_UINT32 At_QrySecuBootFeaturePara( VOS_UINT8 ucIndex )
     }
 
 
-    /* 打印输出 */
+    /*  */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                             (VOS_CHAR *)pgucAtSndCodeAddr,
                                             (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -858,40 +858,40 @@ VOS_UINT32 At_QrySecuBootFeaturePara( VOS_UINT8 ucIndex )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetSecDbgState
- 功能描述  : 按照安全产品设置指导书，设置相应debug权限
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK操作成功，AT_ERROR操作失败
- 调用函数  :
- 被调函数  :
+     : AT_SetSecDbgState
+   : debug
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年4月14日
-    作    者   : w00249971
-    修改内容   : 新生成函数
+       :
+  1.       : 2016414
+           : w00249971
+       : 
 
 *****************************************************************************/
 VOS_INT32 AT_SetSecDbgState(VOS_VOID)
 {
     VOS_INT32               usResult;
 
-    /*1.执行SECUREDEBUG=3,设置安全DEBUG授权由安全证书控制*/
+    /*1.SECUREDEBUG=3,DEBUG*/
     usResult = mdrv_efuse_ioctl(MDRV_EFUSE_IOCTL_CMD_SET_SECUREDEBUG,
                                 AT_SECUREDEBUG_VALUE,
                                 NULL,
                                 0);
 
-    /*设置接口只有三种返回值，<0,执行错误；=0，执行正确；=1，重复设置；
-      所以这里只判断返回错误情况*/
+    /*<0,=0=1
+      */
     if(MDRV_OK > usResult)
     {
         AT_WARN_LOG("AT_SetSecuState: set SECUREDEBUG state error.\n");
         return AT_ERROR;
     }
 
-    /*2.执行SECDBGRESET=1和CSRESET=1,在对安全世界和Coresight调试时，
-        临时复位SecEngine*/
+    /*2.SECDBGRESET=1CSRESET=1,Coresight
+        SecEngine*/
     usResult = mdrv_efuse_ioctl(MDRV_EFUSE_IOCTL_CMD_SET_CSRESET,
                                 AT_CSRESET_VALUE,
                                 NULL,
@@ -902,7 +902,7 @@ VOS_INT32 AT_SetSecDbgState(VOS_VOID)
         return AT_ERROR;
     }
 
-    /*3.执行DFTSEL=1 可以通过密码验证方式开启安全DFT功能*/
+    /*3.DFTSEL=1 DFT*/
     usResult = mdrv_efuse_ioctl(MDRV_EFUSE_IOCTL_CMD_SET_DFTSEL,
                                 AT_DFTSEL_VALUE,
                                 NULL,
@@ -917,30 +917,30 @@ VOS_INT32 AT_SetSecDbgState(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetSecuBootPara
- 功能描述  : 使能Secure Boot 功能
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK使能操作成功，AT_ERROR使能操作失败
- 调用函数  :
- 被调函数  :
+     : At_SetSecuBootPara
+   : Secure Boot 
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年12月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2011年3月21日
-    作    者   : h44270
-    修改内容   : DTS2011031601921,只有启动硬件加密的情况下，才能设置
-  3.日    期   : 2012年02月06日
-    作    者   : 傅映君/f62575
-    修改内容   : 函数重构,将直接调用底软API改为发消息到C核调用底软API
-  4.日    期   : 2014年12月15日
-    作    者   : Z00306637
-    修改内容   : DTS2014120903868, 直接调用底软API
-  5.日    期   : 2016年01月21日
-    作    者   : w00249971
-    修改内容   : DTS2016012510143, mbb扩展该AT，使之支持DX安全引擎加密
+       :
+  1.       : 20101218
+           : /f62575
+       : 
+  2.       : 2011321
+           : h44270
+       : DTS2011031601921,
+  3.       : 20120206
+           : /f62575
+       : ,APICAPI
+  4.       : 20141215
+           : Z00306637
+       : DTS2014120903868, API
+  5.       : 20160121
+           : w00249971
+       : DTS2016012510143, mbbATDX
 *****************************************************************************/
 VOS_UINT32 At_SetSecuBootPara(VOS_UINT8 ucIndex)
 {
@@ -968,7 +968,7 @@ VOS_UINT32 At_SetSecuBootPara(VOS_UINT8 ucIndex)
         }
         case AT_DX_RMA_STATE:
         {
-            /*先获取下芯片状态，如果已经设置为RMA状态，直接返回ok*/
+            /*RMAok*/
             if(AT_DRV_STATE_RMA == mdrv_efuse_ioctl(MDRV_EFUSE_IOCTL_CMD_GET_SECURESTATE,
                                                     0, NULL, 0))
             {
@@ -986,7 +986,7 @@ VOS_UINT32 At_SetSecuBootPara(VOS_UINT8 ucIndex)
         }
         case AT_DX_SECURE_STATE:
         {
-            /*安全状态已经在Fastboot里设置，这里check下，以保证产线流程OK*/
+            /*FastbootcheckOK*/
             if(AT_DRV_STATE_SECURE != mdrv_efuse_ioctl(MDRV_EFUSE_IOCTL_CMD_GET_SECURESTATE,
                                                        0, NULL, 0))
             {
@@ -1009,28 +1009,28 @@ VOS_UINT32 At_SetSecuBootPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_QrySecuBootPara
- 功能描述  : 查询Secure Boot 功能使能状态
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : At_QrySecuBootPara
+   : Secure Boot 
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年12月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20101218
+           : /f62575
+       : 
 
-  2.日    期   : 2011年10月17日
-    作    者   : 吴敏/w00181244
-    修改内容   : 函数重构,将直接调用底软API改为发消息到C核调用底软API
-  3.日    期   : 2014年12月15日
-    作    者   : Z00306637
-    修改内容   : DTS2014120903868, 直接调用底软API
-  4.日    期   : 2016年01月26日
-    作    者   : w00249971
-    修改内容   : DTS2016012510143, mbb扩展该AT，使之支持DX安全引擎加密
+  2.       : 20111017
+           : /w00181244
+       : ,APICAPI
+  3.       : 20141215
+           : Z00306637
+       : DTS2014120903868, API
+  4.       : 20160126
+           : w00249971
+       : DTS2016012510143, mbbATDX
 *****************************************************************************/
 VOS_UINT32 At_QrySecuBootPara(VOS_UINT8 ucIndex)
 {
@@ -1042,9 +1042,9 @@ VOS_UINT32 At_QrySecuBootPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-/*对于支持DX安全引擎的，需要查询芯片状态*/
+/*DX*/
 
-    /* 打印输出 */
+    /*  */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                             (VOS_CHAR *)pgucAtSndCodeAddr,
                                             (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1057,18 +1057,18 @@ VOS_UINT32 At_QrySecuBootPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetKeyPara
- 功能描述  : 设置key 值，具体key由参数决定
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : At_SetKeyPara
+   : key key
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年4月14日
-    作    者   : w00249971
-    修改内容   : 新生成函数
+       :
+  1.       : 2016414
+           : w00249971
+       : 
 *****************************************************************************/
 VOS_UINT32 At_SetKeyPara(VOS_UINT8 ucIndex)
 {
@@ -1120,18 +1120,18 @@ VOS_UINT32 At_SetKeyPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_GetKeyInfoPara
- 功能描述  : 查询key 值，具体key由参数决定
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : At_GetKeyInfoPara
+   : key key
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年4月14日
-    作    者   : w00249971
-    修改内容   : 新生成函数
+       :
+  1.       : 2016414
+           : w00249971
+       : 
 *****************************************************************************/
 VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
 {
@@ -1153,7 +1153,7 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 局部变量初始化 */
+    /*  */
     TAF_MEM_SET_S(usHashbuf, (VOS_SIZE_T)sizeof(usHashbuf), 0x00, AT_KEY_HASH_LEN);
     TAF_MEM_SET_S(auckeybuf, (VOS_SIZE_T)sizeof(auckeybuf), 0x00, AT_KEYBUFF_LEN);
 
@@ -1162,7 +1162,7 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
         case AT_KEY_TYPE_DIEID:
         case AT_KEY_TYPE_TBOX_SMS:
         {
-            /*打桩，暂不处理*/
+            /**/
             return AT_OK;
         }
         case AT_KEY_TYPE_SOCID:
@@ -1173,7 +1173,7 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
                                        auckeybuf,
                                        AT_SOCID_LEN);
 
-            /* 处理异常查询结果 */
+            /*  */
             if (MDRV_OK != iResult)
             {
                 AT_WARN_LOG("At_QryGetKeyInfoPara:get soc id error.\n");
@@ -1202,7 +1202,7 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
 
     }
 
-    /*计算hash值,基线打桩，产品线适配*/
+    /*hash,*/
     /*
     iResult = mdrv_crypto_hash256(auckeybuf, usKeyLen, usHashbuf);
     if(MDRV_OK != iResult)
@@ -1211,7 +1211,7 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     } */
 
-    /* 打印输出AT名称 */
+    /* AT */
     usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                      (VOS_CHAR *)pgucAtSndCodeAddr,
                                      (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1250,18 +1250,18 @@ VOS_UINT32 At_GetKeyInfoPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestTmodePara
- 功能描述  : TMODE测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestTmodePara
+   : TMODE
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2011?ê10??9è?
-    ×÷    ??   : w00181244
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2011?10??9?
+        ??   : w00181244
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 At_TestTmodePara(VOS_UINT8 ucIndex)
@@ -1284,18 +1284,18 @@ VOS_UINT32 At_TestTmodePara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : At_TestFdacPara
- 1|?ü?èê?  : FDAC2aê?oˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : At_TestFdacPara
+ 1|???  : FDAC2a?oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2011?ê10??9è?
-    ×÷    ??   : w00181244
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2011?10??9?
+        ??   : w00181244
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 At_TestFdacPara(VOS_UINT8 ucIndex)
@@ -1328,18 +1328,18 @@ VOS_UINT32 At_TestFdacPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : At_RegisterDeviceCmdTable
- 1|?ü?èê?  : ×￠2á×°±??üá?±í
- ê?è?2?êy  : VOS_VOID
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : At_RegisterDeviceCmdTable
+ 1|???  : 2???
+ ??2?y  : VOS_VOID
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2011?ê10??21è?
-    ×÷    ??   : ?3á?/l60609
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2011?10??21?
+        ??   : ?3?/l60609
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 At_RegisterDeviceCmdTable(VOS_VOID)
@@ -1350,30 +1350,30 @@ VOS_UINT32 At_RegisterDeviceCmdTable(VOS_VOID)
 /* Added by f62575 for AT Project, 2011-10-28, begin */
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestSsidPara
- 1|?ü?èê?  : SSID2aê??üá?
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestSsidPara
+ 1|???  : SSID2a???
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2011?ê10??28è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê9??17è?
-    ×÷    ??   : z60575
-    DT???úèY   : MULTI_SSIDDT??
+ DT??      :
+  1.?    ?   : 2011?10??28?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?9??17?
+        ??   : z60575
+    DT???Y   : MULTI_SSIDDT??
 *****************************************************************************/
 VOS_UINT32 AT_TestSsidPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
     /* Modified by z60575 for multi_ssid, 2012-9-5 begin */
     gstAtSendData.usBufLen = (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1387,28 +1387,28 @@ VOS_UINT32 AT_TestSsidPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestWikeyPara
- 1|?ü?èê?  : WIKEY2aê??üá?
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestWikeyPara
+ 1|???  : WIKEY2a???
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2011?ê10??28è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2011?10??28?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_TestWikeyPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
     gstAtSendData.usBufLen = (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                     (TAF_CHAR *)pgucAtSndCodeAddr,
@@ -1423,21 +1423,21 @@ VOS_UINT32 AT_TestWikeyPara(VOS_UINT8 ucIndex)
 
 /* Added by f62575 for SMALL IMAGE, 2012-1-3, begin   */
 /*****************************************************************************
- oˉ êy ??  : AT_SetTbatPara
- 1|?ü?èê?  : ^TBATéè???üá?
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetTbatPara
+ 1|???  : ^TBAT????
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
- 2.è?    ?ú   : 2012?ê03??03è?
-   ×÷    ??   : s62952
-   DT???úèY   : BalongV300R002 Buildó??ˉ????:é?3yFEATURE_CHARGEoê
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
+ 2.?    ?   : 2012?03??03?
+       ??   : s62952
+   DT???Y   : BalongV300R002 Build??????:?3yFEATURE_CHARGEo
 
 *****************************************************************************/
 VOS_UINT32 AT_SetTbatPara(VOS_UINT8 ucIndex)
@@ -1445,53 +1445,53 @@ VOS_UINT32 AT_SetTbatPara(VOS_UINT8 ucIndex)
     return atSetTBATPara(ucIndex);
 
     /*
-    ?ù?Y2?êy2?í???DD??ê?2ù×÷:
-    1.  ?§3?ó??§ê?è?AT^TBAT=1,0??è?μ?3?μ??1êy×??μ￡?
-    μ÷ó?μ×èí/OM?ó?ú??è?μ?3?êy×??μ
-    2.  ?§3?ó??§ê?è?AT^TBAT=1,1,<value1>,<value2>éè??μ?3?μ??1êy×??μ￡?ó?óúμ?3?D￡×?￡?
-    D′D￡×?μ??1μ?NVID 90(en_NV_Item_BATTERY_ADC)￡?′?′|óDòé?ê′yè·è?￡?
-    en_NV_Item_BATTERY_ADC?D????μ?ê???ê?á????μ￡???AT?üá???ò???2?êy￡?è?o?ó3é?
-    3.4V μ??1??ó|μ?ADC?μ
-    4.2V μ??1??ó|μ?ADC?μ
+    ??Y2?y2????DD???2:
+    1.  ?3?????AT^TBAT=1,0????3???1y???
+    ?/OM??????3?y??
+    2.  ?3?????AT^TBAT=1,1,<value1>,<value2>???3???1y?????3?D??
+    DD???1?NVID 90(en_NV_Item_BATTERY_ADC)??|D?y??
+    en_NV_Item_BATTERY_ADC?D????????????????AT???????2?y??o?3?
+    3.4V ??1??|?ADC?
+    4.2V ??1??|?ADC?
     */
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryTbatPara
- 1|?ü?èê?  : ^TBAT2é?ˉ?üá?￡?ó?óú??è?μ?3?μ?°2×°·?ê?
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryTbatPara
+ 1|???  : ^TBAT2?????????3??2??
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
 {
     /*
-    μ÷ó?μ×èí?ó?ú??è?μ?3?°2×°·?ê?:
-    <mount type> μ?3?°2×°·?ê?
-    0 ?Tμ?3?
-    1 ?é?ü??μ?3?
-    2 ?ú??ò?ì??ˉμ?3?
+    ???????3?2??:
+    <mount type> ?3?2??
+    0 ?T?3?
+    1 ?????3?
+    2 ???????3?
     */
-    /*?üá?×′ì?ààDí?ì2é*/
+    /*???D?2*/
     if (AT_CMD_OPT_READ_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_DEVICE_OTHER_ERROR;
     }
 
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_CHARGE) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
     if (TAF_SUCCESS == AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                                gastAtClientTab[ucIndex].opId,
@@ -1500,8 +1500,8 @@ VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
                                                0,
                                                I0_WUEPS_PID_DRV_AGENT))
     {
-        gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TBAT_QRY;             /*éè??μ±?°2ù×÷?￡ê? */
-        return AT_WAIT_ASYNC_RETURN;                                                              /* μè′yòì2?ê??t·μ?? */
+        gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TBAT_QRY;             /*???2?? */
+        return AT_WAIT_ASYNC_RETURN;                                                              /* y2???t?? */
     }
     else
     {
@@ -1510,32 +1510,32 @@ VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetPstandbyPara
- 1|?ü?èê?  : éè??μ￥°???è?μ?′y?ú×′ì??￡
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetPstandbyPara
+ 1|???  : ???????y???
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
-  2.è?    ?ú   : 2012?ê2??21è?
-    ×÷    ??   : w00199382
-    DT???úèY   : B060???????óμ×èí?à1??ó?úμ÷ó?
-  3.è?    ?ú   : 2012?ê03??03è?
-    ×÷    ??   : s62952
-    DT???úèY   : BalongV300R002 Buildó??ˉ???? :é?3yì?D?oê
-  4.è?    ?ú   : 2012?ê04??13è?
-    ×÷    ??   : f62575
-    DT???úèY   : V7′ú??í?2?: é?3yWIFI_POWER_SHUTDOWN￡?oledPwrOffoíDRV_PWRCTRL_USB_LOWPOWER_ENTERμ?μ÷ó?￡?
-                        ì????aDRV_PWRCTRL_STANDBYSTATEACPU (BSP_PWRCTRL_StandbyStateAcpu)
-  5.è?    ?ú   : 2014?ê2??14è?
-    ×÷    ??   : w00167002
-    DT???úèY   : L-C?￥2ù×÷????:?a1??úoˉêyμ÷??
+  2.?    ?   : 2012?2??21?
+        ??   : w00199382
+    DT???Y   : B060????????1????
+  3.?    ?   : 2012?03??03?
+        ??   : s62952
+    DT???Y   : BalongV300R002 Build?????? :?3y?D?o
+  4.?    ?   : 2012?04??13?
+        ??   : f62575
+    DT???Y   : V7???2?: ?3yWIFI_POWER_SHUTDOWN?oledPwrOffoDRV_PWRCTRL_USB_LOWPOWER_ENTER???
+                        ????aDRV_PWRCTRL_STANDBYSTATEACPU (BSP_PWRCTRL_StandbyStateAcpu)
+  5.?    ?   : 2014?2??14?
+        ??   : w00167002
+    DT???Y   : L-C?2????:?a1??oy??
 *****************************************************************************/
 VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
 {
@@ -1543,13 +1543,13 @@ VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
 
     /* Added by c64416 for ^PSTANDBY low power proc, 2013-9-13, Begin */
 
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, begin */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, begin */
     TAF_MMA_PHONE_MODE_PARA_STRU        stPhoneModePara;
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, end */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, end */
 
     /* Added by c64416 for ^PSTANDBY low power proc, 2013-9-13, End */
 
-    /* ^PSTANDBYéè???üá?óD?ò??óD2??2?êy: ??è?′y?ú×′ì?μ?ê±??3¤?èoíμ￥°???è?′y?ú×′ì?μ??D??ê±?? */
+    /* ^PSTANDBY????D???D2??2?y: ???y?????3?o????y????D???? */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -1562,31 +1562,31 @@ VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    At_FormatResultData(ucIndex, AT_OK); /*Dèòa?è???′OK*/
+    At_FormatResultData(ucIndex, AT_OK); /*Da????OK*/
 
-    /*±￡?¤·μ??êy?Y·￠?ííê3é*/
+    /*???y?Y?3*/
     VOS_TaskDelay(10);
 
     /*
-    μ÷ó?μ×èíoíOM?ó?úê1μ￥°???è?′y?ú×′ì?:
-    ACPUé?íê3éμ?2ù×÷￡o
-    1?￠??μ?WIFI
-    2?￠LED??μ?
-    3?￠USB PowerOff
+    ?oOM??1????y??:
+    ACPU?3?2o
+    1????WIFI
+    2?LED???
+    3?USB PowerOff
 
-    ·￠???￠μ?Co?￡???ê?CCPUé?íê3éμ?2ù×÷￡o
-    1?￠í¨D??￡?é??μ?
-    2?￠1??¨ê±?÷
-    3?￠1??D??
-    4?￠μ÷ó?μ×èí?ó?ú??è?é??ˉ
+    ????Co?????CCPU?3?2o
+    1?D??????
+    2?1???
+    3?1??D??
+    4?????????
     */
-    /* Modify by f62575 for V7′ú??í?2?, 2012-04-07, Begin   */
+    /* Modify by f62575 for V7???2?, 2012-04-07, Begin   */
     stPstandbyInfo.ulStandbyTime = gastAtParaList[0].ulParaValue;
     stPstandbyInfo.ulSwitchTime   = gastAtParaList[1].ulParaValue;
 
     DRV_PWRCTRL_STANDBYSTATEACPU(stPstandbyInfo.ulStandbyTime, stPstandbyInfo.ulSwitchTime);
 
-    /*·￠?í???￠μ?co?*/
+    /*?????co?*/
     if (TAF_SUCCESS != AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                            gastAtClientTab[ucIndex].opId,
                            DRV_AGENT_PSTANDBY_SET_REQ,
@@ -1598,40 +1598,40 @@ VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
     }
 
     /* Added by c64416 for ^PSTANDBY low power proc, 2013-9-13, Begin */
-    /* V7R22éó?1??ú??è?μí1|o?á÷3ìá÷3ì */
+    /* V7R22?1?????1|o?33 */
 
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, begin */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, begin */
     stPhoneModePara.PhMode = TAF_PH_MODE_MINI;
 
     if (VOS_TRUE == TAF_MMA_PhoneModeSetReq(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPhoneModePara))
     {
-        /* Modified by zwx247453 for pc1¤3ì×a3650, 2015-08-24, begin */
-        /* éè??μ±?°2ù×÷ààDí */
+        /* Modified by zwx247453 for pc13a3650, 2015-08-24, begin */
+        /* ???2D */
         gastAtClientTab[ucIndex].CmdCurrentOpt = (AT_CMD_CURRENT_OPT_ENUM)AT_CMD_PSTANDBY_SET;
-        /* Modified by zwx247453 for pc1¤3ì×a3650, 2015-08-24, end */
+        /* Modified by zwx247453 for pc13a3650, 2015-08-24, end */
 
-        return AT_WAIT_ASYNC_RETURN;    /* ·μ???üá?′|àí1ò?e×′ì? */
+        return AT_WAIT_ASYNC_RETURN;    /* ????|1?e? */
     }
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, end */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, end */
     /* Added by c64416 for ^PSTANDBY low power proc, 2013-9-13, End */
 
     return AT_SUCCESS;
 }
 
-/* DTS2012041801532 w00182550 NV1éò??ˉ start in 2012-04-12 */
+/* DTS2012041801532 w00182550 NV1?? start in 2012-04-12 */
 VOS_UINT32 AT_SetExbandInfoPara(VOS_UINT8 ucIndex)
 {
     LTE_COMM_NON_STANDARD_BAND_COMM_STRU stLpsNonstandBand = {0};
     VOS_UINT32 ulRet  = AT_OK;
     VOS_UINT32 ulNvId = 0;
 
-    /* 1?￠AT?üá?ààDíê?·??yè· */
+    /* 1?AT??D???y */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?￠2?êy??êyê?·?·?o?òa?ó */
+    /* 2?2?y??y???o?a? */
     if(1 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -1695,13 +1695,13 @@ VOS_UINT32 AT_SetExbandTestInfoPara(VOS_UINT8 ucIndex)
 
     VOS_UINT32 BandWidthArray[BAND_WIDTH_NUMS]= {14,30,50,100,150,200};
 
-    /* 1?￠AT?üá?ààDíê?·??yè· */
+    /* 1?AT??D???y */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?￠2?êy??êyê?·?·?o?òa?ó */
+    /* 2?2?y??y???o?a? */
     if(2 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -1761,29 +1761,29 @@ VOS_UINT32 AT_SetExbandTestInfoPara(VOS_UINT8 ucIndex)
                                                    stLpsNonstandBand.stTestInfo[ulArrayID].sRxRefSensPower);
       return AT_OK;
 }
-/* DTS2012041801532 w00182550 NV1éò??ˉ end in 2012-04-12 */
+/* DTS2012041801532 w00182550 NV1?? end in 2012-04-12 */
 
 /* Modify by z60575 for multi_ssid, 2012-9-5 begin */
 /*****************************************************************************
- oˉ êy ??  : AT_WriteWiWep
- 1|?ü?èê?  : D′WIFI KEYμ?NV??
- ê?è?2?êy  : VOS_UINT32                          ulIndex        WIFI KEY?úNV???Dμ??÷òy
-             VOS_UINT32                          ulWiWepLen     WIFI KEY3¤?è
-             VOS_UINT8                           aucWiWep[]     WIFI KEY?úèY
-             AT_WIFI_SEC_STRU                   *pstWifiSecInfo WIFI KEY?ù?úNVμ?êy?Y?á11
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_WriteWiWep
+ 1|???  : DWIFI KEY?NV??
+ ??2?y  : VOS_UINT32                          ulIndex        WIFI KEY?NV???D??y
+             VOS_UINT32                          ulWiWepLen     WIFI KEY3?
+             VOS_UINT8                           aucWiWep[]     WIFI KEY?Y
+             AT_WIFI_SEC_STRU                   *pstWifiSecInfo WIFI KEY??NV?y?Y?11
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??10è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??10?
+        ??   : f62575
+    DT???Y   : D?3oy
 
-  2.è?    ?ú   : 2012?ê4??6è?
-    ×÷    ??   : l60609
-    DT???úèY   : DTS20120033007015:μ÷??NV50012μ??á11??×??ú????
+  2.?    ?   : 2012?4??6?
+        ??   : l60609
+    DT???Y   : DTS20120033007015:??NV50012??11????????
 *****************************************************************************/
 VOS_UINT32 AT_WriteWiWep(
     VOS_UINT32                          ulIndex,
@@ -1797,7 +1797,7 @@ VOS_UINT32 AT_WriteWiWep(
     VOS_UINT32                          ulLoop;
     VOS_UINT8                          *paucWifiWepKey;
 
-    /* òò?a??DT??en_NV_Item_WIFI_KEY?Dμ?WIFI KEY×ó??￡??ùò?Dèòa?è??è?è?2?NV?μ￡?è?oó?üD?DT??2?·? */
+    /* ?a??DT??en_NV_Item_WIFI_KEY?D?WIFI KEY?????Da?????2?NV???o?D?DT??2?? */
     ulRet = NV_ReadEx(MODEM_ID_0, en_NV_Item_MULTI_WIFI_KEY, pstWifiSecInfo, sizeof(TAF_AT_MULTI_WIFI_SEC_STRU));
     if (NV_OK != ulRet)
     {
@@ -1805,12 +1805,12 @@ VOS_UINT32 AT_WriteWiWep(
         return AT_ERROR;
     }
 
-    /* ?ù?Yindex??è?NV?D±￡′?μ??ü?? */
+    /* ??Yindex???NV?D????? */
     paucWifiWepKey = ((0 == ulIndex) ? pstWifiSecInfo->aucWifiWepKey1[ucGroup] :
                       ((1 == ulIndex) ? pstWifiSecInfo->aucWifiWepKey2[ucGroup] :
                       ((2 == ulIndex) ? pstWifiSecInfo->aucWifiWepKey3[ucGroup] : pstWifiSecInfo->aucWifiWepKey4[ucGroup])));
 
-    /* ?D??D?μ?WIFI KEYó?NV?D????μ?ê?·?ò??? */
+    /* ?D??D??WIFI KEY?NV?D?????????? */
     for (ulLoop = 0; ulLoop < AT_NV_WLKEY_LEN; ulLoop++)
     {
         if (paucWifiWepKey[ulLoop] != aucWiWep[ulLoop])
@@ -1819,13 +1819,13 @@ VOS_UINT32 AT_WriteWiWep(
         }
     }
 
-    /* ?D??D?μ?WIFI KEYó?NV?D????μ?ò????ò?±?ó·μ??2ù×÷íê3é*/
+    /* ?D??D??WIFI KEY?NV?D?????????????23*/
     if (AT_NV_WLKEY_LEN == ulLoop)
     {
         return AT_OK;
     }
 
-    /* ?üD?êy?Yμ?NV??en_NV_Item_WIFI_KEY */
+    /* ?D?y?Y?NV??en_NV_Item_WIFI_KEY */
     TAF_MEM_SET_S(paucWifiWepKey, AT_WIFI_KEY_LEN_MAX, 0x00, AT_NV_WLKEY_LEN);
 
     TAF_MEM_CPY_S(paucWifiWepKey, AT_WIFI_KEY_LEN_MAX, aucWiWep, usWiWepLen);
@@ -1841,26 +1841,26 @@ VOS_UINT32 AT_WriteWiWep(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetWiwepPara
- 1|?ü?èê?  : éè?????¨INDEXμ?WiFi WEP￡¨WIFIμ?KEY￡??úèY
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetWiwepPara
+ 1|???  : ?????INDEX?WiFi WEPWIFI?KEY??Y
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
-  2.è?    ?ú   : 2012?ê4??6è?
-    ×÷    ??   : l60609
-    DT???úèY   : DTS20120033007015:μ÷??NV50012μ??á11??×??ú????
+  2.?    ?   : 2012?4??6?
+        ??   : l60609
+    DT???Y   : DTS20120033007015:??NV50012??11????????
 
-  3.è?    ?ú   : 2012?ê9??17è?
-    ×÷    ??   : z60575
-    DT???úèY   : MULTI_SSIDDT??
+  3.?    ?   : 2012?9??17?
+        ??   : z60575
+    DT???Y   : MULTI_SSIDDT??
 *****************************************************************************/
 VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
 {
@@ -1869,14 +1869,14 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
     VOS_UINT32                          ulRet;
     TAF_AT_MULTI_WIFI_SEC_STRU         *pstWifiSecInfo;
 
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
-    /* ê?è?2?êy?ì2é: óD?ò??óD< index >oí< content >á???2?êy */
+    /* ??2?y?2: D???D< index >o< content >???2?y */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
@@ -1889,13 +1889,13 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* WIFI key 2ù×÷êüDATALOCK±￡?¤ */
+    /* WIFI key 2DATALOCK? */
     if (VOS_TRUE == g_bAtDataLocked)
     {
         return AT_ERROR;
     }
 
-    /* < index >±?D??ú0-3·??§?ú￡?< content >3¤?èD?óúNV_WLKEY_LEN */
+    /* < index >?D??0-3????< content >3?D?NV_WLKEY_LEN */
     ulIndex = gastAtParaList[0].ulParaValue;
     if (ulIndex > AT_WIWEP_CARD_WIFI_KEY_TOTAL)
     {
@@ -1914,7 +1914,7 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* ×é×°WIFI KEYμ?NV?á112￠?üD?êy?Yμ?NV??en_NV_Item_WIFI_KEY */
+    /* WIFI KEY?NV?112?D?y?Y?NV??en_NV_Item_WIFI_KEY */
     pstWifiSecInfo = (TAF_AT_MULTI_WIFI_SEC_STRU *)PS_MEM_ALLOC(WUEPS_PID_AT,
                                                   sizeof(TAF_AT_MULTI_WIFI_SEC_STRU));
     if (VOS_NULL_PTR == pstWifiSecInfo)
@@ -1934,25 +1934,25 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryWiwepPara
- 1|?ü?èê?  : WIFI KEYD??￠2é?ˉ
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryWiwepPara
+ 1|???  : WIFI KEYD??2?
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
-  2.è?    ?ú   : 2012?ê4??6è?
-    ×÷    ??   : l60609
-    DT???úèY   : DTS20120033007015:μ÷??NV50012μ??á11??×??ú????
-  3.è?    ?ú   : 2012?ê9??17è?
-    ×÷    ??   : z60575
-    DT???úèY   : MULTI_SSIDDT??
+  2.?    ?   : 2012?4??6?
+        ??   : l60609
+    DT???Y   : DTS20120033007015:??NV50012??11????????
+  3.?    ?   : 2012?9??17?
+        ??   : z60575
+    DT???Y   : MULTI_SSIDDT??
 *****************************************************************************/
 VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
 {
@@ -1967,14 +1967,14 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
     VOS_UINT8                           aucWepKeyLen4[AT_WIFI_MAX_SSID_NUM];
     VOS_UINT8                           ucWepKeyNum;
 
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
-    /* ?a?áè?WIFI KEYéê???ú′?￡??áNV??en_NV_Item_WIFI_KEY??è?WIFI KEYD??￠ */
+    /* ?a??WIFI KEY??????NV??en_NV_Item_WIFI_KEY???WIFI KEYD?? */
     pstWifiSecInfo = (TAF_AT_MULTI_WIFI_SEC_STRU *)PS_MEM_ALLOC(WUEPS_PID_AT,
                                                       sizeof(TAF_AT_MULTI_WIFI_SEC_STRU));
     if (VOS_NULL_PTR == pstWifiSecInfo)
@@ -1998,7 +1998,7 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
 
     for (ulLoop = 0; ulLoop < AT_WIFI_MAX_SSID_NUM; ulLoop++)
     {
-        /* KEY1??ó|μ?NV2???±íê?KEY1óDD§ */
+        /* KEY1??|?NV2????KEY1DD */
         aucWepKeyLen1[ulLoop] = (VOS_UINT8)VOS_StrLen((VOS_CHAR*)pstWifiSecInfo->aucWifiWepKey1[ulLoop]);
         if (0 != aucWepKeyLen1[ulLoop])
         {
@@ -2024,7 +2024,7 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
         }
     }
 
-    /* ?′?a??ê±￡?Dèòa·μ??ò??¨??0×é */
+    /* ??a???Da??????0 */
     if (VOS_TRUE == g_bAtDataLocked)
     {
         ucWepKeyNum = 0;
@@ -2035,9 +2035,9 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
     }
 
     /*
-    ?ú×?1¤?????óòa?ó￡?Dèòaê?3?1¤???§3?μ?è?2?êy20??WiFi WEP￡¨WIFIμ?KEY￡?
-    ′òó???×éμ￥°??§3?μ?WIFI KEYD??￠
-    ì?3?16DD^WIWEP: <index>,ó?1¤??òa?óμ?20??μ?WiFi WEP￡¨WIFIμ?KEY￡?ò???￡?
+    ??1?????a??Da?3?1???3???2?y20??WiFi WEPWIFI?KEY?
+    ?????3??WIFI KEYD??
+    ?3?16DD^WIWEP: <index>,?1??a??20???WiFi WEPWIFI?KEY?????
     */
     usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                      (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -2143,28 +2143,28 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
 /* Modify by z60575 for multi_ssid, 2012-9-5 end */
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestWiwepPara
- 1|?ü?èê?  : WIWEPμ?2aê??üá?￡?ê?3?1¤???§3?μ?WIFI KEY×üêy
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestWiwepPara
+ 1|???  : WIWEP?2a?????3?1???3??WIFI KEYy
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_TestWiwepPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                    (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -2177,35 +2177,35 @@ VOS_UINT32 AT_TestWiwepPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestWifiPaRangePara
- 1|?ü?èê?  : AT^WIPARANGE2aê?oˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestWifiPaRangePara
+ 1|???  : AT^WIPARANGE2a?oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê02??02è?
-    ×÷    ??   : l00198894
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?02??02?
+        ??   : l00198894
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_TestWifiPaRangePara (VOS_UINT8 ucIndex)
 {
     AT_WIFI_MODE_ENUM_UINT8             ucWifiMode;
 
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
-    /* 3?ê??ˉ */
+    /* 3??? */
     ucWifiMode                          = (VOS_UINT8)WIFI_GET_PA_MODE();
 
-    /* 2é?ˉμ￥°??§3?μ??￡ê?￡oè?1????§3?PA?￡ê?￡???óDNO PA?￡ê?￡??ò??·μ??h?′?é￡?è?1?á????￡ê????§3?￡??ò·μ??h,l?￡*/
+    /* 2???3????o?1????3?PA?????DNO PA????????h????1?????????3?????h,l?*/
     if (AT_WIFI_MODE_ONLY_PA == ucWifiMode)
     {
         gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -2242,24 +2242,24 @@ VOS_UINT32 AT_TestWifiPaRangePara (VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_GetTseLrfLoadDspInfo
- 1|?ü?èê?  : ^TSELRF?üá?ê?·?′￥·￠LOAD DSP
- ê?è?2?êy  : AT_TSELRF_PATH_ENUM_UINT32          enPath     é??μí¨?·±ào?
-             VOS_BOOL                           *pbLoadDsp  ê?·?′￥·￠LOAD DSP
-                     VOS_FALSE                              2?′￥·￠LOAD DSP2ù×÷
-                     VOS_TRUE                               ′￥·￠LOAD DSP2ù×÷
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_VOID
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_GetTseLrfLoadDspInfo
+ 1|???  : ^TSELRF????LOAD DSP
+ ??2?y  : AT_TSELRF_PATH_ENUM_UINT32          enPath     ???o?
+             VOS_BOOL                           *pbLoadDsp  ??LOAD DSP
+                     VOS_FALSE                              2?LOAD DSP2
+                     VOS_TRUE                               LOAD DSP2
+ ?3?2?y  : ?T
+  ?? ?  : VOS_VOID
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??10è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê01??16è?
-    ×÷    ??   : m00217266
-    DT???úèY   : DSDA Co??????ó?úDT??(load mode DT??)
+ DT??      :
+  1.?    ?   : 2012?1??10?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?01??16?
+        ??   : m00217266
+    DT???Y   : DSDA Co???????DT??(load mode DT??)
 
 *****************************************************************************/
 VOS_VOID AT_GetTseLrfLoadDspInfo(
@@ -2268,7 +2268,7 @@ VOS_VOID AT_GetTseLrfLoadDspInfo(
     DRV_AGENT_TSELRF_SET_REQ_STRU      *pstTseLrf
 )
 {
-    /* ^TSELRF?üá?éè??μ?é??μí¨?·±ào??aGSM?òμ±?°ò??-LOADá???í¨?·￡??TDèLOAD */
+    /* ^TSELRF????????o??aGSM????-LOAD??????TDLOAD */
     if (AT_TSELRF_PATH_GSM == enPath)
     {
         if ((AT_RAT_MODE_GSM == g_stAtDevCmdCtrl.ucDeviceRatMode)
@@ -2285,7 +2285,7 @@ VOS_VOID AT_GetTseLrfLoadDspInfo(
         return;
     }
 
-    /* ^TSELRF?üá?éè??μ?é??μí¨?·±ào??aWCDMA?÷?ˉ?òμ±?°ò??-LOADá???í¨?·￡??TDèLOAD */
+    /* ^TSELRF????????o??aWCDMA??????-LOAD??????TDLOAD */
     if (AT_TSELRF_PATH_WCDMA_PRI == enPath)
     {
         if (((AT_RAT_MODE_WCDMA == g_stAtDevCmdCtrl.ucDeviceRatMode)
@@ -2311,27 +2311,27 @@ VOS_VOID AT_GetTseLrfLoadDspInfo(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetTseLrfPara
- 1|?ü?èê?  : ^TSELRFμ?éè??2ù×÷
- ê?è?2?êy  : VOS_UINT8 ucIndex  ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32 ·μ???′DD?á1?3é1|?ò?àó|′í?ó??
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetTseLrfPara
+ 1|???  : ^TSELRF???2
+ ??2?y  : VOS_UINT8 ucIndex  ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32 ???DD?1?31|??|???
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??10è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê4??21è?
-    ×÷    ??   : f62575
-    DT???úèY   : V7′ú??í?2?: ???óPATH2?êy±￡?¤
-  3.è?    ?ú   : 2012?ê05??04è?
-    ×÷    ??   : f62575
-    DT???úèY   : DTS2012040600347￡??§3??è??·??ˉoó′ò?a?óê??úμ?D?×°±?á÷3ì
-  4.è?    ?ú   : 2012?ê05??05è?
-    ×÷    ??   : f62575
-    DT???úèY   : DTS2012050502003￡??a??V7°?±?AT^TSELRF=1?üá??T?ìó|?êìa
+ DT??      :
+  1.?    ?   : 2012?1??10?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?4??21?
+        ??   : f62575
+    DT???Y   : V7???2?: ???PATH2?y?
+  3.?    ?   : 2012?05??04?
+        ??   : f62575
+    DT???Y   : DTS2012040600347??3??????o?a????D??3
+  4.?    ?   : 2012?05??05?
+        ??   : f62575
+    DT???Y   : DTS2012050502003??a??V7??AT^TSELRF=1???T?|?a
 
 *****************************************************************************/
 VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
@@ -2344,21 +2344,21 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT??o?*/
     if ((AT_TSELRF_PATH_WCDMA_PRI!=gastAtParaList[0].ulParaValue)
      && (AT_TSELRF_PATH_WCDMA_DIV!=gastAtParaList[0].ulParaValue)
      && (AT_TSELRF_PATH_GSM !=gastAtParaList[0].ulParaValue))
     {
         return atSetTselrfPara(ucIndex);
     }
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT??o?*/
 
     if(AT_TSELRF_PATH_TD == gastAtParaList[0].ulParaValue)
     {
         return atSetTselrfPara(ucIndex);
     }
 
-    /* 2?êy2?·?o?òa?ó */
+    /* 2?y2??o?a? */
     if ((1 != gucAtParaIndex)
      || (0 == gastAtParaList[0].usParaLen))
     {
@@ -2367,10 +2367,10 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
 
     if (AT_TSELRF_PATH_WIFI == gastAtParaList[0].ulParaValue)
     {
-        /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+        /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
         if ( BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
         {
-            /*WIFI?′Enable?±?ó·μ??ê§°ü*/
+            /*WIFI?Enable????*/
             if(VOS_FALSE == (VOS_UINT32)WIFI_GET_STATUS())
             {
                 return AT_ERROR;
@@ -2384,7 +2384,7 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         {
             return AT_ERROR;
         }
-        /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, end */
+        /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, end */
     }
 
     if (AT_TMODE_FTM != g_stAtDevCmdCtrl.ucCurrentTMode)
@@ -2392,7 +2392,7 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* ′ò?a·??ˉ±?D??úFRXON??oó￡?2???RXDIVêμ?? */
+    /* ?a???D??FRXON??o?2???RXDIV?? */
     if (AT_TSELRF_PATH_WCDMA_DIV == gastAtParaList[0].ulParaValue)
     {
         if (DRV_AGENT_DSP_RF_SWITCH_ON != g_stAtDevCmdCtrl.ucRxOnOff)
@@ -2408,17 +2408,17 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TSELRF_SET;
         g_stAtDevCmdCtrl.ucIndex               = ucIndex;
 
-        /* ·μ???üá?′|àí1ò?e×′ì? */
+        /* ????|1?e? */
         return AT_WAIT_ASYNC_RETURN;
     }
 
-    /* Modify by f62575 for V7′ú??í?2?, 2012-04-07, Begin   */
+    /* Modify by f62575 for V7???2?, 2012-04-07, Begin   */
     if ((AT_TSELRF_PATH_GSM != gastAtParaList[0].ulParaValue)
      && (AT_TSELRF_PATH_WCDMA_PRI != gastAtParaList[0].ulParaValue))
     {
         return AT_ERROR;
     }
-    /* Modify by f62575 for V7′ú??í?2?, 2012-04-07, End   */
+    /* Modify by f62575 for V7???2?, 2012-04-07, End   */
 
     if (AT_TSELRF_PATH_WCDMA_PRI == gastAtParaList[0].ulParaValue)
     {
@@ -2439,7 +2439,7 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return AT_WAIT_ASYNC_RETURN;
     }
 
-    /* ′?′|?D??ê?·?Dèòa??D??ó??DSP: Dèòa?ò·￠???óμ?Co??ó??DSP￡?·??ò￡??±?ó·μ??OK */
+    /* ?|?D????Da??D????DSP: Da?????Co????DSP????????OK */
     AT_GetTseLrfLoadDspInfo(gastAtParaList[0].ulParaValue, &bLoadDsp, &stTseLrf);
     if (VOS_TRUE == bLoadDsp)
     {
@@ -2450,8 +2450,8 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
                                                    sizeof(stTseLrf),
                                                    I0_WUEPS_PID_DRV_AGENT))
         {
-            gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TSELRF_SET;             /*éè??μ±?°2ù×÷?￡ê? */
-            return AT_WAIT_ASYNC_RETURN;                                           /* μè′yòì2?ê??t·μ?? */
+            gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TSELRF_SET;             /*???2?? */
+            return AT_WAIT_ASYNC_RETURN;                                           /* y2???t?? */
         }
         else
         {
@@ -2463,45 +2463,45 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryTseLrfPara
- 1|?ü?èê?  : 2é?ˉ?üá?ó?à′·μ??μ￥°??§3?μ??ùóD?é??￡??????é??·?DD??ê?￡?????<path>
-             ààDí????ê?ò?DD￡?
-             ?ùàyà′?μ￡?è??§3?2×éWIFIìì??￡??é??ê??a?±^TSELRF: 7,0,1?±
- ê?è?2?êy  : VOS_UINT8 ucIndex ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32 ·μ???′DD?á1?3é1|?ò?àó|′í?ó??
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryTseLrfPara
+ 1|???  : 2????????3???D????????????DD????????<path>
+             D??????DD?
+             ?y????3?2WIFI????????a?^TSELRF: 7,0,1?
+ ??2?y  : VOS_UINT8 ucIndex ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32 ???DD?1?31|??|???
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??10è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??10?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_QryTseLrfPara(VOS_UINT8 ucIndex)
 {
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT′ú??èúo?*/
+    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT??o?*/
     return atQryTselrfPara(ucIndex);
 
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetCmdlenPara
- 1|?ü?èê?  : ???aμ￥°?PCò?′??úí?·￠?íμ?×?·???êyoíPC?úí?μ￥°?ò?′?·￠?íμ?×?·???êy
-             ???üá?ó?óú?§3?SIMLOCKêy?Yμ?·???·￠?í￡?BALONG?T′?Dè?ó￡???·μ??OK±￡?¤1¤
-             ??1éò??ˉá÷3ì?y3￡?′DD
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetCmdlenPara
+ 1|???  : ???a?PC??????????yoPC???????????y
+             ??????3?SIMLOCKy?Y??????BALONG?T?D??????OK?1
+             ??1??3?y3?DD
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCmdlenPara(VOS_UINT8 ucIndex)
@@ -2527,28 +2527,28 @@ VOS_UINT32 AT_SetCmdlenPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryCmdlenPara
- 1|?ü?èê?  : 2é?ˉμ￥°?×?′ó?éò??±?ó?óê?AT?üá?×?·???êy￡?ò??°μ￥°?í¨1yATò?′?×?′ó
-             ?éò??ìó|μ?×?·???êy￡???×?·???êy?ù2?°üo?AT?aá???×?·??￡
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryCmdlenPara
+ 1|???  : 2?????????AT??????y????1yAT???
+             ???|?????y???????y?2?o?AT?a??????
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??2è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??2?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCmdlenPara(VOS_UINT8 ucIndex)
 {
     /*
-      ê?3?μ￥°?×?′ó?éò??±?ó?óê?AT?üá?×?·???êy(AT_CMD_MAX_LEN - sizeof("AT"))￡?
-      ??×?·???êy?ù2?°üo?AT?aá???×?·?￡?ò??°μ￥°?í¨1yATò?′?×?′ó?éò??ìó|μ?×?·???êy￡?
-      BALONG2ú?·?ìó|×?·?′?3¤?è?éò?·?
-      ?à′?é?±¨￡???óD×?′ó?μ????￡?1¤???????μ?T′|àí￡?′?′|ê?3?ò?′?é?±¨μ?×?′ó?μAT_CMD_MAX_LEN?￡
+      ?3?????????AT??????y(AT_CMD_MAX_LEN - sizeof("AT"))?
+      ??????y?2?o?AT?a?????????1yAT??????|?????y?
+      BALONG2??|???3????
+      ??????D???????1????????T|??|?3???????AT_CMD_MAX_LEN?
     */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                     (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -2562,23 +2562,23 @@ VOS_UINT32 AT_QryCmdlenPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_UpdateMacPara
- 1|?ü?èê?  : ?üD?MACμ??·μ?NV
-             ê?·??§3?2??MAC′yè·è?￡?
- ê?è?2?êy  : VOS_UINT8                           aucMac[]   MACμ??·×?·?′?ê×μ??·
-             VOS_UINT16                          usMacLength    MACμ??·×?·?′?3¤?è
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
-             2ù×÷3é1|￡?·μ??AT_OK
-             ??àío?3¤?è2?o?·¨·μ??AT_PHYNUM_LENGTH_ERR
-             MT?ú2?′í?ó￡?·μ??AT_ERROR
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_UpdateMacPara
+ 1|???  : ?D?MAC???NV
+             ???3?2??MACy??
+ ??2?y  : VOS_UINT8                           aucMac[]   MAC???????
+             VOS_UINT16                          usMacLength    MAC?????3?
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+             231|???AT_OK
+             ??o?3?2?o???AT_PHYNUM_LENGTH_ERR
+             MT?2?????AT_ERROR
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_UpdateMacPara(
@@ -2592,13 +2592,13 @@ VOS_UINT32 AT_UpdateMacPara(
     VOS_UINT32                          ulPhyNumMacOffset;
     VOS_UINT8                           aucWifiGlobalMac[AT_MAC_ADDR_LEN];
 
-    /* MACμ??·3¤?è?ì2é: ±?D?12?? */
+    /* MAC??3??2: ?D?12?? */
     if (AT_PHYNUM_MAC_LEN != usMacLength)
     {
         return AT_PHYNUM_LENGTH_ERR;
     }
 
-    /* MACμ??·??ê??￥??: 7AFEE22111E4=>7A:FE:E2:21:11:E4*/
+    /* MAC????????: 7AFEE22111E4=>7A:FE:E2:21:11:E4*/
     ulWifiGlobalMacOffset = 0;
     ulPhyNumMacOffset     = 0;
     for (ulLoop = 0; ulLoop < (AT_PHYNUM_MAC_COLON_NUM + 1); ulLoop++)
@@ -2615,7 +2615,7 @@ VOS_UINT32 AT_UpdateMacPara(
 
     aucWifiGlobalMac[AT_PHYNUM_MAC_LEN + AT_PHYNUM_MAC_COLON_NUM] = '\0';
 
-    /* ?üD?MACμ??·μ?NV */
+    /* ?D?MAC???NV */
     ulRet = NV_WriteEx(MODEM_ID_0, en_NV_Item_WIFI_MAC_ADDR, aucWifiGlobalMac, AT_MAC_ADDR_LEN);
     if (NV_OK != ulRet)
     {
@@ -2627,34 +2627,34 @@ VOS_UINT32 AT_UpdateMacPara(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetTmodeAutoPowerOff
- 1|?ü?èê?  : ×??ˉ1??úμ?×°±??üá?￡???E52ú?·D?ì??§3?￡?????2ú?·D?ì?·μ??ERROR
-             2ú??òa?ó?èí¨?aó??§AT?üá?ò??′DD￡??ú×?2ú??μ?ê±D§Dè?ó
-             ó??§í¨1y?ì2a???úê?·???ê§à′è·è?è???ê?·??yè·?′DD
- ê?è?2?êy  : VOS_UINT8 ucIndex      ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetTmodeAutoPowerOff
+ 1|???  : ??1?????????E52?D???3??????2?D????ERROR
+             2??a???a??AT????DD???2???DD?
+             ??1y?2a??????????????y?DD
+ ??2?y  : VOS_UINT8 ucIndex      ???y
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê12??13è?
-    ×÷    ??   : L00171473
-    DT???úèY   : DTS2012121802573, TQE??àí
-  3.è?    ?ú   : 2014?ê2??14è?
-    ×÷    ??   : w00167002
-    DT???úèY   : L-C?￥2ù×÷????:?a1??úoˉêyμ÷??
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?12??13?
+        ??   : L00171473
+    DT???Y   : DTS2012121802573, TQE??
+  3.?    ?   : 2014?2??14?
+        ??   : w00167002
+    DT???Y   : L-C?2????:?a1??oy??
 *****************************************************************************/
 VOS_UINT32 AT_SetTmodeAutoPowerOff(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, begin */
 
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, begin */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, begin */
     TAF_MMA_PHONE_MODE_PARA_STRU        stPhModeSet;
-    /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, end */
+    /* Modified by w00167002 for L-C?2????, 2014-2-14, end */
 
     VOS_UINT8                             *pucSystemAppConfig;
 
@@ -2665,47 +2665,47 @@ VOS_UINT32 AT_SetTmodeAutoPowerOff(VOS_UINT8 ucIndex)
 
     if ( SYSTEM_APP_WEBUI == *pucSystemAppConfig)
     {
-        /* ·￠???￠??Co?í¨?a1??ú2￠??μ? */
-        /* ?èí¨?aó??§AT?üá?ò??′DD￡?ó??§í¨1y?ì2a???úê?·???ê§à′è·è?è???ê?·??yè·?′DD
-           ′??üá??′DDíê3éoóò???μ?￡??TDèμè′yòì2?·μ??
+        /* ?????Co??a1??2??? */
+        /* ??a??AT????DD???1y?2a??????????????y?DD
+           ????DD3o??????TDy2???
         */
 
-        /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, begin */
+        /* Modified by w00167002 for L-C?2????, 2014-2-14, begin */
         stPhModeSet.PhMode  = TAF_PH_MODE_POWEROFF;
 
         if (VOS_TRUE == TAF_MMA_PhoneModeSetReq(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPhModeSet))
         {
             return AT_OK;
         }
-        /* Modified by w00167002 for L-C?￥2ù×÷????, 2014-2-14, end */
+        /* Modified by w00167002 for L-C?2????, 2014-2-14, end */
         else
         {
             return AT_ERROR;
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Buildó??ˉ???? 2012-02-28, end */
+    /* Modified by s62952 for BalongV300R002 Build?????? 2012-02-28, end */
 
     return AT_ERROR;
 
 }
 /* Added by f62575 for SMALL IMAGE, 2012-1-3, end   */
 
-/* Add by w00199382 for V7′ú??í?2?, 2012-04-07, Begin   */
+/* Add by w00199382 for V7???2?, 2012-04-07, Begin   */
 
 /*****************************************************************************
- oˉ êy ??  : AT_SDParamErrCode
- 1|?ü?èê?  : SD?üá?2?êy′í?ó·μ??′í?ó??μ?′|àí
- ê?è?2?êy  : ?T
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SDParamErrCode
+ 1|???  : SD??2?y???????|
+ ??2?y  : ?T
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??19è?
-    ×÷    ??   : c64416
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??19?
+        ??   : c64416
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_SDParamErrCode(VOS_VOID)
@@ -2724,23 +2724,23 @@ VOS_UINT32 AT_SDParamErrCode(VOS_VOID)
     }
 }
 
-/* Add by w00199382 for V7′ú??í?2?, 2012-04-07, End   */
+/* Add by w00199382 for V7???2?, 2012-04-07, End   */
 
 /* Added by f62575 for B050 Project, 2012-2-3, Begin   */
 /*****************************************************************************
- oˉ êy ??  : AT_GetSpecificPort
- 1|?ü?èê?  : ??è????¨ààDíμ????ú
- ê?è?2?êy  : VOS_UINT8                           ucPortType ???úààDí
- ê?3?2?êy  : VOS_UINT32                         *pulPortPos ???ú?úNV???Dμ???ò?
-             VOS_UINT32                         *pulPortNum NV???Dμ????ú×üêy
- ·μ ?? ?μ  : ?T
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_GetSpecificPort
+ 1|???  : ??????D????
+ ??2?y  : VOS_UINT8                           ucPortType ???D
+ ?3?2?y  : VOS_UINT32                         *pulPortPos ????NV???D????
+             VOS_UINT32                         *pulPortNum NV???D????y
+  ?? ?  : ?T
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_VOID AT_GetSpecificPort(
@@ -2760,36 +2760,36 @@ VOS_VOID AT_GetSpecificPort(
             break;
         }
 
-        /* ???ú?μ?aucPortType￡?±íê??òμ????¨???ú￡?????ulLoop?a???ú?úNV???Dμ???ò? */
+        /* ?????aucPortType???????????????ulLoop?a????NV???D???? */
         if (ucPortType == aucRewindPortStyle[ulLoop])
         {
             *pulPortPos = ulLoop;
         }
     }
 
-    /* ???ú?μ?a0?òμ?′??-?·é??T￡?ulLoop?′?aμ￥°?μ????ú×üêy */
+    /* ?????a0????-???T?ulLoop??a?????y */
     *pulPortNum = ulLoop;
 
     return;
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_ExistSpecificPort
- 1|?ü?èê?  : ê?·?′??ú???¨ààDíμ????ú
- ê?è?2?êy  : VOS_UINT8              ucPortType ???úààDí
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             VOS_TRUE    ′??ú???¨ààDíμ????ú
-                                    VOS_FALSE 2?′??ú???¨ààDíμ????ú
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_ExistSpecificPort
+ 1|???  : ???????D????
+ ??2?y  : VOS_UINT8              ucPortType ???D
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             VOS_TRUE    ?????D????
+                                    VOS_FALSE 2??????D????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê8??10è?
-    ×÷    ??   : L00171473
-    DT???úèY   : DTS2012082204471, TQE??àí
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?8??10?
+        ??   : L00171473
+    DT???Y   : DTS2012082204471, TQE??
 *****************************************************************************/
 VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
 {
@@ -2804,7 +2804,7 @@ VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
     ulPortNum = 0;
 
 
-    /* ?áNV??en_NV_Item_Huawei_Dynamic_PID_Type??è?μ±?°μ????ú×′ì? */
+    /* ?NV??en_NV_Item_Huawei_Dynamic_PID_Type????????? */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_Huawei_Dynamic_PID_Type,
                         &stDynamicPidType,
                         sizeof(AT_DYNAMIC_PID_TYPE_STRU)))
@@ -2813,10 +2813,10 @@ VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
         return VOS_FALSE;
     }
 
-    /* ?D??DIAG???úê?·?ò??-′ò?a: ò??-′ò?a?ò?±?ó·μ??AT_OK */
+    /* ?D??DIAG???????-?a: ??-?a?????AT_OK */
     if (VOS_TRUE == stDynamicPidType.ulNvStatus)
     {
-        /* 2é?ˉNV??en_NV_Item_Huawei_Dynamic_PID_Type?Dê?·?ò??-′??úDIAG?ú */
+        /* 2?NV??en_NV_Item_Huawei_Dynamic_PID_Type?D????-??DIAG? */
         AT_GetSpecificPort(ucPortType,
                            stDynamicPidType.aucRewindPortStyle,
                            &ulPortPos,
@@ -2834,21 +2834,21 @@ VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
 
 
 /*****************************************************************************
- oˉ êy ??  : AT_OpenDiagPort
- 1|?ü?èê?  : ′ò?aDIAG???ú
- ê?è?2?êy  : ?T
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_OpenDiagPort
+ 1|???  : ?aDIAG???
+ ??2?y  : ?T
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê8??10è?
-    ×÷    ??   : L00171473
-    DT???úèY   : DTS2012082204471, TQE??àí
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?8??10?
+        ??   : L00171473
+    DT???Y   : DTS2012082204471, TQE??
 *****************************************************************************/
 VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
 {
@@ -2863,7 +2863,7 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
     ulPortNum = 0;
 
 
-    /* ?áNV??en_NV_Item_Huawei_Dynamic_PID_Type??è?μ±?°μ????ú×′ì? */
+    /* ?NV??en_NV_Item_Huawei_Dynamic_PID_Type????????? */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_Huawei_Dynamic_PID_Type,
                         &stDynamicPidType,
                         sizeof(AT_DYNAMIC_PID_TYPE_STRU)))
@@ -2872,10 +2872,10 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
         return AT_ERROR;
     }
 
-    /* ?D??DIAG???úê?·?ò??-′ò?a: ò??-′ò?a?ò?±?ó·μ??AT_OK */
+    /* ?D??DIAG???????-?a: ??-?a?????AT_OK */
     if (VOS_TRUE == stDynamicPidType.ulNvStatus)
     {
-        /* 2é?ˉNV??en_NV_Item_Huawei_Dynamic_PID_Type?Dê?·?ò??-′??úDIAG?ú */
+        /* 2?NV??en_NV_Item_Huawei_Dynamic_PID_Type?D????-??DIAG? */
         AT_GetSpecificPort(AT_DEV_DIAG,
                            stDynamicPidType.aucRewindPortStyle,
                            &ulPortPos,
@@ -2893,13 +2893,13 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
         return AT_OK;
     }
 
-    /* DIAG???ú2ù×÷è¨?T?′??è?: ?±?ó·μ??AT_OK */
+    /* DIAG???2?T????: ????AT_OK */
     if (AT_E5_RIGHT_FLAG_NO == g_enATE5RightFlag)
     {
         return AT_OK;
     }
 
-    /* ×·?óDIAG???úμ??D??oó???ú?ˉ */
+    /* ?DIAG?????D??o???? */
     if (AT_SETPORT_PARA_MAX_LEN == ulPortNum)
     {
         return AT_OK;
@@ -2907,7 +2907,7 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
 
     stDynamicPidType.aucRewindPortStyle[ulPortNum] = AT_DEV_DIAG;
 
-    /* ?üD????ú?ˉo?êy?Yμ?NV??en_NV_Item_Huawei_Dynamic_PID_Type */
+    /* ?D?????o?y?Y?NV??en_NV_Item_Huawei_Dynamic_PID_Type */
     if (NV_OK != NV_WriteEx(MODEM_ID_0, en_NV_Item_Huawei_Dynamic_PID_Type,
                         &stDynamicPidType,
                         sizeof(AT_DYNAMIC_PID_TYPE_STRU)))
@@ -2922,21 +2922,21 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_CloseDiagPort
- 1|?ü?èê?  : 1?±?DIAG???ú
- ê?è?2?êy  : ?T
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             ATC·μ????
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_CloseDiagPort
+ 1|???  : 1??DIAG???
+ ??2?y  : ?T
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             ATC????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê8??10è?
-    ×÷    ??   : L00171473
-    DT???úèY   : DTS2012082204471, TQE??àí
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?8??10?
+        ??   : L00171473
+    DT???Y   : DTS2012082204471, TQE??
 *****************************************************************************/
 VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
 {
@@ -2952,7 +2952,7 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
     ulPortNum = 0;
 
 
-    /* ?áNV??en_NV_Item_Huawei_Dynamic_PID_Type??è?μ±?°μ????ú×′ì? */
+    /* ?NV??en_NV_Item_Huawei_Dynamic_PID_Type????????? */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_Huawei_Dynamic_PID_Type,
                           &stDynamicPidType,
                           sizeof(AT_DYNAMIC_PID_TYPE_STRU)))
@@ -2961,10 +2961,10 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
         return AT_ERROR;
     }
 
-    /* ?D??DIAG???úê?·?ò??-′ò?a: ò??-′ò?a?ò?±?ó·μ??AT_OK */
+    /* ?D??DIAG???????-?a: ??-?a?????AT_OK */
     if (VOS_TRUE == stDynamicPidType.ulNvStatus)
     {
-        /* 2é?ˉNV??en_NV_Item_Huawei_Dynamic_PID_Type?Dê?·?ò??-′??úDIAG?ú */
+        /* 2?NV??en_NV_Item_Huawei_Dynamic_PID_Type?D????-??DIAG? */
         AT_GetSpecificPort(AT_DEV_DIAG,
                            stDynamicPidType.aucRewindPortStyle,
                            &ulPortPos,
@@ -2980,13 +2980,13 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
         return AT_OK;
     }
 
-    /* DIAG???ú2ù×÷è¨?T?′??è?: ?±?ó·μ??AT_OK */
+    /* DIAG???2?T????: ????AT_OK */
     if (AT_E5_RIGHT_FLAG_NO == g_enATE5RightFlag)
     {
         return AT_OK;
     }
 
-    /* é?3yNV???Dμ?DIAG???ú */
+    /* ?3yNV???D?DIAG??? */
     stDynamicPidType.aucRewindPortStyle[ulPortPos] = 0;
     ulPortNum--;
     for (ulLoop = ulPortPos; ulLoop < ulPortNum; ulLoop++)
@@ -2995,7 +2995,7 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
     }
     stDynamicPidType.aucRewindPortStyle[ulPortNum] = 0;
 
-    /* ???úòì3￡êy?Y±￡?¤: ?D??oóμ?éè±?D?ì??D￡?μúò???éè±?2??ü?aMASSéè±?(0xa1,0xa2) */
+    /* ???3y?Y?: ?D??o??D???D?????2???aMASS?(0xa1,0xa2) */
     if (0 != ulPortNum)
     {
         if ((AT_DEV_CDROM == stDynamicPidType.aucRewindPortStyle[0])
@@ -3005,7 +3005,7 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
         }
     }
 
-    /* ?üD????ú?ˉo?êy?Yμ?NV??en_NV_Item_Huawei_Dynamic_PID_Type */
+    /* ?D?????o?y?Y?NV??en_NV_Item_Huawei_Dynamic_PID_Type */
     if (NV_OK != NV_WriteEx(MODEM_ID_0, en_NV_Item_Huawei_Dynamic_PID_Type,
                           &stDynamicPidType,
                           sizeof(AT_DYNAMIC_PID_TYPE_STRU)))
@@ -3020,24 +3020,24 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_ExistSpecificPortChange
- 1|?ü?èê?  : ê?·?′??ú???¨ààDíμ????ú±??üè¨?T
- ê?è?2?êy  : VOS_UINT8                           ucPortType ???úààDí
-             VOS_UINT8                           aucOldRewindPortStyle[]±??ü?°μ????ú?ˉo?
-             VOS_UINT8                           aucNewRewindPortStyle[]±??üoóμ????ú?ˉo?
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             VOS_TRUE    ′??ú???¨ààDíμ????ú±??ü
-                                    VOS_FALSE 2?′??ú???¨ààDíμ????ú±??ü
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_ExistSpecificPortChange
+ 1|???  : ???????D???????T
+ ??2?y  : VOS_UINT8                           ucPortType ???D
+             VOS_UINT8                           aucOldRewindPortStyle[]????????o?
+             VOS_UINT8                           aucNewRewindPortStyle[]??o?????o?
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             VOS_TRUE    ?????D??????
+                                    VOS_FALSE 2??????D??????
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
-  2.è?    ?ú   : 2012?ê8??10è?
-    ×÷    ??   : L00171473
-    DT???úèY   : DTS2012082204471, TQE??àí
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
+  2.?    ?   : 2012?8??10?
+        ??   : L00171473
+    DT???Y   : DTS2012082204471, TQE??
 *****************************************************************************/
 VOS_UINT32 AT_ExistSpecificPortChange(
     VOS_UINT8                           ucPortType,
@@ -3057,14 +3057,14 @@ VOS_UINT32 AT_ExistSpecificPortChange(
     AT_GetSpecificPort(ucPortType, aucOldRewindPortStyle, &ulOldPortPos, &ulPortNum);
     AT_GetSpecificPort(ucPortType, aucNewRewindPortStyle, &ulNewPortPos, &ulPortNum);
 
-    /* D???ò??????¨???ú */
+    /* D???????????? */
     if ((AT_DEV_NONE == ulOldPortPos)
      && (AT_DEV_NONE != ulNewPortPos))
     {
         return VOS_TRUE;
     }
 
-    /* é?3yò??????¨???ú */
+    /* ?3y????????? */
     if ((AT_DEV_NONE != ulOldPortPos)
      && (AT_DEV_NONE == ulNewPortPos))
     {
@@ -3076,20 +3076,20 @@ VOS_UINT32 AT_ExistSpecificPortChange(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_CheckSetPortRight
- 1|?ü?èê?  : ê?·?′??ú???¨ààDíμ????ú±??ü
- ê?è?2?êy  : VOS_UINT8                           aucOldRewindPortStyle[]±??ü?°μ????ú?ˉo?
-             VOS_UINT8                           aucNewRewindPortStyle[]±??üoóμ????ú?ˉo?
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32             AT_OK       è¨?T?ì2éí¨1y
-                                    AT_ERROR    è¨?T?ì2é2?í¨1y
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_CheckSetPortRight
+ 1|???  : ???????D??????
+ ??2?y  : VOS_UINT8                           aucOldRewindPortStyle[]????????o?
+             VOS_UINT8                           aucNewRewindPortStyle[]??o?????o?
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32             AT_OK       ?T?21y
+                                    AT_ERROR    ?T?22?1y
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê1??3è?
-    ×÷    ??   : f62575
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?1??3?
+        ??   : f62575
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_CheckSetPortRight(
@@ -3115,37 +3115,37 @@ VOS_UINT32 AT_CheckSetPortRight(
 /* Added by f62575 for B050 Project, 2012-2-3, end   */
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetHsspt
- 1|?ü?èê?  : éè??RRC°?±?D??￠,oˉêyμ?2?êy?y3￡D??ì2a·??ú???￡?é×?.
- ê?è?2?êy  : ucIndex    - ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : ·μ??3?′íD??￠?òOK
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetHsspt
+ 1|???  : ??RRC??D??,oy?2?y?y3D??2a???????.
+ ??2?y  : ucIndex    - ???y
+ ?3?2?y  : ?T
+  ?? ?  : ??3?D???OK
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê4??21è?
-    ×÷    ??   : l60609
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?4??21?
+        ??   : l60609
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_SetHsspt(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucRRCVer;
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_DPAUPA_ERROR;
     }
 
-    /* 2?êy1y?à */
+    /* 2?y1y? */
     if (gucAtParaIndex != 1)
     {
         return AT_DPAUPA_ERROR;
     }
 
-    /* ?ì2éê?·??a3yêy?Y±￡?¤,?′?a3yê±·μ??3?′íD??￠:ErrCode:0 */
+    /* ?2???a3yy?Y?,??a3y??3?D??:ErrCode:0 */
     if (VOS_TRUE == g_bAtDataLocked)
     {
         return  AT_DATA_UNLOCK_ERROR;
@@ -3153,7 +3153,7 @@ VOS_UINT32 AT_SetHsspt(VOS_UINT8 ucIndex)
 
     ucRRCVer = (VOS_UINT8)gastAtParaList[0].ulParaValue;
 
-    /* μ÷ó?D′NV?ó?úoˉêy: AT_WriteRrcVerToNV,·μ??2ù×÷?á1? */
+    /* ?DNV??oy: AT_WriteRrcVerToNV,??2?1? */
     if (VOS_OK == AT_WriteRrcVerToNV(ucRRCVer))
     {
         return  AT_OK;
@@ -3166,18 +3166,18 @@ VOS_UINT32 AT_SetHsspt(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryHsspt
- 1|?ü?èê?  : 2é?ˉRRC°?±?D??￠
- ê?è?2?êy  : ucIndex - ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : ·μ??3?′íD??￠?òOK
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryHsspt
+ 1|???  : 2?RRC??D??
+ ??2?y  : ucIndex - ???y
+ ?3?2?y  : ?T
+  ?? ?  : ??3?D???OK
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê4??21è?
-    ×÷    ??   : l60609
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?4??21?
+        ??   : l60609
+    DT???Y   : D?3oy
 *****************************************************************************/
 VOS_UINT32 AT_QryHsspt(VOS_UINT8 ucIndex)
 {
@@ -3185,7 +3185,7 @@ VOS_UINT32 AT_QryHsspt(VOS_UINT8 ucIndex)
     VOS_UINT32                          ulResult;
     VOS_UINT16                          usLength;
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if (AT_CMD_OPT_READ_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_DPAUPA_ERROR;
@@ -3212,28 +3212,28 @@ VOS_UINT32 AT_QryHsspt(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestHsicCmdPara
- 1|?ü?èê?  : HSICí¨μà?üá?2aê??üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestHsicCmdPara
+ 1|???  : HSIC??2a???|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê04??19è?
-    ×÷    ??   : l00198894
-    DT???úèY   : AP-Modem??í????¨????D???oˉêy
-  2.è?    ?ú   : 2012?ê8??13è?
-    ×÷    ??   : l60609
-    DT???úèY   : MUX:???óMUXí¨μàμ?′|àí
+ DT??      :
+  1.?    ?   : 2012?04??19?
+        ??   : l00198894
+    DT???Y   : AP-Modem??????????D???oy
+  2.?    ?   : 2012?8??13?
+        ??   : l60609
+    DT???Y   : MUX:???MUX?|
 *****************************************************************************/
 VOS_UINT32 AT_TestHsicCmdPara(VOS_UINT8 ucIndex)
 {
-    /* í¨μà?ì2é */
-    /* Modified by L60609 for MUX￡?2012-08-13,  Begin */
+    /* ?2 */
+    /* Modified by L60609 for MUX?2012-08-13,  Begin */
     if (VOS_FALSE == AT_IsApPort(ucIndex))
-    /* Modified by L60609 for MUX￡?2012-08-13,  End */
+    /* Modified by L60609 for MUX?2012-08-13,  End */
     {
         return AT_ERROR;
     }
@@ -3242,18 +3242,18 @@ VOS_UINT32 AT_TestHsicCmdPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : At_TestTdsScalibPara
- 1|?ü?èê?  : ^SCALIB2aê??üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : At_TestTdsScalibPara
+ 1|???  : ^SCALIB2a???|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê05??30è?
-    ×÷    ??   : z00212940
-    DT???úèY   : TDSD???oˉêy
+ DT??      :
+  1.?    ?   : 2012?05??30?
+        ??   : z00212940
+    DT???Y   : TDSD???oy
 
 *****************************************************************************/
 VOS_UINT32 At_TestTdsScalibPara(VOS_UINT8 ucIndex)
@@ -3270,23 +3270,23 @@ VOS_UINT32 At_TestTdsScalibPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_TestSimlockUnlockPara
- 1|?ü?èê?  : ^SIMLOCKUNLOCK2aê??üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_TestSimlockUnlockPara
+ 1|???  : ^SIMLOCKUNLOCK2a???|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2012?ê9??19è?
-    ×÷    ??   : à?×??￡/00198894
-    DT???úèY   : STK213?ì?D??°DCMDè?ó?a·￠????D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2012?9??19?
+        ??   : ???/00198894
+    DT???Y   : STK213??D??DCMD??a????D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_TestSimlockUnlockPara( VOS_UINT8 ucIndex )
 {
-    /* í¨μà?ì2é */
+    /* ?2 */
     if (VOS_FALSE == AT_IsApPort(ucIndex))
     {
         return AT_ERROR;
@@ -3302,19 +3302,19 @@ VOS_UINT32 AT_TestSimlockUnlockPara( VOS_UINT8 ucIndex )
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_String2Hex
- 1|?ü?èê?  : íê3é×?·?′?×a16????êy1|?ü
- ê?è?2?êy  : nptr [in/out] ê?è?μ?×?·?′??úèY????
-             usLen [in] ê?è?μ?×?·?′?3¤?è
- ê?3?2?êy  : pRtn [in/out] óé×?·?′?×a???ùμ???Dí?μ
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_String2Hex
+ 1|???  : 3???a16????y1|?
+ ??2?y  : nptr [in/out] ???????Y????
+             usLen [in] ??????3?
+ ?3?2?y  : pRtn [in/out] ???a??????D?
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
 *****************************************************************************/
 VOS_UINT32 AT_String2Hex( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
 {
@@ -3343,7 +3343,7 @@ VOS_UINT32 AT_String2Hex( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
             return VOS_ERR;
         }
 
-        if(total > 0x0FFFFFFF)              /* ·￠éú·′×a */
+        if(total > 0x0FFFFFFF)              /* a */
         {
             return VOS_ERR;
         }
@@ -3359,21 +3359,21 @@ VOS_UINT32 AT_String2Hex( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_NVWRGetParaInfo
- 1|?ü?èê?  : ??è?ê?è?2?êyD??￠
- ê?è?2?êy  : *pucPara  :
+ o y ??  : AT_NVWRGetParaInfo
+ 1|???  : ?????2?yD??
+ ??2?y  : *pucPara  :
              *pucValue :
              **pucParaDst
 
- ê?3?2?êy  :
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ ?3?2?y  :
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
 *****************************************************************************/
 VOS_UINT32 AT_NVWRGetItemValue( VOS_UINT8 *pucPara,  VOS_UINT8 *pucValue,  VOS_UINT8 **pucParaDst)
 {
@@ -3383,9 +3383,9 @@ VOS_UINT32 AT_NVWRGetItemValue( VOS_UINT8 *pucPara,  VOS_UINT8 *pucValue,  VOS_U
     VOS_UINT8                          *pucEnd = VOS_NULL_PTR;
     VOS_UINT32                          ulRet;
 
-    /* μ÷ó?μ?μ?·?±￡?¤pucPara,pucValue,pucParaDst2??aNULL */
+    /* ?????pucPara,pucValue,pucParaDst2??aNULL */
 
-    /* ?±μ?μúò???2?ê?' 'μ?×?·? */
+    /* ?????2??' '??? */
     while(' ' == *pucStart)
     {
         pucStart++;
@@ -3419,18 +3419,18 @@ VOS_UINT32 AT_NVWRGetItemValue( VOS_UINT8 *pucPara,  VOS_UINT8 *pucValue,  VOS_U
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_NVWRGetParaInfo
- 1|?ü?èê?  : ^NVWRITE?üá?′|àíoˉêy
- ê?è?2?êy  :
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_NVWRGetParaInfo
+ 1|???  : ^NVWRITE??|oy
+ ??2?y  :
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
 *****************************************************************************/
 VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu8Data, VOS_UINT32 * pulLen)
 {
@@ -3441,7 +3441,7 @@ VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu
     VOS_UINT32                          ulRet;
     VOS_UINT16                          i = 0;
 
-    /* μ÷ó?μ?μ?·?±￡?¤pstPara,pu8Data2??aNULL */
+    /* ?????pstPara,pu8Data2??aNULL */
 
     pu8Start = pstPara->aucPara;
     usLen= pstPara->usParaLen;
@@ -3466,7 +3466,7 @@ VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu
 
         ulNum++;
 
-        /* ×??à128?? */
+        /* ??128?? */
         /*MAX_NV_NUM_PER_PARA */
         if(ulNum == 128)
         {
@@ -3487,18 +3487,18 @@ VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetNVReadPara
- 1|?ü?èê?  : ^NVREAD?üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetNVReadPara
+ 1|???  : ^NVREAD??|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
 *****************************************************************************/
 VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
 {
@@ -3509,21 +3509,21 @@ VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
     MODEM_ID_ENUM_UINT16                enModemId = MODEM_ID_0;
     VOS_UINT32                          ulRet;
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         g_ulNVRD = 1;
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?êy1y?à */
+    /* 2?y1y? */
     if(gucAtParaIndex > 1)
     {
         g_ulNVRD = 2;
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?êy?a?? */
+    /* 2?y?a?? */
     if(0 == gastAtParaList[0].usParaLen)
     {
         g_ulNVRD = 3;
@@ -3542,7 +3542,7 @@ VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* 3¤?è′óóú128￡???è??°128??×??ú*/
+    /* 3?128?????128????*/
     pucData = (VOS_UINT8*)PS_MEM_ALLOC(WUEPS_PID_AT, ulNvLen);
     if(VOS_NULL_PTR == pucData)
     {
@@ -3595,21 +3595,21 @@ VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetNVReadPara
- 1|?ü?èê?  : ^NVWRITE?üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetNVReadPara
+ 1|???  : ^NVWRITE??|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
-  2.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : NVWR?üá?°2è?????
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
+  2.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : NVWR??2?????
 *****************************************************************************/
 VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
 {
@@ -3625,14 +3625,14 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
 
     gstAtSendData.usBufLen = 0;
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         g_ulNVWR =1;
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?êy?a?? */
+    /* 2?y?a?? */
     if((0 == gastAtParaList[0].usParaLen)
         || (0 == gastAtParaList[1].usParaLen)
         || (0 == gastAtParaList[2].usParaLen))
@@ -3673,7 +3673,7 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
             return AT_CME_INCORRECT_PARAMETERS;
         }
 
-        /* è?1?2?êyμ?3¤?è′óóú128￡??ò·μ??ê§°ü */
+        /* ?1?2?y?3?128???? */
         /*MAX_NV_NUM_PER_PARA */
         if(ulNvNum > 128)
         {
@@ -3682,7 +3682,7 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
             return AT_CME_INCORRECT_PARAMETERS;
         }
 
-        /* è?1?à??óμ?2?êy??êy′óóú×ü3¤?è */
+        /* ?1????2?y??y3? */
         if((ulNvLen+ulNvNum) > usNvTotleLen)
         {
             PS_MEM_FREE(WUEPS_PID_AT, pucData);
@@ -3701,7 +3701,7 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
         }
     }
 
-    /* è?1?à??óμ?2?êy??êyó?×ü3¤?è2??àμè */
+    /* ?1????2?y??y?3?2?? */
     if(ulNvLen != usNvTotleLen)
     {
         PS_MEM_FREE(WUEPS_PID_AT, pucData);
@@ -3744,22 +3744,22 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetNVWRPartPara
- 1|?ü?èê?  : ^NVWRLENéè???üá?′|àí
- ê?è?2?êy  : VOS_UINT8 ucClientId
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetNVWRPartPara
+ 1|???  : ^NVWRLEN????|
+ ??2?y  : VOS_UINT8 ucClientId
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê4??21è?
-    ×÷    ??   : s00318873
-    DT???úèY   : D?éú3éoˉêy for DTS2015042202710
+ DT??      :
+  1.?    ?   : 2015?4??21?
+        ??   : s00318873
+    DT???Y   : D?3oy for DTS2015042202710
 
-  2.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : NVWR?üá?°2è?????
+  2.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : NVWR??2?????
 
 *****************************************************************************/
 VOS_UINT32 AT_SetNVWRPartPara(VOS_UINT8 ucClientId)
@@ -3904,18 +3904,18 @@ VOS_UINT32 AT_SetNVWRPartPara(VOS_UINT8 ucClientId)
 
 
 /*****************************************************************************
- oˉ êy ??  : AT_GetNvRdDebug
- 1|?ü?èê?  : ??ê?NV?áD′μ÷2aD??￠
- ê?è?2?êy  :
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_VOID
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_GetNvRdDebug
+ 1|???  : ???NV?D2aD??
+ ??2?y  :
+ ?3?2?y  : ?T
+  ?? ?  : VOS_VOID
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê06??28è?
-    ×÷    ??   : d00212987
-    DT???úèY   : ò??2±±???-óDAT ?üá??áD′NV2ù×÷
+ DT??      :
+  1.?    ?   : 2013?06??28?
+        ??   : d00212987
+    DT???Y   : ??2???-DAT ???DNV2
 *****************************************************************************/
 VOS_VOID AT_GetNvRdDebug(VOS_VOID)
 {
@@ -3924,18 +3924,18 @@ VOS_VOID AT_GetNvRdDebug(VOS_VOID)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryFPllStatusPara
- 1|?ü?èê?  : 2é?ˉG?òW PLL×′ì?
- ê?è?2?êy  : ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryFPllStatusPara
+ 1|???  : 2?G?W PLL?
+ ??2?y  : ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê11??29è?
-    ×÷    ??   : L00256032
-    DT???úèY   : Added for PLL status query
+ DT??      :
+  1.?    ?   : 2013?11??29?
+        ??   : L00256032
+    DT???Y   : Added for PLL status query
 *****************************************************************************/
 VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
 {
@@ -3948,7 +3948,7 @@ VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
     {
         return atQryFPllStatusPara(ucIndex);
     }
-    /*?D??μ±?°?óè??￡ê?￡????§3?G/W*/
+    /*?D???????????3?G/W*/
     if (AT_RAT_MODE_WCDMA == g_stAtDevCmdCtrl.ucDeviceRatMode)
     {
         ulReceiverPid = AT_GetDestPid(ucIndex, I0_DSP_PID_WPHY);
@@ -3966,7 +3966,7 @@ VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
         return AT_DEVICE_MODE_ERROR;
     }
 
-    /* éê??AT_PHY_RF_PLL_STATUS_REQ_STRU???￠ */
+    /* ??AT_PHY_RF_PLL_STATUS_REQ_STRU??? */
     ulLength = sizeof(AT_PHY_RF_PLL_STATUS_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
     pstMsg   = (AT_PHY_RF_PLL_STATUS_REQ_STRU *)PS_ALLOC_MSG(WUEPS_PID_AT, ulLength);
 
@@ -3976,48 +3976,48 @@ VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* ì?3????￠ */
+    /* ?3???? */
     pstMsg->ulReceiverPid = ulReceiverPid;
     pstMsg->usMsgID       = usMsgId;
     pstMsg->usRsv1        = 0;
     pstMsg->usDspBand     = g_stAtDevCmdCtrl.stDspBandArfcn.usDspBand;
     pstMsg->usRsv2        = 0;
 
-    /* ?ò??ó|PHY·￠?í???￠ */
+    /* ???|PHY???? */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         AT_WARN_LOG("AT_QryFPllStatusPara: Send msg fail!");
         return AT_ERROR;
     }
 
-    /* éè??μ±?°2ù×÷ààDí */
+    /* ???2D */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_FPLLSTATUS_QRY;
     g_stAtDevCmdCtrl.ucIndex               = ucIndex;
 
-    /* ·μ???üá?′|àí1ò?e×′ì? */
+    /* ????|1?e? */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- oˉ êy ??  : At_RfPllStatusCnfProc
- 1|?ü?èê?  : AT′|àíGPHY/WPHY???′μ?PLL×′ì?2é?ˉ?ìó|???￠
- ê?è?2?êy  : pstMsg
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_VOID
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : At_RfPllStatusCnfProc
+ 1|???  : AT|GPHY/WPHY????PLL?2??|???
+ ??2?y  : pstMsg
+ ?3?2?y  : ?T
+  ?? ?  : VOS_VOID
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2013?ê11??29è?
-    ×÷    ??   : L00256032
-    DT???úèY   : Added for PLL status query
+ DT??      :
+  1.?    ?   : 2013?11??29?
+        ??   : L00256032
+    DT???Y   : Added for PLL status query
 *****************************************************************************/
 VOS_VOID At_RfPllStatusCnfProc(PHY_AT_RF_PLL_STATUS_CNF_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
     VOS_UINT16                          usLength;
 
-    /* ??è?±?μ?±￡′?μ?ó??§?÷òy */
+    /* ??????????y */
     ucIndex = g_stAtDevCmdCtrl.ucIndex;
 
     if (AT_CMD_FPLLSTATUS_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -4026,7 +4026,7 @@ VOS_VOID At_RfPllStatusCnfProc(PHY_AT_RF_PLL_STATUS_CNF_STRU *pstMsg)
         return;
     }
 
-    /* ?′??AT×′ì? */
+    /* ???AT? */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -4045,31 +4045,31 @@ VOS_VOID At_RfPllStatusCnfProc(PHY_AT_RF_PLL_STATUS_CNF_STRU *pstMsg)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryFpowdetTPara
- 1|?ü?èê?  : ?á??′??÷PDEG?μ
- ê?è?2?êy  : ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryFpowdetTPara
+ 1|???  : ?????PDEG?
+ ??2?y  : ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2014?ê5??6è?
-    ×÷    ??   : d00212987
-    DT???úèY   : Added for PDEA status query
-  2.日    期   : 2016年6月17日
-    作    者   : w00242748
-    修改内容   : DTS2016062000269:X模支持老化特性
-  3.日    期   : 2016年8月19日
-    作    者   : xwx377961
-    修改内容   : DTS2016082403967:GSM PA口输出功率检测功能
+ DT??      :
+  1.?    ?   : 2014?5??6?
+        ??   : d00212987
+    DT???Y   : Added for PDEA status query
+  2.       : 2016617
+           : w00242748
+       : DTS2016062000269:X
+  3.       : 2016819
+           : xwx377961
+       : DTS2016082403967:GSM PA
 *****************************************************************************/
 VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
 {
     AT_PHY_POWER_DET_REQ_STRU          *pstMsg;
     VOS_UINT32                          ulLength;
 
-    /*?D??μ±?°?óè??￡ê?￡????§3?W*/
+    /*?D???????????3?W*/
     if ( (AT_RAT_MODE_WCDMA != g_stAtDevCmdCtrl.ucDeviceRatMode)
       && (AT_RAT_MODE_CDMA != g_stAtDevCmdCtrl.ucDeviceRatMode)
       && (AT_RAT_MODE_GSM != g_stAtDevCmdCtrl.ucDeviceRatMode) )
@@ -4077,7 +4077,7 @@ VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
         return AT_DEVICE_MODE_ERROR;
     }
 
-    /* éê??AT_PHY_POWER_DET_REQ_STRU???￠ */
+    /* ??AT_PHY_POWER_DET_REQ_STRU??? */
     ulLength = sizeof(AT_PHY_POWER_DET_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
     pstMsg   = (AT_PHY_POWER_DET_REQ_STRU *)PS_ALLOC_MSG(WUEPS_PID_AT, ulLength);
 
@@ -4087,7 +4087,7 @@ VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* CDMA的话，发送给UPHY_PID_CSDR_1X_CM */
+    /* CDMAUPHY_PID_CSDR_1X_CM */
     if (AT_RAT_MODE_CDMA == g_stAtDevCmdCtrl.ucDeviceRatMode)
     {
         pstMsg->ulReceiverPid = UPHY_PID_CSDR_1X_CM;
@@ -4104,39 +4104,39 @@ VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
     pstMsg->usMsgID       = ID_AT_PHY_POWER_DET_REQ;
     pstMsg->usRsv         = 0;
 
-    /* ?ò??ó|PHY·￠?í???￠ */
+    /* ???|PHY???? */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         AT_WARN_LOG("AT_QryFpowdetTPara: Send msg fail!");
         return AT_ERROR;
     }
 
-    /* éè??μ±?°2ù×÷ààDí */
+    /* ???2D */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_FPOWDET_QRY;
     g_stAtDevCmdCtrl.ucIndex               = ucIndex;
 
-    /* ·μ???üá?′|àí1ò?e×′ì? */
+    /* ????|1?e? */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- oˉ êy ??  : At_RfFPOWDETCnfProc
- 1|?ü?èê?  : AT′|àíWPHY???′?áμ?μ???′??÷PDEG?μ
- ê?è?2?êy  : pstMsg
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_VOID
+ o y ??  : At_RfFPOWDETCnfProc
+ 1|???  : AT|WPHY??????????PDEG?
+ ??2?y  : pstMsg
+ ?3?2?y  : ?T
+  ?? ?  : VOS_VOID
 
- DT??àúê·      :
-  1.è?    ?ú   : 2014?ê5??6è?
-    ×÷    ??   : d00212987
-    DT???úèY   : Added for PDEA status query
+ DT??      :
+  1.?    ?   : 2014?5??6?
+        ??   : d00212987
+    DT???Y   : Added for PDEA status query
 *****************************************************************************/
 VOS_VOID At_RfFpowdetTCnfProc(PHY_AT_POWER_DET_CNF_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
     VOS_UINT16                          usLength;
 
-    /* ??è?±?μ?±￡′?μ?ó??§?÷òy */
+    /* ??????????y */
     ucIndex = g_stAtDevCmdCtrl.ucIndex;
 
     if (AT_CMD_FPOWDET_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
@@ -4145,10 +4145,10 @@ VOS_VOID At_RfFpowdetTCnfProc(PHY_AT_POWER_DET_CNF_STRU *pstMsg)
         return;
     }
 
-    /* ?′??AT×′ì? */
+    /* ???AT? */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* ó|??àí2?òa?ó￡?è?1?·μ???μ?a0x7FFF?ò?a?TD§?μ￡???2é?ˉ??·μ??ERROR */
+    /* |??2?a???1?????a0x7FFF??a?TD????2?????ERROR */
     if(0x7FFF == pstMsg->sPowerDet)
     {
         gstAtSendData.usBufLen = 0;
@@ -4172,18 +4172,18 @@ VOS_VOID At_RfFpowdetTCnfProc(PHY_AT_POWER_DET_CNF_STRU *pstMsg)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetNvwrSecCtrlPara
- 1|?ü?èê?  : ^NVWRSECCTRLéè???üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetNvwrSecCtrlPara
+ 1|???  : ^NVWRSECCTRL????|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : D???oˉêy
+ DT??      :
+  1.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : D???oy
 *****************************************************************************/
 VOS_UINT32 AT_SetNvwrSecCtrlPara(VOS_UINT8 ucIndex)
 {
@@ -4191,31 +4191,31 @@ VOS_UINT32 AT_SetNvwrSecCtrlPara(VOS_UINT8 ucIndex)
     AT_MTA_NVWRSECCTRL_SET_REQ_STRU     stNvwrSecCtrl;
     VOS_UINT16                          usLength;
 
-    /* ??2?±?á?3?ê??ˉ */
+    /* ??2???3??? */
     TAF_MEM_SET_S(&stNvwrSecCtrl, sizeof(stNvwrSecCtrl), 0x00, sizeof(stNvwrSecCtrl));
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-     /* 2?êy1y?à */
+     /* 2?y1y? */
     if (gucAtParaIndex > 2)
     {
         return AT_TOO_MANY_PARA;
     }
 
-    /* ?ì2é??á÷2?êy3¤?è */
+    /* ?2??2?y3? */
     if (AT_NVWRSECCTRL_PARA_SECTYPE_LEN != gastAtParaList[0].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* éè??°2è?????ààDí */
+    /* ??2?????D */
     stNvwrSecCtrl.ucSecType = (VOS_UINT8)gastAtParaList[0].ulParaValue;
 
-    /* ??×?·?′?2?êy×a???a??á÷ */
+    /* ?????2?ya???a?? */
     usLength = gastAtParaList[1].usParaLen;
     if ( (2 == gucAtParaIndex)
       && (AT_RSA_CIPHERTEXT_PARA_LEN == usLength) )
@@ -4240,25 +4240,25 @@ VOS_UINT32 AT_SetNvwrSecCtrlPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* éè??AT?￡?éêμì?μ?×′ì??aμè′yòì2?·μ?? */
+    /* ??AT??????ay2??? */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_NVWRSECCTRL_SET;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_RcvMtaNvwrSecCtrlSetCnf
- 1|?ü?èê?  : AT?￡?éê?μ?MTA?￡?é???￠′|àíoˉêy
- ê?è?2?êy  : VOS_VOID *pMsg
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_RcvMtaNvwrSecCtrlSetCnf
+ 1|???  : AT????MTA?????|oy
+ ??2?y  : VOS_VOID *pMsg
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : D???oˉêy
+ DT??      :
+  1.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : D???oy
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaNvwrSecCtrlSetCnf( VOS_VOID *pMsg )
 {
@@ -4267,12 +4267,12 @@ VOS_UINT32 AT_RcvMtaNvwrSecCtrlSetCnf( VOS_VOID *pMsg )
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulResult;
 
-    /* 3?ê??ˉ */
+    /* 3??? */
     pstRcvMsg       = (AT_MTA_MSG_STRU *)pMsg;
     pstResult       = (MTA_AT_RESULT_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex         = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
 
-    /* í¨1yClientId??è?ucIndex */
+    /* 1yClientId???ucIndex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaNvwrSecCtrlSetCnf: WARNING:AT INDEX NOT FOUND!");
@@ -4285,60 +4285,60 @@ VOS_UINT32 AT_RcvMtaNvwrSecCtrlSetCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* ?D??μ±?°2ù×÷ààDíê?·??aAT_CMD_NVWRSECCTRL_SET */
+    /* ?D???2D???aAT_CMD_NVWRSECCTRL_SET */
     if (AT_CMD_NVWRSECCTRL_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaNvwrSecCtrlSetCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* ?′??AT×′ì? */
+    /* ???AT? */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* ?D?????′???￠?Dμ?′í?ó?? */
+    /* ?D?????????D???? */
     if (MTA_AT_RESULT_NO_ERROR == pstResult->enResult)
     {
-        /* 3é1|￡?ê?3?OK */
+        /* 31|??3?OK */
         ulResult    = AT_OK;
     }
     else
     {
-        /* ê§°ü￡?ê?3?ERROR */
+        /* ??3?ERROR */
         ulResult    = AT_ERROR;
     }
 
     gstAtSendData.usBufLen = 0;
 
-    /* μ÷ó?At_FormatResultData·￠?í?üá??á1? */
+    /* ?At_FormatResultData????1? */
     At_FormatResultData(ucIndex, ulResult);
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryNvwrSecCtrlPara
- 1|?ü?èê?  : ^NWSECCTRL2é?ˉ?üá?′|àíoˉêy
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryNvwrSecCtrlPara
+ 1|???  : ^NWSECCTRL2???|oy
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : D???oˉêy
+ DT??      :
+  1.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : D???oy
 *****************************************************************************/
 VOS_UINT32 AT_QryNvwrSecCtrlPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_NVWR_SEC_CTRL_STRU           stNvwrSecCtrlNV;
     VOS_UINT32                          ulResult;
 
-    /* 2?êy3?ê??ˉ */
+    /* 2?y3??? */
     ulResult = AT_ERROR;
     TAF_MEM_SET_S(&stNvwrSecCtrlNV, sizeof(stNvwrSecCtrlNV), 0x00, sizeof(stNvwrSecCtrlNV));
 
-    /* DT??°2è?????NV */
+    /* DT??2?????NV */
     if (NV_OK == NV_ReadEx(MODEM_ID_0, en_NV_Item_NVWR_SEC_CTRL, &stNvwrSecCtrlNV, sizeof(stNvwrSecCtrlNV)))
     {
         ulResult = AT_OK;
@@ -4354,19 +4354,19 @@ VOS_UINT32 AT_QryNvwrSecCtrlPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_IsNVWRAllowedNvId
- 1|?ü?èê?  : ?D???üá?^NVWR?￠^NVWREX?ü·?DT??′?NV_ID
- ê?è?2?êy  : usNvId
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_TRUE   -- ?êDíDT??
-             VOS_FLASE  -- 2??êDíDT??
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_IsNVWRAllowedNvId
+ 1|???  : ?D????^NVWR?^NVWREX??DT???NV_ID
+ ??2?y  : usNvId
+ ?3?2?y  : ?T
+  ?? ?  : VOS_TRUE   -- ?DDT??
+             VOS_FLASE  -- 2??DDT??
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê04??04è?
-    ×÷    ??   : l00198894
-    DT???úèY   : D???oˉêy
+ DT??      :
+  1.?    ?   : 2015?04??04?
+        ??   : l00198894
+    DT???Y   : D???oy
 *****************************************************************************/
 VOS_BOOL AT_IsNVWRAllowedNvId(VOS_UINT16 usNvId)
 {
@@ -4374,10 +4374,10 @@ VOS_BOOL AT_IsNVWRAllowedNvId(VOS_UINT16 usNvId)
     VOS_UINT8                           ucLoop;
     VOS_UINT8                           ucBlackListNum;
 
-    /* 2?êy3?ê??ˉ */
+    /* 2?y3??? */
     TAF_MEM_SET_S(&stNvwrSecCtrlNV, sizeof(stNvwrSecCtrlNV), 0x00, sizeof(stNvwrSecCtrlNV));
 
-    /* ?áè?°2è?????NV */
+    /* ??2?????NV */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_NVWR_SEC_CTRL, &stNvwrSecCtrlNV, sizeof(stNvwrSecCtrlNV)))
     {
         AT_ERR_LOG("AT_IsNVWRAllowedNvId: NV_ReadEx fail!");
@@ -4413,18 +4413,18 @@ VOS_BOOL AT_IsNVWRAllowedNvId(VOS_UINT16 usNvId)
 }
 
 /*****************************************************************************
-oˉ êy ??  :AT_AsciiToHex
-1|?ü?èê?  :×a??×?·?′???ê?
-ê?è?2?êy  :
+o y ??  :AT_AsciiToHex
+1|???  :a????????
+??2?y  :
 
-ê?3?2?êy  :?T
-·μ ?? ?μ  :VOS_OK    :ê§°ü
-           VOS_ERR   :3é1|
+?3?2?y  :?T
+ ?? ?  :VOS_OK    :
+           VOS_ERR   :31|
 
 DT??????  :
-1. è?    ?ú   : 2015?ê07??23è?
-   ×÷    ??   : z00316370
-   DT???úèY   : Creat
+1. ?    ?   : 2015?07??23?
+       ??   : z00316370
+   DT???Y   : Creat
 *****************************************************************************/
 
 VOS_UINT32 AT_AsciiToHex(
@@ -4454,18 +4454,18 @@ VOS_UINT32 AT_AsciiToHex(
 }
 
 /*****************************************************************************
-oˉ êy ??  :AT_AsciiToHexCode
-1|?ü?èê?  :×a??×?·?′???ê?￡???Dò,"1234"->0x3412
-ê?è?2?êy  :
+o y ??  :AT_AsciiToHexCode
+1|???  :a???????????D,"1234"->0x3412
+??2?y  :
 
-ê?3?2?êy  :?T
-·μ ?? ?μ  :VOS_OK    :ê§°ü
-           VOS_ERR   :3é1|
+?3?2?y  :?T
+ ?? ?  :VOS_OK    :
+           VOS_ERR   :31|
 
 DT??????  :
-1. è?    ?ú   : 2015?ê7??23è?
-   ×÷    ??   : z00316370
-   DT???úèY   : Creat
+1. ?    ?   : 2015?7??23?
+       ??   : z00316370
+   DT???Y   : Creat
 *****************************************************************************/
 
 VOS_UINT32 AT_AsciiToHexCode_Revers(
@@ -4504,19 +4504,19 @@ VOS_UINT32 AT_AsciiToHexCode_Revers(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_Hex2Ascii
- 1|?ü?èê?  : ??ê?áù????êy×?×?·?′?×a??3éASCII??±íê?μ?êy×?×?·?′?,??Dò,0x3412 --> "1234"
- ê?è?2?êy  : VOS_UINT8  aucHex[]ê?????êy×?×?·?′?ê×μ??·
-             VOS_UINT32 ulLength      ê?????êy×?×?·?′?3¤?è
- ê?3?2?êy  : VOS_UINT8  aucAscii[]    ASCII??±íê?μ?êy×?×?·?′?ê×μ??·
- ·μ ?? ?μ  : VOS_UINT32 ×a???á1?: VOS_OK×a??3é1|￡?VOS_ERR×a??ê§°ü
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_Hex2Ascii
+ 1|???  : ???????y????a??3ASCII????y????,??D,0x3412 --> "1234"
+ ??2?y  : VOS_UINT8  aucHex[]?????y??????
+             VOS_UINT32 ulLength      ?????y????3?
+ ?3?2?y  : VOS_UINT8  aucAscii[]    ASCII????y??????
+  ?? ?  : VOS_UINT32 a???1?: VOS_OKa??31|?VOS_ERRa??
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê7??18è?
-    ×÷    ??   : z00316370
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2015?7??18?
+        ??   : z00316370
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_Hex2Ascii_Revers(
@@ -4562,19 +4562,19 @@ VOS_UINT32 AT_Hex2Ascii_Revers(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_SetMeidPara
- 1|?ü?èê?  : éè??DT??MEID,?üá???ê?%MEID=<meid number>
- ê?è?2?êy  : ucIndex - ó??§?÷òy
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : AT_OK - 3é1|
-             AT_DEVICE_OTHER_ERROR?ò AT_DATA_UNLOCK_ERROR - ê§°ü
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_SetMeidPara
+ 1|???  : ??DT??MEID,?????%MEID=<meid number>
+ ??2?y  : ucIndex - ???y
+ ?3?2?y  : ?T
+  ?? ?  : AT_OK - 31|
+             AT_DEVICE_OTHER_ERROR? AT_DATA_UNLOCK_ERROR - 
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê7??18è?
-    ×÷    ??   : z00316370
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2015?7??18?
+        ??   : z00316370
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
@@ -4584,13 +4584,13 @@ VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
 
     TAF_MEM_SET_S(&stMeIdReq, sizeof(stMeIdReq), 0x00, sizeof(AT_MTA_MEID_SET_REQ_STRU));
 
-    /* ?üá?×′ì??ì2é */
+    /* ????2 */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 2?êy??êy2??a1?ò??×?·?′?3¤?è2??a14 */
+    /* 2?y??y2??a1??????3?2??a14 */
     if ((1 != gucAtParaIndex)
      || (14 != gastAtParaList[0].usParaLen))
     {
@@ -4617,7 +4617,7 @@ VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
     {
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_MEID_SET;
 
-        /* ·μ???üá?′|àí1ò?e×′ì? */
+        /* ????|1?e? */
         return AT_WAIT_ASYNC_RETURN;
     }
     else
@@ -4629,31 +4629,31 @@ VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_QryMeidPara
- 1|?ü?èê?  : AT%MEID2é?ˉMEID
- ê?è?2?êy  : VOS_UINT8 ucIndex
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_QryMeidPara
+ 1|???  : AT%MEID2?MEID
+ ??2?y  : VOS_UINT8 ucIndex
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê07??17è?
-    ×÷    ??   : z00316370
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2015?07??17?
+        ??   : z00316370
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_QryMeidPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
 
-    /* 2?êy?ì2é */
+    /* 2?y?2 */
     if (AT_CMD_OPT_READ_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
     }
 
-    /* ·￠?í???￠*/
+    /* ????*/
     ulResult = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                       gastAtClientTab[ucIndex].opId,
                                       ID_AT_MTA_MEID_QRY_REQ,
@@ -4665,7 +4665,7 @@ VOS_UINT32 AT_QryMeidPara(VOS_UINT8 ucIndex)
     {
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_MEID_QRY;
 
-        /* ·μ???üá?′|àí1ò?e×′ì? */
+        /* ????|1?e? */
         return AT_WAIT_ASYNC_RETURN;
     }
     else
@@ -4676,18 +4676,18 @@ VOS_UINT32 AT_QryMeidPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_RcvMtaMeidSetCnf
- 1|?ü?èê?  : ID_MTA_AT_MEID_SET_CNF???￠′|àíoˉêy,^MEIDéè???á1?
- ê?è?2?êy  : VOS_VOID *pstMsg - ???￠????
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_RcvMtaMeidSetCnf
+ 1|???  : ID_MTA_AT_MEID_SET_CNF???|oy,^MEID???1?
+ ??2?y  : VOS_VOID *pstMsg - ???????
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê07??23è?
-    ×÷    ??   : z00316370
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2015?07??23?
+        ??   : z00316370
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaMeidSetCnf(
@@ -4699,12 +4699,12 @@ VOS_UINT32 AT_RcvMtaMeidSetCnf(
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulRslt;
 
-    /* 3?ê??ˉ */
+    /* 3??? */
     pstRcvMsg       = (AT_MTA_MSG_STRU *)pMsg;
     pstSetCnf       = (MTA_AT_RESULT_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex         = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
 
-    /* í¨1yClientId??è?ucIndex */
+    /* 1yClientId???ucIndex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaMeidSetCnf: WARNING:AT INDEX NOT FOUND!");
@@ -4717,7 +4717,7 @@ VOS_UINT32 AT_RcvMtaMeidSetCnf(
         return VOS_ERR;
     }
 
-    /* ?D??μ±?°2ù×÷ààDíê?·??aAT_CMD_MEID_SET */
+    /* ?D???2D???aAT_CMD_MEID_SET */
     if (AT_CMD_MEID_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaMeidSetCnf: NOT CURRENT CMD OPTION!");
@@ -4726,7 +4726,7 @@ VOS_UINT32 AT_RcvMtaMeidSetCnf(
 
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* ??ê??ˉAT^MEID?üá?·μ?? */
+    /* ????AT^MEID???? */
     gstAtSendData.usBufLen = 0;
 
     switch (pstSetCnf->enResult)
@@ -4754,18 +4754,18 @@ VOS_UINT32 AT_RcvMtaMeidSetCnf(
 }
 
 /*****************************************************************************
- oˉ êy ??  : AT_RcvMtaMeidQryCnf
- 1|?ü?èê?  : ID_MTA_AT_MEID_QRY_CNF???￠′|àíoˉêy,^MEIDéè???á1?
- ê?è?2?êy  : VOS_VOID *pstMsg - ???￠????
- ê?3?2?êy  : ?T
- ·μ ?? ?μ  : VOS_UINT32
- μ÷ó?oˉêy  :
- ±?μ÷oˉêy  :
+ o y ??  : AT_RcvMtaMeidQryCnf
+ 1|???  : ID_MTA_AT_MEID_QRY_CNF???|oy,^MEID???1?
+ ??2?y  : VOS_VOID *pstMsg - ???????
+ ?3?2?y  : ?T
+  ?? ?  : VOS_UINT32
+ ?oy  :
+ ?oy  :
 
- DT??àúê·      :
-  1.è?    ?ú   : 2015?ê12??18è?
-    ×÷    ??   : z00316370
-    DT???úèY   : D?éú3éoˉêy
+ DT??      :
+  1.?    ?   : 2015?12??18?
+        ??   : z00316370
+    DT???Y   : D?3oy
 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaMeidQryCnf(
@@ -4785,12 +4785,12 @@ VOS_UINT32 AT_RcvMtaMeidQryCnf(
     TAF_MEM_SET_S(&stPEsn, sizeof(stPEsn), 0x00, sizeof(NV_PESN_STRU));
     TAF_MEM_SET_S(aucMeId, sizeof(aucMeId), 0x00, sizeof(aucMeId));
 
-    /* 3?ê??ˉ */
+    /* 3??? */
     pstRcvMsg       = (AT_MTA_MSG_STRU *)pMsg;
     pstQryCnf       = (MTA_AT_MEID_QRY_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex         = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
 
-    /* í¨1yClientId??è?ucIndex */
+    /* 1yClientId???ucIndex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaMeidQryCnf: WARNING:AT INDEX NOT FOUND!");
@@ -4803,7 +4803,7 @@ VOS_UINT32 AT_RcvMtaMeidQryCnf(
         return VOS_ERR;
     }
 
-    /* ?D??μ±?°2ù×÷ààDíê?·??aAT_CMD_MEID_QRY */
+    /* ?D???2D???aAT_CMD_MEID_QRY */
     if (AT_CMD_MEID_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaMeidQryCnf: NOT CURRENT CMD OPTION!");
@@ -4812,24 +4812,24 @@ VOS_UINT32 AT_RcvMtaMeidQryCnf(
 
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* ??ê??ˉAT^MEID?üá?·μ?? */
+    /* ????AT^MEID???? */
     gstAtSendData.usBufLen = 0;
 
-    /* ?áè?en_NV_Item_MEID */
+    /* ??en_NV_Item_MEID */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_MEID, &stMeId, sizeof(NV_MEID_STRU)))
     {
         AT_WARN_LOG("AT_RcvMtaMeidQryCnf:Read en_NV_Item_MEID Nvim Failed");
         return AT_DEVICE_NV_READ_FAILURE;
     }
 
-    /* ?áè?en_NV_Item_PESN */
+    /* ??en_NV_Item_PESN */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_PESN, &stPEsn, sizeof(NV_PESN_STRU)))
     {
         AT_WARN_LOG("AT_RcvMtaMeidQryCnf:Read en_NV_Item_PESN Nvim Failed");
         return AT_DEVICE_NV_READ_FAILURE;
     }
 
-    /* ?áè?UIMIDê§°ü */
+    /* ??UIMID */
     if (pstQryCnf->enResult != MTA_AT_RESULT_NO_ERROR)
     {
         AT_WARN_LOG("AT_RcvMtaMeidQryCnf:Read UIMID Failed");
@@ -4860,82 +4860,82 @@ VOS_UINT32 AT_RcvMtaMeidQryCnf(
 
 
 /*****************************************************************************
- 函 数 名  : AT_SetSlavePara
- 功能描述  : 设置接入模式进入从摸，目前只支持G和W进入从摸
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : AT_SetSlavePara
+   : GW
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年7月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016727
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetSlavePara(VOS_UINT8 ucIndex)
 {
     AT_MTA_SLAVE_SET_REQ_STRU           stSlave;
     VOS_UINT32                          ulResult;
 
-    /*局部变量初始化*/
+    /**/
     TAF_MEM_SET_S(&stSlave, (VOS_SIZE_T)sizeof(stSlave), 0x00, (VOS_SIZE_T)sizeof(AT_MTA_SLAVE_SET_REQ_STRU));
 
-    /*参数检查*/
+    /**/
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /*参数数目过多*/
+    /**/
     if (1 != gucAtParaIndex )
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /*参数长度检查*/
+    /**/
     if (1 != gastAtParaList[0].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /*填写消息参数*/
+    /**/
     stSlave.ucRatType = gastAtParaList[0].ulParaValue;
 
-    /*发送消息给MTA*/
+    /*MTA*/
     ulResult = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                       gastAtClientTab[ucIndex].opId,
                                       ID_AT_MTA_SLAVE_SET_REQ,
                                       &stSlave,
                                       (VOS_SIZE_T)sizeof(stSlave),
                                       I0_UEPS_PID_MTA);
-    /*发送失败*/
+    /**/
     if (TAF_SUCCESS != ulResult)
     {
         AT_WARN_LOG("AT_SetSlavePara: AT_FillAndSndAppReqMsg fail.");
         return AT_ERROR;
     }
 
-    /*发送成功，设置当前操作模式*/
+    /**/
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_SETSLAVE_SET;
 
-    /*等待异步处理时间返回*/
+    /**/
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetSlavePara
- 功能描述  : AT处理MTA发送ID_MTA_AT_SLAVE_SET_CNF消息的操作
- 输入参数  : VOS_VOID *pMsg     -- MAT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_SetSlavePara
+   : ATMTAID_MTA_AT_SLAVE_SET_CNF
+   : VOS_VOID *pMsg     -- MAT
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年7月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016727
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaSetSlaveCnf( VOS_VOID *pMsg )
 {
@@ -4944,12 +4944,12 @@ VOS_UINT32 AT_RcvMtaSetSlaveCnf( VOS_VOID *pMsg )
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulResult;
 
-    /*初始化局部变量*/
+    /**/
     pstRcvMsg       = (AT_MTA_MSG_STRU *)pMsg;
     pstResult       = (MTA_AT_RESULT_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex         = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
 
-    /*通过clientid获取index */
+    /*clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaSetSlaveCnf: WARNING:AT INDEX NOT FOUND!");
@@ -4962,49 +4962,49 @@ VOS_UINT32 AT_RcvMtaSetSlaveCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_SETSLAVE_SET */
+    /* AT_CMD_SETSLAVE_SET */
     if (AT_CMD_SETSLAVE_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaSetSlaveCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* MTA传来消息命令结果处理 */
+    /* MTA */
     if (MTA_AT_RESULT_NO_ERROR == pstResult->enResult)
     {
-        /*命令结果 *AT_OK*/
+        /* *AT_OK*/
         ulResult    = AT_OK;
     }
     else
     {
-        /*命令结果 *AT_ERROR*/
+        /* *AT_ERROR*/
         ulResult    = AT_ERROR;
     }
 
     gstAtSendData.usBufLen = 0;
 
-    /* 调用AT_FormATResultDATa发送命令结果 */
+    /* AT_FormATResultDATa */
     At_FormatResultData(ucIndex, ulResult);
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryRficIDPara
- 功能描述  : 查询RFIC IDE ID
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : AT_QryRficIDPara
+   : RFIC IDE ID
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016827
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_QryRficDieIDPara(VOS_UINT8 ucIndex)
 {
@@ -5015,7 +5015,7 @@ VOS_UINT32 AT_QryRficDieIDPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* 发送跨核消息到C核, 查询RFIC IDE ID*/
+    /* C, RFIC IDE ID*/
     ulRst = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                    gastAtClientTab[ucIndex].opId,
                                    ID_AT_MTA_RFIC_DIE_ID_QRY_REQ,
@@ -5029,25 +5029,25 @@ VOS_UINT32 AT_QryRficDieIDPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_RFIC_DIE_ID_QRY;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvMtaRficDieIDQryCnf
- 功能描述  : AT处理MTA发送ID_MTA_AT_RFIC_DIE_ID_QRY_CNF消息的操作
- 输入参数  : VOS_VOID *pMsg     -- MAT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_RcvMtaRficDieIDQryCnf
+   : ATMTAID_MTA_AT_RFIC_DIE_ID_QRY_CNF
+   : VOS_VOID *pMsg     -- MAT
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016827
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaRficDieIDQryCnf( VOS_VOID *pMsg )
 {
@@ -5056,13 +5056,13 @@ VOS_UINT32 AT_RcvMtaRficDieIDQryCnf( VOS_VOID *pMsg )
     VOS_UINT8                           ucIndex;
     VOS_UINT16                          usLength;
 
-    /*初始化局部变量*/
+    /**/
     pstRcvMsg                 = (AT_MTA_MSG_STRU *)pMsg;
     pstRficDieIDReqCnf        = (MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex                   = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
     usLength                  = 0;
 
-    /*通过clientid获取index */
+    /*clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaRficDieIDQryCnf: WARNING:AT INDEX NOT FOUND!");
@@ -5075,26 +5075,26 @@ VOS_UINT32 AT_RcvMtaRficDieIDQryCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_RFIC_DIE_ID_QRY */
+    /* AT_CMD_RFIC_DIE_ID_QRY */
     if (AT_CMD_RFIC_DIE_ID_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaRficDieIDQryCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /*格式化上报命令*/
+    /**/
     if (MTA_AT_RESULT_NO_ERROR != pstRficDieIDReqCnf->enResult)
     {
-        /*命令结果 *AT_ERROR*/
+        /* *AT_ERROR*/
         gstAtSendData.usBufLen = 0;
         At_FormatResultData(ucIndex, AT_ERROR);
     }
     else
     {
-        /*命令结果 *AT_OK*/
+        /* *AT_OK*/
         if (1 == pstRficDieIDReqCnf->usRfic0DieIdValid)
         {
             usLength = AT_RficDieIDOut((VOS_UINT8*)pstRficDieIDReqCnf->ausRfic0DieId, 0, usLength, ucIndex);
@@ -5112,19 +5112,19 @@ VOS_UINT32 AT_RcvMtaRficDieIDQryCnf( VOS_VOID *pMsg )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RficDieIDOut
- 功能描述  : 格式化输出RFIC DIE ID
- 输入参数  : VOS_UINT16 *pMsg   -- RFIC DIE ID结果数组
-             VOS_UINT32 RficNum -- 第几组RFIC DIE ID结果数组
- 输出参数  : 输出长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_RficDieIDOut
+   : RFIC DIE ID
+   : VOS_UINT16 *pMsg   -- RFIC DIE ID
+             VOS_UINT32 RficNum -- RFIC DIE ID
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016827
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT16 AT_RficDieIDOut(
     VOS_UINT8                          *pMsg,
@@ -5133,7 +5133,7 @@ VOS_UINT16 AT_RficDieIDOut(
     VOS_UINT8                           ucIndex
 )
 {
-    VOS_UINT32                          i;           /*循环用*/
+    VOS_UINT32                          i;           /**/
     VOS_UINT16                          usLengthtemp;
 
     usLengthtemp = usLength;
@@ -5145,7 +5145,7 @@ VOS_UINT16 AT_RficDieIDOut(
                                        g_stParseContext[ucIndex].pstCmdElement->pszCmdName,
                                        RficNum);
 
-    /*RFIC ID 使用低八位数据*/
+    /*RFIC ID */
     for (i =  0; i < (MTA_RCM_MAX_DIE_ID_LEN * 2); i += 2)
     {
         usLengthtemp += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -5164,18 +5164,18 @@ VOS_UINT16 AT_RficDieIDOut(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryPmuDieSNPara
- 功能描述  : 查询PMU IDE SN
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : AT_QryPmuDieSNPara
+   : PMU IDE SN
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月29日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016829
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_QryPmuDieSNPara(VOS_UINT8 ucIndex)
 {
@@ -5186,7 +5186,7 @@ VOS_UINT32 AT_QryPmuDieSNPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* 发送跨核消息到C核, 查询RFIC IDE ID*/
+    /* C, RFIC IDE ID*/
     ulRst = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                    gastAtClientTab[ucIndex].opId,
                                    ID_AT_MTA_PMU_DIE_SN_QRY_REQ,
@@ -5200,41 +5200,41 @@ VOS_UINT32 AT_QryPmuDieSNPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_PMU_DIE_SN_QRY;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvMtaPmuDieSNQryCnf
- 功能描述  : AT处理MTA发送ID_MTA_AT_PMU_DIE_SN_QRY_CNF消息的操作
- 输入参数  : VOS_VOID *pMsg     -- MAT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_RcvMtaPmuDieSNQryCnf
+   : ATMTAID_MTA_AT_PMU_DIE_SN_QRY_CNF
+   : VOS_VOID *pMsg     -- MAT
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月27日
-    作    者   : xwx377961
-    修改内容   : 新生成函数
+       :
+  1.       : 2016827
+           : xwx377961
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaPmuDieSNQryCnf( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstRcvMsg;
     MTA_AT_PMU_DIE_SN_REQ_CNF_STRU     *pstPmuDieSNReqCnf;
-    VOS_INT32                           i;        /*循环数*/
+    VOS_INT32                           i;        /**/
     VOS_UINT16                          usLength;
     VOS_UINT8                           ucIndex;
 
-    /*初始化局部变量*/
+    /**/
     pstRcvMsg                 = (AT_MTA_MSG_STRU *)pMsg;
     pstPmuDieSNReqCnf         = (MTA_AT_PMU_DIE_SN_REQ_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex                   = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
     usLength                  = 0;
 
-    /*通过clientid获取index */
+    /*clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaPmuDieSNQryCnf: WARNING:AT INDEX NOT FOUND!");
@@ -5247,31 +5247,31 @@ VOS_UINT32 AT_RcvMtaPmuDieSNQryCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_PMU_DIE_SN_QRY */
+    /* AT_CMD_PMU_DIE_SN_QRY */
     if (AT_CMD_PMU_DIE_SN_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaPmuDieSNQryCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /*格式化上报命令*/
+    /**/
     if (MTA_AT_RESULT_NO_ERROR != pstPmuDieSNReqCnf->enResult)
     {
-        /*命令结果 *AT_ERROR*/
+        /* *AT_ERROR*/
         gstAtSendData.usBufLen = 0;
         At_FormatResultData(ucIndex, AT_ERROR);
     }
     else
     {
-        /*命令结果 *AT_OK*/
+        /* *AT_OK*/
 
-        /* 最高位,高4 BIT置0 */
+        /* ,4 BIT0 */
         pstPmuDieSNReqCnf->aucDieSN[MTA_PMU_MAX_DIE_SN_LEN - 1] = (pstPmuDieSNReqCnf->aucDieSN[MTA_PMU_MAX_DIE_SN_LEN - 1] & 0x0F);
 
-        /* 格式化输出查询结果 */
+        /*  */
         usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                           (VOS_CHAR *)pgucAtSndCodeAddr,
                                           (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -5296,28 +5296,28 @@ VOS_UINT32 AT_RcvMtaPmuDieSNQryCnf( VOS_VOID *pMsg )
 
 
 /*****************************************************************************
- 函 数 名  : AT_SetTasTestCfg
- 功能描述  : AT发送给MTA的消息的操作，消息的用途是设置TAS命令参数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK设置操作成功，AT_ERROR设置操作失败
- 调用函数  :
- 被调函数  :
+     : AT_SetTasTestCfg
+   : ATMTATAS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年9月27日
-    作    者   : lwx331495
-    修改内容   : 新生成函数
+       :
+  1.       : 2016927
+           : lwx331495
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetTasTestCfg(VOS_UINT8 ucIndex)
 {
     AT_MTA_TAS_TEST_CFG_STRU            stTasParamReq;
     VOS_UINT32                          ulResult;
 
-    /*局部变量初始化*/
+    /**/
     TAF_MEM_SET_S(&stTasParamReq, (VOS_SIZE_T)sizeof(stTasParamReq), 0x00, (VOS_SIZE_T)sizeof(AT_MTA_TAS_TEST_CFG_STRU));
 
-    /*参数检查*/
+    /**/
     if ((5 != gucAtParaIndex)
      || (0 == gastAtParaList[0].usParaLen)
      || (0 == gastAtParaList[1].usParaLen)
@@ -5328,47 +5328,47 @@ VOS_UINT32 AT_SetTasTestCfg(VOS_UINT8 ucIndex)
             return AT_CME_INCORRECT_PARAMETERS;
         }
 
-    /*填写消息参数*/
+    /**/
     stTasParamReq.enRatMode = gastAtParaList[0].ulParaValue;
     stTasParamReq.ulPara0   = gastAtParaList[1].ulParaValue;
     stTasParamReq.ulPara1   = gastAtParaList[2].ulParaValue;
     stTasParamReq.ulPara2   = gastAtParaList[3].ulParaValue;
     stTasParamReq.ulPara3   = gastAtParaList[4].ulParaValue;
 
-    /*发送消息给MTA*/
+    /*MTA*/
     ulResult = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                       gastAtClientTab[ucIndex].opId,
                                       ID_AT_MTA_TAS_CFG_REQ,
                                       &stTasParamReq,
                                       (VOS_SIZE_T)sizeof(stTasParamReq),
                                       I0_UEPS_PID_MTA);
-    /*发送失败*/
+    /**/
     if (TAF_SUCCESS != ulResult)
     {
         AT_WARN_LOG("AT_SetTasTestCfg: AT_FillAndSndAppReqMsg fail.");
         return AT_ERROR;
     }
 
-    /*发送成功，设置当前操作模式*/
+    /**/
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TAS_TEST_SET;
 
-    /*等待异步处理时间返回*/
+    /**/
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryTasTestCfgpara
- 功能描述  : AT发送给MTA的消息的操作，消息的用途是查询TAS参数和模式
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 AT_OK查询操作成功，AT_ERROR查询操作失败
- 调用函数  :
- 被调函数  :
+     : AT_QryTasTestCfgpara
+   : ATMTATAS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32 AT_OKAT_ERROR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年10月21日
-    作    者   : lwx331495
-    修改内容   : 新生成函数
+       :
+  1.       : 20161021
+           : lwx331495
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_QryTasTestCfgPara(VOS_UINT8 ucIndex)
 {
@@ -5376,50 +5376,50 @@ VOS_UINT32 AT_QryTasTestCfgPara(VOS_UINT8 ucIndex)
     VOS_UINT32                          ulResult;
     AT_MTA_TAS_TEST_QRY_STRU            stAtMtaTasTestQry;
 
-    /*参数检查*/
+    /**/
     if ((1 != gucAtParaIndex)
      || (0 == gastAtParaList[0].usParaLen))
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /*填写消息参数*/
+    /**/
     stAtMtaTasTestQry.enRatMode = gastAtParaList[0].ulParaValue;
 
-    /*发送消息给MTA*/
+    /*MTA*/
     ulResult = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                       gastAtClientTab[ucIndex].opId,
                                       ID_AT_MTA_TAS_QRY_REQ,
                                       &stAtMtaTasTestQry,
                                       (VOS_SIZE_T)sizeof(stAtMtaTasTestQry),
                                       I0_UEPS_PID_MTA);
-    /*发送失败*/
+    /**/
     if (TAF_SUCCESS != ulResult)
     {
         AT_WARN_LOG("AT_QryTasTestCfgPara: AT_FillAndSndAppReqMsg fail.");
         return AT_ERROR;
     }
 
-    /*发送成功，设置当前操作模式*/
+    /**/
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_TAS_TEST_QRY;
 
-    /*等待异步处理时间返回*/
+    /**/
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvMtaTasTestCfgCnf
- 功能描述  : AT处理MTA发送 ID_MTA_AT_TAS_TEST_CFG_CNF 消息的操作
- 输入参数  : VOS_VOID *pMsg     -- MAT模块发送的消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_RcvMtaTasTestCfgCnf
+   : ATMTA ID_MTA_AT_TAS_TEST_CFG_CNF 
+   : VOS_VOID *pMsg     -- MAT
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年9月28日
-    作    者   : LWX331495
-    修改内容   : 新生成函数
+       :
+  1.       : 2016928
+           : LWX331495
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaTasTestCfgCnf( VOS_VOID *pMsg )
 {
@@ -5429,12 +5429,12 @@ VOS_UINT32 AT_RcvMtaTasTestCfgCnf( VOS_VOID *pMsg )
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulResult;
 
-    /*初始化局部变量*/
+    /**/
     pstRcvMsg                 = (AT_MTA_MSG_STRU *)pMsg;
     pstMtaAtTasTestCfgCnf     = (MTA_AT_TAS_TEST_CFG_CNF_STRU *)pstRcvMsg->aucContent;
     ucIndex                   = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
 
-    /*通过clientid获取index */
+    /*clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaTasTestCfgCnf: WARNING:AT INDEX NOT FOUND!");
@@ -5447,25 +5447,25 @@ VOS_UINT32 AT_RcvMtaTasTestCfgCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_TAS_TEST_CFG_SET */
+    /* AT_CMD_TAS_TEST_CFG_SET */
     if (AT_CMD_TAS_TEST_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaTasTestCfgCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /*格式化上报命令*/
+    /**/
     if (MTA_AT_RESULT_NO_ERROR == pstMtaAtTasTestCfgCnf->enResult)
     {
-        /*命令结果 *AT_OK*/
+        /* *AT_OK*/
         ulResult    = AT_OK;
     }
     else
     {
-        /*命令结果 *AT_ERROR*/
+        /* *AT_ERROR*/
         ulResult    = AT_ERROR;
     }
 
@@ -5476,18 +5476,18 @@ VOS_UINT32 AT_RcvMtaTasTestCfgCnf( VOS_VOID *pMsg )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvMtaTasTestQryCnf
- 功能描述  : AT处理MTA发送ID_MTA_AT_RFIC_DIE_ID_QRY_CNF消息的操作
- 输入参数  : VOS_VOID *pMsg     -- MAT模块发送的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_RcvMtaTasTestQryCnf
+   : ATMTAID_MTA_AT_RFIC_DIE_ID_QRY_CNF
+   : VOS_VOID *pMsg     -- MAT
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年10月24日
-    作    者   : lwx331495
-    修改内容   : 新生成函数
+       :
+  1.       : 20161024
+           : lwx331495
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvMtaTasTestQryCnf( VOS_VOID *pMsg )
 {
@@ -5496,13 +5496,13 @@ VOS_UINT32 AT_RcvMtaTasTestQryCnf( VOS_VOID *pMsg )
     VOS_UINT16                          usLength;
     VOS_UINT8                           ucIndex;
 
-    /* 初始化局部变量 */
+    /*  */
     pstRcvMsg                 = (AT_MTA_MSG_STRU *)pMsg;
     pstMtaAtTasTestReqCnf     = (MTA_AT_TAS_TEST_QRY_CNF_STRU *)pstRcvMsg->aucContent;
     usLength                  = 0;
     ucIndex                   = 0;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvMtaTasTestQryCnf: WARNING:AT INDEX NOT FOUND!");
@@ -5515,26 +5515,26 @@ VOS_UINT32 AT_RcvMtaTasTestQryCnf( VOS_VOID *pMsg )
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_RFIC_DIE_ID_QRY */
+    /* AT_CMD_RFIC_DIE_ID_QRY */
     if (AT_CMD_TAS_TEST_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvMtaTasTestQryCnf: NOT CURRENT CMD OPTION!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
-    /* 格式化上报命令 */
+    /*  */
     if (MTA_AT_RESULT_NO_ERROR != pstMtaAtTasTestReqCnf->enResult)
     {
-        /* 命令结果 *AT_ERROR */
+        /*  *AT_ERROR */
         gstAtSendData.usBufLen = 0;
         At_FormatResultData(ucIndex, AT_ERROR);
     }
     else
     {
-        /* 命令结果 *AT_OK */
+        /*  *AT_OK */
         usLength = AT_TasTestOut(pstMtaAtTasTestReqCnf);
         gstAtSendData.usBufLen = usLength;
         At_FormatResultData(ucIndex, AT_OK);
@@ -5544,24 +5544,24 @@ VOS_UINT32 AT_RcvMtaTasTestQryCnf( VOS_VOID *pMsg )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TasTestOut
- 功能描述  : 格式化输出tas test 查询结果
- 输入参数  : MTA_AT_TAS_TEST_QRY_CNF_STRU   *pstMtaAtTasTestReqCnf
- 输出参数  : 输出长度
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_TasTestOut
+   : tas test 
+   : MTA_AT_TAS_TEST_QRY_CNF_STRU   *pstMtaAtTasTestReqCnf
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年10月24日
-    作    者   : lwx331495
-    修改内容   : 新生成函数
+       :
+  1.       : 20161024
+           : lwx331495
+       : 
 *****************************************************************************/
 VOS_UINT16 AT_TasTestOut(
     MTA_AT_TAS_TEST_QRY_CNF_STRU       *pstMtaAtTasTestReqCnf
 )
 {
-    VOS_UINT32                          i;           /*循环用*/
+    VOS_UINT32                          i;           /**/
     VOS_UINT16                          usLength;
 
     usLength = 0;
@@ -5588,7 +5588,7 @@ VOS_UINT16 AT_TasTestOut(
         pstMtaAtTasTestReqCnf->stUsedTable.uhwLevelNum = MAX_STATEII_LEVEL_ITEM;
     }
 
-    /* 打印表格 */
+    /*  */
     for (i =  0; i < pstMtaAtTasTestReqCnf->stUsedTable.uhwLevelNum; i++)
     {
         usLength += (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -5605,18 +5605,18 @@ VOS_UINT16 AT_TasTestOut(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCdmaAttDiversitySwitch
- 功能描述  : 设置cmda DiversitySwitch开关
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_SetCdmaAttDiversitySwitch
+   : cmda DiversitySwitch
+   : VOS_VOID *pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年10月14日
-    作    者   : h00360002
-    修改内容   : 新生成函数
+       :
+  1.       : 20161014
+           : h00360002
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCdmaAttDiversitySwitch(VOS_UINT8 ucIndex)
 {

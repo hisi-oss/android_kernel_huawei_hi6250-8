@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "PsTypeDef.h"
 #include "vos.h"
@@ -62,21 +62,21 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_APP_VCOM_DEV_C
 
 /*****************************************************************************
-   2 全局变量定义
+   2 
 *****************************************************************************/
 
-/* VCOM CTX,用于保存VCOM的全局变量*/
+/* VCOM CTX,VCOM*/
 APP_VCOM_DEV_CTX_STRU                   g_astVcomCtx[APP_VCOM_MAX_NUM];
 
 APP_VCOM_DEBUG_INFO_STRU                g_stAppVcomDebugInfo;
 
 
-/* 虚拟串口文件操作接口 */
+/*  */
 static const struct file_operations     g_stOperations_Fops =
 {
     .owner = THIS_MODULE,
@@ -88,74 +88,74 @@ static const struct file_operations     g_stOperations_Fops =
 };
 
 
-/* APPVCOM的规格和应用
-APPVCOM ID   缓存大小  用途           是否AT的CLIENT    ModemId
-APPVCOM        4K      RIL(主)               是         MODEM0
-APPVCOM1       4K      RIL(呼叫)             是         MODEM0
-APPVCOM2       4K      工程菜单              是         MODEM0
-APPVCOM3       8K      生产装备(AT SERVER)   是         MODEM0
-APPVCOM4       4K      audio RIL             是         MODEM0
-APPVCOM5       4K      RIL(主)               是         MODEM1
-APPVCOM6       4K      RIL(呼叫)             是         MODEM1
-APPVCOM7       8K      生产装备(AT SERVER)   是         MODEM1
-APPVCOM8       4K      工程菜单/HIDP         是         MODEM1
-APPVCOM9       4K      AGPS                  是         MODEM0
-APPVCOM10      4K      NFC/BIP               是         MODEM0
-APPVCOM11      4K      ISDB                  是         MODEM0
-APPVCOM12      4K      AGPS                  是         MODEM1
-APPVCOM13      4K      RIL(查询)             是         MODEM0
-APPVCOM14      4K      RIL(查询)             是         MODEM1
-APPVCOM15      4K      NFC                   是         MODEM1
-APPVCOM16      4K      HIDP                  是         MODEM0
-APPVCOM17      4K      AGPS-AP               是         MODEM0
-APPVCOM18      4K      预留                  是         MODEM0
-APPVCOM19      4K      预留                  是         MODEM0
-APPVCOM20      4K      RIL(主)               是         MODEM2
-APPVCOM21      4K      RIL(呼叫)             是         MODEM2
-APPVCOM22      4K      工程菜单              是         MODEM2
-APPVCOM23      8K      生产装备(AT SERVER)   是         MODEM2
-APPVCOM24      4K      AGPS                  是         MODEM2
-APPVCOM25      4K      NFC                   是         MODEM2
-APPVCOM26      4K      RIL(查询)             是         MODEM2
+/* APPVCOM
+APPVCOM ID                ATCLIENT    ModemId
+APPVCOM        4K      RIL()                        MODEM0
+APPVCOM1       4K      RIL()                      MODEM0
+APPVCOM2       4K                             MODEM0
+APPVCOM3       8K      (AT SERVER)            MODEM0
+APPVCOM4       4K      audio RIL                      MODEM0
+APPVCOM5       4K      RIL()                        MODEM1
+APPVCOM6       4K      RIL()                      MODEM1
+APPVCOM7       8K      (AT SERVER)            MODEM1
+APPVCOM8       4K      /HIDP                  MODEM1
+APPVCOM9       4K      AGPS                           MODEM0
+APPVCOM10      4K      NFC/BIP                        MODEM0
+APPVCOM11      4K      ISDB                           MODEM0
+APPVCOM12      4K      AGPS                           MODEM1
+APPVCOM13      4K      RIL()                      MODEM0
+APPVCOM14      4K      RIL()                      MODEM1
+APPVCOM15      4K      NFC                            MODEM1
+APPVCOM16      4K      HIDP                           MODEM0
+APPVCOM17      4K      AGPS-AP                        MODEM0
+APPVCOM18      4K                                 MODEM0
+APPVCOM19      4K                                 MODEM0
+APPVCOM20      4K      RIL()                        MODEM2
+APPVCOM21      4K      RIL()                      MODEM2
+APPVCOM22      4K                             MODEM2
+APPVCOM23      8K      (AT SERVER)            MODEM2
+APPVCOM24      4K      AGPS                           MODEM2
+APPVCOM25      4K      NFC                            MODEM2
+APPVCOM26      4K      RIL()                      MODEM2
 
-APPVCOM27      4K      预留                  是         MODEM0
-APPVCOM28      4K      预留                  是         MODEM0
-APPVCOM29      4K      预留                  是         MODEM0
-APPVCOM30      4K      预留                  是         MODEM0
-APPVCOM31      4K      预留                  是         MODEM0
+APPVCOM27      4K                                 MODEM0
+APPVCOM28      4K                                 MODEM0
+APPVCOM29      4K                                 MODEM0
+APPVCOM30      4K                                 MODEM0
+APPVCOM31      4K                                 MODEM0
 
-APPVCOM32      4K      预留                  是         MODEM0
-APPVCOM33      4K      预留                  是         MODEM0
-APPVCOM34      4K      预留                  是         MODEM0
-APPVCOM35      4K      预留                  是         MODEM0
-APPVCOM36      4K      预留                  是         MODEM0
-APPVCOM37      4K      预留                  是         MODEM0
-APPVCOM38      4K      预留                  是         MODEM0
-APPVCOM39      4K      预留                  是         MODEM0
-APPVCOM40      4K      预留                  是         MODEM0
-APPVCOM41      4K      预留                  是         MODEM0
-APPVCOM42      4K      预留                  是         MODEM0
-APPVCOM43      4K      预留                  是         MODEM0
-APPVCOM44      4K      预留                  是         MODEM0
-APPVCOM45      4K      预留                  是         MODEM0
-APPVCOM46      4K      预留                  是         MODEM0
-APPVCOM47      4K      预留                  是         MODEM0
-APPVCOM48      4K      预留                  是         MODEM0
-APPVCOM49      4K      预留                  是         MODEM0
-APPVCOM50      4K      预留                  是         MODEM0
-APPVCOM51      4K      预留                  是         MODEM0
-APPVCOM52      4K      预留                  是         MODEM0
-APPVCOM53      128K    errlog                是
-APPVCOM54      4K      T/L装备               否
-APPVCOM55      2M      CBT                   否         MODEM0
-APPVCOM56      2M      log 3.5               否
-APPVCOM57      2M      log 3.5               否
-APPVCOM58      4K      预留                  是         MODEM0
-APPVCOM59      4K      预留                  是         MODEM0
-APPVCOM60      4K      预留                  是         MODEM0
-APPVCOM61      4K      预留                  是         MODEM0
-APPVCOM62      4K      预留                  是         MODEM0
-APPVCOM63      4K      预留                  是         MODEM0
+APPVCOM32      4K                                 MODEM0
+APPVCOM33      4K                                 MODEM0
+APPVCOM34      4K                                 MODEM0
+APPVCOM35      4K                                 MODEM0
+APPVCOM36      4K                                 MODEM0
+APPVCOM37      4K                                 MODEM0
+APPVCOM38      4K                                 MODEM0
+APPVCOM39      4K                                 MODEM0
+APPVCOM40      4K                                 MODEM0
+APPVCOM41      4K                                 MODEM0
+APPVCOM42      4K                                 MODEM0
+APPVCOM43      4K                                 MODEM0
+APPVCOM44      4K                                 MODEM0
+APPVCOM45      4K                                 MODEM0
+APPVCOM46      4K                                 MODEM0
+APPVCOM47      4K                                 MODEM0
+APPVCOM48      4K                                 MODEM0
+APPVCOM49      4K                                 MODEM0
+APPVCOM50      4K                                 MODEM0
+APPVCOM51      4K                                 MODEM0
+APPVCOM52      4K                                 MODEM0
+APPVCOM53      128K    errlog                
+APPVCOM54      4K      T/L               
+APPVCOM55      2M      CBT                            MODEM0
+APPVCOM56      2M      log 3.5               
+APPVCOM57      2M      log 3.5               
+APPVCOM58      4K                                 MODEM0
+APPVCOM59      4K                                 MODEM0
+APPVCOM60      4K                                 MODEM0
+APPVCOM61      4K                                 MODEM0
+APPVCOM62      4K                                 MODEM0
+APPVCOM63      4K                                 MODEM0
 */
 const APP_VCOM_DEV_CONFIG_STRU g_astAppVcomCogfigTab[] =
 {
@@ -232,25 +232,25 @@ const APP_VCOM_DEV_CONFIG_STRU g_astAppVcomCogfigTab[] =
 APP_VCOM_DEBUG_CFG_STRU              g_stAppVcomDebugCfg;
 
 /*****************************************************************************
-   3 函数、变量声明
+   3 
 *****************************************************************************/
 
 /*****************************************************************************
-   4 函数实现
+   4 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : APP_VCOM_GetVcomCtxAddr
- 功能描述  : 获取当前设备的全局变量
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : APP_VCOM_DEV_CTX_STRU*
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_GetVcomCtxAddr
+   : 
+   : VOS_UINT8 ucIndex
+   : 
+     : APP_VCOM_DEV_CTX_STRU*
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年12月5日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 2012125
+           : z00220246
+       : 
 
 *****************************************************************************/
 APP_VCOM_DEV_CTX_STRU* APP_VCOM_GetVcomCtxAddr(VOS_UINT8 ucIndex)
@@ -259,18 +259,18 @@ APP_VCOM_DEV_CTX_STRU* APP_VCOM_GetVcomCtxAddr(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_GetAppVcomDevEntity
- 功能描述  : 获取当前VCOM的设备实体指针
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  :
- 返 回 值  : 返回当前VCOM的设备实体
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_GetAppVcomDevEntity
+   : VCOM
+   : VOS_UINT8 ucIndex
+   :
+     : VCOM
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2012年12月03日
-   作    者   : z00220246
-   修改内容   : 新生成函数
+      :
+ 1.       : 20121203
+          : z00220246
+      : 
 
 *****************************************************************************/
 APP_VCOM_DEV_ENTITY_STRU* APP_VCOM_GetAppVcomDevEntity(VOS_UINT8 ucIndex)
@@ -279,26 +279,26 @@ APP_VCOM_DEV_ENTITY_STRU* APP_VCOM_GetAppVcomDevEntity(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_RegDataCallback
- 功能描述  : VCOM上行数据处理模块为AT模块提供的注册上行AT码流接收函数接口
- 输入参数  : VOS_UINT8  ucDevIndex,    SEND_UL_AT_FUNC pFunc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+     : APP_VCOM_RegDataCallback
+   : VCOMATAT
+   : VOS_UINT8  ucDevIndex,    SEND_UL_AT_FUNC pFunc
+   : 
+     : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 20121123
+           : z00220246
+       : 
 
 *****************************************************************************/
 VOS_UINT32 APP_VCOM_RegDataCallback(VOS_UINT8 ucDevIndex, SEND_UL_AT_FUNC pFunc)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
 
-    /* 索引号错误*/
+    /* */
     if (ucDevIndex >= APP_VCOM_DEV_INDEX_BUTT)
     {
         return VOS_ERR;
@@ -306,33 +306,33 @@ VOS_UINT32 APP_VCOM_RegDataCallback(VOS_UINT8 ucDevIndex, SEND_UL_AT_FUNC pFunc)
 
     pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucDevIndex);
 
-    /* 函数指针赋给全局变量*/
+    /* */
     pstVcomCtx->pSendUlAtFunc = pFunc;
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_RegEvtCallback
- 功能描述  : VCOM为外部模块提供的注册端口事件处理函数接口
- 输入参数  : VOS_UINT8  ucDevIndex,    EVENT_FUNC pFunc
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+     : APP_VCOM_RegEvtCallback
+   : VCOM
+   : VOS_UINT8  ucDevIndex,    EVENT_FUNC pFunc
+   : 
+     : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 20121123
+           : z00220246
+       : 
 
 *****************************************************************************/
 VOS_UINT32 APP_VCOM_RegEvtCallback(VOS_UINT8 ucDevIndex, EVENT_FUNC pFunc)
 {
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
 
-    /* 索引号错误*/
+    /* */
     if (ucDevIndex >= APP_VCOM_DEV_INDEX_BUTT)
     {
         return VOS_ERR;
@@ -340,26 +340,26 @@ VOS_UINT32 APP_VCOM_RegEvtCallback(VOS_UINT8 ucDevIndex, EVENT_FUNC pFunc)
 
     pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucDevIndex);
 
-    /* 函数指针赋给全局变量*/
+    /* */
     pstVcomCtx->pEventFunc = pFunc;
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_GetIndexFromMajorDevId
- 功能描述  : 根据主设备号，得到设备在全局变量中的索引号
- 输入参数  : VOS_UINT32 ulMajorDevId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 设备索引号
+     : APP_VCOM_GetIndexFromMajorDevId
+   : 
+   : VOS_UINT32 ulMajorDevId
+   : 
+     : VOS_UINT8 
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 20121123
+           : z00220246
+       : 
 
 *****************************************************************************/
 VOS_UINT8 APP_VCOM_GetIndexFromMajorDevId(VOS_UINT ulMajorDevId)
@@ -381,18 +381,18 @@ VOS_UINT8 APP_VCOM_GetIndexFromMajorDevId(VOS_UINT ulMajorDevId)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_InitSpecCtx
- 功能描述  : 初始化VCOM 模块全局变量
- 输入参数  : VOS_UINT8 ulDevIndex
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_InitSpecCtx
+   : VCOM 
+   : VOS_UINT8 ulDevIndex
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 20121123
+           : z00220246
+       : 
 
 *****************************************************************************/
 VOS_VOID  APP_VCOM_InitSpecCtx(VOS_UINT8 ucDevIndex)
@@ -423,23 +423,23 @@ VOS_VOID  APP_VCOM_InitSpecCtx(VOS_UINT8 ucDevIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Setup
- 功能描述  : 将虚拟串口添加到字符设备中
- 输入参数  : APP_VCOM_DEV_ENTITY_STRU *pstDev
+     : APP_VCOM_Setup
+   : 
+   : APP_VCOM_DEV_ENTITY_STRU *pstDev
              VOS_UINT8                 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
 
 *****************************************************************************/
 VOS_VOID APP_VCOM_Setup(
@@ -477,31 +477,31 @@ VOS_VOID APP_VCOM_Setup(
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Init
- 功能描述  : 虚拟串口初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERR   失败
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_Init
+   : 
+   : 
+   : 
+     : VOS_OK    
+             VOS_ERR   
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容   : 增加appvcom可维可测记录到文件
-  5.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加写信号量初始化
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
+  3.       : 20130801
+           : j00177245
+       : appvcom
+  4.       : 20131025
+           : j00177245
+       : appvcom
+  5.       : 2014422
+           : A00165503
+       : DTS2014042208020: 
 *****************************************************************************/
 VOS_INT __init APP_VCOM_Init(VOS_VOID)
 {
@@ -517,26 +517,26 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
     pstVcomCtx = VOS_NULL_PTR;
     pstVcomDevp  = VOS_NULL_PTR;
 
-    /* 初始化可维可测全局变量 */
+    /*  */
     TAF_MEM_SET_S(&g_stAppVcomDebugInfo, sizeof(g_stAppVcomDebugInfo), 0x00, sizeof(g_stAppVcomDebugInfo));
 
     TAF_MEM_SET_S(&g_stAppVcomDebugCfg, sizeof(g_stAppVcomDebugCfg), 0x00, sizeof(g_stAppVcomDebugCfg));
 
-    /* 初始化虚拟设备 */
+    /*  */
     for (ucIndex = 0; ucIndex < APP_VCOM_MAX_NUM; ucIndex++)
     {
-        /* 初始化全局变量 */
+        /*  */
         APP_VCOM_InitSpecCtx(ucIndex);
 
-        /* 获取全局变量指针 */
+        /*  */
         pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucIndex);
 
-        /* 将设备号转换成dev_t 类型 */
+        /* dev_t  */
         ulDevno = MKDEV(pstVcomCtx->ulAppVcomMajorId, ucIndex);
 
         iResult1 = register_chrdev_region(ulDevno, 1, pstVcomCtx->aucAppVcomName);
 
-        /* 注册失败则动态申请设备号 */
+        /*  */
         if (iResult1 < 0)
         {
             iResult2 = alloc_chrdev_region(&ulDevno, 0, 1, pstVcomCtx->aucAppVcomName);
@@ -549,18 +549,18 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
             pstVcomCtx->ulAppVcomMajorId = MAJOR(ulDevno);
         }
 
-        /* 动态申请设备结构体内存 */
+        /*  */
         pstVcomCtx->pstAppVcomDevEntity = kmalloc(sizeof(APP_VCOM_DEV_ENTITY_STRU) , GFP_KERNEL);
 
         if (VOS_NULL_PTR == pstVcomCtx->pstAppVcomDevEntity)
         {
-            /* 去注册该设备，返回错误 */
+            /*  */
             unregister_chrdev_region(ulDevno, 1);
             APP_VCOM_TRACE_ERR(ucIndex, "APP_VCOM_Init malloc device Entity fail. ");
             return VOS_ERROR;
         }
 
-        /* 获取设备实体指针 */
+        /*  */
         pstVcomDevp = pstVcomCtx->pstAppVcomDevEntity;
 
         TAF_MEM_SET_S(pstVcomDevp, sizeof(APP_VCOM_DEV_ENTITY_STRU), 0x00, sizeof(APP_VCOM_DEV_ENTITY_STRU));
@@ -571,7 +571,7 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
 
             if (VOS_NULL_PTR == pstVcomDevp->pucAppVcomMem)
             {
-                /* 去注册该设备，返回错误 */
+                /*  */
                 unregister_chrdev_region(ulDevno, 1);
                 APP_VCOM_TRACE_ERR(ucIndex, "APP_VCOM_Init malloc device buff fail. ");
                 kfree(pstVcomCtx->pstAppVcomDevEntity);
@@ -590,7 +590,7 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
 
         APP_VCOM_Setup(pstVcomDevp, ucIndex);
 
-        /* 创建信号量 */
+        /*  */
         sema_init(&pstVcomDevp->stMsgSendSem,1);
         sema_init(&pstVcomDevp->stWrtSem, 1);
     }
@@ -601,19 +601,19 @@ VOS_INT __init APP_VCOM_Init(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Release
- 功能描述  : 文件关闭函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERROR   失败
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_Release
+   : 
+   : 
+   : 
+     : VOS_OK    
+             VOS_ERROR   
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111214
+           : sunshaohua
+       : 
 *****************************************************************************/
 int APP_VCOM_Release(
     struct inode                       *inode,
@@ -630,10 +630,10 @@ int APP_VCOM_Release(
         return VOS_ERROR;
     }
 
-    /* 获取主设备号 */
+    /*  */
     ulDevMajor = imajor(inode);
 
-    /* 根据主设备号得到设备在全局变量中的索引值 */
+    /*  */
     ucIndex = APP_VCOM_GetIndexFromMajorDevId(ulDevMajor);
 
     if (ucIndex >= APP_VCOM_MAX_NUM)
@@ -642,7 +642,7 @@ int APP_VCOM_Release(
         return VOS_ERROR;
     }
 
-    /* 获取VCOM全局变量 */
+    /* VCOM */
     pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucIndex);
 
     if (VOS_NULL_PTR == pstVcomCtx->pstAppVcomDevEntity)
@@ -667,7 +667,7 @@ int APP_VCOM_Release(
         up(&pstVcomDevp->stMsgSendSem);
     }
 
-    /* 将设备结构体指针赋值给文件私有数据指针 */
+    /*  */
     filp->private_data = pstVcomCtx->pstAppVcomDevEntity;
 
     APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Release enter. ");
@@ -686,22 +686,22 @@ int APP_VCOM_Release(
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Open
- 功能描述  : 文件打开函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK    成功
-             VOS_ERROR   失败
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_Open
+   : 
+   : 
+   : 
+     : VOS_OK    
+             VOS_ERROR   
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
+       :
+  1.       : 20111214
+           : sunshaohua
+       : 
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
 *****************************************************************************/
 int APP_VCOM_Open(
     struct inode                       *inode,
@@ -718,10 +718,10 @@ int APP_VCOM_Open(
         return VOS_ERROR;
     }
 
-    /* 获取主设备号 */
+    /*  */
     ulDevMajor = imajor(inode);
 
-    /* 根据主设备号得到设备在全局变量中的索引值 */
+    /*  */
     ucIndex = APP_VCOM_GetIndexFromMajorDevId(ulDevMajor);
 
     if (ucIndex >= APP_VCOM_MAX_NUM)
@@ -730,7 +730,7 @@ int APP_VCOM_Open(
         return VOS_ERROR;
     }
 
-    /* 获取VCOM全局变量 */
+    /* VCOM */
     pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucIndex);
 
     if (VOS_NULL_PTR == pstVcomCtx->pstAppVcomDevEntity)
@@ -741,7 +741,7 @@ int APP_VCOM_Open(
 
     if (APPVCOM_DYNAMIC_MALLOC_MEMORY(ucIndex))
     {
-        /* 获取设备实体指针 */
+        /*  */
         pstVcomDevp = pstVcomCtx->pstAppVcomDevEntity;
         if (VOS_NULL_PTR == pstVcomDevp->pucAppVcomMem)
         {
@@ -755,7 +755,7 @@ int APP_VCOM_Open(
             APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Open alloc memory is ok. ");
         }
     }
-    /* 将设备结构体指针赋值给文件私有数据指针 */
+    /*  */
     filp->private_data = pstVcomCtx->pstAppVcomDevEntity;
 
     APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Open enter. ");
@@ -771,30 +771,30 @@ int APP_VCOM_Open(
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Read
- 功能描述  : 虚拟串口读操作
- 输入参数  : struct file *stFilp
+     : APP_VCOM_Read
+   : 
+   : struct file *stFilp
              char __user *buf
              size_t       count
              loff_t      *ppos
- 输出参数  : 无
- 返 回 值  : ssize_t
- 调用函数  :
- 被调函数  :
+   : 
+     : ssize_t
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月28日
-    作    者   : f00179208
-    修改内容   : DTS2013102801414:手机打电话及挂电话慢，上层读VCOM会读到0字节的长度
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
+  3.       : 20130801
+           : j00177245
+       : appvcom
+  4.       : 20131028
+           : f00179208
+       : DTS2013102801414:VCOM0
 *****************************************************************************/
 ssize_t APP_VCOM_Read(
     struct file                        *stFilp,
@@ -809,14 +809,14 @@ ssize_t APP_VCOM_Read(
     VOS_UINT8                           ucIndex;
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
 
-    /* 获得设备结构体指针 */
+    /*  */
     pstVcomDev = stFilp->private_data;
 
-    /* 获得设备主设备号 */
+    /*  */
     pstCdev = &(pstVcomDev->stAppVcomDev);
     ulDevMajor = MAJOR(pstCdev->dev);
 
-    /* 获得设备在全局变量中的索引值 */
+    /*  */
     ucIndex = APP_VCOM_GetIndexFromMajorDevId(ulDevMajor);
 
     if (ucIndex >= APP_VCOM_MAX_NUM)
@@ -835,12 +835,12 @@ ssize_t APP_VCOM_Read(
         return APP_VCOM_ERROR;
     }
 
-    /*lint -e730 修改人:l60609;检视人:z60575;原因:两个线程会同时写该全局变量  */
+    /*lint -e730 :l60609;:z60575;:  */
     if (wait_event_interruptible(pstVcomDev->Read_Wait, (pstVcomDev->current_len != 0)))
     {
         return -ERESTARTSYS;
     }
-    /*lint +e730 修改人:l60609;检视人:z60575;原因:两个线程会同时写该全局变量  */
+    /*lint +e730 :l60609;:z60575;:  */
 
     if (0 == pstVcomDev->current_len)
     {
@@ -849,7 +849,7 @@ ssize_t APP_VCOM_Read(
 
     APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Read, wait_event 222,flag:%d. ", pstVcomDev->ulReadWakeUpFlg);
 
-    /* 获取信号量 */
+    /*  */
     down(&pstVcomCtx->pstAppVcomDevEntity->stMsgSendSem);
 
     if (APPVCOM_DYNAMIC_MALLOC_MEMORY(ucIndex)&&(VOS_NULL_PTR == pstVcomDev->pucAppVcomMem))
@@ -867,19 +867,19 @@ ssize_t APP_VCOM_Read(
     {
         APP_VCOM_TRACE_ERR(ucIndex, "APP_VCOM_Read, copy_to_user fail. ");
 
-        /* 释放信号量 */
+        /*  */
         up(&pstVcomCtx->pstAppVcomDevEntity->stMsgSendSem);
         return APP_VCOM_ERROR;
     }
 
     if ((pstVcomDev->current_len - count) > 0)
     {
-        /* FIFO数据前移 */
+        /* FIFO */
         memmove(pstVcomDev->pucAppVcomMem, (pstVcomDev->pucAppVcomMem + count), (pstVcomDev->current_len - count));
         APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Read, FIFO move. ");
     }
 
-    /* 有效数据长度减小*/
+    /* */
     pstVcomDev->current_len -= count;
 
     APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Read, read %d bytes, current_len:%d. ", count, pstVcomDev->current_len);
@@ -892,37 +892,37 @@ ssize_t APP_VCOM_Read(
         /* lint +e455 */
     }
 
-    /* 释放信号量 */
+    /*  */
     up(&pstVcomCtx->pstAppVcomDevEntity->stMsgSendSem);
 
     return (ssize_t)count;
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Write
- 功能描述  : 虚拟串口写操作
- 输入参数  : struct file       *stFilp
+     : APP_VCOM_Write
+   : 
+   : struct file       *stFilp
              const char __user *buf
              size_t             count
              loff_t            *ppos
- 输出参数  : 无
- 返 回 值  : ssize_t
- 调用函数  :
- 被调函数  :
+   : 
+     : ssize_t
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容  :  增加appvcom可维可测记录到文件
-  4.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加APPVCOM9和APPVCOM12的缓存处理
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
+  3.       : 20131025
+           : j00177245
+      :  appvcom
+  4.       : 2014422
+           : A00165503
+       : DTS2014042208020: APPVCOM9APPVCOM12
 *****************************************************************************/
 ssize_t APP_VCOM_Write(
     struct file                        *stFilp,
@@ -939,14 +939,14 @@ ssize_t APP_VCOM_Write(
     VOS_UINT8                           ucIndex;
     APP_VCOM_DEV_CTX_STRU              *pstVcomCtx;
 
-    /* 获得设备结构体指针 */
+    /*  */
     pstVcomDev = stFilp->private_data;
 
-    /* 获得设备主设备号 */
+    /*  */
     pstCdev = &(pstVcomDev->stAppVcomDev);
     ulDevMajor = MAJOR(pstCdev->dev);
 
-    /* 获得设备在全局变量中的索引值 */
+    /*  */
     ucIndex = APP_VCOM_GetIndexFromMajorDevId(ulDevMajor);
 
     if(ucIndex >= APP_VCOM_MAX_NUM)
@@ -967,10 +967,10 @@ ssize_t APP_VCOM_Write(
         return APP_VCOM_ERROR;
     }
 
-    /* 获得全局变量地址 */
+    /*  */
     pstVcomCtx = APP_VCOM_GetVcomCtxAddr(ucIndex);
 
-    /* 申请内存 */
+    /*  */
     pucDataBuf = kmalloc(count, GFP_KERNEL);
     if (VOS_NULL_PTR == pucDataBuf )
     {
@@ -979,7 +979,7 @@ ssize_t APP_VCOM_Write(
         return APP_VCOM_ERROR;
     }
 
-    /* buffer清零 */
+    /* buffer */
     TAF_MEM_SET_S(pucDataBuf, count, 0x00, (VOS_SIZE_T)count);
 
     if (copy_from_user(pucDataBuf, buf, (VOS_ULONG)count))
@@ -1016,7 +1016,7 @@ ssize_t APP_VCOM_Write(
         up(&pstVcomCtx->pstAppVcomDevEntity->stWrtSem);
     }
 
-    /* 调用回调函数处理buf中的AT码流*/
+    /* bufAT*/
     if (VOS_NULL_PTR == pstVcomCtx->pSendUlAtFunc)
     {
         APP_VCOM_TRACE_ERR(ucIndex, "APP_VCOM_Write, pSendUlAtFunc is null. ");
@@ -1041,27 +1041,27 @@ ssize_t APP_VCOM_Write(
 
     APP_VCOM_TRACE_INFO(ucIndex, "APP_VCOM_Write, write %d bytes, AT_RcvFromAppCom Success.",count);
 
-    /* 释放内存 */
+    /*  */
     kfree(pucDataBuf);
 
     return (ssize_t)count;
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Poll
- 功能描述  : 虚拟串口POLL
- 输入参数  : struct file *fp
+     : APP_VCOM_Poll
+   : POLL
+   : struct file *fp
              struct poll_table_struct *wait
- 输出参数  : 无
- 返 回 值  : 0
+   : 
+     : 0
              POLLIN | POLLRDNORM
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年8月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201386
+           : A00165503
+       : 
 *****************************************************************************/
 unsigned int APP_VCOM_Poll(struct file *fp, struct poll_table_struct *wait)
 {
@@ -1091,35 +1091,35 @@ unsigned int APP_VCOM_Poll(struct file *fp, struct poll_table_struct *wait)
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_Send
- 功能描述  : 接收AT模块的码流，写入设备中
- 输入参数  : APP_VCOM_DEV_INDEX_UINT8 enDevIndex
+     : APP_VCOM_Send
+   : AT
+   : APP_VCOM_DEV_INDEX_UINT8 enDevIndex
              VOS_UINT8  *pData
              VOS_UINT32 uslength
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : lijun 00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月23日
-    作    者   : z00220246
-    修改内容   : DSDA Phase I
-  3.日    期   : 2013年08月01日
-    作    者   : j00177245
-    修改内容   : 调整appvcom初始化时序
-  4.日    期   : 2013年10月25日
-    作    者   : j00177245
-    修改内容   : 增加appvcom可维可测记录到文件
-  5.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 增加APPVCOM9和APPVCOM12的缓存处理
-  6.日    期   : 2016年6月12日
-    作    者   : l00198894
-    修改内容   : DTS2016061000456: 增加主要通道缓存满
+       :
+  1.       : 20111220
+           : lijun 00171473
+       : 
+  2.       : 20121123
+           : z00220246
+       : DSDA Phase I
+  3.       : 20130801
+           : j00177245
+       : appvcom
+  4.       : 20131025
+           : j00177245
+       : appvcom
+  5.       : 2014422
+           : A00165503
+       : DTS2014042208020: APPVCOM9APPVCOM12
+  6.       : 2016612
+           : l00198894
+       : DTS2016061000456: 
 *****************************************************************************/
 VOS_UINT32  APP_VCOM_Send (
     APP_VCOM_DEV_INDEX_UINT8            enDevIndex,
@@ -1144,7 +1144,7 @@ VOS_UINT32  APP_VCOM_Send (
         return VOS_ERR;
     }
 
-    /* 获得设备实体指针 */
+    /*  */
     pstVcomDev = APP_VCOM_GetAppVcomDevEntity(enDevIndex);
     if (VOS_NULL_PTR == pstVcomDev)
     {
@@ -1178,7 +1178,7 @@ VOS_UINT32  APP_VCOM_Send (
 
     APP_VCOM_TRACE_INFO(enDevIndex, "APP_VCOM_Send, uslength:%d, current_len:%d. ", uslength, pstVcomDev->current_len);
 
-    /* 获取信号量 */
+    /*  */
     down(&pstVcomDev->stMsgSendSem);
 
     if (APPVCOM_DYNAMIC_MALLOC_MEMORY(enDevIndex)&&(VOS_NULL_PTR == pstVcomDev->pucAppVcomMem))
@@ -1187,7 +1187,7 @@ VOS_UINT32  APP_VCOM_Send (
         return VOS_ERR;
     }
 
-    /* 队列满则直接返回 */
+    /*  */
     /*lint -e661*/
     if (g_astAppVcomCogfigTab[enDevIndex].ulAppVcomMemSize == pstVcomDev->current_len)
     /*lint +e661*/
@@ -1207,7 +1207,7 @@ VOS_UINT32  APP_VCOM_Send (
         return VOS_ERR;
     }
 
-    /* 发送数据大于剩余Buffer大小 */
+    /* Buffer */
     /*lint -e661*/
     if (uslength > (g_astAppVcomCogfigTab[enDevIndex].ulAppVcomMemSize - pstVcomDev->current_len))
     /*lint +e661*/
@@ -1224,7 +1224,7 @@ VOS_UINT32  APP_VCOM_Send (
         /*lint +e661*/
     }
 
-    /* 复制到BUFFER */
+    /* BUFFER */
     memcpy(pstVcomDev->pucAppVcomMem + pstVcomDev->current_len, pData, uslength);
     pstVcomDev->current_len += uslength;
 
@@ -1236,7 +1236,7 @@ VOS_UINT32  APP_VCOM_Send (
         wake_lock_timeout(&pstVcomDev->stRdWakeLock, (VOS_LONG)msecs_to_jiffies(APP_VCOM_READ_WAKE_LOCK_LEN));
     }
 
-    /* 释放信号量 */
+    /*  */
     up(&pstVcomDev->stMsgSendSem);
     wake_up_interruptible(&pstVcomDev->Read_Wait);
 
@@ -1252,18 +1252,18 @@ VOS_UINT32  APP_VCOM_Send (
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_ShowDebugInfo
- 功能描述  : 打印appvcom的可维可测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_ShowDebugInfo
+   : appvcom
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容  : 新增函数
+       :
+  1.       : 20130921
+           : j00174725
+      : 
 *****************************************************************************/
 VOS_VOID APP_VCOM_ShowDebugInfo(VOS_VOID)
 {
@@ -1284,18 +1284,18 @@ VOS_VOID APP_VCOM_ShowDebugInfo(VOS_VOID)
 
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_SendDebugNvCfg
- 功能描述  : 接收关于VCOM Debug 配置相关的NV项
- 输入参数  : VOS_VOID ulAppVcomDebugNvCfg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : APP_VCOM_SendDebugNvCfg
+   : VCOM Debug NV
+   : VOS_VOID ulAppVcomDebugNvCfg
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月03日
-    作    者   : n00269697
-    修改内容   : 新生成函数
+       :
+  1.       : 20140603
+           : n00269697
+       : 
 *****************************************************************************/
 VOS_VOID APP_VCOM_SendDebugNvCfg(
     VOS_UINT32                          ulPortIdMask1,
@@ -1309,26 +1309,26 @@ VOS_VOID APP_VCOM_SendDebugNvCfg(
 }
 
 /*****************************************************************************
- 函 数 名  : APP_VCOM_MNTN_LogPrintf
- 功能描述  : APP VCOM可维可测LOG输出
- 输入参数  : VOS_CHAR *pcFmt
+     : APP_VCOM_MNTN_LogPrintf
+   : APP VCOMLOG
+   : VOS_CHAR *pcFmt
              ...
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月03日
-    作    者   : N00269697
-    修改内容   : 新生成函数
+       :
+  1.       : 20140603
+           : N00269697
+       : 
 *****************************************************************************/
 VOS_VOID APP_VCOM_MNTN_LogPrintf(VOS_CHAR *pcFmt, ...)
 {
     VOS_CHAR                            acBuf[APP_VCOM_TRACE_BUF_LEN] = {0};
     VOS_UINT32                          ulPrintLength = 0;
 
-    /* 格式化输出BUFFER */
+    /* BUFFER */
     /*lint -e713 -e507*/
     APP_VCOM_LOG_FORMAT(ulPrintLength, acBuf, APP_VCOM_TRACE_BUF_LEN, pcFmt);
     /*lint +e713 +e507*/

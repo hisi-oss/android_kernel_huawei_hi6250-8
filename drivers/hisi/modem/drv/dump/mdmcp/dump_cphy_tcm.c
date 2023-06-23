@@ -63,16 +63,16 @@
 
 
 /*****************************************************************************
-* 函 数 名  : om_save_cphy_tcm
-* 功能描述  : 保存xdsp的镜像
+*     : om_save_cphy_tcm
+*   : xdsp
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_cphy_tcm(char *  dst_path)
@@ -110,7 +110,7 @@ void dump_save_cphy_tcm(char *  dst_path)
         return;
     }
 
-    /*满足DSP处于上电条件的情况下cphy_dtcm.bin的在所有版本中均需要保存*/
+    /*DSPcphy_dtcm.bin*/
     if (flag ==true)
     {
         /* coverity[HUAWEI DEFECT] */

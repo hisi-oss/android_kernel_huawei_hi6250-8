@@ -108,14 +108,14 @@ void bsp_print_level_cfg(u32 *level)
 }
 
 /*************************************************************************
- 函 数 名	: bsp_log_write_socp_chan
- 功能描述	: LOG数据写入SOCP源通道
- 输入参数	: 无
- 返 回 值	: 成功与否标识码
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_log_write_socp_chan
+ 	: LOGSOCP
+ 	: 
+   	: 
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 s32 bsp_log_write_socp_chan(u8* data,u32 len)
 {
@@ -170,14 +170,14 @@ s32 bsp_transreport(TRANS_IND_STRU *pstData)
     diag_socp_head_stru  *socp_head;
     unsigned long lock_flag = 0;
 
-    /*判断工具连接状态、开关状态*/
+    /**/
     if(0 == g_translog_conn)
     {
        printk(KERN_ERR"hids not conn(%d)!\n",g_translog_conn);
        return HDS_TRANS_SW_ERR;
     }
 
-    /*入参检查*/
+    /**/
     if((NULL == pstData)||(NULL == pstData->pData)||(0 == pstData->ulLength) || ((pstData->ulLength) > (TRANSLOG_MAX_HIDS_BUFF_LEN - 1)))
     {
        printk(KERN_ERR"pstdata err!\n");
@@ -197,20 +197,20 @@ s32 bsp_transreport(TRANS_IND_STRU *pstData)
     memcpy(g_trans_sendbuf->data,pstData->pData, (unsigned long)(pstData->ulLength));
 
     /*fill trans head*/
-    trans_head->ulModule   = 0x8003;            /*Pid,0x8003代表BSP*/
+    trans_head->ulModule   = 0x8003;            /*Pid,0x8003BSP*/
     trans_head->ulMsgId    = pstData->ulMsgId;
     trans_head->ulNo       = g_Translog_pkgnum++;
     /*fill diag head*/
     bsp_slice_getcurtime(&auctime);
     memcpy(diag_head->stService.aucTimeStamp,&auctime, sizeof(diag_head->stService.aucTimeStamp));
-    /*pstData->ulModule:31-24bit,代表mdmid3b,主副卡*/
+    /*pstData->ulModule:31-24bit,mdmid3b,*/
     diag_head->stService.mdmid3b = ((pstData->ulModule) & 0xff000000)>>24;
     diag_head->stService.MsgTransId  = g_translog_transId;
 
     diag_head->stID.pri4b    = DIAG_FRAME_MSG_TYPE_BSP;
     diag_head->stID.mode4b   = ((pstData->ulModule) & 0x00ff0000)>>16;
     diag_head->stID.sec5b    = DIAG_FRAME_MSG_STRUCT;
-    diag_head->stID.cmdid19b = ((pstData->ulMsgId) & 0x7ffff);       /*pstData->ulMsgId:18-0bit,代表cmdid19b*/
+    diag_head->stID.cmdid19b = ((pstData->ulMsgId) & 0x7ffff);       /*pstData->ulMsgId:18-0bit,cmdid19b*/
     diag_head->u32MsgLen     = trans_packet_len;
 
     /*fill socp head*/
@@ -233,14 +233,14 @@ s32 bsp_transreport(TRANS_IND_STRU *pstData)
 /*lint -restore +e550 */
 
 /*************************************************************************
- 函 数 名	: bsp_printreport
- 功能描述	: PRINT数据上报到工具
- 输入参数	: 无
- 返 回 值	: 成功与否标识码
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_printreport
+ 	: PRINT
+ 	: 
+   	: 
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 s32 bsp_printreport(char *logdata,u32 level,u32 module_id)
 {
@@ -254,7 +254,7 @@ s32 bsp_printreport(char *logdata,u32 level,u32 module_id)
     diag_frame_head_stru *diag_head;
     diag_socp_head_stru  *socp_head;
 
-    /*入参检查*/
+    /**/
     if((NULL == logdata)||(level > g_printlog_level))
     {
        printk(KERN_ERR"logdata or level err!\n");
@@ -336,7 +336,7 @@ int bsp_trace_to_hids(u32 module_id, u32 level, char* print_buff)
     }
     print_flag = true;
 
-    /*判断工具连接状态、开关状态*/
+    /**/
     if((1 == g_printlog_conn)&&(1 == g_printlog_enable))
     {
         ret = bsp_printreport(print_buff,level,module_id);
@@ -393,7 +393,7 @@ s32 bsp_socp_log_chan_cfg(void)
     g_logSrcCfg.pucVirtStart = (void*)LOG_PHYS_TO_VIRT(ulAddress);
     g_logSrcCfg.ulBufLen = LOG_SRC_BUF_LEN;
 
-    /*调用SOCP接口进行编码源通道配置*/
+    /*SOCP*/
     if(HDS_OK != bsp_socp_coder_set_src_chan(SOCP_CODER_SRC_LOG_IND, &EncSrcAttr))
     {
 
@@ -401,21 +401,21 @@ s32 bsp_socp_log_chan_cfg(void)
         return HDS_ERR;
     }
 
-    /*启动编码*/
+    /**/
     bsp_socp_start(SOCP_CODER_SRC_LOG_IND);
     return HDS_OK;
 }
 
 
 /*************************************************************************
- 函 数 名	: bsp_hds_init
- 功能描述	: 初始化函数
- 输入参数	: 无
- 返 回 值	: 成功与否标识码
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_hds_init
+ 	: 
+ 	: 
+   	: 
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 int __init bsp_hds_init(void)
 {
@@ -423,7 +423,7 @@ int __init bsp_hds_init(void)
 
     bsp_hds_service_init();
 
-    /*上报LOG的SOCP通道*/
+    /*LOGSOCP*/
     ret=bsp_socp_log_chan_cfg();
     if(ret)
     {
@@ -434,7 +434,7 @@ int __init bsp_hds_init(void)
     spin_lock_init(&g_hds_lock_ctrl.trace_lock);
     g_bsp_print_hook = (print_report_hook)bsp_trace_to_hids;
 
-    /*为print数据申请buffer*/
+    /*printbuffer*/
     g_print_sendbuf = (print_send_buff*)osl_malloc((unsigned int)sizeof(print_send_buff));
     if(NULL == g_print_sendbuf)
     {
@@ -447,7 +447,7 @@ int __init bsp_hds_init(void)
     g_print_init_state=PRINTLOG_CHN_INIT;
 
     spin_lock_init(&g_hds_lock_ctrl.trans_lock);
-    /*为结构化消息数据申请buffer*/
+    /*buffer*/
     g_trans_sendbuf = (trans_send_buff*)osl_malloc((unsigned int)sizeof(trans_send_buff));
     if(NULL == g_trans_sendbuf)
     {

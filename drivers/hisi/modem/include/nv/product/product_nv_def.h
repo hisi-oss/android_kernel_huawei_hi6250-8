@@ -4,7 +4,7 @@
 
  ******************************************************************************
   File Name       :   product_nv_def.h
-  Description     :   产线NV 结构体定义
+  Description     :   NV 
   History         :
 ******************************************************************************/
 
@@ -34,7 +34,7 @@ typedef signed long long     s64;
 typedef unsigned long long   u64;
 #endif
 
-/*请参考结构体样例*/
+/**/
 typedef struct
 {
     int reserved;  /*note */
@@ -42,42 +42,42 @@ typedef struct
 
 typedef struct
 {
-    u32 uwGucCrcResult;                     		/* GUc主卡NV的校验结果 */
-    u32 uwTlCrcResult;                      		/* TL主卡NV的校验结果 */
-    u32 uwGucM2CrcResult;                   		/* GUC副卡NV的校验结果 */
+    u32 uwGucCrcResult;                     		/* GUcNV */
+    u32 uwTlCrcResult;                      		/* TLNV */
+    u32 uwGucM2CrcResult;                   		/* GUCNV */
 }NV_CRC_CHECK_RESULT_STRU;
 
 typedef struct
 {
-    u16 uhwTransmitMode;                       		/* 指示该组的发送模式 */
-    u16 uhwBand;                              		/* 指示该组的BAND号 */
-    u16 uhwEnable;                              	/* 指示是否有效 */
-    u16 uhwValidCount;                              	/* 指示有效数据的个数 */
-    u16 auhwNeedCheckID[MAX_SINGLE_GUC_BAND_CHECK_NUM]; /* 保存需要检查的NV_ID值 */
+    u16 uhwTransmitMode;                       		/*  */
+    u16 uhwBand;                              		/* BAND */
+    u16 uhwEnable;                              	/*  */
+    u16 uhwValidCount;                              	/*  */
+    u16 auhwNeedCheckID[MAX_SINGLE_GUC_BAND_CHECK_NUM]; /* NV_ID */
 }SINGLE_GUC_BAND_NV_ID_STRU;
 
 typedef struct
 {
-    u16 uhwTransmitMode;                       		/* 指示该组的发送模式 */
-    u16 uhwBand;                              		/* 指示该组的BAND号 */
-    u16 uhwEnable;                              	/* 指示是否有效 */
-    u16 uhwValidCount;                              	/* 指示有效数据的个数 */
-    u16 auhwNeedCheckID[MAX_SINGLE_TL_BAND_CHECK_NUM]; 	/* 保存需要检查的NV_ID值 */
+    u16 uhwTransmitMode;                       		/*  */
+    u16 uhwBand;                              		/* BAND */
+    u16 uhwEnable;                              	/*  */
+    u16 uhwValidCount;                              	/*  */
+    u16 auhwNeedCheckID[MAX_SINGLE_TL_BAND_CHECK_NUM]; 	/* NV_ID */
 }SINGLE_TL_BAND_NV_ID_STRU;
 
 typedef struct
 {
-    SINGLE_GUC_BAND_NV_ID_STRU astNVIDCheckItem[MAX_NV_GUC_CHECK_ITEM_NUM];  	/* 保存需要检查的NV_ID值 */
+    SINGLE_GUC_BAND_NV_ID_STRU astNVIDCheckItem[MAX_NV_GUC_CHECK_ITEM_NUM];  	/* NV_ID */
 }NV_GUC_CHECK_ITEM_STRU;
 
 typedef struct
 {
-    SINGLE_TL_BAND_NV_ID_STRU astNVIDCheckItem[MAX_NV_TL_CHECK_ITEM_NUM];   	/* 保存需要检查的NV_ID值 */
+    SINGLE_TL_BAND_NV_ID_STRU astNVIDCheckItem[MAX_NV_TL_CHECK_ITEM_NUM];   	/* NV_ID */
 }NV_TL_CHECK_ITEM_STRU;
 
 /*****************************************************************************
- 结构名    : CHG_BATTERY_LOW_TEMP_PROTECT_NV
- 结构说明  : CHG_BATTERY_LOW_TEMP_PROTECT_NV结构 ID=52005
+     : CHG_BATTERY_LOW_TEMP_PROTECT_NV
+   : CHG_BATTERY_LOW_TEMP_PROTECT_NV ID=52005
 *****************************************************************************/
 typedef struct
 {
@@ -87,12 +87,12 @@ typedef struct
 }CHG_BATTERY_LOW_TEMP_PROTECT_NV;
 
 /*****************************************************************************
-结构名    : OM_BATTREY_TEMP_CFG_STRU
-结构说明  : 暂时没用
-对应NVID: 50016 NV_BatteryTemp_Cfg
-  1.日    期   : 2013年5月16日
-    作    者   : j00174725
-    修改内容   : 初始生成
+    : OM_BATTREY_TEMP_CFG_STRU
+  : 
+NVID: 50016 NV_BatteryTemp_Cfg
+  1.       : 2013516
+           : j00174725
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -102,8 +102,8 @@ typedef struct
 }OM_BATTREY_TEMP_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : nvi_cust_pid_type
- 结构说明  : nvi_cust_pid_type结构
+     : nvi_cust_pid_type
+   : nvi_cust_pid_type
 *****************************************************************************/
 typedef struct
 {
@@ -113,8 +113,8 @@ typedef struct
 }nvi_cust_pid_type;
 
 /*****************************************************************************
- 结构名    : NV_WEBNAS_SD_WORKMODE_STRU
- 结构说明  : NV_WEBNAS_SD_WORKMODE结构
+     : NV_WEBNAS_SD_WORKMODE_STRU
+   : NV_WEBNAS_SD_WORKMODE
 *****************************************************************************/
 typedef struct
 {
@@ -122,8 +122,8 @@ typedef struct
 }NV_WEBNAS_SD_WORKMODE_STRU;
 
 /*****************************************************************************
- 结构名    : NV_OLED_TEMP_ADC_STRU
- 结构说明  : NV_OLED_TEMP_ADC结构
+     : NV_OLED_TEMP_ADC_STRU
+   : NV_OLED_TEMP_ADC
 *****************************************************************************/
 typedef struct
 {
@@ -132,8 +132,8 @@ typedef struct
 }NV_OLED_TEMP_ADC_STRU;
 
 /*****************************************************************************
- 结构名    : NV_OLED_TEMP_ADC_STRU_ARRAY
- 结构说明  : NV_OLED_TEMP_ADC_STRU_ARRAY结构  ID=49
+     : NV_OLED_TEMP_ADC_STRU_ARRAY
+   : NV_OLED_TEMP_ADC_STRU_ARRAY  ID=49
 *****************************************************************************/
 typedef struct
 {
@@ -141,8 +141,8 @@ typedef struct
 }NV_OLED_TEMP_ADC_STRU_ARRAY;
 
 /*****************************************************************************
- 结构名    : TEMP_ADC_STRU
- 结构说明  : TEMP_ADC结构
+     : TEMP_ADC_STRU
+   : TEMP_ADC
 *****************************************************************************/
 typedef struct
 {
@@ -151,8 +151,8 @@ typedef struct
 }TEMP_ADC_STRU;
 
 /*****************************************************************************
- 结构名    : TEMP_ADC_STRU_ARRAY
- 结构说明  : TEMP_ADC_STRU_ARRAY结构
+     : TEMP_ADC_STRU_ARRAY
+   : TEMP_ADC_STRU_ARRAY
 *****************************************************************************/
 typedef struct
 {
@@ -160,8 +160,8 @@ typedef struct
 }TEMP_ADC_STRU_ARRAY;
 
 /*****************************************************************************
- 结构名    : USB_SN_NV_INFO_STRU
- 结构说明  : USB_SN_NV_INFO结构
+     : USB_SN_NV_INFO_STRU
+   : USB_SN_NV_INFO
 *****************************************************************************/
 typedef struct
 {
@@ -172,8 +172,8 @@ typedef struct
 }USB_SN_NV_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : LIVE_TIME_STRU
- 结构说明  : LIVE_TIME结构
+     : LIVE_TIME_STRU
+   : LIVE_TIME
 *****************************************************************************/
 typedef struct
 {
@@ -181,8 +181,8 @@ typedef struct
 }LIVE_TIME_STRU;
 
 /*****************************************************************************
- 结构名    : LIVE_TIME_CONTROL_STRU
- 结构说明  : LIVE_TIME_CONTROL结构
+     : LIVE_TIME_CONTROL_STRU
+   : LIVE_TIME_CONTROL
 *****************************************************************************/
 typedef struct
 {

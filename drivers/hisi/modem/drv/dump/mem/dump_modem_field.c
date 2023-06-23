@@ -56,16 +56,16 @@ struct dump_field_ctrl_info_s   g_st_field_ctrl;
 u32    g_dump_mem_init = 0;
 
 /*****************************************************************************
-* 函 数 名  : dump_get_area_info
-* 功能描述  : 验证field_id是否合法，异常id返回BSP_ERROR，正常id返回area id
+*     : dump_get_area_info
+*   : field_ididBSP_ERRORidarea id
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 static u32 dump_get_areaid_by_fieldid(u32 field_id)
@@ -89,16 +89,16 @@ static u32 dump_get_areaid_by_fieldid(u32 field_id)
     return ret;
 }
 /*****************************************************************************
-* 函 数 名  : dump_get_cp_save_done
-* 功能描述  : 判断c核log是否保存完成
+*     : dump_get_cp_save_done
+*   : clog
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_get_cp_save_done(void)
@@ -131,16 +131,16 @@ s32 dump_get_cp_save_done(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_get_field_addr
-* 功能描述  : 获取field的地址
+*     : bsp_dump_get_field_addr
+*   : field
 *
-* 输入参数  :field_id
-* 输出参数  :
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u8 * bsp_dump_get_field_addr(u32 field_id)
@@ -151,14 +151,14 @@ u8 * bsp_dump_get_field_addr(u32 field_id)
     s32    area_id = DUMP_AREA_BUTT;
     struct dump_area_mntn_addr_info_s area_info;
 
-    /*根据field查找对应的area id*/
+    /*fieldarea id*/
     area_id = dump_get_areaid_by_fieldid(field_id);
     if(area_id >= DUMP_AREA_BUTT)
     {
         dump_fetal("not find area\n");
         return NULL;
     }
-    /*根据area id查找对应area 基地址*/
+    /*area idarea */
     /*coverity[secure_coding]*/
     memset(&area_info,0,sizeof(area_info));
     if(dump_get_area_info((DUMP_AREA_ID)area_id,&area_info))
@@ -188,16 +188,16 @@ u8 * bsp_dump_get_field_addr(u32 field_id)
     return NULL;
 }
 /*****************************************************************************
-* 函 数 名  : bsp_dump_get_field_map
-* 功能描述  : 获取field的field信息
+*     : bsp_dump_get_field_map
+*   : fieldfield
 *
-* 输入参数  :field_id
-* 输出参数  :
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u8 * bsp_dump_get_field_map(u32 field_id)
@@ -237,20 +237,20 @@ u8 * bsp_dump_get_field_map(u32 field_id)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_register_field
-* 功能描述  : 申请field信息
-            1. 不带地址注册，传入参数时virt_addr,phy_addr必须传0，成功返回dump注册地址
-            2. 自带地址注册，传入参数时phy_addr为自带物理地址，virt_addr为虚拟地址，同时在dump内存中分配相同大小内存，成功返回邋virt_addr
+*     : bsp_dump_register_field
+*   : field
+            1. virt_addr,phy_addr0dump
+            2. phy_addrvirt_addrdumpvirt_addr
 
-            3. 两种注册方式，都将在dump划分内存，对于自带地址的注册方式，在系统异常时，由dump模块做数据拷贝
-            4. 每个注册区域需要由使用者传入对应的版本号，高8位为主版本号，低8位为次版本号
-* 输入参数  :field_id
-* 输出参数  :
+            3. dumpdump
+            4. 88
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void * phy_addr, u32 length, u16 version)
@@ -268,7 +268,7 @@ u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void *
         bsp_dump_mem_init();
     }
 
-    /*注册的不是当前子系统范围的field*/
+    /*field*/
     if((field_id < CURRENT_FIELD_ID_START)||(field_id > CURRENT_FIELD_ID_END))
     {
         dump_fetal("field error field = %d\n",field_id);
@@ -285,9 +285,9 @@ u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void *
     spin_lock_irqsave(&g_st_field_ctrl.lock, flags);
 
     area_info = (dump_area_t*)g_st_field_ctrl.virt_area_addr;
-    /*注册field个数超出最大范围*/
+    /*field*/
     index = area_info->area_head.field_num;
-    /*检查是否有重复注册*/
+    /**/
     for(i=0;i<index;i++)
     {
         if(area_info->fields[i].field_id == field_id)
@@ -306,7 +306,7 @@ u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void *
         return NULL;
     }
 
-    /*剩余空间不足*/
+    /**/
     if(g_st_field_ctrl.free_length < length)
     {
         spin_unlock_irqrestore(&g_st_field_ctrl.lock, flags);
@@ -327,7 +327,7 @@ u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void *
 
     area_info->area_head.field_num = g_st_field_ctrl.field_num;
 
-    /*自带地址注册*/
+    /**/
     if( virt_addr || phy_addr )
     {
         self = (struct dump_field_self_info_s*)ret;
@@ -342,16 +342,16 @@ u8 * bsp_dump_register_field(u32 field_id, char * name, void * virt_addr, void *
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_save_self_addr
-* 功能描述  : 保存自注册的空间
+*     : bsp_dump_save_self_addr
+*   : 
 *
-* 输入参数  :field_id
-* 输出参数  :
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void bsp_dump_save_self_addr(void)
@@ -388,16 +388,16 @@ void bsp_dump_save_self_addr(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_field_init
-* 功能描述  : cp dump fileld初始化
+*     : bsp_dump_field_init
+*   : cp dump fileld
 *
-* 输入参数  :field_id
-* 输出参数  :
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 bsp_dump_field_init(void)
@@ -449,16 +449,16 @@ s32 bsp_dump_field_init(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_get_field_phy_addr
-* 功能描述  : 获取field的物理地址
+*     : bsp_dump_get_field_phy_addr
+*   : field
 *
-* 输入参数  :field_id
-* 输出参数  :
+*   :field_id
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u8 * bsp_dump_get_field_phy_addr(u32 field_id)
@@ -478,16 +478,16 @@ u8 * bsp_dump_get_field_phy_addr(u32 field_id)
 
 
 /*****************************************************************************
-* 函 数 名  : modem_dump_field_init
-* 功能描述  : 初始化modem ap需要使用filed 空间
+*     : modem_dump_field_init
+*   : modem apfiled 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 
@@ -511,16 +511,16 @@ void dump_mdmap_field_init(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_mem_init
-* 功能描述  : modem ap 可维可测空间初始化
+*     : bsp_dump_mem_init
+*   : modem ap 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 bsp_dump_mem_init(void)
@@ -546,16 +546,16 @@ s32 bsp_dump_mem_init(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_show_field
-* 功能描述  : 调试接口，显示当前已经注册field使用情况
+*     : dump_show_field
+*   : field
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_show_field(void)

@@ -60,16 +60,16 @@
 struct dump_hook_ctrl_s g_dump_hook_ctrl;
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_register_hook
-* 功能描述  : 注册dump回调函数
+*     : bsp_dump_register_hook
+*   : dump
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 dump_handle bsp_dump_register_hook(char * name, dump_hook func)
@@ -105,16 +105,16 @@ dump_handle bsp_dump_register_hook(char * name, dump_hook func)
     /*lint -e429 +esym(429,*)*/
 }
 /*****************************************************************************
-* 函 数 名  : bsp_dump_hook_callback
-* 功能描述  : 调用注册的回调函数
+*     : bsp_dump_hook_callback
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void bsp_dump_hook_callback(void)
@@ -136,16 +136,16 @@ void bsp_dump_hook_callback(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_hook_init
-* 功能描述  : hook初始化
+*     : bsp_dump_hook_init
+*   : hook
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 bsp_dump_hook_init(void)
@@ -164,16 +164,16 @@ s32 bsp_dump_hook_init(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : bsp_dump_unregister_hook
-* 功能描述  : 注销回调函数
+*     : bsp_dump_unregister_hook
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 bsp_dump_unregister_hook(dump_handle handle)
@@ -216,16 +216,16 @@ s32 bsp_dump_unregister_hook(dump_handle handle)
     return BSP_OK;
 }
 /*****************************************************************************
-* 函 数 名  : bsp_dump_show_exthook
-* 功能描述  : 调试接口显示当前的回调函数
+*     : bsp_dump_show_exthook
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void bsp_dump_show_exthook(void)

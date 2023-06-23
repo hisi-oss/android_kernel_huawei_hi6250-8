@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "RnicCtx.h"
 #include "RnicEntity.h"
@@ -63,61 +63,61 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_RNIC_CTX_C
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
-/* RNIC CTX,用于保存RNIC的全局变量 */
+/* RNIC CTX,RNIC */
 RNIC_CTX_STRU                           g_stRnicCtx;
 
 extern RNIC_STATS_INFO_STRU                    g_astRnicStats[RNIC_NET_ID_MAX_NUM];
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_RnicCtxInit
- 功能描述  : 初始化RNIC的CTX
- 输入参数  : pstRnicCtx:RNIC上下文首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_RnicCtxInit
+   : RNICCTX
+   : pstRnicCtx:RNIC
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年6月05日
-   作    者   : z60575
-   修改内容   : DTS2012060508406，按需断开功耗问题修改
- 3.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
- 3.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : C核单独复位项目:初始化复位信号量
- 4.日    期   : 2013年07月222日
-   作    者   : j00177245
-   修改内容   : 清理编译warning
- 5.日    期   : 2014年02月14日
-   作    者   : m00217266
-   修改内容   : 初始化L-C互操作项目新增加的全局变量
- 6.日    期   : 2014年6月3日
-   作    者   : m00217266
-   修改内容   : DTS2014052902453
- 7.日    期   : 2015年07月31日
-   作    者   : w00316404
-   修改内容   : DTS2015071401227
- 8.日    期   : 2016年11月08日
-   作    者   : l00373346
-   修改内容   : DTS2016062107764
- 9.日    期   : 2017年03月21日
-   作    者   : l00373346
-   修改内容   : RNIC新增NAP+GRO功能
+      :
+ 1.       : 20111206
+          : f00179208
+      : 
+ 2.       : 2012605
+          : z60575
+      : DTS2012060508406
+ 3.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
+ 3.       : 20130415
+          : f00179208
+      : C:
+ 4.       : 201307222
+          : j00177245
+      : warning
+ 5.       : 20140214
+          : m00217266
+      : L-C
+ 6.       : 201463
+          : m00217266
+      : DTS2014052902453
+ 7.       : 20150731
+          : w00316404
+      : DTS2015071401227
+ 8.       : 20161108
+          : l00373346
+      : DTS2016062107764
+ 9.       : 20170321
+          : l00373346
+      : RNICNAP+GRO
 *****************************************************************************/
 VOS_VOID RNIC_InitCtx(
     RNIC_CTX_STRU                      *pstRnicCtx
@@ -127,29 +127,29 @@ VOS_VOID RNIC_InitCtx(
 
     TAF_MEM_SET_S(g_astRnicStats, sizeof(g_astRnicStats), 0x00, sizeof(g_astRnicStats));
 
-    /* Added by m00217266 for L-C互操作项目, 2014-2-19, begin */
+    /* Added by m00217266 for L-C, 2014-2-19, begin */
     TAF_MEM_SET_S((VOS_VOID *)&g_stRnicRmnetConfigCheckInfo, sizeof(g_stRnicRmnetConfigCheckInfo), 0x00, sizeof(g_stRnicRmnetConfigCheckInfo));
-    /* Added by m00217266 for L-C互操作项目, 2014-2-19, end */
+    /* Added by m00217266 for L-C, 2014-2-19, end */
 
 
     for (ucIndex = 0 ; ucIndex < RNIC_NET_ID_MAX_NUM ; ucIndex++)
     {
-        /* 初始化RNIC流量统计 */
+        /* RNIC */
         RNIC_ClearNetDsFlowStats(ucIndex);
 
-        /* 初始化RNIC PDP上下文 */
+        /* RNIC PDP */
         RNIC_InitPdpCtx(&(pstRnicCtx->astSpecCtx[ucIndex].stPdpCtx), ucIndex);
 
-        /* 初始化流控状态 */
+        /*  */
         pstRnicCtx->astSpecCtx[ucIndex].enFlowCtrlStatus = RNIC_FLOW_CTRL_STATUS_STOP;
 
-        /* 初始化模块ID */
-        /* 初始化的时候就已经确定了哪张网卡对应哪个MODEM */
+        /* ID */
+        /* MODEM */
         pstRnicCtx->astSpecCtx[ucIndex].enModemId        = RNIC_GET_MODEM_ID_BY_NET_ID(ucIndex);
 
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
+        /* Modified by l60609 for L-C, 2014-1-14, begin */
         pstRnicCtx->astSpecCtx[ucIndex].enModemType      = RNIC_MODEM_TYPE_INSIDE;
-        /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
+        /* Modified by l60609 for L-C, 2014-1-14, end */
 
         pstRnicCtx->astSpecCtx[ucIndex].enRmNetId        = ucIndex;
         pstRnicCtx->astSpecCtx[ucIndex].lSpePort         = RNIC_INVALID_SPE_PORT;
@@ -159,50 +159,50 @@ VOS_VOID RNIC_InitCtx(
 
     }
 
-    /* 初始化RABID信息 */
+    /* RABID */
     for (ucIndex = 0 ; ucIndex < RNIC_MODEM_ID_MAX_NUM ; ucIndex++)
     {
         RNIC_InitRabidInfo(&pstRnicCtx->astRabIdInfo[ucIndex]);
     }
 
-    /* Added by m00217266 for L-C互操作项目, 2014-1-27, begin */
-    /* 初始化PDNID信息 */
+    /* Added by m00217266 for L-C, 2014-1-27, begin */
+    /* PDNID */
     RNIC_InitPdnIdInfo(&pstRnicCtx->stPdnIdInfo);
-    /* Added by m00217266 for L-C互操作项目, 2014-1-27, end */
+    /* Added by m00217266 for L-C, 2014-1-27, end */
 
-    /* 初始化RNIC定时器上下文 */
+    /* RNIC */
     RNIC_InitAllTimers(pstRnicCtx->astTimerCtx);
 
-    /* 初始化拨号模式信息 */
+    /*  */
     RNIC_InitDialMode(&(pstRnicCtx->stDialMode));
 
-    /* 初始化拨号断开定时器超时次数参数统计 */
+    /*  */
     RNIC_ClearTiDialDownExpCount();
 
     RNIC_SetTimer4WakeFlg(VOS_FALSE);
 
-    /* 初始化复位信号量 */
+    /*  */
     RNIC_InitResetSem();
 
-    /* 初始化IPF模式信息 */
+    /* IPF */
     RNIC_InitIpfMode(pstRnicCtx);
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitRabidInfo
- 功能描述  : 初始化Rabid对应的信息
- 输入参数  : pstRabIdInfo:RabId信息地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitRabidInfo
+   : Rabid
+   : pstRabIdInfo:RabId
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2012年12月10日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20121210
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_InitRabidInfo(
@@ -218,20 +218,20 @@ VOS_VOID RNIC_InitRabidInfo(
     return;
 }
 
-/* Added by m00217266 for L-C互操作项目, 2014-2-8, begin */
+/* Added by m00217266 for L-C, 2014-2-8, begin */
 /*****************************************************************************
- 函 数 名  : RNIC_InitPdnIdInfo
- 功能描述  : 初始化Pdnid对应的信息
- 输入参数  : pstPdnIdInfo:PdnId信息地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitPdnIdInfo
+   : Pdnid
+   : pstPdnIdInfo:PdnId
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2014年02月08日
-   作    者   : m00217266
-   修改内容   : 新生成函数
+      :
+ 1.       : 20140208
+          : m00217266
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_InitPdnIdInfo(
@@ -246,26 +246,26 @@ VOS_VOID RNIC_InitPdnIdInfo(
 
     return;
 }
-/* Added by m00217266 for L-C互操作项目, 2014-2-8, end */
+/* Added by m00217266 for L-C, 2014-2-8, end */
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitPdpCtx
- 功能描述  : 初始化指定网卡PDP上下文
- 输入参数  : pstPdpCtx:PDP上下文首地址
-             ucRmNetId:网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitPdpCtx
+   : PDP
+   : pstPdpCtx:PDP
+             ucRmNetId:ID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111212
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_VOID RNIC_InitPdpCtx(
     RNIC_PDP_CTX_STRU                  *pstPdpCtx,
@@ -282,18 +282,18 @@ VOS_VOID RNIC_InitPdpCtx(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_ResetDialMode
- 功能描述  : 重置拨号模式信息
- 输入参数  : pstDialMode:拨号模式上下文首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_ResetDialMode
+   : 
+   : pstDialMode:
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20130415
+          : f00179208
+      : 
 *****************************************************************************/
 VOS_VOID RNIC_ResetDialMode(
     RNIC_DIAL_MODE_STRU                *pstDialMode
@@ -307,21 +307,21 @@ VOS_VOID RNIC_ResetDialMode(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitDialMode
- 功能描述  : 初始化拨号模式信息
- 输入参数  : pstDialMode:拨号模式上下文首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitDialMode
+   : 
+   : pstDialMode:
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月31日
-   作    者   : w00199382
-   修改内容   : 初始化/proc/dial下的文件
+      :
+ 1.       : 20111212
+          : f00179208
+      : 
+ 2.       : 2012131
+          : w00199382
+      : /proc/dial
 *****************************************************************************/
 VOS_VOID RNIC_InitDialMode(
     RNIC_DIAL_MODE_STRU                *pstDialMode
@@ -344,18 +344,18 @@ VOS_VOID RNIC_InitDialMode(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitIpv4PdpCtx
- 功能描述  : 初始化IPV4 PDP上下文
- 输入参数  : pstIpv4PdpCtx:IPV4 PDP上下文首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitIpv4PdpCtx
+   : IPV4 PDP
+   : pstIpv4PdpCtx:IPV4 PDP
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111219
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_InitIpv4PdpCtx(
@@ -363,10 +363,10 @@ VOS_VOID RNIC_InitIpv4PdpCtx(
 )
 {
     pstIpv4PdpCtx->enRegStatus = RNIC_PDP_REG_STATUS_DEACTIVE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
+    /* Modified by l60609 for L-C, 2014-1-14, begin */
     pstIpv4PdpCtx->ucRabId     = RNIC_RAB_ID_INVALID;
     pstIpv4PdpCtx->ucPdnId     = RNIC_PDN_ID_INVALID;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
+    /* Modified by l60609 for L-C, 2014-1-14, end */
     pstIpv4PdpCtx->ulIpv4Addr  = 0;
 
 
@@ -374,18 +374,18 @@ VOS_VOID RNIC_InitIpv4PdpCtx(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitIpv6PdpCtx
- 功能描述  : 初始化IPV6 PDP上下文
- 输入参数  : pstIpv4PdpCtx:IPV6 PDP上下文首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitIpv6PdpCtx
+   : IPV6 PDP
+   : pstIpv4PdpCtx:IPV6 PDP
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111219
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_InitIpv6PdpCtx(
@@ -393,10 +393,10 @@ VOS_VOID RNIC_InitIpv6PdpCtx(
 )
 {
     pstIpv6PdpCtx->enRegStatus = RNIC_PDP_REG_STATUS_DEACTIVE;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
+    /* Modified by l60609 for L-C, 2014-1-14, begin */
     pstIpv6PdpCtx->ucRabId     = RNIC_RAB_ID_INVALID;
     pstIpv6PdpCtx->ucPdnId     = RNIC_PDN_ID_INVALID;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
+    /* Modified by l60609 for L-C, 2014-1-14, end */
 
     TAF_MEM_SET_S(pstIpv6PdpCtx->aucIpv6Addr,
                sizeof(pstIpv6PdpCtx->aucIpv6Addr),
@@ -408,22 +408,22 @@ VOS_VOID RNIC_InitIpv6PdpCtx(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitIpv4v6PdpCtx
- 功能描述  : 初始化指定网卡IPV4V6 PDP上下文
- 输入参数  : pstIpv4v6PdpCtx:IPV4V6 PDP上下文首地址
-             ucRmNetId:网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitIpv4v6PdpCtx
+   : IPV4V6 PDP
+   : pstIpv4v6PdpCtx:IPV4V6 PDP
+             ucRmNetId:ID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月19日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111219
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_VOID RNIC_InitIpv4v6PdpCtx(
     RNIC_IPV4V6_PDP_INFO_STRU          *pstIpv4v6PdpCtx,
@@ -432,14 +432,14 @@ VOS_VOID RNIC_InitIpv4v6PdpCtx(
 {
     RNIC_PDP_CTX_STRU                  *pstPdpAddr;
 
-    /* 获取PDP上下文地址 */
+    /* PDP */
     pstPdpAddr                              = RNIC_GetPdpCtxAddr(ucRmNetId);
 
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, begin */
+    /* Modified by l60609 for L-C, 2014-1-14, begin */
     pstIpv4v6PdpCtx->enRegStatus            = RNIC_PDP_REG_STATUS_DEACTIVE;
     pstIpv4v6PdpCtx->ucRabId                = RNIC_RAB_ID_INVALID;
     pstIpv4v6PdpCtx->ucPdnId                = RNIC_PDN_ID_INVALID;
-    /* Modified by l60609 for L-C互操作项目, 2014-1-14, end */
+    /* Modified by l60609 for L-C, 2014-1-14, end */
 
     pstPdpAddr->stIpv4PdpInfo.ucRabId       = RNIC_RAB_ID_INVALID;
     pstPdpAddr->stIpv6PdpInfo.ucRabId       = RNIC_RAB_ID_INVALID;
@@ -455,24 +455,24 @@ VOS_VOID RNIC_InitIpv4v6PdpCtx(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitResetSem
- 功能描述  : 初始化RNIC复位的信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitResetSem
+   : RNIC
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20130415
+          : f00179208
+      : 
 *****************************************************************************/
 VOS_VOID RNIC_InitResetSem(VOS_VOID)
 {
     g_stRnicCtx.hResetSem  = VOS_NULL_PTR;
 
-    /* 分配二进制信号量 */
+    /*  */
     if (VOS_OK != VOS_SmBCreate( "RNIC", 0, VOS_SEMA4_FIFO, &g_stRnicCtx.hResetSem))
     {
         PS_PRINTF("Create rnic acpu cnf sem failed!\r\n");
@@ -492,18 +492,18 @@ VOS_VOID RNIC_InitResetSem(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_InitIpfMode
- 功能描述  : 初始化IPF模式
- 输入参数  : *pstRnicCtx --- RNC上下文
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_InitIpfMode
+   : IPF
+   : *pstRnicCtx --- RNC
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 201年11月08日
-   作    者   : l00373346
-   修改内容   : 新生成函数
+      :
+ 1.       : 2011108
+          : l00373346
+      : 
 *****************************************************************************/
 VOS_VOID RNIC_InitIpfMode(
     RNIC_CTX_STRU                      *pstRnicCtx
@@ -515,7 +515,7 @@ VOS_VOID RNIC_InitIpfMode(
 
     pstRnicCtx->ucIpfMode = 0;
 
-    /* 读取NV项 */
+    /* NV */
     if (NV_OK == NV_ReadEx(MODEM_ID_0, en_NV_Item_ADS_IPF_MODE_CFG,
                       &stIpfMode, (VOS_UINT32)sizeof(TAF_NV_ADS_IPF_MODE_CFG_STRU)))
     {
@@ -528,18 +528,18 @@ VOS_VOID RNIC_InitIpfMode(
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_ClearNetDsFlowStats
- 功能描述  : 初始化流量统计信息
- 输入参数  : enRmNetId --- RMNET ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_ClearNetDsFlowStats
+   : 
+   : enRmNetId --- RMNET ID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2015330
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID RNIC_ClearNetDsFlowStats(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
 {
@@ -561,18 +561,18 @@ VOS_VOID RNIC_ClearNetDsFlowStats(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetRnicCtxAddr
- 功能描述  : 获取当前RNIC的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前RNIC的CTX地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetRnicCtxAddr
+   : RNICCTX
+   : 
+   : 
+     : RNICCTX
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月06日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111206
+          : f00179208
+      : 
 
 *****************************************************************************/
 RNIC_CTX_STRU* RNIC_GetRnicCtxAddr(VOS_VOID)
@@ -581,18 +581,18 @@ RNIC_CTX_STRU* RNIC_GetRnicCtxAddr(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetRnicTiDialDownExpCount
- 功能描述  : 获取拨号模式统计拨号断开计数器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 拨号模式统计拨号断开计数器
- 调用函数  :
- 被调函数  :
+     : RNIC_GetRnicTiDialDownExpCount
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_UINT32 RNIC_GetTiDialDownExpCount( VOS_VOID)
@@ -602,18 +602,18 @@ VOS_UINT32 RNIC_GetTiDialDownExpCount( VOS_VOID)
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_TiDialDownExpCountPlusOne
- 功能描述  : 累加拨号模式统计拨号断开计数器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_TiDialDownExpCountPlusOne
+   : 
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_IncTiDialDownExpCount( VOS_VOID)
@@ -624,18 +624,18 @@ VOS_VOID RNIC_IncTiDialDownExpCount( VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_ClearRnicTiDialDownExpCount
- 功能描述  : 拨号模式统计拨号断开计数器清零
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_ClearRnicTiDialDownExpCount
+   : 
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
 
 *****************************************************************************/
 VOS_VOID RNIC_ClearTiDialDownExpCount( VOS_VOID)
@@ -646,21 +646,21 @@ VOS_VOID RNIC_ClearTiDialDownExpCount( VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetCurrentUlRate
- 功能描述  : 获取指定网卡的上行速率
- 输入参数  : ucRmNetId: 网卡ID
- 输出参数  : 无
- 返 回 值  : 当前RNIC速率的地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetCurrentUlRate
+   : 
+   : ucRmNetId: ID
+   : 
+     : RNIC
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_UINT32 RNIC_GetCurrentUlRate(VOS_UINT8 ucRmNetId)
 {
@@ -668,22 +668,22 @@ VOS_UINT32 RNIC_GetCurrentUlRate(VOS_UINT8 ucRmNetId)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SetCurrentUlRate
- 功能描述  : 设置指定网卡的上行速率
- 输入参数  : ulULDataRate:上行速率
-             ucRmNetId: 网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SetCurrentUlRate
+   : 
+   : ulULDataRate:
+             ucRmNetId: ID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月13日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111213
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_VOID RNIC_SetCurrentUlRate(
     VOS_UINT32                          ulULDataRate,
@@ -697,21 +697,21 @@ VOS_VOID RNIC_SetCurrentUlRate(
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetCurrentDlRate
- 功能描述  : 获取指定网卡的下行速率
- 输入参数  : ucRmNetId: 网卡ID
- 输出参数  : 无
- 返 回 值  : 当前RNIC速率的地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetCurrentDlRate
+   : 
+   : ucRmNetId: ID
+   : 
+     : RNIC
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_UINT32 RNIC_GetCurrentDlRate(VOS_UINT8 ucRmNetId)
 {
@@ -719,22 +719,22 @@ VOS_UINT32 RNIC_GetCurrentDlRate(VOS_UINT8 ucRmNetId)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SetCurrentDlRate
- 功能描述  : 设置指定网卡的下行速率
- 输入参数  : ulDLDataRate:下行速率
-             ucRmNetId: 网卡ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SetCurrentDlRate
+   : 
+   : ulDLDataRate:
+             ucRmNetId: ID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 VOS_VOID RNIC_SetCurrentDlRate(
     VOS_UINT32                          ulDLDataRate,
@@ -747,18 +747,18 @@ VOS_VOID RNIC_SetCurrentDlRate(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetDialModeAddr
- 功能描述  : 获取按需拨号的模式以及时长的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 按需拨号模式及时长的地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetDialModeAddr
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
 *****************************************************************************/
 RNIC_DIAL_MODE_STRU* RNIC_GetDialModeAddr(VOS_VOID)
 {
@@ -766,21 +766,21 @@ RNIC_DIAL_MODE_STRU* RNIC_GetDialModeAddr(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetPdpCtxAddr
- 功能描述  : 获取RNIC模块指定网卡PDP上下文的地址
- 输入参数  : ucRmNetId -- 网卡索引
- 输出参数  : 无
- 返 回 值  : RNIC模块指定网卡PDP上下文的地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetPdpCtxAddr
+   : RNICPDP
+   : ucRmNetId -- 
+   : 
+     : RNICPDP
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2012年11月23日
-   作    者   : f00179208
-   修改内容   : DSDA Phase I: RNIC多实例
+      :
+ 1.       : 20111207
+          : f00179208
+      : 
+ 2.       : 20121123
+          : f00179208
+      : DSDA Phase I: RNIC
 *****************************************************************************/
 RNIC_PDP_CTX_STRU* RNIC_GetPdpCtxAddr(VOS_UINT8 ucRmNetId)
 {
@@ -788,18 +788,18 @@ RNIC_PDP_CTX_STRU* RNIC_GetPdpCtxAddr(VOS_UINT8 ucRmNetId)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetTimerAddr
- 功能描述  : 获取RNIC CTX模块中定时器的上下文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器上下文地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetTimerAddr
+   : RNIC CTX
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2011年12月12日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20111212
+          : f00179208
+      : 
 
 *****************************************************************************/
 RNIC_TIMER_CTX_STRU*  RNIC_GetTimerAddr( VOS_VOID )
@@ -808,18 +808,18 @@ RNIC_TIMER_CTX_STRU*  RNIC_GetTimerAddr( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetTimer4WakeFlg
- 功能描述  : 获取RNIC CTX模块中是否设置Timer4唤醒标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器上下文地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetTimer4WakeFlg
+   : RNIC CTXTimer4
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2012年6月5日
-   作    者   : z60575
-   修改内容   : DTS2012060508406, 新生成函数
+      :
+ 1.       : 201265
+          : z60575
+      : DTS2012060508406, 
 
 *****************************************************************************/
 VOS_UINT32 RNIC_GetTimer4WakeFlg(VOS_VOID)
@@ -828,18 +828,18 @@ VOS_UINT32 RNIC_GetTimer4WakeFlg(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SetTimer4WakeFlg
- 功能描述  : 设置RNIC CTX模块中是否设置Timer4唤醒标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 定时器上下文地址
- 调用函数  :
- 被调函数  :
+     : RNIC_SetTimer4WakeFlg
+   : RNIC CTXTimer4
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2012年6月5日
-   作    者   : z60575
-   修改内容   : DTS2012060508406, 新生成函数
+      :
+ 1.       : 201265
+          : z60575
+      : DTS2012060508406, 
 
 *****************************************************************************/
 VOS_VOID RNIC_SetTimer4WakeFlg(VOS_UINT32 ulFlg)
@@ -848,18 +848,18 @@ VOS_VOID RNIC_SetTimer4WakeFlg(VOS_UINT32 ulFlg)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetSpecNetCardCtxAddr
- 功能描述  : 获取RNIC指定网卡的上下文
- 输入参数  : ucIndex -- 网卡索引
- 输出参数  : 无
- 返 回 值  : RNIC指定网卡的上下文地址
- 调用函数  :
- 被调函数  :
+     : RNIC_GetSpecNetCardCtxAddr
+   : RNIC
+   : ucIndex -- 
+   : 
+     : RNIC
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2012年11月24日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20121124
+          : f00179208
+      : 
 *****************************************************************************/
 RNIC_SPEC_CTX_STRU *RNIC_GetSpecNetCardCtxAddr(VOS_UINT8 ucRmNetId)
 {
@@ -867,18 +867,18 @@ RNIC_SPEC_CTX_STRU *RNIC_GetSpecNetCardCtxAddr(VOS_UINT8 ucRmNetId)
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetNetCntxtByRmNetId
- 功能描述  : 根据RMNETID获取网卡上下文指针
- 输入参数  : enRmNetId --- RMNET ID
- 输出参数  : 无
- 返 回 值  : RNIC_SPEC_CTX_STRU*
- 调用函数  :
- 被调函数  :
+     : RNIC_GetNetCntxtByRmNetId
+   : RMNETID
+   : enRmNetId --- RMNET ID
+   : 
+     : RNIC_SPEC_CTX_STRU*
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2015330
+           : A00165503
+       : 
 *****************************************************************************/
 RNIC_SPEC_CTX_STRU* RNIC_GetNetCntxtByRmNetId(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
 {
@@ -892,18 +892,18 @@ RNIC_SPEC_CTX_STRU* RNIC_GetNetCntxtByRmNetId(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId
 
 
 /*****************************************************************************
- 函 数 名  : RNIC_GetResetSem
- 功能描述  : 获取RNIC复位信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RNIC复位信号量
- 调用函数  :
- 被调函数  :
+     : RNIC_GetResetSem
+   : RNIC
+   : 
+   : 
+     : RNIC
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月15日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20130415
+          : f00179208
+      : 
 *****************************************************************************/
 VOS_SEM RNIC_GetResetSem(VOS_VOID)
 {

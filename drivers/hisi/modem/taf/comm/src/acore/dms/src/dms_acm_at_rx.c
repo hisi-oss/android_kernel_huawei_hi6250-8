@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "msp_errno.h"
 #include <dms.h>
@@ -59,41 +59,41 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 
 #define THIS_FILE_ID                    PS_FILE_ID_DMS_ACM_AT_RX_C
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
 pComRecv                                pfnAcmReadData = VOS_NULL_PTR;
 
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : Dms_AtReadData
- 功能描述  : AT读数据总入口
- 输入参数  : enPhyBear: 端口号
-              pDataBuf: 数据指针
-              ulLen:数据长度
- 输出参数  :
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_INVALID_PARAMETER
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2012年8月27日
-    作    者   : heliping
-    修改内容   : Creat Function
+     : Dms_AtReadData
+   : AT
+   : enPhyBear: 
+              pDataBuf: 
+              ulLen:
+   :
+     : ERR_MSP_SUCCESS/ERR_MSP_INVALID_PARAMETER
+   :
+   :
+   :
+  1.       : 2012827
+           : heliping
+       : Creat Function
 
-  2.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 Dms_AtReadData(DMS_PHY_BEAR_ENUM enPhyBear, VOS_UINT8 *pDataBuf, VOS_UINT32 ulLen)
 {
@@ -119,18 +119,18 @@ VOS_UINT32 Dms_AtReadData(DMS_PHY_BEAR_ENUM enPhyBear, VOS_UINT8 *pDataBuf, VOS_
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_ACMRecvFuncReg
- 功能描述  : AT数据接收函数注册接口
- 输入参数  : pCallback: 回调函数指针
+     : DMS_ACMRecvFuncReg
+   : AT
+   : pCallback: 
 
- 输出参数  :
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_INVALID_PARAMETER
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+   :
+     : ERR_MSP_SUCCESS/ERR_MSP_INVALID_PARAMETER
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 VOS_INT32 DMS_ACMRecvFuncReg(pComRecv pCallback)
 {
@@ -148,27 +148,27 @@ VOS_INT32 DMS_ACMRecvFuncReg(pComRecv pCallback)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbPortOpen
- 功能描述  : 打开USB端口
- 输入参数  : enPhyBear  --- 物理端口号
-             enDeviceId --- 设备号
-             pReadCB    --- 读取回调
-             pWriteCB   --- 写入回调
-             pStateCB   --- 事件回调
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_UsbPortOpen
+   : USB
+   : enPhyBear  --- 
+             enDeviceId --- 
+             pReadCB    --- 
+             pWriteCB   --- 
+             pStateCB   --- 
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 
-  2.日    期   : 2016年7月12日
-    作    者   : A00165503
-    修改内容   : DTS2016071200819: 调整设置端口读回调的位置, 防止端口句柄未
-                 更新时, 底软就调用读回调上送数据, 最终导致数据丢失
+  2.       : 2016712
+           : A00165503
+       : DTS2016071200819: , 
+                 , , 
 
 *****************************************************************************/
 VOS_UINT32 DMS_UsbPortOpen(
@@ -253,18 +253,18 @@ VOS_UINT32 DMS_UsbPortOpen(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbPortClose
- 功能描述  : 关闭USB端口
- 输入参数  : enPhyBear --- 物理端口号
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_UsbPortClose
+   : USB
+   : enPhyBear --- 
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_UsbPortClose(DMS_PHY_BEAR_ENUM enPhyBear)
 {
@@ -300,21 +300,21 @@ VOS_UINT32 DMS_UsbPortClose(DMS_PHY_BEAR_ENUM enPhyBear)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbPortReadCB
- 功能描述  : USB端口数据读回调
- 输入参数  : enPhyBear --- 物理端口号
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_UsbPortReadCB
+   : USB
+   : enPhyBear --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月30日
-    作    者   : j00174725
-    修改内容   : TQE
+       :
+  1.       : 2014415
+           : A00165503
+       : 
+  2.       : 2014530
+           : j00174725
+       : TQE
 *****************************************************************************/
 VOS_VOID DMS_UsbPortReadCB(DMS_PHY_BEAR_ENUM enPhyBear)
 {
@@ -365,21 +365,21 @@ VOS_VOID DMS_UsbPortReadCB(DMS_PHY_BEAR_ENUM enPhyBear)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbPortWrtCB
- 功能描述  : USB端口数据写完成回调
- 输入参数  : enPhyBear --- 物理端口号
-             pcVirAddr --- 写指针(虚拟地址)
-             pcPhyAddr --- 写指针(物理地址)
-             lDoneSize --- 写入长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_UsbPortWrtCB
+   : USB
+   : enPhyBear --- 
+             pcVirAddr --- ()
+             pcPhyAddr --- ()
+             lDoneSize --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_UsbPortWrtCB(
     DMS_PHY_BEAR_ENUM                   enPhyBear,
@@ -419,19 +419,19 @@ VOS_VOID DMS_UsbPortWrtCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbPortEvtCB
- 功能描述  : USB端口事件处理回调函数
- 输入参数  : enPhyBear --- 物理端口号
-             enEvt     --- ACM设备事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_UsbPortEvtCB
+   : USB
+   : enPhyBear --- 
+             enEvt     --- ACM
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_UsbPortEvtCB(DMS_PHY_BEAR_ENUM enPhyBear, ACM_EVT_E enEvt)
 {
@@ -456,18 +456,18 @@ VOS_VOID DMS_UsbPortEvtCB(DMS_PHY_BEAR_ENUM enPhyBear, ACM_EVT_E enEvt)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcuiOpen
- 功能描述  : 打开PCUI端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcuiOpen
+   : PCUI
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_VcomPcuiOpen(VOS_VOID)
 {
@@ -479,18 +479,18 @@ VOS_UINT32 DMS_VcomPcuiOpen(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcuiClose
- 功能描述  : 关闭PCUI端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcuiClose
+   : PCUI
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_VcomPcuiClose(VOS_VOID)
 {
@@ -498,18 +498,18 @@ VOS_UINT32 DMS_VcomPcuiClose(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcuiReadCB
- 功能描述  : PCUI端口读取回调
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcuiReadCB
+   : PCUI
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomPcuiReadCB(VOS_VOID)
 {
@@ -518,20 +518,20 @@ VOS_VOID DMS_VcomPcuiReadCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcuiWrtCB
- 功能描述  : PCUI口写完成回调
- 输入参数  : pcVirAddr --- 写指针(虚拟地址)
-             pcPhyAddr --- 写指针(物理地址)
-             lDoneSize --- 写入长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcuiWrtCB
+   : PCUI
+   : pcVirAddr --- ()
+             pcPhyAddr --- ()
+             lDoneSize --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomPcuiWrtCB(
     VOS_CHAR                           *pcVirAddr,
@@ -544,18 +544,18 @@ VOS_VOID DMS_VcomPcuiWrtCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcuiEvtCB
- 功能描述  : PCUI端口事件处理回调
- 输入参数  : enEvt --- ACM设备事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcuiEvtCB
+   : PCUI
+   : enEvt --- ACM
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomPcuiEvtCB(ACM_EVT_E enEvt)
 {
@@ -564,18 +564,18 @@ VOS_VOID DMS_VcomPcuiEvtCB(ACM_EVT_E enEvt)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomCtrlOpen
- 功能描述  : 打开CTRL端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomCtrlOpen
+   : CTRL
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_VcomCtrlOpen(VOS_VOID)
 {
@@ -587,18 +587,18 @@ VOS_UINT32 DMS_VcomCtrlOpen(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomCtrlClose
- 功能描述  : 关闭CTRL端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomCtrlClose
+   : CTRL
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_VcomCtrlClose(VOS_VOID)
 {
@@ -606,18 +606,18 @@ VOS_UINT32 DMS_VcomCtrlClose(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomCtrlReadCB
- 功能描述  : CTRL端口读取回调
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomCtrlReadCB
+   : CTRL
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomCtrlReadCB(VOS_VOID)
 {
@@ -626,20 +626,20 @@ VOS_VOID DMS_VcomCtrlReadCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomCtrlWrtCB
- 功能描述  : CTRL口写完成回调
- 输入参数  : pcVirAddr --- 写指针(虚拟地址)
-             pcPhyAddr --- 写指针(物理地址)
-             lDoneSize --- 写入长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomCtrlWrtCB
+   : CTRL
+   : pcVirAddr --- ()
+             pcPhyAddr --- ()
+             lDoneSize --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomCtrlWrtCB(
     VOS_CHAR                           *pcVirAddr,
@@ -652,18 +652,18 @@ VOS_VOID DMS_VcomCtrlWrtCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomCtrlEvtCB
- 功能描述  : CTRL端口事件处理回调
- 输入参数  : enEvt --- ACM设备事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomCtrlEvtCB
+   : CTRL
+   : enEvt --- ACM
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年4月15日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2014415
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_VcomCtrlEvtCB(ACM_EVT_E enEvt)
 {
@@ -672,18 +672,18 @@ VOS_VOID DMS_VcomCtrlEvtCB(ACM_EVT_E enEvt)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcui2Open
- 功能描述  : 打开PCUI2端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcui2Open
+   : PCUI2
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 DMS_VcomPcui2Open(VOS_VOID)
 {
@@ -695,18 +695,18 @@ VOS_UINT32 DMS_VcomPcui2Open(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcui2Close
- 功能描述  : 关闭PCUI2端口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcui2Close
+   : PCUI2
+   : VOS_VOID
+   : 
+     : ERR_MSP_SUCCESS/ERR_MSP_FAILURE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 DMS_VcomPcui2Close(VOS_VOID)
 {
@@ -714,18 +714,18 @@ VOS_UINT32 DMS_VcomPcui2Close(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcui2ReadCB
- 功能描述  : PCUI2端口读取回调
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcui2ReadCB
+   : PCUI2
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID DMS_VcomPcui2ReadCB(VOS_VOID)
 {
@@ -734,20 +734,20 @@ VOS_VOID DMS_VcomPcui2ReadCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcui2WrtCB
- 功能描述  : PCUI2口写完成回调
- 输入参数  : pcVirAddr --- 写指针(虚拟地址)
-             pcPhyAddr --- 写指针(物理地址)
-             lDoneSize --- 写入长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcui2WrtCB
+   : PCUI2
+   : pcVirAddr --- ()
+             pcPhyAddr --- ()
+             lDoneSize --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID DMS_VcomPcui2WrtCB(
     VOS_CHAR                           *pcVirAddr,
@@ -760,18 +760,18 @@ VOS_VOID DMS_VcomPcui2WrtCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_VcomPcui2EvtCB
- 功能描述  : PCUI2端口事件处理回调
- 输入参数  : enEvt --- ACM设备事件
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_VcomPcui2EvtCB
+   : PCUI2
+   : enEvt --- ACM
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID DMS_VcomPcui2EvtCB(ACM_EVT_E enEvt)
 {

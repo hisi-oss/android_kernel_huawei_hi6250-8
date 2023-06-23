@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "GuNasLogFilter.h"
 #include "MnMsgApi.h"
@@ -70,7 +70,7 @@
 #define    AT_SMS_MODE              (1)
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 typedef VOS_UINT32 (*pGuNasMsgFilterProcFunc)(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -78,11 +78,11 @@ typedef VOS_UINT32 (*pGuNasMsgFilterProcFunc)(
 
 
 /*******************************************************************************
- 结构名    : GUNAS_MSG_FILTER_PROC_TBL_FUNC
- 结构说明  : 过滤消息处理函数结构体
- 1.日    期   : 2015年09月25日
-   作    者   : h00313353
-   修改内容   : 新建
+     : GUNAS_MSG_FILTER_PROC_TBL_FUNC
+   : 
+ 1.       : 20150925
+          : h00313353
+      : 
 *******************************************************************************/
 typedef struct
 {
@@ -106,7 +106,7 @@ GUNAS_MSG_FILTER_PROC_TBL_FUNC              g_astGuNasMsgFilterProcFuncTbl[] =
 
 VOS_CHAR*                                       g_apcATFileterTable[]=
 {
-        /* USIM相关 */
+        /* USIM */
         "AT+CPIN"           ,
         "\r\n+CPIN:"        ,
         "AT+CLCK"           ,
@@ -155,7 +155,7 @@ VOS_CHAR*                                       g_apcATFileterTable[]=
         "\r\n^CRLA:"        ,
         "\r\n^USIMICCID:"   ,
 
-        /* 短信相关 */
+        /*  */
         "AT+CMGS"           ,
         "AT+CMGW"           ,
         "AT+CMGC"           ,
@@ -165,11 +165,11 @@ VOS_CHAR*                                       g_apcATFileterTable[]=
         "\r\n+CMGS:"        ,
         "\r\n+CDS:"         ,
 
-        /* SIM LOCK相关 */
+        /* SIM LOCK */
         "AT^SIMLOCKUNLOCK"  ,
         "AT^CMLCK"          ,
 
-        /* 电话本相关 */
+        /*  */
         "AT+CPBS"           ,
         "\r\n+CPBS:"        ,
         "AT+CPBR"           ,
@@ -192,25 +192,25 @@ VOS_CHAR*                                       g_apcATFileterTable[]=
 
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 
 
 /*****************************************************************************
- 函 数 名  : GUNAS_ATCmdFilter
- 功能描述  : 过滤At到At的USIM层间消息函数
- 输入参数  : pucATData     -- 消息中的数据
-             usLen         -- 数据长度
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_ATCmdFilter
+   : AtAtUSIM
+   : pucATData     -- 
+             usLen         -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年01月31日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20160131
+           : f00179208
+       : 
 *****************************************************************************/
 
 VOS_UINT32 GUNAS_ATCmdFilter(
@@ -245,19 +245,19 @@ VOS_UINT32 GUNAS_ATCmdFilter(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterAtToAtMsg
- 功能描述  : 过滤At到At层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterAtToAtMsg
+   : AtAt
+   : pstMsg     -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
+       :
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterAtToAtMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -296,7 +296,7 @@ VOS_UINT32 GUNAS_FilterAtToAtMsg(
             {
                 if (AT_SMS_MODE == g_stParseContext[pstAtMsg->ucIndex].ucMode)
                 {
-                    /* 短信模式直接进行过滤 */
+                    /*  */
                     MN_NORM_LOG1("GUNAS_FilterAtToAtMsg: TRUE,SMS MODE, ulMsgName ", pstAtMsg->enMsgId);
                     return VOS_TRUE;
                 }
@@ -320,19 +320,19 @@ VOS_UINT32 GUNAS_FilterAtToAtMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterAtToMmaMsg
- 功能描述  : 过滤At到Mma层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterAtToMmaMsg
+   : AtMma
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年07月02日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20160702
+           : f00179208
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterAtToMmaMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -340,7 +340,7 @@ VOS_UINT32 GUNAS_FilterAtToMmaMsg(
 {
     switch (pstMsg->ulMsgName)
     {
-        /* 补充业务相关的信息 */
+        /*  */
         case TAF_MSG_MMA_OP_PIN_REQ:
         case TAF_MSG_MMA_SET_PIN:
         case TAF_MSG_MMA_ME_PERSONAL_REQ:
@@ -353,19 +353,19 @@ VOS_UINT32 GUNAS_FilterAtToMmaMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterAtToMtaMsg
- 功能描述  : 过滤At到Mta层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterAtToMtaMsg
+   : AtMta
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年07月02日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20160702
+           : f00179208
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterAtToMtaMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -373,7 +373,7 @@ VOS_UINT32 GUNAS_FilterAtToMtaMsg(
 {
     switch (pstMsg->ulMsgName)
     {
-        /* 补充业务相关的信息 */
+        /*  */
         case ID_AT_MTA_SIMLOCKUNLOCK_SET_REQ:
             MN_NORM_LOG1("GUNAS_FilterAtToMtaMsg: TRUE ulMsgName ", pstMsg->ulMsgName);
             return VOS_TRUE;
@@ -384,19 +384,19 @@ VOS_UINT32 GUNAS_FilterAtToMtaMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterAtToPihMsg
- 功能描述  : 过滤At到Pih层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterAtToPihMsg
+   : AtPih
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年07月02日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20160702
+           : f00179208
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterAtToPihMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -404,7 +404,7 @@ VOS_UINT32 GUNAS_FilterAtToPihMsg(
 {
     switch (pstMsg->ulMsgName)
     {
-        /* 补充业务相关的信息 */
+        /*  */
         /* SI_PIH_FDN_ENABLE_REQ */
         case AT_PIH_FDN_ENABLE_REQ:
         /* SI_PIH_FDN_DISALBE_REQ */
@@ -418,19 +418,19 @@ VOS_UINT32 GUNAS_FilterAtToPihMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterAtToTafMsg
- 功能描述  : 过滤At到Taf层间消息的函数
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterAtToTafMsg
+   : AtTaf
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
+       :
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterAtToTafMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -438,7 +438,7 @@ VOS_UINT32 GUNAS_FilterAtToTafMsg(
 {
     switch (pstMsg->ulMsgName)
     {
-        /* 短信相关的信息 */
+        /*  */
         case MN_MSG_MSGTYPE_SEND_RPDATA_DIRECT:
         case MN_MSG_MSGTYPE_SEND_RPDATA_FROMMEM:
         case MN_MSG_MSGTYPE_WRITE:
@@ -447,7 +447,7 @@ VOS_UINT32 GUNAS_FilterAtToTafMsg(
             MN_NORM_LOG1("GUNAS_FilterAtToTafMsg: TRUE ulMsgName ", pstMsg->ulMsgName);
             return VOS_TRUE;
 
-        /* 补充业务相关的信息 */
+        /*  */
         case TAF_MSG_ACTIVATESS_MSG:
         case TAF_MSG_DEACTIVATESS_MSG:
         case TAF_MSG_REGPWD_MSG:
@@ -460,19 +460,19 @@ VOS_UINT32 GUNAS_FilterAtToTafMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterTafToAtMsg
- 功能描述  : 过滤Taf到At层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterTafToAtMsg
+   : TafAt
+   : pstMsg     -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
+       :
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterTafToAtMsg(
     PS_MSG_HEADER_STRU                 *pstMsg
@@ -508,19 +508,19 @@ VOS_UINT32 GUNAS_FilterTafToAtMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_FilterLayerMsg
- 功能描述  : 过滤短信层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_FilterLayerMsg
+   : 
+   : pstMsg     -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
+       :
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_FilterLayerMsg(
     const VOS_VOID                     *pstMsg
@@ -558,19 +558,19 @@ VOS_UINT32 GUNAS_FilterLayerMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : GUNAS_OM_LayerMsgFilter
- 功能描述  : GUNAS用于过滤层间消息的函数
- 输入参数  : pstMsg     -- 消息指针
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : GUNAS_OM_LayerMsgFilter
+   : GUNAS
+   : pstMsg     -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
+       :
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 VOS_UINT32 GUNAS_OM_LayerMsgFilter(
     const VOS_VOID                     *pstMsg

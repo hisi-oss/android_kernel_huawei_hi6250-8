@@ -58,16 +58,16 @@ dump_base_info_t*    g_mdm_dump_base_info = NULL;
 
 
 /*****************************************************************************
-* 函 数 名  : dump_save_base_info
-* 功能描述  : 保存modem ap的基本信息
+*     : dump_save_base_info
+*   : modem ap
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 length)
@@ -113,7 +113,7 @@ void dump_save_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 length)
 
             if(g_mdm_dump_base_info->modId == 0x11000025 || g_mdm_dump_base_info->modId == 0x1100002A)
             {
-                /* A核VOS只记录的任务的pid*/
+                /* AVOSpid*/
                 g_mdm_dump_base_info->reboot_task_tcb = g_mdm_dump_base_info->arg1;
                 task = find_task_by_vpid(g_mdm_dump_base_info->arg1);
             }
@@ -141,16 +141,16 @@ void dump_save_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 length)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_momdem_reset_baseinfo
-* 功能描述  : 更新modem单独复位失败的基本信息
+*     : dump_save_momdem_reset_baseinfo
+*   : modem
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_momdem_reset_baseinfo(u32 modid,char* name)
@@ -176,16 +176,16 @@ void dump_save_momdem_reset_baseinfo(u32 modid,char* name)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_base_info_init
-* 功能描述  : modem ap基本信息初始化
+*     : dump_base_info_init
+*   : modem ap
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_base_info_init(void)

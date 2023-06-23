@@ -58,14 +58,14 @@
 bsp_hds_cmd_stru g_hds_cmd_list_head;
 hds_cnf_func     g_hds_cnf_fn = NULL;
 /*************************************************************************
- 函 数 名	: bsp_hds_cmd_register
- 功能描述	: bsp消息处理cmdid和回调函数注册接口
- 输入参数	: u32 cmdid, bsp_hds_func fn
- 返 回 值	: 0
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_hds_cmd_register
+ 	: bspcmdid
+ 	: u32 cmdid, bsp_hds_func fn
+   	: 0
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 /*lint -save -e429 */
 void bsp_hds_cmd_register(u32 cmdid, bsp_hds_func fn)
@@ -74,7 +74,7 @@ void bsp_hds_cmd_register(u32 cmdid, bsp_hds_func fn)
     struct list_head *me;
     bsp_hds_cmd_stru *pstDiag = NULL;
 
-    /*判断cmdid是否重复注册*/
+    /*cmdid*/
     list_for_each(me,&g_hds_cmd_list_head.list)
     {
         pstDiag = list_entry(me, bsp_hds_cmd_stru, list);
@@ -94,21 +94,21 @@ void bsp_hds_cmd_register(u32 cmdid, bsp_hds_func fn)
     hds_list->ulCmdId = cmdid;
     hds_list->pFunc = fn;
 
-    /*将注册的cmdid和回调函数添加到链表中*/
+    /*cmdid*/
     list_add(&hds_list->list, &g_hds_cmd_list_head.list);
     //printk(KERN_ERR"registered cmdid:0x%x\n",hds_list->ulCmdId);
 }
 /*lint -restore*/
 
 /*************************************************************************
- 函 数 名	: bsp_hds_msg_proc
- 功能描述	: bsp消息处理
- 输入参数	: u32 cmdid, bsp_hds_func fn
- 返 回 值	: 0
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_hds_msg_proc
+ 	: bsp
+ 	: u32 cmdid, bsp_hds_func fn
+   	: 0
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 int bsp_hds_msg_proc(diag_frame_head_stru *pData)
 {
@@ -122,7 +122,7 @@ int bsp_hds_msg_proc(diag_frame_head_stru *pData)
         return BSP_ERROR;
     }
 
-    /*遍历链表，根据注册的cmdid，跳到对应的回调中处理*/
+    /*cmdid*/
     list_for_each(me,&g_hds_cmd_list_head.list)
     {
         pstDiag = list_entry(me, bsp_hds_cmd_stru, list);
@@ -135,7 +135,7 @@ int bsp_hds_msg_proc(diag_frame_head_stru *pData)
         }
     }
 
-    /*未注册此cmdid，返回对应的错误码*/
+    /*cmdid*/
     printk(KERN_ERR"cmdid is not register:%d\n",pData->u32CmdId);
 
     return HDS_CMD_ERROR;
@@ -197,14 +197,14 @@ void bsp_hds_cnf_common_fill(hds_cnf_stru *cnf, diag_frame_head_stru *req)
 }
 
 /*************************************************************************
- 函 数 名	: bsp_ShowDebugInfo
- 功能描述	: bsp消息回调debug信息
- 输入参数	:
- 返 回 值	:
- 修改历史	:
- 日    期	: 2016年8月10日
- 作    者	: l00354607
- 修改内容	:
+   	: bsp_ShowDebugInfo
+ 	: bspdebug
+ 	:
+   	:
+ 	:
+     	: 2016810
+     	: l00354607
+ 	:
 *************************************************************************/
 void bsp_ShowDebugInfo(void)
 {

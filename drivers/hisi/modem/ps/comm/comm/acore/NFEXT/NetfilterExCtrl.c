@@ -47,7 +47,7 @@
  */
 
 /******************************************************************************
-   1 头文件包含
+   1 
 ******************************************************************************/
 #include "v_typdef.h"
 #include "PsTypeDef.h"
@@ -64,18 +64,18 @@
 #define STATIC
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 
 #define THIS_FILE_ID PS_FILE_ID_ACPU_NFEX_CTRL_C
 
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 
 /*****************************************************************************
-  3 全局变量声明
+  3 
 *****************************************************************************/
 NF_EXT_ENTITY_STRU                  g_stExEntity            = {0};
 VOS_UINT32                          g_ulNFExtTaskId         = 0;
@@ -90,9 +90,9 @@ NF_EXT_NV_STRU                      g_stNfExtNv;
 NF_EXT_HOOK_MASK_NV_STRU            g_stExHookMask;
 
 /*****************************************************************************
-  4 结构定义
+  4 
 *****************************************************************************/
-/* 扩展netfilter开关映射表 */
+/* netfilter */
 NF_EXT_MASK_OPS_STRU g_stNfExtMaskOps[NF_EXT_HOOK_ON_MASK_IDX_ENUM_BUTT];
 
 
@@ -113,21 +113,21 @@ STATIC VOS_VOID NFExt_FlowCtrlInit(VOS_VOID);
 STATIC VOS_INT  NFExt_ReRegHooks(VOS_UINT32 ulMask);
 
 /******************************************************************************
-   5 函数实现
+   5 
 ******************************************************************************/
 /*****************************************************************************
- 函 数 名  : NFExt_UnregHooks
- 功能描述  : 根据需要停止抓包模块的掩码，将抓包的钩子函数解除内核注册
- 输入参数  : VOS_UINT32 ulMask    钩子函数掩码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_UnregHooks
+   : 
+   : VOS_UINT32 ulMask    
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID  NFExt_UnregHooks(VOS_UINT32 ulMask)
 {
@@ -137,10 +137,10 @@ VOS_VOID  NFExt_UnregHooks(VOS_UINT32 ulMask)
     {
         if ( g_stNfExtMaskOps[i].ulHookMask == (ulMask & g_stNfExtMaskOps[i].ulHookMask) )
         {
-            /*卸载钩子函数*/
+            /**/
             nf_unregister_hook(&(g_stNfExtMaskOps[i].stNfExtOps));
 
-            /* 重置相应的掩码位 */
+            /*  */
             g_stExEntity.ulCurHookOnMask &= ~g_stNfExtMaskOps[i].ulHookMask;
         }
     }
@@ -148,18 +148,18 @@ VOS_VOID  NFExt_UnregHooks(VOS_UINT32 ulMask)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_RegHooks
- 功能描述  : 根据需要开启抓包模块的掩码，将抓包的钩子函数注册到内核
- 输入参数  : VOS_UINT32 ulMask        钩子函数掩码
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : NFExt_RegHooks
+   : 
+   : VOS_UINT32 ulMask        
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_INT  NFExt_RegHooks(VOS_UINT32 ulMask)
 {
@@ -173,13 +173,13 @@ VOS_INT  NFExt_RegHooks(VOS_UINT32 ulMask)
             continue;
         }
 
-        /*注册相应的钩子函数*/
+        /**/
         iRet = nf_register_hook(&(g_stNfExtMaskOps[i].stNfExtOps));
         if ( 0 != iRet )
         {
             TTF_LOG(ACPU_PID_NFEXT, DIAG_MODE_COMM, PS_PRINT_WARNING,"register_hook error!!\n");
 
-            /*若有一个注册失败则卸载当前所有已经注册上的钩子函数*/
+            /**/
             NFExt_UnregHooks(g_stExEntity.ulCurHookOnMask);
             return iRet;
         }
@@ -191,24 +191,24 @@ VOS_INT  NFExt_RegHooks(VOS_UINT32 ulMask)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ReRegHooks
- 功能描述  : 重新注册钩子函数
- 输入参数  : VOS_UINT32 ulMask    钩子函数掩码
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : NFExt_ReRegHooks
+   : 
+   : VOS_UINT32 ulMask    
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 STATIC VOS_INT  NFExt_ReRegHooks(VOS_UINT32 ulMask)
 {
     VOS_INT iRet;
 
-    /*重新注册前先卸载当前所有的钩子函数*/
+    /**/
     if ( 0 != g_stExEntity.ulCurHookOnMask )
     {
         NFExt_UnregHooks(g_stExEntity.ulCurHookOnMask);
@@ -220,25 +220,25 @@ STATIC VOS_INT  NFExt_ReRegHooks(VOS_UINT32 ulMask)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ConfigEffective
- 功能描述  : 根据配置注册对应的钩子函数
- 输入参数  : NF_EXT_TRACE_CONFIG_REQ_STRU *pRcvMsg
- 输出参数  : 无
- 返 回 值  : PS_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
+     : NFExt_ConfigEffective
+   : 
+   : NF_EXT_TRACE_CONFIG_REQ_STRU *pRcvMsg
+   : 
+     : PS_BOOL_ENUM_UINT8
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 PS_BOOL_ENUM_UINT8 NFExt_ConfigEffective(IPS_MNTN_TRACE_CONFIG_REQ_STRU *pRcvMsg)
 {
     VOS_INT             iRet;
     VOS_UINT32          ulMask = 0;
 
-    /* 流控hook，默认挂上 */
+    /* hook */
     ulMask |= NF_EXT_DEF_FLOW_CTRL_HOOK_ON_MASK;
 
     if ( (pRcvMsg->stBridgeArpTraceCfg.ulChoice > IPS_MNTN_TRACE_NULL_CHOSEN)
@@ -277,24 +277,24 @@ PS_BOOL_ENUM_UINT8 NFExt_ConfigEffective(IPS_MNTN_TRACE_CONFIG_REQ_STRU *pRcvMsg
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Get1stInetIpv4Addr
- 功能描述  : 获取设备第一个Ipv4地址
- 输入参数  : struct net_device *pstDev 需要获取IP地址的设备
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_Get1stInetIpv4Addr
+   : Ipv4
+   : struct net_device *pstDev IP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 VOS_UINT32  NFExt_Get1stInetIpv4Addr(struct net_device *pstDev)
 {
     struct in_device   *pinDev;
 
-    /* 使用Linux内核结构，使用Linux风格 */
+    /* LinuxLinux */
     if (NULL == pstDev)
     {
         return 0;
@@ -316,24 +316,24 @@ VOS_UINT32  NFExt_Get1stInetIpv4Addr(struct net_device *pstDev)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ReadNvCfg
- 功能描述  : 读取NV配置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_OK, VOS_ERR
- 调用函数  :
- 被调函数  :
+     : NFExt_ReadNvCfg
+   : NV
+   :
+   : 
+     : VOS_OK, VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月27日
-    作    者   : c00191211
-    修改内容   : 新生成函数
+       :
+  1.       : 2012827
+           : c00191211
+       : 
 *****************************************************************************/
 STATIC VOS_UINT32 NFExt_ReadNvCfg(VOS_VOID)
 {
     VOS_UINT32                     ulRet;
 
-    /* 读取钩子函数注册点掩码 */
+    /*  */
     ulRet = NV_Read (en_NV_Item_NETFILTER_HOOK_MASK, &g_stNfExtNv , sizeof(NF_EXT_NV_STRU));
     if (NV_OK != ulRet)
     {
@@ -341,7 +341,7 @@ STATIC VOS_UINT32 NFExt_ReadNvCfg(VOS_VOID)
         return VOS_ERR;
     }
 
-    /* 将NV结构中读出的掩码赋给g_stExHookMask*/
+    /* NVg_stExHookMask*/
     g_stExHookMask.ulBrArpHookValue         = g_stNfExtNv.ulNetfilterPara1;
     g_stExHookMask.ulInHookValue            = g_stNfExtNv.ulNetfilterPara2;
     g_stExHookMask.ulOutHookValue           = g_stNfExtNv.ulNetfilterPara3;
@@ -352,18 +352,18 @@ STATIC VOS_UINT32 NFExt_ReadNvCfg(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_SetDefaultNvCfg
- 功能描述  : 设置默认NV配置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : NFExt_SetDefaultNvCfg
+   : NV
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月27日
-    作    者   : c00191211
-    修改内容   : 新生成函数
+       :
+  1.       : 2012827
+           : c00191211
+       : 
 *****************************************************************************/
 STATIC VOS_VOID NFExt_SetDefaultNvCfg(VOS_VOID)
 {
@@ -387,18 +387,18 @@ STATIC VOS_VOID NFExt_SetDefaultNvCfg(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_EntityInit
- 功能描述  : NFExt模块实体全局变量初始化
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
+     : NFExt_EntityInit
+   : NFExt
+   : void
+   : 
+     : void
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_EntityInit(VOS_VOID)
 {
@@ -409,18 +409,18 @@ STATIC VOS_VOID NFExt_EntityInit(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_MaskOpsInit
- 功能描述  : NFExt模块MaskOps全局变量初始化
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
+     : NFExt_MaskOpsInit
+   : NFExtMaskOps
+   : void
+   : 
+     : void
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月7日
-    作    者   : d00314740
-    修改内容   : Created
+       :
+  1.       : 201727
+           : d00314740
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 {
@@ -439,7 +439,7 @@ STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 #endif
     pstMaskOps[NF_EXT_BR_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.pf        = NFPROTO_BRIDGE;
     pstMaskOps[NF_EXT_BR_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.hooknum   = NF_BR_PRE_ROUTING;
-    pstMaskOps[NF_EXT_BR_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority  = NF_EXT_BR_PRI_FILTER_OTHER;   /* 网桥hook点的最低优先级 */
+    pstMaskOps[NF_EXT_BR_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority  = NF_EXT_BR_PRI_FILTER_OTHER;   /* hook */
 
     pstMaskOps[NF_EXT_BR_POST_ROUTING_HOOK_ON_MASK_IDX].ulHookMask
         = NF_EXT_GET_MASK_FROM_INDEX(NF_EXT_BR_POST_ROUTING_HOOK_ON_MASK_IDX);
@@ -489,7 +489,7 @@ STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 #endif
     pstMaskOps[NF_EXT_ARP_LOCAL_IN_ON_MASK_IDX].stNfExtOps.pf       = NFPROTO_ARP;
     pstMaskOps[NF_EXT_ARP_LOCAL_IN_ON_MASK_IDX].stNfExtOps.hooknum  = NF_ARP_IN;
-    pstMaskOps[NF_EXT_ARP_LOCAL_IN_ON_MASK_IDX].stNfExtOps.priority = NF_EXT_IP_PRI_CONNTRACK;      /* ARP hook点的优先级 */
+    pstMaskOps[NF_EXT_ARP_LOCAL_IN_ON_MASK_IDX].stNfExtOps.priority = NF_EXT_IP_PRI_CONNTRACK;      /* ARP hook */
 
     pstMaskOps[NF_EXT_ARP_LOCAL_OUT_ON_MASK_IDX].ulHookMask
         = NF_EXT_GET_MASK_FROM_INDEX(NF_EXT_ARP_LOCAL_OUT_ON_MASK_IDX);
@@ -509,7 +509,7 @@ STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 #endif
     pstMaskOps[NF_EXT_IP4_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.pf       = NFPROTO_IPV4;
     pstMaskOps[NF_EXT_IP4_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.hooknum  = NF_INET_PRE_ROUTING;
-    pstMaskOps[NF_EXT_IP4_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority = NF_EXT_IP_PRI_MANGLE;         /* 高于DNAT hook点的优先级 */
+    pstMaskOps[NF_EXT_IP4_PRE_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority = NF_EXT_IP_PRI_MANGLE;         /* DNAT hook */
 
     pstMaskOps[NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX].ulHookMask
         = NF_EXT_GET_MASK_FROM_INDEX(NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX);
@@ -519,7 +519,7 @@ STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 #endif
     pstMaskOps[NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.pf          = NFPROTO_IPV4;
     pstMaskOps[NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.hooknum     = NF_INET_POST_ROUTING;
-    pstMaskOps[NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority    = NF_EXT_IP_PRI_SELINUX_LAST;   /* 低于SNAT hook点的优先级 */
+    pstMaskOps[NF_EXT_IP4_POST_ROUTING_HOOK_ON_MASK_IDX].stNfExtOps.priority    = NF_EXT_IP_PRI_SELINUX_LAST;   /* SNAT hook */
 
     pstMaskOps[NF_EXT_IP4_LOCAL_IN_HOOK_ON_MASK_IDX].ulHookMask
         = NF_EXT_GET_MASK_FROM_INDEX(NF_EXT_IP4_LOCAL_IN_HOOK_ON_MASK_IDX);
@@ -609,23 +609,23 @@ STATIC VOS_VOID NFExt_MaskOpsInit(VOS_VOID)
 #endif
     pstMaskOps[NF_EXT_BR_FORWARD_FLOW_CTRL_HOOK_ON_MASK_IDX].stNfExtOps.pf          = NFPROTO_BRIDGE;
     pstMaskOps[NF_EXT_BR_FORWARD_FLOW_CTRL_HOOK_ON_MASK_IDX].stNfExtOps.hooknum     = NF_BR_FORWARD;
-    pstMaskOps[NF_EXT_BR_FORWARD_FLOW_CTRL_HOOK_ON_MASK_IDX].stNfExtOps.priority    = NF_EXT_BR_PRI_FILTER_BRIDGED;             /* 与包过滤优先级相同,优先级在这里不能为0 */
+    pstMaskOps[NF_EXT_BR_FORWARD_FLOW_CTRL_HOOK_ON_MASK_IDX].stNfExtOps.priority    = NF_EXT_BR_PRI_FILTER_BRIDGED;             /* ,0 */
 
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Init
- 功能描述  : 模块初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_Init
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 STATIC VOS_INT NFExt_Init(VOS_VOID)
 {
@@ -637,34 +637,34 @@ STATIC VOS_INT NFExt_Init(VOS_VOID)
         NFExt_SetDefaultNvCfg();
     }
 
-    /* NFExt模块实体全局变量初始化 */
+    /* NFExt */
     NFExt_EntityInit();
 
-    /* NFExt模块MaskOps全局变量初始化 */
+    /* NFExtMaskOps */
     NFExt_MaskOpsInit();
 
-    /* 流控信息初始化 */
+    /*  */
     NFExt_FlowCtrlInit();
 
     return VOS_OK;
 }
 
 /*****************************************************************************
-                        流控功能
+                        
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : NFExt_FlowCtrlInit
- 功能描述  : 流控实体初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_FlowCtrlInit
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_FlowCtrlInit(VOS_VOID)
 {
@@ -682,18 +682,18 @@ STATIC VOS_VOID NFExt_FlowCtrlInit(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrSetFlowCtrl
- 功能描述  : 网桥流控状态设置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_BrSetFlowCtrl
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 /*lint -e{550,438} */
 VOS_VOID  NFExt_BrSetFlowCtrl(VOS_VOID)
@@ -708,18 +708,18 @@ VOS_VOID  NFExt_BrSetFlowCtrl(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrStopFlowCtrl
- 功能描述  : 网桥流控状态解除
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_BrStopFlowCtrl
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 /*lint -e{550,438} */
 VOS_VOID  NFExt_BrStopFlowCtrl(VOS_VOID)
@@ -734,18 +734,18 @@ VOS_VOID  NFExt_BrStopFlowCtrl(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_GetBrBytesCnt
- 功能描述  : 获取当前网桥发送接收数据统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前网桥发送接收数据统计信息
- 调用函数  :
- 被调函数  :
+     : NFExt_GetBrBytesCnt
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 VOS_UINT32 NFExt_GetBrBytesCnt(VOS_VOID)
 {
@@ -754,18 +754,18 @@ VOS_UINT32 NFExt_GetBrBytesCnt(VOS_VOID)
 
 
 /*****************************************************************************
- 函 数 名  : NFExt_SaveBrDev
- 功能描述  : 保存当前流控所使用的网桥设备
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_SaveBrDev
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 STATIC VOS_UINT32 NFExt_SaveBrDev(VOS_VOID)
 {
@@ -779,7 +779,7 @@ STATIC VOS_UINT32 NFExt_SaveBrDev(VOS_VOID)
 
     g_stExFlowCtrlEntity.pstBrDev   = dev;
 
-    /* 只获取第一个IPv4地址 */
+    /* IPv4 */
     g_stExEntity.ulOmIp             = NFExt_Get1stInetIpv4Addr(dev);
 
     return VOS_OK;
@@ -787,48 +787,48 @@ STATIC VOS_UINT32 NFExt_SaveBrDev(VOS_VOID)
 
 #if(NF_EXT_DBG == DBG_ON)
 /*****************************************************************************
- 函 数 名  : NFExt_StatsShow
- 功能描述  : Netfilter ex debug参数打印函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_StatsShow
+   : Netfilter ex debug
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年02月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120211
+           : t00148005
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_StatsShow(VOS_VOID)
 {
-    vos_printf("网桥forward流控丢掉的数据量 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BR_FC_DROP]);
-    vos_printf("进入网桥forward hook的数据量 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BR_FC_ENTER]);
-    vos_printf("环形buf满之后导致丢包数量 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BUF_FULL_DROP]);
-    vos_printf("入环形buf失败次数 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_PUT_BUF_FAIL]);
-    vos_printf("出环形buf失败次数 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_GET_BUF_FAIL]);
-    vos_printf("申请内存失败次数 %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_ALLOC_MEM_FAIL]);
+    vos_printf("forward %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BR_FC_DROP]);
+    vos_printf("forward hook %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BR_FC_ENTER]);
+    vos_printf("buf %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_BUF_FULL_DROP]);
+    vos_printf("buf %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_PUT_BUF_FAIL]);
+    vos_printf("buf %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_GET_BUF_FAIL]);
+    vos_printf(" %ld \n", g_stNfExtStats.aulStats[NF_EXT_STATS_ALLOC_MEM_FAIL]);
 
-    vos_printf("当前环形缓存中未处理的数据量 %ld \n", ((VOS_UINT32)OM_RingBufferNBytes(g_stExEntity.pRingBufferId) / sizeof(NF_EXT_DATA_RING_BUF_STRU)));
-    vos_printf("当前的Hook Mask %ld \n", g_stExEntity.ulCurHookOnMask);
-    vos_printf("当前的流控状态Mask %ld \n", g_stExFlowCtrlEntity.ulFlowCtrlMsk);
-    vos_printf("当前OM WIFI所使用的IP地址 %x \n", g_stExEntity.ulOmIp);
-    vos_printf("当前网桥转发字节数 %x \n", g_stExFlowCtrlEntity.aulTxBytesCnt[NF_EXT_TX_BYTES_CNT_BR]);
+    vos_printf(" %ld \n", ((VOS_UINT32)OM_RingBufferNBytes(g_stExEntity.pRingBufferId) / sizeof(NF_EXT_DATA_RING_BUF_STRU)));
+    vos_printf("Hook Mask %ld \n", g_stExEntity.ulCurHookOnMask);
+    vos_printf("Mask %ld \n", g_stExFlowCtrlEntity.ulFlowCtrlMsk);
+    vos_printf("OM WIFIIP %x \n", g_stExEntity.ulOmIp);
+    vos_printf(" %x \n", g_stExFlowCtrlEntity.aulTxBytesCnt[NF_EXT_TX_BYTES_CNT_BR]);
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ResetPri
- 功能描述  : 重置netfilter ex hook点优先级函数,Debug使用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_ResetPri
+   : netfilter ex hook,Debug
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年02月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120211
+           : t00148005
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_ResetPri(VOS_UINT32 ulHookNode, VOS_INT32 iPri)
 {
@@ -851,15 +851,15 @@ STATIC VOS_VOID NFExt_ResetPri(VOS_UINT32 ulHookNode, VOS_INT32 iPri)
 
 /******************************************************************************
  Prototype       : NFExt_SndDataNotify
- Description     : 发送数据处理指示NFEXT_DATA_PROC_NOTIFY
+ Description     : NFEXT_DATA_PROC_NOTIFY
  Input           :
  Output          : NONE
- Return Value    : PS_SUCC   --- 成功
-                   PS_FAIL   --- 失败
+ Return Value    : PS_SUCC   --- 
+                   PS_FAIL   --- 
  History         :
    1.Date        : 2008-07-16
      Author      : l47619
-     Modification: 增加PPP数据队列处理机制
+     Modification: PPP
 ******************************************************************************/
 STATIC VOS_VOID NFExt_SndDataNotify(VOS_VOID)
 {
@@ -869,20 +869,20 @@ STATIC VOS_VOID NFExt_SndDataNotify(VOS_VOID)
 } /* NFExt_SndDataNotify */
 
 /*****************************************************************************
- 函 数 名  : NFExt_RingBufferPut
- 功能描述  : 将数据放到ring buffer里
- 输入参数  : OM_RING_ID rngId:      环形buff
-             VOS_CHAR *buffer:      待放入环形buff的数据头指针
-             VOS_INT nbytes:        待放入环形buff的数据长度
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : NFExt_RingBufferPut
+   : ring buffer
+   : OM_RING_ID rngId:      buff
+             VOS_CHAR *buffer:      buff
+             VOS_INT nbytes:        buff
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : t00148005
+       : Created
 *****************************************************************************/
 /*lint -e{550,438} */
 STATIC VOS_INT NFExt_RingBufferPut( OM_RING_ID rngId, VOS_CHAR *buffer, VOS_INT nbytes )
@@ -903,20 +903,20 @@ STATIC VOS_INT NFExt_RingBufferPut( OM_RING_ID rngId, VOS_CHAR *buffer, VOS_INT 
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_RingBufferGet
- 功能描述  : 将数据从ring buffer里取出
- 输入参数  : OM_RING_ID rngId:      环形buff
-             VOS_CHAR *buffer:      环形buff中待取出的数据头指针
-             VOS_INT nbytes:        环形buff中待取出的数据长度
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : NFExt_RingBufferGet
+   : ring buffer
+   : OM_RING_ID rngId:      buff
+             VOS_CHAR *buffer:      buff
+             VOS_INT nbytes:        buff
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : t00148005
+       : Created
 *****************************************************************************/
 /*lint -e{550,438} */
 STATIC VOS_INT NFExt_RingBufferGet( OM_RING_ID rngId, VOS_CHAR *buffer, VOS_INT maxbytes )
@@ -937,18 +937,18 @@ STATIC VOS_INT NFExt_RingBufferGet( OM_RING_ID rngId, VOS_CHAR *buffer, VOS_INT 
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_FlushRingBuffer
- 功能描述  : 将RingBuffer里面的数据都清除
- 输入参数  : OM_RING_ID rngId OM ringbuffer id
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : NFExt_FlushRingBuffer
+   : RingBuffer
+   : OM_RING_ID rngId OM ringbuffer id
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : t00148005
+       : Created
 *****************************************************************************/
 /*lint -e{550,438} */
 VOS_VOID NFExt_FlushRingBuffer(OM_RING_ID rngId)
@@ -957,7 +957,7 @@ VOS_VOID NFExt_FlushRingBuffer(OM_RING_ID rngId)
     VOS_ULONG                   ulFlags = 0UL;
     VOS_INT                     iRst = 0;
 
-    /* 初始化 */
+    /*  */
     PSACORE_MEM_SET(&stData, sizeof(stData), 0x0, sizeof(stData));
 
     while (!OM_RingBufferIsEmpty(rngId))
@@ -983,21 +983,21 @@ VOS_VOID NFExt_FlushRingBuffer(OM_RING_ID rngId)
 
 
 /*****************************************************************************
- 函 数 名  : NFExt_AddDataToRingBuf
- 功能描述  : 将需要通过OAM发送的数据放到自处理任务的RingBuf里面，由自处理任务发送出去
- 输入参数  : NF_EXT_DATA_RING_BUF_STRU *pstData 放入ringbuffer中的数据
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 成功或者失败
- 调用函数  :
- 被调函数  :
+     : NFExt_AddDataToRingBuf
+   : OAMRingBuf
+   : NF_EXT_DATA_RING_BUF_STRU *pstData ringbuffer
+   : 
+     : VOS_UINT32 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : t00148005
-    修改内容   : Created
-  2.日    期   :  2015年10月31日
-    作    者   :  g00178567
-    修改内容   :  勾包改造，降低勾包任务切换频率
+       :
+  1.       : 20111122
+           : t00148005
+       : Created
+  2.       :  20151031
+           :  g00178567
+       :  
 *****************************************************************************/
 VOS_UINT32 NFExt_AddDataToRingBuf(NF_EXT_DATA_RING_BUF_STRU *pstData)
 {
@@ -1012,7 +1012,7 @@ VOS_UINT32 NFExt_AddDataToRingBuf(NF_EXT_DATA_RING_BUF_STRU *pstData)
         return VOS_ERR;
     }
 
-    /* 空到非空，唤醒任务处理勾包 */
+    /*  */
     if (OM_RingBufferIsEmpty(g_stExEntity.pRingBufferId))
     {
         ulNeedWakeUp = VOS_TRUE;
@@ -1032,7 +1032,7 @@ VOS_UINT32 NFExt_AddDataToRingBuf(NF_EXT_DATA_RING_BUF_STRU *pstData)
     {
         NF_EXT_STATS_INC(1, NF_EXT_STATS_BUF_FULL_DROP);
 
-        /* 队列满，唤醒任务处理勾包 */
+        /*  */
         NFExt_SndDataNotify();
 
         ulRst = VOS_ERR;
@@ -1053,18 +1053,18 @@ VOS_UINT32 NFExt_AddDataToRingBuf(NF_EXT_DATA_RING_BUF_STRU *pstData)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_RcvNfExtInfoCfgReq
- 功能描述  : 接收到OM配置可维可测信息捕获配置请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_RcvNfExtInfoCfgReq
+   : OM
+   : VOS_VOID *pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_RcvNfExtInfoCfgReq(VOS_VOID *pMsg)
 {
@@ -1077,29 +1077,29 @@ STATIC VOS_VOID NFExt_RcvNfExtInfoCfgReq(VOS_VOID *pMsg)
     enResult        = IPS_MNTN_RESULT_OK;
 
     /*================================*/
-    /*构建回复消息*/
+    /**/
     /*================================*/
 
     /* Fill DIAG trans msg header */
     stNfExtCfgCnf.stDiagHdr.ulSenderCpuId   = VOS_LOCAL_CPUID;
     stNfExtCfgCnf.stDiagHdr.ulSenderPid     = ACPU_PID_NFEXT;
     stNfExtCfgCnf.stDiagHdr.ulReceiverCpuId = VOS_LOCAL_CPUID;
-    stNfExtCfgCnf.stDiagHdr.ulReceiverPid   = MSP_PID_DIAG_APP_AGENT;   /* 把应答消息发送给DIAG，由DIAG把透传命令的处理结果发送给HIDS工具*/
+    stNfExtCfgCnf.stDiagHdr.ulReceiverPid   = MSP_PID_DIAG_APP_AGENT;   /* DIAGDIAGHIDS*/
     stNfExtCfgCnf.stDiagHdr.ulLength        = sizeof(IPS_OM_MNTN_INFO_CONFIG_CNF_STRU) - VOS_MSG_HEAD_LENGTH;
 
     stNfExtCfgCnf.stDiagHdr.ulMsgId         = ID_IPS_OM_MNTN_INFO_CONFIG_CNF;
 
-    /* DIAG透传命令中的特定信息*/
+    /* DIAG*/
     stNfExtCfgCnf.stDiagHdr.usOriginalId  = pstNfExtCfgReq->stDiagHdr.usOriginalId;
     stNfExtCfgCnf.stDiagHdr.usTerminalId  = pstNfExtCfgReq->stDiagHdr.usTerminalId;
     stNfExtCfgCnf.stDiagHdr.ulTimeStamp   = pstNfExtCfgReq->stDiagHdr.ulTimeStamp;
     stNfExtCfgCnf.stDiagHdr.ulSN          = pstNfExtCfgReq->stDiagHdr.ulSN;
 
-    /* 填充回复OM申请的确认信息 */
+    /* OM */
     stNfExtCfgCnf.stIpsMntnCfgCnf.enCommand  = pstNfExtCfgReq->stIpsMntnCfgReq.enCommand;
     stNfExtCfgCnf.stIpsMntnCfgCnf.enRslt     = enResult;
 
-    /* 发送OM透明消息 */
+    /* OM */
     IPS_MNTN_SndCfgCnf2Om( ID_IPS_OM_MNTN_INFO_CONFIG_CNF,
         sizeof(IPS_OM_MNTN_INFO_CONFIG_CNF_STRU), &stNfExtCfgCnf );
 
@@ -1108,18 +1108,18 @@ STATIC VOS_VOID NFExt_RcvNfExtInfoCfgReq(VOS_VOID *pMsg)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_RcvOmMsg
- 功能描述  : NFExt接收到来自OM模块的消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_RcvOmMsg
+   : NFExtOM
+   : VOS_VOID *pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_RcvOmMsg(VOS_VOID *pMsg)
 {
@@ -1148,11 +1148,11 @@ VOS_VOID NFExt_RcvOmMsg(VOS_VOID *pMsg)
 
 /******************************************************************************
  Prototype       : NFExt_BindToCpu
- Description     : 绑定Task到指定CPU上面
+ Description     : TaskCPU
  Input           :
  Output          : NONE
- Return Value    : PS_SUCC   --- 成功
-                   PS_FAIL   --- 失败
+ Return Value    : PS_SUCC   --- 
+                   PS_FAIL   --- 
  History         :
    1.Date        : 2016-06-16
      Author      :
@@ -1164,10 +1164,10 @@ VOS_VOID NFExt_BindToCpu(VOS_VOID)
     pid_t               target_pid;
     VOS_INT             cpu;
 
-    /* 获取当前线程的Pid */
+    /* Pid */
     target_pid = current->pid;
 
-    /* 获取当前线程的affinity */
+    /* affinity */
     ret = sched_getaffinity(target_pid, &(g_stExEntity.orig_mask));
     if (ret < 0)
     {
@@ -1177,10 +1177,10 @@ VOS_VOID NFExt_BindToCpu(VOS_VOID)
 
     PSACORE_MEM_SET(&(g_stExEntity.curr_mask), cpumask_size(), 0, cpumask_size());
 
-    /* 设置当前线程的affinity */
+    /* affinity */
     for_each_cpu(cpu, &(g_stExEntity.orig_mask))
     {
-        /* 去绑定CPU0 */
+        /* CPU0 */
         if ((0 < cpu) && (cpumask_test_cpu(cpu, &(g_stExEntity.orig_mask))))
         {
             cpumask_set_cpu((unsigned int)cpu, &(g_stExEntity.curr_mask));
@@ -1204,18 +1204,18 @@ VOS_VOID NFExt_BindToCpu(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ProcDataNotify
- 功能描述  : NFExt消息处理
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_ProcDataNotify
+   : NFExt
+   : VOS_VOID *pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_ProcDataNotify(VOS_VOID)
 {
@@ -1235,7 +1235,7 @@ VOS_VOID NFExt_ProcDataNotify(VOS_VOID)
 
     while (!OM_RingBufferIsEmpty(g_stExEntity.pRingBufferId))
     {
-        /* 一次任务调度，最多处理200个勾包 */
+        /* 200 */
         if (NF_ONCE_DEAL_MAX_CNT <= ulDealCntOnce)
         {
             NFExt_SndDataNotify();
@@ -1278,18 +1278,18 @@ VOS_VOID NFExt_ProcDataNotify(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_EventProc
- 功能描述  : NFExt事件处理函数
- 输入参数  : struct MsgCB * pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_EventProc
+   : NFExt
+   : struct MsgCB * pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 STATIC VOS_VOID NFExt_EventProc(VOS_UINT32 ulEvent)
 {
@@ -1302,18 +1302,18 @@ STATIC VOS_VOID NFExt_EventProc(VOS_UINT32 ulEvent)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_MsgProc
- 功能描述  : NFExt可维可测控制消息处理函数
- 输入参数  : struct MsgCB * pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_MsgProc
+   : NFExt
+   : struct MsgCB * pMsg
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_MsgProc( struct MsgCB * pMsg )
 {
@@ -1325,7 +1325,7 @@ VOS_VOID NFExt_MsgProc( struct MsgCB * pMsg )
 
     switch ( pMsg->ulSenderPid )
     {
-        case MSP_PID_DIAG_APP_AGENT:      /* 来自OM的透传消息处理 */
+        case MSP_PID_DIAG_APP_AGENT:      /* OM */
             NFExt_RcvOmMsg( (void *)pMsg );
             break;
 
@@ -1337,18 +1337,18 @@ VOS_VOID NFExt_MsgProc( struct MsgCB * pMsg )
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_FidTask
- 功能描述  : 负责调用OAM消息发送接口，发送消息到SDT
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
+     : NFExt_FidTask
+   : OAMSDT
+   : void
+   : 
+     : void
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : t00148005
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_FidTask(VOS_VOID)
 {
@@ -1389,7 +1389,7 @@ VOS_VOID NFExt_FidTask(VOS_VOID)
             continue;
         }
 
-        /* 事件处理 */
+        /*  */
         if (VOS_MSG_SYNC_EVENT != ulEvent)
         {
             NFExt_EventProc(ulEvent);
@@ -1411,25 +1411,25 @@ VOS_VOID NFExt_FidTask(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_PidInit
- 功能描述  : NFExt_Pid初始化
- 输入参数  : ip - 初始化状态
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
+     : NFExt_PidInit
+   : NFExt_Pid
+   : ip - 
+   : 
+     : VOS_OK, VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_UINT32 NFExt_PidInit( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch ( ip )
     {
         case VOS_IP_LOAD_CONFIG:
-            /* 申请RingBuffer */
+            /* RingBuffer */
             g_stExEntity.pRingBufferId = OM_RingBufferCreate(NF_EXT_RING_BUF_SIZE);
             if ( VOS_NULL_PTR == g_stExEntity.pRingBufferId )
             {
@@ -1437,7 +1437,7 @@ VOS_UINT32 NFExt_PidInit( enum VOS_INIT_PHASE_DEFINE ip )
                 return VOS_ERR;
             }
 
-            /* 初始化锁 */
+            /*  */
             VOS_SpinLockInit(&(g_stExEntity.stLockTxTask));
             break;
 
@@ -1462,18 +1462,18 @@ VOS_UINT32 NFExt_PidInit( enum VOS_INIT_PHASE_DEFINE ip )
 
 
 /*****************************************************************************
- 函 数 名  : NFExt_FidInit
- 功能描述  : NFExt_Fid初始化
- 输入参数  : ip - 初始化状态
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK, 失败VOS_ERR
- 调用函数  :
- 被调函数  :
+     : NFExt_FidInit
+   : NFExt_Fid
+   : ip - 
+   : 
+     : VOS_OK, VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_UINT32 NFExt_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
@@ -1482,14 +1482,14 @@ VOS_UINT32 NFExt_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     switch ( ip )
     {
         case   VOS_IP_LOAD_CONFIG:
-            /* 先完成模块初始化 */
+            /*  */
             if ( 0 != NFExt_Init() )
             {
                 PS_PRINTF("NFExt_FidInit NFExt_Init FAIL!\n");
                 return VOS_ERR;
             }
 
-            /* 可维可测模块注册PID */
+            /* PID */
             ulRslt = VOS_RegisterPIDInfo(ACPU_PID_NFEXT,
                                 (Init_Fun_Type)NFExt_PidInit,
                                 (Msg_Fun_Type)NFExt_MsgProc);

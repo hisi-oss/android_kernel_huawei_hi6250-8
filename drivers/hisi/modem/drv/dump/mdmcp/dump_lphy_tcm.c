@@ -69,16 +69,16 @@
 
 char * lphy_image_ddr_addr = NULL;
 /*****************************************************************************
-* 函 数 名  : dump_save_all_tcm
-* 功能描述  : 保存全部的tcm文件
+*     : dump_save_all_tcm
+*   : tcm
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_all_tcm(char* data,char* dst_path)
@@ -121,16 +121,16 @@ void dump_save_all_tcm(char* data,char* dst_path)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_some_tcm
-* 功能描述  : 保存全部的dtcm和itcm文件
+*     : dump_save_some_tcm
+*   : dtcmitcm
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_some_tcm(char* data,char* dst_path)
@@ -139,7 +139,7 @@ void dump_save_some_tcm(char* data,char* dst_path)
     int ret;
     char file_name[128] = {0};
 
-    /*MBB与PHONE均保存DTCM*/
+    /*MBBPHONEDTCM*/
     /* coverity[HUAWEI DEFECT] */
     memset(file_name, 0, sizeof(file_name));
     /* coverity[HUAWEI DEFECT] */
@@ -162,7 +162,7 @@ void dump_save_some_tcm(char* data,char* dst_path)
 err0:
     bsp_close(fd);
 
-    /*如果是PHONE产品则同时保存LPHY ITCM，MBB受空间限制则只保存DTCM部分*/
+    /*PHONELPHY ITCMMBBDTCM*/
     if(DUMP_PHONE == dump_get_product_type())
     {
         /* coverity[HUAWEI DEFECT] */
@@ -190,16 +190,16 @@ err0:
 
 }
 /*****************************************************************************
-* 函 数 名  : om_save_lphy_tcm
-* 功能描述  : 保存tldsp的镜像
+*     : om_save_lphy_tcm
+*   : tldsp
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 
@@ -236,7 +236,7 @@ void dump_save_lphy_tcm(char * dst_path)
         flag = false;
     }
 
-    /*DSP DDR内存分布参考hi_dsp.h*/
+    /*DSP DDRhi_dsp.h*/
     if(flag == true)
     {
         dump_save_all_tcm(lphy_image_ddr_addr,dst_path);

@@ -48,24 +48,24 @@
 
 /******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
+                   (C), 2001-2012, 
 
  ******************************************************************************
-  文 件 名      : ScAppComm.c
-  版 本 号      : 初稿
-  作    者      : d00212987
-  生成日期      : 2015年08月10日
-  最近修改      :
-  功能描述      : 该C文件给出了ScComm模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2015年08月10日
-    作    者    : d00212987
-    修改内容    : 创建文件
+          : ScAppComm.c
+          : 
+            : d00212987
+        : 20150810
+        :
+        : CScComm
+        :
+        :
+  1.        : 20150810
+            : d00212987
+        : 
 
 ******************************************************************************/
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "vos.h"
 #include "omprivate.h"
@@ -77,13 +77,13 @@
 #define SC_IMEI_LOG_FILE_PATH   "/modem_log/PAM/OAM_IMEI_ACORE_Log.bin"
 
 
-#define   SC_FILE_EXIST_MAGIC       (0x37ab65cd)                                /* SC备份文件存在标记 */
+#define   SC_FILE_EXIST_MAGIC       (0x37ab65cd)                                /* SC */
 
-#define   SC_FILE_PACKET_MAGIC      (0xdeacb589)                                /* SC备份区存在标记 */
+#define   SC_FILE_PACKET_MAGIC      (0xdeacb589)                                /* SC */
 
 #define   SC_LOG_MAX_LEN            (512)
 
-#define   SC_FILE_PATH_LEN          (128)                                       /* SC相关文件路径长度 */
+#define   SC_FILE_PATH_LEN          (128)                                       /* SC */
 
 #define   SC_LOG_FILE_MAX_SIZE      (SC_LOG_MAX_LEN * 100 * 2)                  /* the max size of log file. */
 
@@ -94,36 +94,36 @@
 #define   SC_FILE_EXIST_OK          (0)
 
 /*****************************************************************************
-枚举名    : SC_ERROR_CODE_ENUM
-枚举说明  : SC模块错误码枚举定义
+    : SC_ERROR_CODE_ENUM
+  : SC
 
-  1.日    期   : 2012年4月3日
-    作    者   : w00184875
-    修改内容   : V7R1C51 锁网锁卡项目新增
+  1.       : 201243
+           : w00184875
+       : V7R1C51 
 *****************************************************************************/
 enum SC_ERROR_CODE_ENUM
 {
-    SC_ERROR_CODE_NO_ERROR              = 0,        /*    操作成功 */
-    SC_ERROR_CODE_OPEN_FILE_FAIL,                   /* 1  打开文件失败 */
-    SC_ERROR_CODE_READ_FILE_FAIL,                   /* 2  读取文件失败 */
-    SC_ERROR_CODE_WRITE_FILE_FAIL,                  /* 3  写入文件失败 */
-    SC_ERROR_CODE_ALLOC_MEM_FAIL,                   /* 4 申请内存失败 */
-    SC_ERROR_CODE_SCCONTENT_WRITE_FAIL,             /* 5 SC文件写入备份区失败 */
-    SC_ERROR_CODE_SCBACKUP_READ_FAIL,               /* 6 读取SC备份区失败 */
-    SC_ERROR_CODE_MAGNUM_CMP_FAIL,                  /* 7 比较SC备份区标记失败 */
-    SC_ERROR_CODE_SCFILE_RESTORE_FAIL,              /* 8 SC文件写入使用区失败 */
-    SC_ERROR_CODE_SC_NO_NEED_RESTORE,               /* 9 SC文件不需要恢复 */
+    SC_ERROR_CODE_NO_ERROR              = 0,        /*     */
+    SC_ERROR_CODE_OPEN_FILE_FAIL,                   /* 1   */
+    SC_ERROR_CODE_READ_FILE_FAIL,                   /* 2   */
+    SC_ERROR_CODE_WRITE_FILE_FAIL,                  /* 3   */
+    SC_ERROR_CODE_ALLOC_MEM_FAIL,                   /* 4  */
+    SC_ERROR_CODE_SCCONTENT_WRITE_FAIL,             /* 5 SC */
+    SC_ERROR_CODE_SCBACKUP_READ_FAIL,               /* 6 SC */
+    SC_ERROR_CODE_MAGNUM_CMP_FAIL,                  /* 7 SC */
+    SC_ERROR_CODE_SCFILE_RESTORE_FAIL,              /* 8 SC */
+    SC_ERROR_CODE_SC_NO_NEED_RESTORE,               /* 9 SC */
 
     SC_ERROR_CODE_BUTT
 };
 typedef VOS_UINT32  SC_ERROR_CODE_ENUM_UINT32;
 /*****************************************************************************
- 枚举名    : SC_SECRET_FILE_TYPE_ENUM
- 结构说明  : 指定安全文件的类型
+     : SC_SECRET_FILE_TYPE_ENUM
+   : 
 
-  1.日    期   : 2012年04月07日
-    作    者   : w00184875
-    修改内容   : AP-Modem锁网锁卡项目新增枚举
+  1.       : 20120407
+           : w00184875
+       : AP-Modem
 
 *****************************************************************************/
 enum SC_SECRET_FILE_TYPE_ENUM
@@ -132,18 +132,18 @@ enum SC_SECRET_FILE_TYPE_ENUM
     SC_SECRET_FILE_TYPE_DK              = 0x01,             /* DK-FILE */
     SC_SECRET_FILE_TYPE_AK              = 0x02,             /* AK-FILE */
     SC_SECRET_FILE_TYPE_PI              = 0x03,             /* PI-FILE */
-    SC_SECRET_FILE_TYPE_IMEI_I0         = 0x04,             /* IMEI-FILE 卡0 */
-    SC_SECRET_FILE_TYPE_IMEI_I1         = 0x05,             /* IMEI-FILE 卡1 */
+    SC_SECRET_FILE_TYPE_IMEI_I0         = 0x04,             /* IMEI-FILE 0 */
+    SC_SECRET_FILE_TYPE_IMEI_I1         = 0x05,             /* IMEI-FILE 1 */
 
     SC_SECRET_FILE_TYPE_BUTT
 };
 typedef VOS_UINT8 SC_SECRET_FILE_TYPE_ENUM_UINT8;
 /*****************************************************************************
- 结构名    : SC_COMM_GLOBAL_STRU
- 结构说明  : SC COMM模块运行时全局变量
- 1.日    期   : 2012年04月19日
-   作    者   : w00184875
-   修改内容   : 新建
+     : SC_COMM_GLOBAL_STRU
+   : SC COMM
+ 1.       : 20120419
+          : w00184875
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -153,11 +153,11 @@ typedef struct
 }SC_COMM_GLOBAL_STRU;
 
 /*****************************************************************************
- 结构名    : SC_CONTEXT_STRU
- 结构说明  : SC 模块运行上下文
- 1.日    期   : 2012年04月19日
-   作    者   : w00184875
-   修改内容   : 新建
+     : SC_CONTEXT_STRU
+   : SC 
+ 1.       : 20120419
+          : w00184875
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -188,11 +188,11 @@ static SC_CONTEXT_STRU                  g_stScCtx = {
 };
 
 /*****************************************************************************
- 结构名    : SC_BACKUP_EACH_FILE_INFO_STRU
- 结构说明  : SC每个备份文件的明细
- 1.日    期   : 2014年07月29日
-   作    者   : d00212987
-   修改内容   : 新建
+     : SC_BACKUP_EACH_FILE_INFO_STRU
+   : SC
+ 1.       : 20140729
+          : d00212987
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -203,11 +203,11 @@ typedef struct
 }SC_BACKUP_EACH_FILE_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : SC_BACKUP_FILE_INFO_STRU
- 结构说明  : SC所以文件拼接成一块，统一刷入FLASH
- 1.日    期   : 2014年06月10日
-   作    者   : d00212987
-   修改内容   : 新建
+     : SC_BACKUP_FILE_INFO_STRU
+   : SCFLASH
+ 1.       : 20140610
+          : d00212987
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -218,18 +218,18 @@ typedef struct
 }SC_BACKUP_FILE_INFO_STRU;
 
 /*****************************************************************************
- 函 数 名  : SC_CTX_GetScCtxAddr
- 功能描述  : 获取当前SC的CTX
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回当前SC的CTX地址
- 调用函数  :
- 被调函数  :
+     : SC_CTX_GetScCtxAddr
+   : SCCTX
+   : 
+   : 
+     : SCCTX
+   :
+   :
 
- 修改历史      :
- 1.日    期   : 2012年04月20日
-   作    者   : w00184875
-   修改内容   : 新生成函数
+       :
+ 1.       : 20120420
+          : w00184875
+      : 
 *****************************************************************************/
 SC_CONTEXT_STRU* SC_CTX_GetScCtxAddr(VOS_VOID)
 {
@@ -237,18 +237,18 @@ SC_CONTEXT_STRU* SC_CTX_GetScCtxAddr(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : SC_CTX_GetCommGlobalVarAddr
- 功能描述  : 获取SC公共操作的全局变量地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SC公共操作的全局变量上下文指针
- 调用函数  :
- 被调函数  :
+     : SC_CTX_GetCommGlobalVarAddr
+   : SC
+   : 
+   : 
+     : SC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年04月19日
-    作    者   : w00184875
-    修改内容   : 新生成函数
+       :
+  1.       : 20120419
+           : w00184875
+       : 
 *****************************************************************************/
 SC_COMM_GLOBAL_STRU*  SC_CTX_GetCommGlobalVarAddr( VOS_VOID )
 {
@@ -256,8 +256,8 @@ SC_COMM_GLOBAL_STRU*  SC_CTX_GetCommGlobalVarAddr( VOS_VOID )
 }
 
 /*****************************************************************************
-函 数 名  :SC_Printf
-功能描述  :Log打印,可变参数
+    :SC_Printf
+  :Log,
 *****************************************************************************/
 VOS_VOID SC_Printf(VOS_CHAR *pcData)
 {
@@ -308,18 +308,18 @@ VOS_VOID SC_Printf(VOS_CHAR *pcData)
 }
 
 /*****************************************************************************
-函 数 名  : SC_COMM_CloseAllFile
-功能描述  : SC关闭非空文件
-输入参数  :
+    : SC_COMM_CloseAllFile
+  : SC
+  :
 
-输出参数  :无
-返 回 值  :
+  :
+    :
 
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月5日
-  作    者   : d00212987
-  修改内容   : SC备份到底软NV备份的扩展分区
+  :
+  :
+1.       : 201465
+         : d00212987
+     : SCNV
 *****************************************************************************/
 VOS_VOID SC_COMM_CloseAllFile(FILE *fp[SC_SECRET_FILE_TYPE_BUTT*2])
 {
@@ -340,18 +340,18 @@ VOS_VOID SC_COMM_CloseAllFile(FILE *fp[SC_SECRET_FILE_TYPE_BUTT*2])
 }
 
 /*****************************************************************************
-函 数 名  : SC_COMM_Backup
-功能描述  : SC文件备份到底软SC备份区
-输入参数  :
+    : SC_COMM_Backup
+  : SCSC
+  :
 
-输出参数  : 无
-返 回 值  : VOS_UINT32
+  : 
+    : VOS_UINT32
 
-被调函数  :
-修订记录  :
-1.日    期   : 2014年6月27日
-  作    者   : d00212987
-  修改内容   : SC备份到底软NV备份的扩展分区
+  :
+  :
+1.       : 2014627
+         : d00212987
+     : SCNV
 *****************************************************************************/
 /*lint -e679*/
 VOS_UINT32 SC_COMM_Backup(VOS_VOID)
@@ -381,7 +381,7 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
 
     pstCommGlobal = SC_CTX_GetCommGlobalVarAddr();
 
-    /* 打开SC文件 */
+    /* SC */
     for (i=0; i<SC_SECRET_FILE_TYPE_BUTT; i++)
     {
         fp[i] = mdrv_file_open(pstCommGlobal->acSecretFileName[i], "rb");
@@ -396,7 +396,7 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
         }
     }
 
-    /* 打开签名文件 */
+    /*  */
     for (i=0; i<SC_SECRET_FILE_TYPE_BUTT; i++)
     {
         fp[i+SC_SECRET_FILE_TYPE_BUTT] = mdrv_file_open(pstCommGlobal->acSignFileName[i], "rb");
@@ -411,7 +411,7 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
         }
     }
 
-    /* 计算所有文件大小 */
+    /*  */
     for (i=0; i<SC_SECRET_FILE_TYPE_BUTT*2; i++)
     {
         if (SC_FILE_EXIST_MAGIC != pstFileInfoTemp->astSCEachFileInfo[i].ulFileMagicMUM)
@@ -439,7 +439,7 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
         return SC_ERROR_CODE_ALLOC_MEM_FAIL;
     }
 
-    /* 写内文件头信息 */
+    /*  */
     PAM_MEM_CPY_S((VOS_CHAR*)pstFileInfo,
                   sizeof(SC_BACKUP_FILE_INFO_STRU) - 4 * sizeof(VOS_CHAR),
                   (VOS_CHAR*)pstFileInfoTemp,
@@ -461,7 +461,7 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
 
         if(lReadSize != pstFileInfo->astSCEachFileInfo[i].ulFileLen)
         {
-            /* 读失败，释放句柄和内存*/
+            /* */
             SC_COMM_CloseAllFile(fp);
             (VOS_VOID)VOS_MemFree(ACPU_PID_PAM_OM, pstFileInfo);
 
@@ -472,10 +472,10 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
 
     }
 
-    /* 文件读写完毕，关闭句柄 */
+    /*  */
     SC_COMM_CloseAllFile(fp);
 
-    /* 写入底软SC备份区 */
+    /* SC */
     if (SC_ERROR_CODE_NO_ERROR != mdrv_misc_scbackup_ext_write((VOS_UINT8*)pstFileInfo, pstFileInfo->ulTotaleSize))
     {
         (VOS_VOID)VOS_MemFree(ACPU_PID_PAM_OM, pstFileInfo);
@@ -491,26 +491,26 @@ VOS_UINT32 SC_COMM_Backup(VOS_VOID)
 /*lint +e679*/
 
 /*****************************************************************************
-函 数 名  : SC_COMM_RestoreCheck
-功能描述  : SC文件关键文件是否存在性检查
-输入参数  : 无
+    : SC_COMM_RestoreCheck
+  : SC
+  : 
 
-输出参数  : 无
-返 回 值  : VOS_BOOL
+  : 
+    : VOS_BOOL
 
-被调函数  :
-修订记录  :
-1.日    期   : 2015年8月10日
-  作    者   : d00212987
-  修改内容   : SC恢复前检查
+  :
+  :
+1.       : 2015810
+         : d00212987
+     : SC
 *****************************************************************************/
 VOS_BOOL SC_COMM_RestoreCheck(VOS_VOID)
 {
     SC_COMM_GLOBAL_STRU                *pstCommGlobal;
     VOS_UINT32                          ulCheckStatus = 0;
 
-    /* 说明: 只有关键文件都不存在才执行恢复操作，关键文件暂定 CK-FILE PI-FILE
-              有个例文件丢失正向定位 */
+    /* :  CK-FILE PI-FILE
+               */
 
     pstCommGlobal = SC_CTX_GetCommGlobalVarAddr();
 
@@ -526,7 +526,7 @@ VOS_BOOL SC_COMM_RestoreCheck(VOS_VOID)
 
     if (2 == ulCheckStatus)
     {
-        /* 关键文件都不存在，则执行恢复 */
+        /*  */
         SC_Printf("SC_COMM_RestoreCheck: sc need restore!!\r\n");
 
         return VOS_TRUE;
@@ -536,18 +536,18 @@ VOS_BOOL SC_COMM_RestoreCheck(VOS_VOID)
 }
 
 /*****************************************************************************
-函 数 名  : SC_COMM_WriteScFile
-功能描述  : SC文件写入使用区
-输入参数  : 无
+    : SC_COMM_WriteScFile
+  : SC
+  : 
 
-输出参数  : 无
-返 回 值  : VOS_INT
+  : 
+    : VOS_INT
 
-被调函数  :
-修订记录  :
-1.日    期   : 2015年8月10日
-  作    者   : d00212987
-  修改内容   : SC文件恢复到使用分区
+  :
+  :
+1.       : 2015810
+         : d00212987
+     : SC
 *****************************************************************************/
 VOS_UINT32 SC_COMM_WriteScFile(SC_BACKUP_FILE_INFO_STRU     *pstFileInfo)
 {
@@ -557,13 +557,13 @@ VOS_UINT32 SC_COMM_WriteScFile(SC_BACKUP_FILE_INFO_STRU     *pstFileInfo)
 
     for (i=0; i<(SC_SECRET_FILE_TYPE_BUTT * 2); i++)
     {
-         /* 判断魔术数字是否正确 */
+         /*  */
         if (SC_FILE_EXIST_MAGIC != pstFileInfo->astSCEachFileInfo[i].ulFileMagicMUM)
         {
             continue;
         }
 
-        /* 写文件 */
+        /*  */
         fp = mdrv_file_open(pstFileInfo->astSCEachFileInfo[i].acFilePath, "wb+");
 
         if (VOS_NULL_PTR == fp)
@@ -592,18 +592,18 @@ VOS_UINT32 SC_COMM_WriteScFile(SC_BACKUP_FILE_INFO_STRU     *pstFileInfo)
 }
 
 /*****************************************************************************
-函 数 名  : SC_COMM_Restore
-功能描述  : SC文件恢复
-输入参数  : 无
+    : SC_COMM_Restore
+  : SC
+  : 
 
-输出参数  : 无
-返 回 值  : VOS_UINT32
+  : 
+    : VOS_UINT32
 
-被调函数  :
-修订记录  :
-1.日    期   : 2015年8月10日
-  作    者   : d00212987
-  修改内容   : SC文件恢复到使用分区
+  :
+  :
+1.       : 2015810
+         : d00212987
+     : SC
 *****************************************************************************/
 VOS_UINT32 SC_COMM_Restore(VOS_VOID)
 {
@@ -639,7 +639,7 @@ VOS_UINT32 SC_COMM_Restore(VOS_VOID)
         return SC_ERROR_CODE_SCBACKUP_READ_FAIL;
     }
 
-    /* 判断魔术数字是否正确 */
+    /*  */
     if (SC_FILE_PACKET_MAGIC != pstFileInfoTemp->ulBackMagicMUM)
     {
         (VOS_VOID)VOS_MemFree(ACPU_PID_PAM_OM, pstFileInfoTemp);
@@ -649,7 +649,7 @@ VOS_UINT32 SC_COMM_Restore(VOS_VOID)
         return SC_ERROR_CODE_MAGNUM_CMP_FAIL;
     }
 
-    /* 判断目标文件夹是否存在 */
+    /*  */
     if (SC_ERROR_CODE_NO_ERROR != mdrv_file_access("/mnvm2:0/SC", SC_FILE_EXIST_OK))
     {
         (VOS_VOID)mdrv_file_mkdir("/mnvm2:0/SC");
@@ -660,7 +660,7 @@ VOS_UINT32 SC_COMM_Restore(VOS_VOID)
         (VOS_VOID)mdrv_file_mkdir("/mnvm2:0/SC/Pers");
     }
 
-    /* 根据长度申请内存 */
+    /*  */
     pstFileInfo = (SC_BACKUP_FILE_INFO_STRU*)VOS_MemAlloc(ACPU_PID_PAM_OM,
                                                           DYNAMIC_MEM_PT,
                                                           pstFileInfoTemp->ulTotaleSize);
@@ -673,7 +673,7 @@ VOS_UINT32 SC_COMM_Restore(VOS_VOID)
         return SC_ERROR_CODE_ALLOC_MEM_FAIL;
     }
 
-    /* 读取全部内容 */
+    /*  */
     if (VOS_OK != mdrv_misc_scbackup_ext_read((VOS_UINT8*)pstFileInfo, pstFileInfoTemp->ulTotaleSize))
     {
         (VOS_VOID)VOS_MemFree(ACPU_PID_PAM_OM, pstFileInfoTemp);

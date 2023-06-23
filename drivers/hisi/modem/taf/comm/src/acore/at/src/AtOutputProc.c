@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "ATCmdProc.h"
 #include "AtCheckFunc.h"
@@ -62,15 +62,15 @@
 
 
  /*****************************************************************************
-   2 结构定义
+   2 
  *****************************************************************************/
 
 /*****************************************************************************
-   2 全局变量定义
+   2 
 *****************************************************************************/
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AT_OUTPUTPROC_C
 
@@ -217,7 +217,7 @@ const AT_RETURN_TAB_TYPE_STRU gastAtReturnCodeTab[]=
     {AT_CME_OPERATION_NOT_ALLOWED_IN_CL_MODE,              {(VOS_UINT8*)"718", (VOS_UINT8*)"operation not allowed in CL mode"                }  },
     {AT_CME_ERROR_ENUM_END,                                {TAF_NULL_PTR,       TAF_NULL_PTR                 }  },
 
-    /*装备AT命令错误码提示*/
+    /*AT*/
     {AT_DEVICE_ERROR_BEGIN,                                {VOS_NULL_PTR   ,VOS_NULL_PTR                                     }  },
     {AT_DEVICE_MODE_ERROR,                                 {(VOS_UINT8*)"0", (VOS_UINT8*)"Mode Error"                        }  },
     {AT_FCHAN_BAND_NOT_MATCH,                              {(VOS_UINT8*)"1", (VOS_UINT8*)"Band not match"                    }  },
@@ -412,7 +412,7 @@ const AT_RETURN_TAB_TYPE_STRU gastAtReturnCodeTab[]=
 
 };
 
-/*速率气泡显示的速率表数组,由于是遵照CONNECT <Rate>的格式，故预留一个空格*/
+/*,CONNECT <Rate>*/
 const TAF_CHAR   *g_PppDialRateDisplay[] =
 {
     " 9600",
@@ -433,7 +433,7 @@ const TAF_CHAR   *g_PppDialRateDisplay[] =
     " 86400000"
 };
 
-/*速率气泡显示的速率表数组,NV定制值*/
+/*,NV*/
 const VOS_CHAR   *g_ucDialRateDisplayNv[] =
 {
     " 53600",
@@ -444,40 +444,40 @@ const VOS_CHAR   *g_ucDialRateDisplayNv[] =
     " 7200000",
 };
 
-/*速率气泡显示的速率表数组,NV定制值*/
+/*,NV*/
 const AT_DISPLAY_RATE_PAIR_STRU         g_ucLTERateDisplay[AT_UE_LTE_CATEGORY_NUM_MAX] =
 {
-    {" 1000000",    " 1000000"  },                                              /* category0上下行理论最大速率 */
-    {" 10000000",   " 5000000"  },                                              /* category1上下行理论最大速率 */
-    {" 50000000",   " 25000000" },                                              /* category2上下行理论最大速率 */
-    {" 100000000",  " 50000000" },                                              /* category3上下行理论最大速率 */
-    {" 150000000",  " 50000000" },                                              /* category4上下行理论最大速率 */
-    {" 300000000",  " 75000000" },                                              /* category5上下行理论最大速率 */
-    {" 300000000",  " 50000000" },                                              /* category6上下行理论最大速率 */
-    {" 300000000",  " 100000000"},                                              /* category7上下行理论最大速率 */
-    {" 3000000000", " 1500000000"},                                             /* category8上下行理论最大速率 */
-    {" 450000000",  " 50000000"},                                               /* category9上下行理论最大速率 */
-    {" 450000000",  " 100000000"},                                              /* category10上下行理论最大速率 */
-    {" 600000000",  " 50000000"},                                               /* category11上下行理论最大速率 */
-    {" 600000000",  " 100000000"},                                              /* category12上下行理论最大速率 */
-    {" 390000000",  " 150000000"},                                              /* category13上下行理论最大速率 */
-    {" 3900000000", " 9500000000"},                                             /* category14上下行理论最大速率 */
-    {" 750000000",  " 0"},                                                      /* category15上下行理论最大速率 */
-    {" 980000000",  " 0"},                                                      /* category16上下行理论最大速率 */
-    {" 25000000000"," 0"},                                                      /* category17上下行理论最大速率 */
+    {" 1000000",    " 1000000"  },                                              /* category0 */
+    {" 10000000",   " 5000000"  },                                              /* category1 */
+    {" 50000000",   " 25000000" },                                              /* category2 */
+    {" 100000000",  " 50000000" },                                              /* category3 */
+    {" 150000000",  " 50000000" },                                              /* category4 */
+    {" 300000000",  " 75000000" },                                              /* category5 */
+    {" 300000000",  " 50000000" },                                              /* category6 */
+    {" 300000000",  " 100000000"},                                              /* category7 */
+    {" 3000000000", " 1500000000"},                                             /* category8 */
+    {" 450000000",  " 50000000"},                                               /* category9 */
+    {" 450000000",  " 100000000"},                                              /* category10 */
+    {" 600000000",  " 50000000"},                                               /* category11 */
+    {" 600000000",  " 100000000"},                                              /* category12 */
+    {" 390000000",  " 150000000"},                                              /* category13 */
+    {" 3900000000", " 9500000000"},                                             /* category14 */
+    {" 750000000",  " 0"},                                                      /* category15 */
+    {" 980000000",  " 0"},                                                      /* category16 */
+    {" 25000000000"," 0"},                                                      /* category17 */
 };
 
 
 
 /*****************************************************************************
-   3 函数、变量声明
+   3 
 *****************************************************************************/
-/* Modified by L60609 for AT Project，2011-10-20,  Begin*/
-/* Modified by L60609 for AT Project，2011-10-20,  Begin*/
+/* Modified by L60609 for AT Project2011-10-20,  Begin*/
+/* Modified by L60609 for AT Project2011-10-20,  Begin*/
 
 
 /*****************************************************************************
-   4 函数实现
+   4 
 *****************************************************************************/
 
 /*****************************************************************************
@@ -485,8 +485,8 @@ const AT_DISPLAY_RATE_PAIR_STRU         g_ucLTERateDisplay[AT_UE_LTE_CATEGORY_NU
  Description    :
  Input          : ---
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -494,52 +494,52 @@ const AT_DISPLAY_RATE_PAIR_STRU         g_ucLTERateDisplay[AT_UE_LTE_CATEGORY_NU
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 直接调用DRV/DMS向端口发送数据
-  4.日    期   : 2011年10月19日
-    作    者   : S62952
-    修改内容   : AT Project: 修改modem口方式接口
-  5.日    期   : 2012年02月14日
-    作    者   : l00171473
-    修改内容   : DTS2012021405602,删掉对AT_APP_SOCK_PORT_NO端口的AT上报
-  6.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:新增HSIC AT通道的发送数据逻辑
-  7.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : MUX：增加mux通道处理
-  8.日    期   : 2012年11月29日
-    作    者   : l00227485
-    修改内容   : DSDA PHASE1, 修改VCOM接口
-  9.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : BodySAR项目
- 10.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
- 11.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
+  3.       : 2011103
+           : /l60609
+       : AT Project: DRV/DMS
+  4.       : 20111019
+           : S62952
+       : AT Project: modem
+  5.       : 20120214
+           : l00171473
+       : DTS2012021405602,AT_APP_SOCK_PORT_NOAT
+  6.       : 2012224
+           : L47619
+       : V7R1C50 IPC:HSIC AT
+  7.       : 201286
+           : l60609
+       : MUXmux
+  8.       : 20121129
+           : l00227485
+       : DSDA PHASE1, VCOM
+  9.       : 20130313
+           : z00214637
+       : BodySAR
+ 10.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
+ 11.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 TAF_UINT32 At_SendData(TAF_UINT8 ucIndex,TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
 {
 
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     VOS_UINT32                          ulHsicUserFlg;
     VOS_UINT32                          ulMuxUserFlg;
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
     ulMuxUserFlg  = AT_CheckMuxUser(ucIndex);
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
-    /* 检查 输入参数，如果失败，返回错误； */
-    /* 根据当前用户业务类型，把数据发送到指定的接口 */
+    /*   */
+    /*  */
     if (AT_MAX_CLIENT_NUM <= ucIndex)
     {
         return AT_FAILURE;
@@ -569,32 +569,32 @@ TAF_UINT32 At_SendData(TAF_UINT8 ucIndex,TAF_UINT8 ucType,TAF_UINT8* pData,TAF_U
     {
         if (AT_USBCOM_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /*向USB COM口发送数据*/
-            /* Modified by L60609 for AT Project，2011-10-15,  Begin*/
+            /*USB COM*/
+            /* Modified by L60609 for AT Project2011-10-15,  Begin*/
             DMS_COM_SEND(AT_USB_COM_PORT_NO, pData, usLen);
             AT_MNTN_TraceCmdResult(ucIndex, pData, usLen);
-            /* Modified by L60609 for AT Project，2011-10-15,  End*/
+            /* Modified by L60609 for AT Project2011-10-15,  End*/
             return AT_SUCCESS;
         }
-        /* 向VCOM口发送数据 */
+        /* VCOM */
         else if (AT_APP_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* Modified by L60609 for AT Project，2011-10-18,  Begin*/
-            /* Modified by l00227485 for DSDA Phase I，2012-11-28, Begin */
+            /* Modified by L60609 for AT Project2011-10-18,  Begin*/
+            /* Modified by l00227485 for DSDA Phase I2012-11-28, Begin */
             APP_VCOM_Send(gastAtClientTab[ucIndex].ucPortNo, pData, usLen);
-            /* Modified by l00227485 for DSDA Phase I，2012-11-28, End */
+            /* Modified by l00227485 for DSDA Phase I2012-11-28, End */
             return AT_SUCCESS;
-            /* Modified by L60609 for AT Project，2011-10-18,  End*/
+            /* Modified by L60609 for AT Project2011-10-18,  End*/
         }
         else if (AT_SOCK_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* Modified by L60609 for AT Project，2011-10-18,  Begin*/
+            /* Modified by L60609 for AT Project2011-10-18,  Begin*/
             if (BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
             {
                 CPM_ComSend(CPM_AT_COMM, pData, VOS_NULL_PTR, usLen);
                 return AT_SUCCESS;
             }
-            /* Modified by L60609 for AT Project，2011-10-18,  End*/
+            /* Modified by L60609 for AT Project2011-10-18,  End*/
          }
         else if (AT_CTR_USER == gastAtClientTab[ucIndex].UserType)
         {
@@ -609,32 +609,32 @@ TAF_UINT32 At_SendData(TAF_UINT8 ucIndex,TAF_UINT8 ucType,TAF_UINT8* pData,TAF_U
             AT_MNTN_TraceCmdResult(ucIndex, pData, usLen);
             return AT_SUCCESS;
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
+        /* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
         else if (AT_MODEM_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* Modified by S62952 for AT Project，2011-10-18,  Begin*/
+            /* Modified by S62952 for AT Project2011-10-18,  Begin*/
             return AT_SendDataToModem(ucIndex, pData, usLen);
-            /* Modified by S62952 for AT Project，2011-10-18,  END*/
+            /* Modified by S62952 for AT Project2011-10-18,  END*/
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
+        /* Modified by s62952 for BalongV300R002 Build 2012-02-28, end */
         else if (AT_NDIS_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* NDIS AT口目前实现中暂无数据发送,若从该口发送数据,则3直接返回AT_FAILURE */
+            /* NDIS AT,,3AT_FAILURE */
             return AT_FAILURE;
         }
-        /* Modified by L60609 for MUX，2012-08-13,  Begin */
+        /* Modified by L60609 for MUX2012-08-13,  Begin */
         else if (VOS_TRUE == ulHsicUserFlg)
-        /* Modified by L60609 for MUX，2012-08-13,  End */
+        /* Modified by L60609 for MUX2012-08-13,  End */
         {
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  Begin */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  End */
         }
-        /* Added by L60609 for MUX，2012-08-06,  Begin */
+        /* Added by L60609 for MUX2012-08-06,  Begin */
         else if (VOS_TRUE == ulMuxUserFlg)
         {
             return AT_SendMuxResultData(ucIndex, pData, usLen);
         }
-        /* Added by L60609 for MUX，2012-08-06,  End */
+        /* Added by L60609 for MUX2012-08-06,  End */
         else
         {
             return AT_FAILURE;
@@ -647,60 +647,60 @@ TAF_UINT32 At_SendData(TAF_UINT8 ucIndex,TAF_UINT8 ucType,TAF_UINT8* pData,TAF_U
 
 
 /*****************************************************************************
- 函 数 名  : AT_DisplayResultData
- 功能描述  : 将Taf返回的AT命令数据分发给相应的端口
- 输入参数  : TAF_UINT16  usLen 数据长度
-             TAF_UINT8   ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_DisplayResultData
+   : TafAT
+   : TAF_UINT16  usLen 
+             TAF_UINT8   ucIndex 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年3月10日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 2010310
+           : s62952
+       : 
 
-  2.日    期   : 2011年02月24日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011022404828，MODEM口下发AT命令，返回结果不完整
+  2.       : 20110224
+           : A00165503
+       : : DTS2011022404828MODEMAT
 
-  3.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 直接调用DRV_COM_SEND向端口发送数据
-  4.日    期   : 2011年10月19日
-    作    者   : S62952
-    修改内容   : AT Project: 修改modem口方式接口
-  5.日    期   : 2011年12月7日
-    作    者   : 李军 l00171473
-    修改内容   : DTS2011120801675，UART通道校准修改
-  6.日    期   : 2012年02月14日
-    作    者   : l00171473
-    修改内容   : DTS2012021405602,删掉对AT_APP_SOCK_PORT_NO端口的AT上报
-  7.日    期   : 2012年02月24日
-    作    者   : w00181244
-    修改内容   : DTS2012021305344,删掉对PCUI/control/FEATURE_NDIS端口的消息打印
-  8.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:新增HSIC AT通道发送AT回复的处理逻辑
-  9.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : MUX：增加mux通道处理
- 10.日    期   : 2012年11月29日
-    作    者   : l00227485
-    修改内容   : DSDA PHASE1, 修改VCOM接口
- 11.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
- 12.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : BodySAR项目
- 13.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
- 14.日    期   : 2013年9月25日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加HSUART端口处理
+  3.       : 2011103
+           : /l60609
+       : AT Project: DRV_COM_SEND
+  4.       : 20111019
+           : S62952
+       : AT Project: modem
+  5.       : 2011127
+           :  l00171473
+       : DTS2011120801675UART
+  6.       : 20120214
+           : l00171473
+       : DTS2012021405602,AT_APP_SOCK_PORT_NOAT
+  7.       : 20120224
+           : w00181244
+       : DTS2012021305344,PCUI/control/FEATURE_NDIS
+  8.       : 2012224
+           : L47619
+       : V7R1C50 IPC:HSIC ATAT
+  9.       : 201286
+           : l60609
+       : MUXmux
+ 10.       : 20121129
+           : l00227485
+       : DSDA PHASE1, VCOM
+ 11.       : 20121211
+           : l00167671
+       : DTS2012121802573, TQE
+ 12.       : 20130313
+           : z00214637
+       : BodySAR
+ 13.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
+ 14.       : 2013925
+           : j00174725
+       : UART-MODEM: HSUART
 *****************************************************************************/
 VOS_VOID  AT_DisplayResultData (
     VOS_UINT8                           ucIndex,
@@ -708,17 +708,17 @@ VOS_VOID  AT_DisplayResultData (
 )
 {
 
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     VOS_UINT32                          ulHsicUserFlg;
     VOS_UINT32                          ulMuxUserFlg;
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
     ulMuxUserFlg  = AT_CheckMuxUser(ucIndex);
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
-    /*如果是数传状态，直接返回*/
+    /**/
     if (AT_DATA_START_STATE == gastAtClientTab[ucIndex].DataState)
     {
         AT_LOG1("At_SendResultData DataState:",gastAtClientTab[ucIndex].DataState);
@@ -731,14 +731,14 @@ VOS_VOID  AT_DisplayResultData (
         gastAtClientTab[ucIndex].DataState = AT_DATA_START_STATE;
     }
 
-    /*选择PCUI口*/
+    /*PCUI*/
     if (AT_USBCOM_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /*向USB COM口发送数据*/
+        /*USB COM*/
         DMS_COM_SEND(AT_USB_COM_PORT_NO, gstAtSendDataBuffer, usLen);
     }
 
-    /*选择control口*/
+    /*control*/
     else if (AT_CTR_USER == gastAtClientTab[ucIndex].UserType)
     {
 
@@ -748,18 +748,18 @@ VOS_VOID  AT_DisplayResultData (
     {
         DMS_COM_SEND(AT_PCUI2_PORT_NO, gstAtSendDataBuffer, usLen);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
-    /*选择MODEM口*/
+    /* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
+    /*MODEM*/
     else if (AT_MODEM_USER == gastAtClientTab[ucIndex].UserType)
     {
         AT_SendDataToModem(ucIndex, gstAtSendDataBuffer, usLen);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
+    /* Modified by s62952 for BalongV300R002 Build 2012-02-28, end */
     else if (AT_APP_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /* Modified by l00227485 for DSDA Phase I，2012-11-28, Begin */
+        /* Modified by l00227485 for DSDA Phase I2012-11-28, Begin */
         APP_VCOM_Send(gastAtClientTab[ucIndex].ucPortNo, gstAtSendDataBuffer, usLen);
-        /* Modified by l00227485 for DSDA Phase I，2012-11-28, End */
+        /* Modified by l00227485 for DSDA Phase I2012-11-28, End */
     }
     else if (AT_SOCK_USER == gastAtClientTab[ucIndex].UserType)
     {
@@ -776,19 +776,19 @@ VOS_VOID  AT_DisplayResultData (
     {
         AT_UART_SendDlData(ucIndex, gstAtSendDataBuffer, usLen);
     }
-    /* Modified by L60609 for MUX，2012-08-13,  Begin */
+    /* Modified by L60609 for MUX2012-08-13,  Begin */
     else if(VOS_TRUE == ulHsicUserFlg)
-    /* Modified by L60609 for MUX，2012-08-13,  End */
+    /* Modified by L60609 for MUX2012-08-13,  End */
     {
-        /* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
-        /* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
+        /* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  Begin */
+        /* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  End */
     }
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     else if (VOS_TRUE == ulMuxUserFlg)
     {
         AT_SendMuxResultData(ucIndex, gstAtSendDataBuffer, usLen);
     }
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
     else
     {
         ;
@@ -798,57 +798,57 @@ VOS_VOID  AT_DisplayResultData (
 }
 
 /*****************************************************************************
- 函 数 名  : AT_DisplaySelResultData
- 功能描述  : 将Taf返回的AT命令数据分发给相应的端口
- 输入参数  : TAF_UINT16  usLen 数据长度
-             TAF_UINT8   ucIndex 索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_DisplaySelResultData
+   : TafAT
+   : TAF_UINT16  usLen 
+             TAF_UINT8   ucIndex 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年3月10日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 2010310
+           : s62952
+       : 
 
-  2.日    期   : 2011年02月24日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011022404828，MODEM口下发AT命令，返回结果不完整
+  2.       : 20110224
+           : A00165503
+       : : DTS2011022404828MODEMAT
 
-  3.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 直接调用DRV_COM_SEND向AT_USB_COM_PORT_NO发送数据
-  4.日    期   : 2011年10月19日
-    作    者   : S62952
-    修改内容   : AT Project: 修改modem口方式接口
-  5.日    期   : 2012年02月14日
-    作    者   : l00171473
-    修改内容   : DTS2012021405602,删掉对AT_APP_SOCK_PORT_NO端口的AT上报
-  6.日    期   : 2012年02月24日
-    作    者   : w00181244
-    修改内容   : DTS2012021305344,删掉对PCUI/control/FEATURE_NDIS端口的消息打印,修改对ctrl口的上报
-  7.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:新增HSIC AT通道处理AT主动上报的逻辑
-  8.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : MUX：增加mux通道处理
-  9.日    期   : 2012年11月29日
-    作    者   : l00227485
-    修改内容   : DSDA PHASE1, 修改VCOM接口
- 10.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
- 11.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
- 12.日    期   : 2013年9月25日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加HSUART端口处理
- 13.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  3.       : 2011103
+           : /l60609
+       : AT Project: DRV_COM_SENDAT_USB_COM_PORT_NO
+  4.       : 20111019
+           : S62952
+       : AT Project: modem
+  5.       : 20120214
+           : l00171473
+       : DTS2012021405602,AT_APP_SOCK_PORT_NOAT
+  6.       : 20120224
+           : w00181244
+       : DTS2012021305344,PCUI/control/FEATURE_NDIS,ctrl
+  7.       : 2012224
+           : L47619
+       : V7R1C50 IPC:HSIC ATAT
+  8.       : 201286
+           : l60609
+       : MUXmux
+  9.       : 20121129
+           : l00227485
+       : DSDA PHASE1, VCOM
+ 10.      : 20130313
+          : z00214637
+      : BodySAR
+ 11.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
+ 12.       : 2013925
+           : j00174725
+       : UART-MODEM: HSUART
+ 13.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID AT_DisplaySelResultData(
     VOS_UINT16                          usLen,
@@ -856,15 +856,15 @@ VOS_VOID AT_DisplaySelResultData(
 )
 {
     VOS_UINT8                           ucLoop;
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     VOS_UINT32                          ulHsicUserFlg;
     VOS_UINT32                          ulMuxUserFlg;
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
-    /* Added by L60609 for MUX，2012-08-06,  Begin */
+    /* Added by L60609 for MUX2012-08-06,  Begin */
     ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
     ulMuxUserFlg  = AT_CheckMuxUser(ucIndex);
-    /* Added by L60609 for MUX，2012-08-06,  End */
+    /* Added by L60609 for MUX2012-08-06,  End */
 
     /* Added by S62952 for IPV6, 2011-07-19, begin */
 
@@ -873,7 +873,7 @@ VOS_VOID AT_DisplaySelResultData(
     {
         if (AT_USBCOM_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* 选择PCUI口 */
+            /* PCUI */
             if (0 == gucAtPortSel)
             {
                 DMS_COM_SEND(AT_USB_COM_PORT_NO, gstAtSendDataBuffer, usLen);
@@ -882,7 +882,7 @@ VOS_VOID AT_DisplaySelResultData(
         else if (AT_CTR_USER == gastAtClientTab[ucIndex].UserType)
         {
 
-             /* 选择control口 */
+             /* control */
             if (0 == gucAtPortSel)
             {
                 DMS_COM_SEND(AT_CTR_PORT_NO, gstAtSendDataBuffer, usLen);
@@ -890,7 +890,7 @@ VOS_VOID AT_DisplaySelResultData(
         }
         else if (AT_PCUI2_USER == gastAtClientTab[ucIndex].UserType)
         {
-             /* 选择PCUI2口 */
+             /* PCUI2 */
             if (0 == gucAtPortSel)
             {
                 DMS_COM_SEND(AT_PCUI2_PORT_NO, gstAtSendDataBuffer, usLen);
@@ -898,52 +898,52 @@ VOS_VOID AT_DisplaySelResultData(
         }
         else if (AT_MODEM_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* 选择modem口 */
+            /* modem */
             if (1 == gucAtPortSel)
             {
-                /* Modified by S62952 for AT Project，2011-10-18,  Begin*/
+                /* Modified by S62952 for AT Project2011-10-18,  Begin*/
                 AT_SendDataToModem(ucIndex, gstAtSendDataBuffer, usLen);
-                /* Modified by S62952 for AT Project，2011-10-18,  END*/
+                /* Modified by S62952 for AT Project2011-10-18,  END*/
             }
         }
         else if (AT_APP_USER == gastAtClientTab[ucIndex].UserType)
         {
-            /* Modified by L60609 for AT Project，2011-10-18,  Begin*/
-            /* Modified by l00227485 for DSDA Phase I，2012-11-28, Begin */
+            /* Modified by L60609 for AT Project2011-10-18,  Begin*/
+            /* Modified by l00227485 for DSDA Phase I2012-11-28, Begin */
             APP_VCOM_Send(gastAtClientTab[ucIndex].ucPortNo, gstAtSendDataBuffer, usLen);
-            /* Modified by l00227485 for DSDA Phase I，2012-11-28, End */
-            /* Modified by L60609 for AT Project，2011-10-18,  end*/
+            /* Modified by l00227485 for DSDA Phase I2012-11-28, End */
+            /* Modified by L60609 for AT Project2011-10-18,  end*/
         }
         else if (AT_SOCK_USER == gastAtClientTab[ucIndex].UserType)
         {
             if (BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
             {
-            /* Modified by L60609 for AT Project，2011-10-18,  Begin*/
+            /* Modified by L60609 for AT Project2011-10-18,  Begin*/
                 CPM_ComSend(CPM_AT_COMM, gstAtSendDataBuffer, VOS_NULL_PTR, usLen);
-            /* Modified by L60609 for AT Project，2011-10-18,  End*/
+            /* Modified by L60609 for AT Project2011-10-18,  End*/
             }
         }
         else if (AT_NDIS_USER == gastAtClientTab[ucIndex].UserType)
         {
             DMS_COM_SEND(AT_NDIS_PORT_NO,gstAtSendDataBuffer, (VOS_UINT32)usLen);
         }
-        /* Modified by L60609 for MUX，2012-08-13,  Begin */
+        /* Modified by L60609 for MUX2012-08-13,  Begin */
         else if (VOS_TRUE == ulHsicUserFlg)
-        /* Modified by L60609 for MUX，2012-08-13,  End */
+        /* Modified by L60609 for MUX2012-08-13,  End */
         {
-            /* 判断是否允许从该HSIC AT端口主动上报AT命令 */
+            /* HSIC ATAT */
             for (ucLoop = 0; ucLoop < AT_HSIC_AT_CHANNEL_MAX; ucLoop++)
             {
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  Begin */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  End */
             }
         }
-        /* Added by L60609 for MUX，2012-08-06,  Begin */
+        /* Added by L60609 for MUX2012-08-06,  Begin */
         else if (VOS_TRUE == ulMuxUserFlg)
         {
             AT_SendMuxSelResultData(ucIndex, gstAtSendDataBuffer, usLen);
         }
-        /* Added by L60609 for MUX，2012-08-06,  End */
+        /* Added by L60609 for MUX2012-08-06,  End */
         else
         {
             ;
@@ -954,26 +954,26 @@ VOS_VOID AT_DisplaySelResultData(
 }
 
 /*****************************************************************************
- 函 数 名  : At_BufferorSendResultData
- 功能描述  : 缓存待发送数据到组合AT命令发送缓存
- 输入参数  : VOS_UINT8  ucIndex     用户索引
-             VOS_UINT8  *pucData    待发送字符串首指针
-             VOS_UINT16 usLength    待发送字符串长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : At_BufferorSendResultData
+   : AT
+   : VOS_UINT8  ucIndex     
+             VOS_UINT8  *pucData    
+             VOS_UINT16 usLength    
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年12月20日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，支持+COPN命令
-  3.日    期   : 2014年01月15日
-    作    者   : f62575
-    修改内容   : DTS2014011301359，+CPOL命令支持超过37个UPLMN
+       :
+  1.       : 20101220
+           : /f62575
+       : 
+  2.       : 20130506
+           : f62575
+       : SS FDN&Call Control+COPN
+  3.       : 20140115
+           : f62575
+       : DTS2014011301359+CPOL37UPLMN
 *****************************************************************************/
 VOS_VOID At_BufferorSendResultData(
     VOS_UINT8                           ucIndex,
@@ -991,7 +991,7 @@ VOS_VOID At_BufferorSendResultData(
 
     ulBufferLength = gstAtCombineSendData[ucIndex].usBufLen + usLength;
 
-    /* 若缓冲区存储空间不够用则将当前已缓存信息输出 */
+    /*  */
     /* Modified by f62575 for SS FDN&Call Control, 2013-05-06, begin */
     if (ulBufferLength > AT_CMD_OUTPUT_MAX_LEN)
     /* Modified by f62575 for SS FDN&Call Control, 2013-05-06, end */
@@ -1002,7 +1002,7 @@ VOS_VOID At_BufferorSendResultData(
         gstAtCombineSendData[ucIndex].usBufLen = 0;
     }
 
-    /* 缓存待输出的新数据 */
+    /*  */
     pBuffer = gstAtCombineSendData[ucIndex].aucBuffer + gstAtCombineSendData[ucIndex].usBufLen;
     TAF_MEM_CPY_S(pBuffer, AT_CMD_MAX_LEN + 20 - gstAtCombineSendData[ucIndex].usBufLen, pucData, usLength);
     gstAtCombineSendData[ucIndex].usBufLen += usLength;
@@ -1011,24 +1011,24 @@ VOS_VOID At_BufferorSendResultData(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendBroadCastResultData
- 功能描述  : 发送广播数据给上层模块
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_SendBroadCastResultData
+   : 
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年12月17日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20121217
+           : l60609
+       : 
 
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID AT_SendBroadCastResultData(
     VOS_UINT8                           ucIndex,
@@ -1066,13 +1066,13 @@ VOS_VOID AT_SendBroadCastResultData(
         pstAtClientCtx = AT_GetClientCtxAddr(ucCount);
         /* Modified by l60609 for DSDA Phase III, 2013-2-21, End */
 
-        /* 该端口未使用 */
+        /*  */
         if (AT_CLIENT_NULL == gastAtClientTab[ucCount].ucUsed)
         {
             continue;
         }
 
-        /* 该端口不允许上报 */
+        /*  */
         if (VOS_FALSE == pstAtClientCtx->stClientConfiguration.ucReportFlg)
         {
             continue;
@@ -1085,7 +1085,7 @@ VOS_VOID AT_SendBroadCastResultData(
             continue;
         }
 
-        /* 判断该端口是否属于要广播的Modem */
+        /* Modem */
         if (enBroadCastModemId != enCurModemId)
         {
             continue;
@@ -1093,7 +1093,7 @@ VOS_VOID AT_SendBroadCastResultData(
 
         if (AT_IND_MODE == gastAtClientTab[ucCount].IndMode)
         {
-            /*为了保证发送的数据是4字节对齐格式，故做一次拷贝*/
+            /*4*/
             TAF_MEM_CPY_S(gstAtSendDataBuffer, AT_CMD_MAX_LEN, pData, usLen);
             AT_DisplaySelResultData(usLen, ucCount);
         }
@@ -1103,10 +1103,10 @@ VOS_VOID AT_SendBroadCastResultData(
 
 /*****************************************************************************
  Prototype      : At_SendResultData
- Description    : 发送Taf反馈AT命令的数据给APP
- Input          : ucIndex --- 用户索引
-                  pData   --- 数据
-                  usLen   --- 长度
+ Description    : TafATAPP
+ Input          : ucIndex --- 
+                  pData   --- 
+                  usLen   --- 
  Output         : ---
  Return Value   : ---
  Calls          : ---
@@ -1116,25 +1116,25 @@ VOS_VOID AT_SendBroadCastResultData(
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期   : 2007-03-27
-    作    者   : h59254
-    修改内容   : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期   : 2010年3月30日
-    作    者   : s62952
-    修改内容   : 根据问题单AT2D18046修改
-  4.日    期   : 2012年8月23日
-    作    者   : z60575
-    修改内容   : 合入北京AT代码修改DTS2012081501160
-  5.日    期   : 2012年12月08日
-    作    者   : f62575
-    修改内容   : DTS2012110804140，解决AT模块因组合AT命令处理状态问题导致的概率性无OK问题
-  6.日    期   : 2012年12月27日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
+  2.       : 2007-03-27
+           : h59254
+       : :A32D09820(PC-Lint)
+  3.       : 2010330
+           : s62952
+       : AT2D18046
+  4.       : 2012823
+           : z60575
+       : ATDTS2012081501160
+  5.       : 20121208
+           : f62575
+       : DTS2012110804140ATATOK
+  6.       : 20121227
+           : l60609
+       : DSDA Phase II
 
-  7.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
+  7.       : 20131228
+           : j00174725
+       : HSUART PHASE III
 
 *****************************************************************************/
 VOS_VOID At_SendResultData(
@@ -1145,7 +1145,7 @@ VOS_VOID At_SendResultData(
 {
     gstAtSendData.usBufLen = 0;
 
-    /* 参数检查 */
+    /*  */
     if ((0 == usLen) || (AT_CMD_MAX_LEN <= usLen))
     {
         AT_LOG1("At_SendResultData usLen:",usLen);
@@ -1157,7 +1157,7 @@ VOS_VOID At_SendResultData(
     AT_LOG1("At_SendResultData:",usLen);
 
 
-        /* 通过ucIndex获取端口类型 */
+        /* ucIndex */
     AT_MNTN_TraceCmdResult(ucIndex, pData, usLen);
 
     /* Modified by l60609 for DSDA Phase II, 2012-12-17, Begin */
@@ -1175,7 +1175,7 @@ VOS_VOID At_SendResultData(
             return;
         }
 
-        /* 注意遗留问题: 此处需要增加链路类型判断，数传和命令状态数据不能混在一起 */
+        /* :  */
         if (AT_CLIENT_NULL == gastAtClientTab[ucIndex].ucUsed)
         {
             AT_LOG1("At_SendResultData ucUsed:",gastAtClientTab[ucIndex].ucUsed);
@@ -1183,12 +1183,12 @@ VOS_VOID At_SendResultData(
             return;
         }
 
-        /*为了保证发送的数据是4字节对齐格式，故做一次拷贝*/
+        /*4*/
         TAF_MEM_CPY_S(gstAtSendDataBuffer, AT_CMD_MAX_LEN, pData, usLen);
 
         AT_DisplayResultData(ucIndex, usLen);
 
-        /* 判断是否需要Flash 短信,若需要，则将短信flash出去 */
+        /* Flash ,flash */
         if (VOS_FALSE == AT_IsClientBlock())
         {
             AT_FlushSmsIndication();
@@ -1200,13 +1200,13 @@ VOS_VOID At_SendResultData(
 
 /*****************************************************************************
  Prototype      : At_JudgeCombineCmdSubSequentProcess
- Description    : 根据命令的返回结果来判断后续命令的处理
-                  1.若后续无命令，则直接返回
-                  2.若返回结果为错误，但后续还有命令，则终止后续命令的处理，并做相应的
-                    清空操作
-                  3.若返回结果为正确，且后续还有命令，则继续执行后续命令
- Input          : ucIndex    --- 索引号
-                  ReturnCode --- 返回码
+ Description    : 
+                  1.
+                  2.
+                    
+                  3.
+ Input          : ucIndex    --- 
+                  ReturnCode --- 
  Output         : TAF_UINT32
  Return Value   : ---
  Calls          : ---
@@ -1219,17 +1219,17 @@ VOS_VOID At_SendResultData(
 *****************************************************************************/
 TAF_UINT32  At_JudgeCombineCmdSubSequentProcess(TAF_UINT8 ucIndex, TAF_UINT32 ReturnCode)
 {
-    /* 判读是否有未处理完成的命令 */
+    /*  */
     if (g_stParseContext[ucIndex].stCombineCmdInfo.usTotalNum == 0)
     {
-        /* 该分支有如下两种情况:
-            1.无待处理命令，属于主动上报
-            2.解析组合AT命令(或仅为独立AT命令)失败
+        /* :
+            1.
+            2.AT(AT)
          */
         return AT_COM_CMD_SUB_PROC_FINISH;
     }
 
-    /* 判断是否为最后一个AT命令 */
+    /* AT */
     if ((g_stParseContext[ucIndex].stCombineCmdInfo.usProcNum + 1) == g_stParseContext[ucIndex].stCombineCmdInfo.usTotalNum)
     {
         return AT_COM_CMD_SUB_PROC_FINISH;
@@ -1304,19 +1304,19 @@ TAF_UINT32  At_JudgeCombineCmdSubSequentProcess(TAF_UINT8 ucIndex, TAF_UINT32 Re
 
 
 /*****************************************************************************
- 函 数 名  : AT_GetReturnCodeId
- 功能描述  : 从gastAtReturnCodeTab中获取错误码对应的index值
- 输入参数  : VOS_UINT32                          ulReturnCode
+     : AT_GetReturnCodeId
+   : gastAtReturnCodeTabindex
+   : VOS_UINT32                          ulReturnCode
              VOS_UINT32                         *pulIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月24日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111024
+           : /l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_GetReturnCodeId(
@@ -1340,18 +1340,18 @@ VOS_UINT32 AT_GetReturnCodeId(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FormatAtCmdNotSupportResult
- 功能描述  : AT_CMD_NOT_SUPPORT 的结果格式化处理
- 输入参数  : enReturnCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_FormatAtCmdNotSupportResult
+   : AT_CMD_NOT_SUPPORT 
+   : enReturnCode
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年09月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数 for V7R1C50_At_Abort, 提取函数降复杂度
+       :
+  1.       : 20120924
+           : l00171473
+       :  for V7R1C50_At_Abort, 
 
 *****************************************************************************/
 VOS_VOID AT_FormatAtCmdNotSupportResult(
@@ -1401,18 +1401,18 @@ VOS_VOID AT_FormatAtCmdNotSupportResult(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FormatAtTooManyParaResult
- 功能描述  : AT_TOO_MANY_PARA 的结果格式化处理
- 输入参数  : enReturnCode
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_FormatAtTooManyParaResult
+   : AT_TOO_MANY_PARA 
+   : enReturnCode
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年09月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数 for V7R1C50_At_Abort, 提取函数降复杂度
+       :
+  1.       : 20120924
+           : l00171473
+       :  for V7R1C50_At_Abort, 
 
 *****************************************************************************/
 VOS_VOID AT_FormatAtTooManyParaResult(
@@ -1463,19 +1463,19 @@ VOS_VOID AT_FormatAtTooManyParaResult(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FormatAtAbortResult
- 功能描述  : AT_ABORT 的结果格式化处理
- 输入参数  : ucIndex:索引号
-              enReturnCode:返回码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_FormatAtAbortResult
+   : AT_ABORT 
+   : ucIndex:
+              enReturnCode:
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年09月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数 for V7R1C50_At_Abort, 处理新增错误码
+       :
+  1.       : 20120924
+           : l00171473
+       :  for V7R1C50_At_Abort, 
 
 *****************************************************************************/
 VOS_VOID AT_FormatAtAbortResult(
@@ -1498,7 +1498,7 @@ VOS_VOID AT_FormatAtAbortResult(
         2);
     usLength += 2;
 
-    /* 获取打断回复 */
+    /*  */
     ulTmp = VOS_StrLen((VOS_CHAR *)AT_GetAbortRspStr());
     TAF_MEM_CPY_S( (pucDataAt + usLength),
         ulTmp,
@@ -1506,14 +1506,14 @@ VOS_VOID AT_FormatAtAbortResult(
         ulTmp );
     usLength += (VOS_UINT16)ulTmp;
 
-    /* 在打断回复后面，加上回车换行 */
+    /*  */
     TAF_MEM_CPY_S((pucDataAt + usLength),
         2,
         (VOS_CHAR *)gaucAtCrLf,
         2);
     usLength += 2;
 
-    /* 把打断回复和回车换行等输出信息保存到全局变量中 */
+    /*  */
     if ((AT_CMD_MAX_LEN + 20) >= (gstAtCombineSendData[ucIndex].usBufLen + usLength))
     {
         TAF_MEM_CPY_S((gstAtCombineSendData[ucIndex].aucBuffer + gstAtCombineSendData[ucIndex].usBufLen),
@@ -1523,7 +1523,7 @@ VOS_VOID AT_FormatAtAbortResult(
         gstAtCombineSendData[ucIndex].usBufLen += usLength;
     }
 
-    /* 发送AT命令的数据给APP */
+    /* ATAPP */
     At_SendResultData(ucIndex, gstAtCombineSendData[ucIndex].aucBuffer, gstAtCombineSendData[ucIndex].usBufLen);
 
     return;
@@ -1531,64 +1531,64 @@ VOS_VOID AT_FormatAtAbortResult(
 
 
 /*****************************************************************************
- 函 数 名  : At_FormatResultData
- 功能描述  : 根据V,+CMEE,对结果进行格式化
- 输入参数  : VOS_UINT8                           ucIndex
+     : At_FormatResultData
+   : V,+CMEE,
+   : VOS_UINT8                           ucIndex
              VOS_UINT32                          ulReturnCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期   : 2008年10月30日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D07005,添加对不支持的AT命令的输出处理
-  4.日    期   : 2010年09月25日
-    作    者   : z00161729
-    修改内容  : 问题单号：DTS2010091901225,通过AT口发起VP呼叫成功后，AT口不再可用
-  5.日    期   : 2011年7月20日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011063000712 速率显示错误
-  6.日    期   : 2011年10月22日
-    作    者   : f62575
-    修改内容   : AT PROJECT NAS_EventReport -> AT_EventReport
-  7.日    期   : 2011年10月27日
-    作    者   : f62575
-    修改内容   : AT PROJECT gstAtSendData.usBufLen赋值错误
-  8.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目，增加XML文本模式的输入提示
-  9.日    期   : 2012年9月19日
-    作    者   : l00171473
-    修改内容   : for V7R1C50_At_Abort, 增加 AT_ABORT错误码的上报
- 10.日    期   : 2012年9月19日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
- 11.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加UART端口PPP拨号支持
- 12.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
- 13.日    期   : 2015年12月26日
-    作    者   : f00179208
-    修改内容   : Coverity告警清理
- 14.日    期   : 2015年11月17日
-    作    者   : zwx247453
-    修改内容   : dallas gps参考时钟虚焊检测
- 15.日    期   : 2016年8月30日
-    作    者   : A00165503
-    修改内容   : DTS2016060307279: PPP拨号要保证管脚信号上报时序
- 16.日    期   : 2016年12月3日
-    作    者   : A00165503
-    修改内容   : DTS2016070404601:去除版本限制, PPP拨号管脚信号上报时序归一
+  2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
+  3.       : 20081030
+           : l00130025
+       : AT2D07005,AT
+  4.       : 20100925
+           : z00161729
+      : DTS2010091901225,ATVPAT
+  5.       : 2011720
+           : /f62575
+       : DTS2011063000712 
+  6.       : 20111022
+           : f62575
+       : AT PROJECT NAS_EventReport -> AT_EventReport
+  7.       : 20111027
+           : f62575
+       : AT PROJECT gstAtSendData.usBufLen
+  8.       : 20120627
+           : y00213812
+       : V7R1C50 A-GPSXML
+  9.       : 2012919
+           : l00171473
+       : for V7R1C50_At_Abort,  AT_ABORT
+ 10.       : 2012919
+           : s00217060
+       : ATC
+ 11.       : 20130921
+           : j00174725
+       : UART-MODEM: UARTPPP
+ 12.       : 2015410
+           : h00313353
+       : SysCfg
+ 13.       : 20151226
+           : f00179208
+       : Coverity
+ 14.       : 20151117
+           : zwx247453
+       : dallas gps
+ 15.       : 2016830
+           : A00165503
+       : DTS2016060307279: PPP
+ 16.       : 2016123
+           : A00165503
+       : DTS2016070404601:, PPP
 *****************************************************************************/
 VOS_VOID At_FormatResultData(
     VOS_UINT8                           ucIndex,
@@ -1606,21 +1606,21 @@ VOS_VOID At_FormatResultData(
     VOS_UINT32                          ulNvDialRateIndex;
     VOS_UINT8                           ucSubSysMode;
     VOS_UINT8                           aucDialRateTmp[AT_AP_RATE_STRLEN];
-    /* Added by L60609 for AT Project，2011-10-24,  Begin*/
+    /* Added by L60609 for AT Project2011-10-24,  Begin*/
     VOS_UINT32                          ulReturnCodeIndex;
     VOS_UINT32                          ulRslt;
-    /*AT_ERROR对应的index值*/
+    /*AT_ERRORindex*/
     VOS_UINT32                          ulAtErrIndex;
     VOS_UINT32                          ulAtErrRslt;
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
+    /* Added by s00217060 for ATC, 2013-4-2, begin */
     TAF_AGENT_SYS_MODE_STRU             stSysMode;
     VOS_UINT32                          ulRet;
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+    /* Added by s00217060 for ATC, 2013-4-2, end */
 
     VOS_UINT8                           ucDlCategoryIndex = 0;
 
-    /*变量初始化*/
+    /**/
     usLength               = gstAtSendData.usBufLen;
     gstAtSendData.usBufLen = 0;
 
@@ -1632,7 +1632,7 @@ VOS_VOID At_FormatResultData(
 
     ulAtErrIndex           = 0;
     ulReturnCodeIndex      = 0;
-    /* Added by L60609 for AT Project，2011-10-24,  End*/
+    /* Added by L60609 for AT Project2011-10-24,  End*/
 
     TAF_MEM_SET_S(aucDialRateTmp, sizeof(aucDialRateTmp), 0x00, sizeof(aucDialRateTmp));
 
@@ -1647,7 +1647,7 @@ VOS_VOID At_FormatResultData(
 
     if ( AT_CMD_NOT_SUPPORT == ulReturnCode )
     {
-        /* 提取函数降复杂度 */
+        /*  */
 
         AT_FormatAtCmdNotSupportResult(ucIndex, (AT_RRETURN_CODE_ENUM_UINT32)ulReturnCode);
 
@@ -1658,7 +1658,7 @@ VOS_VOID At_FormatResultData(
 
     if ( AT_TOO_MANY_PARA == ulReturnCode )
     {
-        /* 提取函数降复杂度 */
+        /*  */
 
         AT_FormatAtTooManyParaResult(ucIndex, (AT_RRETURN_CODE_ENUM_UINT32)ulReturnCode);
 
@@ -1674,11 +1674,11 @@ VOS_VOID At_FormatResultData(
         At_ResetCombinParseInfo(ucIndex);
 
         AT_CheckProcBlockCmd();
-        /* 恢复AT端口的全局变量 */
+        /* AT */
         return;
     }
 
-    /* Added by L60609 for AT Project，2011-10-24,  Begin*/
+    /* Added by L60609 for AT Project2011-10-24,  Begin*/
     ulRslt = AT_GetReturnCodeId(ulReturnCode, &ulReturnCodeIndex);
 
     if (VOS_OK != ulRslt)
@@ -1686,9 +1686,9 @@ VOS_VOID At_FormatResultData(
         AT_ERR_LOG("At_FormatResultData: result code index is err!");
         return;
     }
-    /* Added by L60609 for AT Project，2011-10-24,  End*/
-    if ((AT_WAIT_SMS_INPUT == ulReturnCode)/* 进入SMS输入模式 */
-        || (AT_WAIT_XML_INPUT == ulReturnCode))/* 进入XML文本输入模式 */
+    /* Added by L60609 for AT Project2011-10-24,  End*/
+    if ((AT_WAIT_SMS_INPUT == ulReturnCode)/* SMS */
+        || (AT_WAIT_XML_INPUT == ulReturnCode))/* XML */
     {
 
         ulTmp = VOS_StrLen((TAF_CHAR *)gastAtReturnCodeTab[ulReturnCodeIndex].Result[gucAtVType]);
@@ -1709,7 +1709,7 @@ VOS_VOID At_FormatResultData(
 
         At_SendResultData(ucIndex,pDataAt3,usLength);
 
-        /* 清除gstAtCombineSendData的内容 */
+        /* gstAtCombineSendData */
         TAF_MEM_SET_S(&gstAtCombineSendData[ucIndex], sizeof(AT_SEND_DATA_BUFFER_STRU), 0x00, sizeof(AT_SEND_DATA_BUFFER_STRU));
 
         return;
@@ -1719,7 +1719,7 @@ VOS_VOID At_FormatResultData(
         switch (gucAtCmeeType)
         {
         case AT_CMEE_ONLY_ERROR:
-            /* Added by L60609 for AT Project，2011-10-24,  Begin*/
+            /* Added by L60609 for AT Project2011-10-24,  Begin*/
             ulAtErrRslt = AT_GetReturnCodeId(AT_ERROR, &ulAtErrIndex);
 
             if(VOS_OK != ulAtErrRslt)
@@ -1727,7 +1727,7 @@ VOS_VOID At_FormatResultData(
                 AT_ERR_LOG("At_FormatResultData: AT ERROR index is err!");
                 return;
             }
-            /* Added by L60609 for AT Project，2011-10-24,  End*/
+            /* Added by L60609 for AT Project2011-10-24,  End*/
             ulTmp = VOS_StrLen( (TAF_CHAR *)gastAtReturnCodeTab[ulAtErrIndex].Result[gucAtVType] );
             TAF_MEM_CPY_S( pDataAt3 + usLength,
                 ulTmp,
@@ -1787,7 +1787,7 @@ VOS_VOID At_FormatResultData(
         switch(gucAtCmeeType)
         {
             case AT_CMEE_ONLY_ERROR:
-                /* Added by L60609 for AT Project，2011-10-24,  Begin*/
+                /* Added by L60609 for AT Project2011-10-24,  Begin*/
                 ulAtErrRslt = AT_GetReturnCodeId(AT_ERROR, &ulAtErrIndex);
 
                 if(VOS_OK != ulAtErrRslt)
@@ -1795,7 +1795,7 @@ VOS_VOID At_FormatResultData(
                     AT_ERR_LOG("At_FormatResultData: AT ERROR index is err!");
                     return;
                 }
-                /* Added by L60609 for AT Project，2011-10-24,  End*/
+                /* Added by L60609 for AT Project2011-10-24,  End*/
 
                 ulTmp = VOS_StrLen( (TAF_CHAR *)gastAtReturnCodeTab[ulAtErrIndex].Result[gucAtVType] );
                 TAF_MEM_CPY_S( pDataAt3 + usLength ,
@@ -1849,12 +1849,12 @@ VOS_VOID At_FormatResultData(
             TAF_MEM_CPY_S(pDataAt1,
                 2,
                 (TAF_CHAR *)gaucAtCrLf,
-                2);/*Text前面加\r\n*/
+                2);/*Text\r\n*/
 
             TAF_MEM_CPY_S(pDataAt3 + usLength,
                 2,
                 (TAF_CHAR *)gaucAtCrLf,
-                2);/*Text后面加\r\n*/
+                2);/*Text\r\n*/
             usLength += 2;
             usLength += 2;
         }
@@ -1867,7 +1867,7 @@ VOS_VOID At_FormatResultData(
                 TAF_MEM_CPY_S((TAF_CHAR *)(pDataAt1 + usLength),
                     2,
                     (TAF_CHAR *)gaucAtCrLf,
-                    2);/*Code前面加\r\n*/
+                    2);/*Code\r\n*/
                 usLength += 2;
 
                 ulTmp = VOS_StrLen((TAF_CHAR *)gastAtReturnCodeTab[ulReturnCodeIndex].Result[gucAtVType]);
@@ -1877,26 +1877,26 @@ VOS_VOID At_FormatResultData(
                     ulTmp);/*Code*/
                 usLength += (TAF_UINT16)ulTmp;
 
-                /*如果是PPP拨号且gucAtXType大于0，则CONNECT返回码需要附上速率信息，格式依照:CONNECT <Rate>*/
+                /*PPPgucAtXType0CONNECT:CONNECT <Rate>*/
                 if (AT_CONNECT == ulReturnCode)
                 {
                     if ((AT_DATA_MODE == gastAtClientTab[ucIndex].Mode)
                         && ( (AT_PPP_DATA_MODE == gastAtClientTab[ucIndex].DataMode)
                               || (AT_IP_DATA_MODE == gastAtClientTab[ucIndex].DataMode) ) )
                     {
-                        /* 设置管脚信号标志 */
+                        /*  */
                         ulMdmMscFlg = VOS_TRUE;
 
-                        /* 若gucAtXType大于0，在CONNECT后附上速率信息 */
+                        /* gucAtXType0CONNECT */
                         if (gucAtXType > 0)
                         {
 
                             PPP_RATE_DISPLAY_ENUM_UINT32 enRateDisplay;
 
-                            /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+                            /* Modified by s00217060 for ATC, 2013-4-2, end */
                             TAF_MEM_SET_S(&stSysMode, sizeof(stSysMode), 0x00, sizeof(stSysMode));
 
-                            /* 从C核获取ucRatType和ucSysSubMode */
+                            /* CucRatTypeucSysSubMode */
                             ulRet = TAF_AGENT_GetSysMode(ucIndex, &stSysMode);
                             if (VOS_OK != ulRet)
                             {
@@ -1954,14 +1954,14 @@ VOS_VOID At_FormatResultData(
                                     TAF_MEM_CPY_S(aucDialRateTmp, sizeof(aucDialRateTmp), g_PppDialRateDisplay[enRateDisplay], ulTmp);
                                 }
                             }
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+    /* Modified by s00217060 for ATC, 2013-4-2, end */
                             else
                             {
                                 ulTmp = VOS_StrLen((TAF_CHAR *)g_ucDialRateDisplayNv[ulNvDialRateIndex - 1]);
                                 TAF_MEM_CPY_S(aucDialRateTmp, sizeof(aucDialRateTmp), g_ucDialRateDisplayNv[ulNvDialRateIndex - 1], ulTmp);
                             }
 
-                            /*在CONNECT后附上速率信息*/
+                            /*CONNECT*/
                             TAF_MEM_CPY_S(pDataAt1 + usLength,
                                 ulTmp,
                                 aucDialRateTmp,
@@ -1972,7 +1972,7 @@ VOS_VOID At_FormatResultData(
                     else if ((AT_CSD_DATA_MODE == gastAtClientTab[ucIndex].DataMode)
                           && (AT_MODEM_USER == gastAtClientTab[ucIndex].UserType))
                     {
-                        /* 设置管脚信号标志 */
+                        /*  */
                         ulMdmMscFlg = VOS_TRUE;
                     }
                     else
@@ -1992,12 +1992,12 @@ VOS_VOID At_FormatResultData(
                 TAF_MEM_CPY_S(pDataAt1 + usLength,
                     2,
                     (TAF_CHAR *)gaucAtCrLf,
-                    2);/*Code后面加\r\n*/
+                    2);/*Code\r\n*/
                 usLength += 2;
 
             }
 
-            /* 拷贝<text>和结果码 */
+            /* <text> */
             if ((0 != usLength)
                 && ((AT_CMD_MAX_LEN + 20) >= (gstAtCombineSendData[ucIndex].usBufLen + usLength)))
             {
@@ -2065,7 +2065,7 @@ VOS_VOID At_FormatResultData(
                 TAF_MEM_CPY_S(pDataAt3 + usLength,
                     1,
                     &ucAtS3,
-                    1);/*Code后面加\r*/
+                    1);/*Code\r*/
                 usLength += 1;
             }
             else
@@ -2135,18 +2135,18 @@ VOS_VOID At_FormatResultData(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetDlRateDisplayIndex
- 功能描述  : 获取WCDMA模式缺省协议版本下行能力等级在速率显示表中的索引
- 输入参数  : ucWasCategory - UE能力等级
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetDlRateDisplayIndex
+   : WCDMA
+   : ucWasCategory - UE
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年9月14日
-    作    者   : w00181244
-    修改内容   : 新生成函数
+       :
+  1.       : 2011914
+           : w00181244
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_GetDlRateDisplayIndex(
@@ -2187,18 +2187,18 @@ VOS_UINT32 AT_GetDlRateDisplayIndex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetR7DlRateDisplayIndex
- 功能描述  : 获取WCDMA模式R7协议版本下行能力等级在速率显示表中的索引
- 输入参数  : ucWasCategory - UE能力等级
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetR7DlRateDisplayIndex
+   : WCDMAR7
+   : ucWasCategory - UE
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年9月14日
-    作    者   : w00181244
-    修改内容   : 新生成函数
+       :
+  1.       : 2011914
+           : w00181244
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_GetR7DlRateDisplayIndex(
@@ -2247,18 +2247,18 @@ VOS_UINT32 AT_GetR7DlRateDisplayIndex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetR8DlRateDisplayIndex
- 功能描述  : 获取WCDMA模式R8协议版本下行能力等级在速率显示表中的索引
- 输入参数  : ucWasCategory - UE能力等级
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetR8DlRateDisplayIndex
+   : WCDMAR8
+   : ucWasCategory - UE
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年9月14日
-    作    者   : w00181244
-    修改内容   : 新生成函数
+       :
+  1.       : 2011914
+           : w00181244
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_GetR8DlRateDisplayIndex(
@@ -2311,18 +2311,18 @@ VOS_UINT32 AT_GetR8DlRateDisplayIndex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetR9DlRateDisplayIndex
- 功能描述  : 获取WCDMA模式R9协议版本下行能力等级在速率显示表中的索引
- 输入参数  : ucWasCategory - UE能力等级
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetR9DlRateDisplayIndex
+   : WCDMAR9
+   : ucWasCategory - UE
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年9月14日
-    作    者   : w00181244
-    修改内容   : 新生成函数
+       :
+  1.       : 2011914
+           : w00181244
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_GetR9DlRateDisplayIndex(
@@ -2383,24 +2383,24 @@ VOS_UINT32 AT_GetR9DlRateDisplayIndex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetRateDisplayIndexForGsm
- 功能描述  : 获取GSM模式下行能力等级在速率显示表中的索引
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetRateDisplayIndexForGsm
+   : GSM
+   : 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月25日
-    作    者   : z60575
-    修改内容   : DTS2012072409126，GPRS下支持Class33时上报速率不正确
-  3.日    期   : 2013年4月2日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
+       :
+  1.       : 20111020
+           : A00165503
+       : 
+  2.       : 2012725
+           : z60575
+       : DTS2012072409126GPRSClass33
+  3.       : 201342
+           : s00217060
+       : ATC
 *****************************************************************************/
 VOS_UINT32 AT_GetRateDisplayIndexForGsm(
     TAF_AGENT_SYS_MODE_STRU            *pstSysMode
@@ -2408,9 +2408,9 @@ VOS_UINT32 AT_GetRateDisplayIndexForGsm(
 {
     PPP_RATE_DISPLAY_ENUM_UINT32   enRateIndex;
 
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
+    /* Modified by s00217060 for ATC, 2013-4-2, begin */
     if ( TAF_SYS_SUBMODE_EDGE == pstSysMode->enSysSubMode )
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+    /* Modified by s00217060 for ATC, 2013-4-2, end */
     {
         if ( VOS_TRUE == g_stAtDlRateCategory.ucGasMultislotClass33Flg )
         {
@@ -2437,21 +2437,21 @@ VOS_UINT32 AT_GetRateDisplayIndexForGsm(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetRateDisplayIndexForWcdma
- 功能描述  : 获取WCDMA模式下行能力等级在速率显示表中的索引
- 输入参数  : pstDlRateCategory - UE下行能力
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetRateDisplayIndexForWcdma
+   : WCDMA
+   : pstDlRateCategory - UE
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年9月14日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月13日
-    作    者   : l00171473
-    修改内容   : DTS2011092204540，MODEM拨号时速率显示不正确
+       :
+  1.       : 2011914
+           : w00181244
+       : 
+  2.       : 20111213
+           : l00171473
+       : DTS2011092204540MODEM
 
 *****************************************************************************/
 VOS_UINT32 AT_GetRateDisplayIndexForWcdma(
@@ -2495,27 +2495,27 @@ VOS_UINT32 AT_GetRateDisplayIndexForWcdma(
 
 
 /*****************************************************************************
- 函 数 名  : AT_ProcFormatResultMsc
- 功能描述  :
- 输入参数  : ulReturnCode 标识是连接还是断开连接
+     : AT_ProcFormatResultMsc
+   :
+   : ulReturnCode 
              ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新增函数
+       :
+  1.       : 20130921
+           : j00174725
+       : 
 
-  2.日    期   : 2016年8月30日
-    作    者   : A00165503
-    修改内容   : DTS2016060307279: PPP拨号要保证管脚信号上报时序
+  2.       : 2016830
+           : A00165503
+       : DTS2016060307279: PPP
 
-  3.日    期   : 2016年12月3日
-    作    者   : A00165503
-    修改内容   : DTS2016070404601:去除版本限制, PPP拨号管脚信号上报时序归一
+  3.       : 2016123
+           : A00165503
+       : DTS2016070404601:, PPP
 *****************************************************************************/
 VOS_VOID AT_ProcFormatResultMsc(
     VOS_UINT8                           ucIndex,
@@ -2533,13 +2533,13 @@ VOS_VOID AT_ProcFormatResultMsc(
     {
         if (VOS_TRUE == AT_CheckHsUartUser(ucIndex))
         {
-            /* 判断&S并处理DSR管脚  */
+            /* &SDSR  */
             if (AT_UART_DSR_MODE_CONNECT_ON == pstUartCtx->stLineCtrl.enDsrMode)
             {
                 AT_CtrlDSR(ucIndex, AT_IO_LEVEL_HIGH);
             }
 
-            /* 判断&C并处理DCD管脚  */
+            /* &CDCD  */
             if (AT_UART_DCD_MODE_CONNECT_ON == pstUartCtx->stLineCtrl.enDcdMode)
             {
                 AT_CtrlDCD(ucIndex, AT_IO_LEVEL_HIGH);
@@ -2547,7 +2547,7 @@ VOS_VOID AT_ProcFormatResultMsc(
         }
         else
         {
-            /* 拉高DCD信号 */
+            /* DCD */
             AT_CtrlDCD(ucIndex, AT_IO_LEVEL_HIGH);
         }
     }
@@ -2555,13 +2555,13 @@ VOS_VOID AT_ProcFormatResultMsc(
     {
         if (VOS_TRUE == AT_CheckHsUartUser(ucIndex))
         {
-           /* 判断&S并处理DSR管脚  */
+           /* &SDSR  */
             if (AT_UART_DSR_MODE_CONNECT_ON == pstUartCtx->stLineCtrl.enDsrMode)
             {
                 AT_CtrlDSR(ucIndex, AT_IO_LEVEL_LOW);
             }
 
-            /* 判断&C并处理DCD管脚  */
+            /* &CDCD  */
             if (AT_UART_DCD_MODE_CONNECT_ON == pstUartCtx->stLineCtrl.enDcdMode)
             {
                 AT_CtrlDCD(ucIndex, AT_IO_LEVEL_LOW);
@@ -2569,7 +2569,7 @@ VOS_VOID AT_ProcFormatResultMsc(
         }
         else
         {
-            /* 拉低DCD信号 */
+            /* DCD */
             AT_CtrlDCD(ucIndex, AT_IO_LEVEL_LOW);
             mdelay(30);
         }

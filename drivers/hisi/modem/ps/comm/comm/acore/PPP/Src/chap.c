@@ -32,7 +32,7 @@
 #include "PPP/Inc/ppp_fsm.h"
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_CHAP_C
 
@@ -43,27 +43,27 @@ static const VOS_CHAR * const chapcodes[] = {
 #define MAXCHAPCODE ((sizeof chapcodes / sizeof chapcodes[0]) - 1)
 
 /*****************************************************************************
- 函 数 名  : ChapOutput
- 功能描述  : 构造CHAP帧并发送
- 输入参数  : l - PPP链接
-             code - 待填写到头部的Code值
-             id - 待填写到头部的Identifier值
-             ptr - 待填写的CHAP数据
-             count - 待填写的CHAP数据的长度, 单位: 字节
-             text - 字符串, 用于日志
- 输出参数  : 无
- 返 回 值  : NULL
- 调用函数  :
- 被调函数  :
- 说    明  : 不对ptr与code进行组合检查, 如code为某值时, ptr不应为空等等,
-             因为此函数为一通用函数, 支持生成所有的CHAP帧, 并能扩展为支持
-             MS-CHAP帧等, 各种code, ptr组合情况众多, 一切相关检查交由外部
-             调用者来完成
+     : ChapOutput
+   : CHAP
+   : l - PPP
+             code - Code
+             id - Identifier
+             ptr - CHAP
+             count - CHAP, : 
+             text - , 
+   : 
+     : NULL
+   :
+   :
+       : ptrcode, code, ptr,
+             , CHAP, 
+             MS-CHAP, code, ptr, 
+             
 
- 修改历史      :
-  1.日    期   : 2008年10月24日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081024
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID ChapOutput(struct link *l, VOS_INT32 code, VOS_CHAR id,
@@ -107,18 +107,18 @@ VOS_VOID ChapOutput(struct link *l, VOS_INT32 code, VOS_CHAR id,
 }    /* ChapOutput */
 
 /*****************************************************************************
- 函 数 名  : chap_Cleanup
- 功能描述  : 清除掉PPP链接两端的Challenge
- 输入参数  : chap - 链路中的CHAP记录信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_Cleanup
+   : PPPChallenge
+   : chap - CHAP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月24日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081024
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 static VOS_VOID chap_Cleanup(struct chap *chap)
@@ -130,19 +130,19 @@ static VOS_VOID chap_Cleanup(struct chap *chap)
 }    /* chap_Cleanup */
 
 /*****************************************************************************
- 函 数 名  : chap_Respond
- 功能描述  : 构造Response帧并发送
- 输入参数  : l - PPP链接
-             name - 待填写的Name值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_Respond
+   : Response
+   : l - PPP
+             name - Name
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月24日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081024
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 static VOS_VOID chap_Respond(struct link *l, const VOS_CHAR *name)
@@ -183,22 +183,22 @@ static VOS_VOID chap_Respond(struct link *l, const VOS_CHAR *name)
 */
 
 /*****************************************************************************
- 函 数 名  : ChapBufferChallengePacket
- 功能描述  : 备份CHAP challenge packet
- 输入参数  : chap - 链路中的CHAP记录信息
-             id - 待填写到头部的Identifier值
-             ptr - 待备份的CHAP challenge body数据
-             count - 待备份的CHAP challenge body数据的长度, 单位: 字节
- 输出参数  : 无
- 返 回 值  : NULL
- 调用函数  :
- 被调函数  :
- 说    明  : 备份challenge packet, 为了在IPCP阶段提供给NAS在PDP激活中使用
+     : ChapBufferChallengePacket
+   : CHAP challenge packet
+   : chap - CHAP
+             id - Identifier
+             ptr - CHAP challenge body
+             count - CHAP challenge body, : 
+   : 
+     : NULL
+   :
+   :
+       : challenge packet, IPCPNASPDP
 
- 修改历史      :
-  1.日    期   : 2008年11月4日
-    作    者   : liukai
-    修改内容   : created
+       :
+  1.       : 2008114
+           : liukai
+       : created
 
 *****************************************************************************/
 VOS_VOID ChapBufferChallengePacket(struct chap *chap, VOS_CHAR id,
@@ -225,18 +225,18 @@ VOS_VOID ChapBufferChallengePacket(struct chap *chap, VOS_CHAR id,
 }    /* ChapBufferChallengePacket */
 
 /*****************************************************************************
- 函 数 名  : chap_Challenge
- 功能描述  : 构造Challenge帧并发送
- 输入参数  : l - PPP链接
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_Challenge
+   : Challenge
+   : l - PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月25日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081025
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID chap_Challenge(struct link *l)
@@ -256,12 +256,12 @@ VOS_VOID chap_Challenge(struct link *l)
 
   if (0x0 == *(chap->challenge.local)) {    /* as each time local[0] is 0x0, here is always true */
     cp = chap->challenge.local;
-    /*AT2D19295 测试组建议challenge中随机字符串长度固定为16，和标杆一致 */
+    /*AT2D19295 challenge16 */
     *cp++ = (VOS_UINT8)(MD5DIGESTSIZE);
 
     /*
       *cp++ = (VOS_UINT8)(PS_RAND(CHAPCHALLENGELEN-MD5DIGESTSIZE) + MD5DIGESTSIZE);
-      随机字串长度本为任意长度, 存放在local的第一个字节,为了防止对端只支持MD5而要求长度为16, 特意保证长度至少16字节
+      , local,MD516, 16
     */
     PPP_GetSecurityRand((VOS_UINT8)(MD5DIGESTSIZE), cp);
     cp += MD5DIGESTSIZE;
@@ -275,24 +275,24 @@ VOS_VOID chap_Challenge(struct link *l)
       1 + *(chap->challenge.local) + len);
 
   ChapOutput(l, CHAP_CHALLENGE, chap->auth.id, chap->challenge.local,
-         1 + *(chap->challenge.local) + len, VOS_NULL_PTR);    /* 1: challenge length, *local: 随机字串长度, len: Name length */
+         1 + *(chap->challenge.local) + len, VOS_NULL_PTR);    /* 1: challenge length, *local: , len: Name length */
 
   return;
 }    /* chap_Challenge */
 
 /*****************************************************************************
- 函 数 名  : chap_Success
- 功能描述  : 构造Success帧并发送
- 输入参数  : l - PPP链接
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_Success
+   : Success
+   : l - PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月25日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081025
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 static VOS_VOID chap_Success(struct link *l)
@@ -333,18 +333,18 @@ static VOS_VOID chap_Success(struct link *l)
 
 
 /*****************************************************************************
- 函 数 名  : chap_Init
- 功能描述  : 初始化CHAP模块
- 输入参数  : chap - CHAP配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_Init
+   : CHAP
+   : chap - CHAP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月25日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081025
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID chap_Init(struct chap *chap)
@@ -357,18 +357,18 @@ VOS_VOID chap_Init(struct chap *chap)
 }    /* chap_Init */
 
 /*****************************************************************************
- 函 数 名  : chap_ReInit
- 功能描述  : 重新初始化CHAP模块
- 输入参数  : chap - CHAP配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : chap_ReInit
+   : CHAP
+   : chap - CHAP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月25日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081025
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID chap_ReInit(struct chap *chap)
@@ -379,22 +379,22 @@ VOS_VOID chap_ReInit(struct chap *chap)
 }    /* chap_ReInit */
 
 /*****************************************************************************
- 函 数 名  : ChapBufferResponsePacket
- 功能描述  : 备份收到的CHAP response packet
- 输入参数  : chap - 链路中的CHAP记录信息
-             ucHashSize - response中hash-size
-             aucHashValue - response中hash-value
-             lNameLen - response中name字段的长度, 单位: 字节
- 输出参数  : 无
- 返 回 值  : NULL
- 调用函数  :
- 被调函数  :
- 说    明  : 备份response packet, 为了在IPCP阶段提供给NAS在PDP激活中使用
+     : ChapBufferResponsePacket
+   : CHAP response packet
+   : chap - CHAP
+             ucHashSize - responsehash-size
+             aucHashValue - responsehash-value
+             lNameLen - responsename, : 
+   : 
+     : NULL
+   :
+   :
+       : response packet, IPCPNASPDP
 
- 修改历史      :
-  1.日    期   : 2008年11月4日
-    作    者   : liukai
-    修改内容   : created
+       :
+  1.       : 2008114
+           : liukai
+       : created
 
 *****************************************************************************/
 VOS_VOID ChapBufferResponsePacket(struct chap *chap, VOS_UCHAR ucHashSize,
@@ -435,22 +435,22 @@ VOS_VOID ChapBufferResponsePacket(struct chap *chap, VOS_UCHAR ucHashSize,
 }    /* ChapBufferResponsePacket */
 
 /*****************************************************************************
- 函 数 名  : chap_Input
- 功能描述  : 收到CHAP帧的处理入口函数
- 输入参数  : l - PPP链接
-             pstMem - 收到的CHAP帧
- 输出参数  : 无
- 返 回 值  : NULL
- 调用函数  :
- 被调函数  :
+     : chap_Input
+   : CHAP
+   : l - PPP
+             pstMem - CHAP
+   : 
+     : NULL
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月24日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081024
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
-/*lint -e{668} 内部保证bp若为空VOS_NTOHS(chap->auth.in.hdr.length)必为0，走分支1，不会走到释放分支*/
+/*lint -e{668} bpVOS_NTOHS(chap->auth.in.hdr.length)01*/
 PPP_ZC_STRU *chap_Input(struct link *l, PPP_ZC_STRU *pstMem)
 {
   struct chap *chap;
@@ -459,7 +459,7 @@ PPP_ZC_STRU *chap_Input(struct link *l, PPP_ZC_STRU *pstMem)
   struct ppp_mbuf *bp;
   VOS_UCHAR aucHashValue[MD5DIGESTSIZE];
 
-  /* 初始化 */
+  /*  */
   alen = 0;
 
   bp = ppp_m_get_from_ttfmem(pstMem);
@@ -592,7 +592,7 @@ PPP_ZC_STRU *chap_Input(struct link *l, PPP_ZC_STRU *pstMem)
                   len, alen);
         }
 
-        if (PHASE_AUTHENTICATE == l->phase)    /* 需要注意只备份在认证阶段中与challenge id匹配的response */
+        if (PHASE_AUTHENTICATE == l->phase)    /* challenge idresponse */
         {
             ChapBufferResponsePacket(chap, MD5DIGESTSIZE, aucHashValue, len);
         }
