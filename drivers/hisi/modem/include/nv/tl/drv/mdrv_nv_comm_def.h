@@ -55,6 +55,7 @@ extern "C" {
 #endif
 #endif
 
+#ifdef s8
 #ifndef __u8_defined
 #define __u8_defined
 typedef signed char          s8;
@@ -65,6 +66,7 @@ typedef signed int           s32;
 typedef unsigned int         u32;
 typedef signed long long     s64;
 typedef unsigned long long   u64;
+#endif
 #endif
 
 /*****************************************************************************
