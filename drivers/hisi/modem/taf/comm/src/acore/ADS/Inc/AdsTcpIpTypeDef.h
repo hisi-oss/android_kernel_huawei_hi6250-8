@@ -50,7 +50,7 @@
 #define __ADS_TCPIPTYPEDEF_H__
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include "vos.h"
 
@@ -65,33 +65,33 @@ extern "C" {
 #pragma pack(4)
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 
-/* IP 数据包可维可测*/
-#define ADS_IP_VERSION_V4               (4)                                     /* IPV4的版本号 */
-#define ADS_IPV4_HDR_LEN                (20)                                    /* IPV4的头部长度 */
-#define ADS_IPV4_PROTO_ICMP             (1)                                     /* IPV4的ICMP协议号 */
-#define ADS_IPV4_ICMP_ECHO_REQUEST      (8)                                     /* IPV4的ICMP的TYPE ECHO REQ */
-#define ADS_IPV4_ICMP_ECHO_REPLY        (0)                                     /* IPV4的ICMP的TYPE ECHO REPLY */
+/* IP */
+#define ADS_IP_VERSION_V4               (4)                                     /* IPV4 */
+#define ADS_IPV4_HDR_LEN                (20)                                    /* IPV4 */
+#define ADS_IPV4_PROTO_ICMP             (1)                                     /* IPV4ICMP */
+#define ADS_IPV4_ICMP_ECHO_REQUEST      (8)                                     /* IPV4ICMPTYPE ECHO REQ */
+#define ADS_IPV4_ICMP_ECHO_REPLY        (0)                                     /* IPV4ICMPTYPE ECHO REPLY */
 
-#define ADS_IP_VERSION_V6               (6)                                     /* IPV6的版本号 */
-#define ADS_IPV6_HDR_LEN                (40)                                    /* IPV6的头部长度 */
-#define ADS_IPV6_PROTO_ICMP             (58)                                    /* IPV6的ICMP协议号 */
-#define ADS_IPV6_ICMP_ECHO_REQUEST      (128)                                   /* IPV6的ICMP的TYPE ECHO REQ */
-#define ADS_IPV6_ICMP_ECHO_REPLY        (129)                                   /* IPV6的ICMP的TYPE ECHO REPLY */
+#define ADS_IP_VERSION_V6               (6)                                     /* IPV6 */
+#define ADS_IPV6_HDR_LEN                (40)                                    /* IPV6 */
+#define ADS_IPV6_PROTO_ICMP             (58)                                    /* IPV6ICMP */
+#define ADS_IPV6_ICMP_ECHO_REQUEST      (128)                                   /* IPV6ICMPTYPE ECHO REQ */
+#define ADS_IPV6_ICMP_ECHO_REPLY        (129)                                   /* IPV6ICMPTYPE ECHO REPLY */
 
-#define ADS_IP_PROTO_TCP                (6)                                     /* TCP协议号 */
-#define ADS_IP_PROTO_UDP                (17)                                    /* UDP协议号 */
+#define ADS_IP_PROTO_TCP                (6)                                     /* TCP */
+#define ADS_IP_PROTO_UDP                (17)                                    /* UDP */
 
-#define ADS_IPV4_ADDR_LEN               (4)                                     /* IPV4地址长度 */
-#define ADS_IPV6_ADDR_LEN               (16)                                    /* IPV6地址长度 */
+#define ADS_IPV4_ADDR_LEN               (4)                                     /* IPV4 */
+#define ADS_IPV6_ADDR_LEN               (16)                                    /* IPV6 */
 #define ADS_IPV6_ADDR_HALF_LEN          (8)
 #define ADS_IPV6_ADDR_QUARTER_LEN       (4)
 
-#define ADS_GET_IP_VERSION(pucIpPkt)    ((pucIpPkt)[0] >> 4)                    /* 获取IP version */
+#define ADS_GET_IP_VERSION(pucIpPkt)    ((pucIpPkt)[0] >> 4)                    /* IP version */
 
-/* 大小字节序转换*/
+/* */
 #ifndef VOS_NTOHL
 #if VOS_BYTE_ORDER==VOS_BIG_ENDIAN
 #define VOS_NTOHL(x)    (x)
@@ -119,26 +119,26 @@ extern "C" {
 
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 
 /*****************************************************************************
-  7 UNION定义
+  7 UNION
 *****************************************************************************/
 
 #if (VOS_OS_VER != VOS_WIN32)
@@ -148,11 +148,11 @@ extern "C" {
 #endif
 
 /*****************************************************************************
- 联合体名     : ADS_IPV4_ADDR_UN
- 联合体说明   : IPV4地址
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+      : ADS_IPV4_ADDR_UN
+    : IPV4
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef union
 {
@@ -161,11 +161,11 @@ typedef union
 } ADS_IPV4_ADDR_UN;
 
 /*****************************************************************************
- 联合体名     : ADS_IPV6_ADDR_UN
- 联合体说明   : IPV6地址
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+      : ADS_IPV6_ADDR_UN
+    : IPV6
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef union
 {
@@ -175,15 +175,15 @@ typedef union
 } ADS_IPV6_ADDR_UN;
 
 /*****************************************************************************
-  8 STRUCT定义
+  8 STRUCT
 *****************************************************************************/
 
 /*****************************************************************************
- 结构名    : ADS_IPV4_HDR_STRU
- 结构说明  : IPV4首部
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_IPV4_HDR_STRU
+   : IPV4
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -201,11 +201,11 @@ typedef struct
 } ADS_IPV4_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_IPV6_HDR_STRU
- 结构说明  : IPV6首部
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_IPV6_HDR_STRU
+   : IPV6
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -220,26 +220,26 @@ typedef struct
 } ADS_IPV6_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_UDP_HDR_STRU
- 结构说明  : UDP首部
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_UDP_HDR_STRU
+   : UDP
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usSrcPort;                              /* 源端口 */
-    VOS_UINT16                          usDstPort;                              /* 目的端口 */
-    VOS_UINT16                          usLen;                                  /* UDP包长度 */
-    VOS_UINT16                          usChecksum;                             /* UDP校验和 */
+    VOS_UINT16                          usSrcPort;                              /*  */
+    VOS_UINT16                          usDstPort;                              /*  */
+    VOS_UINT16                          usLen;                                  /* UDP */
+    VOS_UINT16                          usChecksum;                             /* UDP */
 } ADS_UDP_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_TCP_HDR_STRU
- 结构说明  : TCP首部
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_TCP_HDR_STRU
+   : TCP
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -263,11 +263,11 @@ typedef struct
 } ADS_TCP_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_ICMP_ECHO_HDR_STRU
- 结构说明  : ICMP的ECHO类型报文首部中的Identifier和Sequence Number域
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_ICMP_ECHO_HDR_STRU
+   : ICMPECHOIdentifierSequence Number
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -277,12 +277,12 @@ typedef struct
 } ADS_ICMP_ECHO_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_ICMP_ERROR_HDR_STRU
- 结构说明  : ICMP差错报文首部中的Byte 4~Byte 8域
-             下行支持的差错报文类型，type分别为3、4、5、11、12
-             这些type所对应的Byte 4~Byte 8域，虽然定义不尽相同，但长度均为4，
-             故统一定义为相同的结构体类型，便于处理
-             各类型的报文格式见下:
+     : ADS_ICMP_ERROR_HDR_STRU
+   : ICMPByte 4~Byte 8
+             type3451112
+             typeByte 4~Byte 84
+             
+             :
 
    Type = 3  -- Destination Unreachable Message
     0                   1                   2                   3
@@ -340,9 +340,9 @@ typedef struct
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -351,11 +351,11 @@ typedef struct
 } ADS_ICMP_ERROR_HDR_STRU;
 
 /*****************************************************************************
- 结构名    : ADS_ICMP_HDR_STRU
- 结构说明  : ICMP首部
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
+     : ADS_ICMP_HDR_STRU
+   : ICMP
+ 1.       : 20130603
+          : L47619
+      : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -378,12 +378,12 @@ typedef struct
 #endif
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 
 

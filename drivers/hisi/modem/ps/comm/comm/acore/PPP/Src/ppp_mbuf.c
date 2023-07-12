@@ -36,7 +36,7 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_PPP_MBUF_C
 
@@ -71,7 +71,7 @@ ppp_m_get_Debug(VOS_INT32 m_len, VOS_UINT32 ulFileID, VOS_UINT32 ulLineNum)
         return VOS_NULL_PTR;
     }
 
-    /*去除对TTFMem.h的依赖*/
+    /*TTFMem.h*/
     /*bp  = TTF_MALLOC_WITH_FILE_LINE(PS_PID_APP_PPP, sizeof(struct ppp_mbuf) + m_len, ulFileID, (VOS_INT32)ulLineNum);*/
 
     bp  = VOS_MemAlloc(PS_PID_APP_PPP, DYNAMIC_MEM_PT, sizeof(struct ppp_mbuf) + m_len);
@@ -126,7 +126,7 @@ ppp_m_getm(VOS_INT32 m_len)
             break;
         }
 
-        /* 取当前Mem的下个节点地址，为下一次申请的内存挂接上 */
+        /* Mem */
         ppCurrMem   = &((*ppCurrMem)->m_next);
     }
 
@@ -138,8 +138,8 @@ ppp_m_free(struct ppp_mbuf *bp)
 {
     struct ppp_mbuf    *nbp;
 
-    /* 是返回 m_next还是 m_nextpkt，m_nextpkt是队列里的下一个元素，
-    m_next是这个数据的下一段 ，所以应该返回m_next*/
+    /*  m_next m_nextpktm_nextpkt
+    m_next m_next*/
     nbp = bp->m_next;
 
     VOS_MemFree(PS_PID_APP_PPP, bp);
@@ -240,7 +240,7 @@ ppp_m_prepend(struct ppp_mbuf *bp, const void *ptr, VOS_UINT32 len, VOS_UINT16 e
 }
 
 
-/*从头部或者尾部去掉n个字节，如果为负数，就从尾部去掉*/
+/*n*/
 
 struct ppp_mbuf *
 ppp_m_adj(struct ppp_mbuf *bp, VOS_INT32 n)
@@ -248,7 +248,7 @@ ppp_m_adj(struct ppp_mbuf *bp, VOS_INT32 n)
   if (n > 0) {
     while (bp) {
       if ((VOS_UINT32)n < bp->m_len) {
-        bp->m_len -= n;/*fzb:错了，应该是bp->m_len -= n;*/
+        bp->m_len -= n;/*fzb:bp->m_len -= n;*/
         bp->m_offset += (VOS_INT16)n;
         return bp;
       }
@@ -374,7 +374,7 @@ ppp_m_pullup(struct ppp_mbuf *bp)
     }
     else if ((bp->m_offset & (sizeof(long) - 1)) != 0) {
 
-      /*函数修改了，参数换了位置*/
+      /**/
       PSACORE_MEM_CPY(bp + 1, bp->m_len, PPP_MBUF_CTOP(bp), bp->m_len);
 
       bp->m_offset = 0;
@@ -405,10 +405,10 @@ ppp_m_append(struct ppp_mbuf *bp, const void *v, VOS_UINT32 sz)
   if (m) {
     while (m->m_next)
       m = m->m_next;
-    if (m->m_size - m->m_len >= sz) { /*还应该加上m_offset*/
+    if (m->m_size - m->m_len >= sz) { /*m_offset*/
       if (v)
         PSACORE_MEM_CPY((VOS_CHAR *)(m + 1) + m->m_len, sz, v, sz);
-      m->m_len += sz;   /*还应该有拷贝操作，由于这个函数不调用，所以没改*/
+      m->m_len += sz;   /**/
     } else
       m->m_next = ppp_m_prepend(VOS_NULL_PTR, v, sz, 0);
   } else
@@ -445,7 +445,7 @@ ppp_m_get_from_ttfmem(PPP_ZC_STRU *pstMem)
     pstCurrMem  = pstMem;
     pcMbufData  = PPP_MBUF_CTOP(bp);
 
-    /* 目前的零拷贝暂不支持链式 */
+    /*  */
     /*
     while (VOS_NULL_PTR != pstCurrMem)
     {
@@ -487,7 +487,7 @@ PPP_ZC_STRU *ppp_m_alloc_ttfmem_from_mbuf(struct ppp_mbuf *bp)
         return VOS_NULL_PTR;
     }
 
-    /* 设置零拷贝数据内容长度 */
+    /*  */
     PPP_ZC_SET_DATA_LEN(pstMem, usLen);
 
     ppp_mbuf_View(bp, PPP_ZC_GET_DATA_PTR(pstMem), usLen);
@@ -496,18 +496,18 @@ PPP_ZC_STRU *ppp_m_alloc_ttfmem_from_mbuf(struct ppp_mbuf *bp)
 } /* ppp_m_ttfmem_alloc_from_mbuf */
 
 /*****************************************************************************
- 函 数 名  : ppp_m_init_data
- 功能描述  : 初始化MBUF内存中存放的报文,不支持链式初始化
- 输入参数  : bp     存放报文的MBUF指针
- 输出参数  : 无
- 返 回 值  : NULL
- 调用函数  :
- 被调函数  :
+     : ppp_m_init_data
+   : MBUF,
+   : bp     MBUF
+   : 
+     : NULL
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年8月6日
-    作    者   : c00184031
-    修改内容   : created
+       :
+  1.       : 201686
+           : c00184031
+       : created
 *****************************************************************************/
 VOS_VOID ppp_m_init_data(struct ppp_mbuf *bp)
 {
@@ -520,7 +520,7 @@ VOS_VOID ppp_m_init_data(struct ppp_mbuf *bp)
         return;
     }
 
-    /* 没有数据需要初始化 */
+    /*  */
     if (0 == bp->m_size)
     {
         return;

@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "ATCmdProc.h"
 #include "AtCmdSupsProc.h"
@@ -57,16 +57,16 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID                 PS_FILE_ID_AT_CMD_SUPS_PROC_C
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 const AT_SS_EVT_FUNC_TBL_STRU           g_astAtSsEvtFuncTbl[] =
 {
-    /* 事件ID */                                /* 消息处理函数 */
+    /* ID */                                /*  */
     {ID_TAF_SSA_SET_LCS_MOLR_CNF,               AT_RcvSsaSetLcsMolrCnf},
     {ID_TAF_SSA_GET_LCS_MOLR_CNF,               AT_RcvSsaGetLcsMolrCnf},
     {ID_TAF_SSA_LCS_MOLR_NTF,                   AT_RcvSsaLcsMolrNtf},
@@ -79,22 +79,22 @@ const AT_SS_EVT_FUNC_TBL_STRU           g_astAtSsEvtFuncTbl[] =
 
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : AT_ConvertTafSsaErrorCode
- 功能描述  : AT模块转换SSA模块的错误码函数
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_ConvertTafSsaErrorCode
+   : ATSSA
+   : VOS_UINT8                           ucIndex
              TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151020
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_ConvertTafSsaErrorCode(
@@ -123,18 +123,18 @@ VOS_UINT32 AT_ConvertTafSsaErrorCode(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaEnable
- 功能描述  : [内部函数]填写+CMOLR命令参数<enable>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaEnable
+   : []+CMOLR<enable>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_FillCmolrParaEnable(
@@ -156,18 +156,18 @@ VOS_VOID AT_FillCmolrParaEnable(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaMethod
- 功能描述  : [内部函数]填写+CMOLR命令参数<method>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaMethod
+   : []+CMOLR<method>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_FillCmolrParaMethod(
@@ -188,20 +188,20 @@ VOS_VOID AT_FillCmolrParaMethod(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaHorAcc
- 功能描述  : [内部函数]填写+CMOLR命令参数<hor-acc-set>、<hor-acc>
- 输入参数  : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaHorAcc
+   : []+CMOLR<hor-acc-set><hor-acc>
+   : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrParaHorAcc(
@@ -221,7 +221,7 @@ VOS_UINT32 AT_FillCmolrParaHorAcc(
     if (LCS_HOR_ACC_SET_PARAM == pstMolrPara->enHorAccSet)
     {
         /* <hor-acc> */
-        /* 要求水平精度，但没有下发水平精度系数，返回失败 */
+        /*  */
         if ( (3 >= gucAtParaIndex)
           || (0 == gastAtParaList[3].usParaLen) )
         {
@@ -236,20 +236,20 @@ VOS_UINT32 AT_FillCmolrParaHorAcc(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaVerReq
- 功能描述  : [内部函数]填写+CMOLR命令参数<ver-req>、<ver-acc-set>、<ver-acc>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaVerReq
+   : []+CMOLR<ver-req><ver-acc-set><ver-acc>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrParaVerReq(
@@ -280,7 +280,7 @@ VOS_UINT32 AT_FillCmolrParaVerReq(
     if (LCS_VER_ACC_SET_PARAM == pstMolrPara->enVerAccSet)
     {
         /* <ver-acc> */
-        /* 要求垂直精度，但没有下发垂直精度系数，返回失败 */
+        /*  */
         if ( (6 >= gucAtParaIndex)
           || (0 == gastAtParaList[6].usParaLen) )
         {
@@ -295,18 +295,18 @@ VOS_UINT32 AT_FillCmolrParaVerReq(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaVelReq
- 功能描述  : [内部函数]填写+CMOLR命令参数<vel-req>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaVelReq
+   : []+CMOLR<vel-req>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_FillCmolrParaVelReq(
@@ -327,20 +327,20 @@ VOS_VOID AT_FillCmolrParaVelReq(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaRepMode
- 功能描述  : [内部函数]填写+CMOLR命令参数<rep-mode>
- 输入参数  : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaRepMode
+   : []+CMOLR<rep-mode>
+   : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrParaRepMode(
@@ -392,18 +392,18 @@ VOS_UINT32 AT_FillCmolrParaRepMode(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaShapeRep
- 功能描述  : [内部函数]填写+CMOLR命令参数<shape-rep>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaShapeRep
+   : []+CMOLR<shape-rep>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_FillCmolrParaShapeRep(
@@ -424,18 +424,18 @@ VOS_VOID AT_FillCmolrParaShapeRep(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaPlane
- 功能描述  : [内部函数]填写+CMOLR命令参数<plane>
- 输入参数  : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaPlane
+   : []+CMOLR<plane>
+   : TAF_SSA_LCS_MOLR_PARA_SET_STRU      *pstMolrPara;
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_FillCmolrParaPlane(
@@ -456,20 +456,20 @@ VOS_VOID AT_FillCmolrParaPlane(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_Str2NmeaRep
- 功能描述  : AT参数字符串类型转为NMEA格式类型
- 输入参数  : VOS_UINT16                          usLength
+     : AT_Str2NmeaRep
+   : ATNMEA
+   : VOS_UINT16                          usLength
              VOS_CHAR                           *pcStr
              TAF_SSA_LCS_NMEA_REP_STRU          *pstNmeaRep
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月12日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015912
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_Str2NmeaRep(
@@ -533,20 +533,20 @@ VOS_UINT32 AT_Str2NmeaRep(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaNmeaRep
- 功能描述  : [内部函数]填写+CMOLR命令<NMEA-rep>
- 输入参数  : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaNmeaRep
+   : []+CMOLR<NMEA-rep>
+   : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrParaNmeaRep(
@@ -576,20 +576,20 @@ VOS_UINT32 AT_FillCmolrParaNmeaRep(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrParaThdPtyAddr
- 功能描述  : [内部函数]填写+CMOLR命令参数<third-party-address>
- 输入参数  : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrParaThdPtyAddr
+   : []+CMOLR<third-party-address>
+   : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrParaThdPtyAddr(
@@ -619,20 +619,20 @@ VOS_UINT32 AT_FillCmolrParaThdPtyAddr(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_FillCmolrPara
- 功能描述  : [内部函数]填写+CMOLR命令参数
- 输入参数  : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_OK         -- 填写成功
-             VOS_ERR        -- 参数错误
- 调用函数  :
- 被调函数  :
+     : AT_FillCmolrPara
+   : []+CMOLR
+   : TAF_SSA_SET_LCS_MOLR_REQ_STRU      *pstMolrReq;
+   : 
+     : VOS_UINT32
+             VOS_OK         -- 
+             VOS_ERR        -- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015911
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_FillCmolrPara(
@@ -646,7 +646,7 @@ VOS_UINT32 AT_FillCmolrPara(
                [,<interval>[,<shape-rep>[,<plane>[,<NMEA-rep>
                [,<third-party-address>]]]]]]]]]]]]]]]] */
 
-    /* 参数过多，返回失败 */
+    /*  */
     if (15 < gucAtParaIndex)
     {
         AT_WARN_LOG("AT_FillCmolrPara: too many parameters!");
@@ -692,18 +692,18 @@ VOS_UINT32 AT_FillCmolrPara(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCmolrPara
- 功能描述  : +CMOLR设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SetCmolrPara
+   : +CMOLR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCmolrPara(VOS_UINT8 ucIndex)
@@ -712,7 +712,7 @@ VOS_UINT32 AT_SetCmolrPara(VOS_UINT8 ucIndex)
 
     TAF_MEM_SET_S(&stMolrPara, sizeof(stMolrPara), 0x00, sizeof(stMolrPara));
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         AT_WARN_LOG("AT_SetCmolrPara: Option Type Incrrect!");
@@ -724,33 +724,33 @@ VOS_UINT32 AT_SetCmolrPara(VOS_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 执行命令操作 */
+    /*  */
     TAF_SSA_SetCmolrInfo(WUEPS_PID_AT,
                          gastAtClientTab[ucIndex].usClientId,
                          gastAtClientTab[ucIndex].opId,
                          &stMolrPara);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMOLR_SET;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaSetLcsMolrCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MOLR设置结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaSetLcsMolrCnf
+   : ATTAFSSAMOLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151019
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaSetLcsMolrCnf(
@@ -761,21 +761,21 @@ VOS_VOID AT_RcvSsaSetLcsMolrCnf(
     TAF_SSA_SET_LCS_MOLR_CNF_STRU      *pstSetLcsMolrCnf    = VOS_NULL_PTR;
     VOS_UINT32                          ulResult;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMolrCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMOLR_SET */
+    /* AT_CMD_CMOLR_SET */
     if (AT_CMD_CMOLR_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMolrCnf: WARNING:Not AT_CMD_CMOLR_SET!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstSetLcsMolrCnf    = (TAF_SSA_SET_LCS_MOLR_CNF_STRU *)pEvent;
@@ -786,7 +786,7 @@ VOS_VOID AT_RcvSsaSetLcsMolrCnf(
         AT_WARN_LOG("AT_RcvSsaSetLcsMolrCnf: WARNING:Set ^CMOLR Failed!");
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = 0;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -794,48 +794,48 @@ VOS_VOID AT_RcvSsaSetLcsMolrCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCmolrPara
- 功能描述  : +CMOLR查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCmolrPara
+   : +CMOLR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCmolrPara(VOS_UINT8 ucIndex)
 {
-    /* 执行查询操作 */
+    /*  */
     TAF_SSA_GetCmolrInfo(WUEPS_PID_AT,
                          gastAtClientTab[ucIndex].usClientId,
                          gastAtClientTab[ucIndex].opId);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMOLR_READ;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaGetLcsMolrCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MOLR查询结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaGetLcsMolrCnf
+   : ATTAFSSAMOLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151019
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaGetLcsMolrCnf(
@@ -849,21 +849,21 @@ VOS_VOID AT_RcvSsaGetLcsMolrCnf(
     VOS_UINT16                          usLength;
     VOS_UINT8                           aucTPAStr[LCS_CLIENT_EXID_MAX_LEN + 1];
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMolrCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMOLR_READ */
+    /* AT_CMD_CMOLR_READ */
     if (AT_CMD_CMOLR_READ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMolrCnf: WARNING:Not AT_CMD_CMOLR_READ!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstGetLcsMolrCnf    = (TAF_SSA_GET_LCS_MOLR_CNF_STRU *)pEvent;
@@ -871,7 +871,7 @@ VOS_VOID AT_RcvSsaGetLcsMolrCnf(
     bNmeaFlg            = VOS_FALSE;
     usLength            = 0;
 
-    /* 判断查询操作是否成功 */
+    /*  */
     if (AT_OK == ulResult)
     {
         usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -984,7 +984,7 @@ VOS_VOID AT_RcvSsaGetLcsMolrCnf(
                                                    "%s,",
                                                    AT_PARA_NMEA_GPGLL);
             }
-            /* 删除多打印的一个字符 */
+            /*  */
             usLength -= 1;
 
             if (VOS_TRUE == bNmeaFlg)
@@ -1021,7 +1021,7 @@ VOS_VOID AT_RcvSsaGetLcsMolrCnf(
 
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = usLength;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -1029,23 +1029,23 @@ VOS_VOID AT_RcvSsaGetLcsMolrCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCmolrPara
- 功能描述  : +CMOLR测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCmolrPara
+   : +CMOLR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCmolrPara(VOS_UINT8 ucIndex)
 {
-    /* 输出测试命令结果 */
+    /*  */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1053,26 +1053,26 @@ VOS_UINT32 AT_TestCmolrPara(VOS_UINT8 ucIndex)
                                 "(0,1),(1-65535),(1-65535),(1-127),(0,1),"
                                 /* "\"$GPGSA,$GPGGA,$GPGSV,$GPRMC,$GPVTG,$GPGLL\"," */
                                 "\"$GPGGA,$GPRMC,$GPGLL\","
-                                "\"<third-party-address>\"",     /* <third-party-address>参数暂不确定格式 */
+                                "\"<third-party-address>\"",     /* <third-party-address> */
                                 g_stParseContext[ucIndex].pstCmdElement->pszCmdName);
 
     return AT_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaLcsMolrNtf
- 功能描述  : AT模块处理TAF层SSA模块上报的MOLR定位信息
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaLcsMolrNtf
+   : ATTAFSSAMOLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151020
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaLcsMolrNtf(
@@ -1087,7 +1087,7 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
     VOS_UINT32                          ulReturnCodeIndex;
     VOS_UINT16                          usLength;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaLcsMolrNtf: WARNING:AT_BROADCAST_INDEX!");
@@ -1100,7 +1100,7 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
     ulReturnCodeIndex   = 0;
     usLength            = 0;
 
-    /* 判断查询操作是否成功 */
+    /*  */
     if (AT_OK == ulResult)
     {
         pcLocationStr = (VOS_CHAR*)PS_MEM_ALLOC(WUEPS_PID_AT, pstLcsMolrNtf->usLocationStrLen + 1);
@@ -1115,7 +1115,7 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
 
         if (TAF_SSA_LCS_MOLR_RPT_NMEA == pstLcsMolrNtf->enRptTypeChoice)
         {
-            /* 输出+CMOLRN定位信息 */
+            /* +CMOLRN */
             usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                               (VOS_CHAR *)pgucAtSndCodeAddr,
                                               (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1127,7 +1127,7 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
         }
         else
         {
-            /* 输出+CMOLRG定位信息 */
+            /* +CMOLRG */
             usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                               (VOS_CHAR *)pgucAtSndCodeAddr,
                                               (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1148,7 +1148,7 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
             return;
         }
 
-        /* 输出+CMOLRE错误码 */
+        /* +CMOLRE */
         if (AT_CMOLRE_NUMERIC == pstAgpsCtx->enCmolreType)
         {
             usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1173,25 +1173,25 @@ VOS_VOID AT_RcvSsaLcsMolrNtf(
         }
     }
 
-    /* 输出结果到AT通道 */
+    /* AT */
     At_SendResultData(ucIndex, pgucAtSndCodeAddr, usLength);
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCmolrePara
- 功能描述  : +CMOLRE设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SetCmolrePara
+   : +CMOLRE
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCmolrePara(VOS_UINT8 ucIndex)
@@ -1200,21 +1200,21 @@ VOS_UINT32 AT_SetCmolrePara(VOS_UINT8 ucIndex)
 
     pstAgpsCtx = AT_GetModemAgpsCtxAddrFromClientId(gastAtClientTab[ucIndex].usClientId);
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         AT_WARN_LOG("AT_SetCmolrePara: Option Type Incrrect!");
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多，返回失败 */
+    /*  */
     if (1 < gucAtParaIndex)
     {
         AT_WARN_LOG("AT_SetCmolrePara: too many parameters!");
         return AT_TOO_MANY_PARA;
     }
 
-    /* 执行命令操作 */
+    /*  */
     if (0 == gastAtParaList[0].usParaLen)
     {
         pstAgpsCtx->enCmolreType = AT_CMOLRE_NUMERIC;
@@ -1224,23 +1224,23 @@ VOS_UINT32 AT_SetCmolrePara(VOS_UINT8 ucIndex)
         pstAgpsCtx->enCmolreType = (VOS_UINT8)gastAtParaList[0].ulParaValue;
     }
 
-    /* 命令返回OK */
+    /* OK */
     return AT_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCmolrePara
- 功能描述  : +CMOLRE查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCmolrePara
+   : +CMOLRE
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCmolrePara(VOS_UINT8 ucIndex)
@@ -1249,7 +1249,7 @@ VOS_UINT32 AT_QryCmolrePara(VOS_UINT8 ucIndex)
 
     pstAgpsCtx = AT_GetModemAgpsCtxAddrFromClientId(gastAtClientTab[ucIndex].usClientId);
 
-    /* 输出查询结果 */
+    /*  */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1257,44 +1257,44 @@ VOS_UINT32 AT_QryCmolrePara(VOS_UINT8 ucIndex)
                                 g_stParseContext[ucIndex].pstCmdElement->pszCmdName,
                                 pstAgpsCtx->enCmolreType);
 
-    /* 命令返回OK */
+    /* OK */
     return AT_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCmtlrPara
- 功能描述  : +CMTLR设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SetCmtlrPara
+   : +CMTLR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCmtlrPara(VOS_UINT8 ucIndex)
 {
     TAF_SSA_LCS_MTLR_SUBSCRIBE_ENUM_UINT8   enSubscribe;
 
-    /* 参数检查 */
+    /*  */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         AT_WARN_LOG("AT_SetCmtlrPara: Option Type Incrrect!");
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多，返回失败 */
+    /*  */
     if (1 < gucAtParaIndex)
     {
         AT_WARN_LOG("AT_SetCmtlrPara: too many parameters!");
         return AT_TOO_MANY_PARA;
     }
 
-    /* 执行命令操作 */
+    /*  */
     if (0 == gastAtParaList[0].usParaLen)
     {
         enSubscribe = TAF_SSA_LCS_MOLR_ENABLE_TYPE_DISABLE;
@@ -1308,27 +1308,27 @@ VOS_UINT32 AT_SetCmtlrPara(VOS_UINT8 ucIndex)
                          gastAtClientTab[ucIndex].opId,
                          enSubscribe);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMTLR_SET;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaSetLcsMtlrCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MTLR设置结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaSetLcsMtlrCnf
+   : ATTAFSSAMTLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151020
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaSetLcsMtlrCnf(
@@ -1339,21 +1339,21 @@ VOS_VOID AT_RcvSsaSetLcsMtlrCnf(
     TAF_SSA_SET_LCS_MTLR_CNF_STRU      *pstSetLcsMtlrCnf    = VOS_NULL_PTR;
     VOS_UINT32                          ulResult;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlrCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMTLR_SET */
+    /* AT_CMD_CMTLR_SET */
     if (AT_CMD_CMTLR_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlrCnf: WARNING:Not AT_CMD_CMTLR_SET!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstSetLcsMtlrCnf    = (TAF_SSA_SET_LCS_MTLR_CNF_STRU *)pEvent;
@@ -1364,7 +1364,7 @@ VOS_VOID AT_RcvSsaSetLcsMtlrCnf(
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlrCnf: WARNING:Set ^CMTLR Failed!");
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = 0;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -1372,48 +1372,48 @@ VOS_VOID AT_RcvSsaSetLcsMtlrCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCmtlrPara
- 功能描述  : +CMTLR查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCmtlrPara
+   : +CMTLR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCmtlrPara(VOS_UINT8 ucIndex)
 {
-    /* 执行查询操作 */
+    /*  */
     TAF_SSA_GetCmtlrInfo(WUEPS_PID_AT,
                          gastAtClientTab[ucIndex].usClientId,
                          gastAtClientTab[ucIndex].opId);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMTLR_READ;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaGetLcsMtlrCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MTLR查询结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaGetLcsMtlrCnf
+   : ATTAFSSAMTLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151019
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaGetLcsMtlrCnf(
@@ -1425,28 +1425,28 @@ VOS_VOID AT_RcvSsaGetLcsMtlrCnf(
     VOS_UINT32                          ulResult;
     VOS_UINT16                          usLength;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMtlrCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMTLR_READ */
+    /* AT_CMD_CMTLR_READ */
     if (AT_CMD_CMTLR_READ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMtlrCnf: WARNING:Not AT_CMD_CMTLR_READ!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstGetLcsMtlrCnf    = (TAF_SSA_GET_LCS_MTLR_CNF_STRU *)pEvent;
     ulResult            = AT_ConvertTafSsaErrorCode(ucIndex, pstGetLcsMtlrCnf->enResult);
     usLength            = 0;
 
-    /* 判断查询操作是否成功 */
+    /*  */
     if (AT_OK == ulResult)
     {
         usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -1457,7 +1457,7 @@ VOS_VOID AT_RcvSsaGetLcsMtlrCnf(
                                           pstGetLcsMtlrCnf->enSubscribe);
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = usLength;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -1465,19 +1465,19 @@ VOS_VOID AT_RcvSsaGetLcsMtlrCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaLcsMtlrNtf
- 功能描述  : AT模块处理TAF层SSA模块上报的MTLR网络定位请求
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaLcsMtlrNtf
+   : ATTAFSSAMTLR
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151020
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaLcsMtlrNtf(
@@ -1490,7 +1490,7 @@ VOS_VOID AT_RcvSsaLcsMtlrNtf(
     VOS_UINT32                          i;
     VOS_UINT16                          usLength;
 
-    /* 只能为广播通道 */
+    /*  */
     if (!AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaLcsMtlrNtf: WARNING:Not AT_BROADCAST_INDEX!");
@@ -1582,46 +1582,46 @@ VOS_VOID AT_RcvSsaLcsMtlrNtf(
                                       (VOS_CHAR *)pgucAtSndCodeAddr + usLength,
                                       "\r\n");
 
-    /* 输出结果到AT通道 */
+    /* AT */
     At_SendResultData(ucIndex, pgucAtSndCodeAddr, usLength);
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCmtlraPara
- 功能描述  : +CMTLRA设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SetCmtlraPara
+   : +CMTLRA
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCmtlraPara(VOS_UINT8 ucIndex)
 {
     TAF_SSA_LCS_MTLRA_PARA_SET_STRU     stCmtlraPara;
 
-    /* 参数检查 */
+    /*  */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         AT_WARN_LOG("AT_SetCmtlraPara: Option Type Incrrect!");
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数个数判断 */
+    /*  */
     if (2 != gucAtParaIndex)
     {
         AT_WARN_LOG("AT_SetCmtlraPara: Incorrect Parameter Num!");
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 执行命令操作 */
+    /*  */
     TAF_MEM_SET_S(&stCmtlraPara, sizeof(stCmtlraPara), 0x00, sizeof(stCmtlraPara));
     stCmtlraPara.enAllow    = (VOS_UINT8)gastAtParaList[0].ulParaValue;
     stCmtlraPara.ucHandleId = (VOS_UINT8)gastAtParaList[1].ulParaValue;
@@ -1631,27 +1631,27 @@ VOS_UINT32 AT_SetCmtlraPara(VOS_UINT8 ucIndex)
                           gastAtClientTab[ucIndex].opId,
                           &stCmtlraPara);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMTLRA_SET;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaSetLcsMtlraCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MTLRA设置结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaSetLcsMtlraCnf
+   : ATTAFSSAMTLRA
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月20日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151020
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaSetLcsMtlraCnf(
@@ -1662,21 +1662,21 @@ VOS_VOID AT_RcvSsaSetLcsMtlraCnf(
     TAF_SSA_SET_LCS_MTLRA_CNF_STRU     *pstSetLcsMtlraCnf    = VOS_NULL_PTR;
     VOS_UINT32                          ulResult;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlraCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMTLRA_SET */
+    /* AT_CMD_CMTLRA_SET */
     if (AT_CMD_CMTLRA_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlraCnf: WARNING:Not AT_CMD_CMTLRA_SET!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstSetLcsMtlraCnf   = (TAF_SSA_SET_LCS_MTLRA_CNF_STRU *)pEvent;
@@ -1687,7 +1687,7 @@ VOS_VOID AT_RcvSsaSetLcsMtlraCnf(
         AT_WARN_LOG("AT_RcvSsaSetLcsMtlraCnf: WARNING:Set ^CMTLRA Failed!");
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = 0;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -1695,48 +1695,48 @@ VOS_VOID AT_RcvSsaSetLcsMtlraCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCmtlraPara
- 功能描述  : +CMTLRA查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCmtlraPara
+   : +CMTLRA
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCmtlraPara(VOS_UINT8 ucIndex)
 {
-    /* 执行查询操作 */
+    /*  */
     TAF_SSA_GetCmtlraInfo(WUEPS_PID_AT,
                           gastAtClientTab[ucIndex].usClientId,
                           gastAtClientTab[ucIndex].opId);
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CMTLRA_READ;
 
-    /* 命令处理挂起状态 */
+    /*  */
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvSsaGetLcsMtlraCnf
- 功能描述  : AT模块处理TAF层SSA模块回复的MTLRA查询结果
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_RcvSsaGetLcsMtlraCnf
+   : ATTAFSSAMTLRA
+   : VOS_UINT8                           ucIndex
              VOS_VOID                           *pEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151019
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvSsaGetLcsMtlraCnf(
@@ -1750,28 +1750,28 @@ VOS_VOID AT_RcvSsaGetLcsMtlraCnf(
     VOS_UINT8                           i;
     VOS_UINT8                           ucCnt;
 
-    /* 不能为广播通道 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMtlraCnf: WARNING:AT_BROADCAST_INDEX!");
         return;
     }
 
-    /* 判断当前操作类型是否为AT_CMD_CMTLRA_READ */
+    /* AT_CMD_CMTLRA_READ */
     if (AT_CMD_CMTLRA_READ != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvSsaGetLcsMtlraCnf: WARNING:Not AT_CMD_CMTLRA_READ!");
         return;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     pstGetLcsMtlraCnf   = (TAF_SSA_GET_LCS_MTLRA_CNF_STRU *)pEvent;
     ulResult            = AT_ConvertTafSsaErrorCode(ucIndex, pstGetLcsMtlraCnf->enResult);
     usLength            = 0;
 
-    /* 判断查询操作是否成功 */
+    /*  */
     if (AT_OK == ulResult)
     {
         ucCnt = (pstGetLcsMtlraCnf->ucCnt > TAF_SSA_LCS_MTLR_MAX_NUM) ?
@@ -1797,7 +1797,7 @@ VOS_VOID AT_RcvSsaGetLcsMtlraCnf(
         }
     }
 
-    /* 输出结果 */
+    /*  */
     gstAtSendData.usBufLen = usLength;
     At_FormatResultData(ucIndex, ulResult);
 
@@ -1805,23 +1805,23 @@ VOS_VOID AT_RcvSsaGetLcsMtlraCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCmtlraPara
- 功能描述  : +CMTLRA测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCmtlraPara
+   : +CMTLRA
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 201599
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCmtlraPara(VOS_UINT8 ucIndex)
 {
-    /* 输出测试命令结果 */
+    /*  */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
                                 (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1832,18 +1832,18 @@ VOS_UINT32 AT_TestCmtlraPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvTafSsaEvt
- 功能描述  : AT模块处理TAF层SSA模块上报的事件
- 输入参数  : TAF_SSA_EVT_STRU                   *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_RcvTafSsaEvt
+   : ATTAFSSA
+   : TAF_SSA_EVT_STRU                   *pstEvent
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月19日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20151019
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvTafSsaEvt(
@@ -1856,7 +1856,7 @@ VOS_VOID AT_RcvTafSsaEvt(
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          i;
 
-    /* 判断事件是否是历史SSA代码上报 */
+    /* SSA */
     if (0 != pstEvent->ulEvtExt)
     {
         pMsg = (MN_AT_IND_EVT_STRU *)pstEvent;
@@ -1864,7 +1864,7 @@ VOS_VOID AT_RcvTafSsaEvt(
         return;
     }
 
-    /* 初始化 */
+    /*  */
     pstCtrl     = (TAF_CTRL_STRU*)(pstEvent->aucContent);
 
     if ( AT_FAILURE == At_ClientIdToUserId(pstCtrl->usClientId,
@@ -1874,18 +1874,18 @@ VOS_VOID AT_RcvTafSsaEvt(
         return;
     }
 
-    /* 在事件处理表中查找处理函数 */
+    /*  */
     for (i = 0; i < AT_ARRAY_SIZE(g_astAtSsEvtFuncTbl); i++)
     {
         if ( pstEvent->enEvtId == g_astAtSsEvtFuncTbl[i].enEvtId )
         {
-            /* 事件ID匹配 */
+            /* ID */
             pEvtFunc = g_astAtSsEvtFuncTbl[i].pEvtFunc;
             break;
         }
     }
 
-    /* 如果处理函数存在则调用 */
+    /*  */
     if ( VOS_NULL_PTR != pEvtFunc )
     {
         pEvtFunc(ucIndex, pstEvent->aucContent);
@@ -1899,25 +1899,25 @@ VOS_VOID AT_RcvTafSsaEvt(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCnapExPara
- 功能描述  : ^CNAP查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCnapExPara
+   : ^CNAP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : c00380008
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : c00380008
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_QryCnapExPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRet;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_READ_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -1938,20 +1938,20 @@ VOS_UINT32 AT_QryCnapExPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CnapConvertNameStr
- 功能描述  : CNAP结构7Bit或8Bit转换为AscII字符串
- 输入参数  : TAF_CALL_CNAP_STRU                 *pstNameIndicator   -- 源CNAP结构
-             VOS_UINT8                          *pucNameStr         -- 目标字符串地址
-             VOS_UINT8                           ucNameStrMaxLen    -- 目标字符串空间最大值
- 输出参数  : 无
- 返 回 值  : LOCAL VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CnapConvertNameStr
+   : CNAP7Bit8BitAscII
+   : TAF_CALL_CNAP_STRU                 *pstNameIndicator   -- CNAP
+             VOS_UINT8                          *pucNameStr         -- 
+             VOS_UINT8                           ucNameStrMaxLen    -- 
+   : 
+     : LOCAL VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月23日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 20161123
+           : l00198894
+       : 
 
 *****************************************************************************/
 LOCAL VOS_VOID AT_CnapConvertNameStr(
@@ -1965,10 +1965,10 @@ LOCAL VOS_VOID AT_CnapConvertNameStr(
     TAF_MEM_SET_S(pucNameStr, ucNameStrMaxLen, 0x00, ucNameStrMaxLen);
     ulAscIILen = 0;
 
-    /* 7bit转换为8bit */
+    /* 7bit8bit */
     if (TAF_CALL_DCS_7BIT == pstNameIndicator->enDcs)
     {
-        /* 7bit转换为8bit */
+        /* 7bit8bit */
         if (ucNameStrMaxLen < pstNameIndicator->ucLength)
         {
             AT_WARN_LOG("AT_CnapConvertNameStr: NameStr Space Too Short!");
@@ -1984,7 +1984,7 @@ LOCAL VOS_VOID AT_CnapConvertNameStr(
             return;
         }
 
-        /* Default Alphabet转换为ASCII码 */
+        /* Default AlphabetASCII */
         TAF_STD_ConvertDefAlphaToAscii(pucNameStr, pstNameIndicator->ucLength, pucNameStr, &ulAscIILen);
 
         if (ulAscIILen < pstNameIndicator->ucLength)
@@ -2005,18 +2005,18 @@ LOCAL VOS_VOID AT_CnapConvertNameStr(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvTafCallCnapQryCnf
- 功能描述  : AT模块处理CALL模块CNAP信息查询结果函数
- 输入参数  : MN_AT_IND_EVT_STRU                 *pstData
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_RcvTafCallCnapQryCnf
+   : ATCALLCNAP
+   : MN_AT_IND_EVT_STRU                 *pstData
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : c00380008
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : c00380008
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_RcvTafCallCnapQryCnf(VOS_VOID *pstMsg)
@@ -2031,28 +2031,28 @@ VOS_UINT32 AT_RcvTafCallCnapQryCnf(VOS_VOID *pstMsg)
 
     pstCnapQryCnf   = (TAF_CALL_APP_CNAP_QRY_CNF_STRU *)pstMsg;
 
-    /* 通过ClientId获取ucIndex */
+    /* ClientIducIndex */
     if (AT_FAILURE == At_ClientIdToUserId(pstCnapQryCnf->stCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvTafCallCnapQryCnf: WARNING:AT INDEX NOT FOUND!");
         return VOS_ERR;
     }
 
-    /* 广播消息不处理 */
+    /*  */
     if (AT_IS_BROADCAST_CLIENT_INDEX(ucIndex))
     {
         AT_WARN_LOG("AT_RcvTafCallCnapQryCnf: WARNING:AT_BROADCAST_INDEX!");
         return VOS_ERR;
     }
 
-    /* 判断当前操作类型 */
+    /*  */
     if (AT_CMD_CNAPEX_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvTafCallCnapQryCnf: WARNING:Not AT_CMD_CNAPEX_QRY!");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     if (VOS_TRUE == pstCnapQryCnf->stNameIndicator.ucExistFlag)
@@ -2067,7 +2067,7 @@ VOS_UINT32 AT_RcvTafCallCnapQryCnf(VOS_VOID *pstMsg)
          && (pstCnapQryCnf->stNameIndicator.ucLength < TAF_CALL_CNAP_NAME_STR_MAX_LENGTH)
          && (pstCnapQryCnf->stNameIndicator.enDcs < TAF_CALL_DCS_BUTT))
         {
-            /* UCS2格式直接打印输出 */
+            /* UCS2 */
             if (TAF_CALL_DCS_UCS2 == pstCnapQryCnf->stNameIndicator.enDcs)
             {
                 usLength += (VOS_UINT16)At_Unicode2UnicodePrint(AT_CMD_MAX_LEN,
@@ -2080,7 +2080,7 @@ VOS_UINT32 AT_RcvTafCallCnapQryCnf(VOS_VOID *pstMsg)
             {
                 AT_CnapConvertNameStr(&pstCnapQryCnf->stNameIndicator, aucNameStr, AT_PARA_CNAP_MAX_NAME_LEN);
 
-                /* AscII转换为UCS2并打印输出 */
+                /* AscIIUCS2 */
                 usLength += (TAF_UINT16)At_Ascii2UnicodePrint(AT_CMD_MAX_LEN,
                                                               (VOS_CHAR *)pgucAtSndCodeAddr,
                                                               pgucAtSndCodeAddr + usLength,
@@ -2107,18 +2107,18 @@ VOS_UINT32 AT_RcvTafCallCnapQryCnf(VOS_VOID *pstMsg)
 
 
 /*****************************************************************************
- 函 数 名  : AT_SetCnapPara
- 功能描述  : +CNAP设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SetCnapPara
+   : +CNAP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : s00370485
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : s00370485
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SetCnapPara(VOS_UINT8 ucIndex)
@@ -2127,19 +2127,19 @@ VOS_UINT32 AT_SetCnapPara(VOS_UINT8 ucIndex)
 
     pstSsCtx = AT_GetModemSsCtxAddrFromClientId(ucIndex);
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 1)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数不为空 */
+    /*  */
     if (0 != gastAtParaList[0].usParaLen)
     {
         pstSsCtx->enCnapType = (AT_CNAP_TYPE_ENUM_UINT8)gastAtParaList[0].ulParaValue;
@@ -2153,41 +2153,41 @@ VOS_UINT32 AT_SetCnapPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_QryCnapPara
- 功能描述  : +CNAP查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_QryCnapPara
+   : +CNAP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : s00370485
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : s00370485
+       : 
 
 *****************************************************************************/
 TAF_UINT32 AT_QryCnapPara(VOS_UINT8 ucIndex)
 {
     TAF_SS_INTERROGATESS_REQ_STRU       stCnapQry;
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stCnapQry, (VOS_SIZE_T)sizeof(stCnapQry), 0x00, (VOS_SIZE_T)sizeof(TAF_SS_INTERROGATESS_REQ_STRU));
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_READ_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 设置SsCode */
+    /* SsCode */
     stCnapQry.SsCode = TAF_CNAP_SS_CODE;
 
     if(AT_SUCCESS == TAF_InterrogateSSReq(gastAtClientTab[ucIndex].usClientId, 0, &stCnapQry))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CNAP_QRY;
-        return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        return AT_WAIT_ASYNC_RETURN;    /*  */
     }
     else
     {
@@ -2196,18 +2196,18 @@ TAF_UINT32 AT_QryCnapPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SsRspInterrogateCnfCnapProc
- 功能描述  : +CNAP查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SsRspInterrogateCnfCnapProc
+   : +CNAP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : s00370485
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : s00370485
+       : 
 
 *****************************************************************************/
 TAF_VOID AT_SsRspInterrogateCnfCnapProc(
@@ -2222,26 +2222,26 @@ TAF_VOID AT_SsRspInterrogateCnfCnapProc(
 
     pstSsCtx = AT_GetModemSsCtxAddrFromClientId(ucIndex);
 
-    /* 需要首先判断错误码 */
+    /*  */
     if (1 == pEvent->OP_Error)
     {
         *pulResult = At_ChgTafErrorCode(ucIndex,pEvent->ErrorCode);
         return;
     }
 
-    /* 判断当前操作类型 */
+    /*  */
     if (AT_CMD_CNAP_QRY != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_SsRspInterrogateCnfCnapProc: WARNING: Not AT_CMD_CNAP_QRY!");
         return;
     }
 
-    /* 查到状态 */
+    /*  */
     if (1 == pEvent->OP_SsStatus)
     {
         ucTmp = (TAF_SS_PROVISIONED_STATUS_MASK & pEvent->SsStatus) ? 1 : 0;
     }
-    /* 没有查到状态 */
+    /*  */
     else
     {
         ucTmp = 2;
@@ -2261,18 +2261,18 @@ TAF_VOID AT_SsRspInterrogateCnfCnapProc(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ReportCnapInfo
- 功能描述  : 上报Cnap信息
- 输入参数  : VOS_VOID pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_ReportCnapInfo
+   : Cnap
+   : VOS_VOID pstMsg
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : s00370485
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : s00370485
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_ReportCnapInfo(
@@ -2292,7 +2292,7 @@ VOS_VOID AT_ReportCnapInfo(
         return;
     }
 
-    /* 7bit和8bit转换后上报 */
+    /* 7bit8bit */
     if ((TAF_CALL_DCS_7BIT == pstNameIndicator->enDcs)
      || (TAF_CALL_DCS_8BIT == pstNameIndicator->enDcs))
     {
@@ -2316,18 +2316,18 @@ VOS_VOID AT_ReportCnapInfo(
     return;
 }
 /*****************************************************************************
- 函 数 名  : AT_RcvTafCallCnapInfoInd
- 功能描述  : 收到消息ID_TAF_CALL_APP_CNAP_INFO_IND的处理函数
- 输入参数  : VOS_VOID pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_RcvTafCallCnapInfoInd
+   : ID_TAF_CALL_APP_CNAP_INFO_IND
+   : VOS_VOID pstMsg
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : s00370485
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : s00370485
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_RcvTafCallCnapInfoInd(VOS_VOID *pstMsg)
@@ -2337,7 +2337,7 @@ VOS_UINT32 AT_RcvTafCallCnapInfoInd(VOS_VOID *pstMsg)
 
     pstCnapInfoInd = (TAF_CALL_APP_CNAP_INFO_IND_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstCnapInfoInd->stCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvTafCallCnapInfoInd:WARNING:AT INDEX NOT FOUND!");

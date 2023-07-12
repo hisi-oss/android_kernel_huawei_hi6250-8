@@ -86,16 +86,16 @@ struct semaphore g_cp_agent_sem;
 u32 g_rdr_mod_id = 0;
 
 /*****************************************************************************
-* 函 数 名  : dump_memcpy
-* 功能描述  : 拷贝寄存器函数
+*     : dump_memcpy
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_memcpy(u32 * dst, const u32 * src, u32 len)
@@ -106,16 +106,16 @@ void dump_memcpy(u32 * dst, const u32 * src, u32 len)
     }
 }
 /*****************************************************************************
-* 函 数 名  : dump_save_modem_sysctrl
-* 功能描述  : 保存modem的系统控制寄存器
+*     : dump_save_modem_sysctrl
+*   : modem
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_modem_sysctrl(void)
@@ -147,16 +147,16 @@ void dump_save_modem_sysctrl(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_memmap_modem_ddr
-* 功能描述  : 映射modem ddr的内存，只在手机版本上使用，mbb平台上在fastboot导出
+*     : dump_memmap_modem_ddr
+*   : modem ddrmbbfastboot
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_map_mdm_ddr(void)
@@ -179,16 +179,16 @@ void dump_map_mdm_ddr(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_mdm_ddr_file
-* 功能描述  : 保存modem的ddr
+*     : dump_save_mdm_ddr_file
+*   : modemddr
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_mdm_ddr_file(char* dir_name)
@@ -218,16 +218,16 @@ void dump_save_mdm_ddr_file(char* dir_name)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_mdm_ddr_file
-* 功能描述  : 保存modem的ddr
+*     : dump_save_mdm_ddr_file
+*   : modemddr
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_mdm_dts_file(char* dir_name)
@@ -255,16 +255,16 @@ void dump_save_mdm_dts_file(char* dir_name)
     }
 }
 /*****************************************************************************
-* 函 数 名  : dump_cp_wdt_hook
-* 功能描述  : cp 看门狗回调函数
+*     : dump_cp_wdt_hook
+*   : cp 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_cp_wdt_hook(void)
@@ -274,16 +274,16 @@ void dump_cp_wdt_hook(void)
 
 
 /*****************************************************************************
-* 函 数 名  : dump_get_cp_task_name_by_id
-* 功能描述  : 通过任务id查找任务名
+*     : dump_get_cp_task_name_by_id
+*   : id
 *
-* 输入参数  :task_id
-* 输出参数  :task_name
+*   :task_id
+*   :task_name
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_get_cp_task_name_by_id(u32 task_id, char* task_name)
@@ -294,7 +294,7 @@ void dump_get_cp_task_name_by_id(u32 task_id, char* task_name)
     u32 task_index = 0;
 
 
-    /*CP存储任务名的区域*/
+    /*CP*/
     task_name_table = bsp_dump_get_field_addr(DUMP_CP_ALLTASK_NAME);
     if(NULL == task_name_table)
     {
@@ -304,12 +304,12 @@ void dump_get_cp_task_name_by_id(u32 task_id, char* task_name)
 
     task_cnt = *((u32 *)task_name_table + 3)/4;
 
-    /* 偏移10字节，去掉队列头 */
+    /* 10 */
     task_name_table += 0x10;
     temp_task_name = (dump_task_info_s *)task_name_table;
     dump_fetal("task_cnt:0x%x\n", task_cnt);
 
-    /*查找任务名*/
+    /**/
     for(task_index = 0;task_index < task_cnt; task_index++)
     {
         if(temp_task_name->task_id == task_id)
@@ -325,19 +325,19 @@ void dump_get_cp_task_name_by_id(u32 task_id, char* task_name)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_cp_base_info
-* 功能描述  : 保存modem ap的基本信息
+*     : dump_save_cp_base_info
+*   : modem ap
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
-/*看门狗异常要重新考虑怎么处理*/
+/**/
 void dump_save_cp_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 length)
 {
 
@@ -385,7 +385,7 @@ void dump_save_cp_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 leng
     }
     else
     {
-        /*boston上看门狗和总线挂死没有办法区分是哪个核*/
+        /*boston*/
     }
 
 
@@ -395,17 +395,17 @@ void dump_save_cp_base_info(u32 mod_id, u32 arg1, u32 arg2, char *data, u32 leng
 
 
 /*****************************************************************************
-* 函 数 名  : dump_wait_cp_save_done
-* 功能描述  : 保存modem cp的区域
+*     : dump_wait_cp_save_done
+*   : modem cp
 *
-* 输入参数  : u32 ms  等待的毫秒数
-              bool wait 是否循环等待
-* 输出参数  :
+*   : u32 ms  
+              bool wait 
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_wait_cp_save_done(u32 ms,bool wait)
@@ -441,16 +441,16 @@ s32 dump_wait_cp_save_done(u32 ms,bool wait)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_int_handle
-* 功能描述  : 处理modem cp发送过来的中断
+*     : dump_int_handle
+*   : modem cp
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_cp_agent_handle(s32 param)
@@ -523,16 +523,16 @@ void dump_cp_agent_handle(s32 param)
 
 
 /*****************************************************************************
-* 函 数 名  : dump_notify_cp
-* 功能描述  : 通知modem cp
+*     : dump_notify_cp
+*   : modem cp
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_notify_cp(u32 mod_id)
@@ -562,16 +562,16 @@ void dump_notify_cp(u32 mod_id)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_cp_wdt_proc
-* 功能描述  : 看门狗异常处理
+*     : dump_cp_wdt_proc
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_cp_wdt_proc(void)
@@ -582,16 +582,16 @@ void dump_cp_wdt_proc(void)
     dump_fetal("dump_cp_wdt_proc finish \n");
 }
 /*****************************************************************************
-* 函 数 名  : dump_cp_wdt_proc
-* 功能描述  : 看门狗异常处理
+*     : dump_cp_wdt_proc
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_cp_dlock_proc(void)
@@ -603,16 +603,16 @@ void dump_cp_dlock_proc(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_cp_task
-* 功能描述  : 保存modem log的入口函数
+*     : dump_cp_task
+*   : modem log
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 int dump_cp_task(void *data)
@@ -631,16 +631,16 @@ int dump_cp_task(void *data)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_task_init
-* 功能描述  : 创建modem ap 保存log 的任务函数
+*     : dump_save_task_init
+*   : modem ap log 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_cp_task_init(void)
@@ -669,16 +669,16 @@ s32 dump_cp_task_init(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_cp_wdt_proc
-* 功能描述  : 看门狗异常处理
+*     : dump_cp_wdt_proc
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_cp_agent_init(void)
@@ -714,16 +714,16 @@ s32 dump_cp_agent_init(void)
 
 }
 /*****************************************************************************
-* 函 数 名  : dump_cp_save_logs
-* 功能描述  : 保存c核的log
+*     : dump_cp_save_logs
+*   : clog
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_cp_logs(char* dir_name)
@@ -741,16 +741,16 @@ void dump_save_cp_logs(char* dir_name)
 
 }
 /*****************************************************************************
-* 函 数 名  : dump_cp_timeout_proc
-* 功能描述  : IPC中断超时的处理
+*     : dump_cp_timeout_proc
+*   : IPC
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_cp_timeout_proc(void)

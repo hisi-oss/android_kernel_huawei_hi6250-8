@@ -91,12 +91,12 @@
 #include "NVIM_Interface.h"
 #include "mdrv.h"
 
-/* LINUX 不支持 */
+/* LINUX  */
 
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_VOS_MAIN_C
 
@@ -150,7 +150,7 @@ VOS_VOID root( VOS_VOID)
     Print1("%s", "\n!!!!! VOS_Startup Begin !!!!!\n");
 
 
-    /* 2016.03.14:底软接口修改，先调用register函数申请内存，后面使用get field函数获取内存地址 */
+    /* 2016.03.14:registerget field */
     (VOS_VOID)mdrv_om_register_field(DUMP_SAVE_MOD_OSA_MEM, "OAM", VOS_NULL_PTR, VOS_NULL_PTR, VOS_DUMP_MEM_ALL_SIZE, 0);
 
     V_LogInit();
@@ -218,12 +218,12 @@ VOS_VOID VOS_ProtectInit(VOS_UINT32 ulParam1, VOS_UINT32 ulParam2)
  Return     : VOS_OK or VOS_ERROR
  Other      :
 
-日    期   : 2010年12月22日
-作    者   : j00174725
-修改内容   : 根据问题单号:DTS2010122401828
-            由于虚拟USB出现黄色感叹号，将锁任务处理调整到
-            创建VOS各FID任务之前，创建完成后解锁，
-            在Resume操作前锁任务，在Resume后解锁。
+       : 20101222
+       : j00174725
+   : :DTS2010122401828
+            USB
+            VOSFID
+            ResumeResume
 
  *****************************************************************************/
 VOS_UINT32 VOS_Startup( enum VOS_STARTUP_PHASE ph )
@@ -411,9 +411,9 @@ VOS_UINT32 VOS_Startup( enum VOS_STARTUP_PHASE ph )
 extern VOS_INT RNIC_InitNetCard(VOS_VOID);
 extern VOS_INT APP_VCOM_Init(VOS_VOID);
 
-/* Added by m00217266 for 双VoWiFi项目, 2017-3-10, begin */
+/* Added by m00217266 for VoWiFi, 2017-3-10, begin */
 extern VOS_INT NM_CTRL_Init(VOS_VOID);
-/* Added by m00217266 for 双VoWiFi项目, 2017-3-10, end */
+/* Added by m00217266 for VoWiFi, 2017-3-10, end */
 
 VOS_INT VOS_ModuleInit(VOS_VOID)
 {

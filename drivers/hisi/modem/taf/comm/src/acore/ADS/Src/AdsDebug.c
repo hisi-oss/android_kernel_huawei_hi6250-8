@@ -49,30 +49,30 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID                 PS_FILE_ID_ADS_DEBUG_C
 
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "AdsDebug.h"
 #include "AdsCtx.h"
 
 
 /*****************************************************************************
-  2 外部函数声明
+  2 
 *****************************************************************************/
 
 
 /******************************************************************************
-   3 私有定义
+   3 
 ******************************************************************************/
 
 
 /******************************************************************************
-   4 全局变量定义
+   4 
 ******************************************************************************/
 
 ADS_STATS_INFO_STRU                     g_stAdsStats;
@@ -80,22 +80,22 @@ ADS_LOG_LEVEL_ENUM_UINT32               g_enAdsLogLevel = ADS_LOG_LEVEL_ERROR;
 
 
 /******************************************************************************
-   5 函数实现
+   5 
 ******************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : ADS_SetWakeTxTmrLen
- 功能描述  : 设置数据发送持锁时长
- 输入参数  : VOS_UINT32 ulValue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_SetWakeTxTmrLen
+   : 
+   : VOS_UINT32 ulValue
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2015922
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetTxWakeLockTmrLen(VOS_UINT32 ulValue)
@@ -105,18 +105,18 @@ VOS_VOID ADS_SetTxWakeLockTmrLen(VOS_UINT32 ulValue)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetWakeRxTmrLen
- 功能描述  : 设置数据接收持锁时长
- 输入参数  : VOS_UINT32 ulValue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_SetWakeRxTmrLen
+   : 
+   : VOS_UINT32 ulValue
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2015922
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetRxWakeLockTmrLen(VOS_UINT32 ulValue)
@@ -126,19 +126,19 @@ VOS_VOID ADS_SetRxWakeLockTmrLen(VOS_UINT32 ulValue)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetMaxQueueLength
- 功能描述  : 为了调试需要，支持动态调整上行队列长度
- 输入参数  : VOS_UINT32                          ulLength,
+     : ADS_SetMaxQueueLength
+   : 
+   : VOS_UINT32                          ulLength,
              VOS_UINT8                           ucInstanceIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年9月3日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201293
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetMaxQueueLength(
@@ -150,19 +150,19 @@ VOS_VOID ADS_SetMaxQueueLength(
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowEntityStats
- 功能描述  : 显示ADS实体状态
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
+     : ADS_ShowEntityStats
+   : ADS
+   :
+   : 
+     :
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2012年04月12日
-      作    者   : A00165503
-      修改内容   : 新生成函数
+   :
+    1.       : 20120412
+             : A00165503
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowEntityStats(VOS_VOID)
@@ -186,25 +186,25 @@ VOS_VOID ADS_ShowEntityStats(VOS_VOID)
         }
     }
 
-    PS_PRINTF("ADS上行正在发送标识              %d\n",g_stAdsCtx.stAdsIpfCtx.ucSendingFlg);
+    PS_PRINTF("ADS              %d\n",g_stAdsCtx.stAdsIpfCtx.ucSendingFlg);
     PS_PRINTF("\r\n");
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowEventProcStats
- 功能描述  : 显示事件处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowEventProcStats
+   : 
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowEventProcStats(VOS_VOID)
@@ -231,18 +231,18 @@ VOS_VOID ADS_ShowEventProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowULPktProcStats
- 功能描述  : 显示上行数据处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowULPktProcStats
+   : 
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowULPktProcStats(VOS_VOID)
@@ -278,18 +278,18 @@ VOS_VOID ADS_ShowULPktProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowULBdProcStats
- 功能描述  : 显示上行BD处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowULBdProcStats
+   : BD
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowULBdProcStats(VOS_VOID)
@@ -311,18 +311,18 @@ VOS_VOID ADS_ShowULBdProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowDLPktProcStats
- 功能描述  : 显示下行数据处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowDLPktProcStats
+   : 
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151026
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowDLPktProcStats(VOS_VOID)
@@ -340,18 +340,18 @@ VOS_VOID ADS_ShowDLPktProcStats(VOS_VOID)
  }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowDLRdProcStats
- 功能描述  : 显示下行RD处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowDLRdProcStats
+   : RD
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowDLRdProcStats(VOS_VOID)
@@ -373,18 +373,18 @@ VOS_VOID ADS_ShowDLRdProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowDLAdProcStats
- 功能描述  : 显示下行AD处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowDLAdProcStats
+   : AD
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowDLAdProcStats(VOS_VOID)
@@ -416,18 +416,18 @@ VOS_VOID ADS_ShowDLAdProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ShowResetProcStats
- 功能描述  : 显示C核复位处理统计
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ShowResetProcStats
+   : C
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ShowResetProcStats(VOS_VOID)
@@ -449,18 +449,18 @@ VOS_VOID ADS_ShowResetProcStats(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_Help
- 功能描述  : ADS软调信息入口
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_Help
+   : ADS
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月12日
-    作    者   : S62952
-    修改内容   : 新生成函数
+       :
+  1.       : 20120112
+           : S62952
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_Help(VOS_VOID)
@@ -468,33 +468,33 @@ VOS_VOID ADS_Help(VOS_VOID)
     PS_PRINTF("=================================================\n");
     PS_PRINTF("ADS DEBUG ENTRY                                  \n");
     PS_PRINTF("=================================================\n");
-    PS_PRINTF("ADS_ShowEntityStats          显示实体信息\n");
-    PS_PRINTF("ADS_ShowEventProcStats       显示事件统计信息\n");
-    PS_PRINTF("ADS_ShowULPktProcStats       显示上行数据统计信息\n");
-    PS_PRINTF("ADS_ShowULBdProcStats        显示上行BD统计信息\n");
-    PS_PRINTF("ADS_ShowDLPktProcStats       显示下行数据统计信息\n");
-    PS_PRINTF("ADS_ShowDLRdProcStats        显示下行RD统计信息\n");
-    PS_PRINTF("ADS_ShowDLAdProcStats        显示下行AD统计信息\n");
-    PS_PRINTF("ADS_ShowResetProcStats       显示C核复位统计信息\n");
-    PS_PRINTF("ADS_ResetDebugInfo           重置统计信息\n");
+    PS_PRINTF("ADS_ShowEntityStats          \n");
+    PS_PRINTF("ADS_ShowEventProcStats       \n");
+    PS_PRINTF("ADS_ShowULPktProcStats       \n");
+    PS_PRINTF("ADS_ShowULBdProcStats        BD\n");
+    PS_PRINTF("ADS_ShowDLPktProcStats       \n");
+    PS_PRINTF("ADS_ShowDLRdProcStats        RD\n");
+    PS_PRINTF("ADS_ShowDLAdProcStats        AD\n");
+    PS_PRINTF("ADS_ShowResetProcStats       C\n");
+    PS_PRINTF("ADS_ResetDebugInfo           \n");
     PS_PRINTF("\r\n");
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ResetDebugInfo
- 功能描述  : 复位ADS的可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_ResetDebugInfo
+   : ADS
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20130913
+           : f00179208
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_ResetDebugInfo(VOS_VOID)
@@ -505,19 +505,19 @@ VOS_VOID ADS_ResetDebugInfo(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetFlowDebugFlag
- 功能描述  : 设置Flow Debug开关
+     : ADS_SetFlowDebugFlag
+   : Flow Debug
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2014年6月9日
-      作    者   : c00199705
-      修改内容   : 新生成函数
+   :
+    1.       : 201469
+             : c00199705
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetFlowDebugFlag(VOS_UINT32  ulFlowDebugFlag)
@@ -553,19 +553,19 @@ VOS_VOID ADS_SetFlowDebugFlag(VOS_UINT32  ulFlowDebugFlag)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetFlowDLRptThreshold
- 功能描述  : 设置下行流量上报门限
+     : ADS_SetFlowDLRptThreshold
+   : 
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2014年6月9日
-      作    者   : c00199705
-      修改内容   : 新生成函数
+   :
+    1.       : 201469
+             : c00199705
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetFlowDLRptThreshold(VOS_UINT32  ulFlowDLRptThreshold)
@@ -575,19 +575,19 @@ VOS_VOID ADS_SetFlowDLRptThreshold(VOS_UINT32  ulFlowDLRptThreshold)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetFlowUlRptThreshold
- 功能描述  : 设置上行流量上报门限
+     : ADS_SetFlowUlRptThreshold
+   : 
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2014年6月9日
-      作    者   : c00199705
-      修改内容   : 新生成函数
+   :
+    1.       : 201469
+             : c00199705
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetFlowULRptThreshold(VOS_UINT32  ulFlowULRptThreshold)
@@ -597,18 +597,18 @@ VOS_VOID ADS_SetFlowULRptThreshold(VOS_UINT32  ulFlowULRptThreshold)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_SetDlDiscardPktFlag
- 功能描述  : 设置ADS下行丢包开关
- 输入参数  : VOS_UINT32 ulValue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : ADS_SetDlDiscardPktFlag
+   : ADS
+   : VOS_UINT32 ulValue
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年03月28日
-    作    者   : l00373346
-    修改内容   : 新生成函数
+       :
+  1.       : 20170328
+           : l00373346
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_SetDlDiscardPktFlag(VOS_UINT32 ulValue)
@@ -618,29 +618,29 @@ VOS_VOID ADS_SetDlDiscardPktFlag(VOS_UINT32 ulValue)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_DLFlowAdd
- 功能描述  : ADS下行流量统计
+     : ADS_DLFlowAdd
+   : ADS
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2014年6月9日
-      作    者   : c00199705
-      修改内容   : 新生成函数
+   :
+    1.       : 201469
+             : c00199705
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_DLFlowAdd(VOS_UINT32 ulSduLen)
 {
     if (PS_TRUE == g_stAdsStats.stDlComStatsInfo.ulDLFlowDebugFlag)
     {
-        /* 流量统计 */
+        /*  */
         g_stAdsStats.stDlComStatsInfo.ulDLFlowInfo += ulSduLen;
 
-        /* 流量统计上报 */
+        /*  */
         if (g_stAdsStats.stDlComStatsInfo.ulDLFlowInfo >= g_stAdsStats.stDlComStatsInfo.ulDLFlowRptThreshold)
         {
             g_stAdsStats.stDlComStatsInfo.ulDLEndSlice   = VOS_GetSlice();
@@ -659,29 +659,29 @@ VOS_VOID ADS_DLFlowAdd(VOS_UINT32 ulSduLen)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_ULFlowAdd
- 功能描述  : ADS上行流量统计
+     : ADS_ULFlowAdd
+   : ADS
 
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   :
+   : 
+     :
+   :
+   :
 
- 修改历史  :
-    1.日    期   : 2014年6月9日
-      作    者   : c00199705
-      修改内容   : 新生成函数
+   :
+    1.       : 201469
+             : c00199705
+         : 
 
 *****************************************************************************/
 VOS_VOID ADS_ULFlowAdd(VOS_UINT32 ulSduLen)
 {
     if (PS_TRUE == g_stAdsStats.stUlComStatsInfo.ulULFlowDebugFlag)
     {
-        /* 流量统计 */
+        /*  */
         g_stAdsStats.stUlComStatsInfo.ulULFlowInfo += ulSduLen;
 
-        /* 流量统计上报 */
+        /*  */
         if (g_stAdsStats.stUlComStatsInfo.ulULFlowInfo >= g_stAdsStats.stUlComStatsInfo.ulULFlowRptThreshold)
         {
             g_stAdsStats.stUlComStatsInfo.ulULEndSlice   = VOS_GetSlice();
@@ -700,20 +700,20 @@ VOS_VOID ADS_ULFlowAdd(VOS_UINT32 ulSduLen)
 }
 
 /*****************************************************************************
- 函 数 名  : ADS_LogPrintf
- 功能描述  : LOG打印
- 输入参数  : enLevel --- 打印级别
-             pcFmt   --- 变参
+     : ADS_LogPrintf
+   : LOG
+   : enLevel --- 
+             pcFmt   --- 
              ...
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月06日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20151006
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_VOID ADS_LogPrintf(ADS_LOG_LEVEL_ENUM_UINT32 enLevel, VOS_CHAR *pcFmt, ...)
@@ -722,7 +722,7 @@ VOS_VOID ADS_LogPrintf(ADS_LOG_LEVEL_ENUM_UINT32 enLevel, VOS_CHAR *pcFmt, ...)
     va_list                             pArgList;
     VOS_UINT32                          ulPrintLength = 0;
 
-    /* 打印级别过滤 */
+    /*  */
     if (enLevel < g_enAdsLogLevel)
     {
         return;

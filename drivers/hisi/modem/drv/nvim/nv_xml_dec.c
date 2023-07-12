@@ -49,7 +49,7 @@
 
 
 /*****************************************************************************
-1 头文件包含
+1 
 *****************************************************************************/
 #include "bsp_version.h"
 #include "nv_xml_dec.h"
@@ -57,58 +57,58 @@
 #include "nv_comm.h"
 
 /*****************************************************************************
-2 全局变量定义
+2 
 *****************************************************************************/
 
 /*xml decode info*/
 static XML_DOCODE_INFO xml_ctrl;
 
-/* XML关键字,不包括0-9,a-z,A-Z */
+/* XML,0-9,a-z,A-Z */
 static s8   g_stlxmkeywordtbl[] = { '<', '>', '/', '=', '"',
                                    ' ', '!', '?', '_', '-',
                                    ',' };
 
-/* XML文件解析时的状态                  */
+/* XML                  */
 static XML_ANALYSE_STATUS_ENUM_UINT32 g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-/* 共通节点名称                         */
+/*                          */
 static s8 g_aclnodelabelcommon[]               = "common_NvInfo";
 
-/* Product节点名称                      */
+/* Product                      */
 static s8 g_aclnodelabelproduct[]              = "product";
 
-/* Product_NvInfo节点名称                      */
+/* Product_NvInfo                      */
 static s8 g_aclnodelabelproductNvInfo[]          = "product_NvInfo";
 
-/* NV节点名称                           */
+/* NV                           */
 static s8 g_aclnodelabelnv[]                   = "nv";
 
-/* Cust节点名称                         */
+/* Cust                         */
 static s8 g_aclnodelabelcust[]                 = "cust";
 
-/* NV id属性名称                           */
+/* NV id                           */
 static s8 g_aclpropertyId[]                   = "id";
 
-/* NV 优先级属性名称                          */
+/* NV                           */
 static s8 g_aclpropertyWp[]                   = "wp";
 
 
-/* 节点十六进制值之间的分隔符           */
+/*            */
 static s8 g_separator                        = ',';
 
 /*****************************************************************************
-3 函数定义
+3 
 *****************************************************************************/
 /*****************************************************************************
-函 数 名  : XML_WriteErrorLog
-功能描述  : 记录错误信息到Log文件
-输入参数  : ulErrLine 指出错时的代码行号
-          : ulnvid    指出错时对应的NV ID
-          : ulResult  指出错时函数对应的返回值
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_CheckCharValidity
+    : XML_WriteErrorLog
+  : Log
+  : ulErrLine 
+          : ulnvid    NV ID
+          : ulResult  
+  : 
+    : 
+  : 
+  : XML_CheckCharValidity
             XML_ProcXmlOrinigal
             XML_ProcXmlEnterLabel
             XML_ProcXmlIgnore
@@ -130,10 +130,10 @@ static s8 g_separator                        = ',';
             XML_StringToNvId
             XML_StringToNvValue
             XML_StringToHex
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 void xml_write_error_log(u32 ulerrorline, u16 ulnvid,
                                 u32 ret)
@@ -148,30 +148,30 @@ void xml_write_error_log(u32 ulerrorline, u16 ulnvid,
 }
 
 /*****************************************************************************
-函 数 名  : XML_CheckXMLKeyWord
-功能描述  : 检查当前字符的是否是XML关键字
-输入参数  : currentchar 指当前字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : 无
-被调函数  : XML_CheckCharValidity
+    : XML_CheckXMLKeyWord
+  : XML
+  : currentchar 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : 
+  : XML_CheckCharValidity
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_checkxmlkeyword(s8 currentchar)
 {
     u32 lcount;
 
-    if ((('0' <= currentchar) && ('9' >= currentchar))   /* 有效字符：0-9  */
-        ||(('a' <= currentchar) && ('z' >= currentchar)) /* 有效字符：a-z  */
-        ||(('A' <= currentchar) && ('Z' >= currentchar)))/* 有效字符：A-Z  */
+    if ((('0' <= currentchar) && ('9' >= currentchar))   /* 0-9  */
+        ||(('a' <= currentchar) && ('z' >= currentchar)) /* a-z  */
+        ||(('A' <= currentchar) && ('Z' >= currentchar)))/* A-Z  */
     {
         return XML_RESULT_SUCCEED;
     }
-    /* 除 0-9,a-z,A-Z 之外的 XML关键字 */
+    /*  0-9,a-z,A-Z  XML */
     for (lcount=0; lcount<sizeof(g_stlxmkeywordtbl); lcount++)
     {
         if (currentchar == g_stlxmkeywordtbl[lcount])
@@ -185,43 +185,43 @@ XML_RESULT_ENUM_UINT32 xml_checkxmlkeyword(s8 currentchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_CheckCharValidity
-功能描述  : 检查当前字符的有效性
-输入参数  : currentchar 指当前字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckXMLKeyWord
+    : XML_CheckCharValidity
+  : 
+  : currentchar 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_CheckXMLKeyWord
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_checkcharvalidity(s8 currentchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    if (('\r' == currentchar)       /* 忽略回车   */
-        || ('\t' == currentchar))   /* 忽略制表符 */
+    if (('\r' == currentchar)       /*    */
+        || ('\t' == currentchar))   /*  */
     {
         return XML_RESULT_SUCCEED_IGNORE_CHAR;
     }
 
-    if ('\n' == currentchar)    /* 忽略换行   */
+    if ('\n' == currentchar)    /*    */
     {
         xml_ctrl.g_stlxml_lineno++;
         return XML_RESULT_SUCCEED_IGNORE_CHAR;
     }
 
-    /* 在注释中的字符不做检查 */
+    /*  */
     if ( XML_ANASTT_IGNORE == g_stlxmlstatus)
     {
         return XML_RESULT_SUCCEED;
     }
 
-    /* 检查XML的关键字 */
+    /* XML */
     returnval = xml_checkxmlkeyword(currentchar);
     if (XML_RESULT_SUCCEED != returnval)
     {
@@ -234,29 +234,29 @@ XML_RESULT_ENUM_UINT32 xml_checkcharvalidity(s8 currentchar)
     return XML_RESULT_SUCCEED;
 }
 /*****************************************************************************
-函 数 名  : XML_StringToNvId
-功能描述  : 把字符串转成十进制的格式
-输入参数  : pcbuff 指字符串缓冲区
-输出参数  : pusretval 指转换后的返回值
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_WriteNVItem
+    : XML_StringToNvId
+  : 
+  : pcbuff 
+  : pusretval 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteErrorLog
+  : XML_WriteNVItem
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_stringtou16(s8  *pcbuff,
                                             u16 *pusretval)
 {
-    u32 ultemp = 0;  /* 字符串转成整型时的中间变量 */
+    u32 ultemp = 0;  /*  */
     s8   currentchar;
     s8  *pcsrc;
 
     pcsrc = pcbuff;
 
-    /* 如果NV ID是空的，则返回错误 */
+    /* NV ID */
     if (0 == *pcsrc)
     {
         xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_NV_ID_IS_NULL);
@@ -264,23 +264,23 @@ XML_RESULT_ENUM_UINT32 xml_stringtou16(s8  *pcbuff,
         return XML_RESULT_FALIED_NV_ID_IS_NULL;
     }
 
-    /* 把字符串转成十进制的格式 */
+    /*  */
     while (0 != *pcsrc)
     {
         currentchar = *pcsrc;
 
-        /* 对不在0－9之间的字符，按错误处理 */
+        /* 09 */
         if ((currentchar < '0') || (currentchar > '9'))
         {
             xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_OUT_OF_0_9);
             return XML_RESULT_FALIED_OUT_OF_0_9;
         }
 
-        /* 转成十进制格式 */
+        /*  */
         currentchar -= '0';
         ultemp = (ultemp*10) + (u8)currentchar;
 
-        /* 超出NV ID的最大值 */
+        /* NV ID */
         if (EN_NV_ID_END <= ultemp)
         {
             xml_write_error_log(__LINE__, (u16)ultemp, XML_RESULT_FALIED_OUT_OF_MAX_VALUE);
@@ -291,26 +291,26 @@ XML_RESULT_ENUM_UINT32 xml_stringtou16(s8  *pcbuff,
         pcsrc++;
     }
 
-    /* 输出 转换后的值 */
+    /*   */
     *pusretval = (u16)ultemp;
 
     return XML_RESULT_SUCCEED;
 }
 
 /*****************************************************************************
-函 数 名  : XML_StringToHex
-功能描述  : 把字符转成十六进制的格式
-输入参数  : pucsrc 待转换的字符串
-输出参数  : pucdest转换后的数据
-          : pucdestLen 转换后的数据长度
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_StringToNvValue
+    : XML_StringToHex
+  : 
+  : pucsrc 
+  : pucdest
+          : pucdestLen 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteErrorLog
+  : XML_StringToNvValue
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_stringtohex(u8 *pucsrc, u8 *pucdest)
 {
@@ -318,18 +318,18 @@ XML_RESULT_ENUM_UINT32 xml_stringtohex(u8 *pucsrc, u8 *pucdest)
     u8  uctemp  = 0;
     u16 uscount = 0;
 
-    /* pucsrc的长度一定是偶数,由输入的参数保证 */
+    /* pucsrc, */
     while (0 != *pucsrc)
     {
         ucurrent = *pucsrc;
 
         if ((ucurrent >= 'a') && (ucurrent <= 'f'))
         {
-            /* 将小写字符转成大写*/
+            /* */
             ucurrent -= 'a'-'A';
         }
 
-        /* 转成十六进制格式 */
+        /*  */
         if ((ucurrent >= 'A') && (ucurrent <= 'F'))
         {
             uscount++;
@@ -342,13 +342,13 @@ XML_RESULT_ENUM_UINT32 xml_stringtohex(u8 *pucsrc, u8 *pucdest)
         }
         else
         {
-            /* 对不在0-9,a-f,A-F之间的字符，按错误处理 */
+            /* 0-9,a-f,A-F */
             xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_OUT_OF_0_F);
 
             return XML_RESULT_FALIED_OUT_OF_0_F;
         } /* end of if ((ucurrent >= 'a') && (ucurrent <= 'f')) */
 
-        /* 将2个字符转换成一个十六进制后,保存到目标缓冲区中 */
+        /* 2, */
         if (2 == uscount)
         {
             *pucdest++ = uctemp;
@@ -359,7 +359,7 @@ XML_RESULT_ENUM_UINT32 xml_stringtohex(u8 *pucsrc, u8 *pucdest)
         pucsrc++;
     }
 
-    /* 加上字符串结束府'\0' */
+    /* '\0' */
     *pucdest = 0;
 
     return XML_RESULT_SUCCEED;
@@ -367,33 +367,33 @@ XML_RESULT_ENUM_UINT32 xml_stringtohex(u8 *pucsrc, u8 *pucdest)
 
 
 /*****************************************************************************
-函 数 名  : XML_StringToNvValue
-功能描述  : 把字符串转成十六进制的格式
-输入参数  : pucbuff 指字符串缓冲区
-输出参数  : pucRetBuff转换后的数据
-          : pucRetBuffLen转换后数据的长度
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
+    : XML_StringToNvValue
+  : 
+  : pucbuff 
+  : pucRetBuff
+          : pucRetBuffLen
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteErrorLog
             XML_StringToHex
-被调函数  : XML_WriteNVItem
+  : XML_WriteNVItem
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_stringtovalue(u8  *pucbuff,
                                                  u8  *pucretbuff,
                                                  u32 *pretbufflen)
 {
     XML_RESULT_ENUM_UINT32 returnval;
-    u32 ulcount = 0;    /* 判断是否保存当前转换后的值 */
+    u32 ulcount = 0;    /*  */
     u8 *pcsrc;
     u8 *pcdest;
     pcsrc  = pucbuff;
     pcdest = pucbuff;
 
-     /* 如果NV VALUE是空的，则返回错误 */
+     /* NV VALUE */
     if (0 == *pcsrc)
     {
         xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_NV_VALUE_IS_NULL);
@@ -401,13 +401,13 @@ XML_RESULT_ENUM_UINT32 xml_stringtovalue(u8  *pucbuff,
     }
 
 
-    /* 先把原字符串中的分隔符去掉 */
+    /*  */
     while (0 != *pcsrc)
     {
-        /* 如果当前字符是分隔符 */
+        /*  */
         if (g_separator == *pcsrc)
         {
-            /* 如果在2个分隔符之间只有一个字符,则需在前面插入一个'0' */
+            /* 2,'0' */
             if (1 == ulcount)
             {
                 *pcdest = *(pcdest-1);
@@ -421,7 +421,7 @@ XML_RESULT_ENUM_UINT32 xml_stringtovalue(u8  *pucbuff,
             continue;
         }
 
-        /* 如果有一个NV项超过2个字符,即出错.例<nv id="1">A3E</nvs> */
+        /* NV2,.<nv id="1">A3E</nvs> */
         if (2 <= ulcount)
         {
             xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_OUT_OF_2_CHAR);
@@ -429,18 +429,18 @@ XML_RESULT_ENUM_UINT32 xml_stringtovalue(u8  *pucbuff,
         }
 
         *pcdest++ = *pcsrc++;
-        ulcount++;    /* 记录分隔符之间字符的个数 */
+        ulcount++;    /*  */
     }
 
 
-    /* 加上字符串结束府'\0' */
+    /* '\0' */
     *pcdest = '\0';
 
 
-    /* 记录转换后的数据长度 */
+    /*  */
     *pretbufflen = (u32)(pcdest - pucbuff)/2;
 
-    /* 转成十六进制格式 */
+    /*  */
     pcsrc  = pucbuff;
     pcdest = pucretbuff;
 
@@ -450,23 +450,23 @@ XML_RESULT_ENUM_UINT32 xml_stringtovalue(u8  *pucbuff,
 }
 
 /*****************************************************************************
-函 数 名  : XML_WriteNVItem
-功能描述  : 把节点信息写到NV中
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_StrCmp
+    : XML_WriteNVItem
+  : NV
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : VOS_StrCmp
             XML_StringToNvId
             XML_StringToNvValue
             NV_Write
             XML_WriteErrorLog
-被调函数  : XML_CheckNodeLabelValid
+  : XML_CheckNodeLabelValid
             XML_CheckNodeEndLabelValid
             XML_ProcXmlEnterLabel
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
 {
@@ -481,13 +481,13 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
     u32 ulPropertyIndex;
     u8* ref_offset = NULL;
 
-    /* 如果当前节点不是有效的节点,则不做任何处理 */
+    /* , */
     if (XML_PRODUCT_NODE_STATUS_INVALID == xml_ctrl.g_stlxmlproductinfo.envalidnode)
     {
         return XML_RESULT_SUCCEED;
     }
 
-    /* 如果属性值为空,而且节点值为空,则不做任何处理, 如<cust/> */
+    /* ,,, <cust/> */
     xml_ctrl.g_stlxmlcurrentnode.stproperty[0].pcpropertyvalue[
                         xml_ctrl.g_stlxmlcurrentnode.stproperty[0].ulvaluelength] = '\0';
 
@@ -499,7 +499,7 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
         return XML_RESULT_SUCCEED;
     }
 
-    /* 只对nv，cust节点写到NV中 */
+    /* nvcustNV */
     xml_ctrl.g_stlxmlcurrentnode.pcnodelabel[xml_ctrl.g_stlxmlcurrentnode.ullabelendlength] = '\0';
 
     lisnv = strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
@@ -523,7 +523,7 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
         if(!strncmp(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyname, 
                                                 g_aclpropertyId, strlen((char *)g_aclpropertyId) + 1))
         {
-            /* 把id 属性值转成NV ID */
+            /* id NV ID */
             returnval = xml_stringtou16(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue,
                                         &usnvitemid);
 
@@ -535,7 +535,7 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
         else if(!strncmp(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyname,
                                                 g_aclpropertyWp, strlen((char *)g_aclpropertyWp) + 1))
         {
-            /* 把wp属性值转成priority */
+            /* wppriority */
             returnval = xml_stringtou16(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue,
                                         &priority);
 
@@ -553,7 +553,7 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
 
     }
 
-    /* 把节点值转成NV Value */
+    /* NV Value */
     ulnvitemlen = 0;
 
     returnval = xml_stringtovalue((u8 *)xml_ctrl.g_stlxmlcurrentnode.pcnodevalue,
@@ -567,14 +567,14 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
     }
 
 
-    /* 写到NV中 */
-    /*如果xml中存在不存在的NV项，则不写入，继续解析*/
+    /* NV */
+    /*xmlNV*/
     returnval = xml_nv_search_byid((u32)usnvitemid,((u8*)NV_GLOBAL_CTRL_INFO_ADDR),&ref_info,&file_info, (u8**)&ref_offset);
     if(returnval)
     {
         return XML_RESULT_SUCCEED;
     }
-    /*检查xml配置是否正确,例如:出现comm配置为支持1个modem,diff文件同时配置2个diff的情况*/
+    /*xml,:comm1modem,diff2diff*/
     if(xml_ctrl.card_type > ref_info.modem_num)
     {
         xml_write_error_log(__LINE__, usnvitemid, BSP_ERR_NV_XML_CFG_ERR);
@@ -597,46 +597,46 @@ XML_RESULT_ENUM_UINT32 xml_write_nv_data(void)
     }
     return XML_RESULT_SUCCEED;
 out:
-    /* 记录出错的NV ID */
+    /* NV ID */
     return XML_RESULT_FALIED_WRITE_NV;
 }
 
 /*****************************************************************************
-函 数 名  : XML_NodeReset
-功能描述  : 清空节点信息
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_CheckNodeLabelValid
+    : XML_NodeReset
+  : 
+  : 
+  : 
+    : 
+  : 
+  : XML_CheckNodeLabelValid
             XML_CheckNodeEndLabelValid
             XML_ProcXmlEnterLabel
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 void xml_nodereset(void)
 {
     u32 ulPropertyIndex;
 
-    /* 节点标签复位,已使用的长度为0  */
+    /* ,0  */
     xml_ctrl.g_stlxmlcurrentnode.ullabellength= 0;
 
-    /* 节点值复位,已使用的长度为0 */
+    /* ,0 */
     xml_ctrl.g_stlxmlcurrentnode.ulvaluelength= 0;
 
-    /* 节点独立标签复位,已使用的长度为0 */
+    /* ,0 */
     xml_ctrl.g_stlxmlcurrentnode.ullabelendlength= 0;
-    /*xml_ctrl.g_stlxmlcurrentnode.stproperty的下标索引归0*/
+    /*xml_ctrl.g_stlxmlcurrentnode.stproperty0*/
     xml_ctrl.g_stlxmlcurrentnode.ulPropertyIndex = 0;
     for(ulPropertyIndex = 0; ulPropertyIndex < XML_NODE_PROPERTY_NUM; ulPropertyIndex++)
     {
-        /* 节点属性名复位,已使用的长度为0 */
+        /* ,0 */
         xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulnamelength= 0;
 
-        /* 节点属性值复位,已使用的长度为0 */
+        /* ,0 */
         xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulvaluelength= 0;
     }
     /* coverity[secure_coding] */
@@ -647,16 +647,16 @@ void xml_nodereset(void)
 
 
 /*****************************************************************************
-函 数 名  : xml_write_char_to_buff
-功能描述  : 把字符添加进指定长度缓冲区
-输入参数  : pcdestChar待添加的字符，
-          : pcstrbuff被添加字符串指针的地址，
-          : plbufflength字符创当前长度的地址
-          : ulisnodevalue指pcstrbuff是否是指向Node Value
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_ProcXmlOrinigal
+    : xml_write_char_to_buff
+  : 
+  : pcdestChar
+          : pcstrbuff
+          : plbufflength
+          : ulisnodevaluepcstrbuffNode Value
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteErrorLog
+  : XML_ProcXmlOrinigal
             XML_ProcXmlEnterLabel
             XML_ProcXmlNodeLabel
             XML_ProcXmlSingleEndLabel
@@ -664,22 +664,22 @@ void xml_nodereset(void)
             XML_ProcXmlPropertyName
             XML_ProcXmlValueStart
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_write_char_to_buff(s8   cnowchar,
                                                  s8   *pcstrbuff,
                                                  u32 *plbufflength,
                                                  bool   ulisnodevalue)
 {
-    /* 忽略空格 */
+    /*  */
     if (' ' == cnowchar)
     {
         return XML_RESULT_SUCCEED;
     }
-    /* 如果达到了Node Value的最大长度 */
+    /* Node Value */
     if ((ulisnodevalue)
         && (*plbufflength >= XML_NODE_VALUE_BUFF_LENGTH_ORIGINAL))
     {
@@ -689,7 +689,7 @@ XML_RESULT_ENUM_UINT32 xml_write_char_to_buff(s8   cnowchar,
     }
 
 
-    /* 如果达到了Node Lable的最大长度 */
+    /* Node Lable */
     if ((!ulisnodevalue)
         && (*plbufflength >= XML_NODE_LABEL_BUFF_LENGTH_ORIGINAL))
     {
@@ -697,10 +697,10 @@ XML_RESULT_ENUM_UINT32 xml_write_char_to_buff(s8   cnowchar,
 
         return XML_RESULT_FALIED_OUT_OF_BUFF_LEN;
     }
-    /* 把新字符加进缓冲区 */
+    /*  */
     *(pcstrbuff + *plbufflength) = cnowchar;
 
-    /* 缓冲区长度加1 */
+    /* 1 */
     (*plbufflength)++;
 
     return XML_RESULT_SUCCEED;
@@ -708,37 +708,37 @@ XML_RESULT_ENUM_UINT32 xml_write_char_to_buff(s8   cnowchar,
 
 
 /*****************************************************************************
-函 数 名  : XML_CheckNodeLabelValid
-功能描述  : 检查当前标签是否是有效标签
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_StrCmp
-被调函数  : XML_ProcXmlNodeLabel
+    : XML_CheckNodeLabelValid
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : VOS_StrCmp
+  : XML_ProcXmlNodeLabel
             XML_ProcXmlPropertyStart
             XML_ProcXmlValueTail
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
 {
     u32 ulPropertyIndex = 0;
 
-    /* 判断该标签是否有效 */
+    /*  */
     xml_ctrl.g_stlxmlcurrentnode.pcnodelabel[xml_ctrl.g_stlxmlcurrentnode.ullabellength] = '\0';
 
-    /* 如果当前节点为无效状态,需要检查标签是否为有效节点 */
+    /* , */
     if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                         g_aclnodelabelcommon, strlen((char *)g_aclnodelabelcommon) + 1))
     {
-        /* 如果是<Common_NvInfo>标签,则设置节点为有效状态 */
+        /* <Common_NvInfo>, */
         xml_ctrl.g_stlxmlproductinfo.envalidnode= XML_PRODUCT_NODE_STATUS_VALID;
 
         return XML_RESULT_SUCCEED;
     }
-    /* 如果是<Cust>标签,则设置节点为有效状态 */
+    /* <Cust>, */
     if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                         g_aclnodelabelcust, strlen((char *)g_aclnodelabelcust) + 1))
     {
@@ -746,11 +746,11 @@ XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
 
         return XML_RESULT_SUCCEED;
     }
-    /* 如果当前节点为无效状态,需要检查标签是否为有效节点 */
+    /* , */
     if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                         g_aclnodelabelproductNvInfo, strlen((char *)g_aclnodelabelproductNvInfo) + 1))
     {
-        /* 如果是<product_NvInfo>标签,则设置节点为有效状态 */
+        /* <product_NvInfo>, */
         xml_ctrl.g_stlxmlproductinfo.envalidnode= XML_PRODUCT_NODE_STATUS_VALID;
 
         return XML_RESULT_SUCCEED;
@@ -766,8 +766,8 @@ XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
         xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue[
                       xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulvaluelength] = '\0';
 
-        /*第一次碰到product节点设置为无效节点*/
-        /* 如果是<product>标签且Product id与当前单板相同,则设置节点为有效状态 */
+        /*product*/
+        /* <product>Product id, */
         xml_ctrl.g_stlxmlproductinfo.envalidnode= XML_PRODUCT_NODE_STATUS_INVALID;
 
         if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue,
@@ -776,7 +776,7 @@ XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
             xml_ctrl.g_stlxmlproductinfo.envalidnode= XML_PRODUCT_NODE_STATUS_VALID;
             xml_ctrl.g_stlxmlproductinfo.ulnodelevel++;
         }
-        else/*product 属性节点跳转*/
+        else/*product */
         {
             xml_ctrl.g_stlxmlproductinfo.envalidnode     = XML_PRODUCT_NODE_STATUS_INVALID;
             xml_ctrl.g_stlxmlproductinfo.enxmldecodejump = XML_DECODE_STATUS_2JUMP;
@@ -786,7 +786,7 @@ XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
 
     if (XML_PRODUCT_NODE_STATUS_VALID == xml_ctrl.g_stlxmlproductinfo.envalidnode)
     {
-        /* 在节点为有效状态下，对Product节点，要记录<product>节点出现的次数 */
+        /* Product<product> */
         if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                             g_aclnodelabelproduct, strlen((char *)g_aclnodelabelproduct) + 1))
         {
@@ -801,26 +801,26 @@ XML_RESULT_ENUM_UINT32 xml_checknodelabelvalid(void)
 
 
 /*****************************************************************************
-函 数 名  : XML_CheckNodeEndLabelValid
-功能描述  : 检查当前独立标签是否是有效节点的结束标签
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
+    : XML_CheckNodeEndLabelValid
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteNVItem
             VOS_StrCmp
             XML_NodeReset
-被调函数  : XML_ProcXmlSingleEndLabel
+  : XML_ProcXmlSingleEndLabel
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_checknodeendlabelvalid(void)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 写节点信息到NV中 */
+    /* NV */
     returnval = xml_write_nv_data();
 
     if (XML_RESULT_SUCCEED != returnval)
@@ -839,7 +839,7 @@ XML_RESULT_ENUM_UINT32 xml_checknodeendlabelvalid(void)
 
             if (0 == xml_ctrl.g_stlxmlproductinfo.ulnodelevel)
             {
-                /* 最后一个有效的</product>标签出现时，结束整个XML文件的解析 */
+                /* </product>XML */
                 xml_ctrl.g_stlxmlproductinfo.enxmldecodestate = XML_DECODE_STATUS_FINISHED;
                 xml_ctrl.g_stlxmlproductinfo.envalidnode      = XML_PRODUCT_NODE_STATUS_INVALID;
             }
@@ -848,20 +848,20 @@ XML_RESULT_ENUM_UINT32 xml_checknodeendlabelvalid(void)
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabelend,
                              g_aclnodelabelcommon, strlen((char *)g_aclnodelabelcommon) + 1))
     {
-        /* </Common_NvInfo>标签出现时,把节点状态只为无效 ,同时置为可跳转状态*/
+        /* </Common_NvInfo>, ,*/
         xml_ctrl.g_stlxmlproductinfo.envalidnode     = XML_PRODUCT_NODE_STATUS_INVALID;
         xml_ctrl.g_stlxmlproductinfo.enxmldecodejump = XML_DECODE_STATUS_JUMP;
     }
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabelend,
                              g_aclnodelabelcust, strlen((char *)g_aclnodelabelcust) + 1))
     {
-        /* </Cust>标签出现时,把节点状态只为无效 */
+        /* </Cust>, */
         xml_ctrl.g_stlxmlproductinfo.envalidnode = XML_PRODUCT_NODE_STATUS_INVALID;
     }
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabelend,
                              g_aclnodelabelproductNvInfo, strlen((char *)g_aclnodelabelproductNvInfo) + 1))
     {
-        /* 第一个</product_NvInfo>标签出现时,同样需要结束整个XML文件的解析*/
+        /* </product_NvInfo>,XML*/
         xml_ctrl.g_stlxmlproductinfo.enxmldecodestate = XML_DECODE_STATUS_FINISHED;
         xml_ctrl.g_stlxmlproductinfo.envalidnode      = XML_PRODUCT_NODE_STATUS_INVALID;
     }
@@ -871,26 +871,26 @@ XML_RESULT_ENUM_UINT32 xml_checknodeendlabelvalid(void)
 
     } /* end of if (0 == VOS_StrCmp(g_stXMLCurrentNode.pcnodelabelend, */
 
-    /* </xx>标签结束时，清空节点信息 */
+    /* </xx> */
     xml_nodereset();
 
     return XML_RESULT_SUCCEED;
 }
 
 /*****************************************************************************
-函 数 名  : XML_CreateAProperty
-功能描述  : 在内存中创建一个属性并初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemAlloc
+    : XML_CreateAProperty
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : VOS_MemAlloc
             XML_WriteErrorLogs
-被调函数  : XML_CreateANode
+  : XML_CreateANode
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_createaproperty( void )
 {
@@ -898,8 +898,8 @@ XML_RESULT_ENUM_UINT32 xml_createaproperty( void )
 
     for(propertyIndex = 0;propertyIndex < XML_NODE_PROPERTY_NUM; propertyIndex++)
     {
-        /* 分配属性名内存,+1为保留字符串结束符用 */
-        xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].ulnamelength = 0; /* 已使用的长度 */
+        /* ,+1 */
+        xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].ulnamelength = 0; /*  */
 
         xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].pcpropertyname
                                     = (s8*)nv_malloc(
@@ -912,8 +912,8 @@ XML_RESULT_ENUM_UINT32 xml_createaproperty( void )
             return XML_RESULT_FALIED_MALLOC;
         }
 
-        /* 分配属性值内存,+1为保留字符串结束符用 */
-        xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].ulvaluelength = 0; /* 已使用的长度 */
+        /* ,+1 */
+        xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].ulvaluelength = 0; /*  */
 
 
         xml_ctrl.g_stlxmlcurrentnode.stproperty[propertyIndex].pcpropertyvalue
@@ -931,27 +931,27 @@ XML_RESULT_ENUM_UINT32 xml_createaproperty( void )
 
 
 /*****************************************************************************
-函 数 名  : XML_CreateANode
-功能描述  : 创建一个新节点
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemAlloc
+    : XML_CreateANode
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : VOS_MemAlloc
             XML_CreateAProperty
             XML_WriteErrorLog
-被调函数  : XML_ProcInit
+  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_createanode(void)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
 
-    /* 创建一个新属性 */
+    /*  */
     returnval = xml_createaproperty();
 
     if(XML_RESULT_SUCCEED != returnval)
@@ -959,8 +959,8 @@ XML_RESULT_ENUM_UINT32 xml_createanode(void)
         return returnval;
     }
 
-    /* 分配节点标签内存,+1为保留字符串结束符用*/
-    xml_ctrl.g_stlxmlcurrentnode.ullabellength = 0; /* 已使用的长度 */
+    /* ,+1*/
+    xml_ctrl.g_stlxmlcurrentnode.ullabellength = 0; /*  */
 
 
 
@@ -974,8 +974,8 @@ XML_RESULT_ENUM_UINT32 xml_createanode(void)
         return XML_RESULT_FALIED_MALLOC;
     }
 
-    /* 分配节点结尾独立标签内存,+1为保留字符串结束符用 */
-    xml_ctrl.g_stlxmlcurrentnode.ullabelendlength = 0; /* 已使用的长度 */
+    /* ,+1 */
+    xml_ctrl.g_stlxmlcurrentnode.ullabelendlength = 0; /*  */
 
     xml_ctrl.g_stlxmlcurrentnode.pcnodelabelend = (s8*)nv_malloc(
                                         (size_t)(XML_NODE_LABEL_BUFF_LENGTH_ORIGINAL+1));
@@ -987,8 +987,8 @@ XML_RESULT_ENUM_UINT32 xml_createanode(void)
         return XML_RESULT_FALIED_MALLOC;
     }
 
-    /* 分配节点值内存,+1为保留字符串结束符用 */
-    xml_ctrl.g_stlxmlcurrentnode.ulvaluelength = 0; /* 已使用的长度 */
+    /* ,+1 */
+    xml_ctrl.g_stlxmlcurrentnode.ulvaluelength = 0; /*  */
 
     xml_ctrl.g_stlxmlcurrentnode.pcnodevalue = (s8*)nv_malloc(
                                         (size_t)(XML_NODE_VALUE_BUFF_LENGTH_ORIGINAL+1));
@@ -1005,32 +1005,32 @@ XML_RESULT_ENUM_UINT32 xml_createanode(void)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlOrinigal
-功能描述  : 状态机处理函数，初始状态的处理函数
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
+    : XML_ProcXmlOrinigal
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_procxmlorginal(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval = XML_RESULT_SUCCEED;
 
-    /* 遇到<则更改状态 */
+    /* < */
     if ('<' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_ENTER_LABLE;
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到>,/,",=则表示XML语法错误 */
+    /* >,/,",=XML */
     if (('>' == cnowchar)
          ||('/' == cnowchar)
          ||('"' == cnowchar)
@@ -1043,7 +1043,7 @@ XML_RESULT_ENUM_UINT32 xml_procxmlorginal(s8 cnowchar)
 
     if (XML_PRODUCT_NODE_STATUS_VALID == xml_ctrl.g_stlxmlproductinfo.envalidnode)
     {
-        /* 把这个字节放进当前节点值的缓冲区内 */
+        /*  */
         returnval = xml_write_char_to_buff(cnowchar,
                                      xml_ctrl.g_stlxmlcurrentnode.pcnodevalue,
                                      &(xml_ctrl.g_stlxmlcurrentnode.ulvaluelength),
@@ -1055,23 +1055,23 @@ XML_RESULT_ENUM_UINT32 xml_procxmlorginal(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlIgnore
-功能描述  : 状态机处理函数，序言处理函数
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : 无
-被调函数  : XML_Analyse
+    : XML_ProcXmlIgnore
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : 
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_procxmlignore(s8 cnowchar)
 {
 
-    /* 直到遇到标签结尾，否则一直忽略 */
+    /*  */
     if ('>' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
@@ -1081,20 +1081,20 @@ XML_RESULT_ENUM_UINT32 xml_procxmlignore(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlSingleEndLabel
-功能描述  : 状态机处理函数，进入独立的结尾标签的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
+    : XML_ProcXmlSingleEndLabel
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_AddACharToBuff
             XML_CheckNodeEndLabelValid
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xmlsingle_endlabel(s8 cnowchar)
 {
@@ -1102,19 +1102,19 @@ XML_RESULT_ENUM_UINT32 xml_proc_xmlsingle_endlabel(s8 cnowchar)
 
     returnval = XML_RESULT_SUCCEED;
 
-    /* 遇到<则更改状态 */
+    /* < */
     if ('>' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-        /* 检查独立结束标签是否有效 */
+        /*  */
         returnval = xml_checknodeendlabelvalid();
 
         return returnval;
     }
 
-    /* 遇到<,/,",=则表示XML语法错误 */
+    /* <,/,",=XML */
     if (('<' == cnowchar)
          ||('"' == cnowchar)
          ||('/' == cnowchar)
@@ -1124,7 +1124,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xmlsingle_endlabel(s8 cnowchar)
 
         return XML_RESULT_FALIED_BAD_SYNTAX;
     }
-    /* 把这个字节放进当前节点值的缓冲区内 */
+    /*  */
     returnval = xml_write_char_to_buff(cnowchar,
                                   xml_ctrl.g_stlxmlcurrentnode.pcnodelabelend,
                                   &(xml_ctrl.g_stlxmlcurrentnode.ullabelendlength),
@@ -1134,26 +1134,26 @@ XML_RESULT_ENUM_UINT32 xml_proc_xmlsingle_endlabel(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : xml_checknode_rightlabel
-功能描述  : must be right错误格式节点处理
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
+    : xml_checknode_rightlabel
+  : must be right
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteNVItem
             VOS_StrCmp
             XML_NodeReset
-被调函数  : XML_ProcXmlSingleEndLabel
+  : XML_ProcXmlSingleEndLabel
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_checknode_rightlabel(void)
 {
     u32 ulPropertyIndex = 0;
 
-    /* 判断该标签是否有效 */
+    /*  */
     xml_ctrl.g_stlxmlcurrentnode.pcnodelabel[xml_ctrl.g_stlxmlcurrentnode.ullabellength] = '\0';
 
     if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
@@ -1164,7 +1164,7 @@ XML_RESULT_ENUM_UINT32 xml_checknode_rightlabel(void)
         xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue[
                       xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulvaluelength] = '\0';
 
-        /* 格式<product product_id="123456"/>，且product id与单板product id相同结束整个XML文件的解析 */
+        /* <product product_id="123456"/>product idproduct idXML */
         if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue,
                     xml_ctrl.g_stlxmlproductinfo.acproductid, strlen(xml_ctrl.g_stlxmlproductinfo.acproductid) + 1))
         {
@@ -1179,20 +1179,20 @@ XML_RESULT_ENUM_UINT32 xml_checknode_rightlabel(void)
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                              g_aclnodelabelcommon, strlen((char *)g_aclnodelabelcommon) + 1))
     {
-        /* <Common_NvInfo/>标签出现时,把节点状态只为无效 ,同时置为可跳转状态*/
+        /* <Common_NvInfo/>, ,*/
         xml_ctrl.g_stlxmlproductinfo.envalidnode     = XML_PRODUCT_NODE_STATUS_INVALID;
         xml_ctrl.g_stlxmlproductinfo.enxmldecodejump = XML_DECODE_STATUS_JUMP;
     }
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                              g_aclnodelabelcust, strlen((char *)g_aclnodelabelcust) + 1))
     {
-        /* <Cust/>标签出现时,把节点状态只为无效 */
+        /* <Cust/>, */
         xml_ctrl.g_stlxmlproductinfo.envalidnode = XML_PRODUCT_NODE_STATUS_INVALID;
     }
     else if (0 == strncmp(xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                              g_aclnodelabelproductNvInfo, strlen((char *)g_aclnodelabelproductNvInfo) + 1))
     {
-        /* <product_NvInfo/>标签出现时,同样需要结束整个XML文件的解析*/
+        /* <product_NvInfo/>,XML*/
         xml_ctrl.g_stlxmlproductinfo.enxmldecodestate = XML_DECODE_STATUS_FINISHED;
         xml_ctrl.g_stlxmlproductinfo.envalidnode      = XML_PRODUCT_NODE_STATUS_INVALID;
     }
@@ -1202,7 +1202,7 @@ XML_RESULT_ENUM_UINT32 xml_checknode_rightlabel(void)
 
     }
 
-    /* <xx/>标签结束时，清空节点信息 */
+    /* <xx/> */
     xml_nodereset();
 
     return XML_RESULT_SUCCEED;
@@ -1210,32 +1210,32 @@ XML_RESULT_ENUM_UINT32 xml_checknode_rightlabel(void)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlEndMustBeRight
-功能描述  : 状态机处理函数，进入Lable/等待>
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
+    : XML_ProcXmlEndMustBeRight
+  : Lable/>
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteNVItem
             XML_NodeReset
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_procxmlend_mustberight(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 忽略空格 */
+    /*  */
     if (' ' == cnowchar)
     {
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到不是>,则表示XML语法错误 */
+    /* >,XML */
     if ('>' != cnowchar)
     {
         xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_BAD_SYNTAX);
@@ -1243,7 +1243,7 @@ XML_RESULT_ENUM_UINT32 xml_procxmlend_mustberight(s8 cnowchar)
         return XML_RESULT_FALIED_BAD_SYNTAX;
     }
 
-    /* 变更状态 */
+    /*  */
     g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
     /*must be right need to check label*/
@@ -1256,7 +1256,7 @@ XML_RESULT_ENUM_UINT32 xml_procxmlend_mustberight(s8 cnowchar)
 
     if (XML_PRODUCT_NODE_STATUS_VALID == xml_ctrl.g_stlxmlproductinfo.envalidnode)
     {
-        /* 写节点信息到NV中 */
+        /* NV */
         returnval = xml_write_nv_data();
 
         if (XML_RESULT_SUCCEED != returnval)
@@ -1264,7 +1264,7 @@ XML_RESULT_ENUM_UINT32 xml_procxmlend_mustberight(s8 cnowchar)
             return returnval;
         }
 
-        /* <xx/>标签结束时，清空节点信息 */
+        /* <xx/> */
         xml_nodereset();
     }
 
@@ -1273,56 +1273,56 @@ XML_RESULT_ENUM_UINT32 xml_procxmlend_mustberight(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlEnterLabel
-功能描述  : 状态机处理函数，进入节点后的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
+    : XML_ProcXmlEnterLabel
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_CheckNodeLabelValid
             XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_node_label(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 遇到/或者>或者空格说明Node的名字结束了 */
+    /* />Node */
     if ('/' == cnowchar)
     {
-        /* 结束并收尾整个节点,下个字节一定是> */
+        /* ,> */
         g_stlxmlstatus = XML_ANASTT_LABLE_END_MUST_RIGHT;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 标签结束 */
+    /*  */
     if ('>' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-        /* 检查当前节点是有效节点 */
+        /*  */
         returnval = xml_checknodelabelvalid();
 
         return returnval;
     }
 
-    /* 标签名字结束,进入属性解析状态 */
+    /* , */
     if (' ' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_PROPERTY_START;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到<,",=则表示XML语法错误 */
+    /* <,",=XML */
     if (('<' == cnowchar)
          ||('"' == cnowchar)
          ||('=' == cnowchar))
@@ -1331,7 +1331,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_node_label(s8 cnowchar)
 
         return XML_RESULT_FALIED_BAD_SYNTAX;
     }
-    /* 把这个字节放进当前节点值的缓冲区内 */
+    /*  */
     returnval = xml_write_char_to_buff(cnowchar,
                                      xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                                      &(xml_ctrl.g_stlxmlcurrentnode.ullabellength),
@@ -1341,27 +1341,27 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_node_label(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlEnterLabel
-功能描述  : 状态机处理函数，进入Label后的处理
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteNVItem
+    : XML_ProcXmlEnterLabel
+  : Label
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteNVItem
             XML_NodeReset
             XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval = XML_RESULT_SUCCEED;
 
-    /* 遇到首行版本信息 */
+    /*  */
     if ('?' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_IGNORE;
@@ -1369,7 +1369,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到序言 */
+    /*  */
     if ('!' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_IGNORE;
@@ -1377,7 +1377,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到尾节点标签 */
+    /*  */
     if ('/' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_SINGLE_ENDS_LABLE;
@@ -1385,7 +1385,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到标签结束 */
+    /*  */
     if ('>' == cnowchar)
     {
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
@@ -1393,7 +1393,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到<,",=则表示XML语法错误 */
+    /* <,",=XML */
     if (('<' == cnowchar)
          ||('"' == cnowchar)
          ||('=' == cnowchar))
@@ -1402,10 +1402,10 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
         return XML_RESULT_FALIED_BAD_SYNTAX;
     }
 
-    /* 跳过空格 */
+    /*  */
     if (' ' != cnowchar)
     {
-        /* 写节点信息到NV中 */
+        /* NV */
         returnval = xml_write_nv_data();
 
         if (XML_RESULT_SUCCEED != returnval)
@@ -1413,12 +1413,12 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
             return returnval;
         }
 
-        /* 进入一个新节点时，先清空节点信息 */
+        /*  */
         xml_nodereset();
 
-        /* 变更状态，表示进入一个新节点 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_NODE_LABLE;
-        /* 把这个字节放进当前节点值的缓冲区内 */
+        /*  */
         returnval = xml_write_char_to_buff(cnowchar,
                                          xml_ctrl.g_stlxmlcurrentnode.pcnodelabel,
                                          &(xml_ctrl.g_stlxmlcurrentnode.ullabellength),
@@ -1430,20 +1430,20 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_enter_label(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyStart
-功能描述  : 状态机处理函数，进入属性的解析
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
+    : XML_ProcXmlPropertyStart
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_CheckNodeLabelValid
             XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_propertystart(s8 cnowchar)
 {
@@ -1451,28 +1451,28 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertystart(s8 cnowchar)
     u32 ulPropertyIndex;
 
 
-    /* 遇到尾节点标签 */
+    /*  */
     if ('/' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_LABLE_END_MUST_RIGHT;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 标签结束 */
+    /*  */
     if ('>' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-        /* 检查当前节点有效 */
+        /*  */
         returnval = xml_checknodelabelvalid();
 
         return returnval;
     }
 
-    /* 遇到<,",=则表示XML语法错误 */
+    /* <,",=XML */
     if (('<' == cnowchar)
          ||('"' == cnowchar)
          ||('=' == cnowchar))
@@ -1482,7 +1482,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertystart(s8 cnowchar)
         return XML_RESULT_FALIED_BAD_SYNTAX;
     }
 
-    /* 更改状态 */
+    /*  */
     g_stlxmlstatus = XML_ANASTT_PROPERTY_NAME_START;
 
     ulPropertyIndex = xml_ctrl.g_stlxmlcurrentnode.ulPropertyIndex;
@@ -1496,35 +1496,35 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertystart(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyName
-功能描述  : 状态机处理函数，属性名字的解析
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
+    : XML_ProcXmlPropertyName
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_propertyname(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
     u32 ulPropertyIndex;
 
-    /* 等待=进入属性值解析 */
+    /* = */
     if ('=' == cnowchar)
     {
-        /* 翻状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_PROPERTY_NAME_END;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到<,>,/,"则表示XML语法错误 */
+    /* <,>,/,"XML */
     if (('<' == cnowchar)||('>' == cnowchar)
         ||('/' == cnowchar)||('"' == cnowchar))
     {
@@ -1534,7 +1534,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertyname(s8 cnowchar)
     }
 
     ulPropertyIndex = xml_ctrl.g_stlxmlcurrentnode.ulPropertyIndex;
-    /* 容许属性名中的空格错误, 如 <nv i d="123"> */
+    /* ,  <nv i d="123"> */
     returnval = xml_write_char_to_buff(cnowchar,
                   xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyname,
                   &(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulnamelength),
@@ -1545,38 +1545,38 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertyname(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlPropertyNameTail
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值开始
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_WriteErrorLog
-被调函数  : XML_Analyse
+    : XML_ProcXmlPropertyNameTail
+  : "
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_WriteErrorLog
+  : XML_Analyse
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_propertyname_tail(s8 cnowchar)
 {
 
-    /* 跳过空格 */
+    /*  */
     if ( ' ' == cnowchar)
     {
         return XML_RESULT_SUCCEED;
     }
 
-    /* 等待" */
+    /* " */
     if ('"' == cnowchar)
     {
-        /* 更改状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_PROPERTY_VALUE_START;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到不是"，则表示XML语法错误 */
+    /* "XML */
     xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_BAD_SYNTAX);
 
     return XML_RESULT_FALIED_BAD_SYNTAX;
@@ -1584,36 +1584,36 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_propertyname_tail(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlValueStart
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值结束
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_AddACharToBuff
+    : XML_ProcXmlValueStart
+  : "
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_AddACharToBuff
             XML_WriteErrorLog
-被调函数  : XML_Analyse
-被调函数  :
+  : XML_Analyse
+  :
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_valuestart(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
     u32 ulPropertyIndex;
 
-    /* 遇到" */
+    /* " */
     if ('"' == cnowchar)
     {
-        /* 翻状态,返回开始解析属性的状态 */
+        /* , */
         g_stlxmlstatus = XML_ANASTT_PROPERTY_VALUE_END;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到<,>,/,=则表示XML语法错误 */
+    /* <,>,/,=XML */
     if (('<' == cnowchar)
          ||('>' == cnowchar)
          ||('/' == cnowchar)
@@ -1625,7 +1625,7 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_valuestart(s8 cnowchar)
     }
 
     ulPropertyIndex = xml_ctrl.g_stlxmlcurrentnode.ulPropertyIndex;
-    /* 把当前字符加到属性值中 */
+    /*  */
     returnval = xml_write_char_to_buff(cnowchar,
                   xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].pcpropertyvalue,
                   &(xml_ctrl.g_stlxmlcurrentnode.stproperty[ulPropertyIndex].ulvaluelength),
@@ -1635,68 +1635,68 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_valuestart(s8 cnowchar)
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcXmlValueTail
-功能描述  : 状态机处理函数，属性名字结束，等待"即属性值结束
-输入参数  : 当前处理的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckNodeLabelValid
+    : XML_ProcXmlValueTail
+  : "
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_CheckNodeLabelValid
             XML_WriteErrorLog
-被调函数  : XML_Analyse
-被调函数  :
+  : XML_Analyse
+  :
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_proc_xml_valuetail(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 空格下一个属性解析开始 */
+    /*  */
     if (' ' == cnowchar)
     {
-        /* 变更状态,返回开始解析属性的状态 */
+        /* , */
         g_stlxmlstatus = XML_ANASTT_PROPERTY_START;
         xml_ctrl.g_stlxmlcurrentnode.ulPropertyIndex++;
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到'/' */
+    /* '/' */
     if ('/' == cnowchar)
     {
-        /* 变更状态 */
+        /*  */
         g_stlxmlstatus = XML_ANASTT_LABLE_END_MUST_RIGHT;
 
         return XML_RESULT_SUCCEED;
     }
 
-    /* 遇到'>' */
+    /* '>' */
     if ('>' == cnowchar)
     {
-        /* 变更状态,返回开始解析属性的状态 */
+        /* , */
         g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-        /* 检查当前节点有效 */
+        /*  */
         returnval = xml_checknodelabelvalid();
 
         return returnval;
     }
 
-    /* 遇到不是>,/则表示XML语法错误 */
+    /* >,/XML */
     xml_write_error_log(__LINE__, 0, XML_RESULT_FALIED_BAD_SYNTAX);
 
     return XML_RESULT_FALIED_BAD_SYNTAX;
 }
 
 /*****************************************************************************
-函 数 名  : XML_Analyse
-功能描述  : 主状态机
-输入参数  : 当前解析的字符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_CheckCharValidity
+    : XML_Analyse
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_CheckCharValidity
             XML_ProcXmlOrinigal
             XML_ProcXmlEnterLabel
             XML_ProcXmlIgnore
@@ -1708,74 +1708,74 @@ XML_RESULT_ENUM_UINT32 xml_proc_xml_valuetail(s8 cnowchar)
             XML_ProcXmlPropertyNameTail
             XML_ProcXmlValueStart
             XML_ProcXmlValueTail
-被调函数  : XML_DecodeXMLFile
+  : XML_DecodeXMLFile
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 /*Global map table used to find the function according the xml analyse status.*/
 XML_FUN g_uslxmlanalysefuntbl[] =
 {
-    xml_procxmlorginal,         /* 初始状态下的处理                  */
-    xml_proc_xml_enter_label,       /* 进入Lable后的处理                 */
-    xml_procxmlignore,           /* 序言或注释状态下直到遇到">"结束   */
-    xml_proc_xml_node_label,        /* 标签名字开始                      */
-    xml_proc_xmlsingle_endlabel,   /* 标准的结尾标签</XXX>              */
-    xml_procxmlend_mustberight,   /* 形如 <XXX/>的标签,在解析完/的状态 */
-    xml_proc_xml_propertystart,    /* 开始解析属性                      */
-    xml_proc_xml_propertyname,     /* 开始解析属性名字                  */
-    xml_proc_xml_propertyname_tail, /* 属性名字结束，等待"即属性值开始   */
-    xml_proc_xml_valuestart,       /* 属性值开始                        */
-    xml_proc_xml_valuetail,        /* 属性值结束                        */
+    xml_procxmlorginal,         /*                   */
+    xml_proc_xml_enter_label,       /* Lable                 */
+    xml_procxmlignore,           /* ">"   */
+    xml_proc_xml_node_label,        /*                       */
+    xml_proc_xmlsingle_endlabel,   /* </XXX>              */
+    xml_procxmlend_mustberight,   /*  <XXX/>,/ */
+    xml_proc_xml_propertystart,    /*                       */
+    xml_proc_xml_propertyname,     /*                   */
+    xml_proc_xml_propertyname_tail, /* "   */
+    xml_proc_xml_valuestart,       /*                         */
+    xml_proc_xml_valuetail,        /*                         */
 };
 
 XML_RESULT_ENUM_UINT32 xml_analyse(s8 cnowchar)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 检查当前字符的有效性 */
+    /*  */
     returnval = xml_checkcharvalidity(cnowchar);
 
     if (XML_RESULT_SUCCEED_IGNORE_CHAR == returnval)
     {
-        /* 如果遇到序言，则跳过该字符 */
+        /*  */
         return XML_RESULT_SUCCEED;
     }
 
     if (XML_RESULT_FALIED_BAD_CHAR == returnval)
     {
-        /* 如果遇到非法字符，则停止解析 */
+        /*  */
         return XML_RESULT_FALIED_BAD_CHAR;
     }
-    /* 调用XML解析时，相应状态的对应函数 */
+    /* XML */
     returnval = g_uslxmlanalysefuntbl[g_stlxmlstatus](cnowchar);
 
     return returnval;
 }
 
 /*****************************************************************************
-函 数 名  : XML_DecodeXMLFile
-功能描述  : 读取XML文件数据，进行解析
-输入参数  : lFile指打开的文件描述符
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : DRV_FILE_READ
+    : XML_DecodeXMLFile
+  : XML
+  : lFile
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : DRV_FILE_READ
             mdrv_file_close
             XML_Analyse
             XML_WriteErrorLog
-被调函数  : XML_DecodeMain
+  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
 {
-    s32               lreaded;           /* 读出的字节数 */
-    s32               lcount;            /* 遍历缓冲区用 */
+    s32               lreaded;           /*  */
+    s32               lcount;            /*  */
     XML_RESULT_ENUM_UINT32  returnval;
 
 
@@ -1796,11 +1796,11 @@ XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
             returnval = xml_analyse(*(xml_ctrl.g_pclfilereadbuff + lcount));
             if(XML_RESULT_SUCCEED != returnval)
             {
-                /* 遇到解析错误，则停止解析 */
+                /*  */
                 return returnval;
             }
 
-            /* 判断是否解析完成 */
+            /*  */
             if (XML_DECODE_STATUS_FINISHED
                 == xml_ctrl.g_stlxmlproductinfo.enxmldecodestate)
             {
@@ -1808,7 +1808,7 @@ XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
                 return XML_RESULT_SUCCEED;
             }
 
-            /*解析完common节点之后判断是否需要跳转*/
+            /*common*/
             if((XML_DECODE_STATUS_JUMP == xml_ctrl.g_stlxmlproductinfo.enxmldecodejump) &&
                (XML_DECODE_STATUS_JUMP == xml_ctrl.g_stlxmljumpflag))
             {
@@ -1819,7 +1819,7 @@ XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
                 break;
             }
 
-            /*product 节点二次跳转*/
+            /*product */
             if((XML_DECODE_STATUS_2JUMP == xml_ctrl.g_stlxmlproductinfo.enxmldecodejump) &&
                (XML_DECODE_STATUS_JUMP == xml_ctrl.g_stlxmljumpflag))
             {
@@ -1843,7 +1843,7 @@ XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
         }
     }
 
-    /* 如果ulnodelevel不为0，说明<product>没有正常结束 */
+    /* ulnodelevel0<product> */
     if (0 != xml_ctrl.g_stlxmlproductinfo.ulnodelevel)
     {
         xml_write_error_log(__LINE__,0,XML_RESULT_FALIED_PRODUCT_MATCH);
@@ -1855,30 +1855,30 @@ XML_RESULT_ENUM_UINT32 xml_decode_xml_file(FILE* pfile)
 
 
 /*****************************************************************************
-函 数 名  : XML_GetProductId
-功能描述  : 获得当前单板的product id
-输入参数  : 无
-输出参数  : pcProductId 获得当前单板的product ids
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : VOS_MemSet
+    : XML_GetProductId
+  : product id
+  : 
+  : pcProductId product ids
+    : XML_RESULT_ENUM_UINT32
+  : VOS_MemSet
             DRV_MEM_VERCTRL
             XML_WriteErrorLog
-被调函数  : XML_ProcInit
+  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_getproductid(void)
 {
     u32    lproductid;
 
-    /* 清空内存 */
+    /*  */
     /* coverity[secure_coding] */
     memset(xml_ctrl.g_stlxmlproductinfo.acproductid, 0, (size_t)XML_MAX_HARDWARE_LEN);
 
-    /* 取得当前单板的Product id */
+    /* Product id */
     lproductid=  bsp_get_version_info()->board_id;/*get hardware version*/
 
     xml_ctrl.g_stlxmlproductid = lproductid;
@@ -1892,36 +1892,36 @@ XML_RESULT_ENUM_UINT32 xml_getproductid(void)
 
 
 /*****************************************************************************
-函 数 名  : XML_InitGlobal
-功能描述  : 初始化全局变量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_ProcInit
+    : XML_InitGlobal
+  : 
+  : 
+  : 
+    : 
+  : 
+  : XML_ProcInit
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 void xml_initglobal(void)
 {
-    /* 初始化Product节点信息 */
+    /* Product */
     xml_ctrl.g_stlxmlproductinfo.envalidnode      = XML_PRODUCT_NODE_STATUS_INVALID;
     xml_ctrl.g_stlxmlproductinfo.enxmldecodestate = XML_DECODE_STATUS_DECODING;
     xml_ctrl.g_stlxmlproductinfo.enxmldecodejump  = XML_DECODE_STATUS_JUMP_BUTT;
-    xml_ctrl.g_stlxmlproductinfo.ulnodelevel      = 0; /* 记录product节点出现的次数 */
+    xml_ctrl.g_stlxmlproductinfo.ulnodelevel      = 0; /* product */
 
-    /* 初始化当前状态 */
+    /*  */
     g_stlxmlstatus = XML_ANASTT_ORIGINAL;
 
-    /* 用于记录读取XML文件的行数 */
+    /* XML */
     xml_ctrl.g_stlxml_lineno    = 1;
 
-    /*用于记录能否跳转标志*/
+    /**/
     xml_ctrl.g_stlxmljumpflag   = XML_DECODE_STATUS_JUMP_BUTT;
-    /*用于记录跳转偏移 跳转时偏移为0则保持当前偏移*/
+    /* 0*/
     /* coverity[secure_coding] */
     memset(&xml_ctrl.g_stlxmljumpinfo,0,sizeof(xml_ctrl.g_stlxmljumpinfo));
 
@@ -2022,37 +2022,37 @@ out:
 
 
 /*****************************************************************************
-函 数 名  : XML_ProcInit
-功能描述  : 初时化本模块全部变量内容
-输入参数  : 无
-输出参数  : 无
-返 回 值  : XML_RESULT_ENUM_UINT32
-调用函数  : XML_InitGlobal
+    : XML_ProcInit
+  : 
+  : 
+  : 
+    : XML_RESULT_ENUM_UINT32
+  : XML_InitGlobal
             XML_GetProductId
             XML_CreateANode
             VOS_MemAlloc
             XML_WriteErrorLogs
-被调函数  : XML_DecodeMain
+  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 XML_RESULT_ENUM_UINT32 xml_procinit(s8* map_path)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 初始化全局变量 */
+    /*  */
     xml_initglobal();
 
-    /* 获得当前单板的product id*/   /*? UDP*/
+    /* product id*/   /*? UDP*/
     xml_getproductid();
 
-    /*获取当前跳转信息*/
+    /**/
     xml_getjumpinfo(map_path);
 
-    /* 创建节点信息 */
+    /*  */
     returnval = xml_createanode();
 
     if (XML_RESULT_SUCCEED != returnval)
@@ -2060,7 +2060,7 @@ XML_RESULT_ENUM_UINT32 xml_procinit(s8* map_path)
         return returnval;
     }
 
-    /* 申请存放NV Item的值的缓冲区,+1为保留字符串结束符用 */  /*分配固定空间*/
+    /* NV Item,+1 */  /**/
     xml_ctrl.g_puclnvitem = (u8 *)nv_malloc((size_t)(XML_NODE_VALUE_BUFF_LENGTH_ORIGINAL+1));
     if (NULL == xml_ctrl.g_puclnvitem)
     {
@@ -2069,7 +2069,7 @@ XML_RESULT_ENUM_UINT32 xml_procinit(s8* map_path)
         return XML_RESULT_FALIED_MALLOC;
     }
 
-    /* 申请读取文件数据的缓冲区,+1为保留字符串结束符用 */ /*是否分配空间?*/
+    /* ,+1 */ /*?*/
     xml_ctrl.g_pclfilereadbuff = (s8*)nv_malloc((size_t)(XML_FILE_READ_BUFF_SIZE + 1));
     if (NULL == xml_ctrl.g_pclfilereadbuff)
     {
@@ -2084,18 +2084,18 @@ XML_RESULT_ENUM_UINT32 xml_procinit(s8* map_path)
 }
 
 /*****************************************************************************
-函 数 名  : XML_FreeMem
-功能描述  : XML 释放内存函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : XML_DecodeMain
+    : XML_FreeMem
+  : XML 
+  : 
+  : 
+    : 
+  : 
+  : XML_DecodeMain
 
-修改历史
-1.日    期   : 2011年04月14日
-作    者   : x51137
-修改内容   : 新生成函数
+
+1.       : 20110414
+       : x51137
+   : 
 *****************************************************************************/
 void xml_freemem(void)
 {
@@ -2164,12 +2164,12 @@ void xml_decodefail_freemem(void)
 }
 
 /*****************************************************************************
-函 数 名  : XML_DecodeMain
-功能描述  : XML处理主调函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : mdrv_file_open
+    : XML_DecodeMain
+  : XML
+  : 
+  : 
+    : 
+  : mdrv_file_open
             mdrv_file_close
             mdrv_file_remove
             DRV_SYSTEM_ERROR
@@ -2178,18 +2178,18 @@ void xml_decodefail_freemem(void)
             XML_InitGlobal
             XML_DecodeXMLFile
             XML_WriteErrorLog
-被调函数  : VOS_Startup
+  : VOS_Startup
 
-修改历史
-1.日    期   : 2010年12月20日
-作    者   : 郑继树 176513
-修改内容   : 新生成函数
+
+1.       : 20101220
+       :  176513
+   : 
 *****************************************************************************/
 u32 xml_decode_main(FILE* fp,s8* map_path,u32 card_type)
 {
     XML_RESULT_ENUM_UINT32 returnval;
 
-    /* 初时化本模块全部变量内容 */
+    /*  */
     returnval = xml_procinit(map_path);
     xml_ctrl.card_type = card_type;
 
@@ -2199,7 +2199,7 @@ u32 xml_decode_main(FILE* fp,s8* map_path,u32 card_type)
         goto out;
     }
 
-    /* 解析xnv.xml文件  */
+    /* xnv.xml  */
     returnval = xml_decode_xml_file(fp);
 
     if (XML_RESULT_SUCCEED != returnval)
@@ -2207,9 +2207,9 @@ u32 xml_decode_main(FILE* fp,s8* map_path,u32 card_type)
         nv_printf(" xml_decode_xml_file: returnval = %d!\n",returnval);
         goto out;
     }
-    /* 释放已分配的内存 */
+    /*  */
     xml_freemem();
-    /*解析完成之后将卡类型修改为卡1*/
+    /*1*/
     xml_ctrl.card_type = NV_USIMM_CARD_1;
     return NV_OK;
 out:
@@ -2220,16 +2220,16 @@ out:
 
 
 /*****************************************************************************
-* 函 数 名  : xml_nv_boot_search_byid
+*     : xml_nv_boot_search_byid
 *
-* 功能描述  : 查找id 为itemid的NV的相关信息
+*   : id itemidNV
 *
-* 输入参数  : itemid: NV id
+*   : itemid: NV id
 *           : pdata :
-* 输出参数  : ref_info  : NV信息
-*           : file_info : NV所在的文件信息
-*           : ref_offset: ref_info所在的内存
-* 返 回 值  : void
+*   : ref_info  : NV
+*           : file_info : NV
+*           : ref_offset: ref_info
+*     : void
 *****************************************************************************/
 u32 xml_nv_search_byid(u32 itemid,u8* pdata,nv_item_info_s* ref_info,nv_file_info_s* file_info, u8** ref_offset)
 {
@@ -2271,16 +2271,16 @@ u32 xml_nv_search_byid(u32 itemid,u8* pdata,nv_item_info_s* ref_info,nv_file_inf
 
 }
 /*****************************************************************************
-* 函 数 名  : xml_nv_boot_write_priority
+*     : xml_nv_boot_write_priority
 *
-* 功能描述  : 将priority优先级写入到ref_offset指向的内存中
+*   : priorityref_offset
 *
-* 输入参数  : ref_offset:待写入优先级的nv信息的指针
-*           : priority  :调整后的优先级
+*   : ref_offset:nv
+*           : priority  :
 *
-* 输出参数  : 无
+*   : 
 *
-* 返 回 值  : void
+*     : void
 *****************************************************************************/
 void xml_nv_write_priority(u8* ref_offset , u16 priority)
 {

@@ -55,16 +55,16 @@
 
 struct dump_global_area_ctrl_s g_st_dump_area_ctrl;
 /*****************************************************************************
-* 函 数 名  : dump_get_area_info
-* 功能描述  : 获取当前area的信息
+*     : dump_get_area_info
+*   : area
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_get_area_info(DUMP_AREA_ID areaid,struct dump_area_mntn_addr_info_s* area_info)
@@ -90,16 +90,16 @@ s32 dump_get_area_info(DUMP_AREA_ID areaid,struct dump_area_mntn_addr_info_s* ar
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_get_global_info
-* 功能描述  : 获取rdr的global头信息
+*     : dump_get_global_info
+*   : rdrglobal
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_get_global_info(struct dump_global_area_ctrl_s * global_area)
@@ -116,16 +116,16 @@ s32 dump_get_global_info(struct dump_global_area_ctrl_s * global_area)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_get_global_baseinfo
-* 功能描述  : 获取rdr的global头信息的基本信息
+*     : dump_get_global_baseinfo
+*   : rdrglobal
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void* dump_get_global_baseinfo(void)
@@ -140,16 +140,16 @@ void* dump_get_global_baseinfo(void)
     return &(g_st_dump_area_ctrl.virt_addr->base_info);
 }
 /*****************************************************************************
-* 函 数 名  : dump_area_init
-* 功能描述  : 初始化当前area信息
+*     : dump_area_init
+*   : area
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_area_init(void)

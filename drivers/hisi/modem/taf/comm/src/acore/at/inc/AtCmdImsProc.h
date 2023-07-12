@@ -50,7 +50,7 @@
 #define __ATCMDIMSPROC_H__
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include "AtCtx.h"
 #include "AtParse.h"
@@ -66,64 +66,64 @@ extern "C" {
 #pragma pack(4)
 #if (FEATURE_ON == FEATURE_IMS)
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 #define AT_IMS_PAYLOAD_TYPE_RANGE_MAX    (0x7f)
 #define AT_IMS_PAYLOAD_TYPE_RANGE_MIN    (0x60)
 #define AT_IMS_AMR_WB_MODE_MAX           (8)
-#define AT_IMS_TIMER_DATA_RANGE_MAX      (128000)                               /* 定时器最大时长:单位(ms) */
+#define AT_IMS_TIMER_DATA_RANGE_MAX      (128000)                               /* :(ms) */
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 
-/*AT与IMSA模块间消息处理函数指针*/
+/*ATIMSA*/
 typedef VOS_UINT32 (*AT_IMSA_MSG_PROC_FUNC)(VOS_VOID *pMsg);
 
 /*****************************************************************************
- 结构名    : AT_IMSA_MSG_PRO_FUNC_STRU
- 结构说明  : AT与IMSA消息与对应处理函数的结构
+     : AT_IMSA_MSG_PRO_FUNC_STRU
+   : ATIMSA
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_IMSA_MSG_TYPE_ENUM_UINT32        ulMsgId;
     AT_IMSA_MSG_PROC_FUNC               pProcMsgFunc;
 }AT_IMSA_MSG_PRO_FUNC_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 VOS_VOID AT_ProcImsaMsg(AT_IMSA_MSG_STRU *pstMsg);
 
@@ -288,7 +288,7 @@ VOS_UINT32 AT_QryImsPcscfPara(VOS_UINT8 ucIndex);
 
 VOS_UINT32 AT_QryDmDynPara(VOS_UINT8 ucIndex);
 
-/* Added by f00367319 for LGU+迭代一, 2016-6-21, begin */
+/* Added by f00367319 for LGU+, 2016-6-21, begin */
 VOS_VOID At_FillImsaTimerParaInCmd(
     VOS_UINT16                         *pusLength,
     VOS_UINT32                          ulValue,
@@ -314,7 +314,7 @@ VOS_UINT32 AT_RcvImsaImsPsiSetCnf(VOS_VOID * pMsg);
 VOS_UINT32 AT_RcvImsaImsPsiQryCnf(VOS_VOID * pMsg);
 VOS_UINT32 AT_RcvImsaDmUserQryCnf(VOS_VOID* pMsg);
 
-/* Added by f00367319 for LGU+迭代一, 2016-6-21, end */
+/* Added by f00367319 for LGU+, 2016-6-21, end */
 
 VOS_UINT32 AT_SetNickNamePara(TAF_UINT8 ucIndex);
 VOS_UINT32 AT_QryNickNamePara(TAF_UINT8 ucIndex);
@@ -385,9 +385,9 @@ VOS_UINT32 AT_RcvImsaImsIpCapSetCnf(VOS_VOID * pMsg);
 VOS_UINT32 AT_QryImsIpCapPara(VOS_UINT8 ucIndex);
 VOS_UINT32 AT_RcvImsaImsIpCapQryCnf(VOS_VOID * pMsg);
 
-/* Added by wx270776 for 适配LNAS R13协议升级迭代开发, 2017-2-6, begin */
+/* Added by wx270776 for LNAS R13, 2017-2-6, begin */
 VOS_UINT32 AT_SetCacdcPara(VOS_UINT8 ucIndex);
-/* Added by wx270776 for 适配LNAS R13协议升级迭代开发, 2017-2-6, end */
+/* Added by wx270776 for LNAS R13, 2017-2-6, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

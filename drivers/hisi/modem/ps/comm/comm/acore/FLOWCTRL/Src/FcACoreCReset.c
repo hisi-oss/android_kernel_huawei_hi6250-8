@@ -48,7 +48,7 @@
 
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "product_config.h"
 
@@ -61,39 +61,39 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_ACORE_CRESET_FLOW_CTRL_C
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
-VOS_SEM         g_ulFcACoreCResetDoneSem;    /* FcACore完成回调事务信号量 */
+VOS_SEM         g_ulFcACoreCResetDoneSem;    /* FcACore */
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_CResetSendNotify
- 功能描述  : 底软C核复位过程模块通知FcACore进行复位处理或者发送复位成功的通知
- 输入参数  : FC_MSG_TYPE_ENUM_UINT16     usMsgName      消息名称
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_CResetSendNotify
+   : CFcACore
+   : FC_MSG_TYPE_ENUM_UINT16     usMsgName      
+   : 
+     : VOS_OK/VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
+       :
+  1.       : 2013422
+           : caikai
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_ACORE_CResetSendNotify(FC_MSG_TYPE_ENUM_UINT16     usMsgName)
 {
     FC_ACORE_CRESET_IND_STRU    *pstMsg;
 
-    /* 申请消息内存 */
+    /*  */
     pstMsg = (FC_ACORE_CRESET_IND_STRU *) VOS_AllocMsg( UEPS_PID_FLOWCTRL_A,
         (VOS_UINT32)sizeof(FC_ACORE_CRESET_IND_STRU) - VOS_MSG_HEAD_LENGTH );
 
@@ -103,12 +103,12 @@ VOS_UINT32  FC_ACORE_CResetSendNotify(FC_MSG_TYPE_ENUM_UINT16     usMsgName)
         return VOS_ERR;
     }
 
-    /* 填写消息内容 */
+    /*  */
     pstMsg->ulReceiverCpuId = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid   = UEPS_PID_FLOWCTRL_A;
     pstMsg->usMsgName       = usMsgName;
 
-    /* 发送消息 */
+    /*  */
     (VOS_VOID)VOS_SendMsg(UEPS_PID_FLOWCTRL, pstMsg);
 
     return VOS_OK;
@@ -117,19 +117,19 @@ VOS_UINT32  FC_ACORE_CResetSendNotify(FC_MSG_TYPE_ENUM_UINT16     usMsgName)
 
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_CResetCallback
- 功能描述  : FcACore需要注册到底软C核复位接口中的回调函数
- 输入参数  : DRV_RESET_CALLCBFUN_MOMENT enParam 指示时复位处理前还是复位成功后
-             int userdata                       用户自定义数据
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_CResetCallback
+   : FcACoreC
+   : DRV_RESET_CALLCBFUN_MOMENT enParam 
+             int userdata                       
+   : 
+     : VOS_OK/VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
+       :
+  1.       : 2013422
+           : caikai
+       : 
 
 *****************************************************************************/
 VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
@@ -137,7 +137,7 @@ VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
     VOS_UINT32                   ulResult;
 
 
-    if ( MDRV_RESET_CB_BEFORE == enParam )      /* 复位处理时调用 */
+    if ( MDRV_RESET_CB_BEFORE == enParam )      /*  */
     {
         FC_ACORE_CResetSendNotify(ID_FC_ACORE_CRESET_START_IND);
 
@@ -150,7 +150,7 @@ VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
             return VOS_ERR;
         }
     }
-    else if ( MDRV_RESET_CB_AFTER == enParam )   /* 复位成功后调用 */
+    else if ( MDRV_RESET_CB_AFTER == enParam )   /*  */
     {
         FC_ACORE_CResetSendNotify(ID_FC_ACORE_CRESET_END_IND);
     }
@@ -167,18 +167,18 @@ VOS_INT FC_ACORE_CResetCallback(DRV_RESET_CB_MOMENT_E enParam, VOS_INT userdata)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_CResetProc
- 功能描述  : FcACore收到底软C核复位过程处理模块发来的复位及复位成功的通知后的处理函数
- 输入参数  : FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment 指示时复位处理前还是复位成功后
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_CResetProc
+   : FcACoreC
+   : FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment 
+   : 
+     : VOS_OK/VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
+       :
+  1.       : 2013422
+           : caikai
+       : 
 
 *****************************************************************************/
 VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
@@ -197,7 +197,7 @@ VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
     {
         usMsgName           = ID_FC_ACORE_CRESET_START_RSP;
 
-        /* 复位处理时遍历每个流控点，执行流控点上外部模块注册的reset函数 */
+        /* reset */
         for ( ulFcPointLoop = 0; ulFcPointLoop < g_stFcPointMgr.ulPointNum; ulFcPointLoop++ )
         {
             pFcPoint    = &g_stFcPointMgr.astFcPoint[ulFcPointLoop];
@@ -220,7 +220,7 @@ VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
         return VOS_ERR;
     }
 
-    /* 申请消息内存: */
+    /* : */
     pstMsg = (FC_ACORE_CRESET_RSP_STRU *)(VOS_UINT_PTR)VOS_AllocMsg( UEPS_PID_FLOWCTRL_A, 
                                (VOS_UINT32)sizeof(FC_ACORE_CRESET_RSP_STRU) - VOS_MSG_HEAD_LENGTH);
 
@@ -230,13 +230,13 @@ VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
         return VOS_ERR;
     }
 
-    /*填写消息内容:*/
+    /*:*/
     pstMsg->ulReceiverCpuId = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid   = UEPS_PID_FLOWCTRL_A;
     pstMsg->usMsgName       = usMsgName;
     pstMsg->ulResult        = ulRspResult;
 
-    /*发送消息:*/
+    /*:*/
     (VOS_VOID)VOS_SendMsg(UEPS_PID_FLOWCTRL, pstMsg);
 
     return VOS_OK;
@@ -244,18 +244,18 @@ VOS_UINT32 FC_ACORE_CResetProc(FC_ACORE_CRESET_MOMENT_ENUM_UINT8 enCResetMoment)
 
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_CResetRcvStartRsp
- 功能描述  : 收到ID_FC_ACORE_CRESET_START_RSP消息后的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_CResetRcvStartRsp
+   : ID_FC_ACORE_CRESET_START_RSP
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月22日
-    作    者   : caikai
-    修改内容   : 新生成函数
+       :
+  1.       : 2013422
+           : caikai
+       : 
 
 *****************************************************************************/
 VOS_VOID FC_ACORE_CResetRcvStartRsp(VOS_VOID)

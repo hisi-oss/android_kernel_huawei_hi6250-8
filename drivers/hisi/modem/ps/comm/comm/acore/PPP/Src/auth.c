@@ -44,7 +44,7 @@
 #include "PPP/Inc/link.h"
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AUTH_C
 
@@ -74,18 +74,18 @@ Auth2Nam(VOS_UINT16 auth, VOS_CHAR chap_type)
 }
 
 /*****************************************************************************
- 函 数 名  : AuthTimeout
- 功能描述  : 认证定时器超时处理
- 输入参数  : l - PPP链接
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AuthTimeout
+   : 
+   : l - PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月27日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081027
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID AuthTimeout(struct link *l)
@@ -133,18 +133,18 @@ auth_Init(struct authinfo *authp, auth_func req,
 }
 
 /*****************************************************************************
- 函 数 名  : auth_StartReq
- 功能描述  : 发起认证
- 输入参数  : l - PPP链接
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : auth_StartReq
+   : 
+   : l - PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月27日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081027
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID auth_StartReq(struct link *l, struct authinfo *authp)
@@ -160,7 +160,7 @@ VOS_VOID auth_StartReq(struct link *l, struct authinfo *authp)
   {
     auth_Req(authp,l);
 
-    /* 防止在上一次认证定时器没有超时前, 发生LCP Layer Up, 再次需要认证 */
+    /* , LCP Layer Up,  */
     if (VOS_NULL != authp->hAuthTimer)
     {
         PS_STOP_REL_TIMER(&(authp->hAuthTimer));
@@ -178,18 +178,18 @@ VOS_VOID auth_StartReq(struct link *l, struct authinfo *authp)
 }    /* auth_StartReq */
 
 /*****************************************************************************
- 函 数 名  : auth_StopTimer
- 功能描述  : 停止认证定时器
- 输入参数  : authp - PPP链接中认证参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : auth_StopTimer
+   : 
+   : authp - PPP
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年10月27日
-    作    者   : liukai
-    修改内容   : porting from BSD
+       :
+  1.       : 20081027
+           : liukai
+       : porting from BSD
 
 *****************************************************************************/
 VOS_VOID auth_StopTimer(struct authinfo *authp)
@@ -200,7 +200,7 @@ VOS_VOID auth_StopTimer(struct authinfo *authp)
     }
 }
 
-/*lint -e{572} 0的移位*/
+/*lint -e{572} 0*/
 struct ppp_mbuf *
 auth_ReadHeader(struct authinfo *authp, struct ppp_mbuf *bp)
 {

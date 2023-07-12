@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "vos.h"
 #include "PsCommonDef.h"
@@ -64,35 +64,35 @@
 #define    THIS_FILE_ID        PS_FILE_ID_MNCALL_API_C
 
 /*****************************************************************************
-   2 函数实现
+   2 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_SendAppRequest
- 功能描述  : 将APP的异步请求发送到CCA所在任务处理
- 输入参数  : enReq    - 请求的类型
+     : MN_CALL_SendAppRequest
+   : APPCCA
+   : enReq    - 
               clientId - Client ID
-              opId     - 本次操作的标识
-              callId   - 呼叫的ID
-              punParam - 请求中携带的参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+              opId     - 
+              callId   - ID
+              punParam - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改AT虚拟的WUEPS_PID_VC为WUEPS_PID_AT
-  3.日    期   : 2012年9月27日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  4.日    期   : 2012年12月22日
-    作    者   : l00227485
-    修改内容   : DSDA phaseII
+       :
+  1.       : 2007920
+           :  49431
+       : 
+  2.       : 20111107
+           : f00179208
+       : AT Project, ATWUEPS_PID_VCWUEPS_PID_AT
+  3.       : 2012927
+           : A00165503
+       : STK&DCM: CS
+  4.       : 20121222
+           : l00227485
+       : DSDA phaseII
 
 *****************************************************************************/
 VOS_UINT32  MN_CALL_SendAppRequest(
@@ -117,13 +117,13 @@ VOS_UINT32  MN_CALL_SendAppRequest(
                 0x00,
                (VOS_SIZE_T)(sizeof(MN_CALL_APP_REQ_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstMsg->ulSenderCpuId               = VOS_LOCAL_CPUID;
     pstMsg->ulSenderPid                 = WUEPS_PID_AT;
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = AT_GetDestPid(clientId, I0_WUEPS_PID_TAF);
 
-    /* 填写原语首部 */
+    /*  */
     pstMsg->enReq = enReq;
     pstMsg->clientId = clientId;
     pstMsg->opId = opId;
@@ -134,7 +134,7 @@ VOS_UINT32  MN_CALL_SendAppRequest(
         TAF_MEM_CPY_S(&pstMsg->unParm, sizeof(pstMsg->unParm), punParam, sizeof(pstMsg->unParm));
     }
 
-    /* 发送VOS消息 */
+    /* VOS */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         AT_ERR_LOG1("MN_CALL_SendAppRequest: Send Message Fail. reqtype:", (VOS_INT32)enReq);
@@ -146,26 +146,26 @@ VOS_UINT32  MN_CALL_SendAppRequest(
 
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_Orig
- 功能描述  : 发起一个主叫
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             pstOrigParam - 主叫操作需要的参数
- 输出参数  : pCallId    - 本次呼叫的ID, 用来唯一的标识这个呼叫
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MN_CALL_Orig
+   : 
+   : clientId   - Client ID
+             opId       - 
+             pstOrigParam - 
+   : pCallId    - ID, 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 分配CALLId放到C核
-  3.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
+       :
+  1.       : 2007920
+           :  49431
+       : 
+  2.       : 20111006
+           : f00179208
+       : AT, CALLIdC
+  3.       : 2012925
+           : A00165503
+       : STK&DCM: CS
 *****************************************************************************/
 VOS_UINT32  MN_CALL_Orig(
     MN_CLIENT_ID_T                      clientId,
@@ -178,14 +178,14 @@ VOS_UINT32  MN_CALL_Orig(
     MN_CALL_ID_T                        callId;
     MN_CALL_APP_REQ_PARM_UNION          stAppReq;
 
-    /* 在该处不在分配CallId，直接将callId赋值为0
-       CallId的分配放到MN CALL模块处理该情况的函数中 */
+    /* CallIdcallId0
+       CallIdMN CALL */
     callId = 0;
 
     TAF_MEM_SET_S(&stAppReq, (VOS_UINT32)sizeof(stAppReq), 0x00, (VOS_UINT32)sizeof(stAppReq));
     TAF_MEM_CPY_S(&(stAppReq.stOrig), (VOS_UINT32)sizeof(stAppReq.stOrig), pstOrigParam, (VOS_UINT32)sizeof(MN_CALL_ORIG_PARAM_STRU));
 
-    /* 发送异步应用请求 */
+    /*  */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_ORIG_REQ, clientId,
                                       opId, callId,
                                       &stAppReq);
@@ -198,24 +198,24 @@ VOS_UINT32  MN_CALL_Orig(
 
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_End
- 功能描述  : 挂断一个呼叫
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             callId     - 需要挂断的呼叫的ID
-             pstEndParam  - 挂断操作需要的参数, 该参数可选, NULL表示使用默认参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MN_CALL_End
+   : 
+   : clientId   - Client ID
+             opId       - 
+             callId     - ID
+             pstEndParam  - , , NULL
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目CS域错误码上报，上报网侧定义的错误码
+       :
+  1.       : 2007920
+           :  49431
+       : 
+  2.       : 20120918
+           : y00213812
+       : STK&DCM CS
 
 *****************************************************************************/
 VOS_UINT32  MN_CALL_End(
@@ -232,7 +232,7 @@ VOS_UINT32  MN_CALL_End(
 
     if ( TAF_NULL_PTR == pstEndParam)
     {
-        /* 本地构造一个MN_CALL_END_REQ_PARAM_STRU结构, 填写原因值为255 */
+        /* MN_CALL_END_REQ_PARAM_STRU, 255 */
         stAppReq.stEnd.enEndCause = MN_CALL_INTERWORKING_UNSPECIFIED;
     }
     else
@@ -240,7 +240,7 @@ VOS_UINT32  MN_CALL_End(
         stAppReq.stEnd.enEndCause = pstEndParam->enEndCause;
     }
 
-    /* 发送异步应用请求 */
+    /*  */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_END_REQ, clientId,
                                       opId, callId,
                                       &stAppReq);
@@ -250,20 +250,20 @@ VOS_UINT32  MN_CALL_End(
 
 /* Added by f62575 for AT Project, 2011-10-04,  Begin */
 /*****************************************************************************
- 函 数 名  : MN_CALL_QryCdur
- 功能描述  : 查询通话时长
- 输入参数  : MN_CLIENT_ID_T                      clientId  Client ID
-             MN_OPERATION_ID_T                   opId      本次操作的标识
-             MN_CALL_ID_T                        callId    呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : MN_CALL_QryCdur
+   : 
+   : MN_CLIENT_ID_T                      clientId  Client ID
+             MN_OPERATION_ID_T                   opId      
+             MN_CALL_ID_T                        callId    ID
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 2011106
+           : f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32  MN_CALL_QryCdur(
@@ -274,7 +274,7 @@ VOS_UINT32  MN_CALL_QryCdur(
 {
     VOS_UINT32                          ulResult;
 
-    /* 发送异步应用请求 */
+    /*  */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_GET_CDUR_REQ, clientId,
                                       opId, callId,
                                       VOS_NULL_PTR);
@@ -284,21 +284,21 @@ VOS_UINT32  MN_CALL_QryCdur(
 /* Added by f62575 for AT Project, 2011-10-04,  End */
 
 /*****************************************************************************
- 函 数 名  : TAF_CALL_SendDtmf
- 功能描述  : APP给TAF发送DTMF
- 输入参数  : enMsgType      - DTMF请求消息类型
+     : TAF_CALL_SendDtmf
+   : APPTAFDTMF
+   : enMsgType      - DTMF
              clientId       - Client ID
-             opId           - 本次操作的标识
-             pstDtmfParam   - 发送DTMF操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+             opId           - 
+             pstDtmfParam   - DTMF
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
+       :
+  1.       : 20130711
+           : l00198894
+       : V9R1 STK
 *****************************************************************************/
 VOS_UINT32  TAF_CALL_SendDtmf(
     AT_MN_MSGTYPE_ENUM_UINT16           enMsgType,
@@ -310,11 +310,11 @@ VOS_UINT32  TAF_CALL_SendDtmf(
     VOS_UINT32                          ulResult;
     MN_CALL_APP_REQ_PARM_UNION          stAppPara;
 
-    /* 初始化局部变量 */
+    /*  */
     TAF_MEM_SET_S(&stAppPara, sizeof(stAppPara), 0x00, sizeof(stAppPara));
     TAF_MEM_CPY_S(&stAppPara.stDtmf, sizeof(stAppPara.stDtmf), pstDtmfParam, sizeof(TAF_CALL_DTMF_PARAM_STRU));
 
-    /* 发送异步应用请求 */
+    /*  */
     ulResult = MN_CALL_SendAppRequest(enMsgType, clientId, opId,
                                       pstDtmfParam->CallId,
                                       &stAppPara);
@@ -323,26 +323,26 @@ VOS_UINT32  TAF_CALL_SendDtmf(
 }
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_Sups
- 功能描述  : 发起一次呼叫相关补充业务
- 输入参数  : clientId   - Client ID
-             opId       - 本次操作的标识
-             pstCallSupsParam   - 发送呼叫相关补充业务需要的参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MN_CALL_Sups
+   : 
+   : clientId   - Client ID
+             opId       - 
+             pstCallSupsParam   - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  3.日    期   : 2013年09月30日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，里层和外层的CallId填成一致
+       :
+  1.       : 2007920
+           :  49431
+       : 
+  2.       : 2012925
+           : A00165503
+       : STK&DCM: CS
+  3.       : 20130930
+           : s00217060
+       : VoLTE_PhaseIICallId
 *****************************************************************************/
 VOS_UINT32  MN_CALL_Sups(
     MN_CLIENT_ID_T                      clientId,
@@ -356,42 +356,42 @@ VOS_UINT32  MN_CALL_Sups(
     TAF_MEM_SET_S(&stAppPara, (VOS_UINT32)sizeof(stAppPara), 0x00, (VOS_UINT32)sizeof(stAppPara));
     TAF_MEM_CPY_S(&stAppPara.stCallMgmtCmd, (VOS_UINT32)sizeof(stAppPara.stCallMgmtCmd), pstCallSupsParam, (VOS_UINT32)sizeof(MN_CALL_SUPS_PARAM_STRU));
 
-    /* 发送异步应用请求 */
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-30, begin */
-    /* 里层和外层的CallId填成一致 */
+    /*  */
+    /* Modified by s00217060 for VoLTE_PhaseII  , 2013-09-30, begin */
+    /* CallId */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_SUPS_CMD_REQ, clientId,
                                       opId, pstCallSupsParam->callId,
                                       &stAppPara);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-30, end */
+    /* Modified by s00217060 for VoLTE_PhaseII  , 2013-09-30, end */
 
     return ulResult;
 }
 
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_GetInfoList
- 功能描述  : 获取当前所有状态不为IDLE的呼叫信息
- 输入参数  : pNumOfCalls - 输出缓存最多能存储的呼叫信息个数
- 输出参数  : pNumOfCalls - 实际输出的(状态不为IDLE的)呼叫信息个数
-              pstCallInfos  - 输出的呼叫信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MN_CALL_GetInfoList
+   : IDLE
+   : pNumOfCalls - 
+   : pNumOfCalls - (IDLE)
+              pstCallInfos  - 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
+       :
+  1.       : 2007920
+           :  49431
+       : 
 
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 修改接口获取当前呼叫信息
-  3.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目，发送异步消息到C核获取CALL Info
-  4.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
+  2.       : 201031
+           : zhoujun /z40661
+       : 
+  3.       : 20111015
+           : f00179208
+       : ATCCALL Info
+  4.       : 2012925
+           : A00165503
+       : STK&DCM: CS
 *****************************************************************************/
 VOS_UINT32  MN_CALL_GetCallInfos(
     MN_CLIENT_ID_T                      clientId,
@@ -401,7 +401,7 @@ VOS_UINT32  MN_CALL_GetCallInfos(
 {
     VOS_UINT32                          ulResult;
 
-    /* 发送异步应用请求 */
+    /*  */
     ulResult = MN_CALL_SendAppRequest(MN_CALL_APP_GET_INFO_REQ, clientId,
                                       opId, callId,
                                       VOS_NULL_PTR);
@@ -410,29 +410,29 @@ VOS_UINT32  MN_CALL_GetCallInfos(
 }
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_SetAlsLineNo
- 功能描述  : 根据设置的线路号更新NV和当前使用的线路号
- 输入参数  : enAlsLine : 选择的线路号
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : MN_CALL_SetAlsLineNo
+   : NV
+   : enAlsLine : 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年1月22日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月24日
-    作    者   : c00173809
-    修改内容   : AT融合项目，通过核间通信方式而不直接调用MN_CALL_UpdateAlsLineInfo函数。
+       :
+  1.       : 2010122
+           : z40661
+       : 
+  2.       : 20111024
+           : c00173809
+       : ATMN_CALL_UpdateAlsLineInfo
 
-  3.日    期   : 2011年10月24日
-    作    者   : o00132663
-    修改内容   : AT融合项目， CC API调用MN_CALL_UpdateAlsLineInfo改为消息交
-                 互
-  4.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
+  3.       : 20111024
+           : o00132663
+       : AT CC APIMN_CALL_UpdateAlsLineInfo
+                 
+  4.       : 2012925
+           : A00165503
+       : STK&DCM: CS
 *****************************************************************************/
 VOS_UINT32 MN_CALL_SetAlsLineNo(
     TAF_UINT8                           ucIndex,
@@ -444,8 +444,8 @@ VOS_UINT32 MN_CALL_SetAlsLineNo(
 
     stAppReq.stSetAls.enAlsLine = enAlsLine;
 
-    /*1.通过TAF_MSG_ALS_LINE_NO_SET消息带参数结构MN_CALL_ALS_PARAM_STRU
-        通知TAF对ALS进行设置。*/
+    /*1.TAF_MSG_ALS_LINE_NO_SETMN_CALL_ALS_PARAM_STRU
+        TAFALS*/
     ulRst = MN_CALL_SendAppRequest(MN_CALL_APP_SET_ALS_REQ,
                                    gastAtClientTab[ucIndex].usClientId,
                                    At_GetOpId(),
@@ -455,19 +455,19 @@ VOS_UINT32 MN_CALL_SetAlsLineNo(
 }
 
 /*****************************************************************************
- 函 数 名  : MN_CALL_CheckUus1ParmValid
- 功能描述  : 检查设置UUS1输入参数是否合法
- 输入参数  : enSetType      :激活或去激活UUS1
-             pstUus1Info    :UUS1相关信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32     :参数检查成功或失败
- 调用函数  :
- 被调函数  :
+     : MN_CALL_CheckUus1ParmValid
+   : UUS1
+   : enSetType      :UUS1
+             pstUus1Info    :UUS1
+   : 
+     : VOS_UINT32     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
+       :
+  1.       : 2010727
+           : zhoujun /40661
+       : 
 
 *****************************************************************************/
 VOS_UINT32 MN_CALL_CheckUus1ParmValid(
@@ -480,7 +480,7 @@ VOS_UINT32 MN_CALL_CheckUus1ParmValid(
         return MN_ERR_INVALIDPARM;
     }
 
-    /*  校验参数的合法性,非法直接返回 */
+    /*  , */
     if ( ( enSetType >= MN_CALL_SET_UUS1_BUTT )
       || ( pstUus1Info->enMsgType > MN_CALL_UUS1_MSG_RELEASE_COMPLETE ))
     {
@@ -488,8 +488,8 @@ VOS_UINT32 MN_CALL_CheckUus1ParmValid(
     }
 
 
-    /* 对于UUIE的检查仅检查第一项是否是UUIE,其他的长度和PD不进行检查,
-       由应用保证,该项仅在激活UUS1时需要检查,去激活不关心该项  */
+    /* UUIEUUIE,PD,
+       ,UUS1,  */
     if ( ( MN_CALL_SET_UUS1_ACT == enSetType)
       && ( MN_CALL_UUS_IEI != pstUus1Info->aucUuie[MN_CALL_IEI_POS]))
     {
@@ -500,20 +500,20 @@ VOS_UINT32 MN_CALL_CheckUus1ParmValid(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SendFlashReq
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId       - Client ID
-             opId           - 本次操作的标识
-             pstFlashPara   - 发送Flash操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_XCALL_SendFlashReq
+   : APPTAFFlash
+   : clientId       - Client ID
+             opId           - 
+             pstFlashPara   - Flash
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年11月8日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
+       :
+  1.       : 2014118
+           : L00256032
+       : 1X SS Project
 *****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendFlashReq(
     MN_CLIENT_ID_T                      clientId,
@@ -535,19 +535,19 @@ VOS_UINT32  TAF_XCALL_SendFlashReq(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_SEND_FLASH_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstMsg->ulSenderCpuId               = VOS_LOCAL_CPUID;
     pstMsg->ulSenderPid                 = WUEPS_PID_AT;
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = AT_GetDestPid(clientId, I0_WUEPS_PID_TAF);
 
-    /* 填写消息内容 */
+    /*  */
     pstMsg->usMsgId    = TAF_CALL_APP_SEND_FLASH_REQ;
     pstMsg->usClientId = clientId;
     pstMsg->ucOpId     = opId;
     TAF_MEM_CPY_S(&(pstMsg->stFlashPara), sizeof(pstMsg->stFlashPara), pstFlashPara, sizeof(TAF_CALL_FLASH_PARA_STRU));
 
-    /* 发送VOS消息 */
+    /* VOS */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         AT_ERR_LOG("TAF_XCALL_SendFlashReq: Send TAF_CALL_APP_SEND_FLASH_REQ Message Fail");
@@ -559,20 +559,20 @@ VOS_UINT32  TAF_XCALL_SendFlashReq(
 
 /* Added by f279542 for CDMA 1X Iteration 4, 2014-11-10, begin */
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SendBurstDtmf
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId              - Client ID
-             opId                  - 本次操作的标识
-             pstSndBurstDTMFPara   - 发送Send Burst Dtmf操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_XCALL_SendBurstDtmf
+   : APPTAFFlash
+   : clientId              - Client ID
+             opId                  - 
+             pstSndBurstDTMFPara   - Send Burst Dtmf
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
+       :
+  1.       : 20141110
+           : f279542
+       : 
 *****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendBurstDtmf(
     MN_CLIENT_ID_T                      clientId,
@@ -594,19 +594,19 @@ VOS_UINT32  TAF_XCALL_SendBurstDtmf(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_BURST_DTMF_REQ_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstMsg->ulSenderCpuId               = VOS_LOCAL_CPUID;
     pstMsg->ulSenderPid                 = WUEPS_PID_AT;
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = AT_GetDestPid(clientId, I0_WUEPS_PID_TAF);
 
-    /* 填写消息内容 */
+    /*  */
     pstMsg->usMsgId    = TAF_CALL_APP_SEND_BURST_DTMF_REQ;
     pstMsg->usClientId = clientId;
     pstMsg->ucOpId     = opId;
     TAF_MEM_CPY_S(&(pstMsg->stBurstDTMFPara), sizeof(pstMsg->stBurstDTMFPara), pstSndBurstDTMFPara, sizeof(TAF_CALL_BURST_DTMF_PARA_STRU));
 
-    /* 发送VOS消息 */
+    /* VOS */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         AT_ERR_LOG("TAF_XCALL_SendBurstDtmf: Send TAF_CALL_APP_SEND_BURST_DTMF_REQ Message Fail");
@@ -618,20 +618,20 @@ VOS_UINT32  TAF_XCALL_SendBurstDtmf(
 /* Added by f279542 for CDMA 1X Iteration 4, 2014-11-10, end */
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SendCustomDialReq
- 功能描述  : APP给TAF发送Flash请求
- 输入参数  : clientId       - Client ID
-             opId           - 本次操作的标识
-             pstFlashPara   - 发送Flash操作需要的参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_XCALL_SendCustomDialReq
+   : APPTAFFlash
+   : clientId       - Client ID
+             opId           - 
+             pstFlashPara   - Flash
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年4月8日
-    作    者   : w00242748
-    修改内容   : 新增函数
+       :
+  1.       : 201548
+           : w00242748
+       : 
 *****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendCustomDialReq(
     MN_CLIENT_ID_T                      clientId,
@@ -653,19 +653,19 @@ VOS_UINT32  TAF_XCALL_SendCustomDialReq(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_SEND_CUSTOM_DIAL_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstMsg->ulSenderCpuId               = VOS_LOCAL_CPUID;
     pstMsg->ulSenderPid                 = WUEPS_PID_AT;
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = AT_GetDestPid(clientId, I0_WUEPS_PID_TAF);
 
-    /* 填写消息内容 */
+    /*  */
     pstMsg->usMsgId    = TAF_CALL_APP_SEND_CUSTOM_DIAL_REQ;
     pstMsg->usClientId = clientId;
     pstMsg->ucOpId     = opId;
     TAF_MEM_CPY_S(&(pstMsg->stCustomDialPara), sizeof(pstMsg->stCustomDialPara), pstCustomDialPara, sizeof(pstMsg->stCustomDialPara));
 
-    /* 发送VOS消息 */
+    /* VOS */
     (VOS_VOID)PS_SEND_MSG(WUEPS_PID_AT, pstMsg);
 
     return VOS_TRUE;
@@ -716,20 +716,20 @@ VOS_UINT32  TAF_XCALL_SendContinuousDtmf(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SendCclpr
- 功能描述  : APP给TAF发送Clpr请求
- 输入参数  : clientId              - Client ID
-             opId                  - 本次操作的标识
-             ucCallId               - 呼叫id
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_XCALL_SendCclpr
+   : APPTAFClpr
+   : clientId              - Client ID
+             opId                  - 
+             ucCallId               - id
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年8月20日
-    作    者   : f279542
-    修改内容   : 新生成函数
+       :
+  1.       : 2015820
+           : f279542
+       : 
 *****************************************************************************/
 VOS_UINT32  TAF_XCALL_SendCclpr(
     MN_CLIENT_ID_T                      clientId,
@@ -751,41 +751,41 @@ VOS_UINT32  TAF_XCALL_SendCclpr(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_SND_CCLPR_REQ_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstMsg->ulSenderCpuId               = VOS_LOCAL_CPUID;
     pstMsg->ulSenderPid                 = WUEPS_PID_AT;
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = AT_GetDestPid(clientId, I0_WUEPS_PID_TAF);
 
-    /* 填写消息内容 */
+    /*  */
     pstMsg->usMsgId    = TAF_CALL_APP_SEND_CCLPR_REQ;
     pstMsg->usClientId = clientId;
     pstMsg->ucOpId     = opId;
     pstMsg->ucCallId   = ucCallId;
 
-    /* 发送VOS消息TAF_CALL_APP_SEND_CCLPR_REQ */
+    /* VOSTAF_CALL_APP_SEND_CCLPR_REQ */
     (VOS_VOID)PS_SEND_MSG(WUEPS_PID_AT, pstMsg);
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SndEncryptCall
- 功能描述  : xcall收到AT的密话通知请求后发送消息函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_SndEncryptCall
+   : xcallAT
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_APP_ENCRYPT_VOICE_TYPE_ENUM_UINT32             enEccVoiceType, 密话呼叫模式
-             MN_CALL_CALLED_NUM_STRU                                *pstDialNumber   密话呼叫号码
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+             TAF_CALL_APP_ENCRYPT_VOICE_TYPE_ENUM_UINT32             enEccVoiceType, 
+             MN_CALL_CALLED_NUM_STRU                                *pstDialNumber   
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
+       :
+  1.       : 20151022
+           : y00322978
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendEncryptCall(
@@ -817,14 +817,14 @@ VOS_UINT32 TAF_XCALL_SendEncryptCall(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstEncryptVoiceReq->ulSenderCpuId                       = VOS_LOCAL_CPUID;
     pstEncryptVoiceReq->ulSenderPid                         = ulSenderPid;
     pstEncryptVoiceReq->ulReceiverCpuId                     = VOS_LOCAL_CPUID;
     pstEncryptVoiceReq->ulReceiverPid                       = ulReceiverPid;
     pstEncryptVoiceReq->ulLength                            = sizeof(TAF_CALL_APP_ENCRYPT_VOICE_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstEncryptVoiceReq->enMsgName                           = ID_TAF_CALL_APP_ENCRYPT_VOICE_REQ;
     pstEncryptVoiceReq->stCtrl.usClientId                   = usClientId;
     pstEncryptVoiceReq->stCtrl.ucOpId                       = opId;
@@ -832,7 +832,7 @@ VOS_UINT32 TAF_XCALL_SendEncryptCall(
     pstEncryptVoiceReq->enEccVoiceType                      = ulEccVoiceType;
     TAF_MEM_CPY_S(&pstEncryptVoiceReq->stDialNumber, (VOS_UINT32)sizeof(pstEncryptVoiceReq->stDialNumber), pstDialNumber, (VOS_UINT32)sizeof(TAF_ECC_CALL_BCD_NUM_STRU));
 
-    /* 发送VOS消息ID_TAF_CALL_APP_ENCRYPT_VOICE_REQ */
+    /* VOSID_TAF_CALL_APP_ENCRYPT_VOICE_REQ */
 	/*lint -e830 -e516 */
     (VOS_VOID)PS_SEND_MSG(ulSenderPid, pstEncryptVoiceReq);
 
@@ -840,22 +840,22 @@ VOS_UINT32 TAF_XCALL_SendEncryptCall(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SndEccCtrl
- 功能描述  : 密话远程控制命令响应
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_SndEccCtrl
+   : 
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_REMOTE_CTRL_APP_TYPE_ENUM_UINT32               ulRemoteCtrlEvtType,远程控制命令类型
-             TAF_CALL_REMOTE_CTRL_APP_RESULT_ENUM_UINT32             ulResult            远程控制命令响应结果
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+             TAF_CALL_REMOTE_CTRL_APP_TYPE_ENUM_UINT32               ulRemoteCtrlEvtType,
+             TAF_CALL_REMOTE_CTRL_APP_RESULT_ENUM_UINT32             ulResult            
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
+       :
+  1.       : 20151022
+           : y00322978
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_SendEccCtrl(
@@ -887,14 +887,14 @@ VOS_UINT32 TAF_XCALL_SendEccCtrl(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_REMOTE_CTRL_ANSWER_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstEccRemoteCtrlAnsReq->ulSenderCpuId                   = VOS_LOCAL_CPUID;
     pstEccRemoteCtrlAnsReq->ulSenderPid                     = ulSenderPid;
     pstEccRemoteCtrlAnsReq->ulReceiverCpuId                 = VOS_LOCAL_CPUID;
     pstEccRemoteCtrlAnsReq->ulReceiverPid                   = ulReceiverPid;
     pstEccRemoteCtrlAnsReq->ulLength                        = sizeof(TAF_CALL_APP_REMOTE_CTRL_ANSWER_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstEccRemoteCtrlAnsReq->enMsgName                       = ID_TAF_CALL_APP_REMOTE_CTRL_ANSWER_REQ;
     pstEccRemoteCtrlAnsReq->stCtrl.usClientId               = usClientId;
     pstEccRemoteCtrlAnsReq->stCtrl.ucOpId                   = opId;
@@ -902,29 +902,29 @@ VOS_UINT32 TAF_XCALL_SendEccCtrl(
     pstEccRemoteCtrlAnsReq->enRemoteCtrlEvtType             = ulRemoteCtrlEvtType;
     pstEccRemoteCtrlAnsReq->enResult                        = ulResult;
 
-    /* 发送VOS消息ID_TAF_CALL_APP_REMOTE_CTRL_ANSWER_REQ */
+    /* VOSID_TAF_CALL_APP_REMOTE_CTRL_ANSWER_REQ */
     (VOS_VOID)PS_SEND_MSG(ulSenderPid, pstEccRemoteCtrlAnsReq);
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SetEccCap
- 功能描述  : 设置modem密话能力，消息发送接口
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_SetEccCap
+   : modem
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId,
-             TAF_CALL_APP_ECC_SRV_CAP_ENUM_UINT32                    ulEccSrvCap,   密话能力(仅能消除或者保持当前密话能力)
-             TAF_CALL_APP_ECC_SRV_STATUS_ENUM_UINT32                 ulEccSrvStatus 密话状态(关闭，打开)
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+             TAF_CALL_APP_ECC_SRV_CAP_ENUM_UINT32                    ulEccSrvCap,   ()
+             TAF_CALL_APP_ECC_SRV_STATUS_ENUM_UINT32                 ulEccSrvStatus ()
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : y00322978
-    修改内容   : 新生成函数
+       :
+  1.       : 20151022
+           : y00322978
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetEccCap(
@@ -955,14 +955,14 @@ VOS_UINT32 TAF_XCALL_SetEccCap(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstEccSrvCapReq->ulSenderCpuId                          = VOS_LOCAL_CPUID;
     pstEccSrvCapReq->ulSenderPid                            = ulSenderPid;
     pstEccSrvCapReq->ulReceiverCpuId                        = VOS_LOCAL_CPUID;
     pstEccSrvCapReq->ulReceiverPid                          = ulReceiverPid;
     pstEccSrvCapReq->ulLength                               = sizeof(TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstEccSrvCapReq->enMsgName                              = ID_TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ;
     pstEccSrvCapReq->stCtrl.usClientId                      = usClientId;
     pstEccSrvCapReq->stCtrl.ucOpId                          = opId;
@@ -970,26 +970,26 @@ VOS_UINT32 TAF_XCALL_SetEccCap(
     pstEccSrvCapReq->enEccSrvCap                            = ulEccSrvCap;
     pstEccSrvCapReq->enEccSrvStatus                         = ulEccSrvStatus;
 
-    /* 发送VOS消息ID_TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ */
+    /* VOSID_TAF_CALL_APP_ECC_SRV_CAP_CFG_REQ */
     (VOS_VOID)PS_SEND_MSG(ulSenderPid, pstEccSrvCapReq);
 
     return VOS_OK;
 }
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_QryEncryptCallCap
- 功能描述  : 查询当前modem的密话能力 消息发送函数
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_QryEncryptCallCap
+   : modem 
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : y00322978
-    修改内容   : 新生成函数
+       :
+  1.       : 20151023
+           : y00322978
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
@@ -1018,7 +1018,7 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
                 0x00,
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstQryEccCapReq->ulSenderCpuId                        = VOS_LOCAL_CPUID;
     pstQryEccCapReq->ulSenderPid                          = ulSenderPid;
     pstQryEccCapReq->ulReceiverCpuId                      = VOS_LOCAL_CPUID;
@@ -1026,13 +1026,13 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
     pstQryEccCapReq->ulLength                             = sizeof(TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
 
-    /* 填写消息内容 */
+    /*  */
     pstQryEccCapReq->enMsgName                            = ID_TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ;
     pstQryEccCapReq->stCtrl.usClientId                    = usClientId;
     pstQryEccCapReq->stCtrl.ucOpId                        = opId;
     pstQryEccCapReq->stCtrl.ulModuleId                    = ulModuleId;
 
-    /* 发送VOS消息ID_TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ */
+    /* VOSID_TAF_CALL_APP_ECC_SRV_CAP_QRY_REQ */
     (VOS_VOID)PS_SEND_MSG(ulSenderPid, pstQryEccCapReq);
 
     return VOS_OK;
@@ -1041,22 +1041,22 @@ VOS_UINT32 TAF_XCALL_QryEncryptCallCap(
 
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_SetPrivacyModePreferred
- 功能描述  : 设置Privacy mode优先模式
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_SetPrivacyModePreferred
+   : Privacy mode
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId,
              VOS_UINT32                                              ulPrivacyMode
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
+       :
+  1.       : 20151222
+           : y00245242
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_SetPrivacyModePreferred(
@@ -1088,14 +1088,14 @@ VOS_UINT32 TAF_XCALL_SetPrivacyModePreferred(
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_PRIVACY_MODE_SET_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstPrivacyModeReq->ulSenderCpuId                        = VOS_LOCAL_CPUID;
     pstPrivacyModeReq->ulSenderPid                          = ulSenderPid;
     pstPrivacyModeReq->ulReceiverCpuId                      = VOS_LOCAL_CPUID;
     pstPrivacyModeReq->ulReceiverPid                        = ulReceiverPid;
     pstPrivacyModeReq->ulLength                             = sizeof(TAF_CALL_APP_PRIVACY_MODE_SET_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstPrivacyModeReq->enMsgName                            = ID_TAF_CALL_APP_PRIVACY_MODE_SET_REQ;
     pstPrivacyModeReq->stCtrl.usClientId                    = usClientId;
     pstPrivacyModeReq->stCtrl.ucOpId                        = opId;
@@ -1109,21 +1109,21 @@ VOS_UINT32 TAF_XCALL_SetPrivacyModePreferred(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_XCALL_QryPrivacyModePreferred
- 功能描述  : 查询Privacy mode优先模式
- 输入参数  : VOS_UINT32                                              ulModuleId,
+     : TAF_XCALL_QryPrivacyModePreferred
+   : Privacy mode
+   : VOS_UINT32                                              ulModuleId,
              MN_CLIENT_ID_T                                          usClientId,
              MN_OPERATION_ID_T                                       opId
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : y00245242
-    修改内容   : 新生成函数
+       :
+  1.       : 20151222
+           : y00245242
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_XCALL_QryPrivacyModePreferred(
@@ -1154,14 +1154,14 @@ VOS_UINT32 TAF_XCALL_QryPrivacyModePreferred(
                (VOS_SIZE_T)(sizeof(TAF_CALL_APP_PRIVACY_MODE_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstPrivacyModeReq->ulSenderCpuId                        = VOS_LOCAL_CPUID;
     pstPrivacyModeReq->ulSenderPid                          = ulSenderPid;
     pstPrivacyModeReq->ulReceiverCpuId                      = VOS_LOCAL_CPUID;
     pstPrivacyModeReq->ulReceiverPid                        = ulReceiverPid;
     pstPrivacyModeReq->ulLength                             = sizeof(TAF_CALL_APP_PRIVACY_MODE_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstPrivacyModeReq->enMsgName                            = ID_TAF_CALL_APP_PRIVACY_MODE_QRY_REQ;
     pstPrivacyModeReq->stCtrl.usClientId                    = usClientId;
     pstPrivacyModeReq->stCtrl.ucOpId                        = opId;
@@ -1173,20 +1173,20 @@ VOS_UINT32 TAF_XCALL_QryPrivacyModePreferred(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_CALL_QryCnap
- 功能描述  : ^CNAP查询消息处理函数
- 输入参数  : VOS_UINT32                              ulModuleId
+     : TAF_CALL_QryCnap
+   : ^CNAP
+   : VOS_UINT32                              ulModuleId
              MN_CLIENT_ID_T                          usClientId
              MN_OPERATION_ID_T                       opId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月16日
-    作    者   : c00380008
-    修改内容   : 新生成函数
+       :
+  1.       : 20161116
+           : c00380008
+       : 
 
 *****************************************************************************/
 VOS_UINT32 TAF_CALL_QryCnap(
@@ -1216,20 +1216,20 @@ VOS_UINT32 TAF_CALL_QryCnap(
                   0x00,
                   (VOS_SIZE_T)(sizeof(TAF_CALL_APP_CNAP_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写VOS消息头 */
+    /* VOS */
     pstCnapQryReq->ulSenderCpuId    = VOS_LOCAL_CPUID;
     pstCnapQryReq->ulSenderPid      = ulSenderPid;
     pstCnapQryReq->ulReceiverCpuId  = VOS_LOCAL_CPUID;
     pstCnapQryReq->ulReceiverPid    = ulReceiverPid;
     pstCnapQryReq->ulLength         = sizeof(TAF_CALL_APP_CNAP_QRY_REQ_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* 填写消息内容 */
+    /*  */
     pstCnapQryReq->enMsgName            = ID_TAF_CALL_APP_CNAP_QRY_REQ;
     pstCnapQryReq->stCtrl.usClientId    = usClientId;
     pstCnapQryReq->stCtrl.ucOpId        = opId;
     pstCnapQryReq->stCtrl.ulModuleId    = ulModuleId;
 
-    /* 发送VOS消息ID_TAF_CALL_APP_CNAP_QRY_REQ */
+    /* VOSID_TAF_CALL_APP_CNAP_QRY_REQ */
     (VOS_VOID)PS_SEND_MSG(ulSenderPid, pstCnapQryReq);
 
     return VOS_OK;

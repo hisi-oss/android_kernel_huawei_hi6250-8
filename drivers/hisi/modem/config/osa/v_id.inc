@@ -84,7 +84,7 @@ extern "C" {
 extern VOS_UINT32 MOD_RegFidPidRSP( VOS_UINT32 ulPID, VOS_UINT32 ulFID, VOS_INT priority, MODEM_ID_ENUM_UINT16 usModemId);
 
 /*********************** INNER VARIABLES DEFINITION **************************/
-/* PID与FID对应关系表 */
+/* PIDFID */
 #if (OSA_CPU_CCPU == VOS_OSA_CPU)
 BEGIN_DECLARE_PID_BELONG_TO_FID()
     ON_DECLARE(MSP_PID_DIAG_AGENT ,             MSP_FID_DIAG_CCPU,      VOS_PRIORITY_NULL,    MODEM_ID_0)

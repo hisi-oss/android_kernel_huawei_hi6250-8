@@ -50,15 +50,15 @@
 #define __ATCTXPACKET_H__
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include "v_id.h"
 #include "AtTypeDef.h"
 #include "MnClient.h"
 #include "TafApsApi.h"
-/* Added by wx270776 for OM融合, 2015-7-25, begin */
+/* Added by wx270776 for OM, 2015-7-25, begin */
 #include "TafNvInterface.h"
-/* Added by wx270776 for OM融合, 2015-7-25, end */
+/* Added by wx270776 for OM, 2015-7-25, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -70,28 +70,28 @@ extern "C" {
 #pragma pack(4)
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 #define AT_IPV6_CAPABILITY_IPV4_ONLY            (1)
 #define AT_IPV6_CAPABILITY_IPV6_ONLY            (2)
 #define AT_IPV6_CAPABILITY_IPV4V6_OVER_ONE_PDP  (4)
 #define AT_IPV6_CAPABILITY_IPV4V6_OVER_TWO_PDP  (8)
 
-/* PS域呼叫最大个数 */
+/* PS */
 #define AT_PS_MAX_CALL_NUM              (3)
 
 
-#define AT_PS_RABID_OFFSET              (5)                 /* RABID偏移 */
-#define AT_PS_RABID_MAX_NUM             (11)                /* RABID数量 */
-#define AT_PS_MIN_RABID                 (5)                 /* RABID最小值 */
-#define AT_PS_MAX_RABID                 (15)                /* RABID最大值 */
-#define AT_PS_INVALID_RABID             (0xFF)              /* RABID无效值 */
+#define AT_PS_RABID_OFFSET              (5)                 /* RABID */
+#define AT_PS_RABID_MAX_NUM             (11)                /* RABID */
+#define AT_PS_MIN_RABID                 (5)                 /* RABID */
+#define AT_PS_MAX_RABID                 (15)                /* RABID */
+#define AT_PS_INVALID_RABID             (0xFF)              /* RABID */
 #define AT_PS_RABID_MODEM_1_MASK        (0x40)
 
-#define IPV6_ADDRESS_TEST_MODE_ENABLE                    (0x55aa55aa)           /* 0x55aa55aa值IPV6地址为测试模式 */
+#define IPV6_ADDRESS_TEST_MODE_ENABLE                    (0x55aa55aa)           /* 0x55aa55aaIPV6 */
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 enum AT_PDP_STATE_ENUM
 {
@@ -104,29 +104,29 @@ enum AT_PDP_STATE_ENUM
 typedef VOS_UINT8 AT_PDP_STATE_ENUM_U8;
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 
 /*****************************************************************************
- 结构名称   : AT_DIAL_PARAM_STRU
- 协议表格   :
- ASN.1 描述 :
- 结构说明   : 保存用户拨号参数
+    : AT_DIAL_PARAM_STRU
+    :
+ ASN.1  :
+    : 
 *****************************************************************************/
 typedef struct
 {
@@ -134,22 +134,22 @@ typedef struct
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType;
     VOS_UINT8                           ucPdpTypeValidFlag;
 
-    VOS_UINT8                           ucAPNLen;                               /*APN长度*/
-    VOS_UINT8                           aucAPN[TAF_MAX_APN_LEN + 1];             /*指向APN指针*/
+    VOS_UINT8                           ucAPNLen;                               /*APN*/
+    VOS_UINT8                           aucAPN[TAF_MAX_APN_LEN + 1];             /*APN*/
 
-    VOS_UINT16                          usUsernameLen;                          /*username长度*/
+    VOS_UINT16                          usUsernameLen;                          /*username*/
     VOS_UINT16                          usRsv3;
-    VOS_UINT8                           aucUsername[TAF_MAX_GW_AUTH_USERNAME_LEN];  /*指向username指针*/
+    VOS_UINT8                           aucUsername[TAF_MAX_GW_AUTH_USERNAME_LEN];  /*username*/
     VOS_UINT8                           ucRsv4;
 
-    VOS_UINT16                          usPasswordLen;                          /*password长度*/
+    VOS_UINT16                          usPasswordLen;                          /*password*/
     VOS_UINT16                          usRsv5;
-    VOS_UINT8                           aucPassword[TAF_MAX_GW_AUTH_PASSWORD_LEN];  /*指向password指针*/
+    VOS_UINT8                           aucPassword[TAF_MAX_GW_AUTH_PASSWORD_LEN];  /*password*/
     VOS_UINT8                           ucRsv6;
 
     VOS_UINT16                          usAuthType;
     VOS_UINT8                           ucBitRatType;
-    VOS_UINT8                           aucRsv7[1];                             /*填充位*/
+    VOS_UINT8                           aucRsv7[1];                             /**/
 
     VOS_UINT32                          ulIPv4ValidFlag;
     VOS_UINT8                           aucIPv4Addr[TAF_MAX_IPV4_ADDR_STR_LEN];
@@ -182,29 +182,29 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名称: AT_IPV4_PCSCF_LIST_STRU
- 结构说明: IPV4 P-CSCF地址列表结构
- 修改历史      :
-  1.日    期   : 2017年02月14日
-    作    者   : y00314741
-    修改内容   : 新增结构
+ : AT_IPV4_PCSCF_LIST_STRU
+ : IPV4 P-CSCF
+       :
+  1.       : 20170214
+           : y00314741
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIpv4PcscfAddrNum;                     /* IPV4的P-CSCF地址个数，有效范围[0,8] */
-    VOS_UINT8                           aucRsv[3];                              /* 保留 */
+    VOS_UINT8                           ucIpv4PcscfAddrNum;                     /* IPV4P-CSCF[0,8] */
+    VOS_UINT8                           aucRsv[3];                              /*  */
 
     VOS_UINT32                          aulIpv4PcscfAddrList[TAF_PCSCF_ADDR_MAX_NUM];
 } AT_IPV4_PCSCF_LIST_STRU;
 
 /*****************************************************************************
- 结构名称: TAF_PDP_IPV6_PCSCF_STRU
- 结构说明: IPV6 P-CSCF地址结构
+ : TAF_PDP_IPV6_PCSCF_STRU
+ : IPV6 P-CSCF
 
- 修改历史      :
-  1.日    期   : 2017年02月14日
-    作    者   : y00314741
-    修改内容   : 新增结构
+       :
+  1.       : 20170214
+           : y00314741
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -212,26 +212,26 @@ typedef struct
 } AT_PDP_IPV6_PCSCF_STRU;
 
 /*****************************************************************************
- 结构名称: AT_IPV6_PCSCF_LIST_STRU
- 结构说明: IPV6 P-CSCF地址列表结构
- 修改历史      :
-  1.日    期   : 2017年02月14日
-    作    者   : y00314741
-    修改内容   : 新增结构
+ : AT_IPV6_PCSCF_LIST_STRU
+ : IPV6 P-CSCF
+       :
+  1.       : 20170214
+           : y00314741
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIpv6PcscfAddrNum;                     /* IPV6的P-CSCF地址个数，有效范围[0,8] */
-    VOS_UINT8                           aucRsv[3];                              /* 保留 */
+    VOS_UINT8                           ucIpv6PcscfAddrNum;                     /* IPV6P-CSCF[0,8] */
+    VOS_UINT8                           aucRsv[3];                              /*  */
 
     AT_PDP_IPV6_PCSCF_STRU              astIpv6PcscfAddrList[TAF_PCSCF_ADDR_MAX_NUM];
 } AT_IPV6_PCSCF_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : AT_IPV6_DHCP_PARAM_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : IPV6类型的PDP激活参数指结构
+     : AT_IPV6_DHCP_PARAM_STRU
+   :
+ ASN.1 :
+   : IPV6PDP
 *****************************************************************************/
 typedef struct
 {
@@ -239,21 +239,21 @@ typedef struct
     VOS_UINT32                          bitOpIpv6SecDns   : 1;
     VOS_UINT32                          bitOpIpv6Spare    : 30;
 
-    VOS_UINT8                           ucRabId;                                /* RAB标识，取值范围:[5,15] */
+    VOS_UINT8                           ucRabId;                                /* RAB:[5,15] */
     VOS_UINT8                           aucRsv[3];
-    VOS_UINT8                           aucIpv6Addr[TAF_IPV6_ADDR_LEN];      /* 从 PDP上下文带来的IPV6地址长度，不包括":" */
+    VOS_UINT8                           aucIpv6Addr[TAF_IPV6_ADDR_LEN];      /*  PDPIPV6":" */
 
-    VOS_UINT8                           aucIpv6PrimDNS[TAF_IPV6_ADDR_LEN];   /* 从 PDP上下文带来的IPV6主DNS长度，不包括":" */
-    VOS_UINT8                           aucIpv6SecDNS[TAF_IPV6_ADDR_LEN];    /* 从 PDP上下文带来的IPV6副DNS长度，不包括":" */
+    VOS_UINT8                           aucIpv6PrimDNS[TAF_IPV6_ADDR_LEN];   /*  PDPIPV6DNS":" */
+    VOS_UINT8                           aucIpv6SecDNS[TAF_IPV6_ADDR_LEN];    /*  PDPIPV6DNS":" */
 
     AT_IPV6_PCSCF_LIST_STRU             stIpv6PcscfList;
 }AT_IPV6_DHCP_PARAM_STRU;
 
 /*****************************************************************************
- 结构名    : AT_IPV4_DHCP_PARAM_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : IPV4类型的PDP激活参数指结构
+     : AT_IPV4_DHCP_PARAM_STRU
+   :
+ ASN.1 :
+   : IPV4PDP
 *****************************************************************************/
 typedef struct
 {
@@ -263,27 +263,27 @@ typedef struct
     VOS_UINT32                          bitOpIpv4SecWINNS : 1;
     VOS_UINT32                          bitOpSpare        : 28;
 
-    VOS_UINT8                           ucRabId;                                /* RAB标识，取值范围:[5,15] */
+    VOS_UINT8                           ucRabId;                                /* RAB:[5,15] */
     VOS_UINT8                           aucRsv1[3];
 
-    VOS_UINT32                          ulIpv4Addr;                             /* IPV4的IP地址，主机序 */
-    VOS_UINT32                          ulIpv4NetMask;                          /* IPV4的掩码，主机序 */
-    VOS_UINT32                          ulIpv4GateWay;                          /* IPV4的网关地址，主机序 */
-    VOS_UINT32                          ulIpv4PrimDNS;                          /* IPV4的主DNS，主机序 */
-    VOS_UINT32                          ulIpv4SecDNS;                           /* IPV4的主DNS，主机序 */
-    VOS_UINT32                          ulIpv4PrimWINNS;                        /* IPV4的主WINNS，主机序 */
-    VOS_UINT32                          ulIpv4SecWINNS;                         /* IPV4的副WINNS，主机序 */
-    AT_IPV4_PCSCF_LIST_STRU             stIpv4PcscfList;                        /* 8组Pcscf */
+    VOS_UINT32                          ulIpv4Addr;                             /* IPV4IP */
+    VOS_UINT32                          ulIpv4NetMask;                          /* IPV4 */
+    VOS_UINT32                          ulIpv4GateWay;                          /* IPV4 */
+    VOS_UINT32                          ulIpv4PrimDNS;                          /* IPV4DNS */
+    VOS_UINT32                          ulIpv4SecDNS;                           /* IPV4DNS */
+    VOS_UINT32                          ulIpv4PrimWINNS;                        /* IPV4WINNS */
+    VOS_UINT32                          ulIpv4SecWINNS;                         /* IPV4WINNS */
+    AT_IPV4_PCSCF_LIST_STRU             stIpv4PcscfList;                        /* 8Pcscf */
 }AT_IPV4_DHCP_PARAM_STRU;
 
 
 /*****************************************************************************
- 结构名  : AT_PS_USER_INFO_STRU
- 结构说明: PS域用户信息结构
+   : AT_PS_USER_INFO_STRU
+ : PS
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
 typedef struct
 {
@@ -294,10 +294,10 @@ typedef struct
 } AT_PS_USER_INFO_STRU;
 
 /*****************************************************************************
- 结构名称   : AT_IPV6_RA_INFO_STRU
- 协议表格   :
- ASN.1 描述 :
- 结构说明   : RA消息中相关参数结构体
+    : AT_IPV6_RA_INFO_STRU
+    :
+ ASN.1  :
+    : RA
 *****************************************************************************/
 typedef struct
 {
@@ -309,38 +309,38 @@ typedef struct
     VOS_UINT32                          bitOpSpare              : 27;
 
 
-    VOS_UINT8                           aucLanAddr[TAF_IPV6_ADDR_LEN];       /* IPv6 路由器LAN端口地址 */
-    VOS_UINT8                           aucPrefixAddr[TAF_IPV6_ADDR_LEN];    /* IPv6前缀 */
-    VOS_UINT32                          ulPrefixBitLen;                         /* IPv6前缀长度 */
-    VOS_UINT32                          ulMtuSize;                              /* RA消息中广播的IPv6的MTU的取值 */
-    VOS_UINT32                          ulPreferredLifetime;                    /* IPv6前缀的Preferred lifetime */
-    VOS_UINT32                          ulValidLifetime;                        /* IPv6前缀的Valid lifetime */
+    VOS_UINT8                           aucLanAddr[TAF_IPV6_ADDR_LEN];       /* IPv6 LAN */
+    VOS_UINT8                           aucPrefixAddr[TAF_IPV6_ADDR_LEN];    /* IPv6 */
+    VOS_UINT32                          ulPrefixBitLen;                         /* IPv6 */
+    VOS_UINT32                          ulMtuSize;                              /* RAIPv6MTU */
+    VOS_UINT32                          ulPreferredLifetime;                    /* IPv6Preferred lifetime */
+    VOS_UINT32                          ulValidLifetime;                        /* IPv6Valid lifetime */
 } AT_IPV6_RA_INFO_STRU;
 
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_RPT_CONN_RSLT_FUNC)(\
     VOS_UINT8                           ucCid, \
     VOS_UINT8                           ucPortIndex, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
 /*****************************************************************************
- 结构名    : AT_PS_REPORT_CONN_RESULT_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_REPORT_CONN_RESULT_STRU
+   : 
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_RPT_CONN_RSLT_FUNC            pRptConnRsltFunc;
 }AT_PS_REPORT_CONN_RESULT_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_RPT_END_RSLT_FUNC)(\
     VOS_UINT8                           ucCid, \
     VOS_UINT8                           ucPortIndex, \
@@ -348,134 +348,134 @@ typedef VOS_VOID (*AT_PS_RPT_END_RSLT_FUNC)(\
     TAF_PS_CAUSE_ENUM_UINT32            enCause);
 
 /*****************************************************************************
- 结构名    : AT_PS_REPORT_END_RESULT_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_REPORT_END_RESULT_STRU
+   : 
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_RPT_END_RSLT_FUNC             pRptEndRsltFunc;
 }AT_PS_REPORT_END_RESULT_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_REG_FC_POINT_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent);
 
 /*****************************************************************************
- 结构名    : AT_PS_REG_FC_POINT_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_REG_FC_POINT_STRU
+   : 
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_REG_FC_POINT_FUNC             pRegFcPoint;
 }AT_PS_REG_FC_POINT_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_DEREG_FC_POINT_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent);
 
 /*****************************************************************************
- 结构名    : AT_PS_DEREG_FC_POINT_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_DEREG_FC_POINT_STRU
+   : 
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
+  1.       : 2013426
+           : L60609
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_DEREG_FC_POINT_FUNC           pDeRegFcPoint;
 }AT_PS_DEREG_FC_POINT_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_SND_PDP_ACT_IND_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstEvent, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
 /*****************************************************************************
- 结构名    : AT_PS_SND_PDP_ACT_IND_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_SND_PDP_ACT_IND_STRU
+   : 
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
+  1.       : 2013426
+           : L60609
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_SND_PDP_ACT_IND_FUNC          pSndPdpActInd;
 }AT_PS_SND_PDP_ACT_IND_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
-/*消息处理函数指针*/
+/**/
 typedef VOS_VOID (*AT_PS_SND_PDP_DEACT_IND_FUNC)(\
     VOS_UINT8                           ucCid, \
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU *pstEvent, \
     TAF_PDP_TYPE_ENUM_UINT8             enPdpType);
 
 /*****************************************************************************
- 结构名    : AT_PS_SND_PDP_DEACT_IND_STRU
- 结构说明  : 消息与对应处理函数的结构
+     : AT_PS_SND_PDP_DEACT_IND_STRU
+   : 
 
-  1.日    期   : 2013年4月26日
-    作    者   : L60609
-    修改内容   : C50 IPv6 项目新增
+  1.       : 2013426
+           : L60609
+       : C50 IPv6 
 *****************************************************************************/
-/*lint -e958 -e959 修改人:l60609;原因:64bit*/
+/*lint -e958 -e959 :l60609;:64bit*/
 typedef struct
 {
     AT_USER_TYPE                        ucUsrType;
     AT_PS_SND_PDP_DEACT_IND_FUNC        pSndPdpDeActInd;
 }AT_PS_SND_PDP_DEACT_IND_STRU;
-/*lint +e958 +e959 修改人:l60609;原因:64bit*/
+/*lint +e958 +e959 :l60609;:64bit*/
 
 /*****************************************************************************
- 结构名    : AT_PS_DATA_CHANL_CFG_STRU
- 结构说明  : AT^CHDATA配置的数传通道信息
+     : AT_PS_DATA_CHANL_CFG_STRU
+   : AT^CHDATA
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : 创建
+  1.       : 2013424
+           : l60609
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulUsed;                                 /* 指定CID是否已经通过CHDATA配置了数传通道，VOS_TRUE:已经配置；VOS_FALSE:未配置 */
-    VOS_UINT32                          ulRmNetId;                              /* 数据通道ID
-                                                                                   HSIC通道 :UDI_ACM_HSIC_ACM1_ID，UDI_ACM_HSIC_ACM3_ID和UDI_ACM_HSIC_ACM5_ID，如果未配置则为无效值UDI_INVAL_DEV_ID
-                                                                                   VCOM通道 :RNIC_RMNET_ID_0 ~ RNIC_RMNET_ID_4
+    VOS_UINT32                          ulUsed;                                 /* CIDCHDATAVOS_TRUE:VOS_FALSE: */
+    VOS_UINT32                          ulRmNetId;                              /* ID
+                                                                                   HSIC :UDI_ACM_HSIC_ACM1_IDUDI_ACM_HSIC_ACM3_IDUDI_ACM_HSIC_ACM5_IDUDI_INVAL_DEV_ID
+                                                                                   VCOM :RNIC_RMNET_ID_0 ~ RNIC_RMNET_ID_4
                                                                                    */
-    VOS_UINT32                          ulRmNetActFlg;                          /* 指定CID是否已经PDP激活，VOS_TRUE:已经激活；VOS_FALSE:未激活 */
+    VOS_UINT32                          ulRmNetActFlg;                          /* CIDPDPVOS_TRUE:VOS_FALSE: */
 }AT_PS_DATA_CHANL_CFG_STRU;
 
 #if (FEATURE_ON == FEATURE_IPV6)
 
 /*****************************************************************************
- 结构名  : AT_PS_IPV6_BACKPROC_EXT_CAUSE_STRU
- 结构说明: IPv4v6双栈拨号回退处理扩展原因值(PS Cause)结构体
+   : AT_PS_IPV6_BACKPROC_EXT_CAUSE_STRU
+ : IPv4v6(PS Cause)
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
 typedef struct
 {
@@ -486,39 +486,39 @@ typedef struct
 #endif
 
 /*****************************************************************************
- 结构名  : AT_PS_CALL_ENTITY_STRU
- 结构说明: PS域呼叫实体结构
+   : AT_PS_CALL_ENTITY_STRU
+ : PS
 
-  1.日    期   : 2012年12月10日
-    作    者   : Y00213812
-    修改内容   : C50 IPv6 项目新增
+  1.       : 20121210
+           : Y00213812
+       : C50 IPv6 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulUsedFlg;          /* 呼叫实体分配标志 */
-    TAF_PDP_TYPE_ENUM_UINT8             enCurrPdpType;      /* 当前呼叫类型 */
-    VOS_UINT8                           aucRsv1[3];         /* 保留位 */
-    AT_PS_USER_INFO_STRU                stUserInfo;         /* 呼叫实体用户信息 */
-    AT_DIAL_PARAM_STRU                  stUsrDialParam;     /* 呼叫实体拨号参数 */
+    VOS_UINT32                          ulUsedFlg;          /*  */
+    TAF_PDP_TYPE_ENUM_UINT8             enCurrPdpType;      /*  */
+    VOS_UINT8                           aucRsv1[3];         /*  */
+    AT_PS_USER_INFO_STRU                stUserInfo;         /*  */
+    AT_DIAL_PARAM_STRU                  stUsrDialParam;     /*  */
 
     VOS_UINT8                           ucIpv4Cid;          /* IPv4 CID */
-    AT_PDP_STATE_ENUM_U8                enIpv4State;        /* IPv4 状态 */
-    VOS_UINT8                           aucRsv2[2];         /* 保留位 */
-    AT_IPV4_DHCP_PARAM_STRU             stIpv4DhcpInfo;     /* IPv4 DHCP信息 */
+    AT_PDP_STATE_ENUM_U8                enIpv4State;        /* IPv4  */
+    VOS_UINT8                           aucRsv2[2];         /*  */
+    AT_IPV4_DHCP_PARAM_STRU             stIpv4DhcpInfo;     /* IPv4 DHCP */
 
 #if (FEATURE_ON == FEATURE_IPV6)
     VOS_UINT8                           ucIpv6Cid;          /* IPv6 CID */
-    AT_PDP_STATE_ENUM_U8                enIpv6State;        /* IPv6 状态 */
-    VOS_UINT8                           aucRsv3[2];         /* 保留位 */
-    AT_IPV6_RA_INFO_STRU                stIpv6RaInfo;       /* IPv6 路由公告信息 */
-    AT_IPV6_DHCP_PARAM_STRU             stIpv6DhcpInfo;     /* IPv6 DHCP信息 */
+    AT_PDP_STATE_ENUM_U8                enIpv6State;        /* IPv6  */
+    VOS_UINT8                           aucRsv3[2];         /*  */
+    AT_IPV6_RA_INFO_STRU                stIpv6RaInfo;       /* IPv6  */
+    AT_IPV6_DHCP_PARAM_STRU             stIpv6DhcpInfo;     /* IPv6 DHCP */
 #endif
 
 } AT_PS_CALL_ENTITY_STRU;
 
 /*****************************************************************************
- 结构名称  : AT_IMS_EMC_IPV4_PDN_INFO_STRU
- 结构说明  : IMS EMC IPV4 PDN信息
+   : AT_IMS_EMC_IPV4_PDN_INFO_STRU
+   : IMS EMC IPV4 PDN
 *****************************************************************************/
 typedef struct
 {
@@ -531,8 +531,8 @@ typedef struct
 } AT_IMS_EMC_IPV4_PDN_INFO_STRU;
 
 /*****************************************************************************
- 结构名称  : AT_IMS_EMC_IPV6_PDN_INFO_STRU
- 结构说明  : IMS EMC IPV6 PDN信息
+   : AT_IMS_EMC_IPV6_PDN_INFO_STRU
+   : IMS EMC IPV6 PDN
 *****************************************************************************/
 typedef struct
 {
@@ -545,8 +545,8 @@ typedef struct
 } AT_IMS_EMC_IPV6_PDN_INFO_STRU;
 
 /*****************************************************************************
- 结构名称  : AT_IMS_EMC_RDP_STRU
- 结构说明  : IMS EMC 动态参数结构
+   : AT_IMS_EMC_RDP_STRU
+   : IMS EMC 
 *****************************************************************************/
 typedef struct
 {
@@ -560,15 +560,15 @@ typedef struct
 } AT_IMS_EMC_RDP_STRU;
 
 /*****************************************************************************
- 结构名  : AT_COMM_PS_CTX_STRU
- 结构说明: PS域公共上下文结构
+   : AT_COMM_PS_CTX_STRU
+ : PS
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目新增
-  2.日    期   : 2013年6月4日
-    作    者   : z00214637
-    修改内容   : V3R3 Share-PDP项目修改
+  1.       : 2013424
+           : l60609
+       : V9R1 IPv6&TAF/SM
+  2.       : 201364
+           : z00214637
+       : V3R3 Share-PDP
 *****************************************************************************/
 typedef struct
 {
@@ -577,7 +577,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[3];
     VOS_UINT32                          ulIpv6AddrTestModeCfg;
 
-    /* 保存用户定制的用于回退处理的PS域原因值 */
+    /* PS */
     AT_PS_IPV6_BACKPROC_EXT_CAUSE_STRU  stIpv6BackProcExtCauseTbl;
 #endif
 
@@ -591,37 +591,37 @@ typedef struct
 }AT_COMM_PS_CTX_STRU;
 
 /*****************************************************************************
- 结构名  : AT_MODEM_PS_CTX_STRU
- 结构说明: PS域MODEM相关上下文结构
+   : AT_MODEM_PS_CTX_STRU
+ : PSMODEM
 
-  1.日    期   : 2013年4月24日
-    作    者   : l60609
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目新增
+  1.       : 2013424
+           : l60609
+       : V9R1 IPv6&TAF/SM
 
-  2.日    期   : 2013年11月11日
-    作    者   : A00165503
-    修改内容   : DTS2013110900839: 增加承载IP与RABID映射成员
+  2.       : 20131111
+           : A00165503
+       : DTS2013110900839: IPRABID
 *****************************************************************************/
 typedef struct
 {
-    /* 保存和CID关联的PS域呼叫实体的索引 */
+    /* CIDPS */
     VOS_UINT8                           aucCidToIndexTbl[TAF_MAX_CID + 1];
 
-    /* PS域呼叫实体 */
+    /* PS */
     AT_PS_CALL_ENTITY_STRU              astCallEntity[AT_PS_MAX_CALL_NUM];
 
-    /* CID与数传通道的对应关系 */
+    /* CID */
     AT_PS_DATA_CHANL_CFG_STRU           astChannelCfg[TAF_MAX_CID + 1];
 
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-    /* PS域呼叫错误码 */
+    /* Modified by Y00213812 for VoLTE_PhaseI , 2013-07-08, begin */
+    /* PS */
     TAF_PS_CAUSE_ENUM_UINT32            enPsErrCause;
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
-    /* IP地址与RABID的映射表, IP地址为主机序 */
+    /* Modified by Y00213812 for VoLTE_PhaseI , 2013-07-08, end */
+    /* IPRABID, IP */
     VOS_UINT32                          aulIpAddrRabIdMap[AT_PS_RABID_MAX_NUM];
 
 #if (FEATURE_ON == FEATURE_IMS)
-    /* IMS EMC PDN 动态信息 */
+    /* IMS EMC PDN  */
     AT_IMS_EMC_RDP_STRU                 stImsEmcRdp;
 #endif
 
@@ -629,16 +629,16 @@ typedef struct
 
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 
 #if (VOS_OS_VER == VOS_WIN32)

@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 
 #include "vos.h"
@@ -63,14 +63,14 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 
 #define THIS_FILE_ID                    PS_FILE_ID_DMS_CORE_C
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
 DMS_MAIN_INFO                           g_stDmsMainInfo = {0};
@@ -107,30 +107,30 @@ VOS_UINT8                               g_ucDmsPrintModemLogType = 0;
 
 
 /*****************************************************************************
-  3 外部函数声明
+  3 
 *****************************************************************************/
 
 extern VOS_VOID At_MsgProc(MsgBlock* pMsg);
 extern VOS_UINT32 At_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase);
 extern void *hisi_io_memcpy(void *dest, const void *src, unsigned int count);
-/* 解决pclint问题 */
+/* pclint */
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : DMS_ReadPortDebugCfgNV
- 功能描述  : 读取端口 Debug 配置相关的NV项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_ReadPortDebugCfgNV
+   :  Debug NV
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月03日
-    作    者   : n00269697
-    修改内容   : 新生成函数
+       :
+  1.       : 20140603
+           : n00269697
+       : 
 *****************************************************************************/
 VOS_VOID DMS_ReadPortDebugCfgNV(VOS_VOID)
 {
@@ -140,7 +140,7 @@ VOS_VOID DMS_ReadPortDebugCfgNV(VOS_VOID)
 
     TAF_MEM_SET_S(&stPortDebugNVCfg, sizeof(stPortDebugNVCfg), 0x00, sizeof(TAF_NV_PORT_DEBUG_CFG_STRU));
 
-    /* 读取NV项 */
+    /* NV */
     if (NV_OK != NV_ReadEx(MODEM_ID_0,
                            en_NV_Item_DMS_DEBUG_CFG,
                           &stPortDebugNVCfg,
@@ -158,18 +158,18 @@ VOS_VOID DMS_ReadPortDebugCfgNV(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_ReadGetModemLogCfgNV
- 功能描述  : 读取配置是否可以得到modem log的NV项中的值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_ReadGetModemLogCfgNV
+   : modem logNV
+   : 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2015年10月17日
-   作    者   : w00316404
-   修改内容   : 新生成函数
+      :
+ 1.       : 20151017
+          : w00316404
+      : 
 *****************************************************************************/
 VOS_VOID DMS_ReadGetModemLogCfgNV(VOS_VOID)
 {
@@ -177,7 +177,7 @@ VOS_VOID DMS_ReadGetModemLogCfgNV(VOS_VOID)
 
     TAF_MEM_SET_S(&stPrintModemLogType, sizeof(stPrintModemLogType), 0x00, sizeof(stPrintModemLogType));
 
-    /* 读取NV项 */
+    /* NV */
     if (NV_OK != NV_Read(en_NV_Item_Print_Modem_Log_Type,
                          &stPrintModemLogType,
                          sizeof(TAF_NV_PRINT_MODEM_LOG_TYPE_STRU)))
@@ -191,36 +191,36 @@ VOS_VOID DMS_ReadGetModemLogCfgNV(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : initDmsMainInfo
- 功能描述  : 初始化DMS全局变量
- 输入参数  :
+     : initDmsMainInfo
+   : DMS
+   :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-   2.日    期  : 2013年07月222日
-     作    者  : j00177245
-     修改内容  : 清理编译warning
-   3.日    期  : 2013年09月03日
-     作    者  : z60575
-     修改内容  : DTS2013090208292,NVE初始化只做一次
-   4.日    期  : 2014年08月25日
-     作    者  : j00174725
-     修改内容  : DTS2014082200355 proc/portcfg权限修改
-   5.日    期   : 2015年6月25日
-     作    者   : l00198894
-     修改内容   : TSTS
-   6.日    期   : 2015年10月17日
-     作    者   : w00316404
-     修改内容   : 控制是否打印modem log
-   7.日    期   : 2016年01月22日
-     作    者   : z00301431
-     修改内容   : DTS2015103001118,set modemstatus
+   :
+     :
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
+   2.      : 201307222
+           : j00177245
+       : warning
+   3.      : 20130903
+           : z60575
+       : DTS2013090208292,NVE
+   4.      : 20140825
+           : j00174725
+       : DTS2014082200355 proc/portcfg
+   5.       : 2015625
+            : l00198894
+        : TSTS
+   6.       : 20151017
+            : w00316404
+        : modem log
+   7.       : 20160122
+            : z00301431
+        : DTS2015103001118,set modemstatus
 *****************************************************************************/
 VOS_VOID DMS_Init(VOS_VOID)
 {
@@ -231,19 +231,19 @@ VOS_VOID DMS_Init(VOS_VOID)
     g_stDmsMainInfo.pfnRdDataCallback  = NULL;
     g_stDmsMainInfo.pfnConnectCallBack = NULL;
 
-    /*初始化所有端口的handle*/
+    /*handle*/
     for (ulport = 0; ulport < DMS_PHY_BEAR_LAST; ulport++)
     {
         g_stDmsMainInfo.stPhyProperty[ulport].lPortHandle = UDI_INVALID_HANDLE;
     }
 
-    /*物理通道默认属性，存在多个物理通道有能力对应一个逻辑通道*/
+    /**/
     g_stDmsMainInfo.stPhyProperty[DMS_PHY_BEAR_USB_PCUI].enLogicChan  = DMS_CHANNEL_AT;
     g_stDmsMainInfo.stPhyProperty[DMS_PHY_BEAR_USB_CTRL].enLogicChan  = DMS_CHANNEL_AT;
     g_stDmsMainInfo.stPhyProperty[DMS_PHY_BEAR_USB_PCUI2].enLogicChan = DMS_CHANNEL_AT;
 
 
-    /* 初始化AT通道使用的静态内存 */
+    /* AT */
     Dms_StaticBufInit();
 
 
@@ -261,18 +261,18 @@ VOS_VOID DMS_Init(VOS_VOID)
 
 
 /*****************************************************************************
- 函 数 名  : DMS_GetConnStaFun
- 功能描述  : 获取通道连接处理函数
- 输入参数  :
+     : DMS_GetConnStaFun
+   : 
+   :
 
- 输出参数  :
- 返 回 值  : VOS_NULL/回调函数
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+   :
+     : VOS_NULL/
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 DMS_CONNECT_STA_PFN DMS_GetConnStaFun(VOS_VOID)
 {
@@ -280,18 +280,18 @@ DMS_CONNECT_STA_PFN DMS_GetConnStaFun(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_SetConnStaCB
- 功能描述  : 通道连接事件处理注册函数
- 输入参数  : pfnReg: 回调函数指针
+     : DMS_SetConnStaCB
+   : 
+   : pfnReg: 
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+   :
+     :
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 VOS_VOID DMS_SetConnStaCB(DMS_CONNECT_STA_PFN pfnReg)
 {
@@ -307,17 +307,17 @@ VOS_VOID DMS_SetConnStaCB(DMS_CONNECT_STA_PFN pfnReg)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_GetDataReadFun
- 功能描述  : 获取读回调函数
- 输入参数  :
- 输出参数  :
- 返 回 值  : 回调函数指针
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+     : DMS_GetDataReadFun
+   : 
+   :
+   :
+     : 
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 DMS_READ_DATA_PFN DMS_GetDataReadFun(VOS_VOID)
 {
@@ -325,17 +325,17 @@ DMS_READ_DATA_PFN DMS_GetDataReadFun(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_GetMainInfo
- 功能描述  : 获取DMS全局变量指针
- 输入参数  :
- 输出参数  :
- 返 回 值  : 全局变量指针
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+     : DMS_GetMainInfo
+   : DMS
+   :
+   :
+     : 
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 DMS_MAIN_INFO* DMS_GetMainInfo(VOS_VOID)
 {
@@ -343,16 +343,16 @@ DMS_MAIN_INFO* DMS_GetMainInfo(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_GetPhyBearProperty
- 功能描述  : 获取物理通道数据结构指针
- 输入参数  :
- 输出参数  :
- 返 回 值  : 结构体指针
- 调用函数  :
- 被调函数  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+     : DMS_GetPhyBearProperty
+   : 
+   :
+   :
+     : 
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
  DMS_PHY_BEAR_PROPERTY_STRU* DMS_GetPhyBearProperty(DMS_PHY_BEAR_ENUM enPhyBear)
 {
@@ -360,26 +360,26 @@ DMS_MAIN_INFO* DMS_GetMainInfo(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbDisableCB
- 功能描述  : USB拔出事件处理函数
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-   2.日    期  : 2012年8月27日
-     作    者  : marenkun
-     修改内容  : 读取at server nv项，判断是否关闭pcui&Ctrl口
-   3.日    期  : 2013年09月03日
-     作    者  : z60575
-     修改内容  : DTS2013090208292,NVE初始化只做一次
-   4.日    期   : 2015年5月22日
-     作    者   : l00198894
-     修改内容   : TSTS
+     : DMS_UsbDisableCB
+   : USB
+   :
+   :
+     :
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
+   2.      : 2012827
+           : marenkun
+       : at server nvpcui&Ctrl
+   3.      : 20130903
+           : z60575
+       : DTS2013090208292,NVE
+   4.       : 2015522
+            : l00198894
+        : TSTS
 *****************************************************************************/
 VOS_VOID DMS_UsbDisableCB(VOS_VOID)
 {
@@ -387,24 +387,24 @@ VOS_VOID DMS_UsbDisableCB(VOS_VOID)
 
     DMS_DBG_SDM_FUN(DMS_SDM_USB_DISABLE, 0, 0, 0);
 
-    /* nv值为1表示有at sever，非1表示无at sever，无at sever关闭pcui和ctrl口 */
+    /* nv1at sever1at severat severpcuictrl */
     if (VOS_TRUE == g_stDmsMainInfo.bPortOpenFlg)
     {
-        /* 关闭PCUI通道 */
+        /* PCUI */
         ulRet = DMS_VcomPcuiClose();
         if(ERR_MSP_SUCCESS!=ulRet)
         {
             DMS_DBG_SDM_FUN(DMS_SDM_USB_DISABLE_ERR,0, 0, 3);
         }
 
-        /* 关闭CTRL通道 */
+        /* CTRL */
         ulRet = DMS_VcomCtrlClose();
         if(ERR_MSP_SUCCESS!=ulRet)
         {
             DMS_DBG_SDM_FUN(DMS_SDM_USB_DISABLE_ERR,0, 0, 5);
         }
 
-        /* 关闭PCUI2通道 */
+        /* PCUI2 */
         ulRet = DMS_VcomPcui2Close();
         if(ERR_MSP_SUCCESS != ulRet)
         {
@@ -413,7 +413,7 @@ VOS_VOID DMS_UsbDisableCB(VOS_VOID)
 
     }
 
-    /* 关闭NDIS CTRL通道 */
+    /* NDIS CTRL */
     ulRet =  DMS_NcmClose();
     if(ERR_MSP_SUCCESS!=ulRet)
     {
@@ -424,26 +424,26 @@ VOS_VOID DMS_UsbDisableCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_UsbEnableCB
- 功能描述  : USB枚举完成处理函数
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
-   2.日    期  : 2012年8月27日
-     作    者  : marenkun
-     修改内容  : 读取at server nv项，判断是否打开pcui&Ctrl口
-   3.日    期  : 2013年09月03日
-     作    者  : z60575
-     修改内容  : DTS2013090208292,NVE初始化只做一次
-   4.日    期   : 2015年5月22日
-     作    者   : l00198894
-     修改内容   : TSTS
+     : DMS_UsbEnableCB
+   : USB
+   :
+   :
+     :
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
+   2.      : 2012827
+           : marenkun
+       : at server nvpcui&Ctrl
+   3.      : 20130903
+           : z60575
+       : DTS2013090208292,NVE
+   4.       : 2015522
+            : l00198894
+        : TSTS
 *****************************************************************************/
 VOS_VOID DMS_UsbEnableCB(VOS_VOID)
 {
@@ -458,14 +458,14 @@ VOS_VOID DMS_UsbEnableCB(VOS_VOID)
 
     DMS_DBG_SDM_FUN(DMS_SDM_USB_ENABLE, 0, 0, 0);
 
-    /* NVE只读取一次，读取后不再读取 */
+    /* NVE */
     if (VOS_FALSE == g_stDmsMainInfo.bPortCfgFlg)
     {
         g_dms_debug_atserv_nv_info.ulNvValue        = stAtServerNv.nv_data[0];
 
         g_stDmsMainInfo.bPortCfgFlg                 = VOS_TRUE;
 
-        /* nv值为1表示有at sever，非1表示无at sever，无at sever打开pcui和ctrl口 */
+        /* nv1at sever1at severat severpcuictrl */
         if ((1 != stAtServerNv.nv_data[0])
             )
         {
@@ -481,21 +481,21 @@ VOS_VOID DMS_UsbEnableCB(VOS_VOID)
     {
         g_stDmsMainInfo.bPortOpenFlg = VOS_TRUE;
 
-        /*打开 AT PCUI 通道*/
+        /* AT PCUI */
         ulRet = DMS_VcomPcuiOpen();
         if (ERR_MSP_SUCCESS != ulRet)
         {
             DMS_DBG_SDM_FUN(DMS_SDM_USB_ENABLE_ERR, 0, 0, 3);
         }
 
-        /*打开 AT CTRL 通道*/
+        /* AT CTRL */
         ulRet = DMS_VcomCtrlOpen();
         if (ERR_MSP_SUCCESS != ulRet)
         {
             DMS_DBG_SDM_FUN(DMS_SDM_USB_ENABLE_ERR, 0, 0, 5);
         }
 
-        /*打开 AT PCUI2 通道*/
+        /* AT PCUI2 */
         ulRet = DMS_VcomPcui2Open();
         if (ERR_MSP_SUCCESS != ulRet)
         {
@@ -503,7 +503,7 @@ VOS_VOID DMS_UsbEnableCB(VOS_VOID)
         }
     }
 
-    /*打开 NDIS CTRL 通道*/
+    /* NDIS CTRL */
     ulRet = DMS_NcmOpen();
     if (ERR_MSP_SUCCESS != ulRet)
     {
@@ -516,18 +516,18 @@ VOS_VOID DMS_UsbEnableCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_GetPortHandle
- 功能描述  : 获取物理端口句柄
- 输入参数  : enPhyBear --- 物理端口号
- 输出参数  : 无
- 返 回 值  : UDI_HANDLE
- 调用函数  :
- 被调函数  :
+     : DMS_GetPortHandle
+   : 
+   : enPhyBear --- 
+   : 
+     : UDI_HANDLE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年5月4日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201454
+           : A00165503
+       : 
 *****************************************************************************/
 UDI_HANDLE DMS_GetPortHandle(DMS_PHY_BEAR_ENUM enPhyBear)
 {
@@ -535,18 +535,18 @@ UDI_HANDLE DMS_GetPortHandle(DMS_PHY_BEAR_ENUM enPhyBear)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_DsFidInit
- 功能描述  : dms FID 初始化函数
- 输入参数  :
+     : DMS_DsFidInit
+   : dms FID 
+   :
 
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2012年8月27日
-     作    者  : heliping
-     修改内容  : Creat Function
+   :
+     :
+   :
+   :
+   :
+   1.      : 2012827
+           : heliping
+       : Creat Function
 *****************************************************************************/
 VOS_UINT32 DMS_DsFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
@@ -580,19 +580,19 @@ VOS_UINT32 DMS_DsFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_InitPorCfgFile
- 功能描述  : OnDemand虚拟文件读实现
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_InitPorCfgFile
+   : OnDemand
+   : 
+   : 
+     : 
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : z60575
-    修改内容   : 新生成函数
-  2.日    期   : 2014年08月25日
-    作    者   : j00174725
-    修改内容   : DTS2014082200355
+       :
+  1.       : 20131025
+           : z60575
+       : 
+  2.       : 20140825
+           : j00174725
+       : DTS2014082200355
 *****************************************************************************/
 VOS_INT __init DMS_InitPorCfgFile(VOS_VOID)
 {
@@ -614,18 +614,18 @@ VOS_INT __init DMS_InitPorCfgFile(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_ReadPortCfgFile
- 功能描述  : PortCfg虚拟文件读实现
- 输入参数  : file --- 文件句柄
-             buf  --- 用户空间
-             ppos --- 文件偏移，参数未使用
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_ReadPortCfgFile
+   : PortCfg
+   : file --- 
+             buf  --- 
+             ppos --- 
+   : 
+     : 
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : z6057
-    修改内容   : 新生成函数
+       :
+  1.       : 20131025
+           : z6057
+       : 
 *****************************************************************************/
 ssize_t DMS_ReadPortCfgFile(
     struct file                        *file,
@@ -649,7 +649,7 @@ ssize_t DMS_ReadPortCfgFile(
     ulLength        = VOS_StrLen(acModeTemp);
     len             = PS_MIN(len, ulLength);
 
-    /*拷贝内核空间数据到用户空间上面*/
+    /**/
     if (0 == copy_to_user(buf,(VOS_VOID *)acModeTemp, (VOS_ULONG)len))
     {
         *ppos += (loff_t)len;
@@ -664,19 +664,19 @@ ssize_t DMS_ReadPortCfgFile(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_WritePortCfgFile
- 功能描述  : PortCfg虚拟文件写实现
- 输入参数  : file ----- 文件句柄
-             buf  ----- 用户空间数据
-             lLength -- 用户数据长度
-             ppos - ----文件偏移，参数未使用
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_WritePortCfgFile
+   : PortCfg
+   : file ----- 
+             buf  ----- 
+             lLength -- 
+             ppos - ----
+   : 
+     : 
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : z6057
-    修改内容   : 新生成函数
+       :
+  1.       : 20131025
+           : z6057
+       : 
 *****************************************************************************/
 ssize_t DMS_WritePortCfgFile(
     struct file                        *file,
@@ -703,7 +703,7 @@ ssize_t DMS_WritePortCfgFile(
         return -ENOSPC;
     }
 
-    /*拷贝用户空间数据到内核空间上面*/
+    /**/
     if (copy_from_user((VOS_VOID *)acModeTemp, (VOS_VOID *)buf, (VOS_ULONG)len) > 0)
     {
         return -EFAULT;
@@ -723,7 +723,7 @@ ssize_t DMS_WritePortCfgFile(
 
     g_stDmsMainInfo.ulPortCfgValue  = ulValue;
 
-    /* 如果已经写过这个文件，则以写的值为准，后续不需要再读NVE */
+    /* NVE */
     g_stDmsMainInfo.bPortCfgFlg     = TRUE;
 
     return (ssize_t)len;
@@ -733,19 +733,19 @@ module_init(DMS_InitPorCfgFile);
 module_init(DMS_InitGetSliceFile);
 
 /*****************************************************************************
- 函 数 名  : DMS_RegOmChanDataReadCB
- 功能描述  : 注册OM通道数据接收回调
- 输入参数  : enChan --- 逻辑通道
-             pFunc  --- 函数指针
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
+     : DMS_RegOmChanDataReadCB
+   : OM
+   : enChan --- 
+             pFunc  --- 
+   : 
+     : VOS_ERR/VOS_OK
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_RegOmChanDataReadCB(
     DMS_OM_CHAN_ENUM_UINT32             enChan,
@@ -754,7 +754,7 @@ VOS_UINT32 DMS_RegOmChanDataReadCB(
 {
     DMS_NLK_OM_CHAN_PROPERTY_STRU      *pstOmChanProp = VOS_NULL_PTR;
 
-    /* 检查通道号和函数指针 */
+    /*  */
     if ((enChan >= DMS_OM_CHAN_BUTT) || (VOS_NULL_PTR == pFunc))
     {
         printk(KERN_ERR "[%s][LINE: %d] Invalid channel %d.\n",
@@ -762,7 +762,7 @@ VOS_UINT32 DMS_RegOmChanDataReadCB(
         return VOS_ERR;
     }
 
-    /* 设置通道数据回调函数 */
+    /*  */
     pstOmChanProp = DMS_GET_NLK_OM_CHAN_PROP(enChan);
     pstOmChanProp->pDataFunc = pFunc;
 
@@ -770,19 +770,19 @@ VOS_UINT32 DMS_RegOmChanDataReadCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_RegOmChanEventCB
- 功能描述  : 注册OM通道事件接收回调
- 输入参数  : enChan --- 逻辑通道
-             pFunc  --- 函数指针
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
+     : DMS_RegOmChanEventCB
+   : OM
+   : enChan --- 
+             pFunc  --- 
+   : 
+     : VOS_ERR/VOS_OK
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_RegOmChanEventCB(
     DMS_OM_CHAN_ENUM_UINT32             enChan,
@@ -791,7 +791,7 @@ VOS_UINT32 DMS_RegOmChanEventCB(
 {
     DMS_NLK_OM_CHAN_PROPERTY_STRU      *pstOmChanProp = VOS_NULL_PTR;
 
-    /* 检查通道号 */
+    /*  */
     if ((enChan >= DMS_OM_CHAN_BUTT) || (VOS_NULL_PTR == pFunc))
     {
         printk(KERN_ERR "[%s][LINE: %d] Invalid channel %d.\n",
@@ -799,7 +799,7 @@ VOS_UINT32 DMS_RegOmChanEventCB(
         return VOS_ERR;
     }
 
-    /* 设置通道事件回调函数 */
+    /*  */
     pstOmChanProp = DMS_GET_NLK_OM_CHAN_PROP(enChan);
     pstOmChanProp->pEvtFunc = pFunc;
 
@@ -807,24 +807,24 @@ VOS_UINT32 DMS_RegOmChanEventCB(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_WriteOmData
- 功能描述  : 写OM通道数据
- 输入参数  : enChan   --- 逻辑通道
-             pucData  --- 数据地址
-             ulLength --- 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
+     : DMS_WriteOmData
+   : OM
+   : enChan   --- 
+             pucData  --- 
+             ulLength --- 
+   : 
+     : VOS_ERR/VOS_OK
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 
-  2.日    期   : 2015年10月17日
-    作    者   : W00316404
-    修改内容   : 控制是否打印modem log
+  2.       : 20151017
+           : W00316404
+       : modem log
 *****************************************************************************/
 VOS_UINT32 DMS_WriteOmData(
     DMS_OM_CHAN_ENUM_UINT32             enChan,
@@ -845,14 +845,14 @@ VOS_UINT32 DMS_WriteOmData(
 
     DMS_DBG_NLK_DL_TOTAL_PKT_NUM(1);
 
-    /* 检查通道 */
+    /*  */
     if (enChan >= DMS_OM_CHAN_BUTT)
     {
         DMS_DBG_NLK_DL_ERR_CHAN_PKT_NUM(1);
         return VOS_ERR;
     }
 
-    /* 检查数据 */
+    /*  */
     if ((VOS_NULL_PTR == pucData) || (0 == ulLength))
     {
         DMS_DBG_NLK_DL_ERR_PARA_PKT_NUM(1);
@@ -861,21 +861,21 @@ VOS_UINT32 DMS_WriteOmData(
 
     DMS_DBG_NLK_DL_NORM_CHAN_PKT_NUM(enChan, 1);
 
-    /* 对数据分块, 避免一次发送过多数据 */
+    /* ,  */
     pucMem        = pucData;
     ulMemNum      = (ulLength >= DMS_GET_NLK_THRESH_SIZE())?(ulLength / DMS_GET_NLK_DATA_SIZE()):0;
     ulLastMemSize = (ulLength >= DMS_GET_NLK_THRESH_SIZE())?(ulLength % DMS_GET_NLK_DATA_SIZE()):ulLength;
 
     wake_lock(&g_stDmsMainInfo.stwakelock);
 
-    /* 发送固定大小数据块 */
+    /*  */
     for (ulCnt = 0; ulCnt < ulMemNum; ulCnt++)
     {
         DMS_NLK_Send(DMS_GET_NLK_PHY_BEAR(enChan), DMS_GET_NLK_MSG_TYPE(enChan), pucMem, DMS_GET_NLK_DATA_SIZE());
         pucMem += DMS_GET_NLK_DATA_SIZE();
     }
 
-    /* 发送最后一块数据块 */
+    /*  */
     if (0 != ulLastMemSize)
     {
         DMS_NLK_Send(DMS_GET_NLK_PHY_BEAR(enChan), DMS_GET_NLK_MSG_TYPE(enChan), pucMem, ulLastMemSize);
@@ -887,22 +887,22 @@ VOS_UINT32 DMS_WriteOmData(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_InitEntity
- 功能描述  : 初始化 netlink 实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_InitEntity
+   :  netlink 
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 
-  2.日    期   : 2015年5月8日
-    作    者   : A00165503
-    修改内容   : DTS2015050806031: 删除函数指针初始化, 防止错误清除
+  2.       : 201558
+           : A00165503
+       : DTS2015050806031: , 
 *****************************************************************************/
 VOS_VOID DMS_NLK_InitEntity(VOS_VOID)
 {
@@ -913,25 +913,25 @@ VOS_VOID DMS_NLK_InitEntity(VOS_VOID)
     /* netlink socket */
     pstNlkEntity->pstSock    = VOS_NULL_PTR;
 
-    /* netlink 消息数据块大小 */
+    /* netlink  */
     pstNlkEntity->ulDataSize   = DMS_NLK_DEFUALT_DATA_SIZE;
 
-    /* netlink 消息数据块大小 */
+    /* netlink  */
     pstNlkEntity->ulThreshSize = DMS_NLK_DEFUALT_DATA_SIZE * 2;
 
-    /* netlink 物理承载进程号 */
+    /* netlink  */
     pstNlkEntity->astPhyBearProp[DMS_NLK_PHY_BEAR_LTE].lPid     = DMS_NLK_INVALID_PID;
     pstNlkEntity->astPhyBearProp[DMS_NLK_PHY_BEAR_GU].lPid      = DMS_NLK_INVALID_PID;
 
-    /* netlink 逻辑通道属性(LTE CLTR) */
+    /* netlink (LTE CLTR) */
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_LTE_CTRL].enPhyBear = DMS_NLK_PHY_BEAR_LTE;
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_LTE_CTRL].enMsgType = DMS_NLK_MSG_TYPE_LTE_CTRL;
 
-    /* netlink 逻辑通道属性(LTE DATA) */
+    /* netlink (LTE DATA) */
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_LTE_DATA].enPhyBear = DMS_NLK_PHY_BEAR_LTE;
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_LTE_DATA].enMsgType = DMS_NLK_MSG_TYPE_LTE_DATA;
 
-    /* netlink 逻辑通道属性(GU DATA) */
+    /* netlink (GU DATA) */
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_GU_DATA].enPhyBear  = DMS_NLK_PHY_BEAR_GU;
     pstNlkEntity->astOmChanProp[DMS_OM_CHAN_GU_DATA].enMsgType  = DMS_NLK_MSG_TYPE_GU_DATA;
 
@@ -939,19 +939,19 @@ VOS_VOID DMS_NLK_InitEntity(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_CfgOpen
- 功能描述  : 打开逻辑通道
- 输入参数  : pstNlkHdr --- netlink 消息
-             enBear    --- 物理承载
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_CfgOpen
+   : 
+   : pstNlkHdr --- netlink 
+             enBear    --- 
+   : 
+     : VOS_OK/VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_NLK_CfgOpen(
     struct nlmsghdr                    *pstNlkHdr,
@@ -962,7 +962,7 @@ VOS_UINT32 DMS_NLK_CfgOpen(
     DMS_OM_CHAN_EVENT_CB_FUNC           pEvtFunc       = VOS_NULL_PTR;
     DMS_OM_CHAN_ENUM_UINT32             enChan;
 
-    /* 检查承载号 */
+    /*  */
     if (enPhyBear >= DMS_NLK_PHY_BEAR_BUTT)
     {
         printk("[%s][LINE: %d] Invalid PHY bearer %d.\n",
@@ -970,16 +970,16 @@ VOS_UINT32 DMS_NLK_CfgOpen(
         return VOS_ERR;
     }
 
-    /* 设置承载PID */
+    /* PID */
     pstPhyBearProp = DMS_GET_NLK_PHY_BEAR_PROP(enPhyBear);
     pstPhyBearProp->lPid = pstNlkHdr->nlmsg_pid;
 
-    /* 遍历所有与该承载关联的通道 */
+    /*  */
     for (enChan = 0; enChan < DMS_OM_CHAN_BUTT; enChan++)
     {
         pEvtFunc = DMS_GET_NLK_OM_CHAN_EVT_CB_FUNC(enChan);
 
-        /* 通知物理承载相同的逻辑通道使用者通道打开 */
+        /*  */
         if ((enPhyBear == DMS_GET_NLK_PHY_BEAR(enChan)) && (VOS_NULL_PTR != pEvtFunc))
         {
             pEvtFunc(enChan, DMS_CHAN_EVT_OPEN);
@@ -990,19 +990,19 @@ VOS_UINT32 DMS_NLK_CfgOpen(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_CfgClose
- 功能描述  : 关闭逻辑通道
- 输入参数  : pstNlkHdr --- netlink 消息
-             enBear    --- 物理承载
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_CfgClose
+   : 
+   : pstNlkHdr --- netlink 
+             enBear    --- 
+   : 
+     : VOS_OK/VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 DMS_NLK_CfgClose(
     struct nlmsghdr                    *pstNlkHdr,
@@ -1013,7 +1013,7 @@ VOS_UINT32 DMS_NLK_CfgClose(
     DMS_OM_CHAN_EVENT_CB_FUNC           pEvtFunc       = VOS_NULL_PTR;
     DMS_OM_CHAN_ENUM_UINT32             enChan;
 
-    /* 检查承载号 */
+    /*  */
     if (enBear >= DMS_NLK_PHY_BEAR_BUTT)
     {
         printk("[%s][LINE: %d] Invalid PHY bearer %d.\n",
@@ -1021,16 +1021,16 @@ VOS_UINT32 DMS_NLK_CfgClose(
         return VOS_ERR;
     }
 
-    /* 设置承载PID */
+    /* PID */
     pstPhyBearProp = DMS_GET_NLK_PHY_BEAR_PROP(enBear);
     pstPhyBearProp->lPid = DMS_NLK_INVALID_PID;
 
-    /* 遍历所有与该承载关联的通道 */
+    /*  */
     for (enChan = 0; enChan < DMS_OM_CHAN_BUTT; enChan++)
     {
         pEvtFunc = DMS_GET_NLK_OM_CHAN_EVT_CB_FUNC(enChan);
 
-        /* 通知物理承载相同的逻辑通道使用者通道关闭 */
+        /*  */
         if ((enBear == DMS_GET_NLK_PHY_BEAR(enChan)) && (VOS_NULL_PTR != pEvtFunc))
         {
             pEvtFunc(enChan, DMS_CHAN_EVT_CLOSE);
@@ -1041,18 +1041,18 @@ VOS_UINT32 DMS_NLK_CfgClose(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_ProcLteCfgMsg
- 功能描述  : 处理LTE CFG消息
- 输入参数  : pstNlkHdr --- netlink 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_ProcLteCfgMsg
+   : LTE CFG
+   : pstNlkHdr --- netlink 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_NLK_ProcLteCfgMsg(struct nlmsghdr *pstNlkHdr)
 {
@@ -1081,18 +1081,18 @@ VOS_VOID DMS_NLK_ProcLteCfgMsg(struct nlmsghdr *pstNlkHdr)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_ProcGuCfgMsg
- 功能描述  : 处理GU CFG消息
- 输入参数  : pstNlkHdr --- netlink 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_ProcGuCfgMsg
+   : GU CFG
+   : pstNlkHdr --- netlink 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_NLK_ProcGuCfgMsg(struct nlmsghdr *pstNlkHdr)
 {
@@ -1121,29 +1121,29 @@ VOS_VOID DMS_NLK_ProcGuCfgMsg(struct nlmsghdr *pstNlkHdr)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_ProcLteCtrlMsg
- 功能描述  : 处理LTE CTRL消息
- 输入参数  : pstNlkHdr --- netlink 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_ProcLteCtrlMsg
+   : LTE CTRL
+   : pstNlkHdr --- netlink 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_NLK_ProcLteCtrlMsg(struct nlmsghdr *pstNlkHdr)
 {
     DMS_OM_CHAN_DATA_READ_CB_FUNC       pDataFunc  = VOS_NULL_PTR;
     DMS_NLK_PAYLOAD_STRU               *pstPayload = VOS_NULL_PTR;
 
-    /* 获取通道注册的回调 */
+    /*  */
     pDataFunc = DMS_GET_NLK_OM_CHAN_DATA_CB_FUNC(DMS_OM_CHAN_LTE_CTRL);
     if (VOS_NULL_PTR != pDataFunc)
     {
-        /* 透传数据内容 */
+        /*  */
         pstPayload = nlmsg_data(pstNlkHdr);
         (VOS_VOID)pDataFunc(DMS_OM_CHAN_LTE_CTRL, pstPayload->aucData, pstPayload->ulLength);
         DMS_DBG_NLK_UL_SEND_MSG_NUM(pstNlkHdr->nlmsg_type, 1);
@@ -1157,29 +1157,29 @@ VOS_VOID DMS_NLK_ProcLteCtrlMsg(struct nlmsghdr *pstNlkHdr)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_ProcLteDataMsg
- 功能描述  : 处理LTE DATA消息
- 输入参数  : pstNlkHdr --- netlink 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_ProcLteDataMsg
+   : LTE DATA
+   : pstNlkHdr --- netlink 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_NLK_ProcLteDataMsg(struct nlmsghdr *pstNlkHdr)
 {
     DMS_OM_CHAN_DATA_READ_CB_FUNC       pDataFunc  = VOS_NULL_PTR;
     DMS_NLK_PAYLOAD_STRU               *pstPayload = VOS_NULL_PTR;
 
-    /* 获取通道注册的回调 */
+    /*  */
     pDataFunc = DMS_GET_NLK_OM_CHAN_DATA_CB_FUNC(DMS_OM_CHAN_LTE_DATA);
     if (VOS_NULL_PTR != pDataFunc)
     {
-        /* 透传数据内容 */
+        /*  */
         pstPayload = nlmsg_data(pstNlkHdr);
         (VOS_VOID)pDataFunc(DMS_OM_CHAN_LTE_DATA, pstPayload->aucData, pstPayload->ulLength);
         DMS_DBG_NLK_UL_SEND_MSG_NUM(pstNlkHdr->nlmsg_type, 1);
@@ -1193,29 +1193,29 @@ VOS_VOID DMS_NLK_ProcLteDataMsg(struct nlmsghdr *pstNlkHdr)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_ProcGuDataMsg
- 功能描述  : 处理GU DATA消息
- 输入参数  : pstNlkHdr --- netlink 消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_ProcGuDataMsg
+   : GU DATA
+   : pstNlkHdr --- netlink 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID DMS_NLK_ProcGuDataMsg(struct nlmsghdr *pstNlkHdr)
 {
     DMS_OM_CHAN_DATA_READ_CB_FUNC       pDataFunc = VOS_NULL_PTR;
     DMS_NLK_PAYLOAD_STRU               *pstPayload = VOS_NULL_PTR;
 
-    /* 获取通道注册的回调 */
+    /*  */
     pDataFunc = DMS_GET_NLK_OM_CHAN_DATA_CB_FUNC(DMS_OM_CHAN_GU_DATA);
     if (VOS_NULL_PTR != pDataFunc)
     {
-        /* 透传数据内容 */
+        /*  */
         pstPayload = nlmsg_data(pstNlkHdr);
         (VOS_VOID)pDataFunc(DMS_OM_CHAN_GU_DATA, pstPayload->aucData, pstPayload->ulLength);
         DMS_DBG_NLK_UL_SEND_MSG_NUM(pstNlkHdr->nlmsg_type, 1);
@@ -1229,21 +1229,21 @@ VOS_VOID DMS_NLK_ProcGuDataMsg(struct nlmsghdr *pstNlkHdr)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_Send
- 功能描述  : 发送 netlink 消息
- 输入参数  : enPhyBear --- 物理承载号
-             enMsgType --- 消息类型
-             pucData   --- 数据指针
-             ulLength  --- 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_Send
+   :  netlink 
+   : enPhyBear --- 
+             enMsgType --- 
+             pucData   --- 
+             ulLength  --- 
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_INT DMS_NLK_Send(
     DMS_NLK_PHY_BEAR_ENUM_UINT32        enPhyBear,
@@ -1261,21 +1261,21 @@ VOS_INT DMS_NLK_Send(
 
     DMS_DBG_NLK_DL_TOTAL_MSG_NUM(1);
 
-    /* 检查 netlink socket */
+    /*  netlink socket */
     if (VOS_NULL_PTR == DMS_GET_NLK_SOCK())
     {
         DMS_DBG_NLK_DL_ERR_SOCK_MSG_NUM(1);
         return -EIO;
     }
 
-    /* 检查物理承载状态 */
+    /*  */
     if (DMS_NLK_INVALID_PID == DMS_GET_NLK_PHY_PID(enPhyBear))
     {
         DMS_DBG_NLK_DL_ERR_PID_MSG_NUM(1);
         return -EINVAL;
     }
 
-    /* 申请 netlink 消息 */
+    /*  netlink  */
     ulPayloadSize = sizeof(DMS_NLK_PAYLOAD_STRU) + ulLength;
     ulMsgSize = NLMSG_SPACE(ulPayloadSize);
 
@@ -1286,7 +1286,7 @@ VOS_INT DMS_NLK_Send(
         return -ENOBUFS;
     }
 
-    /* 填充 netlink 消息头 */
+    /*  netlink  */
     /* Use "ulMsgSize - sizeof(*pstNlkHdr)" here (incluing align pads) */
     pstNlkHdr = nlmsg_put(pstSkb, 0, 0, (VOS_INT)enMsgType,
                     (VOS_INT)(ulMsgSize - sizeof(struct nlmsghdr)), 0);
@@ -1297,7 +1297,7 @@ VOS_INT DMS_NLK_Send(
         return -EMSGSIZE;
     }
 
-    /* 填充 netlink 消息接收PID */
+    /*  netlink PID */
 #if ((LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)) || (VOS_OS_VER == VOS_WIN32))
     NETLINK_CB(pstSkb).portid = DMS_GET_NLK_PHY_PID(enPhyBear);
 #else
@@ -1305,14 +1305,14 @@ VOS_INT DMS_NLK_Send(
 #endif
     NETLINK_CB(pstSkb).dst_group = 0;
 
-    /* 填充 netlink 消息内容 */
+    /*  netlink  */
     pstPlayload = nlmsg_data(pstNlkHdr);
     pstPlayload->ulLength = ulLength;
     memset(pstPlayload->aucReserved, 0x00, sizeof(pstPlayload->aucReserved));
 
     memcpy(pstPlayload->aucData, pucData, ulLength);
 
-    /* 发送 netlink 消息 */
+    /*  netlink  */
 #if ((LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)) || (VOS_OS_VER == VOS_WIN32))
     lRet = netlink_unicast(DMS_GET_NLK_SOCK(), pstSkb, NETLINK_CB(pstSkb).portid, 0);
 #else
@@ -1330,22 +1330,22 @@ VOS_INT DMS_NLK_Send(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_Input
- 功能描述  : netlink 消息入口
- 输入参数  : pstSkb --- skb buff
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_Input
+   : netlink 
+   : pstSkb --- skb buff
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 
-  2.日    期   : 2015年10月17日
-    作    者   : W00316404
-    修改内容   : 控制是否打印modem log
+  2.       : 20151017
+           : W00316404
+       : modem log
 *****************************************************************************/
 VOS_VOID DMS_NLK_Input(struct sk_buff *pstSkb)
 {
@@ -1359,17 +1359,17 @@ VOS_VOID DMS_NLK_Input(struct sk_buff *pstSkb)
 
     DMS_DBG_NLK_UL_TOTAL_MSG_NUM(1);
 
-    /* 获取 netlink 消息 */
+    /*  netlink  */
     pstNlkHdr = nlmsg_hdr(pstSkb);
 
-    /* 检查 netlink 消息是否合法 */
+    /*  netlink  */
     if (!NLMSG_OK(pstNlkHdr, pstSkb->len))
     {
         DMS_DBG_NLK_UL_ERR_MSG_NUM(1);
         return;
     }
 
-    /* 处理 netlink 消息 */
+    /*  netlink  */
     switch (pstNlkHdr->nlmsg_type)
     {
         case DMS_NLK_MSG_TYPE_LTE_CFG:
@@ -1401,18 +1401,18 @@ VOS_VOID DMS_NLK_Input(struct sk_buff *pstSkb)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_Init
- 功能描述  : netlink 加载
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_INT __init
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_Init
+   : netlink 
+   : VOS_VOID
+   : 
+     : VOS_INT __init
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_INT __init DMS_NLK_Init(VOS_VOID)
 {
@@ -1421,10 +1421,10 @@ VOS_INT __init DMS_NLK_Init(VOS_VOID)
 
     printk("DMS_NLK_Init,entry,%u",VOS_GetSlice());
 
-    /* 初始化 netlink 实体 */
+    /*  netlink  */
     DMS_NLK_InitEntity();
 
-    /* 在内核态创建一个 netlink socket */
+    /*  netlink socket */
 #if ((LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)) || (VOS_OS_VER == VOS_WIN32))
     pstSock = netlink_kernel_create(&init_net, NETLINK_HW_LOGCAT, &g_stDmsNlkCfg);
 #else
@@ -1440,7 +1440,7 @@ VOS_INT __init DMS_NLK_Init(VOS_VOID)
         return -ENOMEM;
     }
 
-    /* 保存 socket */
+    /*  socket */
     pstNlkEntity = DMS_GET_NLK_ENTITY();
     pstNlkEntity->pstSock = pstSock;
 
@@ -1450,38 +1450,38 @@ VOS_INT __init DMS_NLK_Init(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_NLK_Exit
- 功能描述  : netlink 卸载
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID __exit
- 调用函数  :
- 被调函数  :
+     : DMS_NLK_Exit
+   : netlink 
+   : VOS_VOID
+   : 
+     : VOS_VOID __exit
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年7月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201475
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID __exit DMS_NLK_Exit(VOS_VOID)
 {
-    /* 释放 netlink socket */
+    /*  netlink socket */
     netlink_kernel_release(DMS_GET_NLK_SOCK());
     DMS_NLK_InitEntity();
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_InitGetSliceFile
- 功能描述  : Get Slice虚拟文件初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_InitGetSliceFile
+   : Get Slice
+   : 
+   : 
+     : 
 
- 修改历史      :
-  1.日    期   : 2015年1月04日
-    作    者   : j00174725
-    修改内容   : 新生成函数
+       :
+  1.       : 2015104
+           : j00174725
+       : 
 *****************************************************************************/
 VOS_INT __init DMS_InitGetSliceFile(VOS_VOID)
 {
@@ -1495,18 +1495,18 @@ VOS_INT __init DMS_InitGetSliceFile(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_ReadGetSliceFile
- 功能描述  : getslice虚拟文件读实现
- 输入参数  : file --- 文件句柄
-             buf  --- 用户空间
-             ppos --- 文件偏移，参数未使用
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_ReadGetSliceFile
+   : getslice
+   : file --- 
+             buf  --- 
+             ppos --- 
+   : 
+     : 
 
-修改历史      :
- 1.日    期   : 2015年1月04日
-   作    者   : j00174725
-   修改内容   : 新生成函数
+      :
+ 1.       : 2015104
+          : j00174725
+      : 
 
 *****************************************************************************/
 ssize_t DMS_ReadGetSliceFile(
@@ -1526,14 +1526,14 @@ ssize_t DMS_ReadGetSliceFile(
         return 0;
     }
 
-    /* 初始化 */
+    /*  */
     ulLength            = 0;
     ulHigh32bitValue    = 0;
     ulLow32bitValue     = 0;
 
     TAF_MEM_SET_S(acModeTemp, sizeof(acModeTemp), 0x00, DMS_GET_SLICE_FILE_LEN);
 
-    /* 获取时间  Seattle 和 Portland不一样 */
+    /*   Seattle  Portland */
     (VOS_VOID)mdrv_timer_get_accuracy_timestamp(&ulHigh32bitValue, &ulLow32bitValue);
 
     if (ulHigh32bitValue != 0)
@@ -1548,7 +1548,7 @@ ssize_t DMS_ReadGetSliceFile(
     ulLength        = VOS_StrLen(acModeTemp);
     len             = PS_MIN(len, ulLength);
 
-    /*拷贝内核空间数据到用户空间上面*/
+    /**/
     if (0 == copy_to_user(buf,(VOS_VOID *)acModeTemp, (VOS_ULONG)len))
     {
         *ppos += (loff_t)len;
@@ -1563,16 +1563,16 @@ ssize_t DMS_ReadGetSliceFile(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_InitModemStatusFile
- 功能描述  : ModemStatus节点初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VIOD
+     : DMS_InitModemStatusFile
+   : ModemStatus
+   : 
+   : 
+     : VOS_VIOD
 
- 修改历史      :
-  1.日    期   : 2016年1月20日
-    作    者   : z00301431
-    修改内容   : 新生成函数
+       :
+  1.       : 2016120
+           : z00301431
+       : 
 *****************************************************************************/
 VOS_INT __init DMS_InitModemStatusFile(VOS_VOID)
 {
@@ -1592,18 +1592,18 @@ VOS_INT __init DMS_InitModemStatusFile(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_ReadModemStatusFile
- 功能描述  : ModemStatusFile0虚拟文件读实现
- 输入参数  : file --- 文件句柄
-             buf  --- 用户空间
-             ppos --- 文件偏移，参数未使用
- 输出参数  : 无
- 返 回 值  : 成功或失败
+     : DMS_ReadModemStatusFile
+   : ModemStatusFile0
+   : file --- 
+             buf  --- 
+             ppos --- 
+   : 
+     : 
 
-修改历史      :
- 1.日    期   : 2016年1月20日
-   作    者   : z00301431
-   修改内容   : 新生成函数
+      :
+ 1.       : 2016120
+          : z00301431
+      : 
 *****************************************************************************/
 ssize_t DMS_ReadModemStatusFile(
     struct file                        *file,
@@ -1628,14 +1628,14 @@ ssize_t DMS_ReadModemStatusFile(
                  g_stDmsMainInfo.aucModemStatus[1],
                  g_stDmsMainInfo.aucModemStatus[2]);
 
-    /* 获取按需拨号的模式以及时长的地址 */
+    /*  */
     VOS_sprintf_s((VOS_CHAR *)acStatus, sizeof(acStatus), "%s", g_stDmsMainInfo.aucModemStatus);
 
     ulStatusLen = VOS_StrLen(acStatus);
 
     len = PS_MIN(len, ulStatusLen);
 
-    /*拷贝内核空间数据到用户空间上面*/
+    /**/
     if (0 == copy_to_user(buf,(VOS_VOID *)acStatus, (VOS_ULONG)len))
     {
         *ppos += (loff_t)len;
@@ -1650,16 +1650,16 @@ ssize_t DMS_ReadModemStatusFile(
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_SetModemStatus
- 功能描述  : 根据MODEM ID设置ModemStatus
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
+     : DMS_SetModemStatus
+   : MODEM IDModemStatus
+   : MODEM_ID_ENUM_UINT16 enModemId
+   : 
+     : VOS_VOID
 
-修改历史      :
- 1.日    期   : 2016年1月20日
-   作    者   : z00301431
-   修改内容   : 新生成函数
+      :
+ 1.       : 2016120
+          : z00301431
+      : 
 *****************************************************************************/
 VOS_VOID DMS_SetModemStatus(MODEM_ID_ENUM_UINT16 enModemId)
 {
@@ -1673,16 +1673,16 @@ VOS_VOID DMS_SetModemStatus(MODEM_ID_ENUM_UINT16 enModemId)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_GetModemStatus
- 功能描述  : 获取ModemStatus
- 输入参数  : MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+     : DMS_GetModemStatus
+   : ModemStatus
+   : MODEM_ID_ENUM_UINT16 enModemId
+   : 
+     : VOS_UINT32
 
-修改历史      :
- 1.日    期   : 2016年1月20日
-   作    者   : z00301431
-   修改内容   : 新生成函数
+      :
+ 1.       : 2016120
+          : z00301431
+      : 
 *****************************************************************************/
 VOS_UINT8 DMS_GetModemStatus(MODEM_ID_ENUM_UINT16 enModemId)
 {
@@ -1696,16 +1696,16 @@ VOS_UINT8 DMS_GetModemStatus(MODEM_ID_ENUM_UINT16 enModemId)
 }
 
 /*****************************************************************************
- 函 数 名  : DMS_InitModemStatus
- 功能描述  : 初始化所有的ModemStatus
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
+     : DMS_InitModemStatus
+   : ModemStatus
+   : VOS_VOID
+   : 
+     : VOS_VOID
 
-修改历史      :
- 1.日    期   : 2016年1月20日
-   作    者   : z00301431
-   修改内容   : 新生成函数
+      :
+ 1.       : 2016120
+          : z00301431
+      : 
 *****************************************************************************/
 VOS_VOID DMS_InitModemStatus(VOS_VOID)
 {

@@ -49,7 +49,7 @@
 #define _TAF_STD_LIB_H_
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include  "PsTypeDef.h"
 #include  "MnMsgApi.h"
@@ -67,18 +67,18 @@ extern "C" {
 
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 #define TAF_SPM_SSC_MAX_LEN                                  (256)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
+/* Added by f62575 for V9R1 STK, 2013-6-26, begin */
 #define TAF_STD_7BIT_MASK                                    (0x7f)
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
+/* Added by f62575 for V9R1 STK, 2013-6-26, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-24, begin */
 #define TAF_STD_MAX_GSM7BITDEFALPHA_NUM                     (128)
 #define TAF_STD_NOSTANDARD_ASCII_CODE                       (0xff)
 #define TAF_STD_GSM_7BIT_EXTENSION_FLAG                     (0xfe)
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-24, end */
 
 /* This is the number of days in a leap year set.
    A leap year set includes 1 leap year, and 3 normal years. */
@@ -112,17 +112,17 @@ extern "C" {
 #define TAF_STD_UTF8_1BYTE_MAX                              (0x7F)
 #define TAF_STD_UTF8_2BYTE_MAX                              (0x7FF)
 #define TAF_STD_UTF8_3BYTE_MAX                              (0xFFFF)
-#define TAF_SS_DECODE_ERR_BASE                              (0x1000)            /* SSA解码错误码起始值，区分于taf通用错误码 */
+#define TAF_SS_DECODE_ERR_BASE                              (0x1000)            /* SSAtaf */
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 /*****************************************************************************
-枚举名    : TAF_STD_XML_CODING_ENUM
-结构说明  : UTF编码枚举信息
-  1.日    期   : 2017年5月11日
-    作    者   : f00317170
-    修改内容   : 新增
+    : TAF_STD_XML_CODING_ENUM
+  : UTF
+  1.       : 2017511
+           : f00317170
+       : 
 *****************************************************************************/
 enum TAF_STD_XML_CODING_ENUM
 {
@@ -146,26 +146,26 @@ enum TAF_STD_ENCODING_TYPE_ENUM
 typedef VOS_UINT8 TAF_STD_ENCODING_TYPE_ENUM_U8;
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 /*****************************************************************************
- 结构名    : TAF_STD_TIME_ZONE_TYPE_STRU
- 结构说明  : TimeZone类型的时间结构
+     : TAF_STD_TIME_ZONE_TYPE_STRU
+   : TimeZone
 
- 修改记录  :
- 1.日    期   : 2014年12月28日s
-   作    者   : x00314862
-   修改内容   : 新增
+   :
+ 1.       : 20141228s
+          : x00314862
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -192,15 +192,15 @@ typedef struct
 }TAF_STD_TIME_ZONE_TYPE_STRU;
 
 /*****************************************************************************
- 结构名    : TAF_STD_STR_STRU
- 结构说明  : SMS CBS USSD编码字符串结构
-             enMsgCoding SMS CBS USSD业务支持编码
-             ulLen       字符串长度
-             pucStr      字符串指针
- 修改记录  :
- 1.日    期   : 2017年5月11日
-   作    者   : f00317170
-   修改内容   : 新增
+     : TAF_STD_STR_STRU
+   : SMS CBS USSD
+             enMsgCoding SMS CBS USSD
+             ulLen       
+             pucStr      
+   :
+ 1.       : 2017511
+          : f00317170
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -212,15 +212,15 @@ typedef struct
 }TAF_STD_STR_WITH_ENCODING_TYPE_STRU;
 
 /*****************************************************************************
- 结构名    : TAF_STD_XML_STR_STRU
- 结构说明  : XML编码字符串结构
-             enCoding    XML编码类型
-             ulLen       字符串长度
-             pucStr      字符串指针
- 修改记录  :
- 1.日    期   : 2017年5月11日
-   作    者   : f00317170
-   修改内容   : 新增
+     : TAF_STD_XML_STR_STRU
+   : XML
+             enCoding    XML
+             ulLen       
+             pucStr      
+   :
+ 1.       : 2017511
+          : f00317170
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -234,22 +234,22 @@ typedef struct
 
 
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 VOS_UINT32 TAF_STD_Itoa(
     VOS_UINT32                          ulDigit,
@@ -267,15 +267,15 @@ VOS_UINT16 TAF_STD_HexAlpha2AsciiString(
     VOS_UINT16                          usSrcLen,
     VOS_UINT8                          *pucDst
 );
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-23, begin */
+/* Added by s00217060 for PhaseI, 2016-8-23, begin */
 VOS_UINT32 TAF_STD_ConvertStrToDecInt(
     VOS_UINT8                          *pucSrc,
     VOS_UINT32                          ulSrcLen,
     VOS_UINT32                         *pulDec
 );
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-23, end */
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*将7bit编码方式的字符转换为8bit字符*/
+/* Added by s00217060 for PhaseI, 2016-8-23, end */
+/* Added by f62575 for V9R1 STK, 2013-6-26, begin */
+/*7bit8bit*/
 VOS_UINT32  TAF_STD_UnPack7Bit(
     const VOS_UINT8                    *pucOrgChar,
     VOS_UINT32                          ulLen,
@@ -283,7 +283,7 @@ VOS_UINT32  TAF_STD_UnPack7Bit(
     VOS_UINT8                          *pucUnPackedChar
 );
 
-/*将字符转换为7bit编码方式*/
+/*7bit*/
 VOS_UINT32  TAF_STD_Pack7Bit(
     const VOS_UINT8                    *pucOrgChar,
     VOS_UINT32                          ulLen,
@@ -292,9 +292,9 @@ VOS_UINT32  TAF_STD_Pack7Bit(
     VOS_UINT32                         *pulLen
 );
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
+/* Added by f62575 for V9R1 STK, 2013-6-26, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-16, begin */
 VOS_UINT32  TAF_STD_ConvertBcdNumberToAscii(
     const VOS_UINT8                    *pucBcdNumber,
     VOS_UINT8                           ucBcdLen,
@@ -340,7 +340,7 @@ VOS_VOID  TAF_STD_ConvertDefAlphaToAscii(
     VOS_UINT32                         *pulAsciiCharLen
 );
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-16, end */
 
 VOS_UINT32  TAF_STD_ConvertBcdCodeToDtmf(
     VOS_UINT8                           ucBcdCode,

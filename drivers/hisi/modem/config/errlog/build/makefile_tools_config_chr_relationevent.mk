@@ -30,7 +30,7 @@ AS_USER_DEFINES ?=
 #***********************************************************#
 # include Directories
 #***********************************************************#
-#注：在这里添加编译的头文件
+#
 
 OBC_LOCAL_INC_DIR ?=
 OBC_LOCAL_INC_DIR += \
@@ -43,7 +43,7 @@ OBC_LOCAL_INC_DIR += \
 #***********************************************************#
 # source files
 #***********************************************************#
-#注：在这里添加需要编译的源文件
+#
 OBC_LOCAL_SRC_FILE := $(BALONG_TOPDIR)/modem/config/errlog/chrdirectrpt/converter/deploy/bin/chr_struconvert_relationevent.c
 
 include $(BALONG_TOPDIR)/modem/ps/build/tl/TOOLS_CONFIG/makefile_tools_config_chr_tlas.mk
@@ -56,5 +56,5 @@ include $(BALONG_TOPDIR)/modem/ps/build/gu/TOOLS_CONFIG/makefile_tools_config_ch
 #***********************************************************
 #include rules. must be droped at the bottom, OBB_BUILD_ACTION values: cc tqe lint fortify
 #***********************************************************
-#注：在此添加需要引用的编译脚本
+#
 include $(BALONG_TOPDIR)/build/scripts/rules/$(OBB_BUILD_ACTION)_rtosck_rules.mk

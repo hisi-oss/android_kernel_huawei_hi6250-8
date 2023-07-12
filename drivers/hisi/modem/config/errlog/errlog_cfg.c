@@ -48,44 +48,44 @@
 
 /******************************************************************************
 
-                  版权所有 (C), 2001-2016, 华为技术有限公司
+                   (C), 2001-2016, 
 
  ******************************************************************************
-  文 件 名   : errlog_cfg.c
-  版 本 号   : 初稿
-  作    者   : d00212987
-  生成日期   : 2016年2月19日
-  最近修改   :
-  功能描述   : Errlog关联列表模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2016年2月19日
-    作    者   : d00212987
-    修改内容   : Errlo关联列表新增
+       : errlog_cfg.c
+       : 
+         : d00212987
+     : 2016219
+     :
+     : Errlog
+     :
+     :
+  1.       : 2016219
+           : d00212987
+       : Errlo
 
 ******************************************************************************/
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "errlog_cfg.h"
 
 
-/*lint -e767 修改人:d00212987;原因:Log打印 */
+/*lint -e767 :d00212987;:Log */
 //#define    THIS_FILE_ID        PS_FILE_ID_ERRLOG_CFG_C
-/*lint +e767 修改人:d00212987;*/
+/*lint +e767 :d00212987;*/
 
 /*****************************************************************************
-  2 全局变量声明
+  2 
 *****************************************************************************/
 
-/* Warning：代码自动生成区域，不能手工改动 begin */
+/* Warning begin */
 
 /* TODO: g_aulModemErrRept hash_value:4dc7e381333a066d51312571ddd1a156 */
 
 /* TODO: python search flag satrt */
 int g_aulModem0ErrRept[][3]=
 {
-    /* GU ErrLog 上报相关 Item:18 */
+    /* GU ErrLog  Item:18 */
     {FAULT_ID_GU_ERR_LOG_REPT, I0_WUEPS_PID_MMC, 0},
     {FAULT_ID_GU_ERR_LOG_REPT, I0_WUEPS_PID_CC, 0},
     {FAULT_ID_GU_ERR_LOG_REPT, I0_UEPS_PID_MTA, 0},
@@ -105,11 +105,11 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_GU_ERR_LOG_REPT, PS_PID_MAC_UL, 0},
     {FAULT_ID_GU_ERR_LOG_REPT, TLPHY_PID_RTTAGENT, 0},
 
-    /* AP定时查询触发物理层主动上报 Item:1 */
+    /* AP Item:1 */
     {FAULT_ID_AP_GET_PHY_COUNT_DATA_REQ, TLPHY_PID_RTTAGENT, 8},
 
 
-    /* 注册失败 Item:20 */
+    /*  Item:20 */
     {FAULT_ID_1X_REG_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_REG_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_REG_FAIL, MSPS_PID_1X_RMAC, CTTF_ERR_LOG_ALM_ID_1X},
@@ -131,11 +131,11 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_REG_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_MEASURE_INFO},
     {FAULT_ID_1X_REG_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 语音质量差 Item:2 */
+    /*  Item:2 */
     {FAULT_ID_1X_VOICE_QUALITY_BAD, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_VOICE_QUALITY_BAD, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_ALARM_ID},
 
-    /* 通用异常收集 Item:6 */
+    /*  Item:6 */
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_COMMON_INFO},
@@ -143,7 +143,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_CL_MULTI_RESEL},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_PERSONALTY_COUNT_INVALID},
 
-    /* 短息接收失败 Item:23 */
+    /*  Item:23 */
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, MSPS_PID_1X_RMAC, CTTF_ERR_LOG_ALM_ID_1X},
@@ -168,7 +168,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 短息发送失败 Item:24 */
+    /*  Item:24 */
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I0_UEPS_PID_XSMS, NAS_ERR_LOG_ALM_XSMS_SND_FAIL},
@@ -194,15 +194,15 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 电信VOLTE下， ims<->1x乒乓切换主动上报 Item:2 */
+    /* VOLTE ims<->1x Item:2 */
     {FAULT_ID_VOLTE_IMS_1X_SWITCH, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_VOLTE_IMS_1X_SWITCH, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
 
-    /* QPCH能力指示 Item:2 */
+    /* QPCH Item:2 */
     {FAULT_ID_1X_QPCH_CHANGE, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_QPCH_SUPPORT},
     {FAULT_ID_1X_QPCH_CHANGE, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
 
-    /* PS会话异常 Item:17 */
+    /* PS Item:17 */
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_CODEC_FAIL},
@@ -221,7 +221,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* PS呼叫失败 Item:20 */
+    /* PS Item:20 */
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I0_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_CDMA_PS_CALL_FAIL},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -243,7 +243,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* PS断链 Item:19 */
+    /* PS Item:19 */
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I0_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_CDMA_PS_DISC_EXCEPTION},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -264,10 +264,10 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* CSDR 1X主动上报统计数据 Item:1 */
+    /* CSDR 1X Item:1 */
     {FAULT_ID_1X_COUNT_DATA_REPORT, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_COUNT_DATA_ALARM_ID},
 
-    /* CL模式下长时间不回4G Item:9 */
+    /* CL4G Item:9 */
     {FAULT_ID_CL_LEAVE_LTE, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LEAVE_LTE_INFO},
     {FAULT_ID_CL_LEAVE_LTE, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_CL_LEAVE_LTE, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_CODEC_FAIL},
@@ -278,7 +278,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_CL_LEAVE_LTE, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_C2L_BSR_FAIL},
     {FAULT_ID_CL_LEAVE_LTE, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_RESEL_TO_LTE_FAIL},
 
-    /* CL模式下HRPD或LTE丢网Item:19 */
+    /* CLHRPDLTEItem:19 */
     {FAULT_ID_HRPD_OR_LTE_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -299,7 +299,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_OR_LTE_OOS, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_HRPD_OR_LTE_OOS, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_SLAVE_MEAS_INFO},
 
-    /* CL模式下HRPD或LTE掉网恢复 Item:6 */
+    /* CLHRPDLTE Item:6 */
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, UEPS_PID_HSD, NAS_ERR_LOG_ALM_HRPD_OOS_SEARCH},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I0_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_CL_OOS_SEARCH},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -307,7 +307,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I0_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_QUICK_BACK_TO_4G_STATISTIC_INFO},
 
-    /* CL多模搜网过程 Item:6 */
+    /* CL Item:6 */
     {FAULT_ID_CL_OOS_SEARCH, I0_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_CL_OOS_SEARCH},
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_RESEL_TO_LTE_FAIL},
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_L2C_RESEL_FAIL},
@@ -315,10 +315,10 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_COMMON_INFO},
     {FAULT_ID_CL_OOS_SEARCH, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_EVDO_ALARM_ID},
 
-    /* AP定时查询触发物理层主动上报 Item:1 */
+    /* AP Item:1 */
     {FAULT_ID_AP_GET_PHY_COUNT_DATA_REQ, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_ALARM_ID},
 
-    /* 1x主叫失败 Item:25 */
+    /* 1x Item:25 */
     {FAULT_ID_1X_MO_CALL_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_MO_CALL_FAIL, I0_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_1X_CS_MO_CALL_EXCEPTION},
     {FAULT_ID_1X_MO_CALL_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
@@ -345,12 +345,12 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_MO_CALL_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_MO_CALL_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 1x掉网恢复 Item:3 */
+    /* 1x Item:3 */
     {FAULT_ID_1X_OOS_RECOVERY, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_OOS_RECOVERY, UEPS_PID_XSD, NAS_ERR_LOG_ALM_1X_OOS_SEARCH},
     {FAULT_ID_1X_OOS_RECOVERY, UEPS_PID_1XCASM, ID_CAS_1X_ERR_LOG_ALARM_COMMON_INFO},
 
-    /* 1x掉网 Item:16 */
+    /* 1x Item:16 */
     {FAULT_ID_1X_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_OOS, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_OOS_PROCESS_INFO},
@@ -368,7 +368,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_OOS, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PILOT_SEARCH_FAIL},
     {FAULT_ID_1X_OOS, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
 
-    /* 1x掉话 Item:18 */
+    /* 1x Item:18 */
     {FAULT_ID_1X_CALL_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_CALL_EXCEPTION, I0_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_1X_CS_CONVERSATION_EXCEPTION},
     {FAULT_ID_1X_CALL_EXCEPTION, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
@@ -388,7 +388,7 @@ int g_aulModem0ErrRept[][3]=
     {FAULT_ID_1X_CALL_EXCEPTION, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_CALL_EXCEPTION, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 1x被叫失败 Item:24 */
+    /* 1x Item:24 */
     {FAULT_ID_1X_MT_CALL_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_MT_CALL_FAIL, I0_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_MT_CALL_FAIL, UEPS_PID_XCC, NAS_ERR_LOG_ALM_1X_MT_REEST_INFO},
@@ -419,7 +419,7 @@ int g_aulModem0ErrRept[][3]=
 
 int g_aulModem1ErrRept[][3]=
 {
-    /* GU ErrLog 上报相关 Item:10 */
+    /* GU ErrLog  Item:10 */
     {FAULT_ID_GU_ERR_LOG_REPT, I1_WUEPS_PID_MMC, 0},
     {FAULT_ID_GU_ERR_LOG_REPT, I1_WUEPS_PID_CC, 0},
     {FAULT_ID_GU_ERR_LOG_REPT, I1_UEPS_PID_MTA, 0},
@@ -432,7 +432,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_GU_ERR_LOG_REPT, I1_DSP_PID_APM, 0},
 
 
-    /* 注册失败 Item:20 */
+    /*  Item:20 */
     {FAULT_ID_1X_REG_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_REG_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_REG_FAIL, MSPS_PID_1X_RMAC, CTTF_ERR_LOG_ALM_ID_1X},
@@ -454,11 +454,11 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_REG_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_MEASURE_INFO},
     {FAULT_ID_1X_REG_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 语音质量差 Item:2 */
+    /*  Item:2 */
     {FAULT_ID_1X_VOICE_QUALITY_BAD, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_VOICE_QUALITY_BAD, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_ALARM_ID},
 
-    /* 通用异常收集 Item:6 */
+    /*  Item:6 */
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_COMMON_INFO},
@@ -466,7 +466,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_CL_MULTI_RESEL},
     {FAULT_ID_HRPD_EXCEPTION_COLLECTION, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_PERSONALTY_COUNT_INVALID},
 
-    /* 短息接收失败 Item:23 */
+    /*  Item:23 */
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, MSPS_PID_1X_RMAC, CTTF_ERR_LOG_ALM_ID_1X},
@@ -491,7 +491,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_SHORT_MSG_RCV_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 短息发送失败 Item:24 */
+    /*  Item:24 */
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, I1_UEPS_PID_XSMS, NAS_ERR_LOG_ALM_XSMS_SND_FAIL},
@@ -517,15 +517,15 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_SHORT_MSG_SEND_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 电信VOLTE下， ims<->1x乒乓切换主动上报 Item:2 */
+    /* VOLTE ims<->1x Item:2 */
     {FAULT_ID_VOLTE_IMS_1X_SWITCH, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_VOLTE_IMS_1X_SWITCH, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
 
-    /* QPCH能力指示 Item:2 */
+    /* QPCH Item:2 */
     {FAULT_ID_1X_QPCH_CHANGE, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_QPCH_SUPPORT},
     {FAULT_ID_1X_QPCH_CHANGE, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
 
-    /* PS会话异常 Item:17 */
+    /* PS Item:17 */
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_CODEC_FAIL},
@@ -544,7 +544,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_SESSION_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* PS呼叫失败 Item:20 */
+    /* PS Item:20 */
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I1_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_CDMA_PS_CALL_FAIL},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -566,7 +566,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_CALL_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* PS断链 Item:19 */
+    /* PS Item:19 */
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I1_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_CDMA_PS_DISC_EXCEPTION},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -587,10 +587,10 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_TIME_ABNORMAL},
     {FAULT_ID_HRPD_PS_DISC_EXCEPTION, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
 
-    /* CSDR 1X主动上报统计数据 Item:1 */
+    /* CSDR 1X Item:1 */
     {FAULT_ID_1X_COUNT_DATA_REPORT, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_COUNT_DATA_ALARM_ID},
 
-    /* CL模式下长时间不回4G Item:9 */
+    /* CL4G Item:9 */
     {FAULT_ID_CL_LEAVE_LTE, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LEAVE_LTE_INFO},
     {FAULT_ID_CL_LEAVE_LTE, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_CL_LEAVE_LTE, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_CODEC_FAIL},
@@ -601,7 +601,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_CL_LEAVE_LTE, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_C2L_BSR_FAIL},
     {FAULT_ID_CL_LEAVE_LTE, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_RESEL_TO_LTE_FAIL},
 
-    /* CL模式下HRPD或LTE丢网Item:19 */
+    /* CLHRPDLTEItem:19 */
     {FAULT_ID_HRPD_OR_LTE_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_HRPD_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -622,7 +622,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_OR_LTE_OOS, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_HRPD_OR_LTE_OOS, CPROC_PID_HRPD_CM, CPROC_HRPD_ERR_LOG_SLAVE_MEAS_INFO},
 
-    /* CL模式下HRPD或LTE掉网恢复 Item:6 */
+    /* CLHRPDLTE Item:6 */
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, UEPS_PID_HSD, NAS_ERR_LOG_ALM_HRPD_OOS_SEARCH},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I1_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_CL_OOS_SEARCH},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
@@ -630,7 +630,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_CL_LTE_COMMON_INFO},
     {FAULT_ID_HRPD_OR_LTE_OOS_RECOVERY, I1_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_QUICK_BACK_TO_4G_STATISTIC_INFO},
 
-    /* CL多模搜网过程 Item:6 */
+    /* CL Item:6 */
     {FAULT_ID_CL_OOS_SEARCH, I1_UEPS_PID_MSCC, NAS_ERR_LOG_ALM_CL_OOS_SEARCH},
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_RESEL_TO_LTE_FAIL},
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_L2C_RESEL_FAIL},
@@ -638,10 +638,10 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_CL_OOS_SEARCH, UEPS_PID_HALMP, ID_CAS_HRPD_ERR_LOG_COMMON_INFO},
     {FAULT_ID_CL_OOS_SEARCH, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_EVDO_ALARM_ID},
 
-    /* AP定时查询触发物理层主动上报 Item:1 */
+    /* AP Item:1 */
     {FAULT_ID_AP_GET_PHY_COUNT_DATA_REQ, PID_UPHY_CHR_AGENT, UPHY_CHR_ERRLOG_1X_ALARM_ID},
 
-    /* 1x主叫失败 Item:25 */
+    /* 1x Item:25 */
     {FAULT_ID_1X_MO_CALL_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_MO_CALL_FAIL, I1_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_1X_CS_MO_CALL_EXCEPTION},
     {FAULT_ID_1X_MO_CALL_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
@@ -668,12 +668,12 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_MO_CALL_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_MO_CALL_FAIL, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 1x掉网恢复 Item:3 */
+    /* 1x Item:3 */
     {FAULT_ID_1X_OOS_RECOVERY, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_OOS_RECOVERY, UEPS_PID_XSD, NAS_ERR_LOG_ALM_1X_OOS_SEARCH},
     {FAULT_ID_1X_OOS_RECOVERY, UEPS_PID_1XCASM, ID_CAS_1X_ERR_LOG_ALARM_COMMON_INFO},
 
-    /* 1x掉网 Item:16 */
+    /* 1x Item:16 */
     {FAULT_ID_1X_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_OOS, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_OOS_PROCESS_INFO},
@@ -691,7 +691,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_OOS, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PILOT_SEARCH_FAIL},
     {FAULT_ID_1X_OOS, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
 
-    /* 1x掉话 Item:18 */
+    /* 1x Item:18 */
     {FAULT_ID_1X_CALL_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_CALL_EXCEPTION, I1_WUEPS_PID_TAF, NAS_ERR_LOG_ALM_1X_CS_CONVERSATION_EXCEPTION},
     {FAULT_ID_1X_CALL_EXCEPTION, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
@@ -711,7 +711,7 @@ int g_aulModem1ErrRept[][3]=
     {FAULT_ID_1X_CALL_EXCEPTION, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_PAGING_RESULT},
     {FAULT_ID_1X_CALL_EXCEPTION, CPROC_PID_1X_CM, CPROC_1X_ERR_LOG_QPCH_ABNORMAL},
 
-    /* 1x被叫失败 Item:24 */
+    /* 1x Item:24 */
     {FAULT_ID_1X_MT_CALL_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_COMMON_INFO},
     {FAULT_ID_1X_MT_CALL_FAIL, I1_WUEPS_PID_MMA, NAS_ERR_LOG_ALM_1X_CODEC_FAIL},
     {FAULT_ID_1X_MT_CALL_FAIL, UEPS_PID_XCC, NAS_ERR_LOG_ALM_1X_MT_REEST_INFO},
@@ -741,28 +741,28 @@ int g_aulModem1ErrRept[][3]=
 };
 
 /* TODO: python search flag end */
-/* Warning：代码自动生成区域，不能手工改动 end */
+/* Warning end */
 
 /*****************************************************************************
-  3 函数申明
+  3 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : ErrLog_GetErrReptAddrAndSize
- 功能描述  : 获取Errlog全局变量地址
- 输入参数  : ulModemId 主modem/副modem的id
+     : ErrLog_GetErrReptAddrAndSize
+   : Errlog
+   : ulModemId modem/modemid
 
- 输出参数  : pulErrLogAddr
+   : pulErrLogAddr
              pulsize
 
- 返 回 值  : 0：success  其他：fail
- 调用函数  :
- 被调函数  :
+     : 0success  fail
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年02月19日
-    作    者   : d00212987
-    修改内容   :  ERR LOG FAULT ID关联项目新增
+       :
+  1.       : 20160219
+           : d00212987
+       :  ERR LOG FAULT ID
 *****************************************************************************/
 VOS_INT32 ErrLog_GetErrReptAddrAndSize(
     VOS_UINT32                           ulModemId,
@@ -792,22 +792,22 @@ VOS_INT32 ErrLog_GetErrReptAddrAndSize(
 }
 
 /*****************************************************************************
- 函 数 名  : ErrLog_GetPidAndAlarmId
- 功能描述  : ulFaultId关联的pid/alarm_id查询接口
- 输入参数  : ulModemId 主modem/副modem的id
+     : ErrLog_GetPidAndAlarmId
+   : ulFaultIdpid/alarm_id
+   : ulModemId modem/modemid
              ulFaultId fault id
 
- 输出参数  : paustAlarmArray fault id相关联的pid alarm_id数组，内存空间由diag_om提供，最大长度2048，支持一个faultid关联256个alarm_id；
-             pulAlarmNum     fault id相关联的pid alarm_id数组成员个数，最大256；
+   : paustAlarmArray fault idpid alarm_iddiag_om2048faultid256alarm_id
+             pulAlarmNum     fault idpid alarm_id256
 
- 返 回 值  : 0：success  其他：fail
- 调用函数  :
- 被调函数  :
+     : 0success  fail
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年02月19日
-    作    者   : d00212987
-    修改内容   : ERR LOG FAULT ID关联项目新增
+       :
+  1.       : 20160219
+           : d00212987
+       : ERR LOG FAULT ID
 *****************************************************************************/
 VOS_INT32 ErrLog_GetPidAndAlarmId(
     VOS_UINT32                          ulModemId,
@@ -855,20 +855,20 @@ VOS_INT32 ErrLog_GetPidAndAlarmId(
 }
 
 /*****************************************************************************
- 函 数 名  : ErrLog_IsContainPID
- 功能描述  : 检查PID是否已经存在
- 输入参数  : PID数组已及大小
+     : ErrLog_IsContainPID
+   : PID
+   : PID
 
- 输出参数  : 是否存在
+   : 
 
- 返 回 值  : VOS_TRUE：存在  其他：VOS_FALSE
- 调用函数  :
- 被调函数  :
+     : VOS_TRUE  VOS_FALSE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年02月19日
-    作    者   : d00212987
-    修改内容   : ERR LOG FAULT ID关联项目新增
+       :
+  1.       : 20160219
+           : d00212987
+       : ERR LOG FAULT ID
 *****************************************************************************/
 VOS_BOOL ErrLog_IsContainPID(
     VOS_UINT32                         *PaulPidArray,
@@ -890,21 +890,21 @@ VOS_BOOL ErrLog_IsContainPID(
 }
 
 /*****************************************************************************
- 函 数 名  : ErrLog_GetErrlogPid
- 功能描述  : 提供errlog相关的pid列表，用于errlog开关控制给各pid发送消息
- 输入参数  : ulModemId 主modem/副modem的id
+     : ErrLog_GetErrlogPid
+   : errlogpiderrlogpid
+   : ulModemId modem/modemid
 
- 输出参数  : PaulPidArray   errlog相关联的pid数组，内存空间由diag_om提供，最大长度1024，支持256个pid；
-             pulPidNum      errlog相关联的pid数组成员个数，最大256；
+   : PaulPidArray   errlogpiddiag_om1024256pid
+             pulPidNum      errlogpid256
 
- 返 回 值  : 0：success  其他：fail
- 调用函数  :
- 被调函数  :
+     : 0success  fail
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年02月19日
-    作    者   : d00212987
-    修改内容   :  ERR LOG FAULT ID关联项目新增
+       :
+  1.       : 20160219
+           : d00212987
+       :  ERR LOG FAULT ID
 *****************************************************************************/
 VOS_INT32 ErrLog_GetErrlogPid(
     VOS_UINT32                          ulModemId,

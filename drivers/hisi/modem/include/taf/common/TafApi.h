@@ -50,7 +50,7 @@
 
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include "vos.h"
 #include "TafTypeDef.h"
@@ -69,7 +69,7 @@ extern "C" {
 
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
 typedef VOS_UINT8 MN_CALLBACK_TYPE_T;   /* Type of callback functions for event reporting*/
 #define MN_CALLBACK_CS_CALL             0 /* CS call */
@@ -95,103 +95,103 @@ typedef VOS_UINT8 MN_CALLBACK_TYPE_T;   /* Type of callback functions for event 
 
 #define  TAF_MAX_CLIENT_OF_ONE_PROC       OMA_CLIENT_ID_BUTT
 
-#define TAF_FREE                        0   /*未使用*/
-#define TAF_USED                        1   /*使用*/
+#define TAF_FREE                        0   /**/
+#define TAF_USED                        1   /**/
 
 
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
-#define TAF_CALL_APP_MSG_BASE           (0x0000)                                /* AT与CALL模块间消息起始 */
-#define TAF_MSG_APP_MSG_BASE            (0x1000)                                /* AT与MSG模块间消息起始 */
-#define TAF_SSA_APP_MSG_BASE            (0x2000)                                /* AT与SSA模块间消息起始 */
-#define TAF_MMA_APP_MSG_BASE            (0x3000)                                /* AT与MMA模块间消息起始 */
-#define TAF_APP_SET_MSG_BASE            (0x5000)                                /* AT与MN模块间设置消息起始 */
-#define TAF_APP_QRY_MSG_BASE            (0x6000)                                /* AT与MN模块间查询消息起始 */
-#define TAF_APS_MSG_BASE                (0x7000)                                /* AT/IMSA与PS适配模块间消息起始 */
-#define TAF_SPM_IMSA_MSG_BASE           (0x8000)                                /* IMSA与SPM模块间消息起始 */
-#define TAF_MSG_IMSA_MSG_BASE           (0x9000)                                /* IMSA与MSG模块间消息起始 */
-#define TAF_MMA_IMSA_MSG_BASE           (0xa000)                                /* IMSA与MMA模块间消息起始 */
-#define TAF_CALL_IMSA_MSG_BASE          (0xb000)                                /* CALL与IMSA公共消息起始 */
-#define TAF_IMSA_COMM_MSG_BASE          (0xc000)                                /* TAF与IMSA公共消息起始 */
-#define TAF_SSA_IMSA_MSG_BASE           (0xd000)                                /* IMSA与SSA模块间消息起始 */
-#define TAF_IMSA_MSG_MASK               (0xf000)                                /* IMSA与TAF间的MASK */
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
+    /* Added by y00245242 for VoLTE_PhaseI  , 2013-7-11, begin */
+#define TAF_CALL_APP_MSG_BASE           (0x0000)                                /* ATCALL */
+#define TAF_MSG_APP_MSG_BASE            (0x1000)                                /* ATMSG */
+#define TAF_SSA_APP_MSG_BASE            (0x2000)                                /* ATSSA */
+#define TAF_MMA_APP_MSG_BASE            (0x3000)                                /* ATMMA */
+#define TAF_APP_SET_MSG_BASE            (0x5000)                                /* ATMN */
+#define TAF_APP_QRY_MSG_BASE            (0x6000)                                /* ATMN */
+#define TAF_APS_MSG_BASE                (0x7000)                                /* AT/IMSAPS */
+#define TAF_SPM_IMSA_MSG_BASE           (0x8000)                                /* IMSASPM */
+#define TAF_MSG_IMSA_MSG_BASE           (0x9000)                                /* IMSAMSG */
+#define TAF_MMA_IMSA_MSG_BASE           (0xa000)                                /* IMSAMMA */
+#define TAF_CALL_IMSA_MSG_BASE          (0xb000)                                /* CALLIMSA */
+#define TAF_IMSA_COMM_MSG_BASE          (0xc000)                                /* TAFIMSA */
+#define TAF_SSA_IMSA_MSG_BASE           (0xd000)                                /* IMSASSA */
+#define TAF_IMSA_MSG_MASK               (0xf000)                                /* IMSATAFMASK */
+    /* Added by y00245242 for VoLTE_PhaseI  , 2013-7-11, end */
 
 
 
 
-/* 控制头填写 */
+/*  */
 #define TAF_API_CTRL_HEADER(pstCtrlHeader, ModuleId, ClientId, OpId) \
                             ((TAF_CTRL_STRU *)(pstCtrlHeader))->ulModuleId = ModuleId; \
                             ((TAF_CTRL_STRU *)(pstCtrlHeader))->usClientId = ClientId;\
                             ((TAF_CTRL_STRU *)(pstCtrlHeader))->ucOpId     = OpId
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 枚举名    : TAF_LMM_MULTIMODE_CARD_TYPE_ENUM
- 枚举说明  : 定义多模卡类型,临时为LMM提供接口查询当前卡类型,后续修改为消息通知
- 1.日    期   : 2017年07月15日
-   作    者   : h00360002
-   修改内容   : 新建
+     : TAF_LMM_MULTIMODE_CARD_TYPE_ENUM
+   : ,LMM,
+ 1.       : 20170715
+          : h00360002
+      : 
 *****************************************************************************/
 enum TAF_LMM_MULTIMODE_CARD_TYPE_ENUM
 {
-    TAF_LMM_CTCC_CDMA_SINGLE_MODE_CARD,                         /* 中国电信CDMA单模卡 */
-    TAF_LMM_CTCC_CDMA_DUAL_MODE_CARD,                           /* 中国电信CDMA双模卡 */
-    TAF_LMM_UNKONWN_CDMA_SINGLE_MODE_CARD,                      /* 未知CDMA单模卡 */
-    TAF_LMM_UNKONWN_CDMA_DUAL_MODE_CARD,                        /* 未知CDMA双模卡 */
-    TAF_LMM_SINGLE_MODE_USIM_CARD,                              /* (U)SIM单模卡 */
-    TAF_LMM_NO_CARD,                                            /* 无卡 */
+    TAF_LMM_CTCC_CDMA_SINGLE_MODE_CARD,                         /* CDMA */
+    TAF_LMM_CTCC_CDMA_DUAL_MODE_CARD,                           /* CDMA */
+    TAF_LMM_UNKONWN_CDMA_SINGLE_MODE_CARD,                      /* CDMA */
+    TAF_LMM_UNKONWN_CDMA_DUAL_MODE_CARD,                        /* CDMA */
+    TAF_LMM_SINGLE_MODE_USIM_CARD,                              /* (U)SIM */
+    TAF_LMM_NO_CARD,                                            /*  */
     TAF_LMM_MULTIMODE_CARD_TYPE_BUTT
 };
 typedef VOS_UINT8 TAF_LMM_MULTIMODE_CARD_TYPE_ENUM_UINT8;
 
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 /*****************************************************************************
- 结构名称: TAF_CTRL_STRU
- 结构说明: 控制结构
+ : TAF_CTRL_STRU
+ : 
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
+       :
+  1.       : 20130718
+           : Y00213812
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulModuleId;         /* 填入PID */
+    VOS_UINT32                          ulModuleId;         /* PID */
     VOS_UINT16                          usClientId;
     VOS_UINT8                           ucOpId;
     VOS_UINT8                           aucReserved[1];
 } TAF_CTRL_STRU;
 
 /*****************************************************************************
- 结构名称: TAF_PS_MSG_STRU
- 结构说明: PS域消息结构
+ : TAF_PS_MSG_STRU
+ : PS
 
- 修改历史      :
-  1.日    期   : 2013年07月18日
-    作    者   : Y00213812
-    修改内容   : 新增结构
+       :
+  1.       : 20130718
+           : Y00213812
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -200,30 +200,30 @@ typedef struct
 } TAF_PS_MSG_STRU;
 
 /*****************************************************************************
- 结构名称: TAF_SSA_MSG_STRU
- 结构说明: SS业务消息结构
+ : TAF_SSA_MSG_STRU
+ : SS
 
- 修改历史      :
-  1.日    期   : 2015年09月09日
-    作    者   : l00198894
-    修改内容   : 新增结构
+       :
+  1.       : 20150909
+           : l00198894
+       : 
 *****************************************************************************/
 typedef TAF_PS_MSG_STRU     TAF_SSA_MSG_STRU;
 
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 extern TAF_LMM_MULTIMODE_CARD_TYPE_ENUM_UINT8 TAF_LMM_GetCtccRoamCtrlMultiModeCardType(VOS_VOID);
 
