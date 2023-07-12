@@ -525,7 +525,7 @@ void dump_mdmap_field_init(void)
 *****************************************************************************/
 s32 bsp_dump_mem_init(void)
 {
-    if(g_dump_mem_init == 1)
+    if(g_dump_mem_init == 1)
     {
         return BSP_OK;
     }
