@@ -47,23 +47,23 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "AtCmdSimProc.h"
 #include "AtEventReport.h"
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID                 PS_FILE_ID_AT_CMD_SIM_PROC_C
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
 /*****************************************************************************
-  3 外部接口声明
+  3 
 *****************************************************************************/
 extern VOS_UINT32 AT_Hex2AsciiStrLowHalfFirst(
     VOS_UINT32                          ulMaxLength,
@@ -74,24 +74,24 @@ extern VOS_UINT32 AT_Hex2AsciiStrLowHalfFirst(
 );
 
 /*****************************************************************************
-  4 函数实现
+  4 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : At_IsSimSlotAllowed
- 功能描述  : 同一张硬卡不允许配置多个modem
- 输入参数  : VOS_UINT32 ulModem0,
+     : At_IsSimSlotAllowed
+   : modem
+   : VOS_UINT32 ulModem0,
              VOS_UINT32 ulModem1,
              VOS_UINT32 ulModem2
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年6月6日
-    作    者   : h00360002
-    修改内容   : 新生成函数
+       :
+  1.       : 201666
+           : h00360002
+       : 
 *****************************************************************************/
 VOS_UINT32 At_IsSimSlotAllowed(
     VOS_UINT32                          ulModem0Slot,
@@ -99,28 +99,28 @@ VOS_UINT32 At_IsSimSlotAllowed(
     VOS_UINT32                          ulModem2Slot
 )
 {
-    /* modem0和modem1配置成相同的硬卡,返回错误 */
+    /* modem0modem1, */
     if ( (ulModem0Slot == ulModem1Slot)
       && (SI_PIH_CARD_SLOT_2 != ulModem0Slot) )
     {
         return VOS_FALSE;
     }
 
-    /* modem0和modem2配置成相同的硬卡,返回错误 */
+    /* modem0modem2, */
     if ( (ulModem0Slot == ulModem2Slot)
       && (SI_PIH_CARD_SLOT_2 != ulModem0Slot) )
     {
         return VOS_FALSE;
     }
 
-    /* modem1和modem2配置成相同的硬卡,返回错误 */
+    /* modem1modem2, */
     if ( (ulModem1Slot == ulModem2Slot)
       && (SI_PIH_CARD_SLOT_2 != ulModem1Slot) )
     {
         return VOS_FALSE;
     }
 
-    /* 所有modem均对应空卡槽,返回错误 */
+    /* modem, */
     if ((SI_PIH_CARD_SLOT_2 == ulModem0Slot)
      && (SI_PIH_CARD_SLOT_2 == ulModem1Slot)
      && (SI_PIH_CARD_SLOT_2 == ulModem2Slot))
@@ -132,59 +132,59 @@ VOS_UINT32 At_IsSimSlotAllowed(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetSIMSlotPara
- 功能描述  : ^SIMSLOT, 设置modem连接的SIM卡槽，用于切换SIM卡槽
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
+     : At_SetSIMSlotPara
+   : ^SIMSLOT, modemSIMSIM
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT8
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
+       :
+  1.       : 201374
+           : s00190137
+       : 
 
-  2.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015611
+           : l00198894
+       : TSTS
 
-  3.日    期   : 2015年11月25日
-    作    者   : l00198894
-    修改内容   : DTS2015112506652: Dallas双卡形态切卡失败
+  3.       : 20151125
+           : l00198894
+       : DTS2015112506652: Dallas
 
-  4.日    期   : 2016年6月6日
-    作    者   : h00360002
-    修改内容   : DTS2016060602669新增
+  4.       : 201666
+           : h00360002
+       : DTS2016060602669
 *****************************************************************************/
 VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_SCI_CFG_STRU                 stSCICfg;
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 3)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数检查 */
+    /*  */
     if ( (0 == gastAtParaList[0].usParaLen)
        ||(0 == gastAtParaList[1].usParaLen) )
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 单modem不支持切换卡槽 */
+    /* modem */
 
-    /* 三卡形态第3个参数不能为空，其余形态默认为卡槽2 */
+    /* 32 */
     gastAtParaList[2].ulParaValue = SI_PIH_CARD_SLOT_2;
 
-    /* 参数检查 */
+    /*  */
     if (VOS_FALSE == At_IsSimSlotAllowed(gastAtParaList[0].ulParaValue,
                                          gastAtParaList[1].ulParaValue,
                                          gastAtParaList[2].ulParaValue) )
@@ -192,7 +192,7 @@ VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 从NV中读取当前SIM卡的SCI配置 */
+    /* NVSIMSCI */
     TAF_MEM_SET_S(&stSCICfg, sizeof(stSCICfg), 0x00, sizeof(stSCICfg));
     if (NV_OK != NV_ReadEx(MODEM_ID_0,
                             ev_NV_Item_SCI_DSDA_CFG,
@@ -204,34 +204,34 @@ VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
     }
 
     /*
-         根据用户设置的值修改card0位和card1位的值，在NV项中，这两项对应的bit位和取值含义如下:
-         card0: bit[8-10]：卡槽0使用的SCI接口
-             0：使用SCI0（默认值）
-             1：使用SCI1
-             2：使用SCI2
-             其余值：无效
-         card1:bit[11-13]：卡1槽使用的SCI接口
-             0：使用SCI0
-             1：使用SCI1（默认值）
-             2：使用SCI2
-             其余值：无效
-         card2:bit[14-16]：卡2槽使用的SCI接口
-             0：使用SCI0
-             1：使用SCI1
-             2：使用SCI2（默认值）
-             其余值：无效
+         card0card1NVbit:
+         card0: bit[8-10]0SCI
+             0SCI0
+             1SCI1
+             2SCI2
+             
+         card1:bit[11-13]1SCI
+             0SCI0
+             1SCI1
+             2SCI2
+             
+         card2:bit[14-16]2SCI
+             0SCI0
+             1SCI1
+             2SCI2
+             
      */
     stSCICfg.bitCard0   = gastAtParaList[0].ulParaValue;
     stSCICfg.bitCard1   = gastAtParaList[1].ulParaValue;
 
-    /* 针对双卡形态增加保护，bitCard2使用NV默认值，与底软处理适配 */
+    /* bitCard2NV */
     stSCICfg.bitCardNum = 2;
 
     stSCICfg.bitReserved0 = 0;
     stSCICfg.bitReserved1 = 0;
 
 
-    /* 将设置的SCI值保存到NV中 */
+    /* SCINV */
     if (NV_OK != NV_WriteEx(MODEM_ID_0,
                             ev_NV_Item_SCI_DSDA_CFG,
                             &stSCICfg,
@@ -245,29 +245,29 @@ VOS_UINT32 At_SetSIMSlotPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_QrySIMSlotPara
- 功能描述  : 查询SIM卡卡槽设置
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_QrySIMSlotPara
+   : SIM
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年7月4日
-    作    者   : s00190137
-    修改内容   : 新生成函数
+       :
+  1.       : 201374
+           : s00190137
+       : 
 
-  2.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015611
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_QrySIMSlotPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_SCI_CFG_STRU                 stSCICfg;
     VOS_UINT16                          usLength;
 
-    /*从NV中读取当前SIM卡的SCI配置*/
+    /*NVSIMSCI*/
     TAF_MEM_SET_S(&stSCICfg, sizeof(stSCICfg), 0x00, sizeof(stSCICfg));
     if (NV_OK != NV_ReadEx(MODEM_ID_0,
                             ev_NV_Item_SCI_DSDA_CFG,
@@ -297,9 +297,9 @@ VOS_UINT32 At_QrySIMSlotPara(VOS_UINT8 ucIndex)
 /*****************************************************************************
  Prototype      : At_Base16Decode
  Description    : ^HVSDH
- Input          : ucIndex --- 用户索引
+ Input          : ucIndex --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -346,24 +346,24 @@ VOS_UINT32 At_Base16Decode(VOS_CHAR *pcData, VOS_UINT32 ulDataLen, VOS_UINT8* pu
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetHvsstPara
- 功能描述  : (AT^HVSST)激活/去激活(U)SIM卡
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_SetHvsstPara
+   : (AT^HVSST)/(U)SIM
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年03月18日
-    作    者   : zhuli
-    修改内容   : vSIM卡项目新增函数
-  2.日    期   : 2014年10月9日
-    作    者   : zhuli
-    修改内容   : 根据青松产品要求，该接口不受宏控制
-  3.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 20130318
+           : zhuli
+       : vSIM
+  2.       : 2014109
+           : zhuli
+       : 
+  3.       : 2015610
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_SetHvsstPara(
     VOS_UINT8                           ucIndex
@@ -372,19 +372,19 @@ VOS_UINT32 At_SetHvsstPara(
     VOS_UINT32                              ulResult;
     SI_PIH_HVSST_SET_STRU                   stHvSStSet;
 
-    /* 命令类型检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex != 2)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数检查 */
+    /*  */
     if ( (0 == gastAtParaList[0].usParaLen)
       || (0 == gastAtParaList[1].usParaLen) )
     {
@@ -406,31 +406,31 @@ VOS_UINT32 At_SetHvsstPara(
         return AT_ERROR;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_HVSST_SET;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryHvsstPara
- 功能描述  : ^HVSST查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_QryHvsstPara
+   : ^HVSST
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年03月18日
-    作    者   : zhuli
-    修改内容   : vSIM卡项目新增函数
-  2.日    期   : 2014年10月9日
-    作    者   : zhuli
-    修改内容   : 根据青松产品要求，该接口不受宏控制
-  3.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 20130318
+           : zhuli
+       : vSIM
+  2.       : 2014109
+           : zhuli
+       : 
+  3.       : 2015611
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_QryHvsstPara(
     VOS_UINT8                           ucIndex
@@ -447,29 +447,29 @@ VOS_UINT32 At_QryHvsstPara(
         return AT_ERROR;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_HVSST_QRY;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : At_HvsstQueryCnf
- 功能描述  : ^HVSST查询结果打印
- 输入参数  : SI_PIH_EVENT_INFO_STRU *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
+     : At_HvsstQueryCnf
+   : ^HVSST
+   : SI_PIH_EVENT_INFO_STRU *pstEvent
+   : 
+     : VOS_UINT16
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年3月18日
-    作    者   : z00100318
-    修改内容   : 新生成函数
+       :
+  1.       : 2013318
+           : z00100318
+       : 
 
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015610
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT16 At_HvsstQueryCnf(
     VOS_UINT8                           ucIndex,
@@ -491,7 +491,7 @@ VOS_UINT16 At_HvsstQueryCnf(
         return usLength;
     }
 
-    /* 从NV中读取当前SIM卡的SCI配置 */
+    /* NVSIMSCI */
     TAF_MEM_SET_S(&stSCICfg, sizeof(stSCICfg), 0x00, sizeof(stSCICfg));
     if (NV_OK != NV_ReadEx(MODEM_ID_0,
                             ev_NV_Item_SCI_DSDA_CFG,
@@ -538,57 +538,57 @@ VOS_UINT16 At_HvsstQueryCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetSciChgPara
- 功能描述  : ^SCICHG设置函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_SetSciChgPara
+   : ^SCICHG
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
+       :
+  1.      : 2014109
+          : zhuli
+      : 
 
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015610
+           : l00198894
+       : TSTS
 
-  3.日    期   : 2016年6月6日
-    作    者   : h00360002
-    修改内容   : DTS2016060602669新增
+  3.       : 201666
+           : h00360002
+       : DTS2016060602669
 *****************************************************************************/
 VOS_UINT32 At_SetSciChgPara(
     VOS_UINT8                           ucIndex
 )
 {
     VOS_UINT32                          ulResult;
-    /* 命令类型检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 3)
     {
         return AT_TOO_MANY_PARA;
     }
 
-    /* 参数检查 */
+    /*  */
     if ( (0 == gastAtParaList[0].usParaLen)
        ||(0 == gastAtParaList[1].usParaLen) )
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 单modem不支持卡槽切换 */
+    /* modem */
 
-    /* 三卡形态第3个参数不能为空，其余形态默认为卡槽2 */
+    /* 32 */
     gastAtParaList[2].ulParaValue = SI_PIH_CARD_SLOT_2;
 
-    /* 任意两个Modem不能同时配置为同一卡槽 */
+    /* Modem */
     if ( (gastAtParaList[0].ulParaValue == gastAtParaList[1].ulParaValue)
       || (gastAtParaList[0].ulParaValue == gastAtParaList[2].ulParaValue)
       || (gastAtParaList[1].ulParaValue == gastAtParaList[2].ulParaValue) )
@@ -608,29 +608,29 @@ VOS_UINT32 At_SetSciChgPara(
         return AT_CME_PHONE_FAILURE;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_SCICHG_SET;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryHvsstPara
- 功能描述  : ^SCICHG查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_QryHvsstPara
+   : ^SCICHG
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期  : 2014年10月9日
-    作    者  : zhuli
-    修改内容  : 青松产品天际通功能增加
+       :
+  1.      : 2014109
+          : zhuli
+      : 
 
-  2.日    期   : 2015年6月10日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015610
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_QrySciChgPara(
     VOS_UINT8                           ucIndex
@@ -647,26 +647,26 @@ VOS_UINT32 At_QrySciChgPara(
         return AT_ERROR;
     }
 
-    /* 设置AT模块实体的状态为等待异步返回 */
+    /* AT */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_SCICHG_QRY;
 
     return AT_WAIT_ASYNC_RETURN;
 }
 
 /*****************************************************************************
- 函 数 名  : At_SciCfgQueryCnf
- 功能描述  : TSTS
- 输入参数  : VOS_UINT8                           ucIndex
+     : At_SciCfgQueryCnf
+   : TSTS
+   : VOS_UINT8                           ucIndex
              SI_PIH_EVENT_INFO_STRU             *pstEvent
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT16
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月11日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015611
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT16 At_SciCfgQueryCnf(
@@ -690,10 +690,10 @@ VOS_UINT16 At_SciCfgQueryCnf(
 
 /*****************************************************************************
  Prototype      : AT_UiccAuthCnf
- Description    : 命令返回
- Input          : pstEvent --- 消息内容
+ Description    : 
+ Input          : pstEvent --- 
  Output         :
- Return Value   : 数据长度
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -764,10 +764,10 @@ VOS_UINT16 AT_UiccAuthCnf(TAF_UINT8 ucIndex, SI_PIH_EVENT_INFO_STRU *pstEvent)
 
 /*****************************************************************************
  Prototype      : AT_UiccAccessFileCnf
- Description    : 命令返回
- Input          : pstEvent --- 消息内容
+ Description    : 
+ Input          : pstEvent --- 
  Output         :
- Return Value   : 数据长度
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -795,12 +795,12 @@ VOS_UINT16 AT_UiccAccessFileCnf(TAF_UINT8 ucIndex, SI_PIH_EVENT_INFO_STRU *pstEv
 
 /********************************************************************
   Function:       At_CrlaFilePathCheck
-  Description:    执行CRLA命令输入的<path>参数(文件路径进行检查)
-  Input:          TAF_UINT32 ulEfId:文件ID
-                  TAF_UINT8 *pucFilePath:文件路径
-                  TAF_UINT16 *pusPathLen:文件路径长度
-  Output:         无
-  Return:         AT_SUCCESS：成功，其他为失败
+  Description:    CRLA<path>()
+  Input:          TAF_UINT32 ulEfId:ID
+                  TAF_UINT8 *pucFilePath:
+                  TAF_UINT16 *pusPathLen:
+  Output:         
+  Return:         AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -831,7 +831,7 @@ TAF_UINT32 At_CrlaFilePathCheck(
         ausTmpPath[i] = ((pucFilePath[i*2]<<0x08)&0xFF00) + pucFilePath[(i*2)+1];
     }
 
-    /* 如果路径不是以3F00开始，需要添加3F00作开头 */
+    /* 3F003F00 */
     if (MFID != ausTmpPath[0])
     {
         if (USIMM_MAX_PATH_LEN == usPathLen)
@@ -852,7 +852,7 @@ TAF_UINT32 At_CrlaFilePathCheck(
     {
         usLen = 1;
     }
-    /* 4F文件要在5F下，路径长度为3 */
+    /* 4F5F3 */
     else if ((ulEfId & 0xFF00) == EFIDUNDERMFDFDF)
     {
         if ((usLen != 3)
@@ -862,7 +862,7 @@ TAF_UINT32 At_CrlaFilePathCheck(
             return AT_CME_INCORRECT_PARAMETERS;
         }
     }
-    /* 6F文件要在7F下，路径长度为2 */
+    /* 6F7F2 */
     else if ((ulEfId & 0xFF00) == EFIDUNDERMFDF)
     {
         if ((usLen != 2)
@@ -885,10 +885,10 @@ TAF_UINT32 At_CrlaFilePathCheck(
 
 /********************************************************************
   Function:       At_CrlaApduParaCheck
-  Description:    执行CRLA命令输入的参数的匹配检查
-  Input:          无
-  Output:         无
-  Return:         AT_SUCCESS：成功，其他为失败
+  Description:    CRLA
+  Input:          
+  Output:         
+  Return:         AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -899,7 +899,7 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
 {
     TAF_UINT16                          usFileTag;
 
-    /* 命令类型参数检查，第二个参数不能为空 */
+    /*  */
     if (0 == gastAtParaList[1].usParaLen)
     {
         AT_ERR_LOG("At_CrlaApduParaCheck: command type null");
@@ -907,7 +907,7 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 除STATUS命令外，文件ID输入不能为空 */
+    /* STATUSID */
     if ((0 == gastAtParaList[2].ulParaValue)
         && (USIMM_STATUS != gastAtParaList[1].ulParaValue))
     {
@@ -916,10 +916,10 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 获取文件ID前两位 */
+    /* ID */
     usFileTag   = (gastAtParaList[2].ulParaValue >> 8) & (0x00FF);
 
-    /* 输入的文件ID必须是EF文件，前两位不可以是3F/5F/7F */
+    /* IDEF3F/5F/7F */
     if ((MFLAB == usFileTag)
        || (DFUNDERMFLAB == usFileTag)
        || (DFUNDERDFLAB == usFileTag))
@@ -929,7 +929,7 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* <P1><P2><P3>这三个参数全部为空 */
+    /* <P1><P2><P3> */
     if ((0 == gastAtParaList[3].usParaLen)
         && (0 == gastAtParaList[4].usParaLen)
         && (0 == gastAtParaList[5].usParaLen))
@@ -937,7 +937,7 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
         return AT_SUCCESS;
     }
 
-    /* <P1><P2><P3>这三个参数全部不为空 */
+    /* <P1><P2><P3> */
     if ((0 != gastAtParaList[3].usParaLen)
         && (0 != gastAtParaList[4].usParaLen)
         && (0 != gastAtParaList[5].usParaLen))
@@ -945,17 +945,17 @@ TAF_UINT32 At_CrlaApduParaCheck(VOS_VOID)
         return AT_SUCCESS;
     }
 
-    /* 其它情况下属于输入AT命令参数不完整 */
+    /* AT */
     return AT_CME_INCORRECT_PARAMETERS;
 
 }
 
 /********************************************************************
   Function:       At_CrlaFilePathParse
-  Description:    执行CRSM命令输入的路径进行解析
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:          AT_SUCCESS：成功，其他为失败
+  Description:    CRSM
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:          AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -968,14 +968,14 @@ TAF_UINT32 At_CrlaFilePathParse(
 {
     TAF_UINT32                          ulResult;
 
-    /* 如果词法解析器解析第八个参数为空，说明没有文件路径输入，直接返回成功 */
+    /*  */
     if ((0 == gastAtParaList[7].usParaLen)
      && (VOS_NULL_WORD != pstCommand->usEfId))
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 在转换前输入的文件路径长度必须是4的整数倍 */
+    /* 4 */
     if (0 != (gastAtParaList[7].usParaLen % 4))
     {
         AT_ERR_LOG("At_CrlaFilePathParse: Path error");
@@ -983,7 +983,7 @@ TAF_UINT32 At_CrlaFilePathParse(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /*将输入的字符串转换成十六进制数组*/
+    /**/
     if(AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[7].aucPara, &gastAtParaList[7].usParaLen))
     {
         AT_ERR_LOG("At_CrlaFilePathParse: At_AsciiNum2HexString error.");
@@ -991,7 +991,7 @@ TAF_UINT32 At_CrlaFilePathParse(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 如果有填写文件ID和路径，要做文件路径检查，输入的路径长度以U16为单位 */
+    /* IDU16 */
     ulResult = At_CrlaFilePathCheck((TAF_UINT16)gastAtParaList[2].ulParaValue,
                                     gastAtParaList[7].aucPara,
                                    &gastAtParaList[7].usParaLen);
@@ -1003,10 +1003,10 @@ TAF_UINT32 At_CrlaFilePathParse(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 填充文件路径和长度 */
+    /*  */
     pstCommand->usPathLen   = gastAtParaList[7].usParaLen;
 
-    /* 文件路径长度是U16为单位的，路径拷贝的长度要乘2 */
+    /* U162 */
     TAF_MEM_CPY_S(pstCommand->ausPath, sizeof(pstCommand->ausPath), gastAtParaList[7].aucPara, (VOS_SIZE_T)(gastAtParaList[7].usParaLen*sizeof(VOS_UINT16)));
 
     return AT_SUCCESS;
@@ -1014,10 +1014,10 @@ TAF_UINT32 At_CrlaFilePathParse(
 
 /********************************************************************
   Function:       At_CrlaParaStatusCheck
-  Description:    执行CRLA命令对STATUS命令的参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:          AT_SUCCESS：成功，其他为失败
+  Description:    CRLASTATUS
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:          AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -1028,7 +1028,7 @@ TAF_UINT32 At_CrlaParaStatusCheck(
     SI_PIH_CRLA_STRU                   *pstCommand
 )
 {
-    /* STATUS命令如果没有输入文件ID，就不需要做选文件操作，直接发STATUS命令 */
+    /* STATUSIDSTATUS */
     if (0 == gastAtParaList[2].ulParaValue)
     {
         pstCommand->usEfId = VOS_NULL_WORD;
@@ -1038,7 +1038,7 @@ TAF_UINT32 At_CrlaParaStatusCheck(
         pstCommand->usEfId = (TAF_UINT16)gastAtParaList[2].ulParaValue;
     }
 
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
@@ -1049,10 +1049,10 @@ TAF_UINT32 At_CrlaParaStatusCheck(
 
 /********************************************************************
   Function:       At_CrlaParaReadBinaryCheck
-  Description:    执行CRLA命令对Read Binary命令的参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:          AT_SUCCESS：成功，其他为失败
+  Description:    CRLARead Binary
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:          AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -1063,23 +1063,23 @@ TAF_UINT32 At_CrlaParaReadBinaryCheck(
     SI_PIH_CRLA_STRU                   *pstCommand
 )
 {
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
     pstCommand->usEfId      =   (TAF_UINT16)gastAtParaList[2].ulParaValue;
     pstCommand->enCmdType   =   USIMM_READ_BINARY;
 
-    /* 如果有输入文件路径需要检查输入参数 */
+    /*  */
     return At_CrlaFilePathParse(pstCommand);
 }
 
 /********************************************************************
   Function:       At_CrlaParaReadRecordCheck
-  Description:    执行CRLA命令对Read Record的参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:         AT_SUCCESS：成功，其他为失败
+  Description:    CRLARead Record
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:         AT_SUCCESS
   Others:
   History        : ---
   1.Date         : 2012-05-04
@@ -1090,23 +1090,23 @@ TAF_UINT32 At_CrlaParaReadRecordCheck(
     SI_PIH_CRLA_STRU                   *pstCommand
 )
 {
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
     pstCommand->usEfId      =   (TAF_UINT16)gastAtParaList[2].ulParaValue;
     pstCommand->enCmdType   =   USIMM_READ_RECORD;
 
-    /* 如果有输入文件路径需要检查输入参数 */
+    /*  */
     return At_CrlaFilePathParse(pstCommand);
 }
 
 /********************************************************************
   Function:       At_CrlaParaGetRspCheck
-  Description:    执行CRLA命令的Get Response命令参数检查
+  Description:    CRLAGet Response
   Input:
-  Output:         *pstCommand：CRLA命令的数据结构?
-  Return:         AT_SUCCESS：成功，其他为失败
+  Output:         *pstCommandCRLA?
+  Return:         AT_SUCCESS
   Others:
   History        : ---
    1.Date        : 2015-04-08
@@ -1117,7 +1117,7 @@ VOS_UINT32 At_CrlaParaGetRspCheck(
     SI_PIH_CRLA_STRU                   *pstCommand
 )
 {
-    /* 参数个数不能少于2个，至少要有命令类型和文件ID */
+    /* 2ID */
     if (gucAtParaIndex < 2)
     {
         AT_ERR_LOG("At_CrlaParaGetRspCheck: Para less than 2.");
@@ -1125,23 +1125,23 @@ VOS_UINT32 At_CrlaParaGetRspCheck(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
     pstCommand->usEfId      =   (TAF_UINT16)gastAtParaList[2].ulParaValue;
     pstCommand->enCmdType   =   USIMM_GET_RESPONSE;
 
-    /* 如果有输入文件路径需要检查输入参数 */
+    /*  */
     return At_CrlaFilePathParse(pstCommand);
 }
 
 /********************************************************************
   Function:       At_CrlaParaUpdateBinaryCheck
-  Description:    执行CRLA命令的Update Binary参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:         AT_SUCCESS：成功，其他为失败
+  Description:    CRLAUpdate Binary
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:         AT_SUCCESS
   Others:
   History        : ---
    1.Date        : 2015-04-08
@@ -1152,7 +1152,7 @@ VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
     SI_PIH_CRLA_STRU                       *pstCommand
 )
 {
-    /* Update Binary命令至少要有6个参数，可以没有文件路径 */
+    /* Update Binary6 */
     if (gucAtParaIndex < 6)
     {
         AT_ERR_LOG("At_CrlaParaUpdateBinaryCheck: Para less than 6.");
@@ -1160,14 +1160,14 @@ VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
     pstCommand->usEfId      =   (TAF_UINT16)gastAtParaList[2].ulParaValue;
     pstCommand->enCmdType   =   USIMM_UPDATE_BINARY;
 
-    /* 第六个参数输入的<data>字符串在转换前数据长度必须是2的倍数且不能为0 */
+    /* <data>20 */
     if ((0 != (gastAtParaList[6].usParaLen % 2))
         || (0 == gastAtParaList[6].usParaLen))
     {
@@ -1190,7 +1190,7 @@ VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 设置<data>，其长度由<data>参数输入确定，P3参数照常下发，不关心<data>的长度是否和P3的值匹配 */
+    /* <data><data>P3<data>P3 */
     TAF_MEM_CPY_S((TAF_VOID*)pstCommand->aucContent,
                sizeof(pstCommand->aucContent),
                (TAF_VOID*)gastAtParaList[6].aucPara,
@@ -1201,10 +1201,10 @@ VOS_UINT32 At_CrlaParaUpdateBinaryCheck(
 
 /********************************************************************
   Function:       At_CrlaParaUpdateRecordCheck
-  Description:    执行CRSM命令的参数检查
-  Input:          无
-  Output:         *pstCommand：CRSM命令的数据结构
-  Return:         AT_SUCCESS：成功，其他为失败
+  Description:    CRSM
+  Input:          
+  Output:         *pstCommandCRSM
+  Return:         AT_SUCCESS
   Others:
   History        : ---
    1.Date        : 2015-04-08
@@ -1216,7 +1216,7 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
 )
 {
 
-    /* Update Binary命令至少要有6个参数，可以没有文件路径 */
+    /* Update Binary6 */
     if (gucAtParaIndex < 6)
     {
         AT_ERR_LOG("At_CrlaParaUpdateRecordCheck: Para less than 6.");
@@ -1224,14 +1224,14 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 填写数据结构中的<P1><P2><P3>对应的IE项 */
+    /* <P1><P2><P3>IE */
     pstCommand->ucP1        =   (TAF_UINT8)gastAtParaList[3].ulParaValue;
     pstCommand->ucP2        =   (TAF_UINT8)gastAtParaList[4].ulParaValue;
     pstCommand->ucP3        =   (TAF_UINT8)gastAtParaList[5].ulParaValue;
     pstCommand->usEfId      =   (TAF_UINT16)gastAtParaList[2].ulParaValue;
     pstCommand->enCmdType   =   USIMM_UPDATE_RECORD;
 
-     /* 第六个参数输入的<data>字符串数据长度必须是2的倍数且不能为0 */
+     /* <data>20 */
     if ((0 != (gastAtParaList[6].usParaLen % 2))
         || (0 == gastAtParaList[6].usParaLen))
     {
@@ -1247,7 +1247,7 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 防止因为数据长度过长导致单板复位 */
+    /*  */
     if (gastAtParaList[6].usParaLen > sizeof(pstCommand->aucContent))
     {
         AT_ERR_LOG("At_CrlaParaUpdateRecordCheck: gastAtParaList[6] too long");
@@ -1255,7 +1255,7 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 设置<data>，其长度由<data>参数输入确定，P3参数照常下发，不关心<data>的长度是否和P3的值匹配 */
+    /* <data><data>P3<data>P3 */
     TAF_MEM_CPY_S((TAF_VOID*)pstCommand->aucContent,
                sizeof(pstCommand->aucContent),
                (TAF_VOID*)gastAtParaList[6].aucPara,
@@ -1267,9 +1267,9 @@ VOS_UINT32 At_CrlaParaUpdateRecordCheck (
 /*****************************************************************************
  Prototype      : At_SetCrlaPara
  Description    : +CRLA=<sessionid>,<command>[,<fileid>[,<P1>,<P2>,<P3>[,<data>,<pathid>]]]
- Input          : ucIndex --- 用户索引
+ Input          : ucIndex --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -1283,7 +1283,7 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
     SI_PIH_CRLA_STRU                    stCommand;
     TAF_UINT32                          ulResult;
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 8)
     {
         AT_ERR_LOG("At_SetCrlaPara: too many para");
@@ -1291,7 +1291,7 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 如果有输入<P1><P2><P3>，这三个参数不能只填写部分参数 */
+    /* <P1><P2><P3> */
     if (AT_SUCCESS != At_CrlaApduParaCheck())
     {
        AT_ERR_LOG("At_SetCrlaPara: At_CrlaApduParaCheck fail.");
@@ -1299,7 +1299,7 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
        return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stCommand, sizeof(stCommand), 0x00, sizeof(SI_PIH_CRLA_STRU));
 
     stCommand.ulSessionID = gastAtParaList[0].ulParaValue;
@@ -1335,12 +1335,12 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 执行命令操作 */
+    /*  */
     if (TAF_SUCCESS == SI_PIH_CrlaSetReq(gastAtClientTab[ucIndex].usClientId, 0,&stCommand))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CRLA_SET;
-        return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        return AT_WAIT_ASYNC_RETURN;    /*  */
     }
     else
     {
@@ -1349,47 +1349,47 @@ TAF_UINT32 At_SetCrlaPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryCardSession
- 功能描述  : ^CARD_SESSION=<enable>[,<interval>]
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_QryCardSession
+   : ^CARD_SESSION=<enable>[,<interval>]
+   : ucIndex --- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年2月2日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 201522
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 At_QryCardSession(VOS_UINT8 ucIndex)
 {
     if (TAF_SUCCESS == SI_PIH_CardSessionQuery(gastAtClientTab[ucIndex].usClientId, gastAtClientTab[ucIndex].opId))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CARDSESSION_QRY;
-        return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        return AT_WAIT_ASYNC_RETURN;    /*  */
     }
 
     AT_WARN_LOG("At_QryCardSession: SI_PIH_CardSessionQuery fail.");
 
-    /* 返回命令处理挂起状态 */
+    /*  */
     return AT_ERROR;
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryCardSession
- 功能描述  : ^CARDVOLTAGE?
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_QryCardSession
+   : ^CARDVOLTAGE?
+   : ucIndex --- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年01月20日
-    作    者   : x00306642
-    修改内容   : 新生成函数
+       :
+  1.       : 20170120
+           : x00306642
+       : 
 *****************************************************************************/
 TAF_UINT32 At_QryCardVoltagePara(TAF_UINT8 ucIndex)
 {
@@ -1412,9 +1412,9 @@ TAF_UINT32 At_QryCardVoltagePara(TAF_UINT8 ucIndex)
 /*****************************************************************************
  Prototype      : At_SetPrivateCglaPara
  Description    : ^CGLA=<sessionid>,<length>,<command>
- Input          : ucIndex --- 用户索引
+ Input          : ucIndex --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -1427,31 +1427,31 @@ TAF_UINT32 At_SetPrivateCglaPara(TAF_UINT8 ucIndex)
 {
     SI_PIH_CGLA_COMMAND_STRU    stCglaCmd;
 
-    /* 参数检查 */
+    /*  */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if(3 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* <length>需要为2的整数倍 */
+    /* <length>2 */
     if(0 != (gastAtParaList[1].ulParaValue % 2))
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 字符串长度不为2的整数倍 */
+    /* 2 */
     if(0 != (gastAtParaList[2].usParaLen % 2))
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 将字符串转换为16进制数组 */
+    /* 16 */
     if(AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[2].aucPara, &gastAtParaList[2].usParaLen))
     {
         AT_ERR_LOG("At_SetCglaCmdPara: At_AsciiNum2HexString fail.");
@@ -1459,7 +1459,7 @@ TAF_UINT32 At_SetPrivateCglaPara(TAF_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* length字段是实际命令长度的2倍 */
+    /* length2 */
     if(gastAtParaList[1].ulParaValue != (TAF_UINT32)(gastAtParaList[2].usParaLen * 2))
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -1469,30 +1469,30 @@ TAF_UINT32 At_SetPrivateCglaPara(TAF_UINT8 ucIndex)
     stCglaCmd.ulLen         = gastAtParaList[2].usParaLen;
     stCglaCmd.pucCommand    = gastAtParaList[2].aucPara;
 
-    /* 执行命令操作 */
+    /*  */
     if(AT_SUCCESS == SI_PIH_PrivateCglaSetReq(gastAtClientTab[ucIndex].usClientId, 0, &stCglaCmd))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_PRIVATECGLA_REQ;
-        return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        return AT_WAIT_ASYNC_RETURN;    /*  */
     }
 
     return AT_ERROR;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetPrfApp
- 功能描述  : 设置CDMA或者GUTL应用优先级
- 输入参数  : enCardApp 设置谁优先 GUTL/CDMA
- 输出参数  : enCardAPP NV设置应用类型
- 返 回 值  : enModemId 当前通道模式
- 调用函数  :
- 被调函数  :
+     : AT_SetPrfApp
+   : CDMAGUTL
+   : enCardApp  GUTL/CDMA
+   : enCardAPP NV
+     : enModemId 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月20日
-    作    者   : d00212987
-    修改内容   : 新生成函数
+       :
+  1.       : 2015620
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT32 AT_SetPrfApp(
     AT_CARDAPP_ENUM_UINT32              enCardApp,
@@ -1519,7 +1519,7 @@ TAF_UINT32 AT_SetPrfApp(
         return AT_ERROR;
     }
 
-    /* 设置CDMA应用优先 */
+    /* CDMA */
     for (i = 0; i < stAppInfo.ucAppNum; i++)
     {
         if (enCardAPP == stAppInfo.aenAppList[i])
@@ -1532,7 +1532,7 @@ TAF_UINT32 AT_SetPrfApp(
 
     if (VOS_FALSE == ulAppHit)
     {
-        /* 没有找到，插入到最前边 */
+        /*  */
         if (USIMM_NV_CARDAPP_BUTT <= stAppInfo.ucAppNum)
         {
             ulRslt = AT_ERROR;
@@ -1557,7 +1557,7 @@ TAF_UINT32 AT_SetPrfApp(
     {
         if (0 != ulAppOrderPos)
         {
-            /* 从第一个起，往后移动i个*/
+            /* i*/
             VOS_MemMove_s((VOS_VOID *)&stAppInfo.aenAppList[1],
                         sizeof(stAppInfo.aenAppList) - 1 * sizeof(stAppInfo.aenAppList[1]),
                         (VOS_VOID *)&stAppInfo.aenAppList[0],
@@ -1584,9 +1584,9 @@ TAF_UINT32 AT_SetPrfApp(
 /*****************************************************************************
  Prototype      : At_SetPrfAppPara
  Description    : ^PRFAPP=<N>
- Input          : ucIndex --- 用户索引
+ Input          : ucIndex --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -1600,7 +1600,7 @@ TAF_UINT32 At_SetPrfAppPara(TAF_UINT8 ucIndex)
     MODEM_ID_ENUM_UINT16                enModemId;
     TAF_UINT32                          ulRslt = AT_OK;
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 1)
     {
         AT_ERR_LOG("At_SetPrfAppPara: too many para");
@@ -1608,7 +1608,7 @@ TAF_UINT32 At_SetPrfAppPara(TAF_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 根据AT命令通道号得到MODEM ID */
+    /* ATMODEM ID */
     if (VOS_OK != AT_GetModemIdFromClient(ucIndex, &enModemId))
     {
         AT_ERR_LOG("AT_SetRATCombinePara: Get modem id fail.");
@@ -1629,15 +1629,15 @@ TAF_UINT32 At_SetPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryPrfAppPara
- 功能描述  : ^PRFAPP查询命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
-  1.日    期   : 2015年06月13日
-    作    者   : H00300778
-    修改内容   : 新增函数
+     : At_QryPrfAppPara
+   : ^PRFAPP
+   : ucIndex - 
+   : 
+     : TAF_UINT32
+       :
+  1.       : 20150613
+           : H00300778
+       : 
 *****************************************************************************/
 TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
 {
@@ -1648,7 +1648,7 @@ TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
     MODEM_ID_ENUM_UINT16                enModemId;
     VOS_UINT16                          usLength;
 
-    /* 根据AT命令通道号得到MODEM ID */
+    /* ATMODEM ID */
     if (VOS_OK != AT_GetModemIdFromClient(ucIndex, &enModemId))
     {
         AT_ERR_LOG("At_QryPrfAppPara: Get modem id fail.");
@@ -1668,7 +1668,7 @@ TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
     ulCdmaHit = VOS_FALSE;
     ulGutlHit = VOS_FALSE;
 
-    /* 查找CDMA和GUTL应用在NV项中的位置 */
+    /* CDMAGUTLNV */
     for (i = 0; i < stAppInfo.ucAppNum; i++)
     {
         if (USIMM_NV_GUTL_APP == stAppInfo.aenAppList[i])
@@ -1717,15 +1717,15 @@ TAF_UINT32 At_QryPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestPrfAppPara
- 功能描述  : ^PRFAPP测试命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
-  1.日    期   : 2015年06月13日
-    作    者   : H00300778
-    修改内容   : 新增函数
+     : At_TestPrfAppPara
+   : ^PRFAPP
+   : ucIndex - 
+   : 
+     : TAF_UINT32
+       :
+  1.       : 20150613
+           : H00300778
+       : 
 *****************************************************************************/
 TAF_UINT32 At_TestPrfAppPara(TAF_UINT8 ucIndex)
 {
@@ -1745,18 +1745,18 @@ TAF_UINT32 At_TestPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetUiccPrfApp
- 功能描述  : 设置CDMA或者GUTL应用优先级
- 输入参数  : enCardApp 设置谁优先 GUTL/CDMA
- 输出参数  : enCardAPP NV设置应用类型
- 返 回 值  : enModemId 当前通道模式
- 调用函数  :
- 被调函数  :
+     : AT_SetUiccPrfApp
+   : CDMAGUTL
+   : enCardApp  GUTL/CDMA
+   : enCardAPP NV
+     : enModemId 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年06月6日
-    作    者   : d00212987
-    修改内容   : 新增函数
+       :
+  1.       : 2016066
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT32 AT_SetUiccPrfApp(
     AT_CARDAPP_ENUM_UINT32              enCardApp,
@@ -1783,7 +1783,7 @@ TAF_UINT32 AT_SetUiccPrfApp(
         return AT_ERROR;
     }
 
-    /* 设置CDMA应用优先 */
+    /* CDMA */
     for (i = 0; i < stAppInfo.ucAppNum; i++)
     {
         if (enCardAPP == stAppInfo.aenAppList[i])
@@ -1796,7 +1796,7 @@ TAF_UINT32 AT_SetUiccPrfApp(
 
     if (VOS_FALSE == ulAppHit)
     {
-        /* 没有找到，插入到最前边 */
+        /*  */
         if (USIMM_NV_CARDAPP_BUTT <= stAppInfo.ucAppNum)
         {
             ulRslt = AT_ERROR;
@@ -1821,7 +1821,7 @@ TAF_UINT32 AT_SetUiccPrfApp(
     {
         if (0 != ulAppOrderPos)
         {
-            /* 从第一个起，往后移动i个*/
+            /* i*/
             (VOS_VOID)VOS_MemMove_s((VOS_VOID *)&stAppInfo.aenAppList[1],
                                      sizeof(stAppInfo.aenAppList) - 1 * sizeof(stAppInfo.aenAppList[1]),
                                      (VOS_VOID *)&stAppInfo.aenAppList[0],
@@ -1846,23 +1846,23 @@ TAF_UINT32 AT_SetUiccPrfApp(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetUiccPrfAppPara
- 功能描述  : ^UICCPRFAPP设置命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
+     : At_SetUiccPrfAppPara
+   : ^UICCPRFAPP
+   : ucIndex - 
+   : 
+     : TAF_UINT32
 
- 修改历史      :
-  1.日    期   : 2016年06月6日
-    作    者   : d00212987
-    修改内容   : 新增函数
+       :
+  1.       : 2016066
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT32 At_SetUiccPrfAppPara(TAF_UINT8 ucIndex)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
     TAF_UINT32                          ulRslt = AT_OK;
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 1)
     {
         AT_ERR_LOG("At_SetUiccPrfAppPara: too many para");
@@ -1870,7 +1870,7 @@ TAF_UINT32 At_SetUiccPrfAppPara(TAF_UINT8 ucIndex)
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 根据AT命令通道号得到MODEM ID */
+    /* ATMODEM ID */
     if (VOS_OK != AT_GetModemIdFromClient(ucIndex, &enModemId))
     {
         AT_ERR_LOG("At_SetUiccPrfAppPara: Get modem id fail.");
@@ -1891,16 +1891,16 @@ TAF_UINT32 At_SetUiccPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_QryUiccPrfAppPara
- 功能描述  : ^UICCPRFAPP查询命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
- 修改历史      :
-  1.日    期   : 2016年06月6日
-    作    者   : d00212987
-    修改内容   : 新增函数
+     : At_QryUiccPrfAppPara
+   : ^UICCPRFAPP
+   : ucIndex - 
+   : 
+     : TAF_UINT32
+       :
+       :
+  1.       : 2016066
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT32 At_QryUiccPrfAppPara(TAF_UINT8 ucIndex)
 {
@@ -1911,7 +1911,7 @@ TAF_UINT32 At_QryUiccPrfAppPara(TAF_UINT8 ucIndex)
     MODEM_ID_ENUM_UINT16                enModemId;
     VOS_UINT16                          usLength;
 
-    /* 根据AT命令通道号得到MODEM ID */
+    /* ATMODEM ID */
     if (VOS_OK != AT_GetModemIdFromClient(ucIndex, &enModemId))
     {
         AT_ERR_LOG("At_QryUiccPrfAppPara: Get modem id fail.");
@@ -1931,7 +1931,7 @@ TAF_UINT32 At_QryUiccPrfAppPara(TAF_UINT8 ucIndex)
     ulCdmaHit = VOS_FALSE;
     ulGutlHit = VOS_FALSE;
 
-    /* 查找CDMA和GUTL应用在NV项中谁优先 */
+    /* CDMAGUTLNV */
     for (i = 0; i < stAppInfo.ucAppNum; i++)
     {
         if (USIMM_NV_GUTL_APP == stAppInfo.aenAppList[i])
@@ -1980,15 +1980,15 @@ TAF_UINT32 At_QryUiccPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestUiccPrfAppPara
- 功能描述  : ^UICCPRFAPP测试命令处理函数
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 修改历史      :
-  1.日    期   : 2016年06月6日
-    作    者   : d00212987
-    修改内容   : 新增函数
+     : At_TestUiccPrfAppPara
+   : ^UICCPRFAPP
+   : ucIndex - 
+   : 
+     : TAF_UINT32
+       :
+  1.       : 2016066
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT32 At_TestUiccPrfAppPara(TAF_UINT8 ucIndex)
 {
@@ -2008,33 +2008,33 @@ TAF_UINT32 At_TestUiccPrfAppPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetCCimiPara
- 功能描述  : ^CCIMI
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SetCCimiPara
+   : ^CCIMI
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2015617
+           :
+       : 
 *****************************************************************************/
 TAF_UINT32 At_SetCCimiPara(TAF_UINT8 ucIndex)
 {
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_CMD_NO_PARA != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 执行命令操作 */
+    /*  */
     if (AT_SUCCESS == SI_PIH_CCimiSetReq(gastAtClientTab[ucIndex].usClientId,0))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CCIMI_SET;
-        return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        return AT_WAIT_ASYNC_RETURN;    /*  */
     }
     else
     {
@@ -2043,18 +2043,18 @@ TAF_UINT32 At_SetCCimiPara(TAF_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_CardErrorInfoInd
- 功能描述  : ^USIMMEX
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_CardErrorInfoInd
+   : ^USIMMEX
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年2月22日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2016222
+           :
+       : 
 *****************************************************************************/
 TAF_UINT16 At_CardErrorInfoInd(
     TAF_UINT8                           ucIndex,
@@ -2110,18 +2110,18 @@ TAF_UINT16 At_CardErrorInfoInd(
 }
 
 /*****************************************************************************
- 函 数 名  : At_CardIccidInfoInd
- 功能描述  : ^USIMICCID
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_CardIccidInfoInd
+   : ^USIMICCID
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年2月22日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2016222
+           :
+       : 
 *****************************************************************************/
 TAF_UINT16 At_CardIccidInfoInd(
     TAF_UINT8                           ucIndex,
@@ -2152,18 +2152,18 @@ TAF_UINT16 At_CardIccidInfoInd(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SimHotPlugStatusInd
- 功能描述  : ^SIMHOTPLUG
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SimHotPlugStatusInd
+   : ^SIMHOTPLUG
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年6月3日
-    作    者   : d00212987
-    修改内容   : 新生成函数
+       :
+  1.       : 201663
+           : d00212987
+       : 
 *****************************************************************************/
 TAF_UINT16 At_SimHotPlugStatusInd(
     TAF_UINT8                           ucIndex,
@@ -2183,18 +2183,18 @@ TAF_UINT16 At_SimHotPlugStatusInd(
 }
 
 /*****************************************************************************
- 函 数 名  : At_PrintPrivateCglaResult
- 功能描述  : ^CGLA
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_PrintPrivateCglaResult
+   : ^CGLA
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年02月21日
-    作    者   : x00306642
-    修改内容   : 新生成函数
+       :
+  1.       : 20170221
+           : x00306642
+       : 
 *****************************************************************************/
 TAF_UINT16 At_PrintPrivateCglaResult(
     TAF_UINT8                           ucIndex,
@@ -2202,7 +2202,7 @@ TAF_UINT16 At_PrintPrivateCglaResult(
 {
     VOS_UINT16                          usLength = 0;
 
-    /* 非最后一条打印上报IND，需要在行首添加回车换行 */
+    /* IND */
     if (VOS_TRUE != pstEvent->PIHEvent.stCglaHandleCnf.ucLastDataFlag)
     {
         usLength += (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN, (TAF_CHAR *)pgucAtSndCodeAddr, (TAF_CHAR *)pgucAtSndCodeAddr, "\r\n");
@@ -2234,18 +2234,18 @@ TAF_UINT16 At_PrintPrivateCglaResult(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SWCheckStatusInd
- 功能描述  : ^SWCHECK
- 输入参数  : TAF_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : TAF_UINT32        ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SWCheckStatusInd
+   : ^SWCHECK
+   : TAF_UINT8 ucIndex 
+   : 
+     : TAF_UINT32        ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年10月29日
-    作    者   : z00377832
-    修改内容   : 新生成函数
+       :
+  1.       : 20161029
+           : z00377832
+       : 
 *****************************************************************************/
 TAF_UINT16 At_SWCheckStatusInd(
     SI_PIH_EVENT_INFO_STRU             *pstEvent

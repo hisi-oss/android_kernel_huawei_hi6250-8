@@ -50,7 +50,7 @@
 #define __RNIC_NETMGR_INTERFACE_H__
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 
 
@@ -64,22 +64,22 @@ extern "C" {
 #pragma pack(4)
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
-#define   NM_MSG_BUFFER_SIZE       (sizeof(NM_MSG_STRU))   /* rnic和netmanager之间消息buffer大小 */
+#define   NM_MSG_BUFFER_SIZE       (sizeof(NM_MSG_STRU))   /* rnicnetmanagerbuffer */
 
-#define   NM_IPV4_ADDR_LENGTH      (4)     /* IPV4地址长度，单位字节 */
-#define   NM_IPV6_ADDR_LENGTH      (16)    /* IPV6地址长度, 单位字节 */
+#define   NM_IPV4_ADDR_LENGTH      (4)     /* IPV4 */
+#define   NM_IPV6_ADDR_LENGTH      (16)    /* IPV6,  */
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 枚举名    : NM_MODEMID_ENUM_UINT16
- 枚举说明  : RNIC与NM的modem id定义
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_MODEMID_ENUM_UINT16
+   : RNICNMmodem id
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 enum NM_MODEMID_ENUM
 {
@@ -92,11 +92,11 @@ enum NM_MODEMID_ENUM
 typedef unsigned short NM_MODEMID_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : NM_IMS_RAT_ENUM_UINT8
- 枚举说明  : IMS注册域类型
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_IMS_RAT_ENUM_UINT8
+   : IMS
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 enum NM_IMS_RAT_ENUM
 {
@@ -107,99 +107,99 @@ enum NM_IMS_RAT_ENUM
 typedef unsigned char NM_IMS_RAT_ENUM_UINT8;
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  5 消息头定义
+  5 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 /*****************************************************************************
- 枚举名    : NM_MSG_ID_ENUM_UINT32
- 枚举说明  : RNIC给NetManager消息ID枚举
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_MSG_ID_ENUM_UINT32
+   : RNICNetManagerID
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 enum NM_MSG_ID_ENUM
 {
-    /* RNIC发给NetManager的消息枚举 */
-    ID_NM_PDN_ACT_IND              = 0x0001,   /* PDN激活指示 */
-    ID_NM_PDN_DEACT_IND            = 0x0002,   /* PDN去激活指示 */
-    ID_NM_PDN_MODIFY_IND           = 0x0003,   /* PDN修改指示 */
+    /* RNICNetManager */
+    ID_NM_PDN_ACT_IND              = 0x0001,   /* PDN */
+    ID_NM_PDN_DEACT_IND            = 0x0002,   /* PDN */
+    ID_NM_PDN_MODIFY_IND           = 0x0003,   /* PDN */
 
-    ID_NM_MODEM_RESET_IND          = 0x0004,   /* modem发生复位 */
+    ID_NM_MODEM_RESET_IND          = 0x0004,   /* modem */
 
-    /* NetManager发给RNIC的消息枚举 */
+    /* NetManagerRNIC */
     ID_NM_MSG_ID_ENUM_BUTT
 
 };
 typedef unsigned int NM_MSG_ID_ENUM_UINT32;
 
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 /*****************************************************************************
- 结构名    : NM_IPV4_PDN_INFO_STRU
- 结构说明  : IPV4 配置信息结构
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_IPV4_PDN_INFO_STRU
+   : IPV4 
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
-    unsigned int                        bitOpDnsPrim         :1;                     /* 外部模块填写，指示aucDnsPrimAddr是否需要配置 */
-    unsigned int                        bitOpDnsSec          :1;                     /* 外部模块填写，指示aucDnsSecAddr是否需要配置 */
+    unsigned int                        bitOpDnsPrim         :1;                     /* aucDnsPrimAddr */
+    unsigned int                        bitOpDnsSec          :1;                     /* aucDnsSecAddr */
     unsigned int                        bitOpSpare           :30;
 
-    unsigned char                       aucIpV4Addr[NM_IPV4_ADDR_LENGTH];       /* IP地址 */
-    unsigned char                       aucDnsPrimAddr[NM_IPV4_ADDR_LENGTH];    /* 主DNS服务器IP */
-    unsigned char                       aucDnsSecAddr[NM_IPV4_ADDR_LENGTH];     /* 辅DNS服务器IP */
+    unsigned char                       aucIpV4Addr[NM_IPV4_ADDR_LENGTH];       /* IP */
+    unsigned char                       aucDnsPrimAddr[NM_IPV4_ADDR_LENGTH];    /* DNSIP */
+    unsigned char                       aucDnsSecAddr[NM_IPV4_ADDR_LENGTH];     /* DNSIP */
 }NM_IPV4_PDN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NM_IPV6_PDN_INFO_STRU
- 结构说明  : IPV6 配置信息结构
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_IPV6_PDN_INFO_STRU
+   : IPV6 
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
-    unsigned int                        bitOpDnsPrim         :1;                     /* 外部模块填写，指示aucDnsPrimAddr是否需要配置 */
-    unsigned int                        bitOpDnsSec          :1;                     /* 外部模块填写，指示aucDnsSecAddr是否需要配置 */
+    unsigned int                        bitOpDnsPrim         :1;                     /* aucDnsPrimAddr */
+    unsigned int                        bitOpDnsSec          :1;                     /* aucDnsSecAddr */
     unsigned int                        bitOpSpare           :30;
 
-    unsigned int                        ulBitPrefixLen;                              /* IPV6前缀长度,单位为bit */
-    unsigned char                       aucIpV6Addr[NM_IPV6_ADDR_LENGTH];       /* IP地址 */
-    unsigned char                       aucDnsPrimAddr[NM_IPV6_ADDR_LENGTH];    /* 主DNS服务器IP */
-    unsigned char                       aucDnsSecAddr[NM_IPV6_ADDR_LENGTH];     /* 辅DNS服务器IP */
+    unsigned int                        ulBitPrefixLen;                              /* IPV6,bit */
+    unsigned char                       aucIpV6Addr[NM_IPV6_ADDR_LENGTH];       /* IP */
+    unsigned char                       aucDnsPrimAddr[NM_IPV6_ADDR_LENGTH];    /* DNSIP */
+    unsigned char                       aucDnsSecAddr[NM_IPV6_ADDR_LENGTH];     /* DNSIP */
 }NM_IPV6_PDN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NM_SOCK_PORT_INFO_STRU
- 结构说明  : 端口范围配置信息结构
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_SOCK_PORT_INFO_STRU
+   : 
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
-    unsigned short                      usSockMinPort;      /* socket 端口范围下限 */
-    unsigned short                      usSockMaxPort;      /* socket 端口范围上限 */
+    unsigned short                      usSockMinPort;      /* socket  */
+    unsigned short                      usSockMaxPort;      /* socket  */
 }NM_SOCK_PORT_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NM_PDN_INFO_CONFIG_STRU
- 结构说明  : RNIC给NM的PDN配置信息
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_PDN_INFO_CONFIG_STRU
+   : RNICNMPDN
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -208,8 +208,8 @@ typedef struct
     unsigned int                        bitOpSockPortInfo: 1;
     unsigned int                        bitOpSpare       : 29;
 
-    NM_MODEMID_ENUM_UINT16              enModemId;                  /* 当前Modem号 */
-    NM_IMS_RAT_ENUM_UINT8               enRatType;                  /* 注册域 lte或者wifi */
+    NM_MODEMID_ENUM_UINT16              enModemId;                  /* Modem */
+    NM_IMS_RAT_ENUM_UINT8               enRatType;                  /*  ltewifi */
     unsigned char                       ucReserv;
 
     NM_IPV4_PDN_INFO_STRU               stIpv4PdnInfo;
@@ -221,33 +221,33 @@ typedef struct
 }NM_PDN_INFO_CONFIG_STRU;
 
 /*****************************************************************************
- 结构名    : NM_PDN_DEACT_IND_STRU
- 结构说明  : RNIC给NM的PDN去激活指示
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_PDN_DEACT_IND_STRU
+   : RNICNMPDN
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
-    NM_MODEMID_ENUM_UINT16              enModemId;                  /* 当前Modem号 */
-    NM_IMS_RAT_ENUM_UINT8               enRatType;                  /* 注册域 lte或者wifi */
+    NM_MODEMID_ENUM_UINT16              enModemId;                  /* Modem */
+    NM_IMS_RAT_ENUM_UINT8               enRatType;                  /*  ltewifi */
     unsigned char                       ucReserv;
 }NM_PDN_DEACT_IND_STRU;
 
 /*****************************************************************************
- 结构名    : NM_MSG_STRU
- 结构说明  : RNIC给NetManager发送消息的消息通用结构
- 1.日    期   : 2017年02月14日
-   作    者   : m00217266
-   修改内容   : 新增结构
+     : NM_MSG_STRU
+   : RNICNetManager
+ 1.       : 20170214
+          : m00217266
+      : 
 *****************************************************************************/
 typedef struct
 {
     NM_MSG_ID_ENUM_UINT32               enMsgId;
     unsigned int                        ulMsgLen;
 
-    /* 当前存在4条消息，其中reset消息，仅需要消息ID
-       active和modify消息共用pdn cfg ind消息*/
+    /* 4resetID
+       activemodifypdn cfg ind*/
     union
     {
         NM_PDN_INFO_CONFIG_STRU        stPdnCfgInfo;
@@ -256,16 +256,16 @@ typedef struct
 }NM_MSG_STRU;
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 
 #if (VOS_OS_VER == VOS_WIN32)

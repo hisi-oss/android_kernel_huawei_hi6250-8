@@ -91,7 +91,7 @@ DIAG_TraceMatchFunc  g_pMatchFunc  = VOS_NULL;
 
 /*****************************************************************************
  Function Name   : DIAG_GetConnState
- Description     : 获取当前工具连接状态
+ Description     : 
  Return          : 1:connect; 0:disconnect
 
  History         :
@@ -105,7 +105,7 @@ VOS_UINT32 DIAG_GetConnState(VOS_VOID)
 
 /*****************************************************************************
  Function Name   : diag_GetMsgCfg
- Description     : 获取层间消息过滤开关
+ Description     : 
  Input           :VOS_UINT32 ulCatId
                 VOS_UINT32 ulMsgId
  Output          : None
@@ -204,7 +204,7 @@ VOS_UINT32 diag_GetLayerDstCfg(VOS_UINT32 ulModuleId)
 
 /*****************************************************************************
  Function Name   : diag_GetLayerCfg
- Description     : 获取层间消息开关状态
+ Description     : 
  Input           :VOS_UINT32 ulSrcModuleId
                 VOS_UINT32 ulDstModuleId
                 VOS_UINT32 ulMsgId
@@ -221,7 +221,7 @@ VOS_UINT32 diag_GetLayerCfg(VOS_UINT32 ulSrcModuleId, VOS_UINT32 ulDstModuleId, 
     VOS_UINT32 ret2 = ERR_MSP_CFG_LOG_NOT_ALLOW;
     VOS_UINT32 ulMsgCfg;
 
-    /*先判断消息ID过滤功能是否打开，如果有，则根据消息ID过滤*/
+    /*IDID*/
     ulMsgCfg = diag_GetLayerMsgCfg(DIAG_CMD_LOG_CATETORY_LAYER_ID, ulMsgId);
     if(ERR_MSP_DIAG_MSG_CFG_NOT_SET == ulMsgCfg )
     {
@@ -248,7 +248,7 @@ VOS_UINT32 diag_GetLayerCfg(VOS_UINT32 ulSrcModuleId, VOS_UINT32 ulDstModuleId, 
 
 /*****************************************************************************
  Function Name   : diag_GetPrintCfg
- Description     : 获取打印开关状态
+ Description     : 
  Input           :VOS_UINT32 ulModuleId
                 VOS_UINT32 ulLevel
  Output          : None
@@ -269,7 +269,7 @@ VOS_UINT32 diag_GetPrintCfg(VOS_UINT32 ulModuleId, VOS_UINT32 ulLevel)
         return ERR_MSP_CFG_LOG_NOT_ALLOW;
     }
 
-    /* 将协议栈的LEVEL值转换成MSP与HSO之间的LEVEL值 */
+    /* LEVELMSPHSOLEVEL */
     /*
         TOOL        <->     MSP     <->     PS
         0x40000000  <->     0x40    <->     1 (ERROR);
@@ -282,7 +282,7 @@ VOS_UINT32 diag_GetPrintCfg(VOS_UINT32 ulModuleId, VOS_UINT32 ulLevel)
 
     ulTmp = (ulLevelFilter << 16) | g_PrintTotalCfg;
 
-    /* 打印总开关模块打开情况*/
+    /* */
     if(DIAG_CFG_PRINT_TOTAL_MODULE_SWT_NOT_USE != g_PrintTotalCfg)
     {
         if(ulLevelFilter & g_PrintTotalCfg)
@@ -297,7 +297,7 @@ VOS_UINT32 diag_GetPrintCfg(VOS_UINT32 ulModuleId, VOS_UINT32 ulLevel)
     }
     else
     {
-        /*获取模块打印开关状态*/
+        /**/
         if(DIAG_CFG_MODULE_IS_INVALID((VOS_INT32)ulModuleId))
         {
             diag_LNR(EN_DIAG_LNR_LOG_LOST, ulModuleId, 0xBBBBBBBB);/* [false alarm]:alarm */
@@ -325,19 +325,19 @@ VOS_UINT32 diag_GetPrintCfg(VOS_UINT32 ulModuleId, VOS_UINT32 ulLevel)
 
 
 /******************************************************************************
-函数名称: DIAG_LogIdReport
-功能描述: 打印点类型的打印接口函数
-参数说明:
+: DIAG_LogIdReport
+: 
+:
             ulModuleId[in]  : ( 31-24:modemid,23-16:modeid,15-12:level )
             ulPid[in]       : PID
-            ulLogId[in]     : 由文件号和行号根据DIAG_LOG_ID生成
-            amount[in]      : 可变参数个数（不包括ulModuleId/ulLevel/ulLogId/amout）
-            ...             : 可变参数
-调用约束:
-            1. 绝对禁止对此函数进行二次封装，只能转定义
-            2. 支持可变的参数个数，但必须在调用时由参数amount指定参数个数
-            3. 可变参数只支持int类型
-            4. 目前版本中支持的最大参数个数是6个，超过的参数默认丢弃
+            ulLogId[in]     : DIAG_LOG_ID
+            amount[in]      : ulModuleId/ulLevel/ulLogId/amout
+            ...             : 
+:
+            1. 
+            2. amount
+            3. int
+            4. 6
 ******************************************************************************/
 VOS_INT32 DIAG_LogIdReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid,
                         VOS_UINT32 ulLogId, VOS_UINT32 amount, ...)
@@ -351,12 +351,12 @@ VOS_INT32 DIAG_LogIdReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid,
 
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
 
-    /* 只记录调用次数*/
+    /* */
     DIAG_DEBUG_SDM_FUN(EN_SDM_DIAG_DOT, ulLogId, 0, 0);
 
     if(!DIAG_IS_POLOG_ON)
     {
-        /*检查DIAG是否初始化且HSO是否连接上*/
+        /*DIAGHSO*/
         if(!DIAG_IS_CONN_ON)
         {
             DIAG_DEBUG_SDM_FUN(EN_SDM_DIAG_DOT_ERR, ERR_MSP_NO_INITILIZATION, ulLogId, 1);
@@ -470,9 +470,9 @@ VOS_INT32 DIAG_LogIdReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid,
 
 
 /*****************************************************************************
- 函 数 名  : diag_GetFileNameFromPath
- 功能描述  : 得到文件路径名的偏移值
- 输入参数  : char* pcFileName
+     : diag_GetFileNameFromPath
+   : 
+   : char* pcFileName
   1. cuijunqiang
 *****************************************************************************/
 VOS_CHAR * diag_GetFileNameFromPath(VOS_CHAR* pcFileName)
@@ -481,14 +481,14 @@ VOS_CHAR * diag_GetFileNameFromPath(VOS_CHAR* pcFileName)
     VOS_CHAR    *pcPathPos2;
     VOS_CHAR    *pcPathPos;
 
-    /* 操作系统可能使用'\'来查找路径 */
+    /* '\' */
     pcPathPos1 = (VOS_CHAR*)strrchr(pcFileName, '\\');
     if(VOS_NULL_PTR == pcPathPos1)
     {
         pcPathPos1 = pcFileName;
     }
 
-    /* 操作系统可能使用'/'来查找路径 */
+    /* '/' */
     pcPathPos2 = (VOS_CHAR*)strrchr(pcFileName, '/');
     if(VOS_NULL_PTR == pcPathPos2)
     {
@@ -497,7 +497,7 @@ VOS_CHAR * diag_GetFileNameFromPath(VOS_CHAR* pcFileName)
 
     pcPathPos = (pcPathPos1 > pcPathPos2) ? pcPathPos1 : pcPathPos2;
 
-    /* 如果没找到'\'或'/'则使用原来的字符串，否则使用截断后的字符串 */
+    /* '\''/' */
     if (pcFileName != pcPathPos)
     {
         pcPathPos++;
@@ -508,15 +508,15 @@ VOS_CHAR * diag_GetFileNameFromPath(VOS_CHAR* pcFileName)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_LogReport
- 功能描述  : 打印上报接口
- 输入参数  : ulModuleId( 31-24:modemid,23-16:modeid,15-12:level )
-             pcFileName(上报时会把文件路径删除，只保留文件名)
-             ulLineNum(行号)
-             pszFmt(可变参数)
-注意事项   : 由于此接口会被协议栈频繁调用，为提高处理效率，本接口内部会使用1K的局部变量保存上报的字符串信息，
-             从而此接口对协议栈有两点限制，一是调用此接口的任务栈中的内存要至少为此接口预留1K空间；
-                                           二是调用此接口输出的log不要超过1K（超出部分会自动丢弃）
+     : DIAG_LogReport
+   : 
+   : ulModuleId( 31-24:modemid,23-16:modeid,15-12:level )
+             pcFileName()
+             ulLineNum()
+             pszFmt()
+   : 1K
+             1K
+                                           log1K
 *****************************************************************************/
 VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFileName, VOS_UINT32 ulLineNum, VOS_CHAR* pszFmt, ...)
 {
@@ -532,15 +532,15 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
 
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
 
-    /*获取数组下标*/
+    /**/
     ulModule = ulPid;
 
-    /*获取模块开关状态*/
+    /**/
     ulLevel = DIAG_GET_PRINTF_LEVEL(ulModuleId);
 
     if(!DIAG_IS_POLOG_ON)
     {
-        /*检查DIAG是否初始化且HSO是否连接上*/
+        /*DIAGHSO*/
         if(!DIAG_IS_CONN_ON)
         {
             DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_PRINTFV_ERR, ERR_MSP_NO_INITILIZATION, ulModuleId, 1);
@@ -560,16 +560,16 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
         cFileName= " ";
     }
 
-    /* 文件名截短 */
+    /*  */
     cOffsetName = diag_GetFileNameFromPath(cFileName);
 
-    /*给HSO的打印字符串形式如下:pszFileName[ulLineNum]data。HSO根据中括号[]去截取相应的信息*/
+    /*HSO:pszFileName[ulLineNum]dataHSO[]*/
     /* coverity[negative_return_fn] */
     ulParamLen = VOS_nsprintf_s(stRptInfo.szText, DIAG_PRINTF_MAX_LEN, DIAG_PRINTF_MAX_LEN-1,"%s[%d]", cOffsetName, ulLineNum);
 
     if(ulParamLen > DIAG_PRINTF_MAX_LEN)
     {
-        /* 内存越界，主动复位 */
+        /*  */
         mdrv_om_system_error((VOS_INT)DIAG_ERROR_MODID_OVERFLOW, __LINE__, ulParamLen, 0, 0);
         return ERR_MSP_FAILURE;
     }
@@ -583,7 +583,7 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
                  (VOS_UINT32)((DIAG_PRINTF_MAX_LEN - ulParamLen) -1), (const VOS_CHAR *)pszFmt, arg);
     if(ulParamLen > DIAG_PRINTF_MAX_LEN)
     {
-        /* 内存越界，主动复位 */
+        /*  */
         mdrv_om_system_error((VOS_INT)DIAG_ERROR_MODID_OVERFLOW, __LINE__, ulParamLen, 0, 0);
     }
     va_end(arg);
@@ -591,7 +591,7 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
     stRptInfo.szText[DIAG_PRINTF_MAX_LEN-1] = '\0';
     ulDataLength = VOS_StrNLen(stRptInfo.szText, DIAG_PRINTF_MAX_LEN)+1;
 
-    /*组装DIAG命令参数*/
+    /*DIAG*/
     stRptInfo.ulModule = ulModule;
     VOS_SpinLockIntLock(&g_DiagLogPktNum.ulPrintLock, ulLockLevel);
     stRptInfo.ulNo = (g_DiagLogPktNum.ulPrintNum)++;
@@ -601,7 +601,7 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
     /* (0|ERROR|WARNING|NORMAL|INFO|0|0|0) */
     stRptInfo.ulLevel  = (0x80000000) >> ulLevel;
 
-    /* 字符串的长度加上信息的长度 */
+    /*  */
     ulDataLength += (sizeof(DIAG_CMD_LOG_PRINT_RAW_TXT_IND_STRU) - (DIAG_PRINTF_MAX_LEN+1));
 
     (VOS_VOID)VOS_MemSet_s(&stDiagHead, (VOS_UINT32)sizeof(DIAG_MSG_REPORT_HEAD_STRU), 0, sizeof(DIAG_MSG_REPORT_HEAD_STRU));
@@ -638,12 +638,12 @@ VOS_UINT32 DIAG_LogReport(VOS_UINT32 ulModuleId, VOS_UINT32 ulPid, VOS_CHAR *cFi
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_TransReport_Ex
- 功能描述  : 结构化数据上报扩展接口(比DIAG_TransReport多传入了DIAG_MESSAGE_TYPE)
- 输入参数  : DIAG_TRANS_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-8:groupid )
-             DIAG_TRANS_IND_STRU->ulMsgId(透传命令ID)
-             DIAG_TRANS_IND_STRU->ulLength(透传信息的长度)
-             DIAG_TRANS_IND_STRU->pData(透传信息)
+     : DIAG_TransReport_Ex
+   : (DIAG_TransReportDIAG_MESSAGE_TYPE)
+   : DIAG_TRANS_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-8:groupid )
+             DIAG_TRANS_IND_STRU->ulMsgId(ID)
+             DIAG_TRANS_IND_STRU->ulLength()
+             DIAG_TRANS_IND_STRU->pData()
 
 *****************************************************************************/
 VOS_UINT32 DIAG_TransReport_Ex(DIAG_TRANS_IND_STRU *pstData)
@@ -653,14 +653,14 @@ VOS_UINT32 DIAG_TransReport_Ex(DIAG_TRANS_IND_STRU *pstData)
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
     VOS_ULONG  ulLockLevel;
 
-    /*检查DIAG是否初始化且HSO是否连接上*/
+    /*DIAGHSO*/
     if((!DIAG_IS_CONN_ON) && (!DIAG_IS_POLOG_ON))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_TRANS_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
         return ERR_MSP_NO_INITILIZATION;
     }
     
-    /*检查参数合法性*/
+    /**/
     if((VOS_NULL_PTR == pstData) || (NULL == pstData->pData) || (0 == pstData->ulLength))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_TRANS_ERR, ERR_MSP_NO_INITILIZATION, 0, 2);
@@ -710,28 +710,28 @@ VOS_UINT32 DIAG_TransReport_Ex(DIAG_TRANS_IND_STRU *pstData)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_TransReport
- 功能描述  : 结构化数据上报接口(替换原来的DIAG_ReportCommand)
- 输入参数  : DIAG_TRANS_IND_STRU->ulModule( 31-24:modemid,23-16:modeid )
-             DIAG_TRANS_IND_STRU->ulMsgId(透传命令ID)
-             DIAG_TRANS_IND_STRU->ulLength(透传信息的长度)
-             DIAG_TRANS_IND_STRU->pData(透传信息)
+     : DIAG_TransReport
+   : (DIAG_ReportCommand)
+   : DIAG_TRANS_IND_STRU->ulModule( 31-24:modemid,23-16:modeid )
+             DIAG_TRANS_IND_STRU->ulMsgId(ID)
+             DIAG_TRANS_IND_STRU->ulLength()
+             DIAG_TRANS_IND_STRU->pData()
 
  History   :
     1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 
 *****************************************************************************/
 VOS_UINT32 DIAG_TransReport(DIAG_TRANS_IND_STRU *pstData)
 {
-    /*检查DIAG是否初始化且HSO是否连接上*/
+    /*DIAGHSO*/
     if((!DIAG_IS_CONN_ON) && (!DIAG_IS_POLOG_ON))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_TRANS_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
         return ERR_MSP_NO_INITILIZATION;
     }
     
-    /*检查参数合法性*/
+    /**/
     if((VOS_NULL_PTR == pstData) || (NULL == pstData->pData) || (0 == pstData->ulLength))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_TRANS_ERR, ERR_MSP_NO_INITILIZATION, 0, 2);
@@ -747,16 +747,16 @@ VOS_UINT32 DIAG_TransReport(DIAG_TRANS_IND_STRU *pstData)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_EventReport
- 功能描述  : 事件上报接口，给PS使用(替换原来的DIAG_ReportEventLog)
- 输入参数  : DIAG_EVENT_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
+     : DIAG_EventReport
+   : PS(DIAG_ReportEventLog)
+   : DIAG_EVENT_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
              DIAG_EVENT_IND_STRU->ulEventId(event ID)
-             DIAG_EVENT_IND_STRU->ulLength(event的长度)
-             DIAG_EVENT_IND_STRU->pData(event信息)
+             DIAG_EVENT_IND_STRU->ulLength(event)
+             DIAG_EVENT_IND_STRU->pData(event)
 
  History         :
     1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 
 *****************************************************************************/
 VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
@@ -774,14 +774,14 @@ VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
     
     if(!DIAG_IS_POLOG_ON)
     {
-        /*检查是否允许事件上报*/
+        /**/
         if(!DIAG_IS_EVENT_ON)
         {
             DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_EVENT_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
             return ERR_MSP_NO_INITILIZATION;
         }
         
-        /* 融合GU的event机制后，需要判断子开关 */
+        /* GUevent */
         if(0 == g_EventModuleCfg[pstEvent->ulPid - VOS_PID_DOPRAEND])
         {
             DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_EVENT_ERR, ERR_MSP_INVALID_PARAMETER, 0, 3);
@@ -789,7 +789,7 @@ VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
         }
     }
 
-    /*组装DIAG命令参数*/
+    /*DIAG*/
     VOS_SpinLockIntLock(&g_DiagLogPktNum.ulEventLock, ulLockLevel);
     stEventIndInfo.ulNo     = (g_DiagLogPktNum.ulEventNum)++;
     VOS_SpinUnlockIntUnlock(&g_DiagLogPktNum.ulEventLock, ulLockLevel);
@@ -829,17 +829,17 @@ VOS_UINT32 DIAG_EventReport(DIAG_EVENT_IND_STRU *pstEvent)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_AirMsgReport
- 功能描述  : 空口消息上报接口，给PS使用(替换原来的DIAG_ReportAirMessageLog)
- 输入参数  : DIAG_AIR_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
-             DIAG_AIR_IND_STRU->ulMsgId(空口消息ID)
-             DIAG_AIR_IND_STRU->ulDirection(空口消息的方向)
-             DIAG_AIR_IND_STRU->ulLength(空口消息的长度)
-             DIAG_AIR_IND_STRU->pData(空口消息信息)
+     : DIAG_AirMsgReport
+   : PS(DIAG_ReportAirMessageLog)
+   : DIAG_AIR_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
+             DIAG_AIR_IND_STRU->ulMsgId(ID)
+             DIAG_AIR_IND_STRU->ulDirection()
+             DIAG_AIR_IND_STRU->ulLength()
+             DIAG_AIR_IND_STRU->pData()
 
  History         :
     1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 
 *****************************************************************************/
 VOS_UINT32 DIAG_AirMsgReport(DIAG_AIR_IND_STRU *pstAir)
@@ -849,14 +849,14 @@ VOS_UINT32 DIAG_AirMsgReport(DIAG_AIR_IND_STRU *pstAir)
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
     VOS_ULONG  ulLockLevel;
 
-    /*检查是否允许LT 空口上报*/
+    /*LT */
     if ((!DIAG_IS_LT_AIR_ON) && (!DIAG_IS_POLOG_ON))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_AIR_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
         return ERR_MSP_NO_INITILIZATION;
     }
 
-    /*检查参数合法性*/
+    /**/
     if((VOS_NULL == pstAir) || (VOS_NULL == pstAir->pData) || (0 == pstAir->ulLength))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_AIR_ERR, ERR_MSP_INVALID_PARAMETER, 0, 2);
@@ -906,14 +906,14 @@ VOS_UINT32 DIAG_AirMsgReport(DIAG_AIR_IND_STRU *pstAir)
 
 /*****************************************************************************
  Function Name   : DIAG_ReportVoLTELog
- Description     : VoLTE消息上报接口
+ Description     : VoLTE
  Input           : DIAG_VoLTE_LOG_STRU* pRptMessage
  Output          : None
  Return          : VOS_UINT32
 
  History         :
     1.fuxin      2013-12-30  create
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 *****************************************************************************/
 VOS_UINT32 DIAG_ReportVoLTELog(DIAG_VOLTE_LOG_STRU* pRptMessage)
 {
@@ -923,14 +923,14 @@ VOS_UINT32 DIAG_ReportVoLTELog(DIAG_VOLTE_LOG_STRU* pRptMessage)
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
     VOS_ULONG  ulLockLevel;
 
-    /*检查DIAG是否初始化且HSO是否连接上*/
+    /*DIAGHSO*/
     if((!DIAG_IS_CONN_ON) && (!DIAG_IS_POLOG_ON))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_VOLTE_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
         return ERR_MSP_NO_INITILIZATION;
     }
 
-    /*检查参数合法性*/
+    /**/
     if((VOS_NULL == pRptMessage) || (VOS_NULL == pRptMessage->pData) || (0 == pRptMessage->ulDataSize))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_VOLTE_ERR, ERR_MSP_INVALID_PARAMETER, 0, 2);
@@ -988,13 +988,13 @@ VOS_UINT32 DIAG_ReportVoLTELog(DIAG_VOLTE_LOG_STRU* pRptMessage)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_TraceReport
- 功能描述  : 层间消息上报接口，给PS使用(替换原来的DIAG_ReportLayerMessageLog)
- 输入参数  : pMsg(标准的VOS消息体，源模块、目的模块信息从消息体中获取)
+     : DIAG_TraceReport
+   : PS(DIAG_ReportLayerMessageLog)
+   : pMsg(VOS)
 
  History         :
     1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 
 *****************************************************************************/
 VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
@@ -1019,14 +1019,14 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
 
     if(!DIAG_IS_POLOG_ON)
     {
-        /*检查DIAG是否初始化且HSO是否连接上*/
+        /*DIAGHSO*/
         if(!DIAG_IS_CONN_ON)
         {
             DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_TRACE_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
             return ;
         }
         
-        /*检查是否允许层间消息上报*/
+        /**/
         ret = diag_GetLayerCfg(ulSrcModule, ulDstModule, ulMsgId);
         if(ret)
         {
@@ -1035,7 +1035,7 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
         }
     }
 
-    /* 对外提供的过滤接口，返回0表示不过滤上报 */
+    /* 0 */
     if(VOS_NULL != g_pFilterFunc)
     {
         if(g_pFilterFunc(pDiagMsg))
@@ -1047,8 +1047,8 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
 
     pNewMsg = pDiagMsg;
 
-    /* 对外提供的消息匹配接口，可能对消息进行替换 */
-    /* 返回值为空表示过滤不上报，返回非空则把返回的消息上报 */
+    /*  */
+    /*  */
     if(VOS_NULL != g_pMatchFunc)
     {
         pNewMsg = g_pMatchFunc(pDiagMsg);
@@ -1061,7 +1061,7 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
 
     stTrace.ulModule    = ulSrcModule;
     stTrace.ulDestMod   = ulDstModule;
-    /*有些组件match函数中会将msg结构体替换掉，msgid是层间消息结构体在工具显示的依据，因此msgid需要填写替换完成后的新的msgid,否则有可能结构体显示不正确*/
+    /*matchmsgmsgidmsgidmsgid,*/
     stTrace.ulId        = pNewMsg->ulMsgId;
     
     VOS_SpinLockIntLock(&g_DiagLogPktNum.ulLayerLock, ulLockLevel);
@@ -1071,7 +1071,7 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
     (VOS_VOID)VOS_MemSet_s(&stDiagHead, (VOS_UINT32)sizeof(DIAG_MSG_REPORT_HEAD_STRU), 0, sizeof(DIAG_MSG_REPORT_HEAD_STRU));
 
     stDiagHead.u.stID.pri4b     = DIAG_MSG_TYPE_PS;
-    stDiagHead.u.stID.mode4b    = DIAG_MODE_COMM;       /* 层间消息不能识别模式 */
+    stDiagHead.u.stID.mode4b    = DIAG_MODE_COMM;       /*  */
     stDiagHead.u.stID.sec5b     = DIAG_MSG_PS_LAYER;
     stDiagHead.u.stID.cmdid19b  = 0;
     stDiagHead.ulSsid           = DIAG_SSID_CPU;
@@ -1105,10 +1105,10 @@ VOS_VOID DIAG_TraceReport(VOS_VOID *pMsg)
 
 /*****************************************************************************
  Function Name   : DIAG_TraceFilterFuncReg
- Description     : 层间消息过滤注册接口(此接口不支持重复注册，多次注册返还失败)
- Input           : 过滤处理函数
+ Description     : ()
+ Input           : 
  Output          : None
- Return          : 返回值为注册结果: 0-注册成功；其他-注册失败
+ Return          : : 0--
 
  History         :
     1.c64416      2012-11-20  Draft Enact
@@ -1130,11 +1130,11 @@ VOS_UINT32 DIAG_TraceFilterFuncReg(DIAG_TraceFilterFunc pFun)
 
 /*****************************************************************************
  Function Name   : DIAG_TraceMatchFuncReg
- Description     : 层间消息匹配注册接口(此接口不支持重复注册，多次注册返还失败)
-                    此注册接口提供给TTF使用，匹配处理接口中可能对消息体进行替换
- Input           : 过滤处理函数
+ Description     : ()
+                    TTF
+ Input           : 
  Output          : None
- Return          : 返回值为注册结果: 0-注册成功；其他-注册失败
+ Return          : : 0--
 
  History         :
     1.c00326366      2015-06-16  Draft Enact
@@ -1155,16 +1155,16 @@ VOS_UINT32 DIAG_TraceMatchFuncReg(DIAG_TraceMatchFunc pFun)
 
 
 /*****************************************************************************
- 函 数 名  : DIAG_UserPlaneReport
- 功能描述  : 用户面上报接口，给PS使用(替换原来的DIAG_ReportUserPlaneMessageLog)
- 输入参数  : DIAG_USER_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
-             DIAG_USER_IND_STRU->ulMsgId(用户面消息ID)
-             DIAG_USER_IND_STRU->ulLength(用户面消息的长度)
-             DIAG_USER_IND_STRU->pData(用户面信息)
+     : DIAG_UserPlaneReport
+   : PS(DIAG_ReportUserPlaneMessageLog)
+   : DIAG_USER_IND_STRU->ulModule( 31-24:modemid,23-16:modeid,15-12:level,11-0:pid )
+             DIAG_USER_IND_STRU->ulMsgId(ID)
+             DIAG_USER_IND_STRU->ulLength()
+             DIAG_USER_IND_STRU->pData()
 
  History         :
     1.w00182550      2012-11-20  Draft Enact
-    2.c64416         2014-11-18  适配新的诊断架构
+    2.c64416         2014-11-18  
 
 *****************************************************************************/
 VOS_UINT32 DIAG_UserPlaneReport(DIAG_USER_IND_STRU *pstUser)
@@ -1174,14 +1174,14 @@ VOS_UINT32 DIAG_UserPlaneReport(DIAG_USER_IND_STRU *pstUser)
     DIAG_MSG_REPORT_HEAD_STRU stDiagHead;
     VOS_ULONG    ulLockLevel;
 
-    /*检查DIAG是否初始化且HSO是否连接上*/
+    /*DIAGHSO*/
     if((!DIAG_IS_CONN_ON) && (!DIAG_IS_POLOG_ON))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_USER_ERR, ERR_MSP_NO_INITILIZATION, 0, 1);
         return ERR_MSP_NO_INITILIZATION;
     }
 
-    /*检查参数合法性*/
+    /**/
     if((NULL == pstUser)||((0 == pstUser->ulLength) && (NULL == pstUser->pData)))
     {
         DIAG_DEBUG_SDM_FUN(EN_DIAG_CBT_API_USER_ERR, ERR_MSP_INVALID_PARAMETER, 0, 2);
@@ -1228,7 +1228,7 @@ VOS_UINT32 DIAG_UserPlaneReport(DIAG_USER_IND_STRU *pstUser)
 }
 
 
-/* 为MBB提供的errorlog功能，应推动MBB与phone拉通 */
+/* MBBerrorlogMBBphone */
 VOS_UINT32 DIAG_ErrorLog(VOS_CHAR * cFileName,VOS_UINT32 ulFileId, VOS_UINT32 ulLine,
                 VOS_UINT32 ulErrNo, VOS_VOID * pBuf, VOS_UINT32 ulLen)
 {
@@ -1238,7 +1238,7 @@ VOS_UINT32 DIAG_ErrorLog(VOS_CHAR * cFileName,VOS_UINT32 ulFileId, VOS_UINT32 ul
 
 /*****************************************************************************
  Function Name   : diag_SendMsg
- Description     : DIAG各模块发消息封装接口
+ Description     : DIAG
  Input           :VOS_UINT32 ulSenderId
                 VOS_UINT32 ulRecverId
                 VOS_UINT32 ulMsgId
@@ -1290,7 +1290,7 @@ VOS_UINT32 Diag_GetLogLevel(VOS_UINT32 ulPid)
 {
     VOS_UINT8 level;
 
-    /*判断模块ID是否在CCPU支持的PS范围内*/
+    /*IDCCPUPS*/
     if ((VOS_PID_DOPRAEND <= ulPid) && (VOS_PID_BUTT > ulPid))
     {
 	if( g_PrintTotalCfg == DIAG_CFG_PRINT_TOTAL_MODULE_SWT_NOT_USE)
@@ -1302,7 +1302,7 @@ VOS_UINT32 Diag_GetLogLevel(VOS_UINT32 ulPid)
 		level = (VOS_UINT8)g_PrintTotalCfg;
 	}
 
-        /* level中存储的值(0|ERROR|WARNING|NORMAL|INFO|0|0|0) bit 6-3 分别表示ERROR-INFO */
+        /* level(0|ERROR|WARNING|NORMAL|INFO|0|0|0) bit 6-3 ERROR-INFO */
 
         if(level & 0x08)
         {
@@ -1333,9 +1333,9 @@ VOS_UINT32 Diag_GetLogLevel(VOS_UINT32 ulPid)
 
 /*****************************************************************************
  Function Name   : diag_FailedCmdCnf
- Description     : MSP处理失败的诊断命令应答处理
- Input           : pData     诊断命令请求的内容
-                   ulErrcode 给工具返回的错误码
+ Description     : MSP
+ Input           : pData     
+                   ulErrcode 
  Output          : None
  Return          : VOS_UINT32
 
@@ -1360,7 +1360,7 @@ VOS_UINT32 diag_FailedCmdCnf(DIAG_FRAME_INFO_STRU *pData, VOS_UINT32 ulErrcode)
 
 /*****************************************************************************
  Function Name   : diag_IsPowerOnLogOpen
- Description     : 获取协议栈的开机log上报功能是否打开
+ Description     : log
  Input           : None
  Output          : None
  Return          : VOS_TRUE:yes ; VOS_FALSE:no
@@ -1374,7 +1374,7 @@ VOS_BOOL diag_IsPowerOnLogOpen(VOS_VOID)
     VOS_UINT32          ulRet;
     NV_POWER_ON_LOG_SWITCH_STRU stPowerOnLog = {0};
     
-    /* 读取OM的物理输出通道 */
+    /* OM */
     ulRet = NV_Read(EN_NV_ID_POWER_ON_LOG_SWITCH, &stPowerOnLog, sizeof(stPowerOnLog));
     if((ERR_MSP_SUCCESS == ulRet) && (stPowerOnLog.cPowerOnlogA) && (stPowerOnLog.cPowerOnlogC))
     {

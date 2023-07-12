@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "AtCmdCagpsProc.h"
 #include "AtEventReport.h"
@@ -55,13 +55,13 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AT_CMDCAGPSPROC_C
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
 AT_CAGPS_CMD_NAME_TLB_STRU  g_astAtCagpsCmdNameTlb[] =
@@ -100,36 +100,36 @@ AT_CAGPS_CMD_OPT_TLB_STRU  g_astAtCagpsCmdOptTbl[] =
 };
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 
 
 /*****************************************************************************
- 函 数 名  : At_SetAgpsDataCallStatus
- 功能描述  : ^CAGPSDATACALLSTATUS
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : At_SetAgpsDataCallStatus
+   : ^CAGPSDATACALLSTATUS
+   : ucIndex - 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 At_SetAgpsDataCallStatus(VOS_UINT8 ucIndex)
 {
     AT_XPDS_AP_DATA_CALL_STATUS_IND_STRU                   *pstDataCallInd;
     VOS_UINT32                                              ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 1)
     {
         return AT_TOO_MANY_PARA;
@@ -173,18 +173,18 @@ VOS_UINT32 At_SetAgpsDataCallStatus(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetAgpsUpBindStatus
- 功能描述  : ^CUPBINDSTATUS
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : At_SetAgpsUpBindStatus
+   : ^CUPBINDSTATUS
+   : ucIndex - 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 At_SetAgpsUpBindStatus(
     VOS_UINT8                               ucIndex
@@ -193,13 +193,13 @@ VOS_UINT32 At_SetAgpsUpBindStatus(
     AT_XPDS_AP_SERVER_BIND_STATUS_IND_STRU                 *pstMsgBindInd;
     VOS_UINT32                                              ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 2)
     {
         return AT_TOO_MANY_PARA;
@@ -245,18 +245,18 @@ VOS_UINT32 At_SetAgpsUpBindStatus(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetAgpsForwardData
- 功能描述  : ^CAGPSFORWARDDATA
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : At_SetAgpsForwardData
+   : ^CAGPSFORWARDDATA
+   : ucIndex - 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 At_SetAgpsForwardData(
     VOS_UINT8                               ucIndex
@@ -266,13 +266,13 @@ VOS_UINT32 At_SetAgpsForwardData(
     AT_XPDS_AP_FORWARD_DATA_IND_STRU   *pstMsgFwdDataInd;
     VOS_UINT32                          ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
     }
 
-    /* 参数过多 */
+    /*  */
     if (gucAtParaIndex > 5)
     {
         return AT_TOO_MANY_PARA;
@@ -343,18 +343,18 @@ VOS_UINT32 At_SetAgpsForwardData(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsAgpsDataCallReq
- 功能描述  : ID_XPDS_AT_AP_DATA_CALL_REQ 消息处理 ^CAGPSDATACALLREQ
- 输入参数  : 消息内容
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsAgpsDataCallReq
+   : ID_XPDS_AT_AP_DATA_CALL_REQ  ^CAGPSDATACALLREQ
+   : 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsAgpsDataCallReq(
     VOS_VOID                           *pstMsg
@@ -363,10 +363,10 @@ VOS_UINT32 AT_RcvXpdsAgpsDataCallReq(
     VOS_UINT8                           ucIndex;
     XPDS_AT_AP_DATA_CALL_REQ_STRU      *pstMsgDataCallReq;
 
-    /* 初始化 */
+    /*  */
     pstMsgDataCallReq = (XPDS_AT_AP_DATA_CALL_REQ_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgDataCallReq->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsAgpsDataCallReq: WARNING:AT INDEX NOT FOUND!");
@@ -388,18 +388,18 @@ VOS_UINT32 AT_RcvXpdsAgpsDataCallReq(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsAgpsServerBindReq
- 功能描述  : ID_MTA_AT_AGPS_BINDUPREQ_IND 消息处理 ^CBINDUPREQ
- 输入参数  : 消息内容
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsAgpsServerBindReq
+   : ID_MTA_AT_AGPS_BINDUPREQ_IND  ^CBINDUPREQ
+   : 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsAgpsServerBindReq(
     VOS_VOID                            *pstMsg
@@ -408,10 +408,10 @@ VOS_UINT32 AT_RcvXpdsAgpsServerBindReq(
     VOS_UINT8                           ucIndex;
     XPDS_AT_AP_SERVER_BIND_REQ_STRU    *pstMsgBindReq;
 
-    /* 初始化 */
+    /*  */
     pstMsgBindReq = (XPDS_AT_AP_SERVER_BIND_REQ_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgBindReq->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsAgpsServerBindReq: WARNING:AT INDEX NOT FOUND!");
@@ -436,18 +436,18 @@ VOS_UINT32 AT_RcvXpdsAgpsServerBindReq(
 
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsAgpsReverseDataInd
- 功能描述  : ID_MTA_AT_AGPS_UPDATA_IND 消息处理 ^CAGPSREVERSEDATA
- 输入参数  : 消息内容
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsAgpsReverseDataInd
+   : ID_MTA_AT_AGPS_UPDATA_IND  ^CAGPSREVERSEDATA
+   : 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年07月11日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+       :
+  1.       : 20150711
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsAgpsReverseDataInd(
     VOS_VOID                           *pstMsg
@@ -463,10 +463,10 @@ VOS_UINT32 AT_RcvXpdsAgpsReverseDataInd(
     VOS_UINT32                          ulRemainLen;
     VOS_UINT16                          usLength;
 
-    /* 初始化 */
+    /*  */
     pstMsgDataInd = (XPDS_AT_AP_REVERSE_DATA_IND_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgDataInd->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsAgpsReverseDataInd: WARNING:AT INDEX NOT FOUND!");
@@ -517,7 +517,7 @@ VOS_UINT32 AT_RcvXpdsAgpsReverseDataInd(
                                           ulCurNum,
                                           ulOutputLen*2);
 
-        /* 将16进制数转换为ASCII码后输入主动命令内容 */
+        /* 16ASCII */
         usLength += (TAF_UINT16)At_HexText2AsciiStringSimple(AT_CMD_MAX_LEN,
                                                             (TAF_INT8 *)pgucAtSndCodeAddr,
                                                             (TAF_UINT8 *)pgucAtSndCodeAddr+usLength,
@@ -540,18 +540,18 @@ VOS_UINT32 AT_RcvXpdsAgpsReverseDataInd(
 
 
 /*****************************************************************************
- 函 数 名  : AT_CagpsSndXpdsReq
- 功能描述  : AT发送数据给MTA的借口
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_CagpsSndXpdsReq
+   : ATMTA
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_CagpsSndXpdsReq(
     VOS_UINT8                           ucIndex,
@@ -563,25 +563,25 @@ VOS_UINT32 AT_CagpsSndXpdsReq(
     VOS_UINT32                          ulMsgLength;
     AT_XPDS_MSG_STRU                   *pstAtXpdsMsg;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (2 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 字符串长度不正确 */
+    /*  */
     if (gastAtParaList[0].ulParaValue != gastAtParaList[1].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 将字符串转换为16进制数组 */
+    /* 16 */
     if (AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[1].aucPara, &gastAtParaList[1].usParaLen))
     {
         AT_ERR_LOG1("AT_CagpsSndXpdsReq: At_AsciiNum2HexString fail.", enMsgType);
@@ -591,7 +591,7 @@ VOS_UINT32 AT_CagpsSndXpdsReq(
 
     ulDataLen = ulMsgStructSize - VOS_MSG_HEAD_LENGTH - sizeof(VOS_UINT32) - sizeof(AT_APPCTRL_STRU);
 
-    /* 消息内容长度是否正确 */
+    /*  */
     if (ulDataLen != gastAtParaList[1].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -633,19 +633,19 @@ VOS_UINT32 AT_CagpsSndXpdsReq(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCapsCfgPosMode
- 功能描述  : ^CAGPSCFGPOSMODE用于GPS Module向Modem请求设置AGPS工作模式
+     : AT_SetCapsCfgPosMode
+   : ^CAGPSCFGPOSMODEGPS ModuleModemAGPS
              ^CAGPSCFGPOSMODE=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsCfgPosMode(
     VOS_UINT8                           ucIndex
@@ -668,19 +668,19 @@ VOS_UINT32 AT_SetCagpsCfgPosMode(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsStart
- 功能描述  : ^CAGPSSTART用于GPS Module 发送给modem，触发AGPS流程
+     : AT_SetCagpsStart
+   : ^CAGPSSTARTGPS Module modemAGPS
              ^CAGPSSTART
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsStart(
     VOS_UINT8                           ucIndex
@@ -703,19 +703,19 @@ VOS_UINT32 AT_SetCagpsStart(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsStop
- 功能描述  : ^CAGPSSTOP用于GPS Module通知Modem停止AGPS流程
+     : AT_SetCagpsStop
+   : ^CAGPSSTOPGPS ModuleModemAGPS
              ^CAGPSSTOP
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsStop(
     VOS_UINT8                           ucIndex
@@ -724,7 +724,7 @@ VOS_UINT32 AT_SetCagpsStop(
     AT_XPDS_GPS_STOP_REQ_STRU          *pstMsgStopReq;
     VOS_UINT32                          ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_CMD_NO_PARA != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -763,19 +763,19 @@ VOS_UINT32 AT_SetCagpsStop(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsCfgMpcAddr
- 功能描述  : ^CAGPSCFGMPCADDR用于GPS 请求设置MPC server地址
+     : AT_SetCagpsCfgMpcAddr
+   : ^CAGPSCFGMPCADDRGPS MPC server
              ^CAGPSCFGMPCADDR=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsCfgMpcAddr(
     VOS_UINT8                           ucIndex
@@ -798,19 +798,19 @@ VOS_UINT32 AT_SetCagpsCfgMpcAddr(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsCfgPdeAddr
- 功能描述  : ^CAGPSCFGPDEADDR用于GPS 请求设置PDE server地址
+     : AT_SetCagpsCfgPdeAddr
+   : ^CAGPSCFGPDEADDRGPS PDE server
              ^CAGPSCFGPDEADDR=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsCfgPdeAddr(
     VOS_UINT8                           ucIndex
@@ -833,19 +833,19 @@ VOS_UINT32 AT_SetCagpsCfgPdeAddr(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsQryRefloc
- 功能描述  : ^CAGPSQRYREFLOC用于请求基于CDMA网络的位置信息
+     : AT_SetCagpsQryRefloc
+   : ^CAGPSQRYREFLOCCDMA
              ^CAGPSQRYREFLOC
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsQryRefloc(
     VOS_UINT8                           ucIndex
@@ -854,7 +854,7 @@ VOS_UINT32 AT_SetCagpsQryRefloc(
     VOS_UINT32                                              ulMsgLength;
     AT_XPDS_GPS_QRY_REFLOC_INFO_REQ_STRU                   *pstMsgQryRefLoc;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_CMD_NO_PARA != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
@@ -891,19 +891,19 @@ VOS_UINT32 AT_SetCagpsQryRefloc(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsQryTime
- 功能描述  : ^CAGPSQRYTIME用于GPS Module向Modem请求Modem的同步时间
+     : AT_SetCagpsQryTime
+   : ^CAGPSQRYTIMEGPS ModuleModemModem
              ^CAGPSQRYTIME=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : d00212987
-    修改内容   : AGPS项目新增
+       :
+  1.       : 2015617
+           : d00212987
+       : AGPS
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsQryTime(
     VOS_UINT8                           ucIndex
@@ -912,19 +912,19 @@ VOS_UINT32 AT_SetCagpsQryTime(
     AT_XPDS_GPS_QRY_TIME_INFO_REQ_STRU                     *pstMsgQryTime;
     VOS_UINT32                                              ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (2 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 将字符串转换为16进制数组 */
+    /* 16 */
     if (AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[1].aucPara, &gastAtParaList[1].usParaLen))
     {
         AT_ERR_LOG("AT_SetCagpsQryTime: At_AsciiNum2HexString fail.");
@@ -932,13 +932,13 @@ VOS_UINT32 AT_SetCagpsQryTime(
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 消息内容长度是否正确 */
+    /*  */
     if (sizeof(VOS_UINT32) != gastAtParaList[1].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 按照方案要求，1:reply time sync info；2:reply time sync info and GPS assist data */
+    /* 1:reply time sync info2:reply time sync info and GPS assist data */
     if ((0 == gastAtParaList[1].aucPara[0])
         || (AT_XPDS_REPLY_SYNC_BUTT <= gastAtParaList[1].aucPara[0]))
     {
@@ -978,19 +978,19 @@ VOS_UINT32 AT_SetCagpsQryTime(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsPrmInfo
- 功能描述  : ^CAGPSPRMINFO用于GPS Module将计算出来的伪距信息发送给Modem
+     : AT_SetCagpsPrmInfo
+   : ^CAGPSPRMINFOGPS ModuleModem
              ^CAGPSPRMINFO=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsPrmInfo(
     VOS_UINT8                           ucIndex
@@ -1002,19 +1002,19 @@ VOS_UINT32 AT_SetCagpsPrmInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetCagpsReplyNiReq
- 功能描述  : ^CAGPSREPLYNIREQ用于NI定位中，GPS Module答复Modem是否接受定位请求
+     : AT_SetCagpsReplyNiReq
+   : ^CAGPSREPLYNIREQNIGPS ModuleModem
              ^CAGPSREPLYNIREQ=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_SetCagpsReplyNiReq(
     VOS_UINT8                           ucIndex
@@ -1026,18 +1026,18 @@ VOS_UINT32 AT_SetCagpsReplyNiReq(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SearchCagpsATCmd
- 功能描述  : 查找回复AT命令名
- 输入参数  : enMsgType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_SearchCagpsATCmd
+   : AT
+   : enMsgType
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_CHAR* AT_SearchCagpsATCmd(
     AT_XPDS_MSG_TYPE_ENUM_UINT32        enMsgType
@@ -1057,19 +1057,19 @@ VOS_CHAR* AT_SearchCagpsATCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetCagpsPosInfo
- 功能描述  : ^CAGPSPOSINFO 用于GPS 给moderm发送pos info
+     : At_SetCagpsPosInfo
+   : ^CAGPSPOSINFO GPS modermpos info
              ^CAGPSPOSINFO=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  : AT_OK 成功；AT_ERROR 失败
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     : AT_OK AT_ERROR 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : x00314862
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : x00314862
+       : 
 *****************************************************************************/
 VOS_UINT32 At_SetCagpsPosInfo(
     VOS_UINT8                           ucIndex
@@ -1087,18 +1087,18 @@ VOS_UINT32 At_SetCagpsPosInfo(
 
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsCagpsCnf
- 功能描述  : 回复消息处理
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsCagpsCnf
+   : 
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsCagpsCnf(
     VOS_VOID                           *pMsg
@@ -1109,11 +1109,11 @@ VOS_UINT32 AT_RcvXpdsCagpsCnf(
     VOS_UINT32                          ulContentLen;
     VOS_UINT16                          usLength        = 0;
 
-    /* 初始化 */
+    /*  */
     pstRcvMsg           = (AT_XPDS_MSG_STRU *)pMsg;
     ucIndex             = 0;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstRcvMsg->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsCagpsCnf : WARNING:AT INDEX NOT FOUND!");
@@ -1122,7 +1122,7 @@ VOS_UINT32 AT_RcvXpdsCagpsCnf(
 
     usLength += (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN, (TAF_CHAR *)pgucAtSndCodeAddr, (TAF_CHAR *)pgucAtSndCodeAddr + usLength,"%s%s", gaucAtCrLf, AT_SearchCagpsATCmd(pstRcvMsg->enMsgId));
 
-    /* 获取消息内容长度 */
+    /*  */
     ulContentLen = pstRcvMsg->ulLength - (sizeof(pstRcvMsg->enMsgId) + sizeof(AT_APPCTRL_STRU));
 
     if (ulContentLen != 0)
@@ -1144,18 +1144,18 @@ VOS_UINT32 AT_RcvXpdsCagpsCnf(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SearchCagpsATCmdOpt
- 功能描述  : 查找回复AT命令名操作
- 输入参数  : enMsgType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_SearchCagpsATCmdOpt
+   : AT
+   : enMsgType
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 AT_CMD_CURRENT_OPT_ENUM AT_SearchCagpsATCmdOpt(
     AT_XPDS_MSG_TYPE_ENUM_UINT32        enMsgType
@@ -1175,18 +1175,18 @@ AT_CMD_CURRENT_OPT_ENUM AT_SearchCagpsATCmdOpt(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsCagpsRlstCnf
- 功能描述  : 回复消息处理
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsCagpsRlstCnf
+   : 
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年7月16日
-    作    者   : g00256031
-    修改内容   : 新生成函数
+       :
+  1.       : 2015716
+           : g00256031
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsCagpsRlstCnf(
     VOS_VOID                           *pMsg
@@ -1197,12 +1197,12 @@ VOS_UINT32 AT_RcvXpdsCagpsRlstCnf(
     VOS_UINT8                           ucIndex;
     AT_CMD_CURRENT_OPT_ENUM             enCmdOpt;
 
-    /* 初始化 */
+    /*  */
     pstMsgRsltCnf = (XPDS_AT_RESULT_CNF_STRU *)pMsg;
     ulResult      = AT_OK;
     ucIndex       = 0;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgRsltCnf->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsCagpsRlstCnf : WARNING:AT INDEX NOT FOUND!");
@@ -1211,14 +1211,14 @@ VOS_UINT32 AT_RcvXpdsCagpsRlstCnf(
 
     enCmdOpt = AT_SearchCagpsATCmdOpt(pstMsgRsltCnf->enMsgId);
 
-    /* 当前AT是否在等待该命令返回 */
+    /* AT */
     if (enCmdOpt != gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         AT_WARN_LOG("AT_RcvXpdsCagpsRlstCnf : Current Option is not correct.");
         return VOS_ERR;
     }
 
-    /* 复位AT状态 */
+    /* AT */
     AT_STOP_TIMER_CMD_READY(ucIndex);
 
     gstAtSendData.usBufLen = 0;
@@ -1228,7 +1228,7 @@ VOS_UINT32 AT_RcvXpdsCagpsRlstCnf(
         ulResult = AT_ERROR;
     }
 
-    /* 输出结果 */
+    /*  */
     At_FormatResultData(ucIndex, ulResult);
 
     return VOS_OK;
@@ -1238,28 +1238,28 @@ VOS_UINT32 AT_RcvXpdsCagpsRlstCnf(
 
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsEphInfoInd
- 功能描述  : ID_XPDS_AT_GPS_EPH_INFO_IND 消息处理 ^CAGPSEPHINFO
-             XPDS_AT_GPS_EPH_INFO_IND_STRU结构体大小为1924字节
-             AT中的数据字符串总长度为1924 * 2 = 3848
-             XPDS_AT_GPS_EPH_INFO_IND_STRU结构体的大小为60字节，字符串的长度为120
-             字符串分为5包数据: 8 + 960 * 4 = 3848
-             分包规则:
-             第1包: ucSvNum + aucReserved[3]，字节长度4，字符串长度8
-             第2包: astEphData[0:7]，  字节长度480，字符串长度960
-             第3包: astEphData[8:15]， 字节长度480，字符串长度960
-             第4包: astEphData[16:23]，字节长度480，字符串长度960
-             第5包: astEphData[24:31]，字节长度480，字符串长度960
- 输入参数  : 消息内容
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsEphInfoInd
+   : ID_XPDS_AT_GPS_EPH_INFO_IND  ^CAGPSEPHINFO
+             XPDS_AT_GPS_EPH_INFO_IND_STRU1924
+             AT1924 * 2 = 3848
+             XPDS_AT_GPS_EPH_INFO_IND_STRU60120
+             5: 8 + 960 * 4 = 3848
+             :
+             1: ucSvNum + aucReserved[3]48
+             2: astEphData[0:7]  480960
+             3: astEphData[8:15] 480960
+             4: astEphData[16:23]480960
+             5: astEphData[24:31]480960
+   : 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月22日
-    作    者   : y00174758
-    修改内容   : 新生成函数
+       :
+  1.       : 20150922
+           : y00174758
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsEphInfoInd(
     VOS_VOID                           *pstMsg
@@ -1273,10 +1273,10 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
     VOS_UINT8                          *pucEphData;
     VOS_UINT8                           ucLoop;
 
-    /* 初始化 */
+    /*  */
     pstMsgEphInfoInd = (XPDS_AT_GPS_EPH_INFO_IND_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgEphInfoInd->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsEphInfoInd: WARNING:AT INDEX NOT FOUND!");
@@ -1294,7 +1294,7 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
 
     ulEphDataStrLen = AT_AGPS_EPH_INFO_FIRST_SEG_STR_LEN;
 
-    /* 第1包数据 */
+    /* 1 */
     usAtCmdLength  = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                             (TAF_CHAR *)pgucAtSndCodeAddr,
                                             (TAF_CHAR *)pgucAtSndCodeAddr,
@@ -1304,8 +1304,8 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
                                             0,
                                             ulEphDataStrLen);
 
-    /* 第1包数据 */
-    /* 将16进制数转换为ASCII码后输入主动命令内容 */
+    /* 1 */
+    /* 16ASCII */
     usAtCmdLength += (TAF_UINT16)At_HexText2AsciiStringSimple(AT_CMD_MAX_LEN,
                                             (TAF_INT8 *)pgucAtSndCodeAddr,
                                             ((TAF_UINT8 *)pgucAtSndCodeAddr) + usAtCmdLength,
@@ -1321,7 +1321,7 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
 
     ulEphDataByteOffset = ulEphDataStrLen / 2;
 
-    /* 从第2包到第5包的数据 */
+    /* 25 */
     for (ucLoop = 0; ucLoop < AT_AGPS_EPH_INFO_MAX_SEG_NUM - 1; ucLoop++)
     {
         ulEphDataStrLen = AT_AGPS_EPH_INFO_NOT_FIRST_SEG_STR_LEN;
@@ -1335,7 +1335,7 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
                                                 ucLoop + 1,
                                                 ulEphDataStrLen);
 
-        /* 将16进制数转换为ASCII码后输入主动命令内容 */
+        /* 16ASCII */
         usAtCmdLength += (TAF_UINT16)At_HexText2AsciiStringSimple(AT_CMD_MAX_LEN,
                                                 (TAF_INT8 *)pgucAtSndCodeAddr,
                                                 ((TAF_UINT8 *)pgucAtSndCodeAddr) + usAtCmdLength,
@@ -1357,26 +1357,26 @@ VOS_UINT32 AT_RcvXpdsEphInfoInd(
 
 
 /*****************************************************************************
- 函 数 名  : AT_RcvXpdsAlmInfoInd
- 功能描述  : ID_XPDS_AT_GPS_ALM_INFO_IND 消息处理 ^CAGPSEPHINFO
-             XPDS_AT_GPS_ALM_INFO_IND_STRU结构体大小为900字节
-             AT命令中的字符串总长度为900 * 2 = 1800
-             XPDS_AT_GPS_ALM_INFO_IND_STRU结构体的大小为28字节，字符串的长度为56
-             字符串分为3包数据: 8 + 896 * 2 = 1800
-             分包规则:
-             第1包: ucSvNum + ucWeekNum + ucToa + ucReserved，字节长度4，字符串长度8
-             第2包: astAlmData[0:15]，  字节长度448，字符串长度896
-             第3包: astEphData[16:31]， 字节长度448，字符串长度896
- 输入参数  : 消息内容
- 输出参数  : 无
- 返 回 值  : AT_XXX
- 调用函数  :
- 被调函数  :
+     : AT_RcvXpdsAlmInfoInd
+   : ID_XPDS_AT_GPS_ALM_INFO_IND  ^CAGPSEPHINFO
+             XPDS_AT_GPS_ALM_INFO_IND_STRU900
+             AT900 * 2 = 1800
+             XPDS_AT_GPS_ALM_INFO_IND_STRU2856
+             3: 8 + 896 * 2 = 1800
+             :
+             1: ucSvNum + ucWeekNum + ucToa + ucReserved48
+             2: astAlmData[0:15]  448896
+             3: astEphData[16:31] 448896
+   : 
+   : 
+     : AT_XXX
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月22日
-    作    者   : y00174758
-    修改内容   : 新生成函数
+       :
+  1.       : 20150922
+           : y00174758
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_RcvXpdsAlmInfoInd(
     VOS_VOID                           *pstMsg
@@ -1390,10 +1390,10 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
     VOS_UINT8                          *pucAlmData;
     VOS_UINT8                           ucLoop;
 
-    /* 初始化 */
+    /*  */
     pstMsgAlmInfoInd = (XPDS_AT_GPS_ALM_INFO_IND_STRU *)pstMsg;
 
-    /* 通过clientid获取index */
+    /* clientidindex */
     if (AT_FAILURE == At_ClientIdToUserId(pstMsgAlmInfoInd->stAppCtrl.usClientId, &ucIndex))
     {
         AT_WARN_LOG("AT_RcvXpdsAlmInfoInd: WARNING:AT INDEX NOT FOUND!");
@@ -1411,7 +1411,7 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
 
     ulAlmDataStrLen = AT_AGPS_ALM_INFO_FIRST_SEG_STR_LEN;
 
-    /* 第1包数据 */
+    /* 1 */
     usAtCmdLength  = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                             (TAF_CHAR *)pgucAtSndCodeAddr,
                                             (TAF_CHAR *)pgucAtSndCodeAddr,
@@ -1421,8 +1421,8 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
                                             0,
                                             ulAlmDataStrLen);
 
-    /* 第1包数据 */
-    /* 将16进制数转换为ASCII码后输入主动命令内容 */
+    /* 1 */
+    /* 16ASCII */
     usAtCmdLength += (TAF_UINT16)At_HexText2AsciiStringSimple(AT_CMD_MAX_LEN,
                                             (TAF_INT8 *)pgucAtSndCodeAddr,
                                             ((TAF_UINT8 *)pgucAtSndCodeAddr) + usAtCmdLength,
@@ -1438,7 +1438,7 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
 
     ulAlmDataByteOffset = ulAlmDataStrLen / 2;
 
-    /* 从第2包到第3包的数据 */
+    /* 23 */
     for (ucLoop = 0; ucLoop < AT_AGPS_ALM_INFO_MAX_SEG_NUM - 1; ucLoop++)
     {
         ulAlmDataStrLen = AT_AGPS_ALM_INFO_NOT_FIRST_SEG_STR_LEN;
@@ -1452,7 +1452,7 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
                                                 ucLoop + 1,
                                                 ulAlmDataStrLen);
 
-        /* 将16进制数转换为ASCII码后输入主动命令内容 */
+        /* 16ASCII */
         usAtCmdLength += (TAF_UINT16)At_HexText2AsciiStringSimple(AT_CMD_MAX_LEN,
                                                 (TAF_INT8 *)pgucAtSndCodeAddr,
                                                 ((TAF_UINT8 *)pgucAtSndCodeAddr) + usAtCmdLength,
@@ -1474,19 +1474,19 @@ VOS_UINT32 AT_RcvXpdsAlmInfoInd(
 
 
 /*****************************************************************************
- 函 数 名  : At_SetCgpsControlStart
- 功能描述  : ^CGPSControlStart用于CGPS仪器测试通知GPS开始启动定位
+     : At_SetCgpsControlStart
+   : ^CGPSControlStartCGPSGPS
              ^CGPSControlStart=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : d00212987
-    修改内容   : AGPS项目新增
+       :
+  1.       : 2015617
+           : d00212987
+       : AGPS
 *****************************************************************************/
 VOS_UINT32 At_SetCgpsControlStart(
     VOS_UINT8                           ucIndex
@@ -1495,25 +1495,25 @@ VOS_UINT32 At_SetCgpsControlStart(
     AT_XPDS_MSG_STRU                   *pstMsgStr;
     VOS_UINT32                          ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (2 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 字符串长度不正确 */
+    /*  */
     if (gastAtParaList[0].ulParaValue != gastAtParaList[1].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 将字符串转换为16进制数组 */
+    /* 16 */
     if (AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[1].aucPara, &gastAtParaList[1].usParaLen))
     {
         AT_ERR_LOG("At_SetgpsControlStart: At_AsciiNum2HexString fail.");
@@ -1561,19 +1561,19 @@ VOS_UINT32 At_SetCgpsControlStart(
 }
 
 /*****************************************************************************
- 函 数 名  : At_SetCgpsControlStop
- 功能描述  : ^CGPSControlStop用于CGPS仪器测试通知GPS停止定位
+     : At_SetCgpsControlStop
+   : ^CGPSControlStopCGPSGPS
              ^CGPSControlStop=<data_length>,<data>
- 输入参数  : ucIndex - 端口索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年6月17日
-    作    者   : d00212987
-    修改内容   : AGPS项目新增
+       :
+  1.       : 2015617
+           : d00212987
+       : AGPS
 *****************************************************************************/
 VOS_UINT32 At_SetCgpsControlStop(
     VOS_UINT8                           ucIndex
@@ -1582,25 +1582,25 @@ VOS_UINT32 At_SetCgpsControlStop(
     AT_XPDS_MSG_STRU                   *pstMsgStr;
     VOS_UINT32                          ulMsgLength;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 参数过多 */
+    /*  */
     if (2 != gucAtParaIndex)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 字符串长度不正确 */
+    /*  */
     if (gastAtParaList[0].ulParaValue != gastAtParaList[1].usParaLen)
     {
         return AT_CME_INCORRECT_PARAMETERS;
     }
 
-    /* 将字符串转换为16进制数组 */
+    /* 16 */
     if (AT_FAILURE == At_AsciiNum2HexString(gastAtParaList[1].aucPara, &gastAtParaList[1].usParaLen))
     {
         AT_ERR_LOG("At_SetCgpsControlStop: At_AsciiNum2HexString fail.");

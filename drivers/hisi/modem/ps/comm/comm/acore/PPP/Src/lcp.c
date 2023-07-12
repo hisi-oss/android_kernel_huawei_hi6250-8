@@ -48,12 +48,12 @@
 #include "PPP/Inc/ppp_atcmd.h"
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_LCP_C
 
 
-/* 保存从NV项中读取的MRU值*/
+/* NVMRU*/
 VOS_UINT16 g_usPppConfigMru                     = DEF_MRU;
 
 VOS_INT32 LcpLayerUp(struct fsm *);
@@ -88,7 +88,7 @@ VOS_VOID lcp_ReportStatus(struct link *l)
 {
     struct lcp *lcp = &(l->lcp);
 
-    /* 输出到HIDS */
+    /* HIDS */
     PPP_MNTN_LOG3(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_WARNING, "%s: %s [%s]\n", l->name, lcp->fsm.name, State2Nam(lcp->fsm.state));
 
     PPP_MNTN_LOG4(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_WARNING, "his side: MRU %d, ACCMAP %08lx, PROTOCOMP %s, ACFCOMP %s,\n",
@@ -172,10 +172,10 @@ lcp_SetupCallbacks(struct lcp *lcp)
 
 /*****************************************************************************
  Prototype      : lcp_GetAuthConfig
- Description    : 定制需求,通过NV项获取PPP用户配置AUTH
+ Description    : ,NVPPPAUTH
  Input          : VOS_VOID
  Output         :
- Return Value   : VOS_UINT16 用户配置的AUTH
+ Return Value   : VOS_UINT16 AUTH
  Calls          :
  Called By      :
  History        :
@@ -216,7 +216,7 @@ VOS_VOID lcp_GetAuthConfig(VOS_VOID)
     return;
 }
 
-/*lint -e{578}  重名*/
+/*lint -e{578}  */
 VOS_VOID
 lcp_Init(struct lcp *lcp, struct link *l, const struct fsm_parent *parent)
 {
@@ -240,7 +240,7 @@ lcp_Init(struct lcp *lcp, struct link *l, const struct fsm_parent *parent)
   lcp_GetAuthConfig();
 
   lcp->cfg.chap05 = NEG_ACCEPTED;
-/* CDMA模式下只有PC拨号才会用到PPPA,此时只支持PAP不支持CHAP */
+/* CDMAPCPPPA,PAPCHAP */
 
   lcp->cfg.pap  = NEG_ACCEPTED;
   if (TTF_TRUE == g_stPppEntInfo.enPapEnable)
@@ -262,18 +262,18 @@ lcp_Init(struct lcp *lcp, struct link *l, const struct fsm_parent *parent)
 }
 
 /*****************************************************************************
- 函 数 名  : lcp_Setup
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : lcp_Setup
+   :
+   :
+   :
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年8月1日
-    作    者   : liukai
-    修改内容   : 增加对控制Option MRRU和ShortSeq的全局变量的初始化
+       :
+  1.       : 200881
+           : liukai
+       : Option MRRUShortSeq
 
 *****************************************************************************/
 VOS_VOID
@@ -369,13 +369,13 @@ LcpInitRestartCounter(struct fsm *fp, VOS_INT32 what)
     case FSM_REQ_TIMER:
       if (VOS_NULL_PTR != lcp)
       {
-          fp->restart = lcp->cfg.fsm.maxreq; /* [false alarm]:移植开源代码 */
+          fp->restart = lcp->cfg.fsm.maxreq; /* [false alarm]: */
       }
       break;
     case FSM_TRM_TIMER:
       if (VOS_NULL_PTR != lcp)
       {
-          fp->restart = lcp->cfg.fsm.maxtrm; /* [false alarm]:移植开源代码 */
+          fp->restart = lcp->cfg.fsm.maxtrm; /* [false alarm]: */
       }
       break;
     default:
@@ -415,7 +415,7 @@ LcpSendConfigReq(struct fsm *fp)
 
   o = (struct fsm_opt *)buff;
 
-  if (lcp->want_acfcomp && !REJECTED(lcp, TY_ACFCOMP)) /* [false alarm]:移植开源代码 */
+  if (lcp->want_acfcomp && !REJECTED(lcp, TY_ACFCOMP)) /* [false alarm]: */
     INC_FSM_OPT(TY_ACFCOMP, 2, o);
 
   if (lcp->want_protocomp && !REJECTED(lcp, TY_PROTOCOMP))
@@ -508,18 +508,18 @@ lcp_SendProtoRej(struct lcp *lcp, VOS_CHAR *option, VOS_INT32 count)
 
 /*lint -e578 */
 /*****************************************************************************
- 函 数 名  : lcp_SendIdentification
- 功能描述  : 向LCP包填写Identification
- 输入参数  : lcp - LCP控制结构
- 输出参数  : 无
- 返 回 值  : 指示是否填写, 未填写 - 0, 填写 - 1
- 调用函数  :
- 被调函数  :
+     : lcp_SendIdentification
+   : LCPIdentification
+   : lcp - LCP
+   : 
+     : ,  - 0,  - 1
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年5月21日
-    作    者   : liukai
-    修改内容   : AT2D03379
+       :
+  1.       : 2008521
+           : liukai
+       : AT2D03379
 *****************************************************************************/
 VOS_INT32
 lcp_SendIdentification(struct lcp *lcp)
@@ -589,7 +589,7 @@ LcpLayerStart(struct fsm *fp)
   }
 
   PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "LcpLayerStart");
-  lcp->LcpFailedMagic = 0; /* [false alarm]:移植开源代码 */
+  lcp->LcpFailedMagic = 0; /* [false alarm]: */
   fp->more.reqs = fp->more.naks = fp->more.rejs = lcp->cfg.fsm.maxreq * 3;
   lcp->mru_req = 0;
 }
@@ -602,10 +602,10 @@ LcpLayerFinish(struct fsm *fp)
   /* We're now down */
   PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "LcpLayerFinish\r\n");
 
-  /*通知AT进行PDP去激活*/
+  /*ATPDP*/
   PPP_ProcPppRelEvent(usPppId);
 
-  /* 可维可测信息上报*/
+  /* */
   Ppp_EventMntnInfo(usPppId, AT_PPP_RECV_RELEASE_IND);
 
 
@@ -615,11 +615,11 @@ LcpLayerFinish(struct fsm *fp)
       fp->link->lcp.hLcpCloseTimer = VOS_NULL_PTR;
   }
 
-  /*LCP进入Finish,说明PPP和PC间断开已经完成
-    需要通知拉管脚信号*/
+  /*LCPFinish,PPPPC
+    */
   PPP_ProcPppDisconnEvent(usPppId);
 
-  /*然后释放该PPP ID*/
+  /*PPP ID*/
   PppFreeId(usPppId);
 
   return;
@@ -728,16 +728,16 @@ LcpLayerUp(struct fsm *fp)
   fp->link->lcp.auth_ineed  = fp->link->lcp.want_auth;
   fp->link->lcp.auth_iwait  = fp->link->lcp.his_auth;
 
-  /* UE本身不可能同时即充当server又充当client. Balong Modem UE充当server */
+  /* UEserverclient. Balong Modem UEserver */
   if ((fp->link->lcp.his_auth) || (fp->link->lcp.want_auth))
   {
       fp->link->phase = PHASE_AUTHENTICATE;
 
       PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "goto auth stage\r\n");
 
-      /* his_auth不为空，则UE充当client，即为被认证者。
-         CHAP鉴权:UE(client) just wait the peer PC(server) to start authentication firstly
-         PAP鉴权:UE(client) need to start authenticate the peer PC(server) firstly
+      /* his_authUEclient
+         CHAP:UE(client) just wait the peer PC(server) to start authentication firstly
+         PAP:UE(client) need to start authenticate the peer PC(server) firstly
       */
       if (PROTO_PAP == fp->link->lcp.his_auth)
       {
@@ -756,9 +756,9 @@ LcpLayerUp(struct fsm *fp)
         /* do nothing */
       }
 
-      /* want_auth不为空，则UE充当server，即为认证者。
-         CHAP鉴权:UE(server) need to start authenticate the peer PC(client) firstly
-         PAP鉴权:UE(server) just wait the peer PC(client) to start authentication firstly
+      /* want_authUEserver
+         CHAP:UE(server) need to start authenticate the peer PC(client) firstly
+         PAP:UE(server) just wait the peer PC(client) to start authentication firstly
       */
       if (PROTO_CHAP == fp->link->lcp.want_auth)
       {
@@ -879,7 +879,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
       return;
   }
 
-  /* 初始化 */
+  /*  */
   PSACORE_MEM_SET(&req, sizeof(req), 0x0, sizeof(req));
 
   while (end - cp >= (VOS_INT32)sizeof(opt->hdr)) {
@@ -888,7 +888,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
 
     switch (opt->hdr.id) {
     case TY_MRU:
-      lcp->mru_req = 1; /* [false alarm]:移植开源代码 */
+      lcp->mru_req = 1; /* [false alarm]: */
       ua_ntohs(opt->data, &mru);
       PPP_MNTN_LOG1(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL,"mru= <1>\r\n", mru);
 
@@ -951,14 +951,14 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
 
       switch (mode_type) {
       case MODE_REQ:
-        lcp->his_accmap = accmap; /* [false alarm]:移植开源代码 */
+        lcp->his_accmap = accmap; /* [false alarm]: */
         fsm_ack(dec, opt);
         break;
       case MODE_NAK:
-        lcp->want_accmap = accmap; /* [false alarm]:移植开源代码 */
+        lcp->want_accmap = accmap; /* [false alarm]: */
         break;
       case MODE_REJ:
-        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]: */
         break;
       }
       break;
@@ -968,27 +968,27 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
       chap_type = opt->hdr.len == 5 ? opt->data[2] : 0;
 
       PPP_MNTN_LOG4(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "want auth protocal\r\n", proto, chap_type, opt->hdr.len, opt->hdr.id);
-      PPP_MNTN_LOG2(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, Auth2Nam(proto, chap_type), lcp->cfg.chap05, lcp->cfg.pap);/* [false alarm]:移植开源代码 */
+      PPP_MNTN_LOG2(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, Auth2Nam(proto, chap_type), lcp->cfg.chap05, lcp->cfg.pap);/* [false alarm]: */
 
       switch (mode_type) {
       case MODE_REQ:
         switch (proto) {
         case PROTO_PAP:
-          if (opt->hdr.len == 4 && IsAccepted(lcp->cfg.pap)) { /* [false alarm]:移植开源代码 */
+          if (opt->hdr.len == 4 && IsAccepted(lcp->cfg.pap)) { /* [false alarm]: */
             lcp->his_auth = proto;
             lcp->his_authtype = 0;
             fsm_ack(dec, opt);
           } else if (!lcp_auth_nak(lcp, dec)) {
-            lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+            lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]: */
             fsm_rej(dec, opt);
           }
           break;
 
         case PROTO_CHAP:
-          if ((chap_type == 0x05 && IsAccepted(lcp->cfg.chap05))    /* chap_type: 0x05, use MD5 *//* [false alarm]:移植开源代码 */
-              || (chap_type == 0x80 && (IsAccepted(lcp->cfg.chap80nt) || /* [false alarm]:移植开源代码 */
+          if ((chap_type == 0x05 && IsAccepted(lcp->cfg.chap05))    /* chap_type: 0x05, use MD5 *//* [false alarm]: */
+              || (chap_type == 0x80 && (IsAccepted(lcp->cfg.chap80nt) || /* [false alarm]: */
                                    (IsAccepted(lcp->cfg.chap80lm))))
-              || (chap_type == 0x81 && IsAccepted(lcp->cfg.chap81)) /* [false alarm]:移植开源代码 */
+              || (chap_type == 0x81 && IsAccepted(lcp->cfg.chap81)) /* [false alarm]: */
              ) {
             lcp->his_auth       = proto;
             lcp->his_authtype   = chap_type;
@@ -998,7 +998,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
               PPP_MNTN_LOG1(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_WARNING, "chap_type not supported\r\n", chap_type);
 
             if (!lcp_auth_nak(lcp, dec)) {
-              lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+              lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]: */
               fsm_rej(dec, opt);
             }
           }
@@ -1007,7 +1007,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
         default:
           PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "not recognised\r\n");
           if (!lcp_auth_nak(lcp, dec)) {
-            lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+            lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]: */
             fsm_rej(dec, opt);
           }
           break;
@@ -1017,7 +1017,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
       case MODE_NAK:
         switch (proto) {
         case PROTO_PAP:
-          if (IsEnabled(lcp->cfg.pap)) { /* [false alarm]:移植开源代码 */
+          if (IsEnabled(lcp->cfg.pap)) { /* [false alarm]: */
             lcp->want_auth = PROTO_PAP;
             lcp->want_authtype = 0;
           } else {
@@ -1026,20 +1026,20 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
           }
           break;
         case PROTO_CHAP:
-          if (chap_type == 0x05 && IsEnabled(lcp->cfg.chap05)) { /* [false alarm]:移植开源代码 */
+          if (chap_type == 0x05 && IsEnabled(lcp->cfg.chap05)) { /* [false alarm]: */
             lcp->want_auth = PROTO_CHAP;
             lcp->want_authtype = 0x05;
-          } else if (chap_type == 0x80 && (IsEnabled(lcp->cfg.chap80nt) ||  /* [false alarm]:移植开源代码 */
+          } else if (chap_type == 0x80 && (IsEnabled(lcp->cfg.chap80nt) ||  /* [false alarm]: */
                                            IsEnabled(lcp->cfg.chap80lm))) {
             lcp->want_auth = PROTO_CHAP;
             lcp->want_authtype = 0x80;
-          } else if (chap_type == 0x81 && IsEnabled(lcp->cfg.chap81)) { /* [false alarm]:移植开源代码 */
+          } else if (chap_type == 0x81 && IsEnabled(lcp->cfg.chap81)) { /* [false alarm]: */
             lcp->want_auth = PROTO_CHAP;
             lcp->want_authtype = 0x81;
           } else {
             PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "Peer will only send\r\n");
-            lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
-            /*如果支持CHAP,但CHAP的算法UE不支持,则改为使用PAP验证*/
+            lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]: */
+            /*CHAP,CHAPUE,PAP*/
             lcp->want_auth = PROTO_PAP;
             lcp->want_authtype = 0;
 
@@ -1047,13 +1047,13 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
           break;
         default:
           /* We've been NAK'd with something we don't understand :-( */
-          lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+          lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]: */
           break;
         }
         break;
 
       case MODE_REJ:
-        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]: */
         PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "Peer will not auth by our way\r\n");
         lcp->want_auth = 0;    /* added by liukai, 2008-11-24 */
         break;
@@ -1067,9 +1067,9 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
                     (VOS_INT32)VOS_NTOHS(req.proto), (VOS_INT32)(VOS_NTOHL(req.period) * 10));
       switch (mode_type) {
       case MODE_REQ:
-        if (VOS_NTOHS(req.proto) != PROTO_LQR || !IsAccepted(lcp->cfg.lqr)) { /* [false alarm]:移植开源代码 */
+        if (VOS_NTOHS(req.proto) != PROTO_LQR || !IsAccepted(lcp->cfg.lqr)) { /* [false alarm]: */
           fsm_rej(dec, opt);
-          lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+          lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]: */
         } else {
           lcp->his_lqrperiod = VOS_NTOHL(req.period);
           if (lcp->his_lqrperiod < MIN_LQRPERIOD * 100)
@@ -1079,10 +1079,10 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
         }
         break;
       case MODE_NAK:
-        lcp->want_lqrperiod = VOS_NTOHL(req.period); /* [false alarm]:移植开源代码 */
+        lcp->want_lqrperiod = VOS_NTOHL(req.period); /* [false alarm]: */
         break;
       case MODE_REJ:
-        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+        lcp->his_reject |= (1 << opt->hdr.id); /* [false alarm]: */
         break;
       }
       break;
@@ -1093,7 +1093,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
 
       switch (mode_type) {
       case MODE_REQ:
-        if (lcp->want_magic) { /* [false alarm]:移植开源代码 */
+        if (lcp->want_magic) { /* [false alarm]: */
           /* Validate magic number */
           if (magic == lcp->want_magic) {
             PPP_MNTN_LOG2(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL,"Magic is same <1> <2>\r\n", (VOS_INT32)magic, ++lcp->LcpFailedMagic);
@@ -1111,11 +1111,11 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
         break;
       case MODE_NAK:
         PPP_MNTN_LOG1(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, " Magic <1> is NAKed!\r\n", (VOS_INT32)magic);
-        lcp->want_magic = GenerateMagic(); /* [false alarm]:移植开源代码 */
+        lcp->want_magic = GenerateMagic(); /* [false alarm]: */
         break;
       case MODE_REJ:
         PPP_MNTN_LOG1(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, " Magic <1> is REJected!\r\n", (VOS_INT32)magic);
-        lcp->want_magic = 0; /* [false alarm]:移植开源代码 */
+        lcp->want_magic = 0; /* [false alarm]: */
         lcp->his_reject |= (1 << opt->hdr.id);
         break;
       }
@@ -1126,7 +1126,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
 
       switch (mode_type) {
       case MODE_REQ:
-        if (IsAccepted(lcp->cfg.protocomp)) { /* [false alarm]:移植开源代码 */
+        if (IsAccepted(lcp->cfg.protocomp)) { /* [false alarm]: */
           lcp->his_protocomp = 1;
           fsm_ack(dec, opt);
         } else {
@@ -1136,7 +1136,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
         break;
       case MODE_NAK:
       case MODE_REJ:
-        lcp->want_protocomp = 0; /* [false alarm]:移植开源代码 */
+        lcp->want_protocomp = 0; /* [false alarm]: */
         lcp->his_reject |= (1 << opt->hdr.id);
         break;
       }
@@ -1146,7 +1146,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
       PPP_MNTN_LOG(PS_PID_APP_PPP, DIAG_MODE_COMM, PS_PRINT_NORMAL, "acf compress\r\n");
       switch (mode_type) {
       case MODE_REQ:
-        if (IsAccepted(lcp->cfg.acfcomp)) { /* [false alarm]:移植开源代码 */
+        if (IsAccepted(lcp->cfg.acfcomp)) { /* [false alarm]: */
           lcp->his_acfcomp = 1;
           fsm_ack(dec, opt);
         } else {
@@ -1156,7 +1156,7 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
         break;
       case MODE_NAK:
       case MODE_REJ:
-        lcp->want_acfcomp = 0; /* [false alarm]:移植开源代码 */
+        lcp->want_acfcomp = 0; /* [false alarm]: */
         lcp->his_reject |= (1 << opt->hdr.id);
         break;
       }
@@ -1187,14 +1187,14 @@ LcpDecodeConfig(struct fsm *fp, VOS_CHAR *cp, VOS_CHAR *end, VOS_INT32 mode_type
 
       if (mode_type == MODE_REQ) {
         fsm_rej(dec, opt);
-        lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]:移植开源代码 */
+        lcp->my_reject |= (1 << opt->hdr.id); /* [false alarm]: */
       }
       break;
     }
   }
 
   if (mode_type != MODE_NOP) {
-    if (mode_type == MODE_REQ && !lcp->mru_req) { /* [false alarm]:移植开源代码 */
+    if (mode_type == MODE_REQ && !lcp->mru_req) { /* [false alarm]: */
       mru = DEF_MRU;
       if (mru < DEF_MRU) {
         /* Don't let the peer use the default MRU */

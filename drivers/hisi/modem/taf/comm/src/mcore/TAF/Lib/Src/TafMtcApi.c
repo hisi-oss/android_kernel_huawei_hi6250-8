@@ -48,7 +48,7 @@
 
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "PsCommonDef.h"
 
@@ -59,13 +59,13 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_TAF_MTC_API_C
 
 
 /*****************************************************************************
-   2 全局变量定义
+   2 
 *****************************************************************************/
     extern VOS_UINT32 AT_GetDestPid(
         MN_CLIENT_ID_T                      usClientId,
@@ -73,24 +73,24 @@
     );
 
 /*****************************************************************************
-   3 函数实现
+   3 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : MTC_SndMsg
- 功能描述  : 发送MTC消息
- 输入参数  : VOS_UINT32                          ulTaskId
+     : MTC_SndMsg
+   : MTC
+   : VOS_UINT32                          ulTaskId
              VOS_UINT32                          ulMsgId
              VOS_VOID                           *pData
              VOS_UINT32                          ulLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
+       :
+  1.       : 20140616
+           : j00174725
+       : 
 *****************************************************************************/
 VOS_UINT32 MTC_SndMsg(
     VOS_UINT32                          ulTaskId,
@@ -104,7 +104,7 @@ VOS_UINT32 MTC_SndMsg(
 
     ulResult = VOS_OK;
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAF_PS_MSG_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(
                                 UEPS_PID_MTC,
                                 sizeof(MSG_HEADER_STRU) + ulLength);
@@ -116,10 +116,10 @@ VOS_UINT32 MTC_SndMsg(
     pstMsg->stHeader.ulReceiverPid      = UEPS_PID_MTC;
     pstMsg->stHeader.ulMsgName          = ulMsgId;
 
-    /* 填写消息内容 */
+    /*  */
     TAF_MEM_CPY_S(pstMsg->aucContent, ulLength, pData, ulLength);
 
-    /* 发送消息 */
+    /*  */
     ulResult = PS_SEND_MSG(UEPS_PID_MTC, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -130,22 +130,22 @@ VOS_UINT32 MTC_SndMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetCdmaServiceConnStateInfo
- 功能描述  : 设置外部CDMA Modem的连接状态(PS&CS)
- 输入参数  : ulModuleId                 - 模块ID(发送Pid)
-             usClientId                 - 客户端ID
-             ucOpId                     - 操作码ID
-             pstCdmsStatus              - 状态信息指针
- 输出参数  : 无
- 返 回 值  : VOS_OK                     - 发送消息成功
-             VOS_ERR                    - 发送消息失败
- 调用函数  :
- 被调函数  :
+     : MTC_SetCdmaServiceConnStateInfo
+   : CDMA Modem(PS&CS)
+   : ulModuleId                 - ID(Pid)
+             usClientId                 - ID
+             ucOpId                     - ID
+             pstCdmsStatus              - 
+   : 
+     : VOS_OK                     - 
+             VOS_ERR                    - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : 新生成函数
+       :
+  1.       : 20140616
+           : j00174725
+       : 
 *****************************************************************************/
 VOS_UINT32 MTC_SetCdmaServiceConnStateInfo(
     TAF_CTRL_STRU                      *pstCtrl,
@@ -155,17 +155,17 @@ VOS_UINT32 MTC_SetCdmaServiceConnStateInfo(
     TAF_MTC_CDMA_STATE_IND_STRU         stSetCdmaConnSt;
     VOS_UINT32                          ulResult;
 
-    /* 初始化 */
+    /*  */
     ulResult = VOS_OK;
     TAF_MEM_SET_S(&stSetCdmaConnSt, sizeof(stSetCdmaConnSt), 0x00, sizeof(TAF_MTC_CDMA_STATE_IND_STRU));
 
-    /* 构造ID_MSG_MTC_CDMA_CONN_STATUS消息 */
+    /* ID_MSG_MTC_CDMA_CONN_STATUS */
     TAF_API_CTRL_HEADER(&stSetCdmaConnSt.stCtrl, pstCtrl->ulModuleId,
                         pstCtrl->usClientId, pstCtrl->ucOpId);
 
     TAF_MEM_CPY_S(&stSetCdmaConnSt.stCdmaState, sizeof(stSetCdmaConnSt.stCdmaState), pstCdmaState, sizeof(TAF_MTC_CDMA_STATE_INFO_STRU));
 
-    /* 发送消息 */
+    /*  */
     ulResult = MTC_SndMsg(UEPS_PID_MTC,
                          ID_MSG_MTC_CDMA_CONN_STATE_IND,
                          &stSetCdmaConnSt,
@@ -175,19 +175,19 @@ VOS_UINT32 MTC_SetCdmaServiceConnStateInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetModemServiceConnState
- 功能描述  : 设置modem状态信息
- 输入参数  : pstCtrl         消息控制头
-             pstModemConnSt  状态消息指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MTC_SetModemServiceConnState
+   : modem
+   : pstCtrl         
+             pstModemConnSt  
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
+       :
+  1.       : 20140616
+           : j00174725
+       : K3V3 
 *****************************************************************************/
 VOS_UINT32 MTC_SetModemServiceConnState(
     TAF_CTRL_STRU                      *pstCtrl,
@@ -197,16 +197,16 @@ VOS_UINT32 MTC_SetModemServiceConnState(
     TAF_MTC_MODEM_CONN_STATUS_IND_STRU  stModemConnSt;
     VOS_UINT32                          ulResult;
 
-    /* 初始化 */
+    /*  */
     ulResult = VOS_OK;
     TAF_MEM_SET_S(&stModemConnSt, sizeof(stModemConnSt), 0x00, sizeof(TAF_MTC_MODEM_CONN_STATUS_IND_STRU));
 
-    /* 构造ID_MSG_MTC_CDMA_CONN_STATUS消息 */
+    /* ID_MSG_MTC_CDMA_CONN_STATUS */
     TAF_API_CTRL_HEADER(&(stModemConnSt.stCtrl), pstCtrl->ulModuleId, pstCtrl->usClientId, pstCtrl->ucOpId);
 
     TAF_MEM_CPY_S(&stModemConnSt.stModemConnStateInfo, sizeof(stModemConnSt.stModemConnStateInfo), pstModemConnSt, sizeof(TAF_MTC_SRV_CONN_STATE_INFO_STRU));
 
-    /* 发送消息 */
+    /*  */
     ulResult = MTC_SndMsg(UEPS_PID_MTC,
                          ID_MSG_MTC_MODEM_SERVICE_CONN_STATE_IND,
                          &stModemConnSt,
@@ -216,23 +216,23 @@ VOS_UINT32 MTC_SetModemServiceConnState(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetModemUsimmState
- 功能描述  : 设置卡状态信息
- 输入参数  : pstCtrl         消息控制头
-             pstModemConnSt  状态消息指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : MTC_SetModemUsimmState
+   : 
+   : pstCtrl         
+             pstModemConnSt  
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
+       :
+  1.       : 20140616
+           : j00174725
+       : K3V3 
 
-  2.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
+  2.       : 20151021
+           : h00313353
+       : Iteration 19 TAS
 *****************************************************************************/
 VOS_UINT32 MTC_SetModemUsimmState(
     TAF_CTRL_STRU                           *pstCtrl,
@@ -243,17 +243,17 @@ VOS_UINT32 MTC_SetModemUsimmState(
     TAF_MTC_USIMM_STATUS_IND_STRU       stUsimmState;
     VOS_UINT32                          ulResult;
 
-    /* 初始化 */
+    /*  */
     ulResult = VOS_OK;
     TAF_MEM_SET_S(&stUsimmState, sizeof(stUsimmState), 0x00, sizeof(TAF_MTC_USIMM_STATUS_IND_STRU));
 
-    /* 构造ID_MSG_MTC_CDMA_CONN_STATUS消息 */
+    /* ID_MSG_MTC_CDMA_CONN_STATUS */
     TAF_API_CTRL_HEADER(&(stUsimmState.stCtrl), pstCtrl->ulModuleId, pstCtrl->usClientId, pstCtrl->ucOpId);
 
     stUsimmState.enUsimState = enUsimState;
     stUsimmState.enCsimState = enCsimState;
 
-    /* 发送消息 */
+    /*  */
     ulResult = MTC_SndMsg(UEPS_PID_MTC,
                           ID_MSG_MTC_USIMM_STATE_IND,
                           &stUsimmState,
@@ -263,19 +263,19 @@ VOS_UINT32 MTC_SetModemUsimmState(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetBeginSessionInfo
- 功能描述  : 对外提供API，外部模块调用这个函数通知MTC ID_MSG_MTC_BEGIN_SESSION_IND消息
- 输入参数  : pstCtrl         消息控制头
-             enSessionType   类型消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : MTC_SetBeginSessionInfo
+   : APIMTC ID_MSG_MTC_BEGIN_SESSION_IND
+   : pstCtrl         
+             enSessionType   
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
+       :
+  1.       : 20150904
+           : j00174725
+       : DTS2015082406288
 *****************************************************************************/
 VOS_VOID MTC_SetBeginSessionInfo(
     TAF_CTRL_STRU                      *pstCtrl,
@@ -284,15 +284,15 @@ VOS_VOID MTC_SetBeginSessionInfo(
 {
     MTC_BEGIN_SESSION_IND_STRU          stSessionInfo;
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stSessionInfo, sizeof(stSessionInfo), 0x00, sizeof(MTC_BEGIN_SESSION_IND_STRU));
 
-    /* 构造ID_MSG_MTC_BEGIN_SESSION_IND消息 */
+    /* ID_MSG_MTC_BEGIN_SESSION_IND */
     TAF_API_CTRL_HEADER(&(stSessionInfo.stCtrl), pstCtrl->ulModuleId, pstCtrl->usClientId, pstCtrl->ucOpId);
 
     stSessionInfo.enSessionType = enSessionType;
 
-    /* 发送消息 */
+    /*  */
     MTC_SndMsg(UEPS_PID_MTC,
                ID_MSG_MTC_BEGIN_SESSION_IND,
                &stSessionInfo,
@@ -302,19 +302,19 @@ VOS_VOID MTC_SetBeginSessionInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetEndSessionInfo
- 功能描述  : 对外提供API，外部模块调用这个函数通知MTC ID_MSG_MTC_END_SESSION_IND消息
- 输入参数  : pstCtrl         消息控制头
-             enSessionType   类型消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : MTC_SetEndSessionInfo
+   : APIMTC ID_MSG_MTC_END_SESSION_IND
+   : pstCtrl         
+             enSessionType   
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月04日
-    作    者   : j00174725
-    修改内容   : DTS2015082406288
+       :
+  1.       : 20150904
+           : j00174725
+       : DTS2015082406288
 *****************************************************************************/
 VOS_VOID MTC_SetEndSessionInfo(
     TAF_CTRL_STRU                      *pstCtrl,
@@ -323,17 +323,17 @@ VOS_VOID MTC_SetEndSessionInfo(
 {
     MTC_END_SESSION_IND_STRU            stEndSessionInfo;
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stEndSessionInfo, sizeof(stEndSessionInfo), 0x00, sizeof(MTC_END_SESSION_IND_STRU));
 
-    /* 构造ID_MSG_MTC_END_SESSION_IND消息 */
+    /* ID_MSG_MTC_END_SESSION_IND */
     TAF_API_CTRL_HEADER(&(stEndSessionInfo.stCtrl), pstCtrl->ulModuleId, pstCtrl->usClientId, pstCtrl->ucOpId);
 
     stEndSessionInfo.enSessionType  = enSessionType;
     stEndSessionInfo.enCsRelAll     = VOS_FALSE;
     stEndSessionInfo.enPsRelAll     = VOS_FALSE;
 
-    /* 发送消息 */
+    /*  */
     MTC_SndMsg(UEPS_PID_MTC,
                ID_MSG_MTC_END_SESSION_IND,
                &stEndSessionInfo,
@@ -343,19 +343,19 @@ VOS_VOID MTC_SetEndSessionInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetPowerSaveInfo
- 功能描述  : 对外提供API，外部模块调用这个函数通知MTC Power save消息
- 输入参数  : pstCtrl         消息控制头
-             enSessionType   类型消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : MTC_SetPowerSaveInfo
+   : APIMTC Power save
+   : pstCtrl         
+             enSessionType   
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年03月30日
-    作    者   : j00174725
-    修改内容   : DTS2016033008957
+       :
+  1.       : 20160330
+           : j00174725
+       : DTS2016033008957
 *****************************************************************************/
 VOS_VOID MTC_SetPowerSaveInfo(
     VOS_UINT32                          ulSndPid,
@@ -364,14 +364,14 @@ VOS_VOID MTC_SetPowerSaveInfo(
 {
     MTC_POWER_SAVE_IND_STRU             stPowerSaveInfo;
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stPowerSaveInfo, sizeof(stPowerSaveInfo), 0x00, sizeof(MTC_POWER_SAVE_IND_STRU));
 
-    /* 构造ID_MSG_MTC_POWER_SAVE_IND消息 */
+    /* ID_MSG_MTC_POWER_SAVE_IND */
     stPowerSaveInfo.stCtrl.ulModuleId = ulSndPid;
     stPowerSaveInfo.enPowerSaveStatus = enPowerSaveStatus;
 
-    /* 发送消息 */
+    /*  */
     MTC_SndMsg(UEPS_PID_MTC,
                ID_MSG_MTC_POWER_SAVE_IND,
                &stPowerSaveInfo,
@@ -381,19 +381,19 @@ VOS_VOID MTC_SetPowerSaveInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : MTC_SetRatModeInfo
- 功能描述  : 将之前的MMA发给MTC的消息(ID_MMA_MTC_RAT_MODE_IND)转成内部消息，供外部调用
- 输入参数  : pstCtrl         消息控制头
-             enRatMode       接入模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : MTC_SetRatModeInfo
+   : MMAMTC(ID_MMA_MTC_RAT_MODE_IND)
+   : pstCtrl         
+             enRatMode       
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年11月24日
-    作    者   : j00174725
-    修改内容   : DTS2016111606731
+       :
+  1.       : 20161124
+           : j00174725
+       : DTS2016111606731
 *****************************************************************************/
 VOS_VOID MTC_SetRatModeInfo(
     TAF_CTRL_STRU                      *pstCtrl,
@@ -402,15 +402,15 @@ VOS_VOID MTC_SetRatModeInfo(
 {
     MTC_RAT_MODE_IND_STRU               stRatModeInfo;
 
-    /* 初始化 */
+    /*  */
     TAF_MEM_SET_S(&stRatModeInfo, sizeof(stRatModeInfo), 0x00, sizeof(MTC_RAT_MODE_IND_STRU));
 
-    /* 构造ID_MSG_MTC_RAT_MODE_IND消息 */
+    /* ID_MSG_MTC_RAT_MODE_IND */
     TAF_API_CTRL_HEADER(&(stRatModeInfo.stCtrl), pstCtrl->ulModuleId, pstCtrl->usClientId, pstCtrl->ucOpId);
 
     stRatModeInfo.enRatMode = enRatMode;
 
-    /* 发送消息 */
+    /*  */
     MTC_SndMsg(UEPS_PID_MTC,
                ID_MSG_MTC_RAT_MODE_IND,
                &stRatModeInfo,

@@ -33,105 +33,105 @@ extern "C" {
 /*****************************************************************************
   2 Macro
 *****************************************************************************/
-#define NAS_MMC_NV_ITEM_ACTIVE          (1)                                     /* NV项激活 */
-#define NAS_MMC_NV_ITEM_DEACTIVE        (0)                                     /* NV项未激活 */
+#define NAS_MMC_NV_ITEM_ACTIVE          (1)                                     /* NV */
+#define NAS_MMC_NV_ITEM_DEACTIVE        (0)                                     /* NV */
 
-/* GPRS GEA 算法支持宏定义 */
-#define NAS_MMC_GPRS_GEA1_SUPPORT       (0x01)                                  /* 支持GPRS GEA1算法 */
-#define NAS_MMC_GPRS_GEA1_VALUE         (0x80)                                  /* 支持GEA1时的网络能力值 */
-#define NAS_MMC_GPRS_GEA2_VALUE         (0x40)                                  /* 支持GEA2时的网络能力值 */
-#define NAS_MMC_GPRS_GEA3_VALUE         (0x20)                                  /* 支持GEA3时的网络能力值 */
-#define NAS_MMC_GPRS_GEA4_VALUE         (0x10)                                  /* 支持GEA4时的网络能力值 */
-#define NAS_MMC_GPRS_GEA5_VALUE         (0x08)                                  /* 支持GEA5时的网络能力值 */
-#define NAS_MMC_GPRS_GEA6_VALUE         (0x04)                                  /* 支持GEA6时的网络能力值 */
-#define NAS_MMC_GPRS_GEA7_VALUE         (0x02)                                  /* 支持GEA7时的网络能力值 */
+/* GPRS GEA  */
+#define NAS_MMC_GPRS_GEA1_SUPPORT       (0x01)                                  /* GPRS GEA1 */
+#define NAS_MMC_GPRS_GEA1_VALUE         (0x80)                                  /* GEA1 */
+#define NAS_MMC_GPRS_GEA2_VALUE         (0x40)                                  /* GEA2 */
+#define NAS_MMC_GPRS_GEA3_VALUE         (0x20)                                  /* GEA3 */
+#define NAS_MMC_GPRS_GEA4_VALUE         (0x10)                                  /* GEA4 */
+#define NAS_MMC_GPRS_GEA5_VALUE         (0x08)                                  /* GEA5 */
+#define NAS_MMC_GPRS_GEA6_VALUE         (0x04)                                  /* GEA6 */
+#define NAS_MMC_GPRS_GEA7_VALUE         (0x02)                                  /* GEA7 */
 
-#define NAS_MMC_GPRS_GEA2_SUPPORT       (0x02)                                  /* 支持GPRS GEA2算法 */
-#define NAS_MMC_GPRS_GEA3_SUPPORT       (0x04)                                  /* 支持GPRS GEA3算法 */
-#define NAS_MMC_GPRS_GEA4_SUPPORT       (0x08)                                  /* 支持GPRS GEA4算法 */
-#define NAS_MMC_GPRS_GEA5_SUPPORT       (0x10)                                  /* 支持GPRS GEA5算法 */
-#define NAS_MMC_GPRS_GEA6_SUPPORT       (0x20)                                  /* 支持GPRS GEA6算法 */
-#define NAS_MMC_GPRS_GEA7_SUPPORT       (0x40)                                  /* 支持GPRS GEA7算法 */
-#define NAS_MMC_NVIM_MAX_EPLMN_NUM      (16)                                    /* en_NV_Item_EquivalentPlmn NV中等效plmn个数 */
-#define NAS_MMC_NVIM_MAX_MCC_SIZE       (3)                                     /* plmn中Mcc最大长度 */
-#define NAS_MMC_NVIM_MAX_MNC_SIZE       (3)                                     /* plmn中Mnc最大长度 */
+#define NAS_MMC_GPRS_GEA2_SUPPORT       (0x02)                                  /* GPRS GEA2 */
+#define NAS_MMC_GPRS_GEA3_SUPPORT       (0x04)                                  /* GPRS GEA3 */
+#define NAS_MMC_GPRS_GEA4_SUPPORT       (0x08)                                  /* GPRS GEA4 */
+#define NAS_MMC_GPRS_GEA5_SUPPORT       (0x10)                                  /* GPRS GEA5 */
+#define NAS_MMC_GPRS_GEA6_SUPPORT       (0x20)                                  /* GPRS GEA6 */
+#define NAS_MMC_GPRS_GEA7_SUPPORT       (0x40)                                  /* GPRS GEA7 */
+#define NAS_MMC_NVIM_MAX_EPLMN_NUM      (16)                                    /* en_NV_Item_EquivalentPlmn NVplmn */
+#define NAS_MMC_NVIM_MAX_MCC_SIZE       (3)                                     /* plmnMcc */
+#define NAS_MMC_NVIM_MAX_MNC_SIZE       (3)                                     /* plmnMnc */
 #define NAS_MMC_LOW_BYTE_MASK           (0x0f)
 
-#define NAS_MMC_A5_1_SUPPORT            (0x0001)                                  /* 支持A5-1算法 */
-#define NAS_MMC_A5_2_SUPPORT            (0x0002)                                  /* 支持A5-2算法 */
-#define NAS_MMC_A5_3_SUPPORT            (0x0004)                                  /* 支持A5-3算法 */
-#define NAS_MMC_A5_4_SUPPORT            (0x0008)                                  /* 支持A5-4算法 */
-#define NAS_MMC_A5_5_SUPPORT            (0x0010)                                  /* 支持A5-5算法 */
-#define NAS_MMC_A5_6_SUPPORT            (0x0020)                                  /* 支持A5-6算法 */
-#define NAS_MMC_A5_7_SUPPORT            (0x0040)                                  /* 支持A5-7算法 */
+#define NAS_MMC_A5_1_SUPPORT            (0x0001)                                  /* A5-1 */
+#define NAS_MMC_A5_2_SUPPORT            (0x0002)                                  /* A5-2 */
+#define NAS_MMC_A5_3_SUPPORT            (0x0004)                                  /* A5-3 */
+#define NAS_MMC_A5_4_SUPPORT            (0x0008)                                  /* A5-4 */
+#define NAS_MMC_A5_5_SUPPORT            (0x0010)                                  /* A5-5 */
+#define NAS_MMC_A5_6_SUPPORT            (0x0020)                                  /* A5-6 */
+#define NAS_MMC_A5_7_SUPPORT            (0x0040)                                  /* A5-7 */
 
-#define NAS_MMC_NVIM_MAX_USER_CFG_IMSI_PLMN_NUM                  (6)                 /* 用户配置的最多可支持的USIM/SIM卡的个数 */
-#define NAS_MMC_NVIM_MAX_USER_CFG_EHPLMN_NUM                     (6)                 /* 用户配置的EHplmn的个数 */
-#define NAS_MMC_MAX_BLACK_LOCK_PLMN_WITH_RAT_NUM            (8)                 /* 禁止接入技术的PLMN ID的最大个数 */
-#define NAS_MMC_NVIM_MAX_USER_CFG_EXT_EHPLMN_NUM              (8)                /* 扩展的NV项的EHplmn组的最大个数*/
-#define NAS_MMC_NVIM_MAX_USER_CFG_FORB_PLMN_GROUP_NUM         (8)                /* 用户配置的forb plmn的最大组数 */
+#define NAS_MMC_NVIM_MAX_USER_CFG_IMSI_PLMN_NUM                  (6)                 /* USIM/SIM */
+#define NAS_MMC_NVIM_MAX_USER_CFG_EHPLMN_NUM                     (6)                 /* EHplmn */
+#define NAS_MMC_MAX_BLACK_LOCK_PLMN_WITH_RAT_NUM            (8)                 /* PLMN ID */
+#define NAS_MMC_NVIM_MAX_USER_CFG_EXT_EHPLMN_NUM              (8)                /* NVEHplmn*/
+#define NAS_MMC_NVIM_MAX_USER_CFG_FORB_PLMN_GROUP_NUM         (8)                /* forb plmn */
 
-#define NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN               (8)               /* 用户配置的OPLMN版本号最大长度 */
-#define NAS_MMC_NVIM_MAX_USER_OPLMN_IMSI_NUM                  (6)               /* 用户配置的OPLMN最多可支持的USIM/SIM卡的个数 */
-#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_NUM                   (256)             /* 用户配置的OPLMN的最大个数 */
-#define NAS_MMC_NVIM_OPLMN_WITH_RAT_UNIT_LEN                  (5)               /* 用户配置的带接入技术OPLMN基本单元长度，如6F61文件的基本长度单元为5 */
-#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_LEN              (500)             /* 用户配置OPLMN的最大字节数,扩容前只支持500*/
-#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_EXTEND_LEN       (1280)            /* 扩展后的用户配置OPLMN的最大字节数*/
+#define NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN               (8)               /* OPLMN */
+#define NAS_MMC_NVIM_MAX_USER_OPLMN_IMSI_NUM                  (6)               /* OPLMNUSIM/SIM */
+#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_NUM                   (256)             /* OPLMN */
+#define NAS_MMC_NVIM_OPLMN_WITH_RAT_UNIT_LEN                  (5)               /* OPLMN6F615 */
+#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_LEN              (500)             /* OPLMN,500*/
+#define NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_EXTEND_LEN       (1280)            /* OPLMN*/
 
 
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, begin */
-/* 扩容:由128改256; 增加预置类型信息,由6改7*/
-#define NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_LEN             (7*256)            /* 扩展后的用户配置DPLMN的最大字节数 */
-#define NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_LEN             (7*256)            /* 扩展后的用户配置NPLMN的最大字节数 */
-/* Modified by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-18, end */
+/* Modified by c00318887 for DPlmnHPLMN, 2015-5-18, begin */
+/* :128256; ,67*/
+#define NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_LEN             (7*256)            /* DPLMN */
+#define NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_LEN             (7*256)            /* NPLMN */
+/* Modified by c00318887 for DPlmnHPLMN, 2015-5-18, end */
 
-#define NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_EXTEND_LEN       (6*128)            /* 扩展后的用户配置DPLMN的最大字节数*/
-#define NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_EXTEND_LEN       (6*128)            /* 扩展后的用户配置NPLMN的最大字节数*/
+#define NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_EXTEND_LEN       (6*128)            /* DPLMN*/
+#define NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_EXTEND_LEN       (6*128)            /* NPLMN*/
 #define NAS_MMC_NVIM_MAX_CFG_HPLMN_NUM                   (3*8)
-#define NAS_MCC_NVIM_VERSION_LEN                         (9)                /* 版本号，固定为xx.xx.xxx */
+#define NAS_MCC_NVIM_VERSION_LEN                         (9)                /* xx.xx.xxx */
 
-#define NAS_MMC_NVIM_MAX_CFG_DPLMN_NUM                   (256)            /* 扩展后的用户配置DPLMN个数 */
-#define NAS_MMC_NVIM_MAX_CFG_NPLMN_NUM                   (256)            /* 扩展后的用户配置NPLMN个数 */
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-9, begin */
-/* 边境信息数据,每7个字节代表一条边境信息，第1-3个字节为sim卡格式plmn id，
-   第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，第6-7字节为LAC或TAC信息
-   接入技术为WG时，6-7字节表示LAC;接入技术为LTE时，6-7字节表示TAC */
-#define NAS_MMC_EVERY_BORDER_INFO_LEN                    (7)              /* en_NV_Item_Ap_Preset_Border_Info nv中每条边境信息占用字节数 */
-#define NAS_MMC_NVIM_MAX_CFG_BORDER_DATA_LEN             (7*256)          /* AP预置边境信息的最大数据长度，每条边境信息占用7字节，最多预置256条边境信息 */
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-9, end */
+#define NAS_MMC_NVIM_MAX_CFG_DPLMN_NUM                   (256)            /* DPLMN */
+#define NAS_MMC_NVIM_MAX_CFG_NPLMN_NUM                   (256)            /* NPLMN */
+/* Added by s00217060 for PhaseI, 2016-8-9, begin */
+/* ,71-3simplmn id
+   4-5(0x8000w0x4000lte0x0080gsm)6-7LACTAC
+   WG6-7LAC;LTE6-7TAC */
+#define NAS_MMC_EVERY_BORDER_INFO_LEN                    (7)              /* en_NV_Item_Ap_Preset_Border_Info nv */
+#define NAS_MMC_NVIM_MAX_CFG_BORDER_DATA_LEN             (7*256)          /* AP7256 */
+/* Added by s00217060 for PhaseI, 2016-8-9, end */
 #define NAS_NVIM_MAX_OPER_SHORT_NAME_LEN                36
 #define NAS_NVIM_MAX_OPER_LONG_NAME_LEN                 40
 
-#define NAS_NVIM_ITEM_MAX_IMSI_LEN          (9)                     /* 最大的IMSI的长度 */
-#define NAS_MML_NVIM_PS_LOCI_SIM_FILE_LEN                    (14)                    /* USIM中PSLOCI文件的长度 */
-#define NAS_NVIM_PS_LOCI_SIM_FILE_LEN                    (14)                    /* USIM中PSLOCI文件的长度 */
+#define NAS_NVIM_ITEM_MAX_IMSI_LEN          (9)                     /* IMSI */
+#define NAS_MML_NVIM_PS_LOCI_SIM_FILE_LEN                    (14)                    /* USIMPSLOCI */
+#define NAS_NVIM_PS_LOCI_SIM_FILE_LEN                    (14)                    /* USIMPSLOCI */
 
-#define NAS_UTRANCTRL_MAX_NVIM_CFG_TD_MCC_LIST_NUM          (6)                 /* 模式自动切换中最大的可配置国家码个数 */
-#define NAS_UTRANCTRL_MAX_NVIM_CFG_IMSI_PLMN_LIST_NUM       (6)                 /* 模式自动切换中最大的可配置USIM/IMSI的网络号个数 */
+#define NAS_UTRANCTRL_MAX_NVIM_CFG_TD_MCC_LIST_NUM          (6)                 /*  */
+#define NAS_UTRANCTRL_MAX_NVIM_CFG_IMSI_PLMN_LIST_NUM       (6)                 /* USIM/IMSI */
 
-#define NAS_MML_NVIM_MAX_DISABLED_RAT_PLMN_NUM              (8)                 /* 禁止接入技术的PLMN ID的最大个数 */
+#define NAS_MML_NVIM_MAX_DISABLED_RAT_PLMN_NUM              (8)                 /* PLMN ID */
 
 #define NAS_MML_NVIM_MAX_SKIP_BAND_TYPE_SEARCH_MCC_NUM      (8)
 
 #define NAS_MML_MAX_EXTENDED_FORB_PLMN_NUM                  (32)
 
-#define NAS_MML_NVIM_FRAT_MAX_IMSI_NUM                       (6)                 /* FRAT特性最大支持IMSI个数 */
-#define NAS_MML_NVIM_FRAT_MAX_PLMN_ID_NUM                    (40)                /* FRAT特性最大支持PLMN个数 */
+#define NAS_MML_NVIM_FRAT_MAX_IMSI_NUM                       (6)                 /* FRATIMSI */
+#define NAS_MML_NVIM_FRAT_MAX_PLMN_ID_NUM                    (40)                /* FRATPLMN */
 
-#define NAS_SIM_FORMAT_PLMN_LEN                     (3)                     /* Sim卡格式的Plmn长度 */
+#define NAS_SIM_FORMAT_PLMN_LEN                     (3)                     /* SimPlmn */
 
-#define NAS_MML_NVIM_MAX_BLACK_LOCK_PLMN_NUM                 (16)                    /* 黑名单锁网支持的PLMN ID的最大个数 */
+#define NAS_MML_NVIM_MAX_BLACK_LOCK_PLMN_NUM                 (16)                    /* PLMN ID */
 
-#define NAS_MML_NVIM_MAX_WHITE_LOCK_PLMN_NUM                 (16)                    /* 白名单锁网支持的PLMN ID的最大个数 */
+#define NAS_MML_NVIM_MAX_WHITE_LOCK_PLMN_NUM                 (16)                    /* PLMN ID */
 
-#define NAS_MML_BG_SEARCH_REGARDLESS_MCC_NUMBER         (10)                     /* BG搜不考虑国家码的国家码最大个数 */
-#define NAS_MML_SINGLE_DOMAIN_FAIL_ACTION_MAX_LIST      (5)                     /* 定制原因值最大列表 */
+#define NAS_MML_BG_SEARCH_REGARDLESS_MCC_NUMBER         (10)                     /* BG */
+#define NAS_MML_SINGLE_DOMAIN_FAIL_ACTION_MAX_LIST      (5)                     /*  */
 
 #define NV_ITEM_NET_CAPABILITY_MAX_SIZE                     (10)
 
-#define NAS_MMC_NVIM_SUPPORTED_3GPP_RELEASE_SIZE            (2)                 /* 当前支持的协议版本 */
+#define NAS_MMC_NVIM_SUPPORTED_3GPP_RELEASE_SIZE            (2)                 /*  */
 
-#define NAS_MMC_NVIM_MAX_IMSI_LEN                           (9)                     /* 最大的IMSI的长度 */
+#define NAS_MMC_NVIM_MAX_IMSI_LEN                           (9)                     /* IMSI */
 
 #define NVIM_MAX_EPLMN_NUM                                  (16)
 #define NVIM_MAX_MCC_SIZE                                   (3)
@@ -140,10 +140,10 @@ extern "C" {
 #define NVIM_MAX_FDD_FREQ_BANDS_NUM                         (12)
 
 /* Add by z60575 for multi_ssid, 2012-9-5 end */
-/*+CGMI - 获取制造商名称*/
+/*+CGMI - */
 
 #define NAS_NVIM_MAX_IMSI_FORBIDDEN_LIST_NUM         (16)
-#define NAS_NVIM_MAX_RAT_FORBIDDEN_LIST_NUM          (8)    /* 预留拓展 */
+#define NAS_NVIM_MAX_RAT_FORBIDDEN_LIST_NUM          (8)    /*  */
 #define NAS_NVIM_MAX_SUPPORTED_FORBIDDEN_RAT_NUM     (2)
 
 #define NAS_NVIM_FORBIDDEN_RAT_NUM_0                 (0)
@@ -155,7 +155,7 @@ extern "C" {
 
 #define NAS_NVIM_MAX_LAU_REJ_TRIG_PLMN_SEARCH_CAUSE_NUM     (12)
 
-/* 对NVID枚举的转定义(PS_NV_ID_ENUM, SYS_NV_ID_ENUM, RF_NV_ID_ENUM) */
+/* NVID(PS_NV_ID_ENUM, SYS_NV_ID_ENUM, RF_NV_ID_ENUM) */
 typedef VOS_UINT16  NV_ID_ENUM_U16;
 #define NV_ITEM_IMEI_SIZE                      16
 #define NV_ITEM_MMA_OPERATORNAME_SIZE          84
@@ -165,12 +165,12 @@ typedef VOS_UINT16  NV_ID_ENUM_U16;
 #define NV_ITEM_PLMN_ID_LEN             (8)
 
 #define NV_ITEM_AT_PARA_SIZE                   100
-#define NV_ITEM_HPLMN_FIRST_SEARCH_SIZE        1  /* 第一次HPLMN搜索的时间间隔 */
-#define NVIM_ITEM_MAX_IMSI_LEN          (9)                     /* 最大的IMSI的长度 */
+#define NV_ITEM_HPLMN_FIRST_SEARCH_SIZE        1  /* HPLMN */
+#define NVIM_ITEM_MAX_IMSI_LEN          (9)                     /* IMSI */
 
 #define CNAS_NVIM_MAX_1X_MRU_SYS_NUM                            (12)
 
-#define NAS_MMC_NVIM_MAX_CAUSE_NUM      (10)     /* NV配置原因值最大个数 */
+#define NAS_MMC_NVIM_MAX_CAUSE_NUM      (10)     /* NV */
 
 #define CNAS_NVIM_PRL_SIZE                                      (4096) /* PRL NV size: 4K byte */
 
@@ -189,12 +189,12 @@ typedef VOS_UINT16  NV_ID_ENUM_U16;
 #define CNAS_NVIM_MAX_STORAGE_BLOB_LEN                      ( 255 )
 
 #define NAS_NVIM_BYTES_IN_SUBNET                            (16)
-#define NAS_NVIM_MAX_RAT_NUM                                (7)                 /* 预留出1X和HRPD */
+#define NAS_NVIM_MAX_RAT_NUM                                (7)                 /* 1XHRPD */
 
 #define NAS_MSCC_NVIM_MLPL_SIZE                                      (1024) /* PRL NV size: 1K byte */
 #define NAS_MSCC_NVIM_MSPL_SIZE                                      (1024) /* PRL NV size: 1K byte */
 
-#define NAS_NV_TRI_MODE_CHAN_PARA_PROFILE_NUM      ( 8 )                       /*  包含全网通性特的通道配置场景数目 */
+#define NAS_NV_TRI_MODE_CHAN_PARA_PROFILE_NUM      ( 8 )                       /*   */
 
 #define CNAS_NVIM_ICCID_OCTET_LEN                            (10)
 #define CNAS_NVIM_MEID_OCTET_NUM                             (7)
@@ -207,22 +207,22 @@ typedef VOS_UINT16  NV_ID_ENUM_U16;
 #define CNAS_NVIM_MAX_CDMA_1X_CUSTOM_PREF_CHANNELS_NUM              (10)
 #define CNAS_NVIM_MAX_CDMA_1X_CUSTOMIZE_PREF_CHANNELS_NUM           (20)
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
-/* 高优先级PLMN refresh 触发背景搜默认延迟时长: 单位 秒 */
+/* Added by c00318887 for file refresh, 2015-4-28, begin */
+/* PLMN refresh :   */
 #define NV_ITEM_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_DEFAULT_DELAY_LEN    (5)
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
+/* Added by c00318887 for file refresh, 2015-4-28, end */
 
 #define NAS_NVIM_MAX_PLMN_CSG_ID_NUM             (35)
 #define NAS_NVIM_MAX_CSG_REJ_CAUSE_NUM           (10)
 
-#define NAS_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_MAX_IMSI_LIST_NUM      (16)    /* SIM卡列表 (LTE OOS后先搜2G再搜3G) */
+#define NAS_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_MAX_IMSI_LIST_NUM      (16)    /* SIM (LTE OOS2G3G) */
 
-#define NAS_MML_NVIM_MAX_REG_FAIL_CAUSE_NUM        (16)        /*支持的禁止LA列表大小*/
-#define CNAS_NVIM_MAX_AUTHDATA_USERNAME_LEN                      (253)   /* HRPD ppp AN鉴权用户名最长用户名，
-                                                                            参考C.S0023-D section 3.4.53以及
+#define NAS_MML_NVIM_MAX_REG_FAIL_CAUSE_NUM        (16)        /*LA*/
+#define CNAS_NVIM_MAX_AUTHDATA_USERNAME_LEN                      (253)   /* HRPD ppp AN
+                                                                            C.S0023-D section 3.4.53
                                                                             C.S0016-D,section 3.5.8.13,
-                                                                            该长度理论最长为255-2(NAI长度以
-                                                                            及鉴权算法保留字节占用的字节) */
+                                                                            255-2(NAI
+                                                                            ) */
 
 #define CNAS_NVIM_1X_MAX_MRU_SYS_NUM                   (12)
 
@@ -242,8 +242,8 @@ typedef VOS_UINT16  NV_ID_ENUM_U16;
 #define NAS_NVIM_MAX_LIMIT_PDP_ACT_PLMN_NUM             (8)
 #define NAS_NVIM_MAX_LIMIT_PDP_ACT_CAUSE_NUM            (8)
 
-#define NAS_MAX_TMSI_LEN                                (4)                     /* 最大的TMSI的长度 */
-#define NAS_SIM_MAX_LAI_LEN                             (6)                     /* SIM卡中保存的LAI最大长度 */
+#define NAS_MAX_TMSI_LEN                                (4)                     /* TMSI */
+#define NAS_SIM_MAX_LAI_LEN                             (6)                     /* SIMLAI */
 #define NAS_MMC_NVIM_MAX_CUSTOM_SUPPLEMENT_OPLMN_NUM    (16)
 
 #define CNAS_NVIM_MAX_CDMA_HRPD_CUSTOMIZE_PREF_CHANNELS_NUM           (20)
@@ -271,75 +271,75 @@ typedef VOS_UINT16  NV_ID_ENUM_U16;
   4 Enum
 *****************************************************************************/
 /*****************************************************************************
-枚举名    : NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM
-结构说明  : 单域注册被拒，MMC的动作
+    : NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM
+  : MMC
 
-1.日    期   : 2012年6月11日
-  作    者   : w00166186
-  修改内容   : AT&T&DCM项目新增类型
+1.       : 2012611
+         : w00166186
+     : AT&T&DCM
 
-2.日    期   : 2014年8月19日
-  作    者   : w00167002
-  修改内容   : DTS2014081905808:在配置PS注册拒绝14时候，若当前在HOME PLMN上，则可能
-               触发循环乒乓，修改为增加ACTION动作:在漫游网络上触发选网，在HOME网络上
-               不生效，按现有流程进行处理。
+2.       : 2014819
+         : w00167002
+     : DTS2014081905808:PS14HOME PLMN
+               ACTION:HOME
+               
 
 *****************************************************************************/
 enum NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM
 {
-    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_PLMN_SELECTION                    = 0,            /* 触发搜网 */
-    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_NORMAL_CAMP_ON                    = 1,            /* 正常驻留 */
-    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_OPTIONAL_PLMN_SELECTION           = 2,            /* 触发可选搜网 */
-    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_LIMITED_CAMP_ON                   = 3,            /* 限制驻留 */
+    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_PLMN_SELECTION                    = 0,            /*  */
+    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_NORMAL_CAMP_ON                    = 1,            /*  */
+    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_OPTIONAL_PLMN_SELECTION           = 2,            /*  */
+    NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_LIMITED_CAMP_ON                   = 3,            /*  */
 
-    NAS_MMC_NVIM_SINGLE_DOMAIN_ROAMING_REG_FAIL_ACTION_PLMN_SELECTION            = 4,            /* 在漫游网络上注册发起搜网，在HOME网络上不生效 */
+    NAS_MMC_NVIM_SINGLE_DOMAIN_ROAMING_REG_FAIL_ACTION_PLMN_SELECTION            = 4,            /* HOME */
 
     NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM_UINT8;
 
 /*****************************************************************************
-枚举名    : NAS_MMC_NVIM_REG_FAIL_CAUSE_ENUM
-结构说明  : 注册失败自定义原因值
+    : NAS_MMC_NVIM_REG_FAIL_CAUSE_ENUM
+  : 
 
-1.日    期   : 2012年6月11日
-  作    者   : w00166186
-  修改内容   : AT&T&DCM项目新增类型
+1.       : 2012611
+         : w00166186
+     : AT&T&DCM
 
 *****************************************************************************/
 enum NAS_MMC_NVIM_REG_FAIL_CAUSE_ENUM
 {
     NAS_MMC_NVIM_REG_FAIL_CAUSE_GPRS_SERV_NOT_ALLOW_IN_PLMN = 14,
-    NAS_MMC_NVIM_REG_FAIL_CAUSE_TIMER_TIMEOUT               = 301,                                 /* 等待网侧结果定时器超时 */
+    NAS_MMC_NVIM_REG_FAIL_CAUSE_TIMER_TIMEOUT               = 301,                                 /*  */
     NAS_MMC_NVIM_REG_FAIL_CAUSE_BUTT
 };
 typedef VOS_UINT16 NAS_MMC_NVIM_REG_FAIL_CAUSE_ENUM_UINT16;
 
 /*****************************************************************************
-枚举名    : NAS_MMC_NVIM_REG_DOMAIN_ENUM_UINT8
-结构说明  : 注册域
+    : NAS_MMC_NVIM_REG_DOMAIN_ENUM_UINT8
+  : 
 
-1.日    期   : 2012年6月11日
-  作    者   : w00166186
-  修改内容   : AT&T&DCM项目新增类型
+1.       : 2012611
+         : w00166186
+     : AT&T&DCM
 
 *****************************************************************************/
 enum NAS_MMC_NVIM_REG_DOMAIN_ENUM
 {
     NAS_MMC_NVIM_REG_DOMAIN_CS = 1,
-    NAS_MMC_NVIM_REG_DOMAIN_PS = 2,                                 /* 等待网侧结果定时器超时 */
+    NAS_MMC_NVIM_REG_DOMAIN_PS = 2,                                 /*  */
     NAS_MMC_NVIM_REG_DOMAIN_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_NVIM_REG_DOMAIN_ENUM_UINT8;
 
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, begin */
+/* Added by w00176964 for UC2NV, 2013-3-11, begin */
 /*****************************************************************************
- 枚举名    : NAS_MMC_UCS2_ENUM
- 枚举说明  : UCS2 能力
- 修改历史  :
- 1.日    期    : 2013年03月11日
-   作    者    : w00176964
-   修改内容    : 新建
+     : NAS_MMC_UCS2_ENUM
+   : UCS2 
+   :
+ 1.        : 20130311
+           : w00176964
+       : 
 *****************************************************************************/
 
 enum NAS_MMC_UCS2_ENUM
@@ -351,70 +351,70 @@ enum NAS_MMC_UCS2_ENUM
 };
 
 typedef VOS_UINT16 NAS_MMC_UCS2_ENUM_UINT16;
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, end */
+/* Added by w00176964 for UC2NV, 2013-3-11, end */
 
 /*****************************************************************************
- 枚举名    : NV_MS_MODE_ENUM_UINT8
- 结构说明  :  NV中记录的手机模式
-  1.日    期   : 2011年8月18日
-    作    者   : z00161729
-    修改内容   : 新增
-  2.日    期   : 2012年4月23日
-    作    者   : w00166186
-    修改内容   : DTS2012033104746,关机状态设置服务域为ANY不生效
+     : NV_MS_MODE_ENUM_UINT8
+   :  NV
+  1.       : 2011818
+           : z00161729
+       : 
+  2.       : 2012423
+           : w00166186
+       : DTS2012033104746,ANY
 *****************************************************************************/
 enum NV_MS_MODE_ENUM
 {
-    NV_MS_MODE_CS_ONLY,                                                 /* 仅支持CS域 */
-    NV_MS_MODE_PS_ONLY,                                                 /* 仅支持PS域 */
-    NV_MS_MODE_CS_PS,                                                   /* CS和PS都支持 */
+    NV_MS_MODE_CS_ONLY,                                                 /* CS */
+    NV_MS_MODE_PS_ONLY,                                                 /* PS */
+    NV_MS_MODE_CS_PS,                                                   /* CSPS */
 
-    NV_MS_MODE_ANY,                                                     /* ANY,相当于仅支持CS域 */
+    NV_MS_MODE_ANY,                                                     /* ANY,CS */
 
     NV_MS_MODE_BUTT
 };
 typedef VOS_UINT8 NV_MS_MODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_NV_LTE_CS_SERVICE_CFG_ENUM_UINT8
- 枚举说明  : L模支持的cs域业务能力的类型
- 1.日    期   : 2016年02月16日
-   作    者   : w00167002
-   修改内容   : 新建
+     : NAS_NV_LTE_CS_SERVICE_CFG_ENUM_UINT8
+   : Lcs
+ 1.       : 20160216
+          : w00167002
+      : 
 *****************************************************************************/
 enum NAS_NV_LTE_CS_SERVICE_CFG_ENUM
 {
-    NAS_NV_LTE_SUPPORT_CSFB_AND_SMS_OVER_SGS = 1,           /* 支持cs fallback和sms over sgs*/
-    NAS_NV_LTE_SUPPORT_SMS_OVER_SGS_ONLY,                   /* 支持sms over sgs only*/
-    NAS_NV_LTE_SUPPORT_1XCSFB,                              /* 支持1XCSFB */
+    NAS_NV_LTE_SUPPORT_CSFB_AND_SMS_OVER_SGS = 1,           /* cs fallbacksms over sgs*/
+    NAS_NV_LTE_SUPPORT_SMS_OVER_SGS_ONLY,                   /* sms over sgs only*/
+    NAS_NV_LTE_SUPPORT_1XCSFB,                              /* 1XCSFB */
     NAS_NV_LTE_SUPPORT_BUTT
 };
 typedef VOS_UINT8 NAS_NV_LTE_CS_SERVICE_CFG_ENUM_UINT8;
 
 
 /*****************************************************************************
- 枚举名    : NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_ENUM
- 结构说明  : 修改拒绝原因值，按照服务域进行区分
-  1.日    期   : 2013年11月19日
-    作    者   : l00208543
-    修改内容   : 新增
+     : NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_ENUM
+   : 
+  1.       : 20131119
+           : l00208543
+       : 
 *****************************************************************************/
 enum NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_ENUM
 {
-    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_INACTIVE     = 0,        /* 功能不生效 */
-    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_CS_PS,                   /* 修改CS+PS的拒绝原因值 */
-    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_CS_ONLY,                 /* 仅修改CS域的拒绝原因值 */
-    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_PS_ONLY,                 /* 仅修改PS域的拒绝原因值 */
+    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_INACTIVE     = 0,        /*  */
+    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_CS_PS,                   /* CS+PS */
+    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_CS_ONLY,                 /* CS */
+    NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_PS_ONLY,                 /* PS */
     NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_BUTT
 };
 typedef VOS_UINT8 NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8
- 结构说明  : 频点重复搜索策略枚举
- 1.日    期   : 2015年01月08日
-   作    者   : h00313353
-   修改内容   : 新增
+     : NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8
+   : 
+ 1.       : 20150108
+          : h00313353
+      : 
 *****************************************************************************/
 enum NAS_NVIM_CHAN_REPEAT_SCAN
 {
@@ -428,11 +428,11 @@ enum NAS_NVIM_CHAN_REPEAT_SCAN
 typedef VOS_UINT8 NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_NVIM_EPDSZID_SUPPORT_TYPE_ENUM_UINT8
- 结构说明  : EPDSZID支持类型
- 1.日    期   : 2015年01月10日
-   作    者   : g00261581
-   修改内容   : 新增
+     : NAS_NVIM_EPDSZID_SUPPORT_TYPE_ENUM_UINT8
+   : EPDSZID
+ 1.       : 20150110
+          : g00261581
+      : 
 *****************************************************************************/
 enum NAS_NVIM_EPDSZID_SUPPORT_TYPE_ENUM
 {
@@ -455,37 +455,37 @@ enum NAS_NVIM_LC_RAT_COMBINED_ENUM
 typedef VOS_UINT8 NAS_NVIM_LC_RAT_COMBINED_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : CNAS_NVIM_1X_NEG_PREF_SYS_CMP_CTRL_ENUM_UINT8
- 结构说明  : neg系统和 perf系统比较控制
- 1.日    期   : 2015年6月9日
-   作    者   : c00299063
-   修改内容   : 新增
+     : CNAS_NVIM_1X_NEG_PREF_SYS_CMP_CTRL_ENUM_UINT8
+   : neg perf
+ 1.       : 201569
+          : c00299063
+      : 
 *****************************************************************************/
 enum CNAS_NVIM_1X_NEG_PREF_SYS_CMP_TYPE_ENUM
 {
-    CNAS_NVIM_1X_NEG_PREF_SYS_CMP_BAND_CHAN_AMBIGUOUS_MATCH,                /* Band Channel 模糊匹配 */
-    CNAS_NVIM_1X_NEG_PREF_SYS_CMP_BAND_CHAN_ACCURATE_MATCH,                 /* Band Channel 精确匹配*/
+    CNAS_NVIM_1X_NEG_PREF_SYS_CMP_BAND_CHAN_AMBIGUOUS_MATCH,                /* Band Channel  */
+    CNAS_NVIM_1X_NEG_PREF_SYS_CMP_BAND_CHAN_ACCURATE_MATCH,                 /* Band Channel */
     CNAS_NVIM_1X_NEG_PREF_SYS_CMP_BUTT
 };
 typedef VOS_UINT8 CNAS_NVIM_1X_NEG_PREF_SYS_CMP_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM
- 枚举说明  : CL系统捕获dsds的策略场景的定义
- 1.日    期   : 2016年02月02日
-   作    者   : w00176964
-   修改内容   : DTS2016013006596新建
- 2.日    期   : 2016年06月15日
-   作    者   : w00176964
-   修改内容   : DTS2016060709509修改
+     : NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM
+   : CLdsds
+ 1.       : 20160202
+          : w00176964
+      : DTS2016013006596
+ 2.       : 20160615
+          : w00176964
+      : DTS2016060709509
 *****************************************************************************/
 enum NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM
 {
-    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_SWITCH_ON                 = 0,        /* 开机 */
+    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_SWITCH_ON                 = 0,        /*  */
 
-    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_SWITCH_ON_AND_SYSCFG_SET  = 0x1,      /* 开机和syscfg设置场景 */
+    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_SWITCH_ON_AND_SYSCFG_SET  = 0x1,      /* syscfg */
 
-    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ANY                       = 0xFE,     /* CL系统捕获的任意场景 */
+    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ANY                       = 0xFE,     /* CL */
 
     NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM_BUTT
 };
@@ -493,35 +493,35 @@ typedef VOS_UINT8 NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM_UINT8;
 
 
 /*****************************************************************************
- 枚举名    : NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM
- 枚举说明  : 各种系统捕获场景的定义
- 1.日    期   : 2016年09月22日
-   作    者   : m00312079
-   修改内容   : 新建
+     : NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM
+   : 
+ 1.       : 20160922
+          : m00312079
+      : 
 *****************************************************************************/
 enum NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM
 {
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SWITCH_ON                                        = 0,       /* 开机 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SWITCH_ON                                        = 0,       /*  */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_LOST,                                                  /* hrpd 丢网 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_LOST,                                                  /* hrpd  */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_LOST_NO_RF,                                            /* hrpd no rf丢网 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_LOST_NO_RF,                                            /* hrpd no rf */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SLEEP_TIMER_EXPIRED,                                        /* sleep 定时器超时 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SLEEP_TIMER_EXPIRED,                                        /* sleep  */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SYS_CFG_SET,                                                /* system configure设置触发搜网 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_SYS_CFG_SET,                                                /* system configure */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_LTE_RF_AVAILABLE,                                           /* LTE RF资源可用 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_LTE_RF_AVAILABLE,                                           /* LTE RF */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_RF_AVAILABLE,                                          /* HRPD RF资源可用 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_HRPD_RF_AVAILABLE,                                          /* HRPD RF */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_MO_TRIGGER,                                                 /* 主叫触发 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_MO_TRIGGER,                                                 /*  */
 
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_HISTORY,                 /* 1x有服务时available定时器超时历史搜 */
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_PREFBAND,                /* 1x有服务时available定时器超时pref band搜 */
-    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_FULLBAND,                /* 1x有服务时available定时器超时full band搜 */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_HISTORY,                 /* 1xavailable */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_PREFBAND,                /* 1xavailablepref band */
+    NAS_MSCC_NVIM_SYS_ACQ_SCENE_AVAILABLE_TIMER_EXPIRED_1XSRVEXIST_FULLBAND,                /* 1xavailablefull band */
 
-    NAS_MSCC_NVIM_SYS_ACQ_BSR,                                                              /* 背景搜场景 */
+    NAS_MSCC_NVIM_SYS_ACQ_BSR,                                                              /*  */
 
     NAS_MSCC_NVIM_SYS_ACQ_SCENE_BUTT
 };
@@ -531,28 +531,28 @@ typedef VOS_UINT32 NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM_UINT32;
 *****************************************************************************/
 /*****************************************************************************
 *                                                                            *
-*                           参数设置消息结构                                 *
+*                                                            *
 *                                                                            *
 ******************************************************************************/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_MANUAL_SEARCH_HPLMN_FLG_STRU
- 结构说明  : NV SrchHplmnFlg_ManualMode的结构
+     : NAS_MMC_NVIM_MANUAL_SEARCH_HPLMN_FLG_STRU
+   : NV SrchHplmnFlg_ManualMode
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
+ 1.       : 2013517
+          : l00167671
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usManualSearchHplmnFlg; /*Range:[0,1]*/
 }NAS_MMC_NVIM_MANUAL_SEARCH_HPLMN_FLG_STRU;
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU
- 结构说明  : NV SrchHplmnFlg_ManualMode的结构结构
+     : NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU
+   : NV SrchHplmnFlg_ManualMode
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
+ 1.       : 2013517
+          : l00167671
+      : 
 *****************************************************************************/
 
 typedef struct
@@ -561,31 +561,31 @@ typedef struct
 }NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_ADD_EHPLMN_WHEN_SRCH_HPLMN_CFG_STRU
- 结构说明  : NV en_NV_Item_Add_EHPLMN_WHEN_SRCH_HPLMN_CFG 的结构结构
+     : NAS_NVIM_ADD_EHPLMN_WHEN_SRCH_HPLMN_CFG_STRU
+   : NV en_NV_Item_Add_EHPLMN_WHEN_SRCH_HPLMN_CFG 
 
-  1.日    期   : 2015年9月30日
-    作    者   : c00318887
-    修改内容   : 新建函数
+  1.       : 2015930
+           : c00318887
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlag;       /* ucActiveFlag 是否激活，VOS_TRUE:激活；VOS_FALSE:未激活 */
+    VOS_UINT8                           ucActiveFlag;       /* ucActiveFlag VOS_TRUE:VOS_FALSE: */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
     VOS_UINT8                           ucReserve3;
 }NAS_NVIM_ADD_EHPLMN_WHEN_SRCH_HPLMN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU
- 结构说明  : NV SrchHplmnFlg_AutoMode的结构结构
+     : NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU
+   : NV SrchHplmnFlg_AutoMode
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
- 2.日    期   : 2015年3月2日
-   作    者   : w00316404
-   修改内容   : 四字节对齐，增加reserve位
+ 1.       : 2013517
+          : l00167671
+      : 
+ 2.       : 201532
+          : w00316404
+      : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -595,15 +595,15 @@ typedef struct
 }NAS_MMC_NVIM_EHPLMN_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_STK_STEERING_OF_ROAMING_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_Standard_STK_SteeringOfRoaming_Support_Flg的结构
+     : NAS_MMC_NVIM_STK_STEERING_OF_ROAMING_SUPPORT_FLG_STRU
+   : en_NV_Item_Standard_STK_SteeringOfRoaming_Support_Flg
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
- 2.日    期   : 2015年3月2日
-   作    者   : w00316404
-   修改内容   : 四字节对齐，增加reserve位
+ 1.       : 2013517
+          : l00167671
+      : 
+ 2.       : 201532
+          : w00316404
+      : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -613,30 +613,30 @@ typedef struct
 }NAS_MMC_NVIM_STK_STEERING_OF_ROAMING_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NVIM_SCAN_CTRL_STRU
- 结构说明  : 记录en_NV_Item_Scan_Ctrl_Para (9080)NV项内容，标识搜索控制功能是否使能
-  1.日    期   : 2012年06月11日
-    作    者   : l60609
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NVIM_SCAN_CTRL_STRU
+   : en_NV_Item_Scan_Ctrl_Para (9080)NV
+  1.       : 20120611
+           : l60609
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNvimActiveFlg;                        /* en_NV_Item_Scan_Ctrl_Para NV项是否激活，VOS_TRUE:激活；VOS_FALSE:未激活 */
-    VOS_UINT8                           ucReserved1;                            /* 保留 */
-    VOS_UINT8                           ucReserved2;                            /* 保留 */
-    VOS_UINT8                           ucReserved3;                            /* 保留 */
+    VOS_UINT8                           ucNvimActiveFlg;                        /* en_NV_Item_Scan_Ctrl_Para NVVOS_TRUE:VOS_FALSE: */
+    VOS_UINT8                           ucReserved1;                            /*  */
+    VOS_UINT8                           ucReserved2;                            /*  */
+    VOS_UINT8                           ucReserved3;                            /*  */
 }NVIM_SCAN_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_PLMN_ID_STRU
- 结构说明  : PLMN的结构
+     : NAS_NVIM_PLMN_ID_STRU
+   : PLMN
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
+ 1.       : 2013517
+          : l00167671
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -645,31 +645,31 @@ typedef struct
 }NAS_NVIM_PLMN_ID_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_PLMN_ID_STRU
- 结构说明  : en_NV_Item_Network_Name_From_MM_Info的结构
+     : NAS_NVIM_PLMN_ID_STRU
+   : en_NV_Item_Network_Name_From_MM_Info
 
- 1.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : 新建
+ 1.       : 2013517
+          : l00167671
+      : 
 *****************************************************************************/
 typedef struct
 {
     NAS_NVIM_PLMN_ID_STRU               stOperatorPlmnId;
-    VOS_UINT8                           aucOperatorNameShort[NAS_NVIM_MAX_OPER_SHORT_NAME_LEN];/* 当前驻留网络运营商的短名称 */
-    VOS_UINT8                           aucOperatorNameLong[NAS_NVIM_MAX_OPER_LONG_NAME_LEN];  /* 当前驻留网络运营商的长名称 */
+    VOS_UINT8                           aucOperatorNameShort[NAS_NVIM_MAX_OPER_SHORT_NAME_LEN];/*  */
+    VOS_UINT8                           aucOperatorNameLong[NAS_NVIM_MAX_OPER_LONG_NAME_LEN];  /*  */
 }NAS_MMC_NVIM_OPERATOR_NAME_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_POWER_ON_READ_USIM_OPTIMIZE_INFO_STRU
- 结构说明  : en_NV_Item_Power_On_Read_Usim_Optimize_Cfg的结构
+     : NAS_NVIM_POWER_ON_READ_USIM_OPTIMIZE_INFO_STRU
+   : en_NV_Item_Power_On_Read_Usim_Optimize_Cfg
 
- 1.日    期   : 2016年8月13日
-   作    者   : w00167002
-   修改内容   : 新建
+ 1.       : 2016813
+          : w00167002
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNotReadFileEnableFlg;                  /* 软开机读卡优化使能标志，默认开启，表示软开时候，卡状态前后无变化，不需要重新读取卡文件 */
+    VOS_UINT8                           ucNotReadFileEnableFlg;                  /*  */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -677,121 +677,121 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OPER_LOCK_BLACKPLMN_STRU
- 结构说明  : en_NV_Item_OPERLOCK_PLMN_INFO NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OPER_LOCK_BLACKPLMN_STRU
+   : en_NV_Item_OPERLOCK_PLMN_INFO NV
+  1.       : 2011725
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulBlackPlmnLockNum;                     /* 支持黑名单的个数,个数为0时表示不支持黑名单 */
+    VOS_UINT32                          ulBlackPlmnLockNum;                     /* ,0 */
     NAS_NVIM_PLMN_ID_STRU               astBlackPlmnId[NAS_MML_NVIM_MAX_BLACK_LOCK_PLMN_NUM];
 }NAS_MMC_NVIM_OPER_LOCK_BLACKPLMN_STRU;
 /*****************************************************************************
- 结构名    : NAS_MMC_AIS_ROAMING_CFG_STRU
- 结构说明  : 记录en_NV_Item_AIS_ROAMING_Config NV项内容
- 1.日    期   : 2012年5月17日
-   作    者   : z40661
-   修改内容   : 新建
+     : NAS_MMC_AIS_ROAMING_CFG_STRU
+   : en_NV_Item_AIS_ROAMING_Config NV
+ 1.       : 2012517
+          : z40661
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlg;                            /* 该特性是否打开 */
-    VOS_UINT8                           ucHighPrioRatType;                              /* 漫游支持的接入技术 */
+    VOS_UINT8                           ucEnableFlg;                            /*  */
+    VOS_UINT8                           ucHighPrioRatType;                              /*  */
     VOS_UINT8                           aucReserve[2];
-    NAS_NVIM_PLMN_ID_STRU               stHighPrioPlmnId;                       /* 漫游支持的高优先级的PLMN ID ,即使驻留在HPLMN上,此PLMNID的优先级也较高*/
-    NAS_NVIM_PLMN_ID_STRU               stSimHPlmnId;                           /* SIM卡的HPLMN ID */
+    NAS_NVIM_PLMN_ID_STRU               stHighPrioPlmnId;                       /* PLMN ID ,HPLMN,PLMNID*/
+    NAS_NVIM_PLMN_ID_STRU               stSimHPlmnId;                           /* SIMHPLMN ID */
 }NAS_MMC_NVIM_AIS_ROAMING_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MML_USER_AUTO_RESEL_CFG_STRU
- 结构说明  : 记录en_NV_Item_User_Auto_Resel_Switch NV项内容,UserResecl功能是否使能
- 1.日    期   : 2012年5月15日
-   作    者   : l00130025
-   修改内容   : DTS2012012903053:Ts23.122 ch4.4.3.2.1 Auto user reselecton功能支持
+     : NAS_MML_USER_AUTO_RESEL_CFG_STRU
+   : en_NV_Item_User_Auto_Resel_Switch NV,UserResecl
+ 1.       : 2012515
+          : l00130025
+      : DTS2012012903053:Ts23.122 ch4.4.3.2.1 Auto user reselecton
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucAutoReselActiveFlg;                   /* 是否允许LTE国际漫游标记:VOS_TRUE 表示允许LTE国际漫游 VOS_FALSE 表示禁止LTE国际漫游 */
+    VOS_UINT8                           ucAutoReselActiveFlg;                   /* LTE:VOS_TRUE LTE VOS_FALSE LTE */
     VOS_UINT8                           ucReserve;
 }NAS_MMC_NVIM_USER_AUTO_RESEL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_PRIO_HPLMNACT_CFG_STRU
- 结构说明  :  en_NV_Item_PRIO_HPLMNACT_CFG NV项结构
- 1.日    期   : 2012年6月9日
-   作    者   : l00130025
-   修改内容   : DTS2012060400029:添加对HPLMNAct优先接入技术的定制；目前USim卡中HPLMNACT很多不支持L
+     : NAS_MMC_NVIM_PRIO_HPLMNACT_CFG_STRU
+   :  en_NV_Item_PRIO_HPLMNACT_CFG NV
+ 1.       : 201269
+          : l00130025
+      : DTS2012060400029:HPLMNActUSimHPLMNACTL
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                            ucStatus;        /* NV有效标志, 1: 有效，0：无效 */
-	VOS_UINT8                            ucReserved;      /* 四字节对齐 */
-    VOS_UINT16                           usPrioHplmnAct;      /*定制的优先接入技术*/
+    VOS_UINT8                            ucStatus;        /* NV, 1: 0 */
+	VOS_UINT8                            ucReserved;      /*  */
+    VOS_UINT16                           usPrioHplmnAct;      /**/
 }NAS_MMC_NVIM_PRIO_HPLMNACT_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MML_NVIM_AVAIL_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_SEARCH_TIMER_INFO NV项结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_MML_NVIM_AVAIL_TIMER_CFG_STRU
+   : en_NV_Item_SEARCH_TIMER_INFO NV
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulFirstSearchTimeLen;                   /* available timer定时器第一次的时长 */
-    VOS_UINT32                          ulFirstSearchTimeCount;                 /* available timer定时器第一次的次数 */
-    VOS_UINT32                          ulDeepSearchTimeLen;                    /* available timer定时器深睡的时长 */
+    VOS_UINT32                          ulFirstSearchTimeLen;                   /* available timer */
+    VOS_UINT32                          ulFirstSearchTimeCount;                 /* available timer */
+    VOS_UINT32                          ulDeepSearchTimeLen;                    /* available timer */
     VOS_UINT32                          ulDeepSearchTimeCount;
 }NAS_MMC_NVIM_AVAIL_TIMER_CFG_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_T3212_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_SEARCH_TIMER_INFO NV项结构
-  1.日    期   : 2015年3月14日
-    作    者   : w00167002
-    修改内容   : 新建
+     : NAS_MMC_NVIM_T3212_TIMER_CFG_STRU
+   : en_NV_Item_SEARCH_TIMER_INFO NV
+  1.       : 2015314
+           : w00167002
+       : 
 
-    BIT0控制: LAUU建联时候失败启动T3212场景
+    BIT0: LAUUT3212
     ulT3212StartSceanCtrlBitMask1 BIT0:             NAS_MM_T3212_START_SCENE_LAU_RRC_EST_CONN_FAIL
-    BIT1控制: LAU建联时候被REL启动T3212场景
+    BIT1: LAURELT3212
     ulT3212StartSceanCtrlBitMask1 BIT1:             NAS_MM_T3212_START_SCENE_LAU_RRC_EST_REL_BY_AS
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulNvActiveFlg;                          /* 控制当前NV是否使能 */
-    VOS_UINT32                          ulT3212StartSceneCtrlBitMask;           /* BIT0~BIT31,用于控制链路失败后启动T3212时，是否使用当前NV配置的时长 */
-    VOS_UINT32                          ulT3212Phase1TimeLen;                   /* t3212定时器第1阶段的时长,单位为s */
-    VOS_UINT32                          ulT3212Phase1Count;                     /* t3212定时器第1阶段的次数 */
-    VOS_UINT32                          ulT3212Phase2TimeLen;                   /* t3212定时器第2阶段的时长,单位为s  */
-    VOS_UINT32                          ulT3212Phase2Count;                     /* t3212定时器第2阶段的次数 */
+    VOS_UINT32                          ulNvActiveFlg;                          /* NV */
+    VOS_UINT32                          ulT3212StartSceneCtrlBitMask;           /* BIT0~BIT31,T3212NV */
+    VOS_UINT32                          ulT3212Phase1TimeLen;                   /* t32121,s */
+    VOS_UINT32                          ulT3212Phase1Count;                     /* t32121 */
+    VOS_UINT32                          ulT3212Phase2TimeLen;                   /* t32122,s  */
+    VOS_UINT32                          ulT3212Phase2Count;                     /* t32122 */
 }NAS_MMC_NVIM_T3212_TIMER_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OPER_LOCK_WHITEPLMN_STRU
- 结构说明  : en_NV_Item_OPERLOCK_PLMN_INFO_WHITE NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OPER_LOCK_WHITEPLMN_STRU
+   : en_NV_Item_OPERLOCK_PLMN_INFO_WHITE NV
+  1.       : 2011725
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulWhitePlmnLockNum;                     /* 支持白名单的个数,个数为0时表示不支持白名单 */
+    VOS_UINT32                          ulWhitePlmnLockNum;                     /* ,0 */
     NAS_NVIM_PLMN_ID_STRU               astWhitePlmnId[NAS_MML_NVIM_MAX_WHITE_LOCK_PLMN_NUM];
 }NAS_MMC_NVIM_OPER_LOCK_WHITEPLMN_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CPHS_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_SUPPORT_CPHS_FLAG NV项结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_CPHS_SUPPORT_FLG_STRU
+   : en_NV_Item_SUPPORT_CPHS_FLAG NV
+  1.       : 2013522
+           : l00167671
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -802,18 +802,18 @@ typedef struct
 
 /* Added by l60609 for B060 Project, 2012-2-20, Begin   */
 /*****************************************************************************
- 结构名    : NAS_PREVENT_TEST_IMSI_REG_STRU
- 结构说明  : en_NV_Item_PREVENT_TEST_IMSI_REG结构
-  1.日    期   : 2012年2月22日
-    作    者   : w00199382
-    修改内容   : 移植
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_PREVENT_TEST_IMSI_REG_STRU
+   : en_NV_Item_PREVENT_TEST_IMSI_REG
+  1.       : 2012222
+           : w00199382
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /*是否激活，0不激活，1激活 */
+    VOS_UINT8                           ucStatus;                               /*01 */
     VOS_UINT8                           ucActFlg;
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
@@ -821,19 +821,19 @@ typedef struct
 /* Added by l60609 for B060 Project, 2012-2-20, End   */
 /*****************************************************************************
 *                                                                            *
-*                           参数设置消息结构                                 *
+*                                                            *
 *                                                                            *
 ******************************************************************************/
 
 /*****************************************************************************
- 结构名    : NAS_PREVENT_TEST_IMSI_REG_STRU
- 结构说明  : en_NV_Item_PREVENT_TEST_IMSI_REG结构
-  1.日    期   : 2012年2月22日
-    作    者   : w00199382
-    修改内容   : 移植
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_PREVENT_TEST_IMSI_REG_STRU
+   : en_NV_Item_PREVENT_TEST_IMSI_REG
+  1.       : 2012222
+           : w00199382
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -845,25 +845,25 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_PREVENT_TEST_IMSI_REG_STRU
- 结构说明  : NAS_PREVENT_TEST_IMSI_REG_STRU结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 移植
+     : NAS_PREVENT_TEST_IMSI_REG_STRU
+   : NAS_PREVENT_TEST_IMSI_REG_STRU
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucTinType;                              /* TIN类型 */
+    VOS_UINT8                           ucTinType;                              /* TIN */
     VOS_UINT8                           aucReserve[2];
-    VOS_UINT8                           aucImsi[NAS_NVIM_ITEM_MAX_IMSI_LEN];        /* 上次保存的IMSI的内容 */
+    VOS_UINT8                           aucImsi[NAS_NVIM_ITEM_MAX_IMSI_LEN];        /* IMSI */
 }NAS_NVIM_TIN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_PREVENT_TEST_IMSI_REG_STRU
- 结构说明  : NAS_PREVENT_TEST_IMSI_REG_STRU结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 移植
+     : NAS_PREVENT_TEST_IMSI_REG_STRU
+   : NAS_PREVENT_TEST_IMSI_REG_STRU
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -872,24 +872,24 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_CNT_STRU
- 结构说明  : en_NV_Item_SINGLE_DOMAIN_FAIL_SRCH_PLMN_CNT NV项结构
-  1.日    期   : 2011年8月5日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_CNT_STRU
+   : en_NV_Item_SINGLE_DOMAIN_FAIL_SRCH_PLMN_CNT NV
+  1.       : 201185
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSingleDomainFailPlmnSrchFlag;         /* DT定制需求，单域注册被拒后，需要出发搜网 */
-    VOS_UINT8                           ucReserved;                             /* 保留*/
+    VOS_UINT8                           ucSingleDomainFailPlmnSrchFlag;         /* DT */
+    VOS_UINT8                           ucReserved;                             /* */
 }NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_CNT_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_PREVENT_TEST_IMSI_REG_STRU
- 结构说明  : NAS_PREVENT_TEST_IMSI_REG_STRU结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 移植
+     : NAS_PREVENT_TEST_IMSI_REG_STRU
+   : NAS_PREVENT_TEST_IMSI_REG_STRU
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -897,11 +897,11 @@ typedef struct
 }NAS_NVIM_PS_LOCI_SIM_FILES_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CS_LOCI_SIM_FILES_STRU
- 结构说明  : en_NV_Item_Cs_Loci  NV结构
-  1.日    期   : 2016年4月10日
-    作    者   : j00174725
-    修改内容   : DTS2016040901340
+     : NAS_NVIM_CS_LOCI_SIM_FILES_STRU
+   : en_NV_Item_Cs_Loci  NV
+  1.       : 2016410
+           : j00174725
+       : DTS2016040901340
 *****************************************************************************/
 typedef struct
 {
@@ -912,40 +912,40 @@ typedef struct
 }NAS_NVIM_CS_LOCI_SIM_FILES_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MML_NVIM_GPRS_GEA_ALG_CTRL_STRU
- 结构说明  : en_NV_Item_GEA_SUPPORT_CTRL NV项结构
- 1.日    期   : 2011年7月14日
-   作    者   : z00161729
-   修改内容   : 新建
+     : NAS_MML_NVIM_GPRS_GEA_ALG_CTRL_STRU
+   : en_NV_Item_GEA_SUPPORT_CTRL NV
+ 1.       : 2011714
+          : z00161729
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                          ucStatus;                                /* NV是否激活标志, 0: 不激活，1: 激活 */
-    VOS_UINT8                          ucGeaSupportCtrl;                        /* 终端配置:GPRS GEA算法支持控制 */
+    VOS_UINT8                          ucStatus;                                /* NV, 0: 1:  */
+    VOS_UINT8                          ucGeaSupportCtrl;                        /* :GPRS GEA */
 }NAS_MMC_NVIM_GPRS_GEA_ALG_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_LTE_CS_SERVICE_CFG_STRU
- 结构说明  : 记录en_NV_Item_Lte_Cs_Service_Config NV项内容，LTE支持的cs业务能力
-  1.日    期   : 2011年10月28日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2013年09月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目，修改结构体名称
+     : NAS_NVIM_LTE_CS_SERVICE_CFG_STRU
+   : en_NV_Item_Lte_Cs_Service_Config NVLTEcs
+  1.       : 20111028
+           : z00161729
+       : 
+  2.       : 20130924
+           : s00217060
+       : VoLTE_PhaseII
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNvimActiveFlg;    /* en_NV_Item_Lte_Cs_Service_Config NV项是否激活，VOS_TRUE:激活；VOS_FALSE:未激活 */
-    VOS_UINT8                           ucLteCsServiceCfg;  /* LTE支持的 cs域业务能力*/
+    VOS_UINT8                           ucNvimActiveFlg;    /* en_NV_Item_Lte_Cs_Service_Config NVVOS_TRUE:VOS_FALSE: */
+    VOS_UINT8                           ucLteCsServiceCfg;  /* LTE cs*/
 }NAS_NVIM_LTE_CS_SERVICE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_HO_WAIT_SYSINFO_TIMER_CFG_STRU
- 结构说明  : NVIM项中的配置CSFB HO流程等系统消息时长，NV项未激活则不等系统消息直接注册
- 1.日    期   : 2012年2月14日
-   作    者   : z00161729
-   修改内容   : 新建
+     : NAS_MMC_NVIM_HO_WAIT_SYSINFO_TIMER_CFG_STRU
+   : NVIMCSFB HONV
+ 1.       : 2012214
+          : z00161729
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -956,134 +956,134 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU
- 结构说明  : en_NV_Item_Lte_Internation_Roam_Config NV项结构
- 1.日    期   : 2012年3月14日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2012年4月25日
-   作    者   : w00176964
-   修改内容   : DTS2012042403564:修改NV读取的结构体
+     : NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU
+   : en_NV_Item_Lte_Internation_Roam_Config NV
+ 1.       : 2012314
+          : w00176964
+      : 
+ 2.       : 2012425
+          : w00176964
+      : DTS2012042403564:NV
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteRoamAllowedFlg;
     VOS_UINT8                           aucReserve[1];
-    VOS_UINT8                           aucRoamEnabledMccList[20];/* 允许漫游的国家码列表 */
+    VOS_UINT8                           aucRoamEnabledMccList[20];/*  */
 }NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ROAM_RPLMN_SEARCH_CFG_STRU
- 结构说明  : en_NV_Item_Roam_Search_Rplmn_Config NV项结构
- 1.日    期   : 2014年2月24日
-   作    者   : t00173447
-   修改内容   : 新建
+     : NAS_MMC_NVIM_ROAM_RPLMN_SEARCH_CFG_STRU
+   : en_NV_Item_Roam_Search_Rplmn_Config NV
+ 1.       : 2014224
+          : t00173447
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRoamRplmnflg;
     VOS_UINT8                           aucReserve[3];
-    VOS_UINT32                         aucRoamEnabledMccList[5];/* 允许漫游的国家码列表 */
+    VOS_UINT32                         aucRoamEnabledMccList[5];/*  */
 }NAS_MMC_NVIM_ROAM_SEARCH_RPLMN_CFG_STRU;
 
-/* Modified by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, begin */
+/* Modified by w00176964 for UC2NV, 2013-3-11, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CLOSE_SMS_CAPABILITY_CFG_STRU
- 结构说明  : en_NV_Item_Close_SMS_Capability_Config NV项结构
- 1.日    期   : 2013年3月11日
-   作    者   : w00176964
-   修改内容   : close sms capability NV结构体
+     : NAS_MMC_NVIM_CLOSE_SMS_CAPABILITY_CFG_STRU
+   : en_NV_Item_Close_SMS_Capability_Config NV
+ 1.       : 2013311
+          : w00176964
+      : close sms capability NV
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucActFlg;
     VOS_UINT8                           aucReserved[3];
 }NAS_NVIM_CLOSE_SMS_CAPABILITY_CFG_STRU;
-/* Modified by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, end */
+/* Modified by w00176964 for UC2NV, 2013-3-11, end */
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_WCDMA_PRIORITY_GSM_STRU
- 结构说明  : en_NV_Item_NVIM_WCDMA_PRIORITY_GSM_SUPPORT_FLG NV项结构
-  1.日    期   : 2012年03月03日
-    作    者   : S62952
-    修改内容   : 新建
-  2.日    期   : 2013年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2013121206933:非高优先级可用高低质量的网络按syscfg设置接入技术优先级排序，9055 nv项控制
-  3.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_WCDMA_PRIORITY_GSM_STRU
+   : en_NV_Item_NVIM_WCDMA_PRIORITY_GSM_SUPPORT_FLG NV
+  1.       : 20120303
+           : S62952
+       : 
+  2.       : 20131213
+           : z00161729
+       : DTS2013121206933:syscfg9055 nv
+  3.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucWcdmaPriorityGsmFlg;                  /* H3G定制需求，W网络优先于G*/
+    VOS_UINT8                           ucWcdmaPriorityGsmFlg;                  /* H3GWG*/
 
-    VOS_UINT8                           ucSortAvailalePlmnListRatPrioFlg;    /* 是否按syscfg设置接入技术优先级排序高低质量搜网列表标识，1:是; 0:不是高质量网络按随机排序低质量网络不排序*/
+    VOS_UINT8                           ucSortAvailalePlmnListRatPrioFlg;    /* syscfg1:; 0:*/
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_WCDMA_PRIORITY_GSM_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG NV项结构
-  1.日    期   : 2012年03月03日
-    作    者   : S62952
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG_STRU
+   : en_NV_Item_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG NV
+  1.       : 20120303
+           : S62952
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucPsOnlyCsServiceSupportFlg;            /* 服务域设置为PS ONLY时，是否支持CS域短信和呼叫业务(紧急呼叫除外)*/
-    VOS_UINT8                           ucReserved1;                            /* 保留*/
-    VOS_UINT8                           ucReserved2;                            /* 保留*/
-    VOS_UINT8                           ucReserved3;                            /* 保留*/
+    VOS_UINT8                           ucPsOnlyCsServiceSupportFlg;            /* PS ONLYCS()*/
+    VOS_UINT8                           ucReserved1;                            /* */
+    VOS_UINT8                           ucReserved2;                            /* */
+    VOS_UINT8                           ucReserved3;                            /* */
 }NAS_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_CC_NVIM_CCBS_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_NVIM_CCBS_SUPPORT_FLG NV项结构
-  1.日    期   : 2012年03月03日
-    作    者   : S62952
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_CC_NVIM_CCBS_SUPPORT_FLG_STRU
+   : en_NV_Item_NVIM_CCBS_SUPPORT_FLG NV
+  1.       : 20120303
+           : S62952
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCcbsSupportFlg;                       /* CCBS(遇忙呼叫完成)业务*/
-    VOS_UINT8                           ucReserved1;                            /* 保留*/
-    VOS_UINT8                           ucReserved2;                            /* 保留*/
-    VOS_UINT8                           ucReserved3;                            /* 保留*/
+    VOS_UINT8                           ucCcbsSupportFlg;                       /* CCBS()*/
+    VOS_UINT8                           ucReserved1;                            /* */
+    VOS_UINT8                           ucReserved2;                            /* */
+    VOS_UINT8                           ucReserved3;                            /* */
 }NAS_NVIM_CCBS_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT_STRU
- 结构说明  : en_NV_Item_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT NV项结构
- 1.日    期   : 2012年6月11日
-   作    者   : W00166186
-   修改内容   : AT&T&t&DCM新建
+     : NAS_MMC_NVIM_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT_STRU
+   : en_NV_Item_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT NV
+ 1.       : 2012611
+          : W00166186
+      : AT&T&t&DCM
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNvimActiveFlg;
     VOS_UINT8                           ucCustomMccNum;
     VOS_UINT8                           aucReserve[2];
-    VOS_UINT32                          aulCustommMccList[10];                   /* 允许漫游的国家码列表 */
+    VOS_UINT32                          aulCustommMccList[10];                   /*  */
 }NAS_MMC_NVIM_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT_STRU;
 
 
 /*****************************************************************************
- 结构名    : NVIM_ACTING_HPLMN_SUPPORT_FLAG_STRU
- 结构说明  : en_NV_Item_ACTING_PLMN_SUPPORT_FLAG NV项结构
-  1.日    期   : 2011年06月11日
-    作    者   : W00166186
-    修改内容   : AT&T&DCM新建结构
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NVIM_ACTING_HPLMN_SUPPORT_FLAG_STRU
+   : en_NV_Item_ACTING_PLMN_SUPPORT_FLAG NV
+  1.       : 20110611
+           : W00166186
+       : AT&T&DCM
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -1094,31 +1094,31 @@ typedef struct
 }NVIM_ACTING_HPLMN_SUPPORT_FLAG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_REG_FAIL_NETWORK_FAILURE_CUSTOM_FLG_STRU
- 结构说明  : en_NV_Item_CS_FAIL_NETWORK_FAILURE_PLMN_SEARCH_FLAG NV项结构
-  1.日    期   : 2011年06月11日
-    作    者   : W00166186
-    修改内容   : AT&T&DCM新建结构
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_REG_FAIL_NETWORK_FAILURE_CUSTOM_FLG_STRU
+   : en_NV_Item_CS_FAIL_NETWORK_FAILURE_PLMN_SEARCH_FLAG NV
+  1.       : 20110611
+           : W00166186
+       : AT&T&DCM
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNvimActiveFlg;
-    VOS_UINT8                           ucReserved1;                            /* 保留*/
-    VOS_UINT8                           ucReserved2;                            /* 保留*/
-    VOS_UINT8                           ucReserved3;                            /* 保留*/
+    VOS_UINT8                           ucReserved1;                            /* */
+    VOS_UINT8                           ucReserved2;                            /* */
+    VOS_UINT8                           ucReserved3;                            /* */
 }NAS_MMC_NVIM_REG_FAIL_NETWORK_FAILURE_CUSTOM_FLG_STRU;
 
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU
- 结构说明  : 单域注册被拒定制动作结构
- 1.日    期   : 2012年6月11日
-   作    者   : W00166186
-   修改内容   : AT&T&t&DCM新建
+     : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU
+   : 
+ 1.       : 2012611
+          : W00166186
+      : AT&T&t&DCM
 *****************************************************************************/
 typedef struct
 {
@@ -1129,11 +1129,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU
- 结构说明  : 单域注册被拒定制en_NV_Item_SINGLE_DOMAIN_FAIL_ACTION_LIST结构
- 1.日    期   : 2012年6月11日
-   作    者   : W00166186
-   修改内容   : AT&T&t&DCM新建
+     : NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU
+   : en_NV_Item_SINGLE_DOMAIN_FAIL_ACTION_LIST
+ 1.       : 2012611
+          : W00166186
+      : AT&T&t&DCM
 *****************************************************************************/
 typedef struct
 {
@@ -1144,11 +1144,11 @@ typedef struct
 }NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_SIM_FORMAT_PLMN_ID
- 结构说明  : Sim PLMN ID的存储结构
- 1.日    期   : 2011年5月28日
-   作    者   : zhoujun 40661
-   修改内容   : 新建
+     : NAS_SIM_FORMAT_PLMN_ID
+   : Sim PLMN ID
+ 1.       : 2011528
+          : zhoujun 40661
+      : 
 *****************************************************************************/
 typedef struct {
     VOS_UINT8                           aucSimPlmn[NAS_SIM_FORMAT_PLMN_LEN];
@@ -1156,30 +1156,30 @@ typedef struct {
 }NAS_SIM_FORMAT_PLMN_ID;
 
 /*****************************************************************************
- 结构名    : NAS_UTRANCTRL_NVIM_CURRENT_UTRAN_MODE_STRU
- 结构说明  : 记录en_NV_Item_Utran_Mode NV项内容
- 1.日    期   : 2012年7月13日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseI:新加
+     : NAS_UTRANCTRL_NVIM_CURRENT_UTRAN_MODE_STRU
+   : en_NV_Item_Utran_Mode NV
+ 1.       : 2012713
+          : w00167002
+      : V7R1C50_GUTL_PhaseI:
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucUtranMode;                            /* 当前支持的UTRAN模式 */
+    VOS_UINT8                           ucUtranMode;                            /* UTRAN */
     VOS_UINT8                           ucReserve;
 }NAS_UTRANCTRL_NVIM_UTRAN_MODE_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_UTRANCTRL_NVIM_UTRAN_MODE_AUTO_SWITCH_STRU
- 结构说明  : 记录en_NV_Item_Utran_Mode_Auto_Switch NV项内容
- 1.日    期   : 2012年8月7日
-   作    者   : w00167002
-   修改内容   : 新建
+     : NAS_UTRANCTRL_NVIM_UTRAN_MODE_AUTO_SWITCH_STRU
+   : en_NV_Item_Utran_Mode_Auto_Switch NV
+ 1.       : 201287
+          : w00167002
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucUtranSwitchMode;                      /* 0：UTRAN模式为FDD 1：UTRAN模式为TDD 2:AUTO SWITCH */
-    VOS_UINT8                           ucTdMccListNum;                         /* 支持TD网络的国家号个数 */
-    VOS_UINT8                           ucImsiPlmnListNum;                      /* 根据IMS PLMN决定UTRAN模式是否AUTO SWITCH时，当前IMSI的PLMN在此列表中的都支持自动切换，否则固定为W模 */
+    VOS_UINT8                           ucUtranSwitchMode;                      /* 0UTRANFDD 1UTRANTDD 2:AUTO SWITCH */
+    VOS_UINT8                           ucTdMccListNum;                         /* TD */
+    VOS_UINT8                           ucImsiPlmnListNum;                      /* IMS PLMNUTRANAUTO SWITCHIMSIPLMNW */
     VOS_UINT8                           aucReserve[1];
 
     VOS_UINT32                          aulTdMccList[NAS_UTRANCTRL_MAX_NVIM_CFG_TD_MCC_LIST_NUM];
@@ -1190,27 +1190,27 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_UTRANCTRL_NVIM_SMC_CTRL_FLAG_STRU
- 结构说明  : en_NV_Item_UTRAN_TDD_SMC_FLAG NV项结构
- 1.日    期   : 2013年7月25日
-   作    者   : w00167002
-   修改内容   : 控制在3G TDD模式下是否需要开启SMC验证标记:中国移动拉萨网络设备在
-                TD下不发起SMC流程。
+     : NAS_UTRANCTRL_NVIM_SMC_CTRL_FLAG_STRU
+   : en_NV_Item_UTRAN_TDD_SMC_FLAG NV
+ 1.       : 2013725
+          : w00167002
+      : 3G TDDSMC:
+                TDSMC
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsUtranTddCsSmcNeeded;                /* 控制在3G TDD模式下是否需要开启CS SMC验证标记:0-不需要；1-需要 */
-    VOS_UINT8                           ucIsUtranTddPsSmcNeeded;                /* 控制在3G TDD模式下是否需要开启PS SMC验证标记:0-不需要；1-需要 */
-    VOS_UINT8                           aucReserved[2];                         /* 保留 */
+    VOS_UINT8                           ucIsUtranTddCsSmcNeeded;                /* 3G TDDCS SMC:0-1- */
+    VOS_UINT8                           ucIsUtranTddPsSmcNeeded;                /* 3G TDDPS SMC:0-1- */
+    VOS_UINT8                           aucReserved[2];                         /*  */
 }NAS_UTRANCTRL_NVIM_SMC_CTRL_FLAG_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ACC_BAR_PLMN_SEARCH_FLG_STRU
- 结构说明  : NAS_MMC_NVIM_ACC_BAR_PLMN_SEARCH_FLG_STRU结构，控制非HPLMN/RPLMN
-             网络接入禁止后是否发起PLMN搜网 en_NV_Item_ACC_BAR_PLMN_SEARCH_FLG
- 1.日    期   : 2013年10月15日
-   作    者   : s00190137
+     : NAS_MMC_NVIM_ACC_BAR_PLMN_SEARCH_FLG_STRU
+   : NAS_MMC_NVIM_ACC_BAR_PLMN_SEARCH_FLG_STRUHPLMN/RPLMN
+             PLMN en_NV_Item_ACC_BAR_PLMN_SEARCH_FLG
+ 1.       : 20131015
+          : s00190137
 *****************************************************************************/
 typedef struct
 {
@@ -1220,123 +1220,123 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_USER_CFG_OPLMN_INFO_STRU
- 结构说明  : NAS_MMC_NVIM_USER_CFG_OPLMN_INFO_STRU NVIM项中的用户设置的OPLMN
- 1.日    期   : 2013年10月15日
-   作    者   : s00190137
+     : NAS_MMC_NVIM_USER_CFG_OPLMN_INFO_STRU
+   : NAS_MMC_NVIM_USER_CFG_OPLMN_INFO_STRU NVIMOPLMN
+ 1.       : 20131015
+          : s00190137
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlg;                                          /* 定制项使能标志 */
-    VOS_UINT8                           ucImsiCheckFlg;                                       /* 是否有IMSI列表的白名单，0:不需要 1:需要 */
-    VOS_UINT8                           aucVersion[NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN];  /* 本地配置的版本号 */
-    VOS_UINT8                           ucImsiPlmnListNum;                                    /* 定制的IMSI列表个数 */
-    VOS_UINT8                           ucOplmnListNum;                                       /* 本地配置的Oplmn的个数 */
+    VOS_UINT8                           ucActiveFlg;                                          /*  */
+    VOS_UINT8                           ucImsiCheckFlg;                                       /* IMSI0: 1: */
+    VOS_UINT8                           aucVersion[NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN];  /*  */
+    VOS_UINT8                           ucImsiPlmnListNum;                                    /* IMSI */
+    VOS_UINT8                           ucOplmnListNum;                                       /* Oplmn */
     NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnList[NAS_MMC_NVIM_MAX_USER_OPLMN_IMSI_NUM];
-    VOS_UINT8                           aucOPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_LEN];/* OPLMN的PDU数据，和EFOplmn文件一致 */
+    VOS_UINT8                           aucOPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_LEN];/* OPLMNPDUEFOplmn */
 }NAS_MMC_NVIM_USER_CFG_OPLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_USER_CFG_OPLMN_EXTEND_STRU
- 结构说明  : NAS_MMC_NVIM_USER_CFG_OPLMN_EXTEND_STRU NVIM项中的用户设置的OPLMN
- 1.日    期   : 2013年11月26日
-   修改内容   : 将NV支持的最大OPLMN个数扩展到256个
+     : NAS_MMC_NVIM_USER_CFG_OPLMN_EXTEND_STRU
+   : NAS_MMC_NVIM_USER_CFG_OPLMN_EXTEND_STRU NVIMOPLMN
+ 1.       : 20131126
+      : NVOPLMN256
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlg;                                          /* 定制项使能标志 */
-    VOS_UINT8                           ucImsiCheckFlg;                                       /* 是否有IMSI列表的白名单，0:不需要 1:需要 */
-    VOS_UINT8                           aucVersion[NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN];  /* 本地配置的版本号 */
-    VOS_UINT16                          usOplmnListNum;                                       /* 本地配置的Oplmn的个数 */
-    VOS_UINT8                           ucImsiPlmnListNum;                                    /* 定制的IMSI列表个数 */
+    VOS_UINT8                           ucActiveFlg;                                          /*  */
+    VOS_UINT8                           ucImsiCheckFlg;                                       /* IMSI0: 1: */
+    VOS_UINT8                           aucVersion[NAS_MMC_NVIM_MAX_USER_OPLMN_VERSION_LEN];  /*  */
+    VOS_UINT16                          usOplmnListNum;                                       /* Oplmn */
+    VOS_UINT8                           ucImsiPlmnListNum;                                    /* IMSI */
     VOS_UINT8                           aucReserve[3];
     NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnList[NAS_MMC_NVIM_MAX_USER_OPLMN_IMSI_NUM];
-    VOS_UINT8                           aucOPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_EXTEND_LEN];/* OPLMN的PDU数据，和EFOplmn文件一致 */
+    VOS_UINT8                           aucOPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_OPLMN_DATA_EXTEND_LEN];/* OPLMNPDUEFOplmn */
 }NAS_MMC_NVIM_USER_CFG_OPLMN_EXTEND_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
- 结构说明  : en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg NVIM
+     : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
+   : en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg NVIM
             en_NV_Item_Second_Preset_Dplmn_Nplmn_Cfg
             en_NV_Item_Self_Learn_Dplmn_Nplmn_Cfg
-            中的DPLMN NPLMN功能信息
- 1.日    期   : 2015年5月28日
-   作    者   : c00318887
-   修改内容   : 漫游优化搜网DPlmn扩容和优先接入HPLMN
+            DPLMN NPLMN
+ 1.       : 2015528
+          : c00318887
+      : DPlmnHPLMN
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlg;                                                    /* NV使能标志 */
-    VOS_UINT8                           ucExtendedForbPlmnNum;                                          /* 扩展的Forb Plmn个数 */
+    VOS_UINT8                           ucEnableFlg;                                                    /* NV */
+    VOS_UINT8                           ucExtendedForbPlmnNum;                                          /* Forb Plmn */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
-    NAS_NVIM_PLMN_ID_STRU               astForbPlmnIdList[NAS_MMC_NVIM_MAX_EXTENDED_FORB_PLMN_NUM];     /* 扩展的Forb Plmn列表 */
+    NAS_NVIM_PLMN_ID_STRU               astForbPlmnIdList[NAS_MMC_NVIM_MAX_EXTENDED_FORB_PLMN_NUM];     /* Forb Plmn */
 }NAS_MMC_NVIM_EXTENDED_FORBIDDEN_PLMN_LIST_CFG_STRU;
 
-/* Added by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-28, begin */
+/* Added by c00318887 for DPlmnHPLMN, 2015-5-28, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
- 结构说明  : en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg NVIM
+     : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
+   : en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg NVIM
             en_NV_Item_Second_Preset_Dplmn_Nplmn_Cfg
             en_NV_Item_Self_Learn_Dplmn_Nplmn_Cfg
-            中的DPLMN NPLMN功能信息
- 1.日    期   : 2015年5月28日
-   作    者   : c00318887
-   修改内容   : 漫游优化搜网DPlmn扩容和优先接入HPLMN
+            DPLMN NPLMN
+ 1.       : 2015528
+          : c00318887
+      : DPlmnHPLMN
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                         usDplmnListNum;                                       /* 本地配置的Dplmn的个数 */
-    VOS_UINT16                         usNplmnListNum;                                       /* 本地配置的Nplmn的个数 */
+    VOS_UINT16                         usDplmnListNum;                                       /* Dplmn */
+    VOS_UINT16                         usNplmnListNum;                                       /* Nplmn */
 
-    /* DPLMN数据,每7个字节代表一个dplmn信息，第1-3个字节为sim卡格式plmn id，
-       第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，
-       第6字节为域信息:1(cs域注册成功)；2(ps域注册成功)；3(cs ps均注册成功)
-       第7直接为预置标示信息: 1(预置Dplmn), 0(自学习到的DPLMN) */
+    /* DPLMN,7dplmn1-3simplmn id
+       4-5(0x8000w0x4000lte0x0080gsm)
+       6:1(cs)2(ps)3(cs ps)
+       7: 1(Dplmn), 0(DPLMN) */
     VOS_UINT8                          aucDPlmnList[NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_LEN];
 
-    /* NPLMN数据,每7个字节代表一个nplmn信息，第1-3个字节为sim卡格式plmn id，
-       第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，
-       第6字节为域信息:1(cs域注册成功)；2(ps域注册成功)；3(cs ps均注册成功)
-       第7直接为预置标示信息: 1(预置nplmn), 0(自学习到的nplmn) */
-    VOS_UINT8                          aucNPlmnList[NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_LEN];/* NPLMN数据*/
+    /* NPLMN,7nplmn1-3simplmn id
+       4-5(0x8000w0x4000lte0x0080gsm)
+       6:1(cs)2(ps)3(cs ps)
+       7: 1(nplmn), 0(nplmn) */
+    VOS_UINT8                          aucNPlmnList[NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_LEN];/* NPLMN*/
 }NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
- 结构说明  : en_NV_Item_CMCC_Cfg_Dplmn_Nplmn NVIM
+     : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU
+   : en_NV_Item_CMCC_Cfg_Dplmn_Nplmn NVIM
             en_NV_Item_UNICOM_Cfg_Dplmn_Nplmn
             en_NV_Item_CT_Cfg_Dplmn_Nplmn
-            中的DPLMN NPLMN功能信息
- 1.日    期   : 2014年7月14日
-   作    者   : c00188733
-   修改内容   : 漫游优化搜网方案新增DPLMN NPLMN
- 2.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
+            DPLMN NPLMN
+ 1.       : 2014714
+          : c00188733
+      : DPLMN NPLMN
+ 2.       : 2014113
+          : z00161729
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                         usDplmnListNum;                                       /* 本地配置的Dplmn的个数 */
-    VOS_UINT16                         usNplmnListNum;                                       /* 本地配置的Nplmn的个数 */
+    VOS_UINT16                         usDplmnListNum;                                       /* Dplmn */
+    VOS_UINT16                         usNplmnListNum;                                       /* Nplmn */
 
-    /* DPLMN数据,每6个字节代表一个dplmn信息，第1-3个字节为sim卡格式plmn id，
-       第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，第6字节为域信息:1(cs域注册成功)；2(ps域注册成功)；3(cs ps均注册成功)*/
+    /* DPLMN,6dplmn1-3simplmn id
+       4-5(0x8000w0x4000lte0x0080gsm)6:1(cs)2(ps)3(cs ps)*/
     VOS_UINT8                          aucDPlmnList[NAS_MMC_NVIM_MAX_CFG_DPLMN_DATA_EXTEND_LEN];
 
-    /* NPLMN数据,每6个字节代表一个nplmn信息，第1-3个字节为sim卡格式plmn id，
-       第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，第6字节为域信息:1(cs域注册成功)；2(ps域注册成功)；3(cs ps均注册成功)*/
-    VOS_UINT8                          aucNPlmnList[NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_EXTEND_LEN];/* NPLMN数据*/
+    /* NPLMN,6nplmn1-3simplmn id
+       4-5(0x8000w0x4000lte0x0080gsm)6:1(cs)2(ps)3(cs ps)*/
+    VOS_UINT8                          aucNPlmnList[NAS_MMC_NVIM_MAX_CFG_NPLMN_DATA_EXTEND_LEN];/* NPLMN*/
 }NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_OLD_STRU;
-/* Added by c00318887 for DPlmn扩容和优先接入HPLMN, 2015-5-28, end */
+/* Added by c00318887 for DPlmnHPLMN, 2015-5-28, end */
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_FLAG_STRU
- 结构说明  : en_NV_Item_Cfg_Dplmn_Nplmn_Flag NVIM
- 1.日    期   : 2014年7月14日
-   作    者   : c00188733
-   修改内容   : 漫游优化搜网方案新增DPLMN NPLMN使能标志
+     : NAS_MMC_NVIM_CFG_DPLMN_NPLMN_FLAG_STRU
+   : en_NV_Item_Cfg_Dplmn_Nplmn_Flag NVIM
+ 1.       : 2014714
+          : c00188733
+      : DPLMN NPLMN
 *****************************************************************************/
 typedef struct
 {
@@ -1350,35 +1350,35 @@ typedef struct
     VOS_UINT8                          aucReserve[3];
 }NAS_MMC_NVIM_CFG_DPLMN_NPLMN_FLAG_STRU;
 
-/* Added by l00426960 for Anycell抑制, 2017-11-08, begin */
+/* Added by l00426960 for Anycell, 2017-11-08, begin */
 /*****************************************************************************
-结构名    : NV_NAS_HIGH_PRIO_PS_CFG_STRU
-结构说明  : en_NV_Item_HIGH_PRIO_PS_CFG结构
+    : NV_NAS_HIGH_PRIO_PS_CFG_STRU
+  : en_NV_Item_HIGH_PRIO_PS_CFG
 
-1.日    期   : 2017年6月19日
-  作    者   : z00185430
-  修改内容   : 创建
+1.       : 2017619
+         : z00185430
+     : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                   ucRestrainHighPrioRatHPlmnSrch;         /* Home网络高优先接入技术背景搜是否受抑制，1:抑制；0:不抑制 Dallas保留 */
-    VOS_UINT8                   ucRestrainAnyCellSrch;                  /* AnyCell搜网是否受抑制，1:抑制；0:不抑制 */
-    VOS_UINT16                  usHighPrioRatHPlmnSrchTimerRetryLen;    /* HighPrioRatHPlmnSrch被抑制后，重试定时器时常，单位:秒  Dallas保留*/
+    VOS_UINT8                   ucRestrainHighPrioRatHPlmnSrch;         /* Home1:0: Dallas */
+    VOS_UINT8                   ucRestrainAnyCellSrch;                  /* AnyCell1:0: */
+    VOS_UINT16                  usHighPrioRatHPlmnSrchTimerRetryLen;    /* HighPrioRatHPlmnSrch:  Dallas*/
 
-    VOS_UINT8                   ucRsv1;                                /* 保留位1 */
-    VOS_UINT8                   ucRsv2;                                /* 保留位2 */
-    VOS_UINT8                   ucRsv3;                                /* 保留位3 */
-    VOS_UINT8                   ucRsv4;                                /* 保留位4 */
+    VOS_UINT8                   ucRsv1;                                /* 1 */
+    VOS_UINT8                   ucRsv2;                                /* 2 */
+    VOS_UINT8                   ucRsv3;                                /* 3 */
+    VOS_UINT8                   ucRsv4;                                /* 4 */
 }NV_NAS_HIGH_PRIO_PS_CFG_STRU;
-/* Added by l00426960 for Anycell抑制, 2017-11-08, end */
+/* Added by l00426960 for Anycell, 2017-11-08, end */
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DPLMN_NPLMN_CFG_STRU
- 结构说明  : en_NV_Item_Cfg_Dplmn_Nplmn_Flag NVIM
- 1.日    期   : 2015年10月20日
-   作    者   : s00217060
-   修改内容   : 新建
+     : NAS_MMC_NVIM_DPLMN_NPLMN_CFG_STRU
+   : en_NV_Item_Cfg_Dplmn_Nplmn_Flag NVIM
+ 1.       : 20151020
+          : s00217060
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1388,49 +1388,49 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }NAS_MMC_NVIM_DPLMN_NPLMN_CFG_STRU;
 
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-9, begin */
+/* Added by s00217060 for PhaseI, 2016-8-9, begin */
 /*****************************************************************************
- 结构名    : NAS_NVIM_BORDER_INFO_STRU
- 结构说明  : en_NV_Item_Ap_Preset_Border_Info NVIM
-  1.日    期   : 2016年8月9日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_NVIM_BORDER_INFO_STRU
+   : en_NV_Item_Ap_Preset_Border_Info NVIM
+  1.       : 201689
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucVersionId[NAS_MCC_NVIM_VERSION_LEN];
-    VOS_UINT8                           ucReserved;                                                 /* 保留位 */
-    VOS_UINT16                          usBorderNum;                                                /* 边境信息的个数 */
-    /* 边境信息数据,每7个字节代表一条边境信息，第1-3个字节为sim卡格式plmn id，
-       第4-5字节为支持的接入技术(0x8000为支持w，0x4000为支持lte，0x0080为支持gsm)，第6-7字节为LAC或TAC信息
-       接入技术为WG时，6-7字节表示LAC;接入技术为LTE时，6-7字节表示TAC */
-    VOS_UINT8                           aucBorderList[NAS_MMC_NVIM_MAX_CFG_BORDER_DATA_LEN];        /* 边境信息列表 */
+    VOS_UINT8                           ucReserved;                                                 /*  */
+    VOS_UINT16                          usBorderNum;                                                /*  */
+    /* ,71-3simplmn id
+       4-5(0x8000w0x4000lte0x0080gsm)6-7LACTAC
+       WG6-7LAC;LTE6-7TAC */
+    VOS_UINT8                           aucBorderList[NAS_MMC_NVIM_MAX_CFG_BORDER_DATA_LEN];        /*  */
 }NAS_NVIM_BORDER_INFO_STRU;
-/* Added by s00217060 for 边境搜网优化PhaseI, 2016-8-9, end */
+/* Added by s00217060 for PhaseI, 2016-8-9, end */
 
 
 /*****************************************************************************
- 结构名    : NAS_MML_USER_CFG_EHPLMN_INFO_STRU
- 结构说明  : en_NV_Item_User_Cfg_Ehplmn NVIM项中的用户配置的Ehplmn List
- 1.日    期   : 2012年8月9日
-   作    者   : w00167002
-   修改内容   : V7R1C50_GUTL_PhaseII:CMCC内置EHPLMN功能
+     : NAS_MML_USER_CFG_EHPLMN_INFO_STRU
+   : en_NV_Item_User_Cfg_Ehplmn NVIMEhplmn List
+ 1.       : 201289
+          : w00167002
+      : V7R1C50_GUTL_PhaseII:CMCCEHPLMN
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucImsiPlmnListNum;                      /* 定制的IMSI列表个数 */
-    VOS_UINT8                           ucEhplmnListNum;                        /* 用户配置的EHplmn的个数 */
+    VOS_UINT8                           ucImsiPlmnListNum;                      /* IMSI */
+    VOS_UINT8                           ucEhplmnListNum;                        /* EHplmn */
     VOS_UINT8                           aucReserve[2];
     NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_IMSI_PLMN_NUM];
     NAS_SIM_FORMAT_PLMN_ID              astEhPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_EHPLMN_NUM];
 }NAS_MMC_NVIM_USER_CFG_EHPLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_USER_CFG_EXT_EHPLMN_INFO_STRU
- 结构说明  : en_NV_Item_User_Cfg_Ehplmn NVIM项中的用户配置的扩充的Ehplmn List组
- 1.日    期   : 2014年12月19日
-   作    者   : wx270776
-   修改内容   : 新增结构体
+     : NAS_MMC_NVIM_USER_CFG_EXT_EHPLMN_INFO_STRU
+   : en_NV_Item_User_Cfg_Ehplmn NVIMEhplmn List
+ 1.       : 20141219
+          : wx270776
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1440,16 +1440,16 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_FORB_PLMN_INFO_STRU
- 结构说明  : en_NV_Item_User_Cfg_Forb_Plmn_Info NVIM项中的用户配置的每一组FPLMN信息
-  1.日    期   : 2016年4月1日
-    作    者   : s00217060
-    修改内容   : 新增结构体
+     : NAS_MMC_NVIM_FORB_PLMN_INFO_STRU
+   : en_NV_Item_User_Cfg_Forb_Plmn_Info NVIMFPLMN
+  1.       : 201641
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucImsiPlmnListNum;                      /* 每一组里定制的IMSI列表个数 */
-    VOS_UINT8                           ucForbPlmnListNum;                      /* 每一组里用户配置的Forb Plmn的个数 */
+    VOS_UINT8                           ucImsiPlmnListNum;                      /* IMSI */
+    VOS_UINT8                           ucForbPlmnListNum;                      /* Forb Plmn */
     VOS_UINT8                           aucReserve[2];
     NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_IMSI_PLMN_NUM];
     NAS_SIM_FORMAT_PLMN_ID              astForbPlmnList[NAS_MMC_MAX_BLACK_LOCK_PLMN_WITH_RAT_NUM];
@@ -1457,11 +1457,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_USER_CFG_FORB_PLMN_INFO_STRU
- 结构说明  : en_NV_Item_User_Cfg_Forb_Plmn_Info NVIM项中的用户配置的Forb PLMN组
-  1.日    期   : 2016年3月31日
-    作    者   : s00217060
-    修改内容   : 新增结构体
+     : NAS_MMC_NVIM_USER_CFG_FORB_PLMN_INFO_STRU
+   : en_NV_Item_User_Cfg_Forb_Plmn_Info NVIMForb PLMN
+  1.       : 2016331
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1470,26 +1470,26 @@ typedef struct
 }NAS_MMC_NVIM_USER_CFG_FORB_PLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CAUSE18_ENABLE_LTE_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_Cause18_Enable_Lte_Support_Flg NV结构
-  1.日    期   : 2016年4月8日
-    作    者   : h00275845
-    修改内容   : 新增结构体
+     : NAS_MMC_NVIM_CAUSE18_ENABLE_LTE_SUPPORT_FLG_STRU
+   : en_NV_Item_Cause18_Enable_Lte_Support_Flg NV
+  1.       : 201648
+           : h00275845
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                          ucCause18EnableLteSupportFlg; /*是否支持Cause18 Enable Lte*/
+    VOS_UINT8                          ucCause18EnableLteSupportFlg; /*Cause18 Enable Lte*/
     VOS_UINT8                          aucReserved0;
     VOS_UINT8                          aucReserved1;
     VOS_UINT8                          aucReserved2;
 }NAS_MMC_NVIM_CAUSE18_ENABLE_LTE_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_PLMN_WITH_RAT_STRU
- 结构说明  : NAS MML PLMN和接入技术结构
- 1.日    期   : 2012年8月9日
-   作    者   : w00176964
-   修改内容   : 新增
+     : NAS_MMC_NVIM_PLMN_WITH_RAT_STRU
+   : NAS MML PLMN
+ 1.       : 201289
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1501,50 +1501,50 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DISABLED_RAT_PLMN_INFO_STRU
- 结构说明  : en_NV_Item_DISABLED_RAT_PLMN_INFO NV项结构
-  1.日    期   : 2012年8月15日
-    作    者   : w00176964
-    修改内容   : 新建
-  2.日    期   : 2015年4月18日
-    作    者   : w00167002
-    修改内容   : DTS2015032709270:NV中最大禁止网络的个数为8个。
+     : NAS_MMC_NVIM_DISABLED_RAT_PLMN_INFO_STRU
+   : en_NV_Item_DISABLED_RAT_PLMN_INFO NV
+  1.       : 2012815
+           : w00176964
+       : 
+  2.       : 2015418
+           : w00167002
+       : DTS2015032709270:NV8
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulDisabledRatPlmnNum;                   /* 支持禁止接入技术的PLMN个数,个数为0表示不支持该特性 */
+    VOS_UINT32                          ulDisabledRatPlmnNum;                   /* PLMN,0 */
 
-    NAS_MMC_NVIM_PLMN_WITH_RAT_STRU     astDisabledRatPlmnId[NAS_MML_NVIM_MAX_DISABLED_RAT_PLMN_NUM];/* 禁止接入技术的PLMN和RAT信息 */
+    NAS_MMC_NVIM_PLMN_WITH_RAT_STRU     astDisabledRatPlmnId[NAS_MML_NVIM_MAX_DISABLED_RAT_PLMN_NUM];/* PLMNRAT */
 
 }NAS_MMC_NVIM_DISABLED_RAT_PLMN_INFO_STRU;
 
 /*****************************************************************************
- 枚举名    : NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM
- 结构说明  :
- 1.日    期: 2013年11月01日
-   作    者: l00208543
-   修改内容: 新增
+     : NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM
+   :
+ 1.    : 20131101
+       : l00208543
+   : 
 *****************************************************************************/
 enum NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM
 {
-    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_INACTIVE                   = 0,           /* 功能未激活 */
-    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_BLACK                      = 1,           /* 开启黑名单功能 */
-    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_WHITE                      = 2,           /* 开启白名单功能 */
+    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_INACTIVE                   = 0,           /*  */
+    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_BLACK                      = 1,           /*  */
+    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_WHITE                      = 2,           /*  */
     NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM
- 结构说明  :
- 1.日    期: 2013年11月01日
-   作    者: l00208543
-   修改内容: 新增
+     : NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM
+   :
+ 1.    : 20131101
+       : l00208543
+   : 
 *****************************************************************************/
 enum NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM
 {
     NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_GERAN                   = 0,           /* GERAN */
-    NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_UTRAN                   = 1,           /* UTRAN包括WCDMA/TDS-CDMA */
+    NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_UTRAN                   = 1,           /* UTRANWCDMA/TDS-CDMA */
     NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_EUTRAN                  = 2,           /* E-UTRAN */
     NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_BUTT
 };
@@ -1561,42 +1561,42 @@ enum NAS_MSCC_NVIM_SYS_PRI_CLASS_ENUM
 typedef VOS_UINT8 NAS_MSCC_NVIM_SYS_PRI_CLASS_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_STRU
- 结构说明  : en_NV_Item_Rat_Forbidden_List_Accord_Imsi_Config NV项结构
-  1.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 新建
+     : NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_STRU
+   : en_NV_Item_Rat_Forbidden_List_Accord_Imsi_Config NV
+  1.       : 20131101
+           : l00208543
+       : 
 
-    ucSwitchFlag        功能类型：0不激活；
-                                  1: astImsiPlmnList 名单内的卡启用禁止RAT功能；
-                                  2：对不在astImsiPlmnList 名单中的卡启用禁止RAT功能
-    ucImsiPlmnListNum   SIM卡数目；最大支持16；
-    ucForbidRatListNum  禁止RAT的数目，最大值支持 8；（目前仅支持NV中配置禁止LTE或者禁止LTE+UTRAN，
-                                                       NV中配置其他禁止网络制式的组合认为是非法参数）
-    astImsiPlmnList     SIM卡列表，最大支持16组
-    aucForbidRatList    禁止的RAT，最大值支持 2；（目前仅支持NV中配置禁止LTE或者禁止LTE+UTRAN，
-                                                   NV中配置其他禁止网络制式的组合认为是非法参数）
+    ucSwitchFlag        0
+                                  1: astImsiPlmnList RAT
+                                  2astImsiPlmnList RAT
+    ucImsiPlmnListNum   SIM16
+    ucForbidRatListNum  RAT 8NVLTELTE+UTRAN
+                                                       NV
+    astImsiPlmnList     SIM16
+    aucForbidRatList    RAT 2NVLTELTE+UTRAN
+                                                   NV
                         0: GSM
                         1: UTRAN
                         2: E-UTRAN
-                        其他值为无效值
+                        
 *****************************************************************************/
 typedef struct
 {
-    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM_UINT8  enSwitchFlag;                                         /*功能是否有效及功能的类型  */
-    VOS_UINT8                                               ucImsiListNum;                                        /*功能起效的SIM卡数目(黑名单/白名单)  */
-    VOS_UINT8                                               ucForbidRatNum;                                       /*禁止RAT的数目  */
+    NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_SWITCH_FLAG_ENUM_UINT8  enSwitchFlag;                                         /*  */
+    VOS_UINT8                                               ucImsiListNum;                                        /*SIM(/)  */
+    VOS_UINT8                                               ucForbidRatNum;                                       /*RAT  */
     VOS_UINT8                                               aucReserve[1];
-    NAS_SIM_FORMAT_PLMN_ID                                  astImsiList[NAS_NVIM_MAX_IMSI_FORBIDDEN_LIST_NUM];        /* SIM卡列表 (黑名单/白名单) */
-    NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM_UINT8            aenForbidRatList[NAS_NVIM_MAX_RAT_FORBIDDEN_LIST_NUM];    /*禁止的接入技术  */
+    NAS_SIM_FORMAT_PLMN_ID                                  astImsiList[NAS_NVIM_MAX_IMSI_FORBIDDEN_LIST_NUM];        /* SIM (/) */
+    NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM_UINT8            aenForbidRatList[NAS_NVIM_MAX_RAT_FORBIDDEN_LIST_NUM];    /*  */
 }NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CSFB_EMG_CALL_LAI_CHG_LAU_FIRST_CFG_STRU
- 结构说明  : NVIM项中的配置csfb 紧急呼到gu后lai改变，mm先进行lau还是先进行呼叫
- 1.日    期   : 2012年8月14日
-   作    者   : z00161729
-   修改内容   : 新建
+     : NAS_MMC_NVIM_CSFB_EMG_CALL_LAI_CHG_LAU_FIRST_CFG_STRU
+   : NVIMcsfb gulaimmlau
+ 1.       : 2012814
+          : z00161729
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1604,71 +1604,71 @@ typedef struct
     VOS_UINT8                           aucRserved[1];
 }NAS_MMC_NVIM_CSFB_EMG_CALL_LAI_CHG_LAU_FIRST_CFG_STRU;
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU
- 结构说明  : en_NV_Item_PLMN_EXACTLY_COMPARE_FLG NV项结构
-  1.日    期   : 2012年08月16日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题,新建结构
+     : NAS_MMC_NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU
+   : en_NV_Item_PLMN_EXACTLY_COMPARE_FLG NV
+  1.       : 20120816
+           : t00212959
+       : DCM,
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucPlmnExactlyCompareFlag;
-    VOS_UINT8                           aucRsv[3];                         /* 保留*/
+    VOS_UINT8                           aucRsv[3];                         /* */
 }NAS_MMC_NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_HPLMN_REGISTER_CTRL_FLAG_STRU
- 结构说明  : en_NV_Item_Hplmn_Register_Ctrl_Flg NV项结构
- 1.日    期   : 2012年11月29日
-   作    者   : w00176964
-   修改内容   : HPLMN注册被拒后是否允许注册标记
+     : NAS_MMC_NVIM_HPLMN_REGISTER_CTRL_FLAG_STRU
+   : en_NV_Item_Hplmn_Register_Ctrl_Flg NV
+ 1.       : 20121129
+          : w00176964
+      : HPLMN
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucHplmnRegisterCtrlFlg;                 /* HPLMN注册控制标记 */
-    VOS_UINT8                           aucRsv[3];                              /* 保留 */
+    VOS_UINT8                           ucHplmnRegisterCtrlFlg;                 /* HPLMN */
+    VOS_UINT8                           aucRsv[3];                              /*  */
 }NAS_MMC_NVIM_HPLMN_REGISTER_CTRL_FLAG_STRU;
 /*****************************************************************************
-结构名    : NAS_NVIM_CELL_SIGN_REPORT_CFG_STRU
-结构说明  : 信号质量主动上报相关配置信息
-1.日    期  : 2012年11月21日
-  作    者  : z00161729
-  修改内容  : 支持^cerssi新增结构
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_CELL_SIGN_REPORT_CFG_STRU
+  : 
+1.      : 20121121
+        : z00161729
+    : ^cerssi
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucSignThreshold;    /* 信号变化门限,当RSSI变化超过该值，
-                                                                                  接入层需要主动上报信号质量，取值0表示接入层按默认值处理 */
-    VOS_UINT8                                               ucMinRptTimerInterval;     /* 间隔上报的时间   */
+    VOS_UINT8                                               ucSignThreshold;    /* ,RSSI
+                                                                                  0 */
+    VOS_UINT8                                               ucMinRptTimerInterval;     /*    */
     VOS_UINT8                                               ucRserved1;
     VOS_UINT8                                               ucRserved2;
 } NAS_NVIM_CELL_SIGN_REPORT_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_H3G_CTRL_FLAG_STRU
- 结构说明  : en_NV_Item_H3g_Ctrl_Flg NV项结构
- 1.日    期   : 2013年4月10日
-   作    者   : w00176964
-   修改内容   : H3G定制场景控制标记
+     : NAS_MMC_NVIM_H3G_CTRL_FLAG_STRU
+   : en_NV_Item_H3g_Ctrl_Flg NV
+ 1.       : 2013410
+          : w00176964
+      : H3G
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucH3gCtrlFlg;                           /* H3G定制标记 */
-    VOS_UINT8                           aucRsv[3];                              /* 保留 */
+    VOS_UINT8                           ucH3gCtrlFlg;                           /* H3G */
+    VOS_UINT8                           aucRsv[3];                              /*  */
 }NAS_MMC_NVIM_H3G_CTRL_FLAG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_UCS2_CUSTOMIZATION_STRU
- 结构说明  : NAS_MMC_NVIM_UCS2_CUSTOMIZATION_STRU结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 移植
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_UCS2_CUSTOMIZATION_STRU
+   : NAS_MMC_NVIM_UCS2_CUSTOMIZATION_STRU
+  1.       : 2013522
+           : l00167671
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -1678,12 +1678,12 @@ typedef struct
 }NAS_MMC_NVIM_UCS2_CUSTOMIZATION_STRU;
 
 /*****************************************************************************
- 结构名    : SMS_TIMER_LENGTH_STRU
- 结构说明  : 短信协议定时器时长结构
+     : SMS_TIMER_LENGTH_STRU
+   : 
 
-1. 日    期   : 2012年12月28日
-   作    者   : l00167671
-   修改内容   : 新增结构体
+1.        : 20121228
+          : l00167671
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1695,50 +1695,50 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NVIM_PRIVATE_CMD_STATUS_RPT_STRU
- 结构说明  : 是否主动上报信息
- 1.日    期   : 2013年5月10日
-   作    者   : s00217060
-   修改内容   : 主动上报AT命令控制下移至C核项目主动上报NV结构体定义
- 2.日    期   : 2015年3月2日
-   作    者   : w00316404
-   修改内容   : 四字节对齐，增加reserve位
+     : NVIM_PRIVATE_CMD_STATUS_RPT_STRU
+   : 
+ 1.       : 2013510
+          : s00217060
+      : ATCNV
+ 2.       : 201532
+          : w00316404
+      : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV是否激活标志, 0: 不激活，1: 激活 */
-    VOS_UINT8                           ucStatusRptGeneralControl;        /* 私有命令是否允许状态上报 0:不上报，1:上报 */
+    VOS_UINT8                           ucStatus;                               /* NV, 0: 1:  */
+    VOS_UINT8                           ucStatusRptGeneralControl;        /*  0:1: */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NVIM_PRIVATE_CMD_STATUS_RPT_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SPECIAL_ROAM_STRU
- 结构说明  : en_NV_Item_Special_Roam_Flag NV项结构
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_SPECIAL_ROAM_STRU
+   : en_NV_Item_Special_Roam_Flag NV
+  1.       : 2011720
+           : z00161729
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV是否激活标志, 0: 不激活，1: 激活  */
-    VOS_UINT8                           ucSpecialRoamFlg;                         /* Vplmn与Hplmn不同国家码时,是否允许回到Hplmn,1:允许，0:不允许 */
+    VOS_UINT8                           ucStatus;                               /* NV, 0: 1:   */
+    VOS_UINT8                           ucSpecialRoamFlg;                         /* VplmnHplmn,Hplmn,1:0: */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_SPECIAL_ROAM_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ENHANCED_HPLMN_SRCH_FLG_STRU
- 结构说明  : NAS_MMC_NVIM_ENHANCED_HPLMN_SRCH_FLG_STRU结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_ENHANCED_HPLMN_SRCH_FLG_STRU
+   : NAS_MMC_NVIM_ENHANCED_HPLMN_SRCH_FLG_STRU
+  1.       : 2013522
+           : l00167671
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -1748,11 +1748,11 @@ typedef struct
 }NAS_MMC_NVIM_ENHANCED_HPLMN_SRCH_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_CC_NVIM_TIMER_LEN_STRU
- 结构说明  : NAS_CC_NVIM_TIMER_LEN_STRU结构en_NV_Item_CC_TimerLen
-  1.日    期   : 2013年8月30日
-    作    者   : l00208543
-    修改内容   : 新建
+     : NAS_CC_NVIM_TIMER_LEN_STRU
+   : NAS_CC_NVIM_TIMER_LEN_STRUen_NV_Item_CC_TimerLen
+  1.       : 2013830
+           : l00208543
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1762,44 +1762,44 @@ typedef struct
 }NAS_CC_NVIM_TIMER_LEN_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_CC_NVIM_T303_LEN_CFG_STRU
- 结构说明  : NAS_CC_NVIM_T303_LEN_CFG_STRU结构en_NV_Item_CC_T303_Len_Cfg
-  1.日    期   : 2015年3月20日
-    作    者   : wx270776
-    修改内容   : 新建结构体
+     : NAS_CC_NVIM_T303_LEN_CFG_STRU
+   : NAS_CC_NVIM_T303_LEN_CFG_STRUen_NV_Item_CC_T303_Len_Cfg
+  1.       : 2015320
+           : wx270776
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucT303ActiveFlag;                       /* 是否开启T303定时器。0:关闭，1:开启。*/
-    VOS_UINT8                           ucT303Len;                              /* T303定时器时长 */
+    VOS_UINT8                           ucT303ActiveFlag;                       /* T3030:1:*/
+    VOS_UINT8                           ucT303Len;                              /* T303 */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_CC_NVIM_T303_LEN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_LAU_REJ_TRIG_PLMN_SEARCH_CFG_STRU
- 结构说明  : 结构
-  1.日    期   : 2015年8月21日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_NVIM_LAU_REJ_TRIG_PLMN_SEARCH_CFG_STRU
+   : 
+  1.       : 2015821
+           : s00217060
+       : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8   ucCmSrvExistTrigPlmnSearch;                                                     /* 业务存在时是否触发搜网 */
-    VOS_UINT8   ucCmSrvTrigPlmnSearchCauseNum;                                                  /* 配置业务存在时触发搜网的被拒原因值个数 */
+    VOS_UINT8   ucCmSrvExistTrigPlmnSearch;                                                     /*  */
+    VOS_UINT8   ucCmSrvTrigPlmnSearchCauseNum;                                                  /*  */
     VOS_UINT8   ucReserve1;
     VOS_UINT8   ucReserve2;
-    VOS_UINT8   aucCmSrvTrigPlmnSearchCause[NAS_NVIM_MAX_LAU_REJ_TRIG_PLMN_SEARCH_CAUSE_NUM];   /* 配置业务存在时触发搜网的被拒原因值 */
-    VOS_UINT8   aucReserve[NAS_NVIM_MAX_LAU_REJ_TRIG_PLMN_SEARCH_CAUSE_NUM];                    /* 预留给注册被拒触发搜网使用 */
+    VOS_UINT8   aucCmSrvTrigPlmnSearchCause[NAS_NVIM_MAX_LAU_REJ_TRIG_PLMN_SEARCH_CAUSE_NUM];   /*  */
+    VOS_UINT8   aucReserve[NAS_NVIM_MAX_LAU_REJ_TRIG_PLMN_SEARCH_CAUSE_NUM];                    /*  */
 }NAS_NVIM_LAU_REJ_TRIG_PLMN_SEARCH_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_LAU_REJ_NORETRY_WHEN_CM_SRV_EXIST_CFG_STRU
- 结构说明  : 结构
-  1.日    期   : 2015年8月21日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_NVIM_LAU_REJ_NORETRY_WHEN_CM_SRV_EXIST_CFG_STRU
+   : 
+  1.       : 2015821
+           : s00217060
+       : 
 
 *****************************************************************************/
 typedef struct
@@ -1812,29 +1812,29 @@ typedef struct
 }NAS_NVIM_LAU_REJ_NORETRY_WHEN_CM_SRV_EXIST_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CHANGE_REG_REJECT_CAUSE_FLG_STRU
- 结构说明  : NAS_NVIM_CHANGE_REG_REJECT_CAUSE_FLG_STRU结构en_NV_Item_ChangeRejectCause_Flg
-  1.日    期   : 2013年10月09日
-    作    者   : l00208543
-    修改内容   : 新建
-  2.日    期   : 2013年11月19日
-    作    者   : l00208543
-    修改内容   : 修改，将控制位改为枚举，增加单域控制
+     : NAS_NVIM_CHANGE_REG_REJECT_CAUSE_FLG_STRU
+   : NAS_NVIM_CHANGE_REG_REJECT_CAUSE_FLG_STRUen_NV_Item_ChangeRejectCause_Flg
+  1.       : 20131009
+           : l00208543
+       : 
+  2.       : 20131119
+           : l00208543
+       : 
 *****************************************************************************/
 typedef struct
 {
     NAS_NVIM_CHANGE_REG_REJ_CAUSE_TYPE_ENUM_UINT8           enChangeRegRejCauCfg;
-    VOS_UINT8   ucPreferredRegRejCau_HPLMN_EHPLMN;             /* HPLMN/EHPLMN时使用的拒绝原因值 */
-    VOS_UINT8   ucPreferredRegRejCau_NOT_HPLMN_EHPLMN;         /* 非HPLMN/EHPLMN时使用的拒绝原因值 */
+    VOS_UINT8   ucPreferredRegRejCau_HPLMN_EHPLMN;             /* HPLMN/EHPLMN */
+    VOS_UINT8   ucPreferredRegRejCau_NOT_HPLMN_EHPLMN;         /* HPLMN/EHPLMN */
     VOS_UINT8   aucReserve[1];
 }NAS_NVIM_CHANGE_REG_REJECT_CAUSE_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_ROAMINGREJECT_NORETYR_CFG_STRU
- 结构说明  : NAS_NVIM_ROAMINGREJECT_NORETYR_CFG_STRU结构en_NV_Item_ROAMING_REJECT_NORETRY_CFG
-  1.日    期   : 2014年4月29日
-    作    者   : l00208543
-    修改内容   : 新建
+     : NAS_NVIM_ROAMINGREJECT_NORETYR_CFG_STRU
+   : NAS_NVIM_ROAMINGREJECT_NORETYR_CFG_STRUen_NV_Item_ROAMING_REJECT_NORETRY_CFG
+  1.       : 2014429
+           : l00208543
+       : 
 
 *****************************************************************************/
 typedef struct
@@ -1845,13 +1845,13 @@ typedef struct
 }NAS_NVIM_ROAMINGREJECT_NORETYR_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_IGNORE_AUTH_REJ_CFG_STRU
- 结构说明  : en_NV_Item_Remove_Auth_Rej_CFG NV项结构
+     : NAS_MMC_NVIM_IGNORE_AUTH_REJ_CFG_STRU
+   : en_NV_Item_Remove_Auth_Rej_CFG NV
 
 
- 1.日    期   : 2014年2月18日
-   作    者   : l00215384
-   修改内容   : 新建
+ 1.       : 2014218
+          : l00215384
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -1861,11 +1861,11 @@ typedef struct
 }NAS_MMC_NVIM_IGNORE_AUTH_REJ_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NV_GWMAC_ADDR_STRU
- 结构说明  : NV_GWMAC_ADDR(39026)结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NV_GWMAC_ADDR_STRU
+   : NV_GWMAC_ADDR(39026)
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1875,11 +1875,11 @@ typedef struct
 }NAS_NV_GWMAC_ADDR_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_E5_ROAMING_WHITE_LIST_SUPPORT_FLG_STRU
- 结构说明  : E5_RoamingWhiteList_Support_Flg(39330)结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NVIM_E5_ROAMING_WHITE_LIST_SUPPORT_FLG_STRU
+   : E5_RoamingWhiteList_Support_Flg(39330)
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1887,11 +1887,11 @@ typedef struct
 }NAS_NVIM_E5_ROAMING_WHITE_LIST_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NDIS_DIALUP_ADDRESS_STRU
- 结构说明  : NDIS_DIALUP_ADDRESS(39330)结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NVIM_NDIS_DIALUP_ADDRESS_STRU
+   : NDIS_DIALUP_ADDRESS(39330)
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1899,11 +1899,11 @@ typedef struct
 }NAS_NVIM_NDIS_DIALUP_ADDRESS_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NV_BREATH_LED_STR_STRU
- 结构说明  : NV_BREATH_LED_STR(9051)结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NVIM_NV_BREATH_LED_STR_STRU
+   : NV_BREATH_LED_STR(9051)
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1914,33 +1914,33 @@ typedef struct
 }NAS_NVIM_NV_BREATH_LED_STR_STRU;
 
 /*****************************************************************************
- 函 数 名  : NAS_NVIM_MANUAL_MODE_REG_HPLMN_CFG_STRU
- 功能描述  : en_NV_Item_Manual_Mode_Reg_Hplmn_Cfg对应的NV结构体
- 输出参数  : 无
- 返 回 值  : typedef
- 调用函数  :
- 被调函数  :
+     : NAS_NVIM_MANUAL_MODE_REG_HPLMN_CFG_STRU
+   : en_NV_Item_Manual_Mode_Reg_Hplmn_CfgNV
+   : 
+     : typedef
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2018年1月29日
-    作    者   : n00355355
-    修改内容   : 新生成函数
+       :
+  1.       : 2018129
+           : n00355355
+       : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsManualModeRegHplmnFlg;              /* 手动搜网模式下用户指定网络非HPLMN，搜到HPLMN时是否允许注册的开关 */
-    VOS_UINT8                           ucReserved1;                            /* 保留位 */
-    VOS_UINT8                           ucReserved2;                            /* 保留位 */
-    VOS_UINT8                           ucReserved3;                            /* 保留位 */
+    VOS_UINT8                           ucIsManualModeRegHplmnFlg;              /* HPLMNHPLMN */
+    VOS_UINT8                           ucReserved1;                            /*  */
+    VOS_UINT8                           ucReserved2;                            /*  */
+    VOS_UINT8                           ucReserved3;                            /*  */
 }NAS_NVIM_MANUAL_MODE_REG_HPLMN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NV_WIFI_Key_STRU
- 结构说明  : NV_WIFI_Key(50012)结构(废弃)
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NVIM_NV_WIFI_Key_STRU
+   : NV_WIFI_Key(50012)()
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1959,11 +1959,11 @@ VOS_UINT8  ucReserved;
 }NAS_NVIM_NV_WIFI_KEY_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NV_PRI_VERSION_STRU
- 结构说明  : NV_PRI_VERSION(50023)结构
-  1.日    期   : 2013年5月22日
-    作    者   : l00167671
-    修改内容   : 新建
+     : NAS_NVIM_NV_PRI_VERSION_STRU
+   : NV_PRI_VERSION(50023)
+  1.       : 2013522
+           : l00167671
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1972,14 +1972,14 @@ VOS_UINT8 aucReserve[32];
 }NAS_NVIM_NV_PRI_VERSION_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_SYSTEM_APP_CONFIG_STRU
-结构说明  : en_NV_Item_System_APP_Config(121)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_SYSTEM_APP_CONFIG_STRU
+  : en_NV_Item_System_APP_Config(121)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -1989,11 +1989,11 @@ typedef struct
 }NAS_NVIM_SYSTEM_APP_CONFIG_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMC_NVIM_NETWORK_CAPABILITY_STRU
-结构说明  : en_NV_Item_NetworkCapability(8197)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_MMC_NVIM_NETWORK_CAPABILITY_STRU
+  : en_NV_Item_NetworkCapability(8197)
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2001,14 +2001,14 @@ typedef struct
 }NAS_MMC_NVIM_NETWORK_CAPABILITY_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_AUTOATTACH_STRU
-结构说明  : en_NV_Item_Autoattach(8202)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_AUTOATTACH_STRU
+  : en_NV_Item_Autoattach(8202)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2018,14 +2018,14 @@ typedef struct
 }NAS_NVIM_AUTOATTACH_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_SELPLMN_MODE_STRU
-结构说明  : en_NV_Item_SelPlmn_Mode(8214)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_SELPLMN_MODE_STRU
+  : en_NV_Item_SelPlmn_Mode(8214)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2035,14 +2035,14 @@ typedef struct
 }NAS_NVIM_SELPLMN_MODE_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMA_NVIM_ACCESS_MODE_STRU
-结构说明  : en_NV_Item_MMA_AccessMode(8232)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_MMA_NVIM_ACCESS_MODE_STRU
+  : en_NV_Item_MMA_AccessMode(8232)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2052,11 +2052,11 @@ typedef struct
 }NAS_MMA_NVIM_ACCESS_MODE_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_MS_CLASS_STRU
-结构说明  : en_NV_Item_MMA_MsClass(8233)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_NVIM_MS_CLASS_STRU
+  : en_NV_Item_MMA_MsClass(8233)
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2065,11 +2065,11 @@ typedef struct
 }NAS_NVIM_MS_CLASS_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMA_NVIM_RF_Auto_Test_Flag_STRU
-结构说明  : en_NV_Item_RF_Auto_Test_Flag(8262)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_MMA_NVIM_RF_Auto_Test_Flag_STRU
+  : en_NV_Item_RF_Auto_Test_Flag(8262)
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2077,14 +2077,14 @@ typedef struct
 }NAS_MMA_NVIM_RF_AUTO_TEST_FLAG_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_HPLMN_FIRST_TIMER_STRU
-结构说明  : en_NV_Item_HPlmnFirstTimer(8276)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_HPLMN_FIRST_TIMER_STRU
+  : en_NV_Item_HPlmnFirstTimer(8276)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2095,11 +2095,11 @@ typedef struct
 }NAS_NVIM_HPLMN_FIRST_TIMER_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMC_NVIM_SUPPORT_3GPP_RELEASE_STRU
-结构说明  : en_NV_Item_NAS_Supported_3GPP_Release(8288)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_MMC_NVIM_SUPPORT_3GPP_RELEASE_STRU
+  : en_NV_Item_NAS_Supported_3GPP_Release(8288)
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2107,14 +2107,14 @@ typedef struct
 }NAS_MMC_NVIM_SUPPORT_3GPP_RELEASE_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMC_NVIM_LAST_IMSI_STRU
-结构说明  : en_NV_Item_Last_Imsi(8325)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_MMC_NVIM_LAST_IMSI_STRU
+  : en_NV_Item_Last_Imsi(8325)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2125,11 +2125,11 @@ typedef struct
 }NAS_MMC_NVIM_LAST_IMSI_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMA_NVIM_ROAMING_BROKER_STRU
-结构说明  : en_NV_Item_Roaming_Broker(8328)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_MMA_NVIM_ROAMING_BROKER_STRU
+  : en_NV_Item_Roaming_Broker(8328)
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2137,14 +2137,14 @@ typedef struct
 }NAS_MMA_NVIM_ROAMING_BROKER_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMC_NVIM_USE_SINGLE_RPLMN_STRU
-结构说明  : en_NV_Item_Use_Single_Rplmn_When_Area_Lost(8343)结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_MMC_NVIM_USE_SINGLE_RPLMN_STRU
+  : en_NV_Item_Use_Single_Rplmn_When_Area_Lost(8343)
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2155,11 +2155,11 @@ typedef struct
 
 /* en_NV_Item_EquivalentPlmn 8215 */
 /*****************************************************************************
-结构名    : NVIM_PLMN_VALUE_STRU
-结构说明  : en_NV_Item_EquivalentPlmn(8215)结构引用#
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NVIM_PLMN_VALUE_STRU
+  : en_NV_Item_EquivalentPlmn(8215)#
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2168,54 +2168,54 @@ typedef struct
 }NVIM_PLMN_VALUE_STRU;
 
 /*****************************************************************************
-结构名    : NVIM_EQUIVALENT_PLMN_LIST_STRU
-结构说明  : en_NV_Item_EquivalentPlmn(8215)结构#
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NVIM_EQUIVALENT_PLMN_LIST_STRU
+  : en_NV_Item_EquivalentPlmn(8215)#
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8             ucCount;
     NVIM_PLMN_VALUE_STRU  struPlmnList[NVIM_MAX_EPLMN_NUM];
-    VOS_UINT8             aucReserve[3];   /*NV项相关的结构体，在4字节方式下，需手动补齐空洞*/
+    VOS_UINT8             aucReserve[3];   /*NV4*/
 }NVIM_EQUIVALENT_PLMN_LIST_STRU;
 
 /*en_NV_Item_Support_Freqbands 8229*/
 /*
-NVIM_UE_SUPPORT_FREQ_BAND_STRU结构说明:
-usWcdmaBand和usGsmBand用Bit位表示用户设置的频段，bit1代表频段I,bit2代表频段II,
-依次类推,比特位为1,表示支持该频段.下表是比特位和频段对应关系:
+NVIM_UE_SUPPORT_FREQ_BAND_STRU:
+usWcdmaBandusGsmBandBitbit1I,bit2II,
+,1,.:
 -------------------------------------------------------------------------------
         bit8       bit7      bit6     bit5    bit4     bit3      bit2     bit1
 -------------------------------------------------------------------------------
 WCDMA   900(VIII)  2600(VII) 800(VI)  850(V)  1700(IV) 1800(III) 1900(II) 2100(I) oct1
         spare      spare     spare    spare   spare    spare     spare   J1700(IX)oct2
 -------------------------------------------------------------------------------
-GSM频段 1900(VIII) 1800(VII) E900(VI) R900(V) P900(IV) 850(III)  480(II)  450(I)  oct3
+GSM 1900(VIII) 1800(VII) E900(VI) R900(V) P900(IV) 850(III)  480(II)  450(I)  oct3
         spare      spare     spare    spare   spare    spare     spare    700(IX) oct4
 -------------------------------------------------------------------------------
-aucUeSupportWcdmaBand和aucUeSupportGsmBand用数组表示UE支持的频段,并以存储顺序的
-先后表示频段优先顺序,用0xff表示无效.
+aucUeSupportWcdmaBandaucUeSupportGsmBandUE,
+,0xff.
 
-例如:
-oct1-oct4分别是：0x03,0x00,0x7B,0x00
-   则代表用户设置频段为：W：WCDMA-I-2100, WCDMA-II-1900
-                         G：850(III),P900(IV),R900(V),E900(VI),1800(VII)
-oct5-oct16分别是:2,5,1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
-   则代表UE支持W频段I,II,V,优先顺序是:II,V,I.
-oct17-oct28分别是:4,5,8,7,6,3,0xff,0xff,0xff,0xff,0xff,0xff
-   则代表UE支持G频段III,IV,V,VI,VII,VIII,优先顺序是:IV,V,VIII,VII,VI,III.
+:
+oct1-oct40x03,0x00,0x7B,0x00
+   WWCDMA-I-2100, WCDMA-II-1900
+                         G850(III),P900(IV),R900(V),E900(VI),1800(VII)
+oct5-oct16:2,5,1,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff
+   UEWI,II,V,:II,V,I.
+oct17-oct28:4,5,8,7,6,3,0xff,0xff,0xff,0xff,0xff,0xff
+   UEGIII,IV,V,VI,VII,VIII,:IV,V,VIII,VII,VI,III.
 */
 /*****************************************************************************
-结构名    : NAS_NVIM_UE_SUPPORT_FREQ_BAND_STRU
-结构说明  : en_NV_Item_Support_Freqbands(8229)结构#
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2014年8月1日
-  作    者   : b00269685
-  修改内容   : NV拆分
+    : NAS_NVIM_UE_SUPPORT_FREQ_BAND_STRU
+  : en_NV_Item_Support_Freqbands(8229)#
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201481
+         : b00269685
+     : NV
 *****************************************************************************/
 typedef struct
 {
@@ -2223,271 +2223,271 @@ typedef struct
     VOS_UINT32                  ulGsmBand;
     VOS_UINT8                   aucReserved1[12];
     VOS_UINT8                   aucReserved2[12];
-    VOS_UINT8                   aucReserved[24];        /* 为保证nv长度一致保留 */
+    VOS_UINT8                   aucReserved[24];        /* nv */
 }NVIM_UE_SUPPORT_FREQ_BAND_STRU;
 
 /*en_NV_Item_Roam_Capa 8266*/
 /*****************************************************************************
- 结构名    : NAS_NVIM_ROAM_CFG_INFO_STRU
- 结构说明  : en_NV_Item_Roam_Capa(8266) NV项结构#
-  1.日    期   : 2011年8月18日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_NVIM_ROAM_CFG_INFO_STRU
+   : en_NV_Item_Roam_Capa(8266) NV#
+  1.       : 2011818
+           : z00161729
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                               ucRoamFeatureFlg;                   /*记录漫游特性是否激活,VOS_FALSE:不激活,VOS_TRUE:激活*/
-    VOS_UINT8                               ucRoamCapability;                   /*记录用户设置的漫游属性*/
+    VOS_UINT8                               ucRoamFeatureFlg;                   /*,VOS_FALSE:,VOS_TRUE:*/
+    VOS_UINT8                               ucRoamCapability;                   /**/
     VOS_UINT8                               ucReserve1;
     VOS_UINT8                               ucReserve2;
 }NAS_NVIM_ROAM_CFG_INFO_STRU;
 
 /*en_NV_Item_CustomizeService 8271*/
 /*****************************************************************************
-结构名    : NAS_NVIM_CUSTOMIZE_SERVICE_STRU
-结构说明  : en_NV_Item_CustomizeService(8271)结构#
-            用于保存运营商定制要求业务配置
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+    : NAS_NVIM_CUSTOMIZE_SERVICE_STRU
+  : en_NV_Item_CustomizeService(8271)#
+            
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulStatus;           /*是否激活，0不激活，1激活 */
-    VOS_UINT32                          ulCustomizeService; /*终端说明书是1个byte，为了没有空洞，扩充成4byte，高3byte保留*/
+    VOS_UINT32                          ulStatus;           /*01 */
+    VOS_UINT32                          ulCustomizeService; /*1byte4byte3byte*/
 }NAS_NVIM_CUSTOMIZE_SERVICE_STRU;
 
 /*en_NV_Item_RPlmnWithRat 8275*/
 /*****************************************************************************
- 结构名    : NAS_MM_NVIM_RPLMN_WITH_RAT_STRU
- 结构说明  : en_NV_Item_RPlmnWithRat(8275) NV项结构
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+     : NAS_MM_NVIM_RPLMN_WITH_RAT_STRU
+   : en_NV_Item_RPlmnWithRat(8275) NV
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
-    NAS_NVIM_PLMN_ID_STRU               stGRplmn;                               /* G RPLMN信息 */
-    NAS_NVIM_PLMN_ID_STRU               stWRplmn;                               /* W RPLMN信息*/
-    VOS_UINT8                           ucLastRplmnRat;                         /* 上次关机时驻留网络的接入技术0:GSM;1:WCDMA;0xFF:无效值 */
-    VOS_UINT8                           ucLastRplmnRatEnableFlg;                /* 0:NV 未激活; 1:NV激活 */
-    VOS_UINT8                           aucReserved[2];                          /* 保留 */
+    NAS_NVIM_PLMN_ID_STRU               stGRplmn;                               /* G RPLMN */
+    NAS_NVIM_PLMN_ID_STRU               stWRplmn;                               /* W RPLMN*/
+    VOS_UINT8                           ucLastRplmnRat;                         /* 0:GSM;1:WCDMA;0xFF: */
+    VOS_UINT8                           ucLastRplmnRatEnableFlg;                /* 0:NV ; 1:NV */
+    VOS_UINT8                           aucReserved[2];                          /*  */
 }NAS_NVIM_RPLMN_WITH_RAT_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SEARCH_HPLMN_TIMER_STRU
- 结构说明  : en_NV_Item_SearchHplmnTtimerValue NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_SEARCH_HPLMN_TIMER_STRU
+   : en_NV_Item_SearchHplmnTtimerValue NV
+  1.       : 2011725
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                            ucStatus;                              /* 0:NV 未激活; 1:NV 激活 */
-    VOS_UINT8                            ucReserve;                             /* 保留未用 */
-    VOS_UINT16                           usSrchHplmnTimerValue;                 /* VPLMN下非首次搜HPLMN时间,单位:分钟 */
+    VOS_UINT8                            ucStatus;                              /* 0:NV ; 1:NV  */
+    VOS_UINT8                            ucReserve;                             /*  */
+    VOS_UINT16                           usSrchHplmnTimerValue;                 /* VPLMNHPLMN,: */
 
 }NAS_MMC_NVIM_SEARCH_HPLMN_TIMER_STRU;
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
+/* Added by c00318887 for file refresh, 2015-4-28, begin */
 /*****************************************************************************
- 结构名    : NAS_MML_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG_STRU
- 结构说明  : en_NV_Item_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG NV项结构
- 1.日    期   : 2015年4月28日
-   作    者   : c00318887
-   修改内容   : 新建
+     : NAS_MML_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG_STRU
+   : en_NV_Item_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG NV
+ 1.       : 2015428
+          : c00318887
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucTriggerBGSearchFlag;  /* 0: mmc收到高优先级PLMN更新时不启动BG SEARCH; 1:mmc收到高优先级PLMN更新时启动BG SEARCH */
+    VOS_UINT8                           ucTriggerBGSearchFlag;  /* 0: mmcPLMNBG SEARCH; 1:mmcPLMNBG SEARCH */
     VOS_UINT8                           ucReserved;
-    VOS_UINT16                          usSearchDelayLen;             /* BG SEARCH Delay 时长, 单位: 秒  */
+    VOS_UINT16                          usSearchDelayLen;             /* BG SEARCH Delay , :   */
 }NAS_MMC_NVIM_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_STRU;
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
+/* Added by c00318887 for file refresh, 2015-4-28, end */
 
 
 /*en_NV_Item_EFust_Service_Cfg 8285*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_EFUST_SERVICE_CFG_STRU
- 结构说明  : en_NV_Item_EFust_Service_Cfg(8285) NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_EFUST_SERVICE_CFG_STRU
+   : en_NV_Item_EFust_Service_Cfg(8285) NV
+  1.       : 2011725
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV项是否激活0：未激活；1：激活 */
-    VOS_UINT8                           ucForbidReg2GNetWork;                   /* 0：EFust GSM接入标志定制项去使能。定制项不激活，不检查EFust 27、38。允许GSM接入。
-                                                                                   定制项激活，该定制项激活后，UE根据SIM卡中的EFust 27、38位，确定是否允许GSM接入，
-                                                                                   如果EFUST文件禁止这两位（同时设置为0），则禁止GSM接入注册，否则GSM可以接入。
-                                                                                   注意：SIM卡中不存在EFust 27、38位，因此该功能仅针对USIM卡有效。1：EFust GSM接入标志定制项使能 */
-    VOS_UINT8                           ucForbidSndMsg;                         /* 0：EFust短信发送标志定制项去使能。定制项不激活，不检查EFust 10、12。允许SMS发送。
-                                                                                   1：EFust短信发送标志定制项使能。NV项激活，该定制项激活后，UE根据SIM卡中EFUST的10、12位，
-                                                                                   确定是否禁止短信发送,如果禁止这两位（同时设置为0），则禁止发送SMS；否则，短信可以发送。*/
+    VOS_UINT8                           ucStatus;                               /* NV01 */
+    VOS_UINT8                           ucForbidReg2GNetWork;                   /* 0EFust GSMEFust 2738GSM
+                                                                                   UESIMEFust 2738GSM
+                                                                                   EFUST0GSMGSM
+                                                                                   SIMEFust 2738USIM1EFust GSM */
+    VOS_UINT8                           ucForbidSndMsg;                         /* 0EFustEFust 1012SMS
+                                                                                   1EFustNVUESIMEFUST1012
+                                                                                   ,0SMS*/
     VOS_UINT8                           ucReserved[13];
 }NAS_MMC_NVIM_EFUST_SERVICE_CFG_STRU;
 
 /*en_NV_Item_UE_MSCR_VERSION 8289*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_MSCR_VERSION_STRU
- 结构说明  : en_NV_Item_UE_MSCR_VERSION(8289) NV项结构
- 1.日    期   : 2011年7月14日
-   作    者   : z00161729
-   修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_MSCR_VERSION_STRU
+   : en_NV_Item_UE_MSCR_VERSION(8289) NV
+ 1.       : 2011714
+          : z00161729
+      : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV是否激活标志, 0: 不激活，1: 激活 */
-    VOS_UINT8                           ucUeMscrVersion;                        /* 终端上报的SGSN版本 */
+    VOS_UINT8                           ucStatus;                               /* NV, 0: 1:  */
+    VOS_UINT8                           ucUeMscrVersion;                        /* SGSN */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_MSCR_VERSION_STRU;
 
 /*en_NV_Item_UE_SGSNR_VERSION 8290*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SGSNR_VERSION_STRU
- 结构说明  : en_NV_Item_UE_SGSNR_VERSION(8290) NV项结构
- 1.日    期   : 2011年7月14日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2015年3月2日
-   作    者   : w00316404
-   修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_SGSNR_VERSION_STRU
+   : en_NV_Item_UE_SGSNR_VERSION(8290) NV
+ 1.       : 2011714
+          : z00161729
+      : 
+ 2.       : 201532
+          : w00316404
+      : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV是否激活标志, 0: 不激活，1: 激活 */
-    VOS_UINT8                           ucUeSgsnrVersion;                       /* 终端上报的SGSN版本 */
+    VOS_UINT8                           ucStatus;                               /* NV, 0: 1:  */
+    VOS_UINT8                           ucUeSgsnrVersion;                       /* SGSN */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_SGSNR_VERSION_STRU;
 
 /*en_NV_Item_SteeringofRoaming_SUPPORT_CTRL 8292*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CS_REJ_SEARCH_SUPPORT_STRU
- 结构说明  : en_NV_Item_SteeringofRoaming_SUPPORT_CTRL(8292) NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_MMC_NVIM_CS_REJ_SEARCH_SUPPORT_STRU
+   : en_NV_Item_SteeringofRoaming_SUPPORT_CTRL(8292) NV
+  1.       : 2011725
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                               /* NV是否激活标志, 0: 不激活，1: 激活 */
-    VOS_UINT8                           ucCsRejSearchSupportFlg;                /* vodafone的搜网定制需求,CS域失败四次后下发搜网请求,VOS_FALSE:不支持,VOS_TRUE:支持 */
+    VOS_UINT8                           ucStatus;                               /* NV, 0: 1:  */
+    VOS_UINT8                           ucCsRejSearchSupportFlg;                /* vodafone,CS,VOS_FALSE:,VOS_TRUE: */
 }NAS_MMC_NVIM_CS_REJ_SEARCH_SUPPORT_STRU;
 
 /*en_NV_Item_Max_Forb_Roam_La 8320*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_MAX_FORB_ROAM_LA_STRU
- 结构说明  : en_NV_Item_Max_Forb_Roam_La(8320) NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_MAX_FORB_ROAM_LA_STRU
+   : en_NV_Item_Max_Forb_Roam_La(8320) NV
+  1.       : 2011725
+           : z00161729
+       : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucMaxForbRoamLaFlg;                     /* NV中设置的最大禁止LA个数是否有效: VOS_TRUE:valid;VOS_FALSE:INVALID */
-    VOS_UINT8                           ucMaxForbRoamLaNum;                     /* NV中设置的最大禁止LA个数 */
+    VOS_UINT8                           ucMaxForbRoamLaFlg;                     /* NVLA: VOS_TRUE:valid;VOS_FALSE:INVALID */
+    VOS_UINT8                           ucMaxForbRoamLaNum;                     /* NVLA */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_MAX_FORB_ROAM_LA_STRU;
 
 /*en_NV_Item_Default_Max_Hplmn_Srch_Peri 8321*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DEFAULT_MAX_HPLMN_PERIOD_STRU
- 结构说明  : en_NV_Item_Default_Hplmn_Srch_Peri(8321) NV项结构
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_DEFAULT_MAX_HPLMN_PERIOD_STRU
+   : en_NV_Item_Default_Hplmn_Srch_Peri(8321) NV
+  1.       : 2011720
+           : z00161729
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucDefaultMaxHplmnPeriFlg;               /* 默认最大的HPLMN搜索周期是否有效标志,VOS_TRUE:valid;VOS_FALSE:INVALID */
-    VOS_UINT8                           ucDefaultMaxHplmnTim;                   /* 用户可以定义默认的最大的HPLMN搜索周期 */
+    VOS_UINT8                           ucDefaultMaxHplmnPeriFlg;               /* HPLMN,VOS_TRUE:valid;VOS_FALSE:INVALID */
+    VOS_UINT8                           ucDefaultMaxHplmnTim;                   /* HPLMN */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_DEFAULT_MAX_HPLMN_PERIOD_STRU;
 
 /*en_NV_Item_USSD_Apha_To_Ascii 8327*/
-/*控制USSD转换字符表*/
+/*USSD*/
 /*****************************************************************************
- 结构名    : NAS_SSA_NVIM_ALPHA_to_ASCII_STRU
- 结构说明  : en_NV_Item_USSD_Apha_To_Ascii(8327) NV项结构
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新建
+     : NAS_SSA_NVIM_ALPHA_to_ASCII_STRU
+   : en_NV_Item_USSD_Apha_To_Ascii(8327) NV
+  1.       : 2011720
+           : z00161729
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                       ucStatus;            /*是否激活，0不激活，1激活 */
-    VOS_UINT8                       ucAlphaTransMode;    /* 字符表转换*/
+    VOS_UINT8                       ucStatus;            /*01 */
+    VOS_UINT8                       ucAlphaTransMode;    /* */
 }NAS_SSA_NVIM_ALPHA_to_ASCII_STRU;
 
 /*en_NV_Item_Register_Fail_Cnt 8338*/
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_REG_FAIL_CNT_STRU
- 结构说明  : en_NV_Item_Register_Fail_Cnt(8338) NV项结构
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新建
-  2.日    期   : 2015年3月2日
-    作    者   : w00316404
-    修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_REG_FAIL_CNT_STRU
+   : en_NV_Item_Register_Fail_Cnt(8338) NV
+  1.       : 2011725
+           : z00161729
+       : 
+  2.       : 201532
+           : w00316404
+       : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNvActiveFlag;                         /* 当前NV项是否激活 */
-    VOS_UINT8                           ucRegFailCnt;                           /* NV中设置的注册失败的次数，默认值为2，即注册失败两次后发起搜网。 */
+    VOS_UINT8                           ucNvActiveFlag;                         /* NV */
+    VOS_UINT8                           ucRegFailCnt;                           /* NV2 */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_MMC_NVIM_REG_FAIL_CNT_STRU;
 
 /*en_NV_Item_CREG_CGREG_CI_Four_Byte_Rpt 8345*/
-/* VDF需求: CREG/CGREG命令<CI>域是否以4字节上报的NV项控制结构体 */
+/* VDF: CREG/CGREG<CI>4NV */
 /*****************************************************************************
-结构名    : NAS_NV_CREG_CGREG_CI_FOUR_BYTE_RPT_STRU
-结构说明  : en_NV_Item_CREG_CGREG_CI_Four_Byte_Rpt(8345)结构#
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NV_CREG_CGREG_CI_FOUR_BYTE_RPT_STRU
+  : en_NV_Item_CREG_CGREG_CI_Four_Byte_Rpt(8345)#
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStatus;                        /* 1: NV有效标志位，0：无效 */
-    VOS_UINT8                           ucCiBytesRpt;                    /* <CI>域上报字节数标志，0：2字节上报, 1：4字节上报 */
+    VOS_UINT8                           ucStatus;                        /* 1: NV0 */
+    VOS_UINT8                           ucCiBytesRpt;                    /* <CI>02, 14 */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }NAS_NV_CREG_CGREG_CI_FOUR_BYTE_RPT_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DAIL_REJECT_CFG_STRU
- 结构说明  : 记录en_NV_Item__Dell_Reject_Config NV项内容，拨号被拒11,12,13,15,other cause,建链失败,网络没响应等原因定制NV
- 1.日    期   : 2012年3月6日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2015年3月2日
-   作    者   : w00316404
-   修改内容   : 四字节对齐，增加reserve位
+     : NAS_MMC_NVIM_DAIL_REJECT_CFG_STRU
+   : en_NV_Item__Dell_Reject_Config NV11,12,13,15,other cause,,NV
+ 1.       : 201236
+          : w00176964
+      : 
+ 2.       : 201532
+          : w00316404
+      : reserve
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlg;                            /* 拨号被拒是否使能 VOS-TRUE:拨号被拒支持 VOS_FALSE:拨号被拒不支持 */
+    VOS_UINT8                           ucEnableFlg;                            /*  VOS-TRUE: VOS_FALSE: */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
     VOS_UINT8                           ucReserve3;
@@ -2505,14 +2505,14 @@ typedef struct
 }NDIS_NV_IPV6_MTU_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_CCALLSTATE_RPT_STATUS_STRU
-结构说明  : en_NV_Item_CCallState_Rpt_Status nvid 9116(已废弃)
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
-2.日    期   : 2015年3月2日
-  作    者   : w00316404
-  修改内容   : 四字节对齐，增加reserve位
+    : NAS_NVIM_CCALLSTATE_RPT_STATUS_STRU
+  : en_NV_Item_CCallState_Rpt_Status nvid 9116()
+1.       : 2013522
+         : m00217266
+     : 
+2.       : 201532
+         : w00316404
+     : reserve
 *****************************************************************************/
 typedef struct
 {
@@ -2523,63 +2523,63 @@ typedef struct
 }NAS_NVIM_CCALLSTATE_RPT_STATUS_STRU;
 
 /*****************************************************************************
- 结构名    : NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU
- 结构说明  : PLMN比较是否进行精确比较的方式的标记
- 修改历史  :
- 1.日    期    : 2012年08月7日
-   作    者    : l00128652
-   修改内容    : 新建结构体
+     : NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU
+   : PLMN
+   :
+ 1.        : 2012087
+           : l00128652
+       : 
 *****************************************************************************/
 typedef struct
 {
-   VOS_UINT8                            ucPlmnExactlyCompareFlag;               /* PLMN比较是否进行精确比较的方式的标记 */
-   VOS_UINT8                            aucRsv[3];                              /* 保留位 */
+   VOS_UINT8                            ucPlmnExactlyCompareFlag;               /* PLMN */
+   VOS_UINT8                            aucRsv[3];                              /*  */
 }NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU;
 
 /*****************************************************************************
-结构名    : PLATFORM_RAT_TYPE_ENUM
-结构说明  : 接入技术
+    : PLATFORM_RAT_TYPE_ENUM
+  : 
 
-  1.日    期   : 2012年12月25日
-    作    者   : z00220246
-    修改内容   : 创建
+  1.       : 20121225
+           : z00220246
+       : 
 *******************************************************************************/
 enum PLATFORM_RAT_TYPE_ENUM
 {
-    PLATFORM_RAT_GSM,                                                       /*GSM接入技术 */
-    PLATFORM_RAT_WCDMA,                                                     /* WCDMA接入技术 */
-    PLATFORM_RAT_LTE,                                                       /* LTE接入技术 */
-    PLATFORM_RAT_TDS,                                                       /* TDS接入技术 */
-    PLATFORM_RAT_1X,                                                        /* CDMA-1X接入技术 */
-    PLATFORM_RAT_HRPD,                                                      /* CDMA-EV_DO接入技术 */
+    PLATFORM_RAT_GSM,                                                       /*GSM */
+    PLATFORM_RAT_WCDMA,                                                     /* WCDMA */
+    PLATFORM_RAT_LTE,                                                       /* LTE */
+    PLATFORM_RAT_TDS,                                                       /* TDS */
+    PLATFORM_RAT_1X,                                                        /* CDMA-1X */
+    PLATFORM_RAT_HRPD,                                                      /* CDMA-EV_DO */
 
     PLATFORM_RAT_BUTT
 };
 typedef VOS_UINT16 PLATFORM_RAT_TYPE_ENUM_UINT16;
 
-#define PLATFORM_MAX_RAT_NUM            (7)                                    /* 接入技术最大值 */
+#define PLATFORM_MAX_RAT_NUM            (7)                                    /*  */
 
 /*****************************************************************************
-结构名    : PLATAFORM_RAT_CAPABILITY_STRU
-结构说明  : 平台支持的接入技术
+    : PLATAFORM_RAT_CAPABILITY_STRU
+  : 
 
-  1.日    期   : 2012年12月25日
-    作    者   : z00220246
-    修改内容   : 创建
+  1.       : 20121225
+           : z00220246
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT16                           usRatNum;                              /* 接入技术的数目*/
-    PLATFORM_RAT_TYPE_ENUM_UINT16        aenRatList[PLATFORM_MAX_RAT_NUM];  /* 接入技术 */
+    VOS_UINT16                           usRatNum;                              /* */
+    PLATFORM_RAT_TYPE_ENUM_UINT16        aenRatList[PLATFORM_MAX_RAT_NUM];  /*  */
 }PLATAFORM_RAT_CAPABILITY_STRU;
 
 /*en_NV_Item_Rplmn 8216*/
 /*****************************************************************************
- 结构名    : NAS_NVIM_RPLMN_INFO_STRU
- 结构说明  : en_NV_Item_Rplmn(8216) NV项结构(已废弃)
-1.日    期   : 2013年5月22日
-  作    者   : m00217266
-  修改内容   : 新建
+     : NAS_NVIM_RPLMN_INFO_STRU
+   : en_NV_Item_Rplmn(8216) NV()
+1.       : 2013522
+         : m00217266
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2587,117 +2587,117 @@ typedef struct
 }NAS_NVIM_RPLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : SVLTE_SUPPORT_FLAG_STRU
- 结构说明  : en_NV_Item_SVLTE_FLAG NV项结构
- 1.日    期   : 2013年6月20日
-   作    者   : z00161729
-   修改内容   : SVLTE功能是否支持:0-不支持；1-支持
+     : SVLTE_SUPPORT_FLAG_STRU
+   : en_NV_Item_SVLTE_FLAG NV
+ 1.       : 2013620
+          : z00161729
+      : SVLTE:0-1-
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSvlteSupportFlag;                     /* SVLTE功能是否支持:0-不支持；1-支持 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留 */
+    VOS_UINT8                           ucSvlteSupportFlag;                     /* SVLTE:0-1- */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 }SVLTE_SUPPORT_FLAG_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ENABLE_LTE_TIMER_LEN_STRU
- 结构说明  : en_NV_Item_Enable_Lte_Timer_Len NV项结构
- 1.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : enable lte定时器时长
- 2.日    期   : 2015年4月24日
-   作    者   : z00161729
-   修改内容   : 24301 R11 CR升级项目修改
+     : NAS_MMC_NVIM_ENABLE_LTE_TIMER_LEN_STRU
+   : en_NV_Item_Enable_Lte_Timer_Len NV
+ 1.       : 201363
+          : z00161729
+      : enable lte
+ 2.       : 2015424
+          : z00161729
+      : 24301 R11 CR
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNvimActiveFlag;                       /* 0: nv项未激活；1:nv项激活 */
-    VOS_UINT8                           ucCsPsMode1EnableLteTimerLen;           /* 1)cs ps mode1 L联合注册eps only成功cs被拒#16/#17/#22达最大次数场景disable lte时启动enable lte定时器时长
-                                                                                   2)cs ps mode1 L联合注册cs eps均失败原因值other cause 达最大次数场景disable lte启动enable lte定时器时长,单位:分钟， nv项激活时如果为0默认54分钟 */
-    VOS_UINT8                           ucCsfbEmgCallEnableLteTimerLen;         /* L下紧急呼叫无法正常csfb到gu，通过搜网到gu场景disable lte启动enable lte定时器时长，单位:分钟， nv项激活时如果为0默认5分钟 */
+    VOS_UINT8                           ucNvimActiveFlag;                       /* 0: nv1:nv */
+    VOS_UINT8                           ucCsPsMode1EnableLteTimerLen;           /* 1)cs ps mode1 Leps onlycs#16/#17/#22disable lteenable lte
+                                                                                   2)cs ps mode1 Lcs epsother cause disable lteenable lte,: nv054 */
+    VOS_UINT8                           ucCsfbEmgCallEnableLteTimerLen;         /* Lcsfbgugudisable lteenable lte: nv05 */
 
-    /* 被拒原因值为#16、#17或#18或联合注册成功，Additional Update Result IE消息中
-    指示SMS Only或CSFB Not Preferred需要disable lte时，如果协议版本大于等于R11，
-    配置被拒绝的PLMN和RAT记录在禁止接入技术网络列表中的惩罚时间，如果为0xFF表示永久惩罚
-    单位:分钟 */
+    /* #16#17#18Additional Update Result IE
+    SMS OnlyCSFB Not Preferreddisable lteR11
+    PLMNRAT0xFF
+    : */
     VOS_UINT8                           ucLteVoiceNotAvailPlmnForbiddenPeriod;
 }NAS_MMC_NVIM_ENABLE_LTE_TIMER_LEN_STRU;
 
 
-/* Added by c00318887 for DCM DisableLte定制优化和SMC失败后强制鉴权优化, 2017-2-22, begin */
+/* Added by c00318887 for DCM DisableLteSMC, 2017-2-22, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DCM_CUSTOMER_ENABLE_LTE_TIMER_LEN_STRU
- 结构说明  : en_NV_Item_Dcm_Custom_Disable_Lte_Cfg NV项结构
+     : NAS_MMC_NVIM_DCM_CUSTOMER_ENABLE_LTE_TIMER_LEN_STRU
+   : en_NV_Item_Dcm_Custom_Disable_Lte_Cfg NV
 
-  1.日    期   : 2017年2月22日
-    作    者   : c00318887
-    修改内容   : DCM_CUSTOMER enable lte定时器时长
+  1.       : 2017222
+           : c00318887
+       : DCM_CUSTOMER enable lte
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlag;                           /* 0: nv项未激活；1:nv项激活 */
-    VOS_UINT8                           ucEnableLteTimerLen;                    /* EnableLte timer len, 单位:分钟， nv项激活时如果为0则不使能 */
+    VOS_UINT8                           ucActiveFlag;                           /* 0: nv1:nv */
+    VOS_UINT8                           ucEnableLteTimerLen;                    /* EnableLte timer len, : nv0 */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
 }NAS_MMC_NVIM_DCM_CUSTOM_DISABLE_LTE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DCM_CUSTOMER_ENABLE_LTE_TIMER_LEN_STRU
- 结构说明  : en_NV_Item_Smc_Fail_Csfb_Mt_Force_Auth_Cfg NV项结构
+     : NAS_MMC_NVIM_DCM_CUSTOMER_ENABLE_LTE_TIMER_LEN_STRU
+   : en_NV_Item_Smc_Fail_Csfb_Mt_Force_Auth_Cfg NV
 
-  1.日    期   : 2017年2月22日
-    作    者   : c00318887
-    修改内容   : SMC失败后强制鉴权优化
+  1.       : 2017222
+           : c00318887
+       : SMC
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCsfbMtForceAuthFlag;                  /* 0: nv项未激活；1:nv项激活 */
+    VOS_UINT8                           ucCsfbMtForceAuthFlag;                  /* 0: nv1:nv */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_MMC_NVIM_SMC_FAIL_CSFB_MT_FORCE_AUTH_CFG_STRU;
 
-/* Added by c00318887 for DCM DisableLte定制优化和SMC失败后强制鉴权优化, 2017-2-22, end */
+/* Added by c00318887 for DCM DisableLteSMC, 2017-2-22, end */
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, begin */
+/* Added by c00318887 for T3402 , 2015-6-17, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG_STRU
- 结构说明  : en_NV_Item_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG NV项结构
-             ucT3402Flag 用来控制Disable LTE 后到再次把LTE 恢复所需的定时器时长:
-             如果ucT3402Flag 是0，则Disable LTE 后到再次把LTE 恢复所需的定时器时长由NV_Item_Enable_Lte_Timer_Len  0x2404（9220）设置值决定
-             如果 ucT3402Flag 配置为 1，在以下场景将使用LMM_MMC_T3402_LEN_NOTIFY消息中的长度
-            1) EPS ONLY成功,CS被拒18,CS被拒16,17,22,other cause,EPS尝试次数达到5次
-            2) 联合EPS注册被拒 #19, 次数达到最大值
-            3) 联合EPS注册被拒 #301, 次数达到最大值
-            4) 联合EPS注册被拒 #other cause, 次数达到最大值
-            5) 联合EPS注册被拒 #401, 次数达到最大值
- 1.日    期   : 2015年4月28日
-   作    者   : c00318887
-   修改内容   : 新建
+     : NAS_MMC_NVIM_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG_STRU
+   : en_NV_Item_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG NV
+             ucT3402Flag Disable LTE LTE :
+             ucT3402Flag 0Disable LTE LTE NV_Item_Enable_Lte_Timer_Len  0x24049220
+              ucT3402Flag  1LMM_MMC_T3402_LEN_NOTIFY
+            1) EPS ONLY,CS18,CS16,17,22,other cause,EPS5
+            2) EPS #19, 
+            3) EPS #301, 
+            4) EPS #other cause, 
+            5) EPS #401, 
+ 1.       : 2015428
+          : c00318887
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucT3402Flag;                           /* 0: 不使用LMM_MMC_T3402_LEN_NOTIFY消息中的长度; 1:使用LMM_MMC_T3402_LEN_NOTIFY消息中的长度 */
-    VOS_UINT8                           ucHighPrioRatTimerNotEnableLteFlag;    /* 1:高优先级RAT HPLMN TIMER 超时不重新ENABLE lte；0: 高优先级RAT HPLMN TIMER 超时重新ENABLE lte */
+    VOS_UINT8                           ucT3402Flag;                           /* 0: LMM_MMC_T3402_LEN_NOTIFY; 1:LMM_MMC_T3402_LEN_NOTIFY */
+    VOS_UINT8                           ucHighPrioRatTimerNotEnableLteFlag;    /* 1:RAT HPLMN TIMER ENABLE lte0: RAT HPLMN TIMER ENABLE lte */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
 }NAS_MMC_NVIM_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG_STRU;
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, end */
+/* Added by c00318887 for T3402 , 2015-6-17, end */
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_REJ_MAX_TIMES_DISABLE_LTE_CFG_STRU
- 结构说明  : lte attach and tau 被拒达最大次数时，是否按照R12协议disable lte
+     : NAS_MMC_NVIM_REJ_MAX_TIMES_DISABLE_LTE_CFG_STRU
+   : lte attach and tau R12disable lte
 
-  1.日    期   : 2016年8月24日
-    作    者   : c00318887
-    修改内容   : 新建
+  1.       : 2016824
+           : c00318887
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucRejMaxTimesDisableLte;          /* 0: 被拒达最大次数时不按照r12版本disable lte; 1: 被拒达最大次数时按照r12版本disable lte */
+    VOS_UINT8                           ucRejMaxTimesDisableLte;          /* 0: r12disable lte; 1: r12disable lte */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -2705,16 +2705,16 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_SRVCC_SN_MODULO_CFG_STRU
- 结构说明  : SRVCC到G下后，是否按照协议，分配SN统一按照R99模4处理
+     : NAS_NVIM_SRVCC_SN_MODULO_CFG_STRU
+   : SRVCCGSNR994
 
-  1.日    期   : 2016年9月1日
-    作    者   : n00269697
-    修改内容   : 新建
+  1.       : 201691
+           : n00269697
+       : 
 *****************************************************************************/
 typedef struct
 {
-    /* 根据24007 11.2.3.2.3.1.1
+    /* 24007 11.2.3.2.3.1.1
        after successful completion of SRVCC handover (see 3GPP TS 23.216 [27]),
        the mobile station shall perform modulo 4 arithmetic operations on V(SD).
        The mobile station shall keep using modulo 4 until the release of the RR
@@ -2724,18 +2724,18 @@ typedef struct
        and therefore the mobile station assumes to access to a Release 99 or
        later core network.
     */
-    VOS_UINT8                           ucSrvccSnModuloCfg;                     /* 0: 分配SN按照SRVCC前g_stMmNsd.ucNsdMod处理; 1: 按照协议，分配SN统一按照R99模4处理 */
+    VOS_UINT8                           ucSrvccSnModuloCfg;                     /* 0: SNSRVCCg_stMmNsd.ucNsdMod; 1: SNR994 */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_SRVCC_SN_MODULO_CFG_STRU;
 
 /*****************************************************************************
-结构名    : NAS_MMC_NVIM_ISR_CFG_STRU
-结构说明  : ISR相关配置信息
-1.日    期  : 2013年05月23日
-  作    者  : z00234330
-  修改内容  : ISR通过NVIM判断是否支持
+    : NAS_MMC_NVIM_ISR_CFG_STRU
+  : ISR
+1.      : 20130523
+        : z00234330
+    : ISRNVIM
 *****************************************************************************/
 typedef struct
 {
@@ -2745,16 +2745,16 @@ typedef struct
 
 
 /*****************************************************************************
-结构名    : NAS_NVIM_EMC_BAR_TRIGGER_PLMN_SEARCH_STRU
-结构说明  : 紧急呼被bar是否触发搜网配置
+    : NAS_NVIM_EMC_BAR_TRIGGER_PLMN_SEARCH_STRU
+  : bar
 
-  1.日    期   : 2017年1月10日
-    作    者   : c00318887
-    修改内容   : 新增
+  1.       : 2017110
+           : c00318887
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucEmcBarTriggerPlmnSearch;       /* VOS_FALSE: 不搜网;  VOS_TRUE: 搜网 */
+    VOS_UINT8                                               ucEmcBarTriggerPlmnSearch;       /* VOS_FALSE: ;  VOS_TRUE:  */
     VOS_UINT8                                               ucReserve1;
     VOS_UINT8                                               ucReserve2;
     VOS_UINT8                                               ucReserve3;
@@ -2762,56 +2762,56 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : CSFB_MT_FOLLOW_ON_SUPPORT_FLAG_STRU
- 结构说明  : en_NV_Item_CSFB_MT_RAU_FOLLOW_ON_FLAG NV项结构
- 1.日    期   : 2013年7月25日
-   作    者   : w00242748
-   修改内容   : Csfb mt流程中，RAU是否需要带follow on标记:0-不需要；1-需要
- 2.日    期   : 2014年6月10日
-   作    者   : w00242748
-   修改内容   : Csfb mo流程中，RAU是否需要带follow on标记:0-不需要；1-需要
+     : CSFB_MT_FOLLOW_ON_SUPPORT_FLAG_STRU
+   : en_NV_Item_CSFB_MT_RAU_FOLLOW_ON_FLAG NV
+ 1.       : 2013725
+          : w00242748
+      : Csfb mtRAUfollow on:0-1-
+ 2.       : 2014610
+          : w00242748
+      : Csfb moRAUfollow on:0-1-
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsRauNeedFollowOnCsfbMtFlg;           /* Csfb mt流程中，RAU是否需要带follow on标记:0-不需要；1-需要 */
-    VOS_UINT8                           ucIsRauNeedFollowOnCsfbMoFlg;           /* Csfb mo流程中，RAU是否需要带follow on标记:0-不需要；1-需要 */
-    VOS_UINT8                           aucReserved[2];                         /* 保留 */
+    VOS_UINT8                           ucIsRauNeedFollowOnCsfbMtFlg;           /* Csfb mtRAUfollow on:0-1- */
+    VOS_UINT8                           ucIsRauNeedFollowOnCsfbMoFlg;           /* Csfb moRAUfollow on:0-1- */
+    VOS_UINT8                           aucReserved[2];                         /*  */
 }NAS_MMC_CSFB_RAU_FOLLOW_ON_FLAG_STRU;
 
 /*****************************************************************************
- 结构名    : NV_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU
- 结构说明  : en_NV_Item_DSDA_PLMN_SEARCH_ENHANCED_CFG NV项结构
-  功能说明: 控制通过两个Modem的信息交互的增强型的搜索策略；当前支持的策略为：
-  1)  通过另一Modem的PLMN信息,控制FDD搜网是否跳过的策略。比如GUTL+G的版本，当副卡已经驻留在国内G网的时候，主卡搜网可以跳过FDD的搜索（中移动国内只需要支持TDD模式）。
-  2)  通过Modem1的GSM上报的L、TDS邻区信息, Modem0不支持GSM的情况下，T/L丢网后，能够根据传递的邻区频点快速搜索到TDS/LTE。
- 1.日    期   : 2013年11月18日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2014年1月26日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088：支持增强NCELL搜网，如果Modem1传递过来的邻区信息不存在的情况下，通过历史频点支持NCELL搜索
+     : NV_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU
+   : en_NV_Item_DSDA_PLMN_SEARCH_ENHANCED_CFG NV
+  : Modem
+  1)  ModemPLMN,FDDGUTL+GGFDDTDD
+  2)  Modem1GSMLTDS, Modem0GSMT/LTDS/LTE
+ 1.       : 20131118
+          : z00161729
+      : 
+ 2.       : 2014126
+          : z00161729
+      : DTS2014012305088NCELLModem1NCELL
 *****************************************************************************/
 typedef struct
 {
-   VOS_UINT16                           usSolutionMask;/*控制通过两个Modem的信息交互的增强型的搜索策略；Bit位控制各个搜网策略；bitn=0：第n个策略关闭；bitn=1：第n个策略开启；
-                                                         目前只有bit0、bit1 有效；
-                                                         BIT0：控制双Modem下通过另一Modem的PLMN信息控制FDD搜网是否跳过的策略是否启动。
-                                                         BIT1：通过Modem1的GSM上报的L、TDS邻区信息, Modem0不支持GSM的情况下，T/L丢网后，能够根据传递的邻区频点快速搜索到TDS/LTE；
-                                                               如果Modem1传递过来的邻区信息不存在的情况下，也能通过历史频点支持NCELL搜索邻区快速搜索的频率由ucSolution2NcellSearchTimer决定。
-                                                         BIT2~BIT15:预留*/
-   VOS_UINT8                            ucSolution2NcellQuickSearchTimer;       /*邻区频点快速搜索策略的一阶段时间间隔（单位秒）。*/
+   VOS_UINT16                           usSolutionMask;/*ModemBitbitn=0nbitn=1n
+                                                         bit0bit1 
+                                                         BIT0ModemModemPLMNFDD
+                                                         BIT1Modem1GSMLTDS, Modem0GSMT/LTDS/LTE
+                                                               Modem1NCELLucSolution2NcellSearchTimer
+                                                         BIT2~BIT15:*/
+   VOS_UINT8                            ucSolution2NcellQuickSearchTimer;       /**/
 
-   VOS_UINT8                            ucSolution2NcellQuickSearchTimer2;      /* 邻区频点快速搜索策略的二阶段时间间隔（单位秒）。*/
+   VOS_UINT8                            ucSolution2NcellQuickSearchTimer2;      /* */
    VOS_UINT8                            aucAdditonCfg[4];
 }NV_DSDA_PLMN_SEARCH_ENHANCED_CFG_STRU;
 
 
 /*****************************************************************************
-结构名    : NV_NAS_GMM_REL_CONN_AFTER_PDP_DEACT_STRU
-结构说明  : en_NV_Item_NAS_GMM_REL_CONN_AFTER_PDP_DEACT(9140)结构
-1.日    期   : 2014年01月13日
-  作    者   : l65478
-  修改内容   : 新建
+    : NV_NAS_GMM_REL_CONN_AFTER_PDP_DEACT_STRU
+  : en_NV_Item_NAS_GMM_REL_CONN_AFTER_PDP_DEACT(9140)
+1.       : 20140113
+         : l65478
+     : 
 *****************************************************************************/
 typedef struct
 {
@@ -2820,194 +2820,194 @@ typedef struct
 }NV_NAS_GMM_REL_CONN_AFTER_PDP_DEACT_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_WG_RF_MAIN_BAND_STRU
-结构说明  : en_NV_Item_WG_RF_MAIN_BAND结构
-  1.日    期   : 2014年02月10日
-    作    者   : f62575
-    修改内容   : DTS2014012600456: en_NV_Item_WG_RF_MAIN_BAND数据修改为从内存中获取
+    : NAS_NVIM_WG_RF_MAIN_BAND_STRU
+  : en_NV_Item_WG_RF_MAIN_BAND
+  1.       : 20140210
+           : f62575
+       : DTS2014012600456: en_NV_Item_WG_RF_MAIN_BAND
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulWband;                                /* 支持的WCDMA主集通路 */
-    VOS_UINT32                          ulWbandExt;                             /* 支持的WCDMA主集通路扩展字段 */
-    VOS_UINT32                          ulGband;                                /* 支持的GSM主集通路 */
+    VOS_UINT32                          ulWband;                                /* WCDMA */
+    VOS_UINT32                          ulWbandExt;                             /* WCDMA */
+    VOS_UINT32                          ulGband;                                /* GSM */
 }NAS_NVIM_WG_RF_MAIN_BAND_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_IMS_VOICE_MOBILE_MANAGEMENT
- 结构说明  : en_NV_Item_IMS_VOICE_MOBILE_MANAGEMENT NV项结构
- 1.日    期   : 2013年12月16日
-   作    者   : f00261443
-   修改内容   : ISR激活状态下，从L异系统到GU，如果LAI或RAI未发生变化，是否需要
-                进行LAU或是RAU
+     : NAS_MMC_IMS_VOICE_MOBILE_MANAGEMENT
+   : en_NV_Item_IMS_VOICE_MOBILE_MANAGEMENT NV
+ 1.       : 20131216
+          : f00261443
+      : ISRLGULAIRAI
+                LAURAU
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucImsVoiceInterSysLauEnable;           /* ISR激活后，异系统从L变换到GU，LAI未改变，是否需要强制LAU */
-    VOS_UINT8                           ucImsVoiceMMEnable;         /* IMS移动性管理 NV */
-    VOS_UINT8                           aucReserved[2];             /* 保留 */
+    VOS_UINT8                           ucImsVoiceInterSysLauEnable;           /* ISRLGULAILAU */
+    VOS_UINT8                           ucImsVoiceMMEnable;         /* IMS NV */
+    VOS_UINT8                           aucReserved[2];             /*  */
 }NAS_MMC_IMS_VOICE_MOBILE_MANAGEMENT;
 
 /*****************************************************************************
-结构名    : NAS_MMC_LTE_DISABLED_USE_LTE_INFO_FLAG_STRU
-结构说明  : en_NV_Item_LTE_DISABLED_USE_LTE_INFO_FLAG结构
-  1.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable lte时rau需要从L获取安全上下文
+    : NAS_MMC_LTE_DISABLED_USE_LTE_INFO_FLAG_STRU
+  : en_NV_Item_LTE_DISABLED_USE_LTE_INFO_FLAG
+  1.       : 20140225
+           : z00161729
+       : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1disable lterauL
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucLDisabledRauUseLInfoFlag;             /* l disabled后rau是否需要从l获取安全上下文或guti映射信息，vos_true:需要获取；vos_false:无需获取*/
+    VOS_UINT8                           ucLDisabledRauUseLInfoFlag;             /* l disabledraulgutivos_true:vos_false:*/
     VOS_UINT8                           ucReserved[3];
 }NAS_MMC_LTE_DISABLED_USE_LTE_INFO_FLAG_STRU;
 
 
 /*****************************************************************************
-结构名    : NAS_MML_CS_ONLY_DATA_SERVICE_SUPPORT_FLG_STRU
-结构说明  : en_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG结构
-  1.日    期   : 2014年02月13日
-    作    者   : f62575
-    修改内容   : DTS2014012902032:
-                 NV项en_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG的结构
+    : NAS_MML_CS_ONLY_DATA_SERVICE_SUPPORT_FLG_STRU
+  : en_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG
+  1.       : 20140213
+           : f62575
+       : DTS2014012902032:
+                 NVen_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlg;                            /* 是否激活功能 */
-    VOS_UINT8                           ucCsOnlyDataServiceSupportFlg;          /* PS注册被禁止情况下，是否允许数据业务触发注册的标志 */
+    VOS_UINT8                           ucActiveFlg;                            /*  */
+    VOS_UINT8                           ucCsOnlyDataServiceSupportFlg;          /* PS */
 }NAS_MML_CS_ONLY_DATA_SERVICE_SUPPORT_FLG_STRU;
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_INFO_STRU
- 结构说明  : en_NV_Item_HIGH_PRIO_RAT_HPLMN_TIMER_INFO NV项结构
- 1.日    期   : 2014年2月19日
-   作    者   : w00176964
-   修改内容   : 新建
- 2.日    期   : 2014年10月25日
-   作    者   : b00269685
-   修改内容   : 此NV已废弃，放在这里只是为了编译通过
+     : NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_INFO_STRU
+   : en_NV_Item_HIGH_PRIO_RAT_HPLMN_TIMER_INFO NV
+ 1.       : 2014219
+          : w00176964
+      : 
+ 2.       : 20141025
+          : b00269685
+      : NV
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFLg;                             /* 该定时器是否使能 */                       /* TD开始背景搜的次数 */
+    VOS_UINT8                           ucActiveFLg;                             /*  */                       /* TD */
     VOS_UINT8                           aucRsv[3];
-    VOS_UINT32                          ulFirstSearchTimeLen;                   /* high prio rat timer定时器第一次的时长 单位:秒 */
-    VOS_UINT32                          ulFirstSearchTimeCount;                 /* high prio rat timer定时器第一次时长的限制搜索次数 */
-    VOS_UINT32                          ulNonFirstSearchTimeLen;                /* high prio rat timer定时器非首次的时长 单位:秒 */
-    VOS_UINT32                          ulRetrySearchTimeLen;                   /* high prio rat 搜被中止或不能立即发起重试的时长 单位:秒*/
+    VOS_UINT32                          ulFirstSearchTimeLen;                   /* high prio rat timer : */
+    VOS_UINT32                          ulFirstSearchTimeCount;                 /* high prio rat timer */
+    VOS_UINT32                          ulNonFirstSearchTimeLen;                /* high prio rat timer : */
+    VOS_UINT32                          ulRetrySearchTimeLen;                   /* high prio rat  :*/
 }NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_HIGH_PRIO_RAT_HPLMN_TIMER_CFG NV项结构
- 1.日    期   : 2014年10月25日
-   作    者   : b00269685
-   修改内容   : 新建
+     : NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_CFG_STRU
+   : en_NV_Item_HIGH_PRIO_RAT_HPLMN_TIMER_CFG NV
+ 1.       : 20141025
+          : b00269685
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFLg;                            /* 该定时器是否使能 */
-    VOS_UINT8                           ucTdThreshold;                          /* TD开始背景搜的次数 */
+    VOS_UINT8                           ucActiveFLg;                            /*  */
+    VOS_UINT8                           ucTdThreshold;                          /* TD */
     VOS_UINT8                           aucRsv[2];
-    VOS_UINT32                          ulFirstSearchTimeLen;                   /* high prio rat timer定时器第一次的时长 单位:秒 */
-    VOS_UINT32                          ulFirstSearchTimeCount;                 /* high prio rat timer定时器第一次时长的限制搜索次数 */
-    VOS_UINT32                          ulNonFirstSearchTimeLen;                /* high prio rat timer定时器非首次的时长 单位:秒 */
-    VOS_UINT32                          ulRetrySearchTimeLen;                   /* high prio rat 搜被中止或不能立即发起重试的时长 单位:秒*/
+    VOS_UINT32                          ulFirstSearchTimeLen;                   /* high prio rat timer : */
+    VOS_UINT32                          ulFirstSearchTimeCount;                 /* high prio rat timer */
+    VOS_UINT32                          ulNonFirstSearchTimeLen;                /* high prio rat timer : */
+    VOS_UINT32                          ulRetrySearchTimeLen;                   /* high prio rat  :*/
 }NAS_MMC_NVIM_HIGH_PRIO_RAT_HPLMN_TIMER_CFG_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ULTRA_FLASH_CSFB_SUPPORT_FLG_STRU
- 结构说明  : en_NV_Item_Ultra_Flash_Csfb_Support_Flg NV项结构
- 1.日    期   : 2014年5月30日
-   作    者   : s00217060
-   修改内容   : 新建
+     : NAS_MMC_NVIM_ULTRA_FLASH_CSFB_SUPPORT_FLG_STRU
+   : en_NV_Item_Ultra_Flash_Csfb_Support_Flg NV
+ 1.       : 2014530
+          : s00217060
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucUltraFlashCsfbSupportFLg;                 /* 是否支持ultra flash csfb */
+    VOS_UINT8                           ucUltraFlashCsfbSupportFLg;                 /* ultra flash csfb */
     VOS_UINT8                           aucRsv[3];
 }NAS_MMC_NVIM_ULTRA_FLASH_CSFB_SUPPORT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_3GPP2_Uplmn_Not_Pref_STRU
- 结构说明  : en_NV_Item_3GPP2_Uplmn_Not_Pref_Flg NV项结构
- 1.日    期   : 2014年6月13日
-   作    者   : B00269685
-   修改内容   : 新建
+     : NAS_MMC_NVIM_3GPP2_Uplmn_Not_Pref_STRU
+   : en_NV_Item_3GPP2_Uplmn_Not_Pref_Flg NV
+ 1.       : 2014613
+          : B00269685
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           uc3GPP2UplmnNotPrefFlg;                    /* 是否开启3GPP2 pref plmn */
+    VOS_UINT8                           uc3GPP2UplmnNotPrefFlg;                    /* 3GPP2 pref plmn */
     VOS_UINT8                           aucRsv[3];
 }NAS_MMC_NVIM_3GPP2_UPLMN_NOT_PREF_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SYSCFG_TRIGGER_PLMN_SEARCH_CFG_STRU
- 结构说明  : en_NV_Item_Syscfg_Trigger_Plmn_Search_Cfg NV项结构
- 1.日    期   : 2014年7月14日
-   作    者   : w00242748
-   修改内容   : 新建
+     : NAS_MMC_NVIM_SYSCFG_TRIGGER_PLMN_SEARCH_CFG_STRU
+   : en_NV_Item_Syscfg_Trigger_Plmn_Search_Cfg NV
+ 1.       : 2014714
+          : w00242748
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucHighPrioRatPlmnSrchFlg;                  /* 是否开启高优先级接入技术搜网 */
+    VOS_UINT8                           ucHighPrioRatPlmnSrchFlg;                  /*  */
     VOS_UINT8                           aucReserved1[3];
 }NAS_MMC_NVIM_SYSCFG_TRIGGER_PLMN_SEARCH_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DSDS_END_SESSION_DELAY_STRU
- 结构说明  : en_NV_Item_Dsds_Delay_Time NV项结构
- 1.日    期   : 2014年7月17日
-   作    者   : B00269685
-   修改内容   : 新建
+     : NAS_MMC_NVIM_DSDS_END_SESSION_DELAY_STRU
+   : en_NV_Item_Dsds_Delay_Time NV
+ 1.       : 2014717
+          : B00269685
+      : 
 
- 2.日    期   : 2016年5月5日
-   作    者   : n00355355
-   修改内容   : DR DSDS2.0项目修改：新增CSFB延时时间
-  3.日    期   : 2017年1月26日
-    作    者   : s00217060
-    修改内容   : DSDS特性优化：该NV废弃
+ 2.       : 201655
+          : n00355355
+      : DR DSDS2.0CSFB
+  3.       : 2017126
+           : s00217060
+       : DSDSNV
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                           ulCsRegEndSessionDelayTime;              /* Lau延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulPsRegEndSessionDelayTime;              /* Rau延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsfbCallEndSessionDelayTime;               /* CSFB延迟时长，单位:毫秒 */
+    VOS_UINT32                           ulCsRegEndSessionDelayTime;              /* Lau: */
+    VOS_UINT32                           ulPsRegEndSessionDelayTime;              /* Rau: */
+    VOS_UINT32                           ulCsfbCallEndSessionDelayTime;               /* CSFB: */
     VOS_UINT32                           ulReserve2;
 } NAS_MMC_NVIM_DSDS_END_SESSION_DELAY_STRU;
 
-/* Added by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, begin */
+/* Added by s00217060 for DSDS, 2017-1-26, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_DSDS_DELAY_TIME_STRU
- 结构说明  : en_NV_Item_Dsds_Delay_Time NV项结构
-  1.日    期   : 2017年1月26日
-    作    者   : s00217060
-    修改内容   : DSDS特性优化新增
+     : NAS_MMC_NVIM_DSDS_DELAY_TIME_STRU
+   : en_NV_Item_Dsds_Delay_Time NV
+  1.       : 2017126
+           : s00217060
+       : DSDS
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_UINT32                           ulCsRegEndSessionDelayTime;            /* Lau延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulPsRegEndSessionDelayTime;            /* Rau延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsfbCallEndSessionDelayTime;         /* CSFB延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsCallEndSessionDelayTime;           /* CS CALL延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsSmsEndSessionDelayTime;            /* CS SMS延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsSsEndSessionDelayTime;             /* CS SS延迟时长，单位:毫秒 */
-    VOS_UINT32                           ulCsRegEnableRfOccupyDelayTime;        /* LAU延迟释放抢占保护时长，单位:毫秒 */
+    VOS_UINT32                           ulCsRegEndSessionDelayTime;            /* Lau: */
+    VOS_UINT32                           ulPsRegEndSessionDelayTime;            /* Rau: */
+    VOS_UINT32                           ulCsfbCallEndSessionDelayTime;         /* CSFB: */
+    VOS_UINT32                           ulCsCallEndSessionDelayTime;           /* CS CALL: */
+    VOS_UINT32                           ulCsSmsEndSessionDelayTime;            /* CS SMS: */
+    VOS_UINT32                           ulCsSsEndSessionDelayTime;             /* CS SS: */
+    VOS_UINT32                           ulCsRegEnableRfOccupyDelayTime;        /* LAU: */
     VOS_UINT32                           ulReserve1;
     VOS_UINT32                           ulReserve2;
     VOS_UINT32                           ulReserve3;
     VOS_UINT32                           ulReserve4;
 } NAS_MMC_NVIM_DSDS_DELAY_TIME_STRU;
-/* Added by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, end */
+/* Added by s00217060 for DSDS, 2017-1-26, end */
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SYSTEM_STRU
- 结构说明  : 1x system结构
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_NVIM_1X_SYSTEM_STRU
+   : 1x system
+ 1.       : 2014818
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3018,11 +3018,11 @@ typedef struct
 }CNAS_NVIM_1X_SYSTEM_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_XSD_NVIM_1X_MRU_LIST_STRU
- 结构说明  : en_NV_Item_1X_MRU_LIST NV项结构
- 1.日    期   : 2014年8月18日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_XSD_NVIM_1X_MRU_LIST_STRU
+   : en_NV_Item_1X_MRU_LIST NV
+ 1.       : 2014818
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3033,28 +3033,28 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_TEST_CONFIG_STRU
- 结构说明  : en_NV_Item_1X_TEST_CONFIG NV项结构
- 1.日    期   : 2015年5月11日
-   作    者   : c00299063
-   修改内容   : 新建
+     : CNAS_NVIM_1X_TEST_CONFIG_STRU
+   : en_NV_Item_1X_TEST_CONFIG NV
+ 1.       : 2015511
+          : c00299063
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucReadNvPrlDirectly;
-    VOS_UINT8                           ucReadDefaultPrl;        /* 读取Default Prl */
+    VOS_UINT8                           ucReadDefaultPrl;        /* Default Prl */
     VOS_UINT8                           ucIsMod1xAvailTimerLen;
-    VOS_UINT8                           ucNvPrlCombinedFlag;     /* NV PRL级联标志 */
+    VOS_UINT8                           ucNvPrlCombinedFlag;     /* NV PRL */
     VOS_UINT8                           aucReserve[12];
 
 }CNAS_NVIM_TEST_CONFIG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_CALLBACK_CFG_STRU
- 结构说明  : en_Nv_Item_CNAS_XSD_CALLBACK_CFG NV项结构
- 1.日    期   : 2015年7月2日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_CALLBACK_CFG_STRU
+   : en_Nv_Item_CNAS_XSD_CALLBACK_CFG NV
+ 1.       : 201572
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3063,11 +3063,11 @@ typedef struct
 } CNAS_NVIM_1X_CALLBACK_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MSCC_NVIM_CTCC_ROAM_EMC_CALL_CFG_STRU
- 结构说明  : en_NV_Item_CTCC_ROAM_EMC_CALL_CFG NV项结构
- 1.日    期   : 2016年7月5日
-   作    者   : c00299063
-   修改内容   : 新建
+     : NAS_MSCC_NVIM_CTCC_ROAM_EMC_CALL_CFG_STRU
+   : en_NV_Item_CTCC_ROAM_EMC_CALL_CFG NV
+ 1.       : 201675
+          : c00299063
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3078,11 +3078,11 @@ typedef struct
 }NAS_MSCC_NVIM_CTCC_ROAM_EMC_CALL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_ADD_AVOID_FREQ_CFG_STRU
- 结构说明  : en_NV_Item_1X_ADD_AVOID_CHAN_CFG NV项结构
- 1.日    期   : 2015年6月5日
-   作    者   : c00299063
-   修改内容   : 新建
+     : CNAS_NVIM_1X_ADD_AVOID_FREQ_CFG_STRU
+   : en_NV_Item_1X_ADD_AVOID_CHAN_CFG NV
+ 1.       : 201565
+          : c00299063
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3091,11 +3091,11 @@ typedef struct
 }CNAS_NVIM_1X_ADD_AVOID_LIST_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_NEG_PREF_SYS_CMP_CTRL_STRU
- 结构说明  : en_NV_Item_1X_NEG_PREF_SYS_CMP_CTRL NV项结构
- 1.日    期   : 2015年6月5日
-   作    者   : c00299063
-   修改内容   : 新建
+     : CNAS_NVIM_1X_NEG_PREF_SYS_CMP_CTRL_STRU
+   : en_NV_Item_1X_NEG_PREF_SYS_CMP_CTRL NV
+ 1.       : 201565
+          : c00299063
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3104,11 +3104,11 @@ typedef struct
 }CNAS_NVIM_1X_NEG_PREF_SYS_CMP_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_CALL_NVIM_CFG_STRU
- 结构说明  : en_NV_Item_1X_CALL_NVIM_CFG_CTRL NV项结构
- 1.日    期   : 2015年6月15日
-   作    者   : c00299063
-   修改内容   : 新建
+     : CNAS_NVIM_1X_CALL_NVIM_CFG_STRU
+   : en_NV_Item_1X_CALL_NVIM_CFG_CTRL NV
+ 1.       : 2015615
+          : c00299063
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3120,33 +3120,33 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SUPPORT_BANDCLASS_MASK_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 终端支持的频段能力掩码  3601
+     : CNAS_NVIM_1X_SUPPORT_BANDCLASS_MASK_STRU
+   :
+ ASN.1 :
+   :   3601
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulSupportBandclassMask;               /* 终端支持的频段能力掩码，每bit表示是否支持对应的频段能力，比如0x00000001表示只支持频段0 */
+    VOS_UINT32                          ulSupportBandclassMask;               /* bit0x000000010 */
 }CNAS_NVIM_1X_SUPPORT_BANDCLASS_MASK_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HRPD_SUPPORT_BANDCLASS_MASK_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 终端支持的频段能力掩码  3601
+     : CNAS_NVIM_HRPD_SUPPORT_BANDCLASS_MASK_STRU
+   :
+ ASN.1 :
+   :   3601
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulSupportBandclassMask;               /* 终端支持的频段能力掩码，每bit表示是否支持对应的频段能力，比如0x00000001表示只支持频段0 */
+    VOS_UINT32                          ulSupportBandclassMask;               /* bit0x000000010 */
 }CNAS_NVIM_HRPD_SUPPORT_BANDCLASS_MASK_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HRPD_AVOID_PHASE_STRU
- 结构说明  : avoid策略信息
-  1.日    期   : 2016年03月02日
-    作    者   : x00306642
-    修改内容   : 新建
+     : CNAS_NVIM_HRPD_AVOID_PHASE_STRU
+   : avoid
+  1.       : 20160302
+           : x00306642
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3154,11 +3154,11 @@ typedef struct
 }CNAS_NVIM_HRPD_AVOID_PHASE_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HRPD_AVOID_SCHEDULE_INFO_STRU
- 结构说明  : avoid策略信息
-  1.日    期   : 2016年03月02日
-    作    者   : x00306642
-    修改内容   : 新建
+     : CNAS_NVIM_HRPD_AVOID_SCHEDULE_INFO_STRU
+   : avoid
+  1.       : 20160302
+           : x00306642
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3166,162 +3166,162 @@ typedef struct
 }CNAS_NVIM_HRPD_AVOID_SCHEDULE_INFO_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MMC_NVIM_ADAPTION_CAUSE_STRU
-使用说明    :用户配置网侧原因的数据结构
+    :NAS_MMC_NVIM_ADAPTION_CAUSE_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCnCause;     /* 网侧原因值 */
-    VOS_UINT8                           ucHplmnCause;  /* 用户配置匹配HPLMN的原因值 */
-    VOS_UINT8                           ucVplmnCause;  /* 用户配置匹配VPLMN的原因值 */
+    VOS_UINT8                           ucCnCause;     /*  */
+    VOS_UINT8                           ucHplmnCause;  /* HPLMN */
+    VOS_UINT8                           ucVplmnCause;  /* VPLMN */
     VOS_UINT8                           aucReserved[1];
 }NAS_MMC_NVIM_ADAPTION_CAUSE_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MMC_NVIM_CHANGE_NW_CAUSE_CFG_STRU
-使用说明    :en_NV_Item_ChangeNWCause_CFG NV项结构
+    :NAS_MMC_NVIM_CHANGE_NW_CAUSE_CFG_STRU
+    :en_NV_Item_ChangeNWCause_CFG NV
 *****************************************************************************/
 typedef struct
 {
-    /* CS域注册流程(LU)拒绝原因值替换信息 */
+    /* CS(LU) */
     VOS_UINT8                           ucCsRegCauseNum;
     VOS_UINT8                           aucReserved1[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astCsRegAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    /* PS域注册流程(ATTACH/RAU)拒绝原因值替换信息 */
+    /* PS(ATTACH/RAU) */
     VOS_UINT8                           ucPsRegCauseNum;
     VOS_UINT8                           aucReserved2[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astPsRegAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    /* 网络GPRS Detach 流程拒绝原因值替换信息 */
+    /* GPRS Detach  */
     VOS_UINT8                           ucDetachCauseNum;
     VOS_UINT8                           aucReserved3[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astDetachAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    /* GMM service request流程拒绝原因值替换信息 */
+    /* GMM service request */
     VOS_UINT8                           ucPsSerRejCauseNum;
     VOS_UINT8                           aucReserved4[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astPsSerRejAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    /* MM ABORT流程拒绝原因值替换信息 */
+    /* MM ABORT */
     VOS_UINT8                           ucMmAbortCauseNum;
     VOS_UINT8                           aucReserved5[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astMmAbortAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    /* CM Service流程拒绝原因值替换信息 */
+    /* CM Service */
     VOS_UINT8                           ucCmSerRejCauseNum;
     VOS_UINT8                           aucReserved6[3];
     NAS_MMC_NVIM_ADAPTION_CAUSE_STRU    astCmSerRejAdaptCause[NAS_MMC_NVIM_MAX_CAUSE_NUM];
 
-    VOS_UINT8                           ucHplmnPsRejCauseChangTo17MaxNum; /* HPLMN PS/EPS域拒绝原因值修改为#17的最大次数 */
-    VOS_UINT8                           ucHplmnCsRejCauseChangTo17MaxNum; /* HPLMN CS域拒绝原因值修改为#17的最大次数 */
-    VOS_UINT8                           ucVplmnPsRejCauseChangTo17MaxNum; /* VPLMN PS/EPS域拒绝原因值修改为#17的最大次数 */
-    VOS_UINT8                           ucVplmnCsRejCauseChangTo17MaxNum; /* VPLMN CS域拒绝原因值修改为#17的最大次数 */
+    VOS_UINT8                           ucHplmnPsRejCauseChangTo17MaxNum; /* HPLMN PS/EPS#17 */
+    VOS_UINT8                           ucHplmnCsRejCauseChangTo17MaxNum; /* HPLMN CS#17 */
+    VOS_UINT8                           ucVplmnPsRejCauseChangTo17MaxNum; /* VPLMN PS/EPS#17 */
+    VOS_UINT8                           ucVplmnCsRejCauseChangTo17MaxNum; /* VPLMN CS#17 */
 }NAS_MMC_NVIM_CHANGE_NW_CAUSE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_REL_PS_SIGNAL_CON_CFG_STRU
- 结构说明  : en_NV_Item_REL_PS_SIGNAL_CON_CFG NV项结构
- 1.日    期   : 2014年11月04日
- 作    者   : h00285180
- 修改内容   : 新建
+     : NAS_MMC_NVIM_REL_PS_SIGNAL_CON_CFG_STRU
+   : en_NV_Item_REL_PS_SIGNAL_CON_CFG NV
+ 1.       : 20141104
+        : h00285180
+    : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucRelPsSignalConFlg;/* 是否开启数据域网络防呆功能 */
+    VOS_UINT8                           ucRelPsSignalConFlg;/*  */
 
-    VOS_UINT8                           ucPdpExistNotStartT3340Flag; /* rau或attach请求不带follow on，网络回复attach accept或rau accept也不带follow on，存在pdp上下文场景是否需要启动T3340,0:需要启动T3340; 1:不需要启动 */
+    VOS_UINT8                           ucPdpExistNotStartT3340Flag; /* rauattachfollow onattach acceptrau acceptfollow onpdpT3340,0:T3340; 1: */
     VOS_UINT8                           aucReserved[2];
 
-    VOS_UINT32                          ulT3340Len;         /* 配置的GMM T3340的时长,单位:秒 */
+    VOS_UINT32                          ulT3340Len;         /* GMM T3340,: */
 }NAS_MMC_NVIM_REL_PS_SIGNAL_CON_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_RABM_NVIM_WCDMA_VOICE_PREFER_STRU
- 结构说明  : en_NV_Item_WCDMA_VOICE_PREFER_CFG结构
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 移植
+     : NAS_RABM_NVIM_WCDMA_VOICE_PREFER_STRU
+   : en_NV_Item_WCDMA_VOICE_PREFER_CFG
+  1.       : 20141226
+           : s00273135
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8   ucEnableFlag;/*使能开关 */
+    VOS_UINT8   ucEnableFlag;/* */
     VOS_UINT8   aucReserve[3];
-    VOS_UINT32  ulMcc;    /*用于测试使用指定MCC*/
-    VOS_UINT32  ulMnc;    /*用于测试使用指定MNC*/
+    VOS_UINT32  ulMcc;    /*MCC*/
+    VOS_UINT32  ulMnc;    /*MNC*/
 }NAS_RABM_NVIM_WCDMA_VOICE_PREFER_STRU;
 /*****************************************************************************
- 结构名    : NAS_NV_TRI_MODE_ENABLE_STRU
- 结构说明  : en_NV_Item_TRI_MODE_ENABLE NV项结构
- 1.日    期   : 2015年01月04日
- 作    者   : z00306637
- 修改内容   : 新建
+     : NAS_NV_TRI_MODE_ENABLE_STRU
+   : en_NV_Item_TRI_MODE_ENABLE NV
+ 1.       : 20150104
+        : z00306637
+    : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                              usEnable;                          /* 全网通特性开关 */
+    VOS_UINT16                              usEnable;                          /*  */
     VOS_UINT16                              usReserved;
 }NAS_NV_TRI_MODE_ENABLE_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NV_TRI_MODE_FEM_PROFILE_ID_STRU
- 结构说明  : en_NV_Item_TRI_MODE_FEM_PROFILE_ID NV项结构
- 1.日    期   : 2015年01月04日
- 作    者   : z00306637
- 修改内容   : 新建
+     : NAS_NV_TRI_MODE_FEM_PROFILE_ID_STRU
+   : en_NV_Item_TRI_MODE_FEM_PROFILE_ID NV
+ 1.       : 20150104
+        : z00306637
+    : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                              ulProfileId;                        /* 根据使用场景，控制前端器件的上下电（ABB，TCXO，RF）以及RF通道的控制。
-                                                                                   由AT命令下发配置。默认值为0。取值范围0-7。 */
-    VOS_UINT32                              ulReserved[3];                     /* 保留，将来扩展使用 */
+    VOS_UINT32                              ulProfileId;                        /* ABBTCXORFRF
+                                                                                   AT00-7 */
+    VOS_UINT32                              ulReserved[3];                     /*  */
 }NAS_NV_TRI_MODE_FEM_PROFILE_ID_STRU;
 
 
 
 /*****************************************************************************
-结构名    : NAS_NV_MODE_BASIC_PARA_STRU
-结构说明  :
-对应NVID:
+    : NAS_NV_MODE_BASIC_PARA_STRU
+  :
+NVID:
 
-  1.日    期   : 2014年12月30日
-    作    者   : z00306637
-    修改内容   : 初始生成
+  1.       : 20141230
+           : z00306637
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                              usABBSwitch;                       /* 用于ABB PLL开关的控制。0:ABB CH0 1:ABB CH1 2:ABB CH0&CH1都打开 */
-    VOS_UINT16                              usRFSwitch;                        /* 用于RFIC电源开关的控制。0:RFIC使用MIPI0控制供电方式 1：RFIC使用MIPI1控制供电方式 2：同时打开两路电源。*/
+    VOS_UINT16                              usABBSwitch;                       /* ABB PLL0:ABB CH0 1:ABB CH1 2:ABB CH0&CH1 */
+    VOS_UINT16                              usRFSwitch;                        /* RFIC0:RFICMIPI0 1RFICMIPI1 2*/
     VOS_UINT16                              usTCXOSwitch;                      /* 0:TCXO0 1:TCXO1 */
-    VOS_UINT16                              usReserved;                        /* 保留，将来扩展使用 */
+    VOS_UINT16                              usReserved;                        /*  */
 }NAS_NV_MODE_BASIC_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : NV_TRI_MODE_CHAN_PARA_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 全网通通道参数配置参数  (不能改变)
+     : NV_TRI_MODE_CHAN_PARA_STRU
+   :
+ ASN.1 :
+   :   ()
 *****************************************************************************/
 typedef struct
 {
-    NAS_NV_MODE_BASIC_PARA_STRU            stModeBasicPara[2];                  /* 下标[0]:表示GSM模式下的前端器件的上下电控制。
-                                                                                   下标[1]:表示WCDMA模式下的前端器件的上下电控制。
-                                                                                    注：副卡时，不使用WCDMA模式的配置。*/
-    VOS_UINT32                              ulRfSwitch;                         /* 用于控制共分集的开关 */
-    VOS_UINT32                              ulGsmRficSel;                       /* 信令模式下当前使用的通道（0：RF0,1：RF1） */
+    NAS_NV_MODE_BASIC_PARA_STRU            stModeBasicPara[2];                  /* [0]:GSM
+                                                                                   [1]:WCDMA
+                                                                                    WCDMA*/
+    VOS_UINT32                              ulRfSwitch;                         /*  */
+    VOS_UINT32                              ulGsmRficSel;                       /* 0RF0,1RF1 */
     VOS_UINT32                              ulGpioCtrl;                         /* gpio */
-    VOS_UINT32                              aulReserved[14];                    /* 保留，将来扩展使用 */
+    VOS_UINT32                              aulReserved[14];                    /*  */
 }NAS_NV_TRI_MODE_CHAN_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NV_TRI_MODE_FEM_CHAN_PROFILE_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 8种场景的通道配置
+     : NAS_NV_TRI_MODE_FEM_CHAN_PROFILE_STRU
+   :
+ ASN.1 :
+   : 8
 *****************************************************************************/
 typedef struct
 {
-    NAS_NV_TRI_MODE_CHAN_PARA_STRU          stPara[NAS_NV_TRI_MODE_CHAN_PARA_PROFILE_NUM];  /* 最多支持8个场景的配置 */
+    NAS_NV_TRI_MODE_CHAN_PARA_STRU          stPara[NAS_NV_TRI_MODE_CHAN_PARA_PROFILE_NUM];  /* 8 */
 }NAS_NV_TRI_MODE_FEM_CHAN_PROFILE_STRU;
 
 
@@ -3329,11 +3329,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CSMO_SUPPORTED_CFG_STRU
- 结构说明  : en_NV_Item_CSMO_SUPPORTED_Cfg_Info NV项结构
- 1.日    期   : 2015年3月03日
-   作    者   : w00167002
-   修改内容   : 新建
+     : NAS_MMC_NVIM_CSMO_SUPPORTED_CFG_STRU
+   : en_NV_Item_CSMO_SUPPORTED_Cfg_Info NV
+ 1.       : 2015303
+          : w00167002
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3345,11 +3345,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ROAM_DISPLAY_CFG_STRU
- 结构说明  : en_NV_Item_Roam_Display_Cfg NV项结构
- 1.日    期   : 2015年3月20日
-   作    者   : B00269685
-   修改内容   : 新建
+     : NAS_MMC_NVIM_ROAM_DISPLAY_CFG_STRU
+   : en_NV_Item_Roam_Display_Cfg NV
+ 1.       : 2015320
+          : B00269685
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3360,11 +3360,11 @@ typedef struct
 }NAS_MMC_NVIM_ROAM_DISPLAY_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_MT_CSFB_PAGING_PROCEDURE_LEN_STRU
- 结构说明  : en_NV_Item_Mt_Csfb_Paging_Procedure_Len NV项结构
- 1.日    期   : 2015年5月4日
-   作    者   : B00269685
-   修改内容   : 新建
+     : NAS_MMC_MT_CSFB_PAGING_PROCEDURE_LEN_STRU
+   : en_NV_Item_Mt_Csfb_Paging_Procedure_Len NV
+ 1.       : 201554
+          : B00269685
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3374,11 +3374,11 @@ typedef struct
 }NAS_MMC_NVIM_PROTECT_MT_CSFB_PAGING_PROCEDURE_LEN_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_ROAM_PLMN_SELECTION_SORT_CFG_STRU
- 结构说明  : en_NV_Item_Roam_Plmn_Selection_Sort_Cfg NV项结构
- 1.日    期   : 2015年6月02日
-   作    者   : W00167002
-   修改内容   : 新建
+     : NAS_MMC_NVIM_ROAM_PLMN_SELECTION_SORT_CFG_STRU
+   : en_NV_Item_Roam_Plmn_Selection_Sort_Cfg NV
+ 1.       : 2015602
+          : W00167002
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3390,39 +3390,39 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU
- 结构说明  : 各阶段定时器
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU
+   : 
+  1.       : 20151010
+           : h00281185
+       : 
 
-    NV 参数说明:
-    ucHistoryNum        第几次的历史搜 会变成 PrefBand/FullBand搜
-    ucPrefBandNum       第几次的PrefBand搜 会变成 FullBand搜
-    ucFullBandNum       第几次FullBand搜後, 此阶段结束, 进入下一阶段
+    NV :
+    ucHistoryNum          PrefBand/FullBand
+    ucPrefBandNum       PrefBand  FullBand
+    ucFullBandNum       FullBand, , 
 
-    举例：
-        第一阶段参数：
+    
+        
         Timerlen = 2sec
         ucHistoryNum            = 2
         ucPrefBandNum           = 2
         ucFullBandNum           = 1
          -> TotalLen            = 2*2*2 = 8
-        第二阶段参数：
+        
         Timerlen = 4sec
         ucHistoryNum            = 1
         ucPrefBandNum           = 2
-        ucFullBandNum           = Null (1 or 100 没差, 最後一各阶段的full band)
+        ucFullBandNum           = Null (1 or 100 , full band)
          -> TotalLen            = 1*2*4 = 8
 
-        图示：
+        
         OOC:_H_P_H_F|__P__F__P__F__P__F__P__F ...
 
-        如果改成小於等於:
+        :
         OOC:_H_H_P_H_H_P_H_H_F|__H__P__H__P__H__F
         TotalLen = (2+1)*(2+1)*2sec = 18sec (FullBand)
 
-        第一阶段
+        
         CASE#1:
         ucHistoryNum            = 2
         ucPrefBandNum           = 2
@@ -3441,19 +3441,19 @@ typedef struct
         ucFullBandNum           = 0
         ucPrefBandNum           = 0
         ucHistoryNum            = 0
-        给定预设值ucFullBandNum = 1
+        ucFullBandNum = 1
         OOC:_F|
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usTotalTimerLen;                        /* 各阶段搜网总时长,单位:s */
-    VOS_UINT16                          usSleepTimerLen;                        /* 搜网间隔的睡眠时长,单位:s */
+    VOS_UINT16                          usTotalTimerLen;                        /* ,:s */
+    VOS_UINT16                          usSleepTimerLen;                        /* ,:s */
     VOS_UINT16                          usReserve1;
     VOS_UINT16                          usReserve2;
-    VOS_UINT8                           ucHistoryNum;                           /* 第几次的历史搜 会变成 PrefBand/FullBand搜 */
-    VOS_UINT8                           ucPrefBandNum;                          /* 第几次的PrefBand搜 会变成 FullBand搜 */
-    VOS_UINT8                           ucFullBandNum;                          /* 第几次FullBand搜後, 此阶段结束, 进入下一阶段 */
+    VOS_UINT8                           ucHistoryNum;                           /*   PrefBand/FullBand */
+    VOS_UINT8                           ucPrefBandNum;                          /* PrefBand  FullBand */
+    VOS_UINT8                           ucFullBandNum;                          /* FullBand, ,  */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
     VOS_UINT8                           ucReserve3;
@@ -3462,50 +3462,50 @@ typedef struct
 }NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OOS_PLMN_SEARCH_STRATEGY_CFG_STRU
- 结构说明  : en_NV_Item_Oos_Plmn_Search_Strategy_Cfg NV项结构
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OOS_PLMN_SEARCH_STRATEGY_CFG_STRU
+   : en_NV_Item_Oos_Plmn_Search_Strategy_Cfg NV
+  1.       : 20151010
+           : h00281185
+       : 
 *****************************************************************************/
 typedef struct
 {
-    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseOnePatternCfg;    /* 第一阶段的搜网类型配置与睡眠时长 */
-    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseTwoPatternCfg;    /* 第二阶段的搜网类型配置与睡眠时长 */
-    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseThreePatternCfg;  /* 保留：第三阶段的搜网类型配置与睡眠时长 */
-    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseFourPatternCfg;   /* 保留：第四阶段的搜网类型配置与睡眠时长 */
+    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseOnePatternCfg;    /*  */
+    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseTwoPatternCfg;    /*  */
+    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseThreePatternCfg;  /*  */
+    NAS_MMC_NVIM_OOS_PLMN_SEARCH_PATTERN_CFG_STRU           stPhaseFourPatternCfg;   /*  */
 }NAS_MMC_NVIM_OOS_PLMN_SEARCH_STRATEGY_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_SKIP_BAND_TYPE_PLMN_SEARCH_CFG_STRU
- 结构说明  : en_NV_Item_Skip_Band_Type_Plmn_Search_Cfg NV项结构
+     : NAS_MMC_NVIM_SKIP_BAND_TYPE_PLMN_SEARCH_CFG_STRU
+   : en_NV_Item_Skip_Band_Type_Plmn_Search_Cfg NV
 
-  1.日    期   : 2016年6月27日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 2016627
+           : n00355355
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsSupportSkipBandTypeSearch;                              /* 是否支持跳过band类型的搜网 */
+    VOS_UINT8                           ucIsSupportSkipBandTypeSearch;                              /* band */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
-    VOS_UINT8                           ucMccNum;                                                   /* 支持跳过band类型搜网的国家码个数 */
-    VOS_UINT32                          aulMccList[NAS_MML_NVIM_MAX_SKIP_BAND_TYPE_SEARCH_MCC_NUM]; /* 支持跳过band类型搜网的国家码 */
+    VOS_UINT8                           ucMccNum;                                                   /* band */
+    VOS_UINT32                          aulMccList[NAS_MML_NVIM_MAX_SKIP_BAND_TYPE_SEARCH_MCC_NUM]; /* band */
 }NAS_MMC_NVIM_SKIP_BAND_TYPE_PLMN_SEARCH_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU
- 结构说明  : en_NV_Item_Non_Oos_Plmn_Search_Feature_Support_Cfg NV项结构
-  1.日    期   : 2015年5月25日
-    作    者   : s00217060
-    修改内容   : 新建
-  2.日    期   : 2017年1月26日
-    作    者   : s00217060
-    修改内容   : 搜网优化遗留问题修改
+     : NAS_MMC_NVIM_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU
+   : en_NV_Item_Non_Oos_Plmn_Search_Feature_Support_Cfg NV
+  1.       : 2015525
+           : s00217060
+       : 
+  2.       : 2017126
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    /* Modified by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, begin */
+    /* Modified by s00217060 for DSDS, 2017-1-26, begin */
     VOS_UINT8           ucPrefbandCfg;
     VOS_UINT8           ucSearchTypeAfterHistoryInAreaLostScene;
     VOS_UINT8           ucSearchTypeAfterGetGeoFail;
@@ -3513,89 +3513,89 @@ typedef struct
 
     VOS_UINT32          ulHistoryCfg;
     VOS_UINT32          ulReserved2;
-    /* Modified by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, end */
+    /* Modified by s00217060 for DSDS, 2017-1-26, end */
 }NAS_MMC_NVIM_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU;
 
 
-/* Added by s00217060 for 美国搜网定制, 2016-2-15, begin */
+/* Added by s00217060 for , 2016-2-15, begin */
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OOS_BG_NETWORK_SEARCH_CUSTOM_STRU
- 结构说明  : en_NV_Item_OOS_BG_NETWORK_SEARCH_CUSTOM NV项结构
-  1.日    期   : 2015年5月25日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OOS_BG_NETWORK_SEARCH_CUSTOM_STRU
+   : en_NV_Item_OOS_BG_NETWORK_SEARCH_CUSTOM NV
+  1.       : 2015525
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulDelayNetworkSearchTimerLenAfterEmc;   /* 紧急呼之后不搜网时长，单位:s，时长为0表示要搜网 */
-    VOS_UINT8                           ucBgHistorySupportFlg;                  /* BG方式history搜是否支持 */
-    VOS_UINT8                           ucPrefBandListSupportFlg;               /* 列表方式pref band搜是否支持 */
-    VOS_UINT8                           ucFullBandListSupportFlg;               /* 列表方式full band搜是否支持 */
+    VOS_UINT32                          ulDelayNetworkSearchTimerLenAfterEmc;   /* :s0 */
+    VOS_UINT8                           ucBgHistorySupportFlg;                  /* BGhistory */
+    VOS_UINT8                           ucPrefBandListSupportFlg;               /* pref band */
+    VOS_UINT8                           ucFullBandListSupportFlg;               /* full band */
     VOS_UINT8                           ucRsv1;
     VOS_UINT8                           ucRsv2;
     VOS_UINT8                           ucRsv3;
     VOS_UINT8                           ucRsv4;
     VOS_UINT8                           ucRsv5;
 }NAS_MMC_NVIM_OOS_BG_NETWORK_SEARCH_CUSTOM_STRU;
-/* Added by s00217060 for 美国搜网定制, 2016-2-15, end */
+/* Added by s00217060 for , 2016-2-15, end */
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_EXTEND_T3240_LEN_CFG_STRU
- 结构说明  : en_NV_Item_EXTEND_T3240_LEN_CFG NV项结构
-  1.日    期   : 2016年4月13日
-    作    者   : z00359541
-    修改内容   : 新建
+     : NAS_NVIM_EXTEND_T3240_LEN_CFG_STRU
+   : en_NV_Item_EXTEND_T3240_LEN_CFG NV
+  1.       : 2016413
+           : z00359541
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucExtendT3240LenFlg;                    /* 是否开启T3240时长的定制 0:未开启 1:开启 */
-    VOS_UINT8                           ucReserve;                              /* 保留位 */
-    VOS_UINT16                          usCustomizedT3240Len;                   /* 定制的T3240定时器时长。单位为毫秒，最大支持65535毫秒 */
+    VOS_UINT8                           ucExtendT3240LenFlg;                    /* T3240 0: 1: */
+    VOS_UINT8                           ucReserve;                              /*  */
+    VOS_UINT16                          usCustomizedT3240Len;                   /* T324065535 */
 }NAS_NVIM_EXTEND_T3240_LEN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_GET_GEO_PRIO_RAT_LIST_STRU
- 结构说明  : 获取地理位置信息的接入技术优先级列表信息
-  1.日    期   : 2015年5月25日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_MMC_NVIM_GET_GEO_PRIO_RAT_LIST_STRU
+   : 
+  1.       : 2015525
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucRatOrderNum;                          /* 获取地理位置信息的接入技术个数 */
-    VOS_UINT8                           aucRatOrder[NAS_NVIM_MAX_RAT_NUM];      /* 获取地理位置信息的接入技术优先级 */
+    VOS_UINT8                           ucRatOrderNum;                          /*  */
+    VOS_UINT8                           aucRatOrder[NAS_NVIM_MAX_RAT_NUM];      /*  */
 }NAS_NVIM_GET_GEO_PRIO_RAT_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_GET_GEO_CFG_INFO_STRU
- 结构说明  : en_NV_Item_Get_Geo_Cfg_Info NVIM
- 1.日    期   : 2015年05月22日
-   作    者   : f00179208
-   修改内容   : 漫游搜网配置
-  2.日    期   : 2017年1月26日
-    作    者   : s00217060
-    修改内容   : 搜网优化遗留问题修改
+     : NAS_NVIM_GET_GEO_CFG_INFO_STRU
+   : en_NV_Item_Get_Geo_Cfg_Info NVIM
+ 1.       : 20150522
+          : f00179208
+      : 
+  2.       : 2017126
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    /* Modified by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, begin */
-    VOS_UINT8                                               ucGetGeoFlag;   /* 使用比特位标记各场景下是否发起GET GEO; 最低位表示上电是否GET GEO; 次低位表示飞行模式是否GET GEO; 第3低位表示OOC是否GET GEO
-                                                                                        比如: 0x07, 表示上述所有场景都GET GEO */
-    VOS_UINT8                                               ucGetGeoTimerlen;               /* 获取国家码定时器时长，单位是秒 */
-    VOS_UINT8                                               ucScanTypeOfFlightModeGetGeo;   /* 飞行模式GET GEO时FFT扫频类型*/
-    VOS_UINT8                                               ucScanTypeOfOocGetGeo;          /* OOC GET GEO时FFT扫频类型*/
-    /* Modified by s00217060 for 搜网优化遗留问题及DSDS特性优化, 2017-1-26, end */
-    VOS_UINT32                                              ulGeoEffectiveTimeLen;          /* 国家码的有效性时长，单位是分钟 */
-    NAS_NVIM_GET_GEO_PRIO_RAT_LIST_STRU                     stGetGeoPrioRatList;            /* 获取地理位置信息的接入技术优先级列表信息 */
+    /* Modified by s00217060 for DSDS, 2017-1-26, begin */
+    VOS_UINT8                                               ucGetGeoFlag;   /* GET GEO; GET GEO; GET GEO; 3OOCGET GEO
+                                                                                        : 0x07, GET GEO */
+    VOS_UINT8                                               ucGetGeoTimerlen;               /*  */
+    VOS_UINT8                                               ucScanTypeOfFlightModeGetGeo;   /* GET GEOFFT*/
+    VOS_UINT8                                               ucScanTypeOfOocGetGeo;          /* OOC GET GEOFFT*/
+    /* Modified by s00217060 for DSDS, 2017-1-26, end */
+    VOS_UINT32                                              ulGeoEffectiveTimeLen;          /*  */
+    NAS_NVIM_GET_GEO_PRIO_RAT_LIST_STRU                     stGetGeoPrioRatList;            /*  */
 }NAS_NVIM_GET_GEO_CFG_INFO_STRU;
 
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, begin */
+/* added by y00176023 for DTS2015091602371 ANYCELLLTE, 2015-9-17, begin */
 /*****************************************************************************
- 结构名    : NAS_NVIM_LOW_PRIO_ANYCELL_SEARCH_LTE_FLG_STRU
- 结构说明  : en_NV_Item_Low_Prio_Anycell_Search_Lte_Cfg NV项结构
-  1.日    期   : 2015年10月9日
-    作    者   : w00167002
-    修改内容   : 新建
+     : NAS_NVIM_LOW_PRIO_ANYCELL_SEARCH_LTE_FLG_STRU
+   : en_NV_Item_Low_Prio_Anycell_Search_Lte_Cfg NV
+  1.       : 2015109
+           : w00167002
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3604,14 +3604,14 @@ typedef struct
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_LOW_PRIO_ANYCELL_SEARCH_LTE_FLG_STRU;
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, end */
+/* added by y00176023 for DTS2015091602371 ANYCELLLTE, 2015-9-17, end */
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG_STRU
- 结构说明  : en_NV_Item_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG NV项结构
-  1.日    期   : 2015年10月9日
-    作    者   : w00167002
-    修改内容   : 新建
+     : NAS_NVIM_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG_STRU
+   : en_NV_Item_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG NV
+  1.       : 2015109
+           : w00167002
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3622,27 +3622,27 @@ typedef struct
 }NAS_NVIM_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NW_SEARCH_CHR_RECORD_CFG_STRU
- 结构说明  : en_NV_Item_Nw_Search_Chr_Record_Cfg NVIM
- 1.日    期   : 2015年08月13日
-   作    者   : f00179208
-   修改内容   : 搜网CHR记录配置
+     : NAS_NVIM_NW_SEARCH_CHR_RECORD_CFG_STRU
+   : en_NV_Item_Nw_Search_Chr_Record_Cfg NVIM
+ 1.       : 20150813
+          : f00179208
+      : CHR
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucActiveFlag;       /* NV项是否激活 */
+    VOS_UINT8                                               ucActiveFlag;       /* NV */
     VOS_UINT8                                               ucReserved1;
     VOS_UINT8                                               ucReserved2;
     VOS_UINT8                                               ucReserved3;
-    VOS_UINT32                                              ulRecordNum;        /* 记录的次数 */
+    VOS_UINT32                                              ulRecordNum;        /*  */
 }NAS_NVIM_NW_SEARCH_CHR_RECORD_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_EVDO_PRL_LIST_STRU
- 结构说明  : en_NV_Item_1X_EVDO_PRL_LIST NV项结构
- 1.日    期   : 2014年11月03日
-   作    者   : y00245242
-   修改内容   : 新建
+     : CNAS_NVIM_1X_EVDO_PRL_LIST_STRU
+   : en_NV_Item_1X_EVDO_PRL_LIST NV
+ 1.       : 20141103
+          : y00245242
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3650,11 +3650,11 @@ typedef struct
 }CNAS_NVIM_1X_EVDO_PRL_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CBT_PRL_LIST_STRU
- 结构说明  : en_NV_Item_CBT_PRL_LIST NV项结构
- 1.日    期   : 2014年11月03日
-   作    者   : y00245242
-   修改内容   : 新建
+     : CNAS_NVIM_CBT_PRL_LIST_STRU
+   : en_NV_Item_CBT_PRL_LIST NV
+ 1.       : 20141103
+          : y00245242
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3662,11 +3662,11 @@ typedef struct
 }CNAS_NVIM_CBT_PRL_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_HOME_SID_NID_STRU
- 结构说明  : HOME_SID_NID相关信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_HOME_SID_NID_STRU
+   : HOME_SID_NID
+ 1.       : 20141231
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3677,11 +3677,11 @@ typedef struct
 }CNAS_NVIM_1X_HOME_SID_NID_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_HOME_SID_NID_LIST_STRU
- 结构说明  : HOME_SID_NID相关列表信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_HOME_SID_NID_LIST_STRU
+   : HOME_SID_NID
+ 1.       : 20141231
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3691,11 +3691,11 @@ typedef struct
 }CNAS_NVIM_1X_HOME_SID_NID_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SEARCH_INTERVAL_STRU
- 结构说明  : 扫描次数与间隔相关信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_SEARCH_INTERVAL_STRU
+   : 
+ 1.       : 20141231
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3704,55 +3704,55 @@ typedef struct
 }CNAS_NVIM_OOC_TIMER_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
- 结构说明  : 扫描次数与间隔相关列表信息
- 1.日    期   : 2014年12月31日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
+   : 
+ 1.       : 20141231
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucMru0SearchTimerLen;
     VOS_UINT8                           ucPhaseNum;
-    VOS_UINT8                           uc1xOocDoTchPhase1TimerLen;              /* Do TCH，前4次尝试 Ooc Timer 最短时长 */
-    VOS_UINT8                           uc1xOocDoTchPhase2TimerLen;              /* Do TCH，4次以上尝试 Ooc Timer 最短时长 */
+    VOS_UINT8                           uc1xOocDoTchPhase1TimerLen;              /* Do TCH4 Ooc Timer  */
+    VOS_UINT8                           uc1xOocDoTchPhase2TimerLen;              /* Do TCH4 Ooc Timer  */
     CNAS_NVIM_OOC_TIMER_INFO_STRU       astOocTimerInfo[CNAS_NVIM_MAX_OOC_SCHEDULE_PHASE_NUM];
 }CNAS_NVIM_OOC_TIMER_SCHEDULE_INFO_STRU;
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
- 结构说明  : 扫描次数与间隔相关列表信息
- 1.日    期   : 2015年01月08日
-   作    者   : h00313353
-   修改内容   : 新建
+     : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
+   : 
+ 1.       : 20150108
+          : h00313353
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucInsertOrigChanFlg;        /* 在同步请求前是否插入先前驻留频点 */
-    NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8                    enChanRepeatScanStrategy;   /*频点重复搜索策略 */
+    VOS_UINT8                                               ucInsertOrigChanFlg;        /*  */
+    NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8                    enChanRepeatScanStrategy;   /* */
     VOS_UINT8                                               aucReserved[2];
 }CNAS_NVIM_OOC_REPEAT_SCAN_STRATEGY_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_EPDSZID_FEATURE_CFG_STRU
- 结构说明  : EPDSZID Feature Cfg
- 1.日    期   : 2015年01月08日
-   作    者   : g00261581
-   修改内容   : 新建
+     : CNAS_NVIM_1X_EPDSZID_FEATURE_CFG_STRU
+   : EPDSZID Feature Cfg
+ 1.       : 20150108
+          : g00261581
+      : 
 *****************************************************************************/
 typedef struct
 {
-    NAS_NVIM_EPDSZID_SUPPORT_TYPE_ENUM_UINT8                ucEpdszidType;  /* EPDSZID支持类型 */
-    VOS_UINT8                                               ucHatLen;       /* HAT时长，单位s */
-    VOS_UINT8                                               ucHtLen;        /* HT时长，单位s */
+    NAS_NVIM_EPDSZID_SUPPORT_TYPE_ENUM_UINT8                ucEpdszidType;  /* EPDSZID */
+    VOS_UINT8                                               ucHatLen;       /* HATs */
+    VOS_UINT8                                               ucHtLen;        /* HTs */
     VOS_UINT8                                               aucReserved[5];
 }CNAS_NVIM_1X_EPDSZID_FEATURE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HRPD_SYSTEM_STRU
- 结构说明  : NV项中HRDP保存的子网、BAND和Channel信息结构
- 1.日    期   : 2014年12月11日
-   作    者   : h00300778
-   修改内容   : 新建
+     : CNAS_NVIM_HRPD_SYSTEM_STRU
+   : NVHRDPBANDChannel
+ 1.       : 20141211
+          : h00300778
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3762,11 +3762,11 @@ typedef struct
 }CNAS_NVIM_HRPD_SYSTEM_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HRPD_MRU_LIST_STRU
- 结构说明  : en_NV_Item_HRPD_MRU_LIST NV项结构
- 1.日    期   : 2014年12月11日
-   作    者   : h00300778
-   修改内容   : 新建
+     : CNAS_NVIM_HRPD_MRU_LIST_STRU
+   : en_NV_Item_HRPD_MRU_LIST NV
+ 1.       : 20141211
+          : h00300778
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3776,11 +3776,11 @@ typedef struct
 }CNAS_NVIM_HRPD_MRU_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_LAST_SCI_STRU
- 结构说明  : en_NV_Item_1X_LAST_SCI NV项结构
- 1.日    期   : 2015年2月4日
-   作    者   : g00256031
-   修改内容   : 新建
+     : CNAS_NVIM_1X_LAST_SCI_STRU
+   : en_NV_Item_1X_LAST_SCI NV
+ 1.       : 201524
+          : g00256031
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -3788,17 +3788,17 @@ typedef struct
 }CNAS_NVIM_1X_LAST_SCI_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_WAIT_IMS_VOICE_AVAIL_TIMER_LEN_STRU
- 结构说明  : en_NV_Item_WAIT_IMS_VOICE_AVAIL_Timer_Len NV项结构
- 1.日    期   : 2015年1月29日
-   作    者   : y00245242
-   修改内容   : 等待IMS VOICE CAP的定时器时长
+     : NAS_NVIM_WAIT_IMS_VOICE_AVAIL_TIMER_LEN_STRU
+   : en_NV_Item_WAIT_IMS_VOICE_AVAIL_Timer_Len NV
+ 1.       : 2015129
+          : y00245242
+      : IMS VOICE CAP
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNvimActiveFlag;                       /* 0: nv项未激活；1:nv项激活 */
-    VOS_UINT8                           ucWaitImsVoiceAvailTimerLen;            /* 等待IMS VOICE的可用指示的定时器时长,单位为秒级,需要转换为毫秒 */
-    VOS_UINT8                           ucWaitImsWithWifiVoiceAvailTimerLen;    /* 支持IMS WIFI时,等待IMS VOICE的可用指示的定时器时长,单位为秒级,需要转换为毫秒 */
+    VOS_UINT8                           ucNvimActiveFlag;                       /* 0: nv1:nv */
+    VOS_UINT8                           ucWaitImsVoiceAvailTimerLen;            /* IMS VOICE,, */
+    VOS_UINT8                           ucWaitImsWithWifiVoiceAvailTimerLen;    /* IMS WIFI,IMS VOICE,, */
     VOS_UINT8                           ucReserved;
 }NAS_NVIM_WAIT_IMS_VOICE_AVAIL_TIMER_LEN_STRU;
 
@@ -3824,30 +3824,30 @@ typedef struct
 }CNAS_NVIM_HRPD_STORAGE_BLOB_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_LTE_REJ_CAUSE_14_CFG_STRU
- 结构说明  : en_NV_Item_LTE_REJ_CAUSE_14_CFG NV项结构
- 1.日    期   : 2015年1月5日
-   作    者   : h00285180
-   修改内容   : 新建
+     : NAS_MMC_NVIM_LTE_REJ_CAUSE_14_CFG_STRU
+   : en_NV_Item_LTE_REJ_CAUSE_14_CFG NV
+ 1.       : 201515
+          : h00285180
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucLteRejCause14Flg;               /* 是否开启LTE #14原因拒绝优化，0: 未开启；1:开启 */
+    VOS_UINT8                           ucLteRejCause14Flg;               /* LTE #140: 1: */
     VOS_UINT8                           aucReserved[1];
-    VOS_UINT16                          usLteRejCause14EnableLteTimerLen; /* LTE #14原因拒绝时，通过搜网到gu场景disable lte启动enable lte定时器时长，单位:分钟 */
+    VOS_UINT16                          usLteRejCause14EnableLteTimerLen; /* LTE #14gudisable lteenable lte: */
 }NAS_MMC_NVIM_LTE_REJ_CAUSE_14_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_T3396_RUNNING_DISABLE_LTE_CFG_STRU
- 结构说明  : en_NV_Item_T3396_Running_Disable_Lte_Cfg NV项结构
+     : NAS_MMC_NVIM_T3396_RUNNING_DISABLE_LTE_CFG_STRU
+   : en_NV_Item_T3396_Running_Disable_Lte_Cfg NV
 
-  1.日    期   : 2016年11月15日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 20161115
+           : n00355355
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsT3396RunningDisableLteFlg;            /* LMM->MMC ATTACH IND结果T3396定时器运行是否需要disable lte的配置，0: 未开启；1:开启 */
+    VOS_UINT8                           ucIsT3396RunningDisableLteFlg;            /* LMM->MMC ATTACH INDT3396disable lte0: 1: */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -3873,11 +3873,11 @@ typedef struct
 }CNAS_NVIM_EHRPD_PDN_SETUP_RETRY_STRU;
 
 /*****************************************************************************
- 枚举名    : NAS_SMS_PS_CONCATENATE_ENUM
- 结构说明  : PS域短信连续发送枚举定义
-  1.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : 新增
+     : NAS_SMS_PS_CONCATENATE_ENUM
+   : PS
+  1.       : 20150518
+           : j00174725
+       : 
 *****************************************************************************/
 enum NAS_SMS_PS_CONCATENATE_ENUM
 {
@@ -3889,12 +3889,12 @@ enum NAS_SMS_PS_CONCATENATE_ENUM
 typedef VOS_UINT8 NAS_SMS_PS_CONCATENATE_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名称  : NAS_NV_SMS_PS_CTRL_STRU
- 结构说明  : PS域短信控制
+   : NAS_NV_SMS_PS_CTRL_STRU
+   : PS
 
-  1.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : 新增结构
+  1.       : 20150518
+           : j00174725
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3904,12 +3904,12 @@ typedef struct
     VOS_UINT8                           ucReserved3;
 } NAS_NV_SMS_PS_CTRL_STRU;
 /*****************************************************************************
- 结构名称  : NAS_NV_PRIVACY_FILTER_CFG_STRU
- 结构说明  : 短信过滤配置信息
+   : NAS_NV_PRIVACY_FILTER_CFG_STRU
+   : 
 
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新增结构
+  1.       : 20150917
+           : h00313353
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3927,15 +3927,15 @@ typedef struct
     Modify   : create
   2.Date     : 2016-01-14
     Author   : W00176964
-    Modify   : DTS2016011505496:增加对原始系统不在MSPL表进行BSR流程,定时器时长的NV控制
+    Modify   : DTS2016011505496:MSPLBSR,NV
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCLOosTimerMaxExpiredTimes;    /* 低功耗模式下Available Timer定时器时长超时次数 */
+    VOS_UINT8                           ucCLOosTimerMaxExpiredTimes;    /* Available Timer */
 
-    VOS_UINT8                           ucCLSysAcqWaitHsdCnfTimerLen;   /* MSCC CL搜网等待HSD搜网结果定时器时长 */
+    VOS_UINT8                           ucCLSysAcqWaitHsdCnfTimerLen;   /* MSCC CLHSD */
 
-    VOS_UINT16                          usReserved1;/* 原始系统不在MSPL表中时,bsr定时器时长 */
+    VOS_UINT16                          usReserved1;/* MSPL,bsr */
 
     VOS_UINT32                          ulFirstSearchAvailTimerLen; /* Contains the Available timer length to be used , when the
                                                                     number of successive triggers is less than ulFirstSearchAvailTimerCount */
@@ -3949,8 +3949,8 @@ typedef struct
                                                                     length value of ulDeepSearchAvailTimerLen */
 
     VOS_UINT32                          ulScanTimerLen; /* Contains the scan timer length */
-    VOS_UINT8                           ucBsrCtrlDoEnterIdleRstLen;     /* BSR 10秒尝试定时器运行时，DO从CONN态变为IDLE态，不立即发起bsr，
-                                                                                而是重新启动尝试定时器，定时器时长，定时器超时后，再发起bsr，防止底层异频切换，导致短暂进入idle态这种情况  */
+    VOS_UINT8                           ucBsrCtrlDoEnterIdleRstLen;     /* BSR 10DOCONNIDLEbsr
+                                                                                bsridle  */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -3972,12 +3972,12 @@ typedef struct
 }NAS_NVIM_1X_LOC_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_3GPP_LOC_INFO_STRU
- 结构说明  : 3gpp loc info
+     : NAS_NVIM_3GPP_LOC_INFO_STRU
+   : 3gpp loc info
 
- 1.日    期   : 2015年5月26日
-   作    者   : w00176964
-   修改内容   : 新建
+ 1.       : 2015526
+          : w00176964
+      : 
  2.Date       : 2015-05-29
    Author     : w00176964
    Modify     : DTS2015052903319:add pri class
@@ -4031,11 +4031,11 @@ typedef struct
 }NAS_MSCC_NVIM_MLPL_MSPL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_MOB_TERM_STRU
- 结构说明  : en_NV_Item_1X_MOB_TERM NV项结构
- 1.日    期   : 2015年6月2日
-   作    者   : g00256031
-   修改内容   : 新建
+     : CNAS_NVIM_1X_MOB_TERM_STRU
+   : en_NV_Item_1X_MOB_TERM NV
+ 1.       : 201562
+          : g00256031
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4066,56 +4066,56 @@ typedef struct
     Modify   : create
   2.Date     : 2015-12-17
     Author   : m00312079
-    Modify   : DTS2015121410637:增加NV项控制在AMP setup和open态时当UATI req发送成功过后等网侧UATI assign的时长
+    Modify   : DTS2015121410637:NVAMP setupopenUATI reqUATI assign
   3.Date     : 2015-12-31
     Author   : m00312079
-    Modify   : DTS2015123108077:增加NV项控制在open态时当UATI req发送成功后等网侧UATI assign超时后的重试次数
+    Modify   : DTS2015123108077:NVopenUATI reqUATI assign
   4.Date     : 2016-01-16
     Author   : m00312079
-    Modify   : DTS2015122603997:增加NV项控制是否在连接建立后停止keep alive流程，NV默认开启
+    Modify   : DTS2015122603997:NVkeep aliveNV
   5.Date     : 2016-04-05
     Author   : m00312079
-    Modify   : DTS2016032810749:如果UE平台能力支持ehrpd，增加NV项控制是否在开关机后恢复ehrpd能力，NV默认关闭(开关机后不恢复ehrpd能力)
+    Modify   : DTS2016032810749:UEehrpdNVehrpdNV(ehrpd)
   6.Date     : 2016-05-28
     Author   : m00312079
-    Modify   : DTS2016050402784:UATI更新过程中的信令保护时长，默认2000ms
+    Modify   : DTS2016050402784:UATI2000ms
   7.Date     : 2016-07-26
     Author   : m00312079
-    Modify   : DTS2016071807950:增加网络主动session close后，是否需要重新开启eHRPD能力标记，默认关闭
+    Modify   : DTS2016071807950:session closeeHRPD
   8.Date     : 2016-08-13
     Author   : y00307564
-    Modify   : DTS2016081509099:增加NV项控制，产品线非标定制。关闭4G开关后，从下一次session激活（包括恢复）开始，是否关闭eHRPD能力标记，默认关闭
+    Modify   : DTS2016081509099:NV4GsessioneHRPD
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucStartUatiReqAfterSectorIdChgFlg;   /* 为了通过RF测试和CCF2.2.2.8用例，增加NV控制
-                                                                                          NV打开(默认):参照标杆只要sector ID发生变化就启动UATI申请流程
-                                                                                          NV关闭:      严格按照协议C.S0024 7.3.7.1.6.1处理，即只有在HO或者
-                                                                                                       Conn Close后，sector ID发生变化才启动UATI申请流程 */
+    VOS_UINT8                           ucStartUatiReqAfterSectorIdChgFlg;   /* RFCCF2.2.2.8NV
+                                                                                          NV():sector IDUATI
+                                                                                          NV:      C.S0024 7.3.7.1.6.1HO
+                                                                                                       Conn Closesector IDUATI */
 
-    VOS_UINT8                           ucWaitUatiAssignTimerLenInAmpSetup; /* 单位:秒(s),默认5s.在某些场景和设备商的网络上，为了降低UE的接入时长，
-                                                                                        缩短UE等UATI assign的时长，该时长最短为5s，最长为120s(协议定时器时长) */
-    VOS_UINT8                           ucWaitUatiAssignTimerLenInAmpOpen; /* 单位:秒(s),默认120s(协议定时器时长)。该时长最短5s，最长120s。*/
+    VOS_UINT8                           ucWaitUatiAssignTimerLenInAmpSetup; /* :(s),5s.UE
+                                                                                        UEUATI assign5s120s() */
+    VOS_UINT8                           ucWaitUatiAssignTimerLenInAmpOpen; /* :(s),120s()5s120s*/
 
-    VOS_UINT8                           ucUatiReqRetryTimesWhenUatiAssignTimerExpireInAmpOpen;/* 增加NV项控制在open态时当UATI req发送成功后
-                                                                                                             等网侧UATI assign超时后的重试次数,默认不重试，最大重试4次 */
-    VOS_UINT8                           ucClearKATimerInConnOpenFlg;                          /* 增加NV项控制，是否在连接建立成功后清除keep alive流程
-                                                                                                             NV打开(默认): 链接建立成功后，停止keep alive定时器，重置keep alive相关的计数
-                                                                                                                           链接断开后，开启keep alive定时器，重新启动keep alive流程。
-                                                                                                             NV关闭:       链接建立成功后，不清除keep alive流程，按照协议处理 */
-    VOS_UINT8                           ucRecoverEhrpdAvailFlg;                              /* 增加NV项控制，如果UE平台能力支持ehrpd,是否在开关机后恢复ehrpd能力
-                                                                                                             NV打开:        开关机后恢复ehrpd能力，如果关机前是hrpd的会话，则开机后需要重新协商
-                                                                                                             NV关闭(默认):  开关机后不恢复ehrpd能力，如果关机前是hrpd的会话，则开机后执行recover会话流程 */
+    VOS_UINT8                           ucUatiReqRetryTimesWhenUatiAssignTimerExpireInAmpOpen;/* NVopenUATI req
+                                                                                                             UATI assign,4 */
+    VOS_UINT8                           ucClearKATimerInConnOpenFlg;                          /* NVkeep alive
+                                                                                                             NV(): keep alivekeep alive
+                                                                                                                           keep alivekeep alive
+                                                                                                             NV:       keep alive */
+    VOS_UINT8                           ucRecoverEhrpdAvailFlg;                              /* NVUEehrpd,ehrpd
+                                                                                                             NV:        ehrpdhrpd
+                                                                                                             NV():  ehrpdhrpdrecover */
 
-    VOS_UINT8                           ucRecoverEhrpdCapAfterSessionCloseFlg;              /* 增加NV项控制，网络主动session close后，是否需要重新开启eHRPD能力标记，默认关闭
-                                                                                                             NV打开:       网络主动发送session close后，UE恢复eHRPD能力标记(该NV目前只在电信准入测试时打开)
-                                                                                                             NV关闭(默认):  网络主动发送session close后，UE不恢复eHRPD能力标记*/
-    VOS_UINT8                           ucCloseEhrpdCapAfterSyscfgNotSupportLteFlg;         /* 增加NV项控制，产品线非标定制。关闭4G开关后，从下一次session激活（包括恢复）开始，是否关闭eHRPD能力标记，默认关闭
-                                                                                                             NV打开:       4G开关关闭，关闭UE eHRPD能力(该NV目前只针对产品线电信入网测试，进出飞行模式性能用例测试时打开)
-                                                                                                             NV关闭(默认): 如果UE平台能力支持eHRPD,4G开关即使关闭，UE仍支持eHRPD能力*/
+    VOS_UINT8                           ucRecoverEhrpdCapAfterSessionCloseFlg;              /* NVsession closeeHRPD
+                                                                                                             NV:       session closeUEeHRPD(NV)
+                                                                                                             NV():  session closeUEeHRPD*/
+    VOS_UINT8                           ucCloseEhrpdCapAfterSyscfgNotSupportLteFlg;         /* NV4GsessioneHRPD
+                                                                                                             NV:       4GUE eHRPD(NV)
+                                                                                                             NV(): UEeHRPD,4GUEeHRPD*/
 
-    VOS_UINT32                          ulUatiSigProtectTimeLen;                             /*  UATI更新过程中的信令保护时长(收到CTTF对于Uati req的SNP_DATA_CNF后，等UATI assignment的保护时长)，
-                                                                                                             默认1200ms,单位ms */
+    VOS_UINT32                          ulUatiSigProtectTimeLen;                             /*  UATI(CTTFUati reqSNP_DATA_CNFUATI assignment)
+                                                                                                             1200ms,ms */
 
     VOS_UINT8                           aucRsv1[20];
 }CNAS_HSM_NVIM_SESSION_CTRL_CFG_STRU;
@@ -4142,67 +4142,67 @@ typedef struct
 }NAS_NVIM_EHRPD_SUPPORT_FLG_STRU;
 
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
+/* Added by c00318887 for , 2015-8-26, begin */
 /*****************************************************************************
- 结构名    : NAS_NVIM_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_Plmn_Search_Phase_One_Total_Timer_CFG NV项结构
-  1.日    期   : 2015年8月26日
-    作    者   : c00318887
-    修改内容   : 新建
+     : NAS_NVIM_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER_CFG_STRU
+   : en_NV_Item_Plmn_Search_Phase_One_Total_Timer_CFG NV
+  1.       : 2015826
+           : c00318887
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlag;                           /* NV项是否激活 */
+    VOS_UINT8                           ucActiveFlag;                           /* NV */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
-    VOS_UINT32                          ulTotalTimeLen;                         /* 第一阶段搜网总时长,单位:s */
+    VOS_UINT32                          ulTotalTimeLen;                         /* ,:s */
 }NAS_NVIM_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER_CFG_STRU;
 
-/* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
+/* Added by c00318887 for , 2015-8-26, end */
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CUSTOMIZED_FORB_LA_CFG_STRU
- 结构说明  : en_NV_Item_CS_REG_FAIL_CAUSE_FORB_LA_TIME_CFG NV项结构
-  1.日    期   : 2015年9月23日
-    作    者   : z00359541
-    修改内容   : 新建
+     : NAS_MMC_NVIM_CUSTOMIZED_FORB_LA_CFG_STRU
+   : en_NV_Item_CS_REG_FAIL_CAUSE_FORB_LA_TIME_CFG NV
+  1.       : 2015923
+           : z00359541
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usRegFailCauseNum;                      /* 支持的注册失败原因值个数,个数为0表示不支持该特性 */
-    VOS_UINT16                          usForbLaTimeLen;                        /* 禁止LA时长,单位:s */
-    VOS_UINT16                          usPunishTimeLen;                        /* 放乒乓机制中需要惩罚的时长 */
+    VOS_UINT16                          usRegFailCauseNum;                      /* ,0 */
+    VOS_UINT16                          usForbLaTimeLen;                        /* LA,:s */
+    VOS_UINT16                          usPunishTimeLen;                        /*  */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT16                          ausRegFailCauseList[NAS_MML_NVIM_MAX_REG_FAIL_CAUSE_NUM];
 }NAS_MMC_NVIM_CUSTOMIZED_FORB_LA_CFG_STRU;
 
 /*****************************************************************************
- 结构名称  : NAS_NVIM_CSG_AUTONOMOUS_SEARCH_CFG_STRU
- 结构说明  : CSG自主搜网相关配置信息
+   : NAS_NVIM_CSG_AUTONOMOUS_SEARCH_CFG_STRU
+   : CSG
 
-  1.日    期   : 2015年9月21日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
+  1.       : 2015921
+           : z00161729
+       : LTE CSG
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usCsgAutonomousSrchFirstSrchTimeLen;                   /* CSG自主搜网定时器第一次的时长 */
-    VOS_UINT8                           ucCsgAutonomousSrchFirstSrchTimeCount;                 /* CSG自主搜网定时器第一次的次数 */
+    VOS_UINT16                          usCsgAutonomousSrchFirstSrchTimeLen;                   /* CSG */
+    VOS_UINT8                           ucCsgAutonomousSrchFirstSrchTimeCount;                 /* CSG */
     VOS_UINT8                           ucReserved1;
-    VOS_UINT16                          usCsgAutonomousSrchSecondSrchTimeLen;                  /* CSG自主搜网定时器第二次的时长 */
-    VOS_UINT8                           ucCsgAutonomousSrchSecondSrchTimeCount;                /* CSG自主搜网定时器第二次的次数 */
+    VOS_UINT16                          usCsgAutonomousSrchSecondSrchTimeLen;                  /* CSG */
+    VOS_UINT8                           ucCsgAutonomousSrchSecondSrchTimeCount;                /* CSG */
     VOS_UINT8                           ucReserved2;
 } NAS_NVIM_CSG_AUTONOMOUS_SEARCH_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_PLMN_WITH_CSG_ID_STRU
- 结构说明  : PLMN带CSG ID的结构
+     : NAS_NVIM_PLMN_WITH_CSG_ID_STRU
+   : PLMNCSG ID
 
- 1.日    期   : 2015年9月21日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
+ 1.       : 2015921
+          : z00161729
+      : LTE CSG
 *****************************************************************************/
 typedef struct
 {
@@ -4214,12 +4214,12 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_ALLOWED_CSG_LIST_STRU
- 结构说明  : Allowed CSG List卡文件不存时nv中记录allowed CSG List信息
+     : NAS_NVIM_ALLOWED_CSG_LIST_STRU
+   : Allowed CSG Listnvallowed CSG List
 
- 1.日    期   : 2015年9月21日
-   作    者   : z00161729
-   修改内容   : 支持LTE CSG功能新增
+ 1.       : 2015921
+          : z00161729
+      : LTE CSG
 *****************************************************************************/
 typedef struct
 {
@@ -4230,12 +4230,12 @@ typedef struct
     NAS_NVIM_PLMN_WITH_CSG_ID_STRU      astPlmnWithCsgIdList[NAS_NVIM_MAX_PLMN_CSG_ID_NUM];
 }NAS_NVIM_ALLOWED_CSG_LIST_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_UE_BASED_OPERATOR_CSG_LIST_STRU
- 结构说明  : Operater CSG List卡文件不存时nv中记录operater CSG List信息
+     : NAS_NVIM_UE_BASED_OPERATOR_CSG_LIST_STRU
+   : Operater CSG Listnvoperater CSG List
 
- 1.日    期   : 2016年3月23日
-   作    者   : y00358807
-   修改内容   : 支持LTE CSG功能新增
+ 1.       : 2016323
+          : y00358807
+      : LTE CSG
 *****************************************************************************/
 typedef struct
 {
@@ -4246,44 +4246,44 @@ typedef struct
     NAS_NVIM_PLMN_WITH_CSG_ID_STRU      astPlmnWithCsgIdList[NAS_NVIM_MAX_PLMN_CSG_ID_NUM];
 }NAS_NVIM_UE_BASED_OPERATOR_CSG_LIST_STRU;
 /*****************************************************************************
-结构名    : NAS_NVIM_CSG_DUPLICATE_RPLMN_AND_EPLMN_LIST_STRU
-结构说明  : 记录CSG手动搜网前的RPLMN和EPLMN信息
-1.日    期   : 2015年9月21日
-  作    者   : z00161729
-  修改内容   : 支持LTE CSG功能新增
+    : NAS_NVIM_CSG_DUPLICATE_RPLMN_AND_EPLMN_LIST_STRU
+  : CSGRPLMNEPLMN
+1.       : 2015921
+         : z00161729
+     : LTE CSG
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucNum;
-    VOS_UINT8                           ucRat;                                  /* 记录duplicate rplmn的接入技术*/
-    VOS_UINT8                           aucReserve[2];                          /*NV项相关的结构体，在4字节方式下，需手动补齐空洞*/
+    VOS_UINT8                           ucRat;                                  /* duplicate rplmn*/
+    VOS_UINT8                           aucReserve[2];                          /*NV4*/
     NVIM_PLMN_VALUE_STRU                astRplmnAndEplmnList[NVIM_MAX_EPLMN_NUM];
 }NAS_NVIM_CSG_DUPLICATED_RPLMN_AND_EPLMN_LIST_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_CSG_FORBIDDEN_PLMN_CFG_STRU
-结构说明  : csg禁止网络相关配置
-1.日    期   : 2015年9月21日
-  作    者   : z00161729
-  修改内容   : 支持LTE CSG功能新增
+    : NAS_NVIM_CSG_FORBIDDEN_PLMN_CFG_STRU
+  : csg
+1.       : 2015921
+         : z00161729
+     : LTE CSG
 *****************************************************************************/
 typedef struct
 {
-    /* CSG禁止网络惩罚时长,单位秒 */
+    /* CSG, */
     VOS_UINT16                          usCsgPlmnForbiddenPeriod;
 
-    /* 配置CSG网络被拒哪些原因值时需要将该网络加入禁止csg网络列表 */
+    /* CSGcsg */
     VOS_UINT8                           ucCauseNum;
     VOS_UINT8                           ucReserved;
     VOS_UINT16                          ausCause[NAS_NVIM_MAX_CSG_REJ_CAUSE_NUM];
 }NAS_NVIM_CSG_FORBIDDEN_PLMN_CFG_STRU;
 /*****************************************************************************
- 结构名称  : NAS_NVIM_CSG_CTRL_CFG_STRU
- 结构说明  : CSG特性配置相关nv
+   : NAS_NVIM_CSG_CTRL_CFG_STRU
+   : CSGnv
 
-  1.日    期   : 2015年9月21日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
+  1.       : 2015921
+           : z00161729
+       : LTE CSG
 *****************************************************************************/
 typedef struct
 {
@@ -4296,15 +4296,15 @@ typedef struct
     VOS_UINT8                                               ucBitOp7:1;
     VOS_UINT8                                               ucBitOp8:1;
     VOS_UINT8                                               ucReserved0;
-    VOS_UINT8                                               ucIsSupportCsgFlag;             /* VOS_TRUE:UE支持CSG功能; VOS_FALSE:UE不支持CSG功能 */
-    VOS_UINT8                                               ucCsgListOnlyReportOperatorCsgListFlag; /* VOS_TRUE:csg列表搜网结果只上报在operator csg list中网络; VOS_FALSE:CSG列表搜网结果所有CSG ID都上报 */
-    NAS_NVIM_CSG_FORBIDDEN_PLMN_CFG_STRU                    stCsgForbiddenPlmnCfg;       /* CSG禁止网络相关配置 */
-    NAS_NVIM_ALLOWED_CSG_LIST_STRU                          stAllowedCsgList;               /* 记录Allowed CSG List信息 */
-    VOS_UINT32                                              ulCsgPeriodicSearchPeriod;      /* CSG周期性搜网时长,单位分钟 */
-    NAS_NVIM_CSG_DUPLICATED_RPLMN_AND_EPLMN_LIST_STRU       stDuplicatedRplmnAndEplmnList;  /* 关机时如果之前进行过CSG指定搜网，且关机时驻留CSG网络，则记录CSG指定搜网前的RPLMN和EPLMN*/
-    NAS_NVIM_CSG_AUTONOMOUS_SEARCH_CFG_STRU                 stCsgAutonomousSrchCfg;         /* CSG自主搜网相关配置 */
-	NAS_NVIM_UE_BASED_OPERATOR_CSG_LIST_STRU                stUeBasedOperatorCsgList;       /* 记录Based CSG List信息 */
-    VOS_UINT8                                               ucRplmnCellType;                /* 上次驻留小区类型，用于判定是否更新duplicated RPLMN */
+    VOS_UINT8                                               ucIsSupportCsgFlag;             /* VOS_TRUE:UECSG; VOS_FALSE:UECSG */
+    VOS_UINT8                                               ucCsgListOnlyReportOperatorCsgListFlag; /* VOS_TRUE:csgoperator csg list; VOS_FALSE:CSGCSG ID */
+    NAS_NVIM_CSG_FORBIDDEN_PLMN_CFG_STRU                    stCsgForbiddenPlmnCfg;       /* CSG */
+    NAS_NVIM_ALLOWED_CSG_LIST_STRU                          stAllowedCsgList;               /* Allowed CSG List */
+    VOS_UINT32                                              ulCsgPeriodicSearchPeriod;      /* CSG, */
+    NAS_NVIM_CSG_DUPLICATED_RPLMN_AND_EPLMN_LIST_STRU       stDuplicatedRplmnAndEplmnList;  /* CSGCSGCSGRPLMNEPLMN*/
+    NAS_NVIM_CSG_AUTONOMOUS_SEARCH_CFG_STRU                 stCsgAutonomousSrchCfg;         /* CSG */
+	NAS_NVIM_UE_BASED_OPERATOR_CSG_LIST_STRU                stUeBasedOperatorCsgList;       /* Based CSG List */
+    VOS_UINT8                                               ucRplmnCellType;                /* duplicated RPLMN */
     VOS_UINT8                                               ucReserved1;
     VOS_UINT8                                               ucReserved2;
     VOS_UINT8                                               ucReserved3;
@@ -4312,12 +4312,12 @@ typedef struct
 } NAS_NVIM_CSG_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_KEEP_CS_FORB_INFO_WHEN_PS_REG_SUCC_STRU
- 结构说明  : 配置收到PS注册成功消息是否保留禁止信息
+     : NAS_NVIM_KEEP_CS_FORB_INFO_WHEN_PS_REG_SUCC_STRU
+   : PS
 
- 1.日    期   : 2015年12月11日
-   作    者   : z00359541
-   修改内容   : 新建
+ 1.       : 20151211
+          : z00359541
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4328,90 +4328,90 @@ typedef struct
 }NAS_NVIM_KEEP_CS_FORB_INFO_WHEN_PS_REG_SUCC_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CLEAR_CKSN_STRU
- 结构说明  : 当网络对鉴权失败结果没有响应，释放链路时是否清楚CKSN的配置
- 1.日    期   : 2015年1月5日
-   作    者   : z00359541
-   修改内容   : 新建
-  2.日    期   : 2016年1月19日
-    作    者   : c00318887
-    修改内容   : 扩充nv
+     : NAS_NVIM_CLEAR_CKSN_STRU
+   : CKSN
+ 1.       : 201515
+          : z00359541
+      : 
+  2.       : 2016119
+           : c00318887
+       : nv
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNwIgnoreAuthFailFlg;                  /* 当网络对鉴权失败结果没有响应，释放链路时是否清楚CKSN的配置 */
-    VOS_UINT8                           ucUsimGsmAuthActiveFlg;                            /* USIM卡在GSM下做2G cs/ps 鉴权，在3G下是否需要清除CS/ps CKSN值 */
+    VOS_UINT8                           ucNwIgnoreAuthFailFlg;                  /* CKSN */
+    VOS_UINT8                           ucUsimGsmAuthActiveFlg;                            /* USIMGSM2G cs/ps 3GCS/ps CKSN */
     VOS_UINT8                           ucUsimDoneGsmCsAuthFlg;
     VOS_UINT8                           ucUsimDoneGsmPsAuthFlg;
 }NAS_NVIM_CLEAR_CKSN_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_ATT_ENS_CTRL_STRU
- 结构说明  : 记录en_NV_Item_ATT_Ctrl_Para(9081) NV项内容
+     : NAS_NVIM_ATT_ENS_CTRL_STRU
+   : en_NV_Item_ATT_Ctrl_Para(9081) NV
 
- 修改记录  :
- 1.日    期   : 2016年02月15日
-   作    者   : w00167002
-   修改内容   : 新增
+   :
+ 1.       : 20160215
+          : w00167002
+      : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNetSelMenuFlg;                        /* 网络选择菜单控制，VOS_TRUE:激活；VOS_FALSE:未激活 */
-    VOS_UINT8                           ucRatBalancingFlg;                      /* 接入技术平衡控制，VOS_TRUE:激活；VOS_FALSE:未激活 */
-    VOS_UINT8                           aucReserved[2];                         /* 保留 */
+    VOS_UINT8                           ucNetSelMenuFlg;                        /* VOS_TRUE:VOS_FALSE: */
+    VOS_UINT8                           ucRatBalancingFlg;                      /* VOS_TRUE:VOS_FALSE: */
+    VOS_UINT8                           aucReserved[2];                         /*  */
 }NAS_NVIM_ATT_ENS_CTRL_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_ATT_FRAT_CFG_STRU
- 结构说明  : 记录en_NV_Item_ATT_FRAT_CFG_Info NV项内容
+     : NAS_NVIM_ATT_FRAT_CFG_STRU
+   : en_NV_Item_ATT_FRAT_CFG_Info NV
 
- 修改记录  :
- 1.日    期   : 2016年04月19日
-   作    者   : w00167002
-   修改内容   : 新增
+   :
+ 1.       : 20160419
+          : w00167002
+      : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlg;                            /* FRAT特性是否生效 */
-    VOS_UINT8                           ucIgnitionState;                        /* FRAT特性生效时，当前Ignition状态 */
+    VOS_UINT8                           ucEnableFlg;                            /* FRAT */
+    VOS_UINT8                           ucIgnitionState;                        /* FRATIgnition */
     VOS_UINT8                           ucImsiPlmnNum;
     VOS_UINT8                           ucFratPlmnNum;
 
-    VOS_UINT32                          ulFratSlowTimerValue;                   /* FRAT特性生效时，Slow Timer时长，单位 秒，默认值180分钟 */
-    VOS_UINT32                          ulFratFastTimerValue;                   /* FRAT特性生效时，Fast Timer时长，单位 秒，默认值3分钟 */
-    NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnIdList[NAS_MML_NVIM_FRAT_MAX_IMSI_NUM];          /* FRAT特性生效时，支持的IMSI的PLMN的列表 */
-    NAS_SIM_FORMAT_PLMN_ID              astFratPlmnIdList[NAS_MML_NVIM_FRAT_MAX_PLMN_ID_NUM];       /* FRAT特性生效时，驻留PLMN的列表，最少不能少于20个PLMN列表 */
+    VOS_UINT32                          ulFratSlowTimerValue;                   /* FRATSlow Timer 180 */
+    VOS_UINT32                          ulFratFastTimerValue;                   /* FRATFast Timer 3 */
+    NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnIdList[NAS_MML_NVIM_FRAT_MAX_IMSI_NUM];          /* FRATIMSIPLMN */
+    NAS_SIM_FORMAT_PLMN_ID              astFratPlmnIdList[NAS_MML_NVIM_FRAT_MAX_PLMN_ID_NUM];       /* FRATPLMN20PLMN */
 }NAS_NVIM_ATT_FRAT_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_PAGING_RESPONSE_RETRY_CFG_STRU
- 结构说明  : 记录en_NV_Item_PAGING_RESPONSE_RETRY_CFG NV项内容
+     : NAS_MMC_PAGING_RESPONSE_RETRY_CFG_STRU
+   : en_NV_Item_PAGING_RESPONSE_RETRY_CFG NV
 
- 修改记录  :
- 1.日    期   : 2016年7月1日
-   作    者   : s00273135
-   修改内容   : 新增
+   :
+ 1.       : 201671
+          : s00273135
+      : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucPagingResponseRetrySupportFlg;        /* 标识位，用于标示是否使能寻呼响应重复功能。1:使能 0:不使能 */
-    VOS_UINT8                           ucPagingResponseRetryPeriod;            /* 寻呼响应重复周期长度,单位是秒*/
-    VOS_UINT8                           ucPagingResoneseRetry2GInterval;        /* 2G下寻呼响应重复的间隔时间,单位是秒 */
-    VOS_UINT8                           ucPagingResoneseRetry3GInterval;        /* 3G下寻呼响应重复的间隔时间,单位是秒 */
+    VOS_UINT8                           ucPagingResponseRetrySupportFlg;        /* 1: 0: */
+    VOS_UINT8                           ucPagingResponseRetryPeriod;            /* ,*/
+    VOS_UINT8                           ucPagingResoneseRetry2GInterval;        /* 2G, */
+    VOS_UINT8                           ucPagingResoneseRetry3GInterval;        /* 3G, */
 
 }NAS_MMC_PAGING_RESPONSE_RETRY_CFG_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_NONREGULAR_SERVICE_CUSTOM_STRU
- 结构说明  : 记录en_NV_Item_Nonregular_Servic_Custom NV项内容
+     : NAS_NVIM_NONREGULAR_SERVICE_CUSTOM_STRU
+   : en_NV_Item_Nonregular_Servic_Custom NV
 
- 修改记录  :
- 1.日    期   : 2016年6月9日
-   作    者   : n00269697
-   修改内容   : 新增
+   :
+ 1.       : 201669
+          : n00269697
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -4426,13 +4426,13 @@ typedef struct
     VOS_UINT8                           ucReserve7;
 }NAS_NVIM_NONREGULAR_SERVICE_CUSTOM_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_HOLD_RETRIEVE_REJ_OPTIMIZE_STRU
- 结构说明  : 记录en_NV_Item_Hold_Retrieve_Rej_Optimize NV项内容
+     : NAS_NVIM_HOLD_RETRIEVE_REJ_OPTIMIZE_STRU
+   : en_NV_Item_Hold_Retrieve_Rej_Optimize NV
 
- 修改记录  :
- 1.日    期   : 2016年6月24日
-   作    者   : n00269697
-   修改内容   : 新增
+   :
+ 1.       : 2016624
+          : n00269697
+      : 
 
 *****************************************************************************/
 typedef struct
@@ -4444,15 +4444,15 @@ typedef struct
 }NAS_NVIM_HOLD_RETRIEVE_REJ_OPTIMIZE_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CC_STATUS_ENQUIRY_CFG_STRU
- 结构说明  : CC Status Enquiry的配置信息
- 1.日    期   : 2016年07月21日
-   作    者   : f00179208
-   修改内容   : 新建
+     : NAS_NVIM_CC_STATUS_ENQUIRY_CFG_STRU
+   : CC Status Enquiry
+ 1.       : 20160721
+          : f00179208
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlag;                           /* VOS_TRUE:使能,VOS_FALSE:去使能 */
+    VOS_UINT8                           ucEnableFlag;                           /* VOS_TRUE:,VOS_FALSE: */
     VOS_UINT8                           aucReserved1;
     VOS_UINT8                           aucReserved2;
     VOS_UINT8                           aucReserved3;
@@ -4505,7 +4505,7 @@ typedef VOS_UINT32 CNAS_NVIM_HARDWARE_ID_SRC_TYPE_ENUM_UINT32;
     Modify   : create
   2.Date     : 2015-06-18
     Author   : m00312079
-    Modify   : DTS2015091604029:nv中保存有效uati assigngment的sequence number
+    Modify   : DTS2015091604029:nvuati assigngmentsequence number
 *****************************************************************************/
 
 typedef struct
@@ -4548,10 +4548,10 @@ typedef struct
 
 typedef struct
 {
-    PS_BOOL_ENUM_UINT8                  enSuppOnlyDo0;                          /* 是否只支持DO0版本 */
-    PS_BOOL_ENUM_UINT8                  enSuppDoaWithMfpa;                      /* 是否支持DOA版本，应用类型只支持MFPA */
-    PS_BOOL_ENUM_UINT8                  enSuppDoaWithEmfpa;                     /* 是否支持DOA版本，应用类型支持MFPA和EMPA */
-    PS_BOOL_ENUM_UINT8                  enSuppDoaEhrpd;                         /* 是否支持eHRPD */
+    PS_BOOL_ENUM_UINT8                  enSuppOnlyDo0;                          /* DO0 */
+    PS_BOOL_ENUM_UINT8                  enSuppDoaWithMfpa;                      /* DOAMFPA */
+    PS_BOOL_ENUM_UINT8                  enSuppDoaWithEmfpa;                     /* DOAMFPAEMPA */
+    PS_BOOL_ENUM_UINT8                  enSuppDoaEhrpd;                         /* eHRPD */
 }CNAS_NVIM_HRPD_UE_REV_INFO_STRU;
 
 /*****************************************************************************
@@ -4563,10 +4563,10 @@ typedef struct
     Modify   : create
   2.Date     : 2015-12-21
     Author   : m00312079
-    Modify   : DTS2015120208895,将session与UE的版本信息绑定
+    Modify   : DTS2015120208895,sessionUE
   3.Date     : 2016-08-25
     Author   : y00307564
-    Modify   : 新增用于生成sessionseed的伪随机数
+    Modify   : sessionseed
 *****************************************************************************/
 typedef struct
 {
@@ -4574,19 +4574,19 @@ typedef struct
     CNAS_NVIM_HRPD_UE_REV_INFO_STRU     stUERevInfo;
     VOS_UINT8                           ucLteRegSuccFlg;
     VOS_UINT8                           aucReserve1[3];
-    VOS_UINT32                          ulPseudorandomNumber;  /* 用于生成sessionseed的伪随机数 */
+    VOS_UINT32                          ulPseudorandomNumber;  /* sessionseed */
     VOS_UINT8                           aucReserve2[4];
 }CNAS_NVIM_HRPD_SESSION_INFO_EX_STRU;
 
 /*****************************************************************************
-结构名    : NAS_NVIM_TIME_INFO_REPORT_OPTIMIZE_CFG_STRU
-结构说明  : en_NV_Item_Time_Info_Report_Cfg(2434) 时间优化上报策略控制
+    : NAS_NVIM_TIME_INFO_REPORT_OPTIMIZE_CFG_STRU
+  : en_NV_Item_Time_Info_Report_Cfg(2434) 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucRptOptType;                           /* 上报策略控制 0:不控制，1:^TIME时区、夏令时变化上报， */
-                                                                                /*  2:保留，同0，3:在1的基础上增加灭屏上报间隔时间控制 */
-    VOS_UINT8                           ucInterval;                             /* RptOptType为3时，灭屏上报间隔时间，单位min，取值0-255 */
+    VOS_UINT8                           ucRptOptType;                           /*  0:1:^TIME */
+                                                                                /*  2:03:1 */
+    VOS_UINT8                           ucInterval;                             /* RptOptType3min0-255 */
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_TIME_INFO_REPORT_OPTIMIZE_CFG_STRU;
@@ -4601,26 +4601,26 @@ typedef struct
 }CNAS_NVIM_HRPD_ACCESS_AUTH_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_EMC_UNDER_NET_PIN_CFG_STRU
- 结构说明  : en_NV_Item_Emc_Under_Net_Pin_Cfg(2433)  是否打开VDF网络锁网状态下发起紧急呼特性
- 1.日    期   : 2017年01月13日
-   作    者   : z00359541
-   修改内容   : 新建
+     : NAS_NVIM_EMC_UNDER_NET_PIN_CFG_STRU
+   : en_NV_Item_Emc_Under_Net_Pin_Cfg(2433)  VDF
+ 1.       : 20170113
+          : z00359541
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucUseImsiFlg;                           /* VDF网络锁网状态下发起紧急呼携带IMSI开关 */
+    VOS_UINT8                           ucUseImsiFlg;                           /* VDFIMSI */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_EMC_UNDER_NET_PIN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_PS_REG_FAIL_MAX_TIMES_TRIG_LAU_ONCE_CFG_STRU
- 结构说明  : 联合Attach或者RAU，建链失败达到最大次数之后是否只触发一次LAU
- 1.日    期   : 2015年08月13日
-   作    者   : l00289540
-   修改内容   : 新建
+     : NAS_NVIM_PS_REG_FAIL_MAX_TIMES_TRIG_LAU_ONCE_CFG_STRU
+   : AttachRAULAU
+ 1.       : 20150813
+          : l00289540
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4631,11 +4631,11 @@ typedef struct
 }NAS_NVIM_PS_REG_FAIL_MAX_TIMES_TRIG_LAU_ONCE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_KEEP_SRCH_HPLMN_EVEN_REJ_BY_CAUSE_13_CFG_STRU
- 结构说明  : HPLMN注册被#13拒绝之后是否需要再搜索此HPLMN WITH RAT
- 1.日    期   : 2015年08月13日
-   作    者   : l00289540
-   修改内容   : 新建
+     : NAS_NVIM_KEEP_SRCH_HPLMN_EVEN_REJ_BY_CAUSE_13_CFG_STRU
+   : HPLMN#13HPLMN WITH RAT
+ 1.       : 20150813
+          : l00289540
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4646,11 +4646,11 @@ typedef struct
 }NAS_NVIM_KEEP_SRCH_HPLMN_EVEN_REJ_BY_CAUSE_13_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_EPS_REJ_BY_CAUSE_14_IN_VPLMN_ALLOW_PS_REG_CFG_STRU
- 结构说明  : VPLMN LTE注册被#14拒绝之后是否允许在2/3G PS域进行注册
- 1.日    期   : 2015年08月13日
-   作    者   : l00289540
-   修改内容   : 新建
+     : NAS_NVIM_EPS_REJ_BY_CAUSE_14_IN_VPLMN_ALLOW_PS_REG_CFG_STRU
+   : VPLMN LTE#142/3G PS
+ 1.       : 20150813
+          : l00289540
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4661,27 +4661,27 @@ typedef struct
 }NAS_NVIM_EPS_REJ_BY_CAUSE_14_IN_VPLMN_ALLOW_PS_REG_CFG_STRU;
 
 /*****************************************************************************
- 枚举名    : NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_FLAG_ENUM
- 结构说明  : 搜索RPLMN时是否需要携带EPLMN
- 1.日    期: 2015年8月13日
-   作    者: l00289540
-   修改内容: 新增
+     : NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_FLAG_ENUM
+   : RPLMNEPLMN
+ 1.    : 2015813
+       : l00289540
+   : 
 *****************************************************************************/
 enum NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_FLAG_ENUM
 {
-    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_OFF                     = 0,           /* 关闭此优化 */
-    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_ON_FOR_ROAM             = 1,           /* 优化打开，但是仅在漫游时生效 */
-    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_ON_FOR_ALL              = 2,           /* 优化打开，漫游与非漫游都生效 */
+    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_OFF                     = 0,           /*  */
+    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_ON_FOR_ROAM             = 1,           /*  */
+    NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_ON_FOR_ALL              = 2,           /*  */
     NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_BUTT
 };
 typedef VOS_UINT8 NAS_MMC_NVIM_CARRY_EPLMN_SWITCH_FLAG_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CARRY_EPLMN_WHEN_SRCH_RPLMN_CFG_STRU
- 结构说明  : 搜索RPLMN是否需要携带EPLMN的NV配置
- 1.日    期   : 2015年08月13日
-   作    者   : l00289540
-   修改内容   : 新建
+     : NAS_NVIM_CARRY_EPLMN_WHEN_SRCH_RPLMN_CFG_STRU
+   : RPLMNEPLMNNV
+ 1.       : 20150813
+          : l00289540
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4700,48 +4700,48 @@ typedef struct
 }NAS_NVIM_CARRY_EPLMN_WHEN_SRCH_RPLMN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_TELCEL_PDP_ACT_LIMIT_CFG_STRU
- 结构说明  : PDP激活受限配置
-  1.日    期   : 2016年10月25日
-    作    者   : s00217060
-    修改内容   : 新建
+     : NAS_NVIM_TELCEL_PDP_ACT_LIMIT_CFG_STRU
+   : PDP
+  1.       : 20161025
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucActiveFlg;                                                /* 定制是否打开 */
-    VOS_UINT8                           ucRetryTimerLenOnLte;                                       /* LTE下PDP retry时长，单位：s */
-    VOS_UINT8                           ucRetryTimerLenOnGu;                                        /* GU下PDP retry时长，单位：s */
-    VOS_UINT8                           ucLimitTimerLenAfterMaxCnt;                                 /* PDP激活被拒达到最大次数，限制PDP激活的时长，单位：min */
-    VOS_UINT8                           ucMaxRetryCnt;                                              /* 最大retry次数 */
+    VOS_UINT8                           ucActiveFlg;                                                /*  */
+    VOS_UINT8                           ucRetryTimerLenOnLte;                                       /* LTEPDP retrys */
+    VOS_UINT8                           ucRetryTimerLenOnGu;                                        /* GUPDP retrys */
+    VOS_UINT8                           ucLimitTimerLenAfterMaxCnt;                                 /* PDPPDPmin */
+    VOS_UINT8                           ucMaxRetryCnt;                                              /* retry */
     VOS_UINT8                           ucReserve;
     VOS_UINT8                           ucPlmnNum;
     VOS_UINT8                           ucCauseNum;
-    NAS_SIM_FORMAT_PLMN_ID              astPlmnIdList[NAS_NVIM_MAX_LIMIT_PDP_ACT_PLMN_NUM];         /* 运营商列表 */
-    VOS_UINT8                           aucCauseList[NAS_NVIM_MAX_LIMIT_PDP_ACT_CAUSE_NUM];         /* 原因值列表 */
+    NAS_SIM_FORMAT_PLMN_ID              astPlmnIdList[NAS_NVIM_MAX_LIMIT_PDP_ACT_PLMN_NUM];         /*  */
+    VOS_UINT8                           aucCauseList[NAS_NVIM_MAX_LIMIT_PDP_ACT_CAUSE_NUM];         /*  */
 }NAS_NVIM_TELCEL_PDP_ACT_LIMIT_CFG_STRU;
-/* Added by z00359541 for 边境搜网优化PhaseI, 2016-8-19, begin */
+/* Added by z00359541 for PhaseI, 2016-8-19, begin */
 /*****************************************************************************
- 结构名    : NAS_NVIM_BORDER_PLMN_SEARCH_CFG_STRU
- 结构说明  : 边境搜网优化配置项
- 1.日    期   : 2016年08月19日
-   作    者   : z00359541
-   修改内容   : 新建
+     : NAS_NVIM_BORDER_PLMN_SEARCH_CFG_STRU
+   : 
+ 1.       : 20160819
+          : z00359541
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                 ucSwitchOnBorderPlmnSearchFlg;                 /* 开机边境搜网优化开关 VOS_TRUE:开启 VOS_FALSE:关闭 */
-    VOS_UINT8                 ucBorderBgSearchFlg;                              /* 边境场景背景搜优化开关 VOS_TRUE:开启 VOS_FALSE:关闭 */
+    VOS_UINT8                 ucSwitchOnBorderPlmnSearchFlg;                 /*  VOS_TRUE: VOS_FALSE: */
+    VOS_UINT8                 ucBorderBgSearchFlg;                              /*  VOS_TRUE: VOS_FALSE: */
     VOS_UINT8                 ucReserved1;
     VOS_UINT8                 ucReserved2;
 }NAS_NVIM_BORDER_PLMN_SEARCH_CFG_STRU;
-/* Added by z00359541 for 边境搜网优化PhaseI, 2016-8-19, end */
+/* Added by z00359541 for PhaseI, 2016-8-19, end */
 
 /*****************************************************************************
  Name    : CNAS_NVIM_HOME_SID_NID_DEPEND_ON_PRL_CFG_STRU
  Description  : Structure definition for en_NV_Item_HOME_SID_NID_PRI_CFG
-                HOME SID/NID列表的优先级是否是最高的，如果标记为VOS_TRUE，表示home SID/NID
-                的系统优先级最高，不管该系统是否在PRL表中；如果为VOS_FALSE，home SID/NID仅刷新
-                PRL表中的NEG和roaming标记
+                HOME SID/NIDVOS_TRUEhome SID/NID
+                PRLVOS_FALSEhome SID/NID
+                PRLNEGroaming
  History     :
   1.Date     : 2015-07-02
     Author   : w00242748
@@ -4754,12 +4754,12 @@ typedef struct
 }CNAS_NVIM_HOME_SID_NID_DEPEND_ON_PRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_SYS_INFO_STRU
- 结构说明  : 保存的SID和MCC信息，定制白名单中的MCC、起始SID以及结束SID
+     : CNAS_NVIM_SYS_INFO_STRU
+   : SIDMCCMCCSIDSID
 
- 1.日    期   : 2015年7月2日
-   作    者   : w00242748
-   修改内容   : 新建
+ 1.       : 201572
+          : w00242748
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -4769,26 +4769,26 @@ typedef struct
 }CNAS_NVIM_SYS_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_OPER_LOCK_WHITE_SID_STRU
- 结构说明  : en_NV_Item_OPER_LOCK_WHITE_SID_INFO NV项结构
-  1.日    期   : 2015年7月2日
-    作    者   : w00242748
-    修改内容   : 新建
+     : CNAS_NVIM_OPER_LOCK_WHITE_SID_STRU
+   : en_NV_Item_OPER_LOCK_WHITE_SID_INFO NV
+  1.       : 201572
+           : w00242748
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnable;                          /* 白名单是否使能 */
+    VOS_UINT8                           ucEnable;                          /*  */
     VOS_UINT8                           ucReserved;
-    VOS_UINT16                          usWhiteSysNum;                     /* 支持白名单的个数,个数为0时表示不支持白名单 */
+    VOS_UINT16                          usWhiteSysNum;                     /* ,0 */
     CNAS_NVIM_SYS_INFO_STRU             astSysInfo[CNAS_NVIM_MAX_WHITE_LOCK_SYS_NUM];
 }CNAS_NVIM_OPER_LOCK_SYS_WHITE_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_FREQENCY_CHANNEL_STRU
- 结构说明  : 频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
+     : CNAS_NVIM_FREQENCY_CHANNEL_STRU
+   : 
+  1.       : 201573
+           : w00242748
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4797,11 +4797,11 @@ typedef struct
 }CNAS_NVIM_FREQENCY_CHANNEL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CTCC_CUSTOMIZE_FREQ_LIST_STRU
- 结构说明  : 中国电信定制频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : w00242748
-    修改内容   : 新建
+     : CNAS_NVIM_CTCC_CUSTOMIZE_FREQ_LIST_STRU
+   : 
+  1.       : 201573
+           : w00242748
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4812,11 +4812,11 @@ typedef struct
 }CNAS_NVIM_CTCC_CUSTOMIZE_FREQ_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CDMA_STANDARD_CHANNELS_STRU
- 结构说明  : CDAM standard channels信息
-  1.日    期   : 2015年7月14日
-    作    者   : y00245242
-    修改内容   : 新建
+     : CNAS_NVIM_CDMA_STANDARD_CHANNELS_STRU
+   : CDAM standard channels
+  1.       : 2015714
+           : y00245242
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4833,23 +4833,23 @@ typedef struct
 }CNAS_NVIM_NO_CARD_MODE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_EMC_REDIAL_SYS_ACQ_CFG_STRU
- 结构说明  : en_NV_Item_EMC_REDIAL_SYS_ACQ_CFG NV项结构
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新建
+     : CNAS_NVIM_EMC_REDIAL_SYS_ACQ_CFG_STRU
+   : en_NV_Item_EMC_REDIAL_SYS_ACQ_CFG NV
+  1.       : 20151026
+           : c00299063
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               aucRedialTimes[CNAS_NVIM_1X_MAX_MRU_SYS_NUM];  /* 紧急呼叫失败时当前驻留的频点在mru list的重拨次数，超过次数起搜网*/
+    VOS_UINT8                                               aucRedialTimes[CNAS_NVIM_1X_MAX_MRU_SYS_NUM];  /* mru list*/
 }CNAS_NVIM_1X_EMC_REDIAL_SYS_ACQ_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_AVOID_PHASE_NUM
- 结构说明  : avoid策略信息
-  1.日    期   : 2015年11月23日
-    作    者   : c00299063
-    修改内容   : 新建
+     : CNAS_NVIM_1X_AVOID_PHASE_NUM
+   : avoid
+  1.       : 20151123
+           : c00299063
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4857,11 +4857,11 @@ typedef struct
 }CNAS_NVIM_1X_AVOID_PHASE_NUM;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_AVOID_SCHEDULE_INFO_STRU
- 结构说明  : avoid策略信息
-  1.日    期   : 2015年11月23日
-    作    者   : c00299063
-    修改内容   : 新建
+     : CNAS_NVIM_1X_AVOID_SCHEDULE_INFO_STRU
+   : avoid
+  1.       : 20151123
+           : c00299063
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4869,11 +4869,11 @@ typedef struct
 }CNAS_NVIM_1X_AVOID_SCHEDULE_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU
- 结构说明  : en_CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU NV项结构
-  1.日    期   : 2015年10月26日
-    作    者   : c00299063
-    修改内容   : 新建
+     : CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU
+   : en_CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU NV
+  1.       : 20151026
+           : c00299063
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4882,26 +4882,26 @@ typedef struct
 }CNAS_NVIM_1X_POWER_OFF_CAMP_ON_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_PRL_ROAM_IND_STRATEGY_CFG_STRU
- 结构说明  : en_NV_Item_1X_PRL_ROAM_IND_STRATEGY_CFG NV项结构
-  1.日    期   : 2016年03月05日
-    作    者   : h00313353
-    修改内容   : 新建
+     : CNAS_NVIM_1X_PRL_ROAM_IND_STRATEGY_CFG_STRU
+   : en_NV_Item_1X_PRL_ROAM_IND_STRATEGY_CFG NV
+  1.       : 20160305
+           : h00313353
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucIsConsiderRoamIndInPRLFlg;        /* 是否在PRL表最优系统判断中考虑ROAM IND属性的标志 */
+    VOS_UINT8                                               ucIsConsiderRoamIndInPRLFlg;        /* PRLROAM IND */
     VOS_UINT8                                               ucReserved1;
     VOS_UINT8                                               ucReserved2;
     VOS_UINT8                                               ucReserved3;
 } CNAS_NVIM_1X_PRL_ROAM_IND_STRATEGY_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SYS_ACQ_NO_RF_PROTECT_TIMER_CFG_STRU
- 结构说明  : en_NV_Item_1X_SYS_ACQ_NO_RF_PROTECT_TIMER_CFG NV项结构
-  1.日    期   : 2016年2月25日
-    作    者   : Y00322978
-    修改内容   : 新建
+     : CNAS_NVIM_1X_SYS_ACQ_NO_RF_PROTECT_TIMER_CFG_STRU
+   : en_NV_Item_1X_SYS_ACQ_NO_RF_PROTECT_TIMER_CFG NV
+  1.       : 2016225
+           : Y00322978
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4912,11 +4912,11 @@ typedef struct
 }CNAS_NVIM_1X_DO_SYS_ACQ_NO_RF_PROTECT_TIMER_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_LTE_DO_CONN_INTERUPT_1X_SYS_ACQ_CFG_STRU
- 结构说明  : en_NV_Item_LTE_DO_CONN_INTERUPT_1X_SYS_ACQ_CFG NV项结构
-  1.日    期   : 2016年2月25日
-    作    者   : Y00322978
-    修改内容   : 新建
+     : CNAS_NVIM_LTE_DO_CONN_INTERUPT_1X_SYS_ACQ_CFG_STRU
+   : en_NV_Item_LTE_DO_CONN_INTERUPT_1X_SYS_ACQ_CFG NV
+  1.       : 2016225
+           : Y00322978
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4927,44 +4927,44 @@ typedef struct
 }CNAS_NVIM_LTE_DO_CONN_INTERUPT_1X_SYS_ACQ_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_LTE_OR_DO_CONN_1X_SYS_ACQ_SYNC_DELAY_INFO_STRU
- 结构说明  : en_NV_Item_1X_SYS_ACQ_DELAY_TIMER_CFG_WHEN_LTE_DO_CONN NV项结构
-  1.日    期   : 2016年3月28日
-    作    者   : Y00322978
-    修改内容   : 新建
+     : CNAS_NVIM_LTE_OR_DO_CONN_1X_SYS_ACQ_SYNC_DELAY_INFO_STRU
+   : en_NV_Item_1X_SYS_ACQ_DELAY_TIMER_CFG_WHEN_LTE_DO_CONN NV
+  1.       : 2016328
+           : Y00322978
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT32                                              ul1xSysAcqDelayTimerLen;
     VOS_UINT8                                               uc1xSysAcqSyncDelayEnable;
-    VOS_UINT8                                               auc1xSysAcqSyncDelayFreqNum[3];             //  仅使用第一个字节表示延迟同步每轮sync的频点个数
+    VOS_UINT8                                               auc1xSysAcqSyncDelayFreqNum[3];             //  sync
 }CNAS_NVIM_LTE_OR_DO_CONN_1X_SYS_ACQ_SYNC_DELAY_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_CFG_STRUs
- 结构说明  : en_NV_Item_LTE_OOS_2G_PREF_PLMN_SEL_CFG NV项结构
-  1.日    期   : 2015年07月03日
-    作    者   : h00285180
-    修改内容   : 新建
+     : NAS_MMC_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_CFG_STRUs
+   : en_NV_Item_LTE_OOS_2G_PREF_PLMN_SEL_CFG NV
+  1.       : 20150703
+           : h00285180
+       : 
 
-    ucImsiPlmnListNum   SIM卡数目；最大支持16；
-    astImsiPlmnList     SIM卡列表，最大支持16组;
+    ucImsiPlmnListNum   SIM16
+    astImsiPlmnList     SIM16;
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                          ucImsiListNum;                                                  /*功能起效的SIM卡数目(LTE OOS后先搜2G再搜3G)  */
+    VOS_UINT8                          ucImsiListNum;                                                  /*SIM(LTE OOS2G3G)  */
     VOS_UINT8                          ucReserved1;
     VOS_UINT8                          ucReserved2;
     VOS_UINT8                          ucReserved3;
-    NAS_SIM_FORMAT_PLMN_ID             astImsiList[NAS_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_MAX_IMSI_LIST_NUM];/* SIM卡列表 (LTE OOS后先搜2G再搜3G) */
+    NAS_SIM_FORMAT_PLMN_ID             astImsiList[NAS_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_MAX_IMSI_LIST_NUM];/* SIM (LTE OOS2G3G) */
 }NAS_MMC_NVIM_LTE_OOS_2G_PREF_PLMN_SEL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CUSTOM_FREQUENCY_CHANNEL_STRU
- 结构说明  : 频段和频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : h00313353
-    修改内容   : 新建
+     : CNAS_NVIM_CUSTOM_FREQUENCY_CHANNEL_STRU
+   : 
+  1.       : 201573
+           : h00313353
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4973,11 +4973,11 @@ typedef struct
 } CNAS_NVIM_CUSTOM_FREQUENCY_CHANNEL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CDMA_1X_PREF_CHANNELS_STRU
- 结构说明  : 中国电信1X优选频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : h00313353
-    修改内容   : 新建
+     : CNAS_NVIM_CDMA_1X_PREF_CHANNELS_STRU
+   : 1X
+  1.       : 201573
+           : h00313353
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -4988,11 +4988,11 @@ typedef struct
 } CNAS_NVIM_CDMA_1X_CUSTOM_PREF_CHANNELS_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CDMA_1X_CUSTOMIZE_PREF_CHANNELS_STRU
- 结构说明  : 中国电信1X优选频点结构
-  1.日    期   : 2015年7月3日
-    作    者   : h00313353
-    修改内容   : 新建
+     : CNAS_NVIM_CDMA_1X_CUSTOMIZE_PREF_CHANNELS_STRU
+   : 1X
+  1.       : 201573
+           : h00313353
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5003,11 +5003,11 @@ typedef struct
 } CNAS_NVIM_CDMA_1X_CUSTOMIZE_PREF_CHANNELS_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_DYNLOAD_CTRL_STRU
- 结构说明  : 动态加载控制信息
-  1.日    期   : 2015年8月12日
-    作    者   : w00242748
-    修改内容   : 新建
+     : NAS_NVIM_DYNLOAD_CTRL_STRU
+   : 
+  1.       : 2015812
+           : w00242748
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5018,11 +5018,11 @@ typedef struct
 }NAS_NVIM_DYNLOAD_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_DYNLOAD_EXCEPTION_CTRL_STRU
- 结构说明  : 动态加载次数控制信息
-  1.日    期   : 2015年11月12日
-    作    者   : w00242748
-    修改内容   : 新建
+     : NAS_NVIM_DYNLOAD_EXCEPTION_CTRL_STRU
+   : 
+  1.       : 20151112
+           : w00242748
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5033,15 +5033,15 @@ typedef struct
 }NAS_NVIM_DYNLOAD_EXCEPTION_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_PAGING_RSP_SO_CFG_STRU
- 结构说明  : en_NV_Item_1X_PAGING_RSP_SO_CFG NV项结构
- 1.日    期   : 2015年11月02日
-   作    者   : L00301449
-   修改内容   : 新建
+     : CNAS_NVIM_1X_PAGING_RSP_SO_CFG_STRU
+   : en_NV_Item_1X_PAGING_RSP_SO_CFG NV
+ 1.       : 20151102
+          : L00301449
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucNoDataSrvRspSo33;                     /* 没有数据业务时，Paging rsp的回复。0 - Paging Rsp中SO带0； 1 - Paging Rsp中SO带33 */
+    VOS_UINT8                           ucNoDataSrvRspSo33;                     /* Paging rsp0 - Paging RspSO0 1 - Paging RspSO33 */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -5050,41 +5050,41 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_PROGRESS_INDICATOR_START_T310_INFO_STRU
- 结构说明  : en_NV_Item_PROGRESS_INDICATOR_START_T310_INFO NV项结构
- 1.日    期   : 2015年10月10日
-   作    者   : j00174725
-   修改内容   : 新建
+     : NAS_NVIM_PROGRESS_INDICATOR_START_T310_INFO_STRU
+   : en_NV_Item_PROGRESS_INDICATOR_START_T310_INFO NV
+ 1.       : 20151010
+          : j00174725
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucIsStartT310AccordWith3GPP;            /* 当proceeding或者progress中，携带progress indicator值为#1，#2，#64时，
-                                                                                   是否启动T310, 0 - 不按协议做;  1 -  按照协议做 */
+    VOS_UINT8                           ucIsStartT310AccordWith3GPP;            /* proceedingprogressprogress indicator#1#2#64
+                                                                                   T310, 0 - ;  1 -   */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_PROGRESS_INDICATOR_START_T310_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CDATA_DISCING_PARA_INFO_STRU
- 结构说明  : en_NV_Item_CDATA_DISCING_PARA_CFG NV项结构
- 1.日    期   : 2015年11月11日
-   作    者   : g00261581
-   修改内容   : 新建
+     : NAS_NVIM_CDATA_DISCING_PARA_INFO_STRU
+   : en_NV_Item_CDATA_DISCING_PARA_CFG NV
+ 1.       : 20151111
+          : g00261581
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucPppDeactTimerLen;                     /* 单位(S), PPP去激活流程时间 */
+    VOS_UINT8                           ucPppDeactTimerLen;                     /* (S), PPP */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_CDATA_DISCING_PARA_INFO_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_PPP_AUTH_INFO_FROM_CARD_STRU
- 结构说明  : en_NV_Item_PPP_AUTH_INFO_FROM_CARD_FLAG NV项结构
- 1.日    期   : 2015年11月11日
-   作    者   : Y00322978
-   修改内容   : 新建
+     : NAS_NVIM_PPP_AUTH_INFO_FROM_CARD_STRU
+   : en_NV_Item_PPP_AUTH_INFO_FROM_CARD_FLAG NV
+ 1.       : 20151111
+          : Y00322978
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -5092,59 +5092,59 @@ typedef struct
 }NAS_NVIM_PPP_AUTH_INFO_FROM_CARD_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_EHRPD_AUTO_ATTACH_CTRL_CFG_STRU
- 结构说明  : en_NV_Item_EHRPD_AUTO_ATTACH_CTRL_CFG NV项结构
- 1.日    期   : 2015年12月26日
-   作    者   : g00261581
-   修改内容   : 新建
+     : NAS_NVIM_EHRPD_AUTO_ATTACH_CTRL_CFG_STRU
+   : en_NV_Item_EHRPD_AUTO_ATTACH_CTRL_CFG NV
+ 1.       : 20151226
+          : g00261581
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlag;                           /* VOS_TRUE:Auto attach功能使能；VOS_FALSE:Auto attach功能关闭 */
+    VOS_UINT8                           ucEnableFlag;                           /* VOS_TRUE:Auto attachVOS_FALSE:Auto attach */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_EHRPD_AUTO_ATTACH_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_CALL_ENCVOICE_ECC_SRV_CAP_INFO_STRU
- 结构说明  : ECC服务能力参数信息。
-             注: ECC业务状态仅在ECC业务能力支持的情况下，才有效。
+     : CNAS_NVIM_1X_CALL_ENCVOICE_ECC_SRV_CAP_INFO_STRU
+   : ECC
+             : ECCECC
 
- 修改历史      :
-  1.日    期   : 2015-11-11
-    作    者   : l00359089
-    修改内容   : Iteration 19
+       :
+  1.       : 2015-11-11
+           : l00359089
+       : Iteration 19
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEccSrvCap;        /* ECC服务能力: TRUE -- 支持ECC服务，FALSE -- 不支持ECC服务 */
-    VOS_UINT8                           ucEccSrvStatus;     /* ECC服务状态: TRUE -- ECC服务打开，FALSE -- ECC服务关闭 */
+    VOS_UINT8                           ucEccSrvCap;        /* ECC: TRUE -- ECCFALSE -- ECC */
+    VOS_UINT8                           ucEccSrvStatus;     /* ECC: TRUE -- ECCFALSE -- ECC */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
 } CNAS_NVIM_1X_CALL_ENCVOICE_ECC_SRV_CAP_INFO_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU
- 结构说明  : 1X有服务时CL搜网各阶段配置结构体
- 修改历史      :
-  1.日    期   : 2015-12-10
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
-  2.日    期   : 2016-6-4
-    作    者   : w00176964
-    修改内容   : CL_MULTIMODE_OPTIMIZE_V2新增
+     : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU
+   : 1XCL
+       :
+  1.       : 2015-12-10
+           : w00176964
+       : CL_MUTIMODE_OPTIMIZE
+  2.       : 2016-6-4
+           : w00176964
+       : CL_MULTIMODE_OPTIMIZE_V2
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usTotalTimeLen;         /* 该阶段整体搜索时长,单位为秒 */
-    VOS_UINT16                          usSleepTimeLen;         /* 该阶段available定时器的启动时长,单位为秒 */
+    VOS_UINT16                          usTotalTimeLen;         /* , */
+    VOS_UINT16                          usSleepTimeLen;         /* available, */
     VOS_UINT16                          usReserve1;
     VOS_UINT16                          usReserve2;
-    VOS_UINT8                           ucLteHistorySrchNum;       /* 该阶段LTE历史频点搜索总次数 */
-    VOS_UINT8                           ucLteFullBandSrchNum;      /* 该阶段LTE全频段搜索总次数 */
-    VOS_UINT8                           ucLtePrefBandSrchNum;      /* 该阶段LTE pref band搜总次数 */
+    VOS_UINT8                           ucLteHistorySrchNum;       /* LTE */
+    VOS_UINT8                           ucLteFullBandSrchNum;      /* LTE */
+    VOS_UINT8                           ucLtePrefBandSrchNum;      /* LTE pref band */
     VOS_UINT8                           ucReserve2;
     VOS_UINT8                           ucReserve3;
     VOS_UINT8                           ucReserve4;
@@ -5153,18 +5153,18 @@ typedef struct
 } NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_CTRL_STRU
- 结构说明  : 1X有服务时CL搜网各阶段配置结构体
- 修改历史      :
-  1.日    期   : 2015-12-21
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
+     : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_CTRL_STRU
+   : 1XCL
+       :
+  1.       : 2015-12-21
+           : w00176964
+       : CL_MUTIMODE_OPTIMIZE
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           uc1xBsrLteActiveFlg;                /* 数据切换切换到1X上BSR LTE的激活标记--CCF用例要求 */
-    VOS_UINT8                           uc1xBsrLteTimerLen;                 /* 数据切换切换到1X上BSR LTE的定时器时长-单位秒 */
-    VOS_UINT8                           ucSrlte1xBsrLteEnableFlg;           /* SRLTE下1x数据业务态BSR LTE使能标志 */
+    VOS_UINT8                           uc1xBsrLteActiveFlg;                /* 1XBSR LTE--CCF */
+    VOS_UINT8                           uc1xBsrLteTimerLen;                 /* 1XBSR LTE- */
+    VOS_UINT8                           ucSrlte1xBsrLteEnableFlg;           /* SRLTE1xBSR LTE */
     VOS_UINT8                           ucReserve4;
     VOS_UINT8                           ucReserve5;
     VOS_UINT8                           ucReserve6;
@@ -5174,31 +5174,31 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_CFG_STRU
- 结构说明  : 1X有服务时CL搜网策略控制NV
- 修改历史      :
-  1.日    期   : 2015-12-10
-    作    者   : w00176964
-    修改内容   : CL_MUTIMODE_OPTIMIZE新增
+     : NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_CFG_STRU
+   : 1XCLNV
+       :
+  1.       : 2015-12-10
+           : w00176964
+       : CL_MUTIMODE_OPTIMIZE
 *****************************************************************************/
 typedef struct
 {
     NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_CTRL_STRU         stCtrlInfo;
-    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseOnePatternCfg;   /* 首阶段配置信息 */
-    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseTwoPatternCfg;   /* 二阶段配置信息 */
-    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseThreePatternCfg; /* 三阶段配置信息:目前未使用,预留 */
+    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseOnePatternCfg;   /*  */
+    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseTwoPatternCfg;   /*  */
+    NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_PATTERN_CFG_STRU  stPhaseThreePatternCfg; /* :, */
 } NAS_NVIM_1X_SERVICE_CL_SYSTEM_ACQUIRE_STRATEGY_CFG_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_LTE_OOS_DELAY_ACTIVATE_1X_TIMER_INFO_STRU
- 结构说明  : lte掉网导致VoLTE不可用，防止反复激活去激活1x配置一个延迟定时器
- 修改历史      :
-  1.日    期   : 2015-12-21
-    作    者   : y00322978
-    修改内容   : 新增
+     : NAS_NVIM_LTE_OOS_DELAY_ACTIVATE_1X_TIMER_INFO_STRU
+   : lteVoLTE1x
+       :
+  1.       : 2015-12-21
+           : y00322978
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucLteOos1xActDelayTimerLen;   /* VOLTE,lte oos后到1x激活间的延迟定时器,单位(s) */
+    VOS_UINT8                           ucLteOos1xActDelayTimerLen;   /* VOLTE,lte oos1x,(s) */
 
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
@@ -5211,59 +5211,59 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CL_VOLTE_CFG_INFO_STRU
- 结构说明  : CL模式下IMS能力配置
- 修改历史      :
-  1.日    期   : 2016-10-13
-    作    者   : g00261581
-    修改内容   : 新增
+     : NAS_NVIM_CL_VOLTE_CFG_INFO_STRU
+   : CLIMS
+       :
+  1.       : 2016-10-13
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucClImsSupportFlag;             /* CL模式下，IMS能力支持开关 */
+    VOS_UINT8                           ucClImsSupportFlag;             /* CLIMS */
 
     VOS_UINT8                           ucClEnhanceVolteFlag;           /* cdma normal volte flag, effective only when ucClImsSupportFlag is true
-                                                                                  0: normal volte , 电信volte与srlte切换通过ap下发LTEIMSSWITHC来控制;
-                                                                                  1: enhance volte,  电信volte与srlte自动切换  */
+                                                                                  0: normal volte , voltesrlteapLTEIMSSWITHC;
+                                                                                  1: enhance volte,  voltesrlte  */
 
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
-    VOS_UINT32                          ulDisableLteTimerLen;           /* 惩罚定时器时长 单位:秒 */
-    VOS_UINT8                           ucPingPongCtrlTimerLen;           /* 乒乓切换限定时长 单位:分钟 */
-    VOS_UINT8                           ucMaxPingPongNum;                 /* 限定时间内的最大切换次数 */
+    VOS_UINT32                          ulDisableLteTimerLen;           /*  : */
+    VOS_UINT8                           ucPingPongCtrlTimerLen;           /*  : */
+    VOS_UINT8                           ucMaxPingPongNum;                 /*  */
     VOS_UINT8                           ucReserve3;
     VOS_UINT8                           ucReserve4;
 } NAS_NVIM_CL_VOLTE_CFG_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
- 结构说明  : 扫描次数与间隔相关列表信息
- 1.日    期   : 2016年01月12日
-   作    者   : z00316370
-   修改内容   : 新建
+     : CNAS_NVIM_1X_SEARCH_INTERVAL_LIST_STRU
+   : 
+ 1.       : 20160112
+          : z00316370
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucMru0SearchTimerLen;
     VOS_UINT8                           ucPhaseNum;
-    VOS_UINT8                           ucHrpdMru0TimerMaxExpiredTimes; /* 低功耗模式下，HRPD MRU0搜网定时器超时次数，达到此数值后才发起搜网 */
+    VOS_UINT8                           ucHrpdMru0TimerMaxExpiredTimes; /* HRPD MRU0 */
     VOS_UINT8                           ucReserved;
     CNAS_NVIM_OOC_TIMER_INFO_STRU       astOocTimerInfo[CNAS_NVIM_MAX_HRPD_OOC_SCHEDULE_PHASE_NUM];
 }CNAS_NVIM_HRPD_OOC_TIMER_SCHEDULE_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CL_SYSTEM_ACQUIRE_DSDS_STRATEGY_CFG_STRU
- 结构说明  : 多模下系统捕获DSDS策略控制
- 修改历史      :
-  1.日    期   : 2016-2-2
-    作    者   : w00176964
-    修改内容   : DTS2016013006596新增
+     : NAS_NVIM_CL_SYSTEM_ACQUIRE_DSDS_STRATEGY_CFG_STRU
+   : DSDS
+       :
+  1.       : 2016-2-2
+           : w00176964
+       : DTS2016013006596
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucReAcqLteWithNoRfEnable;           /* lte no rf时重新捕获lte是否使能 */
-    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM_UINT8      enReAcqLteWithNoRfScene;            /* lte no rf时重新捕获lte的搜索场景 */
-    VOS_UINT8                                               ucReAcqLteWithNoRfDelayTime;        /* lte no rf时重新捕获lte的延迟时间-单位秒 */
+    VOS_UINT8                                               ucReAcqLteWithNoRfEnable;           /* lte no rflte */
+    NAS_NVIM_CL_SYS_ACQ_DSDS_STRATEGY_SCENE_ENUM_UINT8      enReAcqLteWithNoRfScene;            /* lte no rflte */
+    VOS_UINT8                                               ucReAcqLteWithNoRfDelayTime;        /* lte no rflte- */
     VOS_UINT8                                               ucRsv1;
     VOS_UINT16                                              usRsv1;
     VOS_UINT16                                              usRsv2;
@@ -5279,57 +5279,57 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CTRL_STRU
- 结构说明  : 1X OOS系统捕获策略总控结构
- 1.日    期   : 2015年12月22日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CTRL_STRU
+   : 1X OOS
+ 1.       : 20151222
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucPhaseNum;                 /* 总阶段个数 */
-    NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8                    enChanRepeatScanStrategy;   /* 频点重复搜索策略 */
+    VOS_UINT8                                               ucPhaseNum;                 /*  */
+    NAS_NVIM_CHAN_REPEAT_SCAN_ENUM_UINT8                    enChanRepeatScanStrategy;   /*  */
     VOS_UINT16                                              usReserved;
-    VOS_UINT8                                               uc1xOocDoTchPhase1TimerLen; /* Do TCH，前4次尝试 Ooc Timer 最短时长,单位秒 */
-    VOS_UINT8                                               uc1xOocDoTchPhase2TimerLen; /* Do TCH，4次以上尝试 Ooc Timer 最短时长,单位秒 */
+    VOS_UINT8                                               uc1xOocDoTchPhase1TimerLen; /* Do TCH4 Ooc Timer , */
+    VOS_UINT8                                               uc1xOocDoTchPhase2TimerLen; /* Do TCH4 Ooc Timer , */
     VOS_UINT16                                              usRsv1;
-    VOS_UINT8                                               uc1xMru0TimerMaxExpiredTimes;   /* 低功耗模式下，MRU0定时器超时最大次数，达到此数值后发起MRU0搜网 */
+    VOS_UINT8                                               uc1xMru0TimerMaxExpiredTimes;   /* MRU0MRU0 */
     VOS_UINT8                                               ucRsv2;
     VOS_UINT8                                               ucRsv3;
     VOS_UINT8                                               ucRsv4;
 }CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_PATTERN_STRU
- 结构说明  : 1X OOS系统捕获策略阶段信息
- 1.日    期   : 2015年12月22日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_PATTERN_STRU
+   : 1X OOS
+ 1.       : 20151222
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usTotalTimeLen;         /* 1x一个阶段搜索总时长,单位为秒 */
-    VOS_UINT16                          usSleepTimeLen;         /* 1x搜索一轮间隔时长,单位为秒 */
-    VOS_UINT8                           ucSrchNum;              /* 1x一个阶段搜索几轮 */
+    VOS_UINT16                          usTotalTimeLen;         /* 1x, */
+    VOS_UINT16                          usSleepTimeLen;         /* 1x, */
+    VOS_UINT8                           ucSrchNum;              /* 1x */
     VOS_UINT8                           ucRsv1;
     VOS_UINT8                           ucRsv2;
     VOS_UINT8                           ucRsv3;
-    VOS_UINT16                          usMru0SearchTimerLen;       /* 搜索MRU0时available定时器的时长,每个阶段的时长,单位为秒 */
+    VOS_UINT16                          usMru0SearchTimerLen;       /* MRU0available,, */
 
-    VOS_UINT16                          usModem0MinSleepTimerLen;     /* 1x在主卡上，当前阶段最短SleepTimeLen,如果usSleepTimeLen小于该值，取ucMinSleepTimerLen,用于对不同产品的定制需求 */
+    VOS_UINT16                          usModem0MinSleepTimerLen;     /* 1xSleepTimeLen,usSleepTimeLenucMinSleepTimerLen, */
 
-    VOS_UINT8                           ucModem1MinSleepTimerLen; /* 1x在副卡上，当前阶段最短SleepTimeLen,如果usSleepTimeLen小于该值，取ucMinSleepTimerLen,用于对不同产品的定制需求 */
-    VOS_UINT8                           ucModem2MinSleepTimerLen;  /* 1x在天际通上，当前阶段最短SleepTimeLen,如果usSleepTimeLen小于该值，取ucMinSleepTimerLen,用于对不同产品的定制需求 */
+    VOS_UINT8                           ucModem1MinSleepTimerLen; /* 1xSleepTimeLen,usSleepTimeLenucMinSleepTimerLen, */
+    VOS_UINT8                           ucModem2MinSleepTimerLen;  /* 1xSleepTimeLen,usSleepTimeLenucMinSleepTimerLen, */
     VOS_UINT8                           ucRsv6;
     VOS_UINT8                           ucRsv7;
 }CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_PATTERN_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CFG_STRU
- 结构说明  : 1X在OOS场景下系统捕获策略配置NV
- 1.日    期   : 2015年12月22日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CFG_STRU
+   : 1XOOSNV
+ 1.       : 20151222
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -5338,11 +5338,11 @@ typedef struct
 }CNAS_NVIM_1X_OOS_SYS_ACQ_STRATEGY_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CDMA_ERR_LOG_ACTIVE_REPORT_CONTRL_STRU
- 结构说明  :  NV项结构
- 1.日    期   : 2016年2月24日
-   作    者   : j00354216
-   修改内容   : CDMA Iteration 20新建
+     : NAS_NVIM_CDMA_ERR_LOG_ACTIVE_REPORT_CONTRL_STRU
+   :  NV
+ 1.       : 2016224
+          : j00354216
+      : CDMA Iteration 20
 *****************************************************************************/
 typedef struct
 {
@@ -5374,25 +5374,25 @@ typedef struct
 }NAS_NVIM_CDMA_ERR_LOG_ACTIVE_REPORT_CONTRL_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_HOME_MCC_INFO_STRU
- 结构说明  : 保存国内MCC的值
+     : CNAS_NVIM_HOME_MCC_INFO_STRU
+   : MCC
 
- 修改历史      :
-  1.日    期   : 2016-2-26
-    作    者   : g00256031
-    修改内容   : Create
+       :
+  1.       : 2016-2-26
+           : g00256031
+       : Create
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulMccNum;                               /* 保存国内MCC的个数 */
-    VOS_UINT32                          aulMcc[CNAS_NVIM_HOME_MCC_MAX_NUM];     /* 保存国内MCC的值 */
+    VOS_UINT32                          ulMccNum;                               /* MCC */
+    VOS_UINT32                          aulMcc[CNAS_NVIM_HOME_MCC_MAX_NUM];     /* MCC */
 } CNAS_NVIM_HOME_MCC_INFO_STRU;
 /*****************************************************************************
- 结构名    : CNAS_NVIM_MRU0_SWITCH_ON_OOC_STRATEGY_CFG_STRU
- 结构说明  : MRU0在开机和OOC场景下的插入策略配置NV
- 1.日    期   : 2015年12月22日
-   作    者   : w00176964
-   修改内容   : 新建
+     : CNAS_NVIM_MRU0_SWITCH_ON_OOC_STRATEGY_CFG_STRU
+   : MRU0OOCNV
+ 1.       : 20151222
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -5402,48 +5402,48 @@ typedef struct
 }CNAS_NVIM_MRU0_SWITCH_ON_OOC_STRATEGY_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_SYS_ACQ_BSR_TIMER_INFO_STRU
- 结构说明  : SYS ACQ BSR定时器信息接口
- 1.日    期   : 2016年3月8日
-   作    者   : w00242748
-   修改内容   : 新建
+     : NAS_NVIM_SYS_ACQ_BSR_TIMER_INFO_STRU
+   : SYS ACQ BSR
+ 1.       : 201638
+          : w00242748
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucMaxHistorySrchTimes;
     VOS_UINT8                           ucMaxPrefBandSrchTimes;
-    VOS_UINT8                           ucBsrTimerMaxExpiredTimes; /* 低功耗模式下，BSR定时器超时次数，达到此数值后发起搜网 */
+    VOS_UINT8                           ucBsrTimerMaxExpiredTimes; /* BSR */
     VOS_UINT8                           ucReserve1;
-    VOS_UINT16                          usBsrTimerLenWithNoMatchedMsplRec;  /* MSPL表中没有匹配的记录，BSR时长 */
-    VOS_UINT16                          usBsrTimerLen;                      /* MSPL表中有匹配的记录，BSR时长 */
+    VOS_UINT16                          usBsrTimerLenWithNoMatchedMsplRec;  /* MSPLBSR */
+    VOS_UINT16                          usBsrTimerLen;                      /* MSPLBSR */
 }NAS_NVIM_SYS_ACQ_BSR_TIMER_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_SYS_ACQ_BSR_CTRL_STRU
- 结构说明  : SYS ACQ BSR定时器控制结构
- 1.日    期   : 2016年3月8日
-   作    者   : w00242748
-   修改内容   : 新建
+     : NAS_NVIM_SYS_ACQ_BSR_CTRL_STRU
+   : SYS ACQ BSR
+ 1.       : 201638
+          : w00242748
+      : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucBsrTimerActivateFlag;
     VOS_UINT8                                               ucBsrPhaseNum;
-    VOS_UINT8                                               ucHrpdConnBsrActiveFlg; /* HRPD下存在连接时BSR是否打开标记。VOS_TRUE:打开;VOS_FALSE:关闭 */
-    VOS_UINT8                                               ucEhrpdConnBsrActiveFlg;/* EHRPD下存在连接时BSR是否打开标记。VOS_TRUE:打开;VOS_FALSE:关闭 */
+    VOS_UINT8                                               ucHrpdConnBsrActiveFlg; /* HRPDBSRVOS_TRUE:;VOS_FALSE: */
+    VOS_UINT8                                               ucEhrpdConnBsrActiveFlg;/* EHRPDBSRVOS_TRUE:;VOS_FALSE: */
     NAS_NVIM_SYS_ACQ_BSR_TIMER_INFO_STRU                    astBsrTimerInfo[NAS_NVIM_MAX_BSR_PHASE_NUM];
 }NAS_NVIM_SYS_ACQ_BSR_CTRL_STRU;
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_CUSTOM_SUPPLEMENT_OPLMN_INFO_STRU
- 结构说明  : 定制的补充OPLMN信息结构体--en_NV_Item_Custom_Supplement_Oplmn_Info
- 1.日    期   : 2016年4月13日
-   作    者   : w00176964
-   修改内容   : 新建
+     : NAS_MMC_NVIM_CUSTOM_SUPPLEMENT_OPLMN_INFO_STRU
+   : OPLMN--en_NV_Item_Custom_Supplement_Oplmn_Info
+ 1.       : 2016413
+          : w00176964
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucImsiPlmnListNum;              /* 定制的IMSI列表个数 */
-    VOS_UINT8                           ucOPlmnListNum;                 /* 用户配置的Oplmn的个数 */
+    VOS_UINT8                           ucImsiPlmnListNum;              /* IMSI */
+    VOS_UINT8                           ucOPlmnListNum;                 /* Oplmn */
     VOS_UINT8                           ucRsv1;
     VOS_UINT8                           ucRsv2;
     NAS_SIM_FORMAT_PLMN_ID              astImsiPlmnList[NAS_MMC_NVIM_MAX_USER_CFG_IMSI_PLMN_NUM];
@@ -5451,11 +5451,11 @@ typedef struct
 }NAS_MMC_NVIM_CUSTOM_SUPPLEMENT_OPLMN_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : AI_MODEM_NAS_PLMN_SRCH_CFG_STRU
- 结构说明  : AI_MODEM_NAS_PLMN_SRCH_CFG_STRU结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_NAS_PLMN_SRCH_CFG_STRU
+   : AI_MODEM_NAS_PLMN_SRCH_CFG_STRU
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5470,51 +5470,51 @@ typedef struct
 }AI_MODEM_NAS_PLMN_SRCH_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : AI_MODEM_LTE_MEASURE_CFG_STRU
- 结构说明  : AI_MODEM_LTE_MEASURE_CFG_STRU结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_LTE_MEASURE_CFG_STRU
+   : AI_MODEM_LTE_MEASURE_CFG_STRU
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_INT16                           sThresholdRsrq;                         /* 服务小区的RSRQ门限，AI MODE测量优化时服务小区RSRQ需高于该门限。取值范围：[-15, -1],单位1dB */
-    VOS_INT16                           sThresholdRsrp;                         /* 服务小区的RSRP门限，AI MODE测量优化时服务小区RSRP需高于该门限。取值范围：[-115 , -1],单位1dB */
+    VOS_INT16                           sThresholdRsrq;                         /* RSRQAI MODERSRQ[-15, -1],1dB */
+    VOS_INT16                           sThresholdRsrp;                         /* RSRPAI MODERSRP[-115 , -1],1dB */
     VOS_UINT16                          usStillTimeThres;
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }AI_MODEM_LTE_MEASURE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : AI_MODEM_GSM_MEASURE_CFG_STRU
- 结构说明  : AI_MODEM_GSM_MEASURE_CFG_STRU结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_GSM_MEASURE_CFG_STRU
+   : AI_MODEM_GSM_MEASURE_CFG_STRU
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_INT16                           sThresholdRssi;                         /* GSM的RSSI的范围[-115，0] */
-    VOS_UINT16                          usMeasOptimizeTimerLen;                 /* GSM周期性降功耗检查定时器时长，单位:s */
+    VOS_INT16                           sThresholdRssi;                         /* GSMRSSI[-1150] */
+    VOS_UINT16                          usMeasOptimizeTimerLen;                 /* GSM:s */
     VOS_UINT16                          usStillTimeThres;
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
 }AI_MODEM_GSM_MEASURE_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : AI_MODEM_WCDMA_MEASURE_CFG_STRU
- 结构说明  : AI_MODEM_WCDMA_MEASURE_CFG_STRU结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_WCDMA_MEASURE_CFG_STRU
+   : AI_MODEM_WCDMA_MEASURE_CFG_STRU
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_INT16                           sThresholdRscp;                         /* WCDMA的RSCP的范围[-120，0] */
-    VOS_INT16                           sThresholdEcn0;                         /* WCDMA的ECN0范围[-24,0] */
+    VOS_INT16                           sThresholdRscp;                         /* WCDMARSCP[-1200] */
+    VOS_INT16                           sThresholdEcn0;                         /* WCDMAECN0[-24,0] */
     VOS_UINT16                          usStillTimeThres;
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
@@ -5522,11 +5522,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : AI_MODEM_TIME_CFG_STRU
- 结构说明  : AI_MODEM_TIME_CFG_STRU结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_TIME_CFG_STRU
+   : AI_MODEM_TIME_CFG_STRU
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 
 typedef struct
@@ -5539,18 +5539,18 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : AI_MODEM_CFG_NVIM_STRU
- 结构说明  : en_NV_Item_AI_MODEM_CFG_INFO结构
-  1.日    期   : 2016年04月13日
-    作    者   : w00167002
-    修改内容   : 新建
+     : AI_MODEM_CFG_NVIM_STRU
+   : en_NV_Item_AI_MODEM_CFG_INFO
+  1.       : 20160413
+           : w00167002
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_UINT8                           ucActFlg;                               /*是否激活，0不激活，1激活 */
-    VOS_UINT8                           ucApplyArea;                            /*适用区域,默认0表示国内区域 */
-    VOS_UINT8                           ucSensorIccFlg;                         /*SensorHub状态通过icc通道更新标志,0不使用ICC，1使用ICC*/
+    VOS_UINT8                           ucActFlg;                               /*01 */
+    VOS_UINT8                           ucApplyArea;                            /*,0 */
+    VOS_UINT8                           ucSensorIccFlg;                         /*SensorHubicc,0ICC1ICC*/
     VOS_UINT8                           ucReserve2;
 
     AI_MODEM_TIME_CFG_STRU              stTimeCfg;
@@ -5579,45 +5579,45 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : OPEN_ICC_CFG_STRU
- 结构说明  : en_NV_Item_Open_Icc_Cfg结构
-  1.日    期   : 2016年07月20日
-    作    者   : g00322017
-    修改内容   : 新建
+     : OPEN_ICC_CFG_STRU
+   : en_NV_Item_Open_Icc_Cfg
+  1.       : 20160720
+           : g00322017
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_UINT8                           ucSensorIccFlg;            /* ICC通道是否激活，0不激活，1激活 */
-    VOS_UINT8                           ucReserve1;          /* 保留位 */
-    VOS_UINT8                           ucReserve2;          /* 保留位 */
-    VOS_UINT8                           ucReserve3;          /* 保留位 */
+    VOS_UINT8                           ucSensorIccFlg;            /* ICC01 */
+    VOS_UINT8                           ucReserve1;          /*  */
+    VOS_UINT8                           ucReserve2;          /*  */
+    VOS_UINT8                           ucReserve3;          /*  */
 
 }OPEN_ICC_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : SAR_SENSOR_HUB_CFG_STRU
- 结构说明  : en_NV_Item_SAR_SENSOR_HUB_CFG_INFO结构
-  1.日    期   : 2016年07月20日
-    作    者   : g00322017
-    修改内容   : 新建
+     : SAR_SENSOR_HUB_CFG_STRU
+   : en_NV_Item_SAR_SENSOR_HUB_CFG_INFO
+  1.       : 20160720
+           : g00322017
+       : 
 *****************************************************************************/
 
 typedef struct
 {
-    VOS_UINT8                           ucSarSensorFlg;            /* sar sensor hub是否激活，0不激活，1激活 */
-    VOS_UINT8                           ucReserve1;          /* 保留位 */
-    VOS_UINT8                           ucReserve2;          /* 保留位 */
-    VOS_UINT8                           ucReserve3;          /* 保留位 */
+    VOS_UINT8                           ucSarSensorFlg;            /* sar sensor hub01 */
+    VOS_UINT8                           ucReserve1;          /*  */
+    VOS_UINT8                           ucReserve2;          /*  */
+    VOS_UINT8                           ucReserve3;          /*  */
 
 }SAR_SENSOR_HUB_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_CDMA_HRPD_CUSTOMIZE_PREF_CHANNELS_STRU
- 结构说明  : 中国电信HRPD定制频点结构
-  1.日    期   : 2016年04月21日
-    作    者   : z00316370
-    修改内容   : 新建
+     : CNAS_NVIM_CDMA_HRPD_CUSTOMIZE_PREF_CHANNELS_STRU
+   : HRPD
+  1.       : 20160421
+           : z00316370
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5628,18 +5628,18 @@ typedef struct
 } CNAS_NVIM_CDMA_HRPD_CUSTOMIZE_PREF_CHANNELS_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_READ_USIM_FILE_TIMER_CTRL_STRU
- 结构说明  : USIM文件回复定时器时长，单位秒
+     : NAS_NVIM_READ_USIM_FILE_TIMER_CTRL_STRU
+   : USIM
 
- 1.日    期   : 2016年09月02日
-   作    者   : p00371183
-   修改内容   : 新建
+ 1.       : 20160902
+          : p00371183
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                                              usImsiFileTimerLen;        /* IMSI读取回复定时器时长 ，单位秒 */
-    VOS_UINT16                                              usIccidFileTimerLen;       /* ICCID读取回复定时器时长，单位秒 */
-    VOS_UINT16                                              usServiceFileTimerLen;     /* 服务文件读取回复定时器时长，单位秒 */
+    VOS_UINT16                                              usImsiFileTimerLen;        /* IMSI  */
+    VOS_UINT16                                              usIccidFileTimerLen;       /* ICCID */
+    VOS_UINT16                                              usServiceFileTimerLen;     /*  */
     VOS_UINT16                                              usReserved1;
     VOS_UINT16                                              usReserved2;
     VOS_UINT16                                              usReserved3;
@@ -5651,11 +5651,11 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_RETRY_TIMER_INFO_STRU
- 结构说明  : RETRY TIMER INFO 结构
-  1.日    期   : 2016年05月04日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_RETRY_TIMER_INFO_STRU
+   : RETRY TIMER INFO 
+  1.       : 20160504
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5672,11 +5672,11 @@ typedef struct
 }NAS_NVIM_MODE_SELECTION_RETRY_TIMER_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_RETRY_TIMER_CTRL_STRU
- 结构说明  : RETRY TIMER控制结构
-  1.日    期   : 2016年05月04日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_RETRY_TIMER_CTRL_STRU
+   : RETRY TIMER
+  1.       : 20160504
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5686,45 +5686,45 @@ typedef struct
 }NAS_NVIM_MODE_SELECTION_RETRY_TIMER_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_NO_CARD_SYS_ACQ_CFG_STRU
- 结构说明  : 无卡系统捕获相关的配置项
-  1.日    期   : 2016年05月04日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_NO_CARD_SYS_ACQ_CFG_STRU
+   : 
+  1.       : 20160504
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucNoCardPowerSaveFlg;         /* 无卡情况下是否PowerSave所有模式 */
-    VOS_UINT8                                               ucClAcqLteFlg;                /* CL模式下无卡情况下是否搜LTE */
+    VOS_UINT8                                               ucNoCardPowerSaveFlg;         /* PowerSave */
+    VOS_UINT8                                               ucClAcqLteFlg;                /* CLLTE */
     VOS_UINT8                                               ucReserve1;
     VOS_UINT8                                               ucReserve2;
 }NAS_NVIM_NO_CARD_SYS_ACQ_CFG_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_CFG_STRU
- 结构说明  : 模式选择相关的配置项
-  1.日    期   : 2016年05月04日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_CFG_STRU
+   : 
+  1.       : 20160504
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucActiveFlg;
 
-    /* 先搜的控制，默认允许VOS_TRUE */
+    /* VOS_TRUE */
     VOS_UINT8                                               ucIsAllowFirstSrch;
 
-    /* 后搜的控制，默认不允许VOS_FALSE */
+    /* VOS_FALSE */
     VOS_UINT8                                               ucIsAllowLastSrch;
 
-    /* CL模式只有边界国外，是否切GUL的控制，默认切GUL，VOS_TRUE*/
+    /* CLGULGULVOS_TRUE*/
     VOS_UINT8                                               ucIsOnlyBoundarySwitchMode;
 
-    /* Retry timer len从en_NV_Item_MODE_SELECTION_RETRY_SYS_ACQ_STRATEGY中的sleep timer中取 */
+    /* Retry timer lenen_NV_Item_MODE_SELECTION_RETRY_SYS_ACQ_STRATEGYsleep timer */
     NAS_NVIM_MODE_SELECTION_RETRY_TIMER_CTRL_STRU           stRsv;
 
-    /* 模式切换后，是否需要立即通知卡切IMSI */
+    /* IMSI */
     VOS_UINT8                                               ucIsNeedFastSwitchImsi;
     VOS_UINT8                                               ucRsv2;
     VOS_UINT8                                               ucRsv3;
@@ -5733,24 +5733,24 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_PUNISH_TIMER_INFO_STRU
- 结构说明  : PUNISH TIMER INFO 结构
-  1.日    期   : 2016年06月30日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_PUNISH_TIMER_INFO_STRU
+   : PUNISH TIMER INFO 
+  1.       : 20160630
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulCount;            /* 乒乓次数 */
-    VOS_UINT32                          ulTimerLen;         /* 上述乒乓次数范围内的惩罚时间 */
+    VOS_UINT32                          ulCount;            /*  */
+    VOS_UINT32                          ulTimerLen;         /*  */
 }NAS_NVIM_MODE_SELECTION_PUNISH_TIMER_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_PUNISH_CTRL_INFO_STRU
- 结构说明  : 模式选择惩罚控制信息
-  1.日    期   : 2016年06月30日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_PUNISH_CTRL_INFO_STRU
+   : 
+  1.       : 20160630
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5762,20 +5762,20 @@ typedef struct
 }NAS_NVIM_MODE_SELECTION_PUNISH_CTRL_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_PHASE_STRU
- 结构说明  : RETRY TIMER超时进模式选择状态机后的搜网策略中每个阶段的结构
-  1.日    期   : 2016年06月28日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_PHASE_STRU
+   : RETRY TIMER
+  1.       : 20160628
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usSleepTimerLen;
     VOS_UINT16                          usRsved1;
-    VOS_UINT8                           ucHistoryNum;                           /* 第几次的历史搜 会变成 PrefBand/FullBand搜 */
-    VOS_UINT8                           ucPrefBandNum;                          /* 第几次的PrefBand搜 会变成 FullBand搜 */
-    VOS_UINT8                           ucFullBandNum;                          /* 第几次FullBand搜後, 此阶段结束, 进入下一阶段 */
-    VOS_UINT8                           ucRsved1;                               /* 预留 */
+    VOS_UINT8                           ucHistoryNum;                           /*   PrefBand/FullBand */
+    VOS_UINT8                           ucPrefBandNum;                          /* PrefBand  FullBand */
+    VOS_UINT8                           ucFullBandNum;                          /* FullBand, ,  */
+    VOS_UINT8                           ucRsved1;                               /*  */
     VOS_UINT8                           ucRsved2;
     VOS_UINT8                           ucRsved3;
     VOS_UINT8                           ucRsved4;
@@ -5783,11 +5783,11 @@ typedef struct
 }NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_PHASE_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_STRATEGY_STRU
- 结构说明  : 模式选择RETRY定时器超时的搜网策略
-  1.日    期   : 2016年06月30日
-    作    者   : L00301449
-    修改内容   : 新建
+     : NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_STRATEGY_STRU
+   : RETRY
+  1.       : 20160630
+           : L00301449
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5799,28 +5799,28 @@ typedef struct
 }NAS_NVIM_MODE_SELECTION_RETRY_SYS_ACQ_STRATEGY_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CL_SYS_ACQ_TYPE_CTRL_CFG_STRU
- 结构说明  : CL系统捕获类型控制配置
-  1.日    期   : 2016年09月12日
-    作    者   : m00312079
-    修改内容   : 新建
+     : NAS_NVIM_CL_SYS_ACQ_TYPE_CTRL_CFG_STRU
+   : CL
+  1.       : 20160912
+           : m00312079
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucHistoryCfgSwitch;                                               /* History搜类型总控开关。0:History搜网类型不可配置。  1:History搜网类型可配置*/
-    VOS_UINT8                           ucPrefBandCfgSwitch;                                              /* PrefBand搜类型总控开关。0:PrefBand搜网类型不可配置。1:PrefBand搜网类型可配置*/
+    VOS_UINT8                           ucHistoryCfgSwitch;                                               /* History0:History  1:History*/
+    VOS_UINT8                           ucPrefBandCfgSwitch;                                              /* PrefBand0:PrefBand1:PrefBand*/
     VOS_UINT8                           ucRsv1;                                                           /* RFU */
     VOS_UINT8                           ucRsv2;                                                           /* RFU */
-    VOS_UINT8                           aucHistoryActiveFlg[NAS_NVIM_CUSTOMIZE_MAX_CL_ACQ_SCENE_NUM];      /* ucHistoryCfgSwitch为0时该数组无意义。
-                                                                                                                        数组下表代表激活History搜类型的搜网场景，每个数组元素:
-                                                                                                                        0表示该场景不激活History搜类型;
-                                                                                                                        1表示该场景激活History搜类型。
-                                                                                                                        数组下表对应的具体搜网场景见结构体NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM_UINT32 */
-    VOS_UINT8                           aucPrefBandActiveFlg[NAS_NVIM_CUSTOMIZE_MAX_CL_ACQ_SCENE_NUM];    /* ucPrefBandCfgSwitch为0时该数组无意义。
-                                                                                                                          数组下表代表激活PrefBand搜类型的搜网场景，每个数组元素:
-                                                                                                                          0表示该场景不激活PrefBand搜类型;
-                                                                                                                          1表示该场景激活PrefBand搜类型。
-                                                                                                                          数组下表对应的具体搜网场景见结构体NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM_UINT32 */
+    VOS_UINT8                           aucHistoryActiveFlg[NAS_NVIM_CUSTOMIZE_MAX_CL_ACQ_SCENE_NUM];      /* ucHistoryCfgSwitch0
+                                                                                                                        History:
+                                                                                                                        0History;
+                                                                                                                        1History
+                                                                                                                        NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM_UINT32 */
+    VOS_UINT8                           aucPrefBandActiveFlg[NAS_NVIM_CUSTOMIZE_MAX_CL_ACQ_SCENE_NUM];    /* ucPrefBandCfgSwitch0
+                                                                                                                          PrefBand:
+                                                                                                                          0PrefBand;
+                                                                                                                          1PrefBand
+                                                                                                                          NAS_MSCC_NVIM_SYS_ACQ_SCENE_ENUM_UINT32 */
     VOS_UINT8                           ucRsv3;                                                           /* RFU */
     VOS_UINT8                           ucRsv4;                                                           /* RFU */
     VOS_UINT8                           ucRsv5;                                                           /* RFU */
@@ -5828,56 +5828,56 @@ typedef struct
 }NAS_NVIM_CL_SYS_ACQ_TYPE_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MMC_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU
- 结构说明  : MMC OOC下模式切换搜索控制配置信息
-  1.日    期   : 2016年05月09日
-    作    者   : y00245242
-    修改内容   : 新建
+     : NAS_MMC_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU
+   : MMC OOC
+  1.       : 20160509
+           : y00245242
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                                              usOosModeSwitchSrchTimerLen;     /* MMC OOS模式切换搜索时长 */
-    VOS_UINT16                                              usPowerOnModeSwitchSrchTimerLen; /* MMC 开机场景下，模式切换搜索时长 */
-    VOS_UINT8                                               ucOosModeSwitchSrchTimes;        /* MMC OOS下，模式切换搜索次数 */
-    VOS_UINT8                                               ucPowerOnModeSwitchSrchTimes;    /* MMC 开机场景下，模式切换搜索次数 */
+    VOS_UINT16                                              usOosModeSwitchSrchTimerLen;     /* MMC OOS */
+    VOS_UINT16                                              usPowerOnModeSwitchSrchTimerLen; /* MMC  */
+    VOS_UINT8                                               ucOosModeSwitchSrchTimes;        /* MMC OOS */
+    VOS_UINT8                                               ucPowerOnModeSwitchSrchTimes;    /* MMC  */
     VOS_UINT8                                               aucReserved[2];
 }NAS_MMC_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_XSD_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU
- 结构说明  : XSD OOC下模式切换搜索控制配置信息
-  1.日    期   : 2016年05月09日
-    作    者   : y00245242
-    修改内容   : 新建
+     : CNAS_XSD_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU
+   : XSD OOC
+  1.       : 20160509
+           : y00245242
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                                              usOosModeSwitchSrchTimerLen;     /* MMC OOS模式切换搜索时长 */
-    VOS_UINT16                                              usPowerOnModeSwitchSrchTimerLen; /* MMC 开机场景下，模式切换搜索时长 */
-    VOS_UINT8                                               ucOosModeSwitchSrchTimes;        /* MMC OOS下，模式切换搜索次数 */
-    VOS_UINT8                                               ucPowerOnModeSwitchSrchTimes;    /* MMC 开机场景下，模式切换搜索次数 */
+    VOS_UINT16                                              usOosModeSwitchSrchTimerLen;     /* MMC OOS */
+    VOS_UINT16                                              usPowerOnModeSwitchSrchTimerLen; /* MMC  */
+    VOS_UINT8                                               ucOosModeSwitchSrchTimes;        /* MMC OOS */
+    VOS_UINT8                                               ucPowerOnModeSwitchSrchTimes;    /* MMC  */
     VOS_UINT8                                               aucReserved[2];
 }CNAS_XSD_NVIM_OOS_MODE_SWITCH_SRCH_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : CNAS_NVIM_1X_REG_CFG_INFO_STRU
- 结构说明  : 1X注册配置信息
-  1.日    期   : 2016年07月30日
-    作    者   : g00256031
-    修改内容   : 新建
+     : CNAS_NVIM_1X_REG_CFG_INFO_STRU
+   : 1X
+  1.       : 20160730
+           : g00256031
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucIsPowerupRegAdv;              /* 是否将开机注册提前,VOS_TRUE为提前,VOS_FALSE为不提前 */
+    VOS_UINT8                                               ucIsPowerupRegAdv;              /* ,VOS_TRUE,VOS_FALSE */
     VOS_UINT8                                               aucRsv[3];
 }CNAS_NVIM_1X_REG_CFG_INFO_STRU;
 
 /*****************************************************************************
- 结构名    :  NAS_NVIM_SMS_FAIL_LINK_CTRL_CFG_STRU
- 结构说明  :  控制当长短信中的一条发送失败时，是否关闭短信的连发功能
-  1.日    期   : 2016年07月27日
-    作    者   : j00174725
-    修改内容   : 新建
+     :  NAS_NVIM_SMS_FAIL_LINK_CTRL_CFG_STRU
+   :  
+  1.       : 20160727
+           : j00174725
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5888,11 +5888,11 @@ typedef struct
 } NAS_NVIM_SMS_FAIL_LINK_CTRL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    :  NAS_NVIM_HIGH_SPEED_MODE_RPT_CFG_STRU
- 结构说明  :  控制高铁模式上报功能是否使能
-  1.日    期   : 2016年08月29日
-    作    者   : m00217266
-    修改内容   : 新建
+     :  NAS_NVIM_HIGH_SPEED_MODE_RPT_CFG_STRU
+   :  
+  1.       : 20160829
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5903,73 +5903,73 @@ typedef struct
 } NAS_NVIM_HIGH_SPEED_MODE_RPT_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_SID_AND_MCC_INFO_STRU
- 结构说明  : sid和mcc的信息
-  1.日    期   : 2016年10月13日
-    作    者   : l00359089
-    修改内容   : 新增
+     : NAS_NVIM_SID_AND_MCC_INFO_STRU
+   : sidmcc
+  1.       : 20161013
+           : l00359089
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                         usSidRangeStart;                                      /*SID 范围起始值 */
-    VOS_UINT16                         usSidRangeEnd;                                        /*SID 范围结束值 */
+    VOS_UINT16                         usSidRangeStart;                                      /*SID  */
+    VOS_UINT16                         usSidRangeEnd;                                        /*SID  */
     VOS_UINT32                         ulMcc;                                                /*mobile country code */
 }NAS_NVIM_SID_AND_MCC_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CHINA_BOUNDARY_SID_AND_MCC_INFO_STRU
- 结构说明  : 国际漫游下移中中国边界国家网络的SID MCC信息
-  1.日    期   : 2016年10月13日
-    作    者   : l00359089
-    修改内容   : 新建
+     : NAS_NVIM_CHINA_BOUNDARY_SID_AND_MCC_INFO_STRU
+   : SID MCC
+  1.       : 20161013
+           : l00359089
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulNum;                                                /* 中国边界国家网络数目 */
+    VOS_UINT32                          ulNum;                                                /*  */
     NAS_NVIM_SID_AND_MCC_INFO_STRU      astSidMccInfo[NAS_NVIM_CHINA_BOUNDARY_NETWORK_NUM_MAX];
 }NAS_NVIM_CHINA_BOUNDARY_SID_AND_MCC_INFO_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CHINA_BOUNDARY_SID_AND_MCC_INFO_STRU
- 结构说明  : 国际漫游下移中中国HOME网络的SID MCC信息
-  1.日    期   : 2016年10月13日
-    作    者   : l00359089
-    修改内容   : 新建
+     : NAS_NVIM_CHINA_BOUNDARY_SID_AND_MCC_INFO_STRU
+   : HOMESID MCC
+  1.       : 20161013
+           : l00359089
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                                               ucActiveFlg;
-    VOS_UINT8                                               ucHomeNetworkNum;               /* 中国home网络数目 */
+    VOS_UINT8                                               ucHomeNetworkNum;               /* home */
     VOS_UINT8                                               ucRsved1;
     VOS_UINT8                                               ucRsved2;
     NAS_NVIM_SID_AND_MCC_INFO_STRU                          astSidRangeMccInfo[NAS_NVIM_CHINA_HOME_NETWORK_NUM_MAX];
 }NAS_NVIM_CHINA_HOME_SID_AND_MCC_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_1X_MT_NVIM_REEST_CFG_STRU
- 结构说明  : X模被叫建链重试配置
-  1.日    期   : 2017年01月04日
-    作    者   : h00360002
-    修改内容   : 新建
+     : NAS_NVIM_1X_MT_NVIM_REEST_CFG_STRU
+   : X
+  1.       : 20170104
+           : h00360002
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                               ucReestEnableFlg;                                                               /* 是否支持被叫重建链 */
-    VOS_UINT8                                               ucProtectTimerLen;                                                              /* 重试保护定时器时长 */
-    VOS_UINT8                                               ucIntervalTimerLen;                                                             /* 重试间隔定时器时长 */
-    VOS_UINT8                                               ucMtEstCnfReestCauseNum;                                                        /* est_cnf可重试的原因值个数 */
-    VOS_UINT8                                               aucMtEstCnfReestCause[NAS_NVIM_1X_MT_EST_CNF_REEST_CAUSE_MAX_NUM];              /* est_cnf重试原因值 */
-    VOS_UINT8                                               ucMtTerminateIndReestCauseNum;                                                  /* terminate_ind可重试的原因值个数 */
-    VOS_UINT8                                               aucMtTerminateIndReestCause[NAS_NVIM_1X_MT_TERMINATE_IND_REEST_CAUSE_MAX_NUM];  /* terminate_ind重试原因值 */
+    VOS_UINT8                                               ucReestEnableFlg;                                                               /*  */
+    VOS_UINT8                                               ucProtectTimerLen;                                                              /*  */
+    VOS_UINT8                                               ucIntervalTimerLen;                                                             /*  */
+    VOS_UINT8                                               ucMtEstCnfReestCauseNum;                                                        /* est_cnf */
+    VOS_UINT8                                               aucMtEstCnfReestCause[NAS_NVIM_1X_MT_EST_CNF_REEST_CAUSE_MAX_NUM];              /* est_cnf */
+    VOS_UINT8                                               ucMtTerminateIndReestCauseNum;                                                  /* terminate_ind */
+    VOS_UINT8                                               aucMtTerminateIndReestCause[NAS_NVIM_1X_MT_TERMINATE_IND_REEST_CAUSE_MAX_NUM];  /* terminate_ind */
 }NAS_NVIM_1X_MT_NVIM_REEST_CFG_STRU;
 
 /*****************************************************************************
- 结构名    :  NAS_NVIM_POWER_ON_QUICK_DISPLAY_NORMAL_SERVICE_OPTIMIZE_INFO_STRU
- 结构说明  :  控制开机提前上报注册服务信息功能是否使能
-  1.日    期   : 2016年09月29日
-    作    者   : xwx377961
-    修改内容   : 新建
+     :  NAS_NVIM_POWER_ON_QUICK_DISPLAY_NORMAL_SERVICE_OPTIMIZE_INFO_STRU
+   :  
+  1.       : 20160929
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -5980,31 +5980,31 @@ typedef struct
 } NAS_NVIM_POWER_ON_QUICK_DISPLAY_NORMAL_SERVICE_OPTIMIZE_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_TMSI_OR_P_TMSI_REALLOC_PLMN_VALID_CFG_STRU
- 结构说明  : TMSI或P_TMSI重分配的PLMN为0是否无效的配置
+     : NAS_NVIM_TMSI_OR_P_TMSI_REALLOC_PLMN_VALID_CFG_STRU
+   : TMSIP_TMSIPLMN0
 
- 1.日    期   : 2016年01月03日
-   作    者   : b00368361
-   修改内容   : 新建
+ 1.       : 20160103
+          : b00368361
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucZeroPlmnInvalidFlag;                         /* TMSI或P_TMSI重分配的PLMN为0是否无效的标志 */
+    VOS_UINT8                           ucZeroPlmnInvalidFlag;                         /* TMSIP_TMSIPLMN0 */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
 }NAS_NVIM_TMSI_OR_P_TMSI_REALLOC_PLMN_VALID_CFG_STRU;
 
 /*****************************************************************************
- 结构名    :  NAS_NVIM_LOG_PRINT_CFG_STRU
- 结构说明  :  en_NV_Item_Nas_Log_Print_Max_Cnt_Cfg 配置NAS LOG PRINT相关信息
-  1.日    期   : 2016年12月09日
-    作    者   : wx270776
-    修改内容   : 新建
+     :  NAS_NVIM_LOG_PRINT_CFG_STRU
+   :  en_NV_Item_Nas_Log_Print_Max_Cnt_Cfg NAS LOG PRINT
+  1.       : 20161209
+           : wx270776
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucLogPrintMaxCnt;                       /* 最大LOG打印数量 */
+    VOS_UINT8                           ucLogPrintMaxCnt;                       /* LOG */
     VOS_UINT8                           ucReserve1;
     VOS_UINT8                           ucReserve2;
     VOS_UINT8                           ucReserve3;
@@ -6015,19 +6015,19 @@ typedef struct
 } NAS_NVIM_LOG_PRINT_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NVIM_GSM_A5_STRU
- 结构说明  : en_NV_Item_Gsm_A5 结构
- DESCRIOTION: 保存单板所支持的A5加密算法。目前支持A5/1、A5/2、A5/3、A5/4。
-              Bit位从右向左，依次为bit0、bit1...bit7。每个bit代表的含义如下:
-              bit0=0:A5/1不支持，bit0=1:A5/1支持；
-              bit1=0:A5/2不支持，bit1=1:A5/2支持；
-              bit2=0:A5/3不支持，bit2=1:A5/3支持；
-              bit3=0:A5/4不支持，bit3=1:A5/4支持；
-              其他bit位暂不使用
+     : NVIM_GSM_A5_STRU
+   : en_NV_Item_Gsm_A5 
+ DESCRIOTION: A5A5/1A5/2A5/3A5/4
+              Bitbit0bit1...bit7bit:
+              bit0=0:A5/1bit0=1:A5/1
+              bit1=0:A5/2bit1=1:A5/2
+              bit2=0:A5/3bit2=1:A5/3
+              bit3=0:A5/4bit3=1:A5/4
+              bit
 
- 1.日    期   : 2017年02月20日
-   作    者   : n00269697
-   修改内容   : 新建
+ 1.       : 20170220
+          : n00269697
+      : 
 *****************************************************************************/
 typedef struct
 {
@@ -6035,51 +6035,51 @@ typedef struct
     VOS_UINT8                           aucReserve[2];
 }NAS_NVIM_GSM_A5_STRU;
 /*****************************************************************************
- 结构名    : NAS_NVIM_OOS_CHR_POWER_SAVE_CFG_STRU
- 结构说明  : en_NV_Item_Oos_Chr_Cfg NV项结构
- 1. 日    期   : 2017年02月14日
-    作    者   : l00324781
-    修改内容   : 新建
+     : NAS_NVIM_OOS_CHR_POWER_SAVE_CFG_STRU
+   : en_NV_Item_Oos_Chr_Cfg NV
+ 1.        : 20170214
+           : l00324781
+       : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucPowerSaveEnableFlag;             /* 0:NV 未激活; 1:NV 激活 */
-    VOS_UINT8                           ucScreenOnEnableFlag;              /* 0:亮屏时直接上报;1:亮屏时也要功率控制 */
+    VOS_UINT8                           ucPowerSaveEnableFlag;             /* 0:NV ; 1:NV  */
+    VOS_UINT8                           ucScreenOnEnableFlag;              /* 0:;1: */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
-    VOS_UINT32                          ulGutlOosRptTimerInterval;         /* GUTL模式下，相隔多久，单位是秒 */
-    VOS_UINT32                          ulGutlOosCsUserSenseTimerInterval; /* 记录CS的掉网多长时间的算是长时间丢网，单位是秒 */
-    VOS_UINT32                          ulGutlOosPsUserSenseTimerInterval; /* 记录PS的掉网多长时间的算是长时间丢网，单位是秒 */
-    VOS_UINT32                          ul1xOosRptTimerInterval;           /* CL模式下，1x丢网上报时间间隔，单位:秒*/
-    VOS_UINT32                          ulDoLteOosRptTimerInterval;        /* CL模式下，DO_LTE丢网上报时间间隔，单位:秒*/
-    VOS_UINT32                          ul1xRegFailRptTimerInterval;       /* CL模式下，1x注册失败CHR上报时间间隔,单位:秒 */
-    VOS_UINT32                          ulReserved4;                       /* 保留位 */
+    VOS_UINT32                          ulGutlOosRptTimerInterval;         /* GUTL */
+    VOS_UINT32                          ulGutlOosCsUserSenseTimerInterval; /* CS */
+    VOS_UINT32                          ulGutlOosPsUserSenseTimerInterval; /* PS */
+    VOS_UINT32                          ul1xOosRptTimerInterval;           /* CL1x:*/
+    VOS_UINT32                          ulDoLteOosRptTimerInterval;        /* CLDO_LTE:*/
+    VOS_UINT32                          ul1xRegFailRptTimerInterval;       /* CL1xCHR,: */
+    VOS_UINT32                          ulReserved4;                       /*  */
 }NAS_NVIM_OOS_CHR_POWER_SAVE_CFG_STRU;
 
-/* Added by z00385378 for T310定制, 2017-1-9, begin */
+/* Added by z00385378 for T310, 2017-1-9, begin */
 /*****************************************************************************
- 结构名    :  NAS_CC_NVIM_T310_CFG_STRU
- 结构说明  :  控制T310定时器
-  1.日    期   : 2017年01月03日
-    作    者   : z00385378
-    修改内容   : 新建
+     :  NAS_CC_NVIM_T310_CFG_STRU
+   :  T310
+  1.       : 20170103
+           : z00385378
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                               ucNvActiveFlg;                             /* NV是否激活 */
-    VOS_UINT8                               ucT310CHREnableFlg;                        /* 控制310定时器CHR上报 */
+    VOS_UINT8                               ucNvActiveFlg;                             /* NV */
+    VOS_UINT8                               ucT310CHREnableFlg;                        /* 310CHR */
     VOS_UINT8                               ucT310Len;
     VOS_UINT8                               ucReserved1;
 } NAS_CC_NVIM_T310_CFG_STRU;
-/* Added by z00385378 for T310定制, 2017-1-9, end */
+/* Added by z00385378 for T310, 2017-1-9, end */
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_EMC_CATE_SUPPORT_ECALL_CFG_STRU
- 结构说明  : en_NV_Item_Emc_Cate_Support_ECALL_CFG NV项结构
- 1. 日    期   : 2017年02月18日
-    作    者   : j00174725
-    修改内容   : 新建
+     : NAS_NVIM_EMC_CATE_SUPPORT_ECALL_CFG_STRU
+   : en_NV_Item_Emc_Cate_Support_ECALL_CFG NV
+ 1.        : 20170218
+           : j00174725
+       : 
 
 *****************************************************************************/
 typedef struct
@@ -6091,66 +6091,66 @@ typedef struct
 }NAS_NVIM_EMC_CATE_SUPPORT_ECALL_CFG_STRU;
 
 /*****************************************************************************
- 结构名    :  NAS_NVIM_MO_COLLISION_STRU
- 结构说明  :  主被叫冲突优化控制NV
-  1.日    期   : 2017年02月24日
-    作    者   : z00385378
-    修改内容   : 新建
+     :  NAS_NVIM_MO_COLLISION_STRU
+   :  NV
+  1.       : 20170224
+           : z00385378
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                               ucNvActiveFlg;                             /* NV是否激活 */
-    VOS_UINT8                               ucProtectTimerLen;                         /* 保护定时器时长 */
+    VOS_UINT8                               ucNvActiveFlg;                             /* NV */
+    VOS_UINT8                               ucProtectTimerLen;                         /*  */
     VOS_UINT8                               ucReserved1;
     VOS_UINT8                               ucReserved2;
 } NAS_NVIM_MO_COLLISION_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_SRVCC_NO_CALL_NUM_T3240_CFG_STRU
- 结构说明  : SRVCC到G后，IMSA同步的呼叫信息时空的，是否不主动释放连接，并修改T3240定时器时长
-  1.日    期   : 2017年03月28日
-    作    者   : n00269697
-    修改内容   : 新建结构体
+     : NAS_NVIM_SRVCC_NO_CALL_NUM_T3240_CFG_STRU
+   : SRVCCGIMSAT3240
+  1.       : 20170328
+           : n00269697
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSrvccNoCallNumT3240Flag;              /* 0，默认值，按照原来逻辑，立即释放链接，不修改T3240定时器时长
-                                                                                   1，不立即释放链接，修改T3240定时器时长为ulSrvccNoCallNumT3240Len ms */
+    VOS_UINT8                           ucSrvccNoCallNumT3240Flag;              /* 0T3240
+                                                                                   1T3240ulSrvccNoCallNumT3240Len ms */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
-    VOS_UINT32                          ulSrvccNoCallNumT3240Len;               /* 修改T3240定时器时长，单位ms，默认值是1000 ms */
+    VOS_UINT32                          ulSrvccNoCallNumT3240Len;               /* T3240ms1000 ms */
 }NAS_NVIM_SRVCC_NO_CALL_NUM_T3240_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_CLASSMARK_SUPPCODEC_CAPRPT_CTRL_STRU
- 结构说明  : GU注册是否带classmark23和supported codecs的控制NV的结构体
+     : NAS_NVIM_CLASSMARK_SUPPCODEC_CAPRPT_CTRL_STRU
+   : GUclassmark23supported codecsNV
 
-  1.日    期   : 2017年11月03日
-    作    者   : n00269697
-    修改内容   : 新建结构体
+  1.       : 20171103
+           : n00269697
+       : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucClamk2RptFlag;                        /* GU下RAU ATTACH是否带classmark 2 */
-    VOS_UINT8                           ucClamk3RptFlag;                        /* GU下RAU ATTACH是否带classmark 3 */
-    VOS_UINT8                           ucSuppCodecRptFlag;                     /* GU下RAU ATTACH是否带supported codecs */
-    VOS_UINT8                           ucReserved;                             /* 保留位 */
+    VOS_UINT8                           ucClamk2RptFlag;                        /* GURAU ATTACHclassmark 2 */
+    VOS_UINT8                           ucClamk3RptFlag;                        /* GURAU ATTACHclassmark 3 */
+    VOS_UINT8                           ucSuppCodecRptFlag;                     /* GURAU ATTACHsupported codecs */
+    VOS_UINT8                           ucReserved;                             /*  */
 }NAS_NVIM_CLASSMARK_SUPPCODEC_CAPRPT_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_NV_CELL_CHG_TRIGGER_LAU_IN_IU_MODE_CTRL_STRU
- 结构说明  : SS连接状态收到REL IND是否要设置原因值 控制NV结构体
-  1.日    期   : 2018年3月10日
-    作    者   : n00269697
-    修改内容   : 新建结构体
+     : NAS_NV_CELL_CHG_TRIGGER_LAU_IN_IU_MODE_CTRL_STRU
+   : SSREL IND NV
+  1.       : 2018310
+           : n00269697
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSsConnStateRcvRelIndSetCauseFlg;      /* SS连接状态收到REL IND是否要设置原因值标志:
-                                                                                   0--不设置原因值；
-                                                                                   1--设置原因值 */
+    VOS_UINT8                           ucSsConnStateRcvRelIndSetCauseFlg;      /* SSREL IND:
+                                                                                   0--
+                                                                                   1-- */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
     VOS_UINT8                           ucReserved3;
@@ -6159,17 +6159,17 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : NAS_NVIM_MT_MM_S12_RCV_SYSINFO_CFG_STRU
- 结构说明  : en_NV_Item_MT_MM_S12_RCV_SYSINFO_CFG NV项结构
- 1. 日    期   : 2017年02月18日
-    作    者   : j00174725
-    修改内容   : 新建
+     : NAS_NVIM_MT_MM_S12_RCV_SYSINFO_CFG_STRU
+   : en_NV_Item_MT_MM_S12_RCV_SYSINFO_CFG NV
+ 1.        : 20170218
+           : j00174725
+       : 
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucMtS12DiscardSysInfoFlg;                  /* 收到paging发起est req后，如果收到系统消息，是否继续处理被叫 */
-    VOS_UINT8                           ucChrEnableFlg;                            /* 这种场景下的收益CHR上报是否使能 */
+    VOS_UINT8                           ucMtS12DiscardSysInfoFlg;                  /* pagingest req */
+    VOS_UINT8                           ucChrEnableFlg;                            /* CHR */
     VOS_UINT8                           ucReserved1;
     VOS_UINT8                           ucReserved2;
 }NAS_NVIM_MT_MM_S12_RCV_SYSINFO_CFG_STRU;

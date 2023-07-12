@@ -52,7 +52,7 @@
   Author       : zhuli 00100318
   Version      : v00R002
   Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
+  Description  : C---Base
   Function List:
   History      :
 ************************************************************************/
@@ -69,20 +69,20 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID PS_FILE_ID_PAM_APP_OM_C
 
 
-/* 记录收到消息信息的buffer及当前长度 */
+/* buffer */
 OM_RECORD_BUF_STRU                      g_astAcpuRecordInfo[VOS_EXC_DUMP_MEM_NUM_BUTT];
 
 VOS_UINT32                              g_ulAcpuOmFilterFlag;
 
 /*****************************************************************************
  Prototype       : OM_RecordInfoEnd
- Description     : A核保留桩函数
- Input           : ulNumer -- 任务号
+ Description     : A
+ Input           : ulNumer -- 
  Output          : None
  Return Value    : VOS_VOID
 
@@ -110,7 +110,7 @@ VOS_VOID OM_RecordInfoEnd(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber)
         return;
     }
 
-    /* 在start中已经变更了记录endslice的长度，因此此处回退四个字节填写endslice的值 */
+    /* startendsliceendslice */
     pulBuf = (VOS_UINT32*)(g_astAcpuRecordInfo[enNumber].pucBuf + g_astAcpuRecordInfo[enNumber].ulLen - sizeof(VOS_UINT32));
 
     *pulBuf = VOS_GetSlice();
@@ -120,11 +120,11 @@ VOS_VOID OM_RecordInfoEnd(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber)
 
 /*****************************************************************************
  Prototype       : OM_RecordInfoStart
- Description     : A核保留桩函数
- Input           : ulNumer -- 任务号
-                   ulSendPid -- 发送PID
-                   ulRcvPid -- 接收PID
-                   ulMsgName -- 消息名称
+ Description     : A
+ Input           : ulNumer -- 
+                   ulSendPid -- PID
+                   ulRcvPid -- PID
+                   ulMsgName -- 
  Output          : None
  Return Value    : VOS_VOID
 
@@ -167,7 +167,7 @@ VOS_VOID OM_RecordInfoStart(VOS_EXC_DUMP_MEM_NUM_ENUM_UINT32 enNumber, VOS_UINT3
 
 /*****************************************************************************
  Prototype       : OM_RecordMemInit
- Description     : 可谓可测空间分配
+ Description     : 
  Input           : None
  Output          : None
  Return Value    : VOS_VOID
@@ -186,7 +186,7 @@ VOS_VOID OM_RecordMemInit(VOS_VOID)
                  0,
                  sizeof(g_astAcpuRecordInfo));
 
-   /* 分配每个模块记录可谓可测信息的空间 */
+   /*  */
    for(i = 0; i < VOS_EXC_DUMP_MEM_NUM_BUTT; i++)
    {
       g_astAcpuRecordInfo[i].pucBuf = (VOS_UINT8*)VOS_ExcDumpMemAlloc(i);
@@ -212,7 +212,7 @@ VOS_VOID PAMOM_QuereyPidInfo(VOS_VOID)
     pstMsg = (PAM_VOS_QUEREY_PID_INFO_REQ_STRU *)VOS_AllocMsg(ACPU_PID_PAM_OM,
                             sizeof(PAM_VOS_QUEREY_PID_INFO_REQ_STRU) - VOS_MSG_HEAD_LENGTH);
 
-    /* 分配消息失败 */
+    /*  */
     if (VOS_NULL_PTR == pstMsg)
     {
         return;
@@ -242,7 +242,7 @@ VOS_VOID PAMOM_QuereyPidInfoMsgProc(MsgBlock* pMsg)
         pstCnfMsg = (PAM_VOS_QUEREY_PID_INFO_CNF_STRU *)VOS_AllocMsg(ACPU_PID_PAM_OM,
                             sizeof(PAM_VOS_QUEREY_PID_INFO_CNF_STRU) - VOS_MSG_HEAD_LENGTH + ulLen);
 
-        /* 分配消息失败 */
+        /*  */
         if (VOS_NULL_PTR == pstCnfMsg)
         {
             return;
@@ -270,19 +270,19 @@ VOS_VOID PAMOM_QuereyPidInfoMsgProc(MsgBlock* pMsg)
 }
 
 /*****************************************************************************
- 函 数 名  : PAM_OM_AcpuPihToAtMsgFilter
- 功能描述  : 过滤pih到at 消息的函数 CGLA CRSM CRLA
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : PAM_OM_AcpuPihToAtMsgFilter
+   : pihat  CGLA CRSM CRLA
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年08月29日
-    作    者   : z00316370
-    修改内容   : 新生成函数
+       :
+  1.       : 20160829
+           : z00316370
+       : 
 *****************************************************************************/
 VOS_UINT32 PAM_OM_AcpuPihToAtMsgFilter(
     const VOS_VOID                      *pMsg
@@ -319,19 +319,19 @@ VOS_UINT32 PAM_OM_AcpuPihToAtMsgFilter(
 }
 
 /*****************************************************************************
- 函 数 名  : PAM_OM_AcpuAtToPihMsgFilter
- 功能描述  : 过滤at到pih 消息的函数 CGLA CRSM CRLA
- 输入参数  : pstMsg -- 消息内容
- 输出参数  : NONE
- 返 回 值  : VOS_TRUE :表示这个消息被过滤掉了，不需要上报给OM
-             VOS_FALSE:表示这个消息需要上报OM
- 调用函数  :
- 被调函数  :
+     : PAM_OM_AcpuAtToPihMsgFilter
+   : atpih  CGLA CRSM CRLA
+   : pstMsg -- 
+   : NONE
+     : VOS_TRUE :OM
+             VOS_FALSE:OM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年08月29日
-    作    者   : z00316370
-    修改内容   : 新生成函数
+       :
+  1.       : 20160829
+           : z00316370
+       : 
 *****************************************************************************/
 VOS_UINT32 PAM_OM_AcpuAtToPihMsgFilter(
     const VOS_VOID                      *pMsg
@@ -362,19 +362,19 @@ VOS_UINT32 PAM_OM_AcpuAtToPihMsgFilter(
 }
 
 /*****************************************************************************
- 函 数 名  : PAM_OM_LayerMsgFilter
- 功能描述  : 过滤PAM中的敏感信息
- 输入参数  : const VOID *pMsg:消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:
-                返回VOS_TRUE:  表示该消息需要进行过滤
-                返回VOS_FALSE: 表示该消息无需进行过滤
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : zhuli
-    修改内容   : 新生成函数
+     : PAM_OM_LayerMsgFilter
+   : PAM
+   : const VOID *pMsg:
+   : 
+     : VOS_UINT32:
+                VOS_TRUE:  
+                VOS_FALSE: 
+   :
+   :
+       :
+  1.       : 20151028
+           : zhuli
+       : 
 *****************************************************************************/
 VOS_UINT32 PAM_OM_LayerMsgFilter(
     const VOS_VOID                      *pMsg
@@ -389,7 +389,7 @@ VOS_UINT32 PAM_OM_LayerMsgFilter(
 
     pstMsgHead = (OM_FILTER_MSG_HEAD_STRU*)pMsg;
 
-    /* PB相关的消息全部过滤 */
+    /* PB */
     if ((I0_MAPS_PB_PID == pstMsgHead->ulSenderPid)
      || (I1_MAPS_PB_PID == pstMsgHead->ulSenderPid)
      || (I2_MAPS_PB_PID == pstMsgHead->ulSenderPid)
@@ -401,7 +401,7 @@ VOS_UINT32 PAM_OM_LayerMsgFilter(
         return VOS_TRUE;
     }
 
-     /* PIH 消息过滤 */
+     /* PIH  */
     if ( (I0_MAPS_PIH_PID == pstMsgHead->ulSenderPid)
       || (I1_MAPS_PIH_PID == pstMsgHead->ulSenderPid)
       || (I2_MAPS_PIH_PID == pstMsgHead->ulSenderPid))
@@ -569,7 +569,7 @@ VOS_UINT32 PAMOM_APP_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
                 return VOS_ERR;
             }
 
-            /* 如目录不存在则创建 */
+            /*  */
             if (VOS_OK != mdrv_file_access(PAM_LOG_PARTH, PAM_FILE_EXIST))
             {
                 (VOS_VOID)mdrv_file_mkdir(PAM_LOG_PARTH);
@@ -585,16 +585,16 @@ VOS_UINT32 PAMOM_APP_FID_Init(enum VOS_INIT_PHASE_DEFINE ip)
 }
 
 /*****************************************************************************
- 函 数 名  : OM_OSAEvent
- 功能描述  : 上报OSA的可维可测消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
+     : OM_OSAEvent
+   : OSA
+   :
+   : 
+     : 
 
- 修改历史      :
-  1.日    期   : 2013年7月27日
-    作    者   : x51137
-    修改内容   : 新生成函数
+       :
+  1.       : 2013727
+           : x51137
+       : 
 *****************************************************************************/
 VOS_VOID OM_OSAEvent(VOS_VOID *pData, VOS_UINT32 ulLength)
 {
@@ -612,6 +612,6 @@ VOS_VOID OM_OSAEvent(VOS_VOID *pData, VOS_UINT32 ulLength)
 }
 
 
-/* AT<->AT的屏蔽处理，移到GuNasLogFilter.c */
+/* AT<->ATGuNasLogFilter.c */
 
 

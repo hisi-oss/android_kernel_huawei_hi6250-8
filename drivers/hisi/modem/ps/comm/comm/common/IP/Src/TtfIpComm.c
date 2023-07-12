@@ -50,14 +50,14 @@
 
 
 /******************************************************************************
-   1 头文件包含
+   1 
 ******************************************************************************/
 #include "PsTypeDef.h"
 #include "TTFComm.h"
 #include "TtfIpComm.h"
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 /*lint -e767*/
 #define    THIS_FILE_ID        PS_FILE_ID_TTF_IP_COMM_C
@@ -65,27 +65,27 @@
 
 
 /******************************************************************************
-   2 外部函数变量声明
+   2 
 ******************************************************************************/
 
 /******************************************************************************
-   3 私有定义
-******************************************************************************/
-
-
-/******************************************************************************
-   4 全局变量定义
+   3 
 ******************************************************************************/
 
 
 /******************************************************************************
-   5 函数实现
+   4 
+******************************************************************************/
+
+
+/******************************************************************************
+   5 
 ******************************************************************************/
 /*lint -save -e958 */
 
 /*****************************************************************************
  Prototype      : TTF_CheckIpDataByProtocalType
- Description    : 用于检查是否异常包，
+ Description    : 
  Input          :
     VOS_UINT16 usMemUsedLen,
     VOS_UINT16 usIpHeadLen,
@@ -95,7 +95,7 @@
  History        :
  1. Date        : 2017-04-19
     Author      : w00351380
-    create:      安全检查增加此函数
+    create:      
 *****************************************************************************/
  VOS_UINT32 TTF_CheckIpDataByProtocalType
 (
@@ -111,8 +111,8 @@
 
     if (usMemUsedLen < (usIpTotalLen) || (usIpTotalLen < usIpHeadLen))
     {
-        /* 数据包长度，小于IP总长度直接退出 
-		   usIpTotalLen 字段异常，小于IP包头，直接退出 */
+        /* IP 
+		   usIpTotalLen IP */
         return PS_FAIL;
     }
 
@@ -122,7 +122,7 @@
             {
                 if (usMemUsedLen < (usIpHeadLen+TTF_TCP_HEAD_NORMAL_LEN))
                 {
-                    /* 数据包长度，不够容纳完整的TCP头， */
+                    /* TCP */
                     return PS_FAIL;
                 }
 
@@ -130,7 +130,7 @@
 
                 if ( usMemUsedLen < (usTcpHeadLen + usIpHeadLen) )
                 {
-                    /* 数据包长度，不够容纳完整的TCP头， */
+                    /* TCP */
                     return PS_FAIL;
                 }
             }
@@ -140,15 +140,15 @@
             {
                 if ( usMemUsedLen < (usIpHeadLen + UDP_HEAD_LEN))
                 {
-                    /* 数据包长度，不够容纳完整的UDP头 */
+                    /* UDP */
                     return PS_FAIL;
                 }
 
-                /* 获取 UDP的总长度 */
+                /*  UDP */
                 usUdpLen  = IP_GET_VAL_NTOH_U16(pucData, (usIpHeadLen+TTF_UDP_LEN_POS));
                 if ( usUdpLen < UDP_HEAD_LEN)
                 {
-                    /* UdpLen 字段非法 */
+                    /* UdpLen  */
                     return PS_FAIL;
                 }
             }
@@ -158,7 +158,7 @@
             {
                 if (usMemUsedLen < (usIpHeadLen+ICMP_HEADER_LEN))
                 {
-                    /* 数据包长度，不够容纳完整的ICMPV4头 */
+                    /* ICMPV4 */
                     return PS_FAIL;
                 }
             }
@@ -168,7 +168,7 @@
             {
                 if (usMemUsedLen < (usIpHeadLen+ICMP_HEADER_LEN))
                 {
-                    /* 数据包长度，不够容纳完整的ICMPV6头 */
+                    /* ICMPV6 */
                     return PS_FAIL;
                 }
             }
@@ -183,8 +183,8 @@
 }
 /*****************************************************************************
  Prototype      : TTF_ParseIpDataType
- Description    : 用于解析IP包协议类型
- Input          : *pData 入参有效性由调用者保证，为IP数据包
+ Description    : IP
+ Input          : *pData IP
  Output         :
  Return Value   : IP_DATA_TYPE_ENUM_UINT8
  History        :
@@ -193,7 +193,7 @@
     Modification: Created function
  2. Date        : 2015-10-31
     Author      : g00178567
-    Modification: 修改函数入参
+    Modification: 
 *****************************************************************************/
 IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
 (
@@ -211,10 +211,10 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
     VOS_UINT8                                   usTcpFlags;
     VOS_UINT8                                  *pData       = pMemPt->pData;
 
-    /* 初始化设置为Null */
+    /* Null */
     enDataType = IP_DATA_TYPE_NULL;
 
-    /* 内存至少有20字节，才能解析IP头的协议字段 ROTOCOL_POS(9), PROTOCOL_POS(6)*/
+    /* 20IP ROTOCOL_POS(9), PROTOCOL_POS(6)*/
     if (pMemPt->usUsed <= IPV4_HEAD_NORMAL_LEN)
     {
         TTF_LOG(ulPid, DIAG_MODE_COMM, PS_PRINT_WARNING, "TTF_ParseIpDataType IPHeadLen is exception.");
@@ -245,7 +245,7 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
         return IP_DATA_TYPE_USER_HIGH;
     }
 
-    /* 安全检查: 检查数据包大小是否能够容纳对应协议包头，不能容纳的异常包，就不用继续解析了*/
+    /* : */
     if (PS_FAIL == TTF_CheckIpDataByProtocalType(pData, pMemPt->usUsed, usIpHeadLen, usIpTotalLen, enDataProtocalType))
     {
         TTF_LOG2(ulPid, DIAG_MODE_COMM, PS_PRINT_WARNING, "TTF_ParseIpDataType datalen<1> ProtocalType<2> is exception.",pMemPt->usUsed,enDataProtocalType);
@@ -260,7 +260,7 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
 
                 usTcpHeadLen = (pData[usIpHeadLen + TCP_LEN_POS] & TCP_LEN_MASK) >> 2;
 
-                /* SDU数据长度等于IP包头长度和TCP包头部长度之和，并且TCP包FLAG标志中含有ACK */
+                /* SDUIPTCPTCPFLAGACK */
                 if ( usIpTotalLen == (usTcpHeadLen + usIpHeadLen) )
                 {
                     usTcpFlags = pData[usIpHeadLen + TCP_FLAG_POS] & 0x3F;
@@ -304,13 +304,13 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
             {
                 pusFragmentOffset = (VOS_UINT16 *)&pData[IPV4_HEAD_FRAGMENT_OFFSET_POS];
 
-                /* 分段 */
+                /*  */
                 if (ntohs(*pusFragmentOffset) & IPV4_HEAD_FRAGMENT_OFFSET_MASK)
                 {
                     break;
                 }
 
-                /* 获取ICMP报文的类型 */
+                /* ICMP */
                 if ((ICMP_TYPE_REQUEST == pData[usIpHeadLen]) || (ICMP_TYPE_REPLY == pData[usIpHeadLen]))
                 {
                     enDataType = IP_DATA_TYPE_ICMP;
@@ -320,7 +320,7 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
 
         case IP_DATA_PROTOCOL_ICMPV6:
             {
-                /* 获取ICMPV6报文的类型 */
+                /* ICMPV6 */
                 if ((ICMPV6_TYPE_REQUEST == pData[usIpHeadLen]) || (ICMPV6_TYPE_REPLY == pData[usIpHeadLen]))
                 {
                     enDataType = IP_DATA_TYPE_ICMP;
@@ -340,10 +340,10 @@ IP_DATA_TYPE_ENUM_UINT8 TTF_ParseIpDataType
 
 /*****************************************************************************
  Prototype      : TTF_GetIpDataTraceLen
- Description    : 用来获得可维可测勾取IP报的安全长度，以免泄露用户隐私
- Input          : *pData 入参有效性由调用者保证，为IP数据包
+ Description    : IP
+ Input          : *pData IP
  Output         :
- Return Value   : VOS_UINT32 安全勾包长度
+ Return Value   : VOS_UINT32 
  History        :
  1. Date        : 2014-02-14
     Author      : g00178567
@@ -364,7 +364,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
     VOS_UINT16                                 *pusDestPort;
     VOS_UINT16                                  usIpDataTraceLen;
 
-    /* 内存至少有20字节，才能解析IP头的协议字段 ROTOCOL_POS(9), PROTOCOL_POS(6)*/
+    /* 20IP ROTOCOL_POS(9), PROTOCOL_POS(6)*/
     if (usSduLen <= IPV4_HEAD_NORMAL_LEN)
     {
         TTF_LOG(ulPid, DIAG_MODE_COMM, PS_PRINT_WARNING, "TTF_ParseIpDataType IPHeadLen is exception.");
@@ -389,7 +389,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
         return 0;
     }
 
-    /* 安全检查: 检查数据包大小是否能够容纳对应协议包头，不能容纳的异常包，就不用继续解析了*/
+    /* : */
     if (PS_FAIL == TTF_CheckIpDataByProtocalType(pData, usSduLen, usIpHeadLen, usIpTotalLen, enDataProtocalType))
     {
         TTF_LOG2(ulPid, DIAG_MODE_COMM, PS_PRINT_WARNING, "TTF_GetIpDataTraceLen datalen<1> ProtocalType<2> is exception.",usSduLen,enDataProtocalType);
@@ -404,7 +404,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
             {
                 usTcpHeadLen    = (pData[usIpHeadLen + TCP_LEN_POS] & TCP_LEN_MASK) >> 2;
 
-                /* SDU数据长度等于IP包头长度和TCP包头部长度之和，并且TCP包FLAG标志中含有ACK */
+                /* SDUIPTCPTCPFLAGACK */
                 if ( usIpTotalLen == (usTcpHeadLen + usIpHeadLen) )
                 {
                     usIpDataTraceLen = usIpTotalLen;
@@ -414,7 +414,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
                     pusSourcePort   = (VOS_UINT16 *)&pData[usIpHeadLen];
                     pusDestPort     = (VOS_UINT16 *)&pData[usIpHeadLen + TCP_DST_PORT_POS];
 
-                    /* FTP命令全部勾取，其它勾TCP头 */
+                    /* FTPTCP */
                     if ((FTP_DEF_SERVER_SIGNALLING_PORT == ntohs(*pusSourcePort)) || (FTP_DEF_SERVER_SIGNALLING_PORT == ntohs(*pusDestPort)))
                     {
                         usIpDataTraceLen = usIpTotalLen;
@@ -432,7 +432,7 @@ VOS_UINT16 TTF_GetIpDataTraceLen
                 pusSourcePort   = (VOS_UINT16 *)&pData[usIpHeadLen];
                 pusDestPort     = (VOS_UINT16 *)&pData[usIpHeadLen + UDP_DST_PORT_POS];
 
-                /* DNS全部勾取，其它勾UDP头 */
+                /* DNSUDP */
                 if ((DNS_DEF_SERVER_PORT == ntohs(*pusSourcePort)) || (DNS_DEF_SERVER_PORT == ntohs(*pusDestPort)))
                 {
                     usIpDataTraceLen = usIpTotalLen;

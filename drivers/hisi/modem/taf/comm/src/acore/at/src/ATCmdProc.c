@@ -48,7 +48,7 @@
 
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "ATCmdProc.h"
 #include "AtCheckFunc.h"
@@ -57,21 +57,21 @@
 #include "AppVcApi.h"
 #include "AtDataProc.h"
 #include "AtCmdMsgProc.h"
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-24, begin */
 #include "TafStdlib.h"
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
+/* Added by s00217060 for VoLTE_PhaseIII  , 2013-12-24, end */
 
 #include "at_common.h"
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AT_CMDPROC_C
 
 
 /*****************************************************************************
-   2 全局变量定义
+   2 
 *****************************************************************************/
 
 /* The following tables maps the 256 characters of PBM8 to the corresponding
@@ -470,8 +470,8 @@ AT_PB_CONVERSION_TABLE_STRU g_astGsmToUnicode[AT_PB_GSM_MAX_NUM] =
     {0x7F, 0, 0x00E0}, /* Latin A WITH GRAVE */
 };
 
-/* GSM7BIT 向UCS2转换的扩展表,GSM7BIT扩展表扩展标志为0x1b；如下表当GSM7BIT编码中
-出现码字0x1B65时，其对应的UCS2编码为0x20AC，此码字代表欧元符 */
+/* GSM7BIT UCS2,GSM7BIT0x1bGSM7BIT
+0x1B65UCS20x20AC */
 AT_PB_CONVERSION_TABLE_STRU g_astGsm7extToUnicode[AT_PB_GSM7EXT_MAX_NUM] =
 {
     {0x65, 0, 0x20AC}, /* EURO SIGN */
@@ -533,21 +533,21 @@ const AT_STRING_TYPE_STRU gastAtStringTab[]=
     {AT_STRING_TIME,(TAF_UINT8*)"^TIME: "},
     {AT_STRING_CTZV,(TAF_UINT8*)"+CTZV: "},
     {AT_STRING_CTZE,(TAF_UINT8*)"+CTZE: "},
-    /* added by c00173809 for 注册错误原因值上报 2011-08-3 begin */
+    /* added by c00173809 for  2011-08-3 begin */
     {AT_STRING_ERRRPT,(TAF_UINT8*)"^ERRRPT:"},
-    /* added by c00173809 for 注册错误原因值上报 2011-08-3 end */
+    /* added by c00173809 for  2011-08-3 end */
 
     {AT_STRING_CCALLSTATE, (VOS_UINT8 *)"^CCALLSTATE"},
 
     {AT_STRING_CERSSI, (VOS_UINT8 *)"^CERSSI:"},
 
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-14, begin */
+    /* Added by w00176964 for V7R1C50_DCM, 2012-12-14, begin */
     {AT_STRING_ACINFO, (VOS_UINT8 *)"^ACINFO:"},
-    /* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-14, end */
+    /* Added by w00176964 for V7R1C50_DCM, 2012-12-14, end */
 
-    /* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, begin */
+    /* Added by l00171473 for DTS2013010800120 , 2013-1-5, begin */
     {AT_STRING_CS_CHANNEL_INFO, (VOS_UINT8 *)"^CSCHANNELINFO:"},
-    /* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, end */
+    /* Added by l00171473 for DTS2013010800120 , 2013-1-5, end */
 
     {AT_STRING_RESET, (VOS_UINT8 *)"^RESET:"},
 
@@ -608,28 +608,28 @@ const AT_STRING_TYPE_STRU gastAtStringTab[]=
     {AT_STRING_BUTT,(TAF_UINT8*)"\"\""},
 };
 
-VOS_UINT8                               gaucAtCrLf[] = "\r\n";                  /*回车换行*/
-const TAF_UINT8                         gaucAtCmeErrorStr[] = "+CME ERROR: ";   /*错误提示字串*/
-const TAF_UINT8                         gaucAtCmsErrorStr[] = "+CMS ERROR: ";   /*错误提示字串*/
+VOS_UINT8                               gaucAtCrLf[] = "\r\n";                  /**/
+const TAF_UINT8                         gaucAtCmeErrorStr[] = "+CME ERROR: ";   /**/
+const TAF_UINT8                         gaucAtCmsErrorStr[] = "+CMS ERROR: ";   /**/
 
-const TAF_UINT8                         gaucAtTooManyParaStr[]   = "TOO MANY PARAMETERS"; /*参数太多提示字串*/
+const TAF_UINT8                         gaucAtTooManyParaStr[]   = "TOO MANY PARAMETERS"; /**/
 
 AT_CMD_FORMAT_TYPE                      gucAtCmdFmtType = AT_CMD_TYPE_BUTT;
 
-AT_SEND_DATA_BUFFER_STRU                gstAtSendData;                          /* 单个命令的返回信息存储区 */
-AT_SEND_DATA_BUFFER_STRU                gstAtCombineSendData[AT_MAX_CLIENT_NUM];/* 组合命令的返回信息存储区 */
+AT_SEND_DATA_BUFFER_STRU                gstAtSendData;                          /*  */
+AT_SEND_DATA_BUFFER_STRU                gstAtCombineSendData[AT_MAX_CLIENT_NUM];/*  */
 
-/* gstAtSendData.aucBuffer的第0项为MUX的帧头标志 */
+/* gstAtSendData.aucBuffer0MUX */
 TAF_UINT8                              *pgucAtSndCrLfAddr = &gstAtSendData.aucBuffer[1];
 TAF_UINT8                              *pgucAtSndCodeAddr = &gstAtSendData.aucBuffer[3];
 
-/*调用底软的串口数据发送接口时，所传入的指针必需为4字节对齐格式。
-而pgucAtSndCrLfAddr和pgucAtSndCodeAddr都没有依照4字节对齐，所以需
-做一次拷贝操作。(AT命令处理对性能要求不高，故增加一次拷贝是可行的)*/
+/*4
+pgucAtSndCrLfAddrpgucAtSndCodeAddr4
+(AT)*/
 TAF_UINT8                               gstAtSendDataBuffer[AT_CMD_MAX_LEN];
 
-AT_V_TYPE                               gucAtVType      = AT_V_ENTIRE_TYPE;     /* 指示命令返回码类型 */
-AT_CSCS_TYPE                            gucAtCscsType   = AT_CSCS_IRA_CODE;     /* 指示TE编码类型 */
+AT_V_TYPE                               gucAtVType      = AT_V_ENTIRE_TYPE;     /*  */
+AT_CSCS_TYPE                            gucAtCscsType   = AT_CSCS_IRA_CODE;     /* TE */
 
 AT_CMD_ECHO_TYPE                        gucAtEType      = AT_E_ECHO_CMD;
 VOS_UINT32                              gucAtXType      = 0;   /* CONNECT <text> result code is given upon entering online data state.
@@ -652,57 +652,57 @@ AT_PB_INFO_STRU                         gstPBATInfo;
 VOS_UINT8                               g_ucXsmsRecNum = 0;
 
 
-/* 存储^PORTSEL设置的端口号，仅用于^PORTSEL? 查询使用。 */
+/* ^PORTSEL^PORTSEL?  */
 TAF_UINT8                               gucAtPortSel  = 0;
 
-/*记录闪电卡版本从上电到拨号成功启动时间，单位秒 */
+/* */
 VOS_UINT32                              g_ulLcStartTime = 0;
 
-TAF_UINT8                               gastAtPppIndexTab[AT_MAX_CLIENT_NUM];   /* PppId和Index的对应表，下标是PppId */
+TAF_UINT8                               gastAtPppIndexTab[AT_MAX_CLIENT_NUM];   /* PppIdIndexPppId */
 
 AT_DEVICE_CMD_CTRL_STRU                 g_stAtDevCmdCtrl        = {0};
-VOS_BOOL                                g_bAtDataLocked         = VOS_TRUE;     /* 记录是否解锁，初始值为未解锁，通过命令^DATALOCK解锁成功后修改该变量 */
-VOS_UINT8                               g_ucDtrDownFlag         = VOS_FALSE;    /* 主动挂断电话时，后台会拉低DTR管脚信号，此时AT置该全局变量为VOS_TRUE,拉低DCD管脚，
-                                                                                之后CST调用AT接口AT_CstDlDataInd发送数据时判断如果该全局变量为VOS_TRUE,则不调底软接口发送，
-                                                                                直接清除返回*/
+VOS_BOOL                                g_bAtDataLocked         = VOS_TRUE;     /* ^DATALOCK */
+VOS_UINT8                               g_ucDtrDownFlag         = VOS_FALSE;    /* DTRATVOS_TRUE,DCD
+                                                                                CSTATAT_CstDlDataIndVOS_TRUE,
+                                                                                */
 
-/* Added by L60609 for AT Project，2011-10-10,  Begin*/
-/*保存各物理端口对应的接收数据函数，以AT_PHY_PORT_ENUM为索引。*/
+/* Added by L60609 for AT Project2011-10-10,  Begin*/
+/*AT_PHY_PORT_ENUM*/
 CBTCPM_RCV_FUNC                         g_apAtPortDataRcvFuncTab[AT_PHY_PORT_MAX]
                                                 = {VOS_NULL_PTR, VOS_NULL_PTR, VOS_NULL_PTR, VOS_NULL_PTR};
-/* Added by L60609 for AT Project，2011-10-10,  End*/
+/* Added by L60609 for AT Project2011-10-10,  End*/
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+/* Deleted by s00217060 for ATC, 2013-4-2, begin */
+/* Deleted by s00217060 for ATC, 2013-4-2, end */
 
 /* Added by l60609 for B060 Project, 2012-2-21, Begin   */
 AT_SP_WORD_CTX_STRU                     g_stSpWordCtx = {0};
 /* Added by l60609 for B060 Project, 2012-2-21, End   */
 
 /*****************************************************************************
-   3 函数、变量声明
+   3 
 *****************************************************************************/
 
 /*****************************************************************************
-   4 函数实现
+   4 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : At_GetOpId
- 功能描述  : 获取AT当前的Operation ID, 标识本次操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_GetOpId
+   : ATOperation ID, 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月14日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2008年3月14日
-    作    者   : fuyingjun
-    修改内容   : 避免OpId为0的情况;
+       :
+  1.       : 2008314
+           : fuyingjun
+       : 
+  2.       : 2008314
+           : fuyingjun
+       : OpId0;
 
 *****************************************************************************/
 MN_OPERATION_ID_T  At_GetOpId(
@@ -720,30 +720,30 @@ MN_OPERATION_ID_T  At_GetOpId(
 
 
 /*****************************************************************************
- 函 数 名  : At_ClientIdToUserId
- 功能描述  : 由已知ClientId 查找用户索引
- 输入参数  : TAF_UINT16 usClientId
+     : At_ClientIdToUserId
+   : ClientId 
+   : TAF_UINT16 usClientId
              TAF_UINT8 *pucIndexId
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : TAF_UINT32
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期   : 2011年10月6日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 增加广播client的转换
+  2.       : 2011106
+           : /l60609
+       : AT Project: client
 
-  3.日    期   : 2012年12月15日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
+  3.       : 20121215
+           : l60609
+       : DSDA Phase II
 
-  4.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  4.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 TAF_UINT32 At_ClientIdToUserId (
     TAF_UINT16                              usClientId,
@@ -753,22 +753,22 @@ TAF_UINT32 At_ClientIdToUserId (
     TAF_UINT8                           i;
 
     /* Modified by l60609 for DSDA Phase II, 2012-12-15, Begin */
-    /* 判断是否为广播client id */
-    /* MODEM 0的广播ClientId */
+    /* client id */
+    /* MODEM 0ClientId */
     if (AT_BROADCAST_CLIENT_ID_MODEM_0 == usClientId)
     {
         *pucIndexId = AT_BROADCAST_CLIENT_INDEX_MODEM_0;
         return AT_SUCCESS;
     }
 
-    /* MODEM 1的广播ClientId */
+    /* MODEM 1ClientId */
     if(AT_BROADCAST_CLIENT_ID_MODEM_1 == usClientId)
     {
         *pucIndexId = AT_BROADCAST_CLIENT_INDEX_MODEM_1;
         return AT_SUCCESS;
     }
 
-    /* MODEM 2的广播ClientId */
+    /* MODEM 2ClientId */
     if(AT_BROADCAST_CLIENT_ID_MODEM_2 == usClientId)
     {
         *pucIndexId = AT_BROADCAST_CLIENT_INDEX_MODEM_2;
@@ -777,7 +777,7 @@ TAF_UINT32 At_ClientIdToUserId (
 
     /* Modified by l60609 for DSDA Phase II, 2012-12-15, End */
 
-    /* 查找用户管理表 */
+    /*  */
     for ( i = 0; i < AT_MAX_CLIENT_NUM ; i++ )
     {
         if ( AT_CLIENT_NULL == gastAtClientTab[i].ucUsed )
@@ -786,7 +786,7 @@ TAF_UINT32 At_ClientIdToUserId (
         }
         if ( gastAtClientTab[i].usClientId == usClientId )
         {
-            *pucIndexId = i;        /* 返回结果 */
+            *pucIndexId = i;        /*  */
             return AT_SUCCESS;
         }
     }
@@ -795,14 +795,14 @@ TAF_UINT32 At_ClientIdToUserId (
 
 /*****************************************************************************
  Prototype      : At_SendReportMsg
- Description    : AT接收并发送事件上报消息
- Input          : ucIndex --- 用户ID
-                  pData   --- 数据
-                  usLen   --- 长度
-                  ucType  --- 消息类型
+ Description    : AT
+ Input          : ucIndex --- ID
+                  pData   --- 
+                  usLen   --- 
+                  ucType  --- 
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -810,15 +810,15 @@ TAF_UINT32 At_ClientIdToUserId (
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+ 2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 *****************************************************************************/
 TAF_VOID At_SendReportMsg(TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
 {
     MN_AT_IND_EVT_STRU                  *pstEvent;
     VOS_UINT_PTR                         ulTmpAddr;
-    /* 增加自定义的ITEM，共4个字节 */
+    /* ITEM4 */
 
     pstEvent = (MN_AT_IND_EVT_STRU *)PS_ALLOC_MSG(WUEPS_PID_AT, (usLen + MN_AT_INTERFACE_MSG_HEADER_LEN));
     if (TAF_NULL_PTR == pstEvent)
@@ -837,7 +837,7 @@ TAF_VOID At_SendReportMsg(TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
     ulTmpAddr = (VOS_UINT_PTR)pstEvent->aucContent;
     TAF_MEM_CPY_S((VOS_VOID *)ulTmpAddr, usLen, pData, usLen);
 
-    /*发送消息到AT_PID;*/
+    /*AT_PID;*/
     if ( 0 != PS_SEND_MSG( WUEPS_PID_AT, pstEvent ) )
     {
         AT_ERR_LOG("At_SendReportMsg:ERROR");
@@ -848,24 +848,24 @@ TAF_VOID At_SendReportMsg(TAF_UINT8 ucType,TAF_UINT8* pData,TAF_UINT16 usLen)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ReportSysCfgExTestCmdResult
- 功能描述  : syscfgex测试命令上报,格式:
+     : AT_ReportSysCfgExTestCmdResult
+   : syscfgex,:
              ^SYSCFGEX:(list of supported < acqorder >s),
               (list of supported( <band >,<band_name>)s),
               (list of supported < roam >s),
               (list of supported < srvdomain >s),
               (list of supported( <lteband >,<lteband_name>)s),
               <CR><LF><CR><LF>OK<CR><LF>
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年6月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
+       :
+  1.       : 2011629
+           : z00161729
+       : 
 
 *****************************************************************************/
 VOS_UINT16 AT_ReportSysCfgExTestCmdResult(
@@ -880,11 +880,11 @@ VOS_UINT16 AT_ReportSysCfgExTestCmdResult(
 
 /*****************************************************************************
  Prototype      : At_ScanDelChar
- Description    : 扫描退格符
- Input          : pData --- 字符串
-                  pLen  --- 长度地址
+ Description    : 
+ Input          : pData --- 
+                  pLen  --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -905,10 +905,10 @@ TAF_UINT32 At_ScanDelChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
         return AT_FAILURE;
     }
 
-    /* 输入参数检查 */
+    /*  */
     while ( usChkLen++ < *pLen )
     {
-        if( ucAtS5 == *pRead)       /*删除上一字符*/
+        if( ucAtS5 == *pRead)       /**/
         {
             if( usLen > 0 )
             {
@@ -916,7 +916,7 @@ TAF_UINT32 At_ScanDelChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
                 usLen--;
             }
         }
-        else                        /*选择有效字符*/
+        else                        /**/
         {
             *pWrite++ = *pRead;
             usLen++;
@@ -929,11 +929,11 @@ TAF_UINT32 At_ScanDelChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 
 /*****************************************************************************
  Prototype      : At_ScanCtlChar
- Description    : 扫描控制符
- Input          : pData --- 字符串
-                  pLen  --- 长度地址
+ Description    : 
+ Input          : pData --- 
+                  pLen  --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -954,10 +954,10 @@ TAF_UINT32 At_ScanCtlChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
         return AT_FAILURE;
     }
 
-    /* 检查 */
+    /*  */
     while( usChkLen++ < *pLen )
     {
-        /*选择有效字符*/
+        /**/
         if( 0x20 <= *pRead )
         {
             *pWrite++ = *pRead;
@@ -971,11 +971,11 @@ TAF_UINT32 At_ScanCtlChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 
 /*****************************************************************************
  Prototype      : At_ScanBlankChar
- Description    : 扫描空格符
- Input          : pData --- 字符串
-                  pLen  --- 长度地址
+ Description    : 
+ Input          : pData --- 
+                  pLen  --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -983,9 +983,9 @@ TAF_UINT32 At_ScanCtlChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+ 2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 *****************************************************************************/
 TAF_UINT32 At_ScanBlankChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 {
@@ -1003,7 +1003,7 @@ TAF_UINT32 At_ScanBlankChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
         return AT_FAILURE;
     }
 
-    /* 检查引号 */
+    /*  */
     while( usQoutNum ++ < *pLen )
     {
         if('"' == *pCheck++)
@@ -1016,16 +1016,16 @@ TAF_UINT32 At_ScanBlankChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
         return AT_FAILURE;
     }
 
-    /* 检查 */
+    /*  */
     while( usChkLen++ < *pLen )
     {
-        /* 当前是第几个引号状态 */
+        /*  */
         if( '\"' == *pRead )
         {
             usQoutCount++;
         }
 
-        /* 去掉引号外的空格 */
+        /*  */
         if(( (0x20 != *pRead) && (0 == (usQoutCount % 2)) ) || ( 1 == (usQoutCount % 2) ))
         {
             *pWrite++ = *pRead;
@@ -1039,11 +1039,11 @@ TAF_UINT32 At_ScanBlankChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 
 /*****************************************************************************
  Prototype      : At_ScanResetCmd
- Description    : 扫描&F
- Input          : pData --- 字符串
-                  pLen  --- 长度地址
+ Description    : &F
+ Input          : pData --- 
+                  pLen  --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -1051,19 +1051,19 @@ TAF_UINT32 At_ScanBlankChar( TAF_UINT8 *pData, TAF_UINT16 *pLen)
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+ 2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 *****************************************************************************/
 TAF_UINT32 At_ScanResetCmd( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 {
     TAF_UINT8  *pSearch = TAF_NULL_PTR;
     TAF_UINT16 usLen    = *pLen;
 
-    /* 字符串结尾 */
+    /*  */
     pData[usLen] = 0;
 
-    /* 全部格式化为大写字符 */
+    /*  */
     At_UpString(pData,usLen);
 
     pSearch = (TAF_UINT8 *)VOS_StrStr((TAF_CHAR*)pData,"&F");
@@ -1072,11 +1072,11 @@ TAF_UINT32 At_ScanResetCmd( TAF_UINT8 *pData, TAF_UINT16 *pLen)
     {
         if( ('0' < *(pSearch+2)) && (*(pSearch+2) <= '9'))
         {
-            return AT_FAILURE;  /* 参数错误 */
+            return AT_FAILURE;  /*  */
         }
         if( '0' == *(pSearch+2))
         {
-            *(pSearch+2) = 13;  /* 置为控制字符，待会格式化 */
+            *(pSearch+2) = 13;  /*  */
         }
         pSearch = (TAF_UINT8 *)VOS_StrStr((TAF_CHAR*)(pSearch+2),"&F");
     }
@@ -1089,18 +1089,18 @@ TAF_UINT32 At_ScanResetCmd( TAF_UINT8 *pData, TAF_UINT16 *pLen)
 
 
 /*****************************************************************************
- 函 数 名  : At_GetDirectSendMsg
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_GetDirectSendMsg
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
+       :
+  1.       : 2008318
+           : fuyingjun
+       : 
 
 *****************************************************************************/
 MN_MSG_SEND_PARM_STRU * At_GetDirectSendMsgMem(
@@ -1112,18 +1112,18 @@ MN_MSG_SEND_PARM_STRU * At_GetDirectSendMsgMem(
 }
 
 /*****************************************************************************
- 函 数 名  : At_GetMsgMem
- 功能描述  : 获取TP层短消息数据结构的内存首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TP层短消息数据结构的内存首地址
- 调用函数  :
- 被调函数  :
+     : At_GetMsgMem
+   : TP
+   : 
+   : 
+     : TP
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月12日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
+       :
+  1.       : 2008312
+           : fuyingjun
+       : 
 *****************************************************************************/
 MN_MSG_TS_DATA_INFO_STRU * At_GetMsgMem(
     VOS_VOID
@@ -1134,18 +1134,18 @@ MN_MSG_TS_DATA_INFO_STRU * At_GetMsgMem(
 }
 
 /*****************************************************************************
- 函 数 名  : At_GetLongMsgSegMem
- 功能描述  : 获取长短消息分段数据结构数组首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 长短消息分段数据结构数组首地址
- 调用函数  :
- 被调函数  :
+     : At_GetLongMsgSegMem
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月15日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
+       :
+  1.       : 2008315
+           : fuyingjun
+       : 
 *****************************************************************************/
 MN_MSG_RAW_TS_DATA_STRU *At_GetLongMsgSegMem(
     TAF_VOID
@@ -1156,18 +1156,18 @@ MN_MSG_RAW_TS_DATA_STRU *At_GetLongMsgSegMem(
 }
 
 /*****************************************************************************
- 函 数 名  : At_GetWriteMsgMem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_GetWriteMsgMem
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
+       :
+  1.       : 2008318
+           : fuyingjun
+       : 
 *****************************************************************************/
 MN_MSG_WRITE_PARM_STRU * At_GetWriteMsgMem(
     TAF_VOID
@@ -1178,18 +1178,18 @@ MN_MSG_WRITE_PARM_STRU * At_GetWriteMsgMem(
 }
 
 /*****************************************************************************
- 函 数 名  : At_GetWriteMsgMem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_GetWriteMsgMem
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月18日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
+       :
+  1.       : 2008318
+           : fuyingjun
+       : 
 *****************************************************************************/
 MN_MSG_SEND_ACK_PARM_STRU * At_GetAckMsgMem(
     VOS_VOID
@@ -1201,36 +1201,36 @@ MN_MSG_SEND_ACK_PARM_STRU * At_GetAckMsgMem(
 
 
 /*****************************************************************************
- 函 数 名  : At_SendPduMsgOrCmd
- 功能描述  : PDU短消息或命令的发送
- 输入参数  : ucIndex - 用户索引值
-             pData   - PDU数据,
-             ulLen   - PDU数据长度
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SendPduMsgOrCmd
+   : PDU
+   : ucIndex - 
+             pData   - PDU,
+             ulLen   - PDU
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2009年9月25日
-    作    者   : fuyingjun
-    修改内容   : 问题单号：AT2D14190，短信发送失败错误原因值与标杆不一致
-  3.日    期   : 2009年10月10日
-    作    者   : fuyingjun
-    修改内容   : 问题单号：AT2D15015，MAC/LINUX后台移动网络长短信发送仅最后一条发送成功
-  4.日    期   : 2010年6月30日
-    作    者   : 傅映君
-    修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
-  5.日    期   : 2011年03月01日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011021202242/DTS2011021400322，添加宏开关判断
-                 服务域为PS_ONLY时，CS域短信和呼叫业务是否能够发起
-  6.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 2008313
+           : fuyingjun
+       : 
+  2.       : 2009925
+           : fuyingjun
+       : AT2D14190
+  3.       : 20091010
+           : fuyingjun
+       : AT2D15015MAC/LINUX
+  4.       : 2010630
+           : 
+       : DTS2010071500596STK
+  5.       : 20110301
+           : A00165503
+       : : DTS2011021202242/DTS2011021400322
+                 PS_ONLYCS
+  6.       : 2013222
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 TAF_UINT32  At_SendPduMsgOrCmd(
     TAF_UINT8                           ucIndex,
@@ -1313,7 +1313,7 @@ TAF_UINT32  At_SendPduMsgOrCmd(
         pstSendDirectParm->stMsgInfo.stTsRawData.enTpduType = MN_MSG_TPDU_COMMAND;
     }
 
-    /*增加PDU码有效性检查，删除冗余字段*/
+    /*PDU*/
     pstTsDataInfo = At_GetMsgMem();
     ulRet = MN_MSG_Decode(&pstSendDirectParm->stMsgInfo.stTsRawData, pstTsDataInfo);
     if (MN_ERR_NO_ERROR != ulRet)
@@ -1364,22 +1364,22 @@ TAF_UINT32  At_SendPduMsgOrCmd(
 
 
 /*****************************************************************************
- 函 数 名  : At_SendPduCnma
- 输入参数  : ucIndex - 用户索引值
-             pData   - PDU数据,
-             ulLen   - PDU数据长度
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SendPduCnma
+   : ucIndex - 
+             pData   - PDU,
+             ulLen   - PDU
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月14日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月18日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2012111201995，DCM短信接收定制需求
+       :
+  1.       : 2008314
+           : fuyingjun
+       : 
+  2.       : 20121118
+           : /f62575
+       : DTS2012111201995DCM
 
 *****************************************************************************/
 TAF_UINT32  At_SendPduMsgAck(
@@ -1396,13 +1396,13 @@ TAF_UINT32  At_SendPduMsgAck(
     if (ulLen != gastAtClientTab[ucIndex].AtSmsData.ucPduLen)
     {
         AT_NORM_LOG("At_SendPduMsgAck: the length of PDU is not consistent.");
-        return AT_CMS_OPERATION_NOT_ALLOWED;    /* 输入字串太长 */
+        return AT_CMS_OPERATION_NOT_ALLOWED;    /*  */
     }
 
-    /* 执行命令操作 */
+    /*  */
     pstAckParm = At_GetAckMsgMem();
 
-    /*gastAtClientTab[ucIndex].AtSmsData.ucNumType为0的情况已经在命令设置时直接处理了，此处不考虑*/
+    /*gastAtClientTab[ucIndex].AtSmsData.ucNumType0*/
     if (1 == gastAtClientTab[ucIndex].AtSmsData.ucCnmaType)
     {
         pstAckParm->bRpAck = TAF_TRUE;
@@ -1415,7 +1415,7 @@ TAF_UINT32  At_SendPduMsgAck(
         pstAckParm->stTsRawData.enTpduType = MN_MSG_TPDU_DELIVER_RPT_ERR;
     }
 
-    /*gastAtClientTab[ucIndex].AtSmsData.ucPduLen为0的情况已经在命令设置时直接处理了，此处不考虑*/
+    /*gastAtClientTab[ucIndex].AtSmsData.ucPduLen0*/
     pstAckParm->stTsRawData.ulLen = (TAF_UINT32)gastAtClientTab[ucIndex].AtSmsData.ucPduLen;
     TAF_MEM_CPY_S(pstAckParm->stTsRawData.aucData, sizeof(pstAckParm->stTsRawData.aucData), pData, ulLen);
     pstTsDataInfo = At_GetMsgMem();
@@ -1435,10 +1435,10 @@ TAF_UINT32  At_SendPduMsgAck(
     gastAtClientTab[ucIndex].opId = opId;
     if (MN_ERR_NO_ERROR == MN_MSG_SendAck(gastAtClientTab[ucIndex].usClientId, opId, pstAckParm))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CNMA_PDU_SET;
         gastAtClientTab[ucIndex].AtSmsData.ucMsgSentSmNum = 1;
-        ulRet = AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+        ulRet = AT_WAIT_ASYNC_RETURN;    /*  */
     }
     else
     {
@@ -1449,26 +1449,26 @@ TAF_UINT32  At_SendPduMsgAck(
 
 
 /*****************************************************************************
- 函 数 名  : At_WritePduMsgToMem
- 功能描述  : 写PDU格式的短消息到NVIM或USIM
- 输入参数  : ucIndex - 用户索引值
-             pData   - PDU数据,
-             ulLen   - PDU数据长度
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_WritePduMsgToMem
+   : PDUNVIMUSIM
+   : ucIndex - 
+             pData   - PDU,
+             ulLen   - PDU
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2009年10月10日
-    作    者   : fuyingjun
-    修改内容   : 问题单号：AT2D15015，MAC/LINUX后台移动网络长短信发送仅最后一条发送成功
-  3.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 2008313
+           : fuyingjun
+       : 
+  2.       : 20091010
+           : fuyingjun
+       : AT2D15015MAC/LINUX
+  3.       : 2013225
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32  At_WritePduMsgToMem(
     TAF_UINT8                           ucIndex,
@@ -1553,7 +1553,7 @@ VOS_UINT32  At_WritePduMsgToMem(
     ucFo = pstWriteParm->stMsgInfo.stTsRawData.aucData[0];
     pstWriteParm->stMsgInfo.stTsRawData.enTpduType = aucMtiMapTpduType[(ucFo & 0x03)];;
 
-    /*增加PDU码有效性检查，删除冗余字段*/
+    /*PDU*/
     pstTsDataInfo = At_GetMsgMem();
     ulRet = MN_MSG_Decode(&pstWriteParm->stMsgInfo.stTsRawData, pstTsDataInfo);
     if (MN_ERR_NO_ERROR != ulRet)
@@ -1595,19 +1595,19 @@ VOS_UINT32  At_WritePduMsgToMem(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ConvertCharToHex
- 功能描述  : 转换数字字符到数字
- 输入参数  : VOS_UINT8                           ucChar
+     : AT_ConvertCharToHex
+   : 
+   : VOS_UINT8                           ucChar
              VOS_UINT8                          *pucHexValue
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年2月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 2011223
+           : /f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_ConvertCharToHex(
@@ -1636,20 +1636,20 @@ VOS_UINT32 AT_ConvertCharToHex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetInvalidCharLengthForSms
- 功能描述  : 获取短信PDU中无效字符的长度
- 输入参数  : VOS_UINT8                          *pucPdu PDU码流首地址
-             VOS_UINT32                          ulLen  PDU码流长度
-             VOS_UINT32                         *pulInvalidCharLen  无效字符长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_GetInvalidCharLengthForSms
+   : PDU
+   : VOS_UINT8                          *pucPdu PDU
+             VOS_UINT32                          ulLen  PDU
+             VOS_UINT32                         *pulInvalidCharLen  
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年2月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 2011223
+           : /f62575
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_GetInvalidCharLengthForSms(
@@ -1681,22 +1681,22 @@ VOS_VOID AT_GetInvalidCharLengthForSms(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ProcAbnormalPdu
- 功能描述  : PDU格式SMS模式下输入的字符串结束符不是CTRL+Z异常输入处理
- 输入参数  : VOS_UINT8                          *pucPdu PDU码流首地址
-             VOS_UINT32                          ulLen  PDU码流长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_ProcAbnormalPdu
+   : PDUSMSCTRL+Z
+   : VOS_UINT8                          *pucPdu PDU
+             VOS_UINT32                          ulLen  PDU
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年2月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月27日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012032205203,PDU模式下发短信，ESC取消后返回ERROR与手册不一致
+       :
+  1.       : 2011223
+           : /f62575
+       : 
+  2.       : 20120327
+           : f00179208
+       : :DTS2012032205203,PDUESCERROR
 *****************************************************************************/
 VOS_UINT32 AT_ProcAbnormalPdu(
     VOS_UINT8                          *pucPdu,
@@ -1710,9 +1710,9 @@ VOS_UINT32 AT_ProcAbnormalPdu(
         return AT_CMS_INVALID_PDU_MODE_PARAMETER;
     }
 
-    /* 进入At_SmsPduProc处理函数只有结束符为回车,CTRL+Z和ESC三种情况，
-       At_SmsPduProc函数的第一个CASE处理了CTRL+Z,本函数前面流程处理了ESC情况
-       这段代码是针对字符串结束符为回车的处理 */
+    /* At_SmsPduProc,CTRL+ZESC
+       At_SmsPduProcCASECTRL+Z,ESC
+        */
     AT_GetInvalidCharLengthForSms(pucPdu, ulLen, &ulInvalidCharLength);
     if (ulInvalidCharLength == ulLen)
     {
@@ -1726,12 +1726,12 @@ VOS_UINT32 AT_ProcAbnormalPdu(
 
 /*****************************************************************************
  Prototype      : At_SmsPduProc
- Description    : 短信PDU处理
- Input          : ucIndex --- 用户索引值
-                  pData   --- 地址
-                  usLen   --- 长度
+ Description    : PDU
+ Input          : ucIndex --- 
+                  pData   --- 
+                  usLen   --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -1739,12 +1739,12 @@ VOS_UINT32 AT_ProcAbnormalPdu(
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2008年04月18日
-    作    者 : f62575
-    修改内容 : CM优化
-  3.日    期   : 2009年9月25日
-    作    者   : fuyingjun
-    修改内容   : 问题单号：AT2D14190，短信发送失败错误原因值与标杆不一致
+  2.     : 20080418
+         : f62575
+     : CM
+  3.       : 2009925
+           : fuyingjun
+       : AT2D14190
 *****************************************************************************/
 TAF_UINT32 At_SmsPduProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 {
@@ -1752,11 +1752,11 @@ TAF_UINT32 At_SmsPduProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen
     TAF_UINT16                          usTmpLen            = usLen;
     TAF_UINT32                          ulRet;
 
-    usTmpLen -= 1;              /* 找到最后一个字符 */
-    switch (pData[usTmpLen])    /* 根据最后一个字符决定下一步操作 */
+    usTmpLen -= 1;              /*  */
+    switch (pData[usTmpLen])    /*  */
     {
     case AT_CTRL_Z:
-        /* 根据当前用户的命令索引,发送/写/PDU[短信/命令] */
+        /* ,//PDU[/] */
         AT_GetInvalidCharLengthForSms(pData, usTmpLen, &ulInvalidCharLength);
         pData    += ulInvalidCharLength;
         usTmpLen -= (VOS_UINT16)ulInvalidCharLength;
@@ -1784,11 +1784,11 @@ TAF_UINT32 At_SmsPduProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen
         /*end add by zhoujun40661 2006-10-24 for CNMA*/
 
         default:
-            ulRet = AT_ERROR;                                                   /*  返回错误*/
+            ulRet = AT_ERROR;                                                   /*  */
         }
         break;
     default:
-        ulRet = AT_ProcAbnormalPdu(pData, usTmpLen);                            /*  返回错误*/
+        ulRet = AT_ProcAbnormalPdu(pData, usTmpLen);                            /*  */
         break;
     }
 
@@ -1796,40 +1796,40 @@ TAF_UINT32 At_SmsPduProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen
 }
 
 /*****************************************************************************
- 函 数 名  : At_SendTextMsgOrCmd
- 功能描述  : 文本短消息或命令的发送
- 输入参数  : ucIndex - 用户索引值
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_SendTextMsgOrCmd
+   : 
+   : ucIndex - 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2009-09-08
-    作    者   : F62575
-    修改内容   : 问题单号:设置TE和MT的字符集类型为IRA，短信编码类型为7BIT编码，输入特殊字符@等短信内容，写入到SIM卡中的数据错误；
-  3.日    期   : 2009年9月25日
-    作    者   : fuyingjun
-    修改内容   : 问题单号：AT2D14190，短信发送失败错误原因值与标杆不一致
-  4.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
-  5.日    期   : 2010年6月30日
-    作    者   : 傅映君
-    修改内容   : 问题单号DTS2010071500596，STK短信的定制缓存
-  6.日    期   : 2011年03月01日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011021202242/DTS2011021400322，添加宏开关判断
-                 服务域为PS_ONLY时，CS域短信和呼叫业务是否能够发起
-  7.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  8.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
+       :
+  1.       : 2008313
+           : fuyingjun
+       : 
+  2.       : 2009-09-08
+           : F62575
+       : :TEMTIRA7BIT@SIM
+  3.       : 2009925
+           : fuyingjun
+       : AT2D14190
+  4.       : 20091028
+           : f62575
+       : AT2D15641, STK
+  5.       : 2010630
+           : 
+       : DTS2010071500596STK
+  6.       : 20110301
+           : A00165503
+       : : DTS2011021202242/DTS2011021400322
+                 PS_ONLYCS
+  7.       : 2013222
+           : l60609
+       : DSDA PHASE III
+  8.       : 20131224
+           : s00217060
+       : VoLTE_PhaseIII
 *****************************************************************************/
 TAF_UINT32  At_SendTextMsgOrCmd(
     TAF_UINT8                           ucIndex
@@ -1875,7 +1875,7 @@ TAF_UINT32  At_SendTextMsgOrCmd(
         /*Fo*/
         At_SendMsgFoAttr(ucIndex, pstTsDataInfo);
 
-        /*Mr填0,由MN修改*/
+        /*Mr0,MN*/
 
         /*Da*/
         TAF_MEM_CPY_S(&pstTsDataInfo->u.stSubmit.stDestAddr,
@@ -1913,13 +1913,13 @@ TAF_UINT32  At_SendTextMsgOrCmd(
         if ((AT_CSCS_IRA_CODE == gucAtCscsType)
          && (MN_MSG_MSG_CODING_7_BIT == pstTsDataInfo->u.stSubmit.stDcs.enMsgCoding))
         {
-            /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
+            /* Modified by s00217060 for VoLTE_PhaseIII  , 2013-12-24, begin */
             ulRet = TAF_STD_ConvertAsciiToDefAlpha(gastAtClientTab[ucIndex].AtSmsData.aucBuffer,
                                            gastAtClientTab[ucIndex].usSmsTxtLen,
                                            pstTsDataInfo->u.stSubmit.stUserData.aucOrgData,
                                            &(pstTsDataInfo->u.stSubmit.stUserData.ulLen),
                                            MN_MSG_MAX_LEN);
-            /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
+            /* Modified by s00217060 for VoLTE_PhaseIII  , 2013-12-24, end */
             if (MN_ERR_INVALIDPARM == ulRet)
             {
                 AT_NORM_LOG("At_SendTextMsgOrCmd: invalid text content.");
@@ -1940,14 +1940,14 @@ TAF_UINT32  At_SendTextMsgOrCmd(
         pstTsDataInfo->enTpduType = MN_MSG_TPDU_COMMAND;
         /*Fo*/
         At_SendMsgFoAttr(ucIndex, pstTsDataInfo);
-        /*Mr填0,由MN修改*/
+        /*Mr0,MN*/
         /*PID*/
         /*PID*/
         pstTsDataInfo->u.stCommand.enPid = gastAtClientTab[ucIndex].AtSmsData.enPid;
 
         /*TP-CT*/
         pstTsDataInfo->u.stCommand.enCmdType = gastAtClientTab[ucIndex].AtSmsData.CommandType;
-        /*TP-MN*/ /* 此处去掉了绝对编号类型TAF_SMS_CMD_MSG_NUM_ABSOLUTE,需确认 */
+        /*TP-MN*/ /* TAF_SMS_CMD_MSG_NUM_ABSOLUTE, */
         pstTsDataInfo->u.stCommand.ucMsgNumber = gastAtClientTab[ucIndex].AtSmsData.ucMessageNumber;
 
         /*Da*/
@@ -1962,7 +1962,7 @@ TAF_UINT32  At_SendTextMsgOrCmd(
             return AT_ERROR;
         }
 
-        /*这里使用了gastAtClientTab[ucIndex].usSmsTxtLen作为命令长度，与原程序不同，需确认*/
+        /*gastAtClientTab[ucIndex].usSmsTxtLen*/
         pstTsDataInfo->u.stCommand.ucCommandDataLen = (TAF_UINT8)gastAtClientTab[ucIndex].usSmsTxtLen;
         TAF_MEM_CPY_S(pstTsDataInfo->u.stCommand.aucCmdData,
                    MN_MSG_MAX_COMMAND_DATA_LEN,
@@ -2002,27 +2002,27 @@ TAF_UINT32  At_SendTextMsgOrCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : At_WriteTextMsgToMem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : At_WriteTextMsgToMem
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年3月13日
-    作    者   : fuyingjun
-    修改内容   : 新生成函数
-  2.日    期   : 2009-09-08
-    作    者   : F62575
-    修改内容   : 问题单号:设置TE和MT的字符集类型为IRA，短信编码类型为7BIT编码，输入特殊字符@等短信内容，写入到SIM卡中的数据错误；
-  3.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  4.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
+       :
+  1.       : 2008313
+           : fuyingjun
+       : 
+  2.       : 2009-09-08
+           : F62575
+       : :TEMTIRA7BIT@SIM
+  3.       : 2013225
+           : l60609
+       : DSDA PHASE III
+  4.       : 20131224
+           : s00217060
+       : VoLTE_PhaseIII
 *****************************************************************************/
 TAF_UINT32  At_WriteTextMsgToMem(
     TAF_UINT8                           ucIndex
@@ -2067,7 +2067,7 @@ TAF_UINT32  At_WriteTextMsgToMem(
         /*Fo*/
         At_SendMsgFoAttr(ucIndex, pstTsDataInfo);
 
-        /*Mr填0,由MN修改*/
+        /*Mr0,MN*/
         pstTsDataInfo->u.stSubmit.ucMr = 0xff;
 
         /*Da*/
@@ -2105,13 +2105,13 @@ TAF_UINT32  At_WriteTextMsgToMem(
         if ((AT_CSCS_IRA_CODE == gucAtCscsType)
          && (MN_MSG_MSG_CODING_7_BIT == pstTsDataInfo->u.stSubmit.stDcs.enMsgCoding))
         {
-            /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
+            /* Modified by s00217060 for VoLTE_PhaseIII  , 2013-12-24, begin */
             ulRet = TAF_STD_ConvertAsciiToDefAlpha(gastAtClientTab[ucIndex].AtSmsData.aucBuffer,
                                            gastAtClientTab[ucIndex].usSmsTxtLen,
                                            pstTsDataInfo->u.stSubmit.stUserData.aucOrgData,
                                            &(pstTsDataInfo->u.stSubmit.stUserData.ulLen),
                                            MN_MSG_MAX_LEN);
-            /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
+            /* Modified by s00217060 for VoLTE_PhaseIII  , 2013-12-24, end */
             if (MN_ERR_INVALIDPARM == ulRet)
             {
                 AT_NORM_LOG("At_WriteTextMsgToMem: invalid text content.");
@@ -2134,7 +2134,7 @@ TAF_UINT32  At_WriteTextMsgToMem(
         /*Fo*/
         At_SendMsgFoAttr(ucIndex, pstTsDataInfo);
 
-        /*Mr填0,由MN修改*/
+        /*Mr0,MN*/
 
         /*Da*/
         TAF_MEM_CPY_S(&pstTsDataInfo->u.stDeliver.stOrigAddr,
@@ -2212,12 +2212,12 @@ TAF_UINT32  At_WriteTextMsgToMem(
 
 /*****************************************************************************
  Prototype      : At_SmsTextProc
- Description    : 短信TEXT处理
- Input          : ucIndex --- 用户索引值
-                  pData   --- 地址
-                  usLen   --- 长度
+ Description    : TEXT
+ Input          : ucIndex --- 
+                  pData   --- 
+                  usLen   --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -2225,22 +2225,22 @@ TAF_UINT32  At_WriteTextMsgToMem(
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+ 2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 
- 3.日    期 : 2007-09-24
-   作    者 : z40661
-   修改内容 : 问题单号:A32D12776
- 4.日    期 : 2008年04月18日
-   作    者 : f62575
-   修改内容 : CM优化
- 5.日    期   : 2009年9月25日
-   作    者   : fuyingjun
-   修改内容   : 问题单号：AT2D14190，短信发送失败错误原因值与标杆不一致
- 6.日    期   : 2009年10月28日
-    作    者   : f62575
-    修改内容   : AT2D15641, STK短信发送需要支持长短信的分段发送功能
+ 3.     : 2007-09-24
+        : z40661
+    : :A32D12776
+ 4.     : 20080418
+        : f62575
+    : CM
+ 5.       : 2009925
+          : fuyingjun
+      : AT2D14190
+ 6.       : 20091028
+           : f62575
+       : AT2D15641, STK
 *****************************************************************************/
 TAF_UINT32 At_SmsTextProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 {
@@ -2268,7 +2268,7 @@ TAF_UINT32 At_SmsTextProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
             return AT_CMS_INVALID_TEXT_MODE_PARAMETER;
         }
 
-        /* UNICODE 长度判断 */
+        /* UNICODE  */
         if ((gastAtClientTab[ucIndex].usSmsTxtLen + usTmpLen) > AT_UNICODE_SMS_MAX_LENGTH)
         {
             return AT_CMS_INVALID_TEXT_MODE_PARAMETER;
@@ -2290,7 +2290,7 @@ TAF_UINT32 At_SmsTextProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
             return AT_CMS_INVALID_TEXT_MODE_PARAMETER;
         }
 
-        /* ASCII 长度判断 */
+        /* ASCII  */
         if ((gastAtClientTab[ucIndex].usSmsTxtLen + usTmpLen) > AT_ASCII_SMS_MAX_LENGTH)
         {
             return AT_CMS_INVALID_TEXT_MODE_PARAMETER;
@@ -2328,19 +2328,19 @@ TAF_UINT32 At_SmsTextProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
     }
     else
     {
-        /* 拷贝到短信缓存,修改短信文本长度 */
+        /* , */
         ulRet = AT_WAIT_SMS_INPUT;
     }
     return ulRet;
 }
 /*****************************************************************************
  Prototype      : At_SmsProc
- Description    : 短信处理
- Input          : ucIndex --- 用户索引值
-                  pData   --- 地址
-                  usLen   --- 长度
+ Description    : 
+ Input          : ucIndex --- 
+                  pData   --- 
+                  usLen   --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -2348,12 +2348,12 @@ TAF_UINT32 At_SmsTextProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2008年04月18日
-    作    者 : f62575
-    修改内容 : CM优化
-  3.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+  2.     : 20080418
+         : f62575
+     : CM
+  3.       : 2013222
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 TAF_UINT32 At_SmsProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 {
@@ -2362,14 +2362,14 @@ TAF_UINT32 At_SmsProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 
     pstSmsCtx = AT_GetModemSmsCtxAddrFromClientId(ucIndex);
 
-    /* 获取当前短信模式 */
+    /*  */
     if (AT_CMGF_MSG_FORMAT_TEXT == pstSmsCtx->enCmgfMsgFormat)                  /* TEXT */
     {
         return At_SmsTextProc(ucIndex,pData,usLen);
     }
     else
     {
-        /* 如果处理有问题，返回AT_ERROR */
+        /* AT_ERROR */
         return At_SmsPduProc(ucIndex,pData,usLen);                              /* PDU */
     }
     /* Modified by l60609 for DSDA Phase III, 2013-2-22, End */
@@ -2377,21 +2377,21 @@ TAF_UINT32 At_SmsProc ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 
 
 /*****************************************************************************
- 函 数 名  : At_ParseSimLockPara
- 功能描述  : 将 AT 字符串解析成AT_Pase的个数
- 输入参数  : pucData -- simlock的输入参数
-             usLen -- 参数的字符串长度
-             pstParalist -- 解析出来的参数列表
-             ulParaCnt-- 参数个数  = 参数字符串中逗号个数 + 1
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_ParseSimLockPara
+   :  AT AT_Pase
+   : pucData -- simlock
+             usLen -- 
+             pstParalist -- 
+             ulParaCnt--   =  + 1
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年8月13日
-    作    者   : l00130025
-    修改内容   : 新生成函数
+       :
+  1.       : 2010813
+           : l00130025
+       : 
 
 *****************************************************************************/
 VOS_UINT32 At_ParseSimLockPara(
@@ -2415,12 +2415,12 @@ VOS_UINT32 At_ParseSimLockPara(
     pucParaStart  = pucData;
     ulParaIdx     = 0;
 
-    /* 从AT^simlock=pucData的pucData开始解析  */
+    /* AT^simlock=pucDatapucData  */
     for ( i = 0; i < usLen ; i++ )
     {
         if (',' == pucData[i])
         {
-            /* 当前参数的长度 */
+            /*  */
             ulChkRslt = At_CheckAndParsePara((pstParalist + ulParaIdx),
                                                    pucParaStart, (pucData + i));
             if (AT_OK != ulChkRslt)
@@ -2439,7 +2439,7 @@ VOS_UINT32 At_ParseSimLockPara(
 
     }
 
-    /*  将最后一段参数修改copy到参数列表中 */
+    /*  copy */
     ulChkRslt = At_CheckAndParsePara((pstParalist + ulParaIdx),
                                            pucParaStart, (pucData + usLen));
     if (AT_OK != ulChkRslt)
@@ -2458,21 +2458,21 @@ VOS_UINT32 At_ParseSimLockPara(
 
 }
 /*****************************************************************************
- 函 数 名  : At_DispatchSimlockCmd
- 功能描述  : 根据at^simlock=oprt,paralist中的oprt分发 Simlock的命令处理
- 输入参数  : SimlockOp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : At_DispatchSimlockCmd
+   : at^simlock=oprt,paralistoprt Simlock
+   : SimlockOp
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年8月14日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月3日
-    作    者   : f62575
-    修改内容   : B050 SIMLOCK命令的硬加密改制功能: SIMLOCK锁卡状态查询功能封装为函数
+       :
+  1.       : 2010814
+           : l00130025
+       : 
+  2.       : 2012023
+           : f62575
+       : B050 SIMLOCK: SIMLOCK
 
 *****************************************************************************/
 VOS_UINT32 At_DispatchSimlockCmd(
@@ -2493,7 +2493,7 @@ VOS_UINT32 At_DispatchSimlockCmd(
      || (pstParalist[0].aucPara[0] <'0')
      || (pstParalist[0].aucPara[0] > '2'))
     {
-        /*输出错误*/
+        /**/
         At_FormatResultData(ucIndex, AT_ERROR);
         return AT_FAILURE;
     }
@@ -2519,25 +2519,25 @@ VOS_UINT32 At_DispatchSimlockCmd(
 
 
 /*****************************************************************************
- 函 数 名  : At_ProcSimLockPara
- 功能描述  : 处理Simlock命令
- 输入参数  : ucIndex --- 用户索引
-             pucData --- 输入的字符串
-             pusLen --- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是Simlock命令,处理完毕
-             AT_FAILURE 不是Simlock命令
- 调用函数  :
- 被调函数  :
+     : At_ProcSimLockPara
+   : Simlock
+   : ucIndex --- 
+             pucData --- 
+             pusLen --- 
+   : 
+     : AT_SUCCESS Simlock,
+             AT_FAILURE Simlock
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年8月10日
-    作    者   : l00130025
-    修改内容   : 新生成函数
+       :
+  1.       : 2010810
+           : l00130025
+       : 
 
-  2.日    期   : 2012年9月19日
-    作    者   : l00171473
-    修改内容   : V7R1C50_At_Abort, 匹配和记录AT命令名
+  2.       : 2012919
+           : l00171473
+       : V7R1C50_At_Abort, AT
 *****************************************************************************/
 VOS_UINT32 At_ProcSimLockPara(
     VOS_UINT8                           ucIndex,
@@ -2568,7 +2568,7 @@ VOS_UINT32 At_ProcSimLockPara(
     TAF_MEM_CPY_S(pucDataPara, usLen, pucData, usLen);
 
 
-    /* 待处理的字符串长度小于等于"AT^SIMLOCK"长度直接返回AT_FAILURE */
+    /* "AT^SIMLOCK"AT_FAILURE */
     usCmdLen =(VOS_UINT16)VOS_StrLen("AT^SIMLOCK=");
 
     if (usLen <= usCmdLen)
@@ -2577,7 +2577,7 @@ VOS_UINT32 At_ProcSimLockPara(
         return AT_FAILURE;
     }
 
-    /* 待处理的字符串头部不是"AT^SIMLOCK"直接返回AT_FAILURE */
+    /* "AT^SIMLOCK"AT_FAILURE */
     cRet = VOS_StrNiCmp((VOS_CHAR *)pucDataPara, "AT^SIMLOCK=", usCmdLen);
 
     if (0 != cRet)
@@ -2589,7 +2589,7 @@ VOS_UINT32 At_ProcSimLockPara(
 
     AT_SaveCmdElementInfo(ucIndex, (VOS_UINT8*)"^SIMLOCK", AT_EXTEND_CMD_TYPE);
 
-    /* 检测参数个数 */
+    /*  */
     ulParaCnt = At_GetParaCnt(pucDataPara, usLen);
 
     if (ulParaCnt < 1)
@@ -2599,7 +2599,7 @@ VOS_UINT32 At_ProcSimLockPara(
         return AT_SUCCESS;
     }
 
-    /* 如果参数是超过61个返回失败 */
+    /* 61 */
     if (ulParaCnt > 61)
     {
         PS_MEM_FREE(WUEPS_PID_AT, pucDataPara);
@@ -2622,13 +2622,13 @@ VOS_UINT32 At_ProcSimLockPara(
         TAF_MEM_SET_S(pstParalist, ulParaCnt * sizeof(AT_PARSE_PARA_TYPE_STRU), 0x00, (VOS_SIZE_T)(ulParaCnt * sizeof(AT_PARSE_PARA_TYPE_STRU)));
     }
 
-    /* 将 At^simlock的参数解析到 At格式的参数列表中 */
+    /*  At^simlock At */
     ulRslt = At_ParseSimLockPara((pucDataPara + usCmdLen), (usLen - usCmdLen),
                                                     pstParalist, ulParaCnt);
 
     if (AT_SUCCESS == ulRslt)
     {
-        /* 根据at^simlock=oprt,paralist中的oprt分发 Simlock的命令处理 */
+        /* at^simlock=oprt,paralistoprt Simlock */
         At_DispatchSimlockCmd(ucIndex, ulParaCnt, pstParalist);
     }
     else
@@ -2644,22 +2644,22 @@ VOS_UINT32 At_ProcSimLockPara(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HandleFacAuthPubKeyExCmd
- 功能描述  : 处理AT^FACAUTHPUBKEYEX命令的特殊函数(因为该命令的第三个参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex --- 用户索引
-             pucData --- 输入的字符串
-             pusLen --- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是^FACAUTHPUBKEYEX命令,处理完毕
-             AT_FAILURE ^FACAUTHPUBKEY命令处理失败
- 调用函数  :
- 被调函数  :
+     : AT_HandleFacAuthPubKeyExCmd
+   : AT^FACAUTHPUBKEYEX(
+             )
+   : ucIndex --- 
+             pucData --- 
+             pusLen --- 
+   : 
+     : AT_SUCCESS ^FACAUTHPUBKEYEX,
+             AT_FAILURE ^FACAUTHPUBKEY
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年05月10日
-    作    者   : z00301431
-    修改内容   : 锁网锁卡安全升级开发新增
+       :
+  1.       : 20160510
+           : z00301431
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
     VOS_UINT8                           ucIndex,
@@ -2695,7 +2695,7 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
 
     TAF_MEM_SET_S(&stAtCmdName, sizeof(stAtCmdName), 0x00, sizeof(stAtCmdName));
 
-    /* 局部变量初始化 */
+    /*  */
     usPos               = 0;
     pucDataPara         = VOS_NULL_PTR;
     usLoop              = 0;
@@ -2715,13 +2715,13 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
         return AT_FAILURE;
     }
 
-    /*拷贝命令名，供后续比较使用*/
+    /**/
     VOS_MemCpy_s(pucDataPara, usCmdlen, pucData, usCmdlen);
 
-    /* AT命令头字符转大写 */
+    /* AT */
     At_UpString(pucDataPara, usCmdlen);
 
-    /* 待处理的字符串头部不是"AT^FACAUTHPUBKEYEX="直接返回AT_FAILURE */
+    /* "AT^FACAUTHPUBKEYEX="AT_FAILURE */
     cRet = VOS_StrNiCmp((VOS_CHAR *)pucDataPara, "AT^FACAUTHPUBKEYEX=", usCmdlen);
     if (0 != cRet)
     {
@@ -2731,7 +2731,7 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
 
     AT_SaveCmdElementInfo(ucIndex, (VOS_UINT8*)"^FACAUTHPUBKEYEX", AT_EXTEND_CMD_TYPE);
 
-    /* 获取命令(不包含命令前缀AT)名称及长度 */
+    /* (AT) */
     usPos = (VOS_UINT16)VOS_StrLen("AT");
 
     stAtCmdName.usCmdNameLen = (VOS_UINT16)VOS_StrLen("^FACAUTHPUBKEYEX");
@@ -2744,14 +2744,14 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
 
     usPos += (VOS_UINT16)VOS_StrLen("=");
 
-    /* 获取命令中的逗号位置和个数 */
+    /*  */
     for ( usLoop = usPos; usLoop < usLen; usLoop++ )
     {
         if (',' == *(pucData + usLoop))
         {
             usCommaCnt++;
 
-            /* 记录下第一个逗号的位置 */
+            /*  */
             if (0 == usFirstCommaPos)
             {
                 usFirstCommaPos = usLoop + 1;
@@ -2766,7 +2766,7 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
         }
     }
 
-    /* 若逗号个数不为2，则AT命令结果返回失败 */
+    /* 2AT */
     if (2 != usCommaCnt)
     {
         AT_WARN_LOG("AT_HandleFacAuthPubKeyExCmd: usCommaCnt != 2!");
@@ -2777,12 +2777,12 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
         return AT_SUCCESS;
     }
 
-    /* 计算参数的长度 */
+    /*  */
     usFirstParaLen  = (usFirstCommaPos - usPos) - (VOS_UINT16)VOS_StrLen(",");
     usSecondParaLen = usSecCommaPos - usFirstCommaPos - (VOS_UINT16)VOS_StrLen(",");
     usThirdParaLen  = usLen - usSecCommaPos;
 
-    /* 获取第一个参数值 */
+    /*  */
     if (AT_FAILURE == atAuc2ul(pucData + usPos, usFirstParaLen, &ulFirstParaVal))
     {
         AT_WARN_LOG("AT_HandleFacAuthPubKeyExCmd: ulFirstParaVal value invalid");
@@ -2793,7 +2793,7 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
         return AT_SUCCESS;
     }
 
-    /* 获取第二个参数值 */
+    /*  */
     if (AT_FAILURE == atAuc2ul(pucData + usFirstCommaPos, usSecondParaLen, &ulSecParaVal))
     {
         AT_WARN_LOG("AT_HandleFacAuthPubKeyExCmd: ulSecParaVal value invalid");
@@ -2804,7 +2804,7 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
         return AT_SUCCESS;
     }
 
-    /* 设置命令类型，操作类型和参数个数 */
+    /*  */
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_SET_PARA_CMD;
     gucAtCmdFmtType = AT_EXTEND_CMD_TYPE;
 
@@ -2823,28 +2823,28 @@ VOS_UINT32 AT_HandleFacAuthPubKeyExCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HandleSimLockDataWriteCmd
- 功能描述  : 处理AT^SIMLOCKDATAWRITE命令的特殊函数(因为该命令的参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex --- 用户索引
-             pucData --- 输入的字符串
-             pusLen --- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是^SIMLOCKDATAWRITE命令,处理完毕
-             AT_FAILURE 不是^SIMLOCKDATAWRITE命令
- 调用函数  :
- 被调函数  :
+     : AT_HandleSimLockDataWriteCmd
+   : AT^SIMLOCKDATAWRITE(
+             )
+   : ucIndex --- 
+             pucData --- 
+             pusLen --- 
+   : 
+     : AT_SUCCESS ^SIMLOCKDATAWRITE,
+             AT_FAILURE ^SIMLOCKDATAWRITE
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年04月18日
-    作    者   : L47619
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2012年9月19日
-    作    者   : l00171473
-    修改内容   : V7R1C50_At_Abort, 保存命令信息, AT打断处理需要使用
-  3.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 20120418
+           : L47619
+       : AP-Modem
+  2.       : 2012919
+           : l00171473
+       : V7R1C50_At_Abort, , AT
+  3.       : 2013225
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 AT_HandleSimLockDataWriteCmd(
     VOS_UINT8                           ucIndex,
@@ -2864,11 +2864,11 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
     TAF_MEM_SET_S(&stAtCmdName, sizeof(stAtCmdName), 0x00, sizeof(stAtCmdName));
     /* Modified by l60609 for DSDA Phase III, 2013-2-25, End */
 
-    /* 局部变量初始化 */
+    /*  */
     pucDataPara         = VOS_NULL_PTR;
     pstSimlockDataWrite = VOS_NULL_PTR;
 
-    /* 为提高AT解析性能，在入口处判断命令长度是否为AT^SIMLOCKDATAWRITE设置命令的长度，若不是则直接退出 */
+    /* ATAT^SIMLOCKDATAWRITE */
     if ((VOS_StrLen("AT^SIMLOCKDATAWRITE=") + AT_SIMLOCKDATAWRITE_PARA_LEN) != usLen)
     {
         return AT_FAILURE;
@@ -2883,13 +2883,13 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
         return AT_FAILURE;
     }
 
-    /*拷贝命令名，供后续比较使用*/
+    /**/
     TAF_MEM_CPY_S(pucDataPara, usCmdlen, pucData, usCmdlen);
 
-    /* AT命令头字符转大写 */
+    /* AT */
     At_UpString(pucDataPara, usCmdlen);
 
-    /* 待处理的字符串头部不是"AT^SIMLOCKDATAWRITE="直接返回AT_FAILURE */
+    /* "AT^SIMLOCKDATAWRITE="AT_FAILURE */
     cRet = VOS_StrNiCmp((VOS_CHAR *)pucDataPara, "AT^SIMLOCKDATAWRITE=", usCmdlen);
     if (0 != cRet)
     {
@@ -2900,7 +2900,7 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
 
     AT_SaveCmdElementInfo(ucIndex, (VOS_UINT8*)"^SIMLOCKDATAWRITE", AT_EXTEND_CMD_TYPE);
 
-    /* 获取命令(不包含命令前缀AT)名称及长度 */
+    /* (AT) */
     usPos = (VOS_UINT16)VOS_StrLen("AT");
     /* Modified by l60609 for DSDA Phase III, 2013-2-25, Begin */
     stAtCmdName.usCmdNameLen = (VOS_UINT16)VOS_StrLen("^SIMLOCKDATAWRITE");
@@ -2914,7 +2914,7 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
 
     usPos += (VOS_UINT16)VOS_StrLen("=");
 
-    /* 申请参数解析缓存结构 */
+    /*  */
     pstSimlockDataWrite = (AT_SIMLOCKDATAWRITE_SET_REQ_STRU*)PS_MEM_ALLOC(WUEPS_PID_AT, sizeof(AT_SIMLOCKDATAWRITE_SET_REQ_STRU));
     if (VOS_NULL_PTR == pstSimlockDataWrite)
     {
@@ -2923,10 +2923,10 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 保存参数 */
+    /*  */
     TAF_MEM_CPY_S(pstSimlockDataWrite->aucCategoryData, AT_SIMLOCKDATAWRITE_PARA_LEN, (pucData + usPos), (VOS_SIZE_T)(usLen - usPos));
 
-    /* 设置命令类型，操作类型和参数个数 */
+    /*  */
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_SET_PARA_CMD;
     gucAtCmdFmtType = AT_EXTEND_CMD_TYPE;
 
@@ -2945,22 +2945,22 @@ VOS_UINT32 AT_HandleSimLockDataWriteCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HandleApSndApduCmd
- 功能描述  : 处理AT^CISA命令的特殊函数(因为该命令的参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex    -- 用户索引
-             pucData    -- 输入的字符串
-             pusLen     -- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是^CISA命令,处理完毕
-             AT_FAILURE 不是^CISA命令
- 调用函数  :
- 被调函数  :
+     : AT_HandleApSndApduCmd
+   : AT^CISA(
+             )
+   : ucIndex    -- 
+             pucData    -- 
+             pusLen     -- 
+   : 
+     : AT_SUCCESS ^CISA,
+             AT_FAILURE ^CISA
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年09月01日
-    作    者   : H59254
-    修改内容   : ISDB安全存储项目新增函数
+       :
+  1.       : 20120901
+           : H59254
+       : ISDB
 *****************************************************************************/
 VOS_UINT32 AT_HandleApSndApduCmd(
     VOS_UINT8                           ucIndex,
@@ -2980,7 +2980,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
     VOS_UINT8                           ucHeadChar;
     VOS_UINT8                           ucTailChar;
 
-    /* CISA命令只能从AP侧接收处理，其它端口不可以 */
+    /* CISAAP */
     if (VOS_TRUE != AT_IsApPort(ucIndex))
     {
         return AT_FAILURE;
@@ -2988,13 +2988,13 @@ VOS_UINT32 AT_HandleApSndApduCmd(
 
     usCmdlen = (VOS_UINT16)VOS_StrLen("AT^CISA=");
 
-    /* 待处理的字符串头部不是"AT^CISA="直接返回AT_FAILURE */
+    /* "AT^CISA="AT_FAILURE */
     if (0 != VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CISA=", usCmdlen))
     {
         return AT_FAILURE;
     }
 
-    /* 不支持AT^CISA=?命令 */
+    /* AT^CISA=? */
     if (0 == VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CISA=?", VOS_StrLen("AT^CISA=?")))
     {
         At_FormatResultData(ucIndex, AT_ERROR);
@@ -3002,7 +3002,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
         return AT_SUCCESS;
     }
 
-    /* 获取命令(不包含命令前缀AT)名称及长度 */
+    /* (AT) */
     usPos = (VOS_UINT16)VOS_StrLen("AT");
 
     g_stATParseCmd.stCmdName.usCmdNameLen = (VOS_UINT16)VOS_StrLen("^CISA");
@@ -3018,7 +3018,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
 
     usPos += (VOS_UINT16)VOS_StrLen("=");
 
-    /* 获取命令中的逗号位置和个数 */
+    /*  */
     usCommaCnt      = 0;
     usFirstCommaPos = 0;
     for ( usLoop = usPos; usLoop < usLen; usLoop++ )
@@ -3027,7 +3027,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
         {
             usCommaCnt++;
 
-            /* 记录下第一个逗号的位置 */
+            /*  */
             if (0 == usFirstCommaPos)
             {
                 usFirstCommaPos = usLoop + 1;
@@ -3035,7 +3035,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
         }
     }
 
-    /* 若逗号个数不为1，则AT命令结果返回失败 */
+    /* 1AT */
     if (1 != usCommaCnt)
     {
         AT_WARN_LOG("AT_HandleApSndApduCmd: usCommaCnt != 1!");
@@ -3045,7 +3045,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
         return AT_SUCCESS;
     }
 
-    /* 第二个参数是由引号包含起来的 */
+    /*  */
     ucHeadChar      = *(pucData + usFirstCommaPos);
     ucTailChar      = *(pucData + usLen - VOS_StrLen("\""));
     if ( ('"' != ucHeadChar)
@@ -3058,7 +3058,7 @@ VOS_UINT32 AT_HandleApSndApduCmd(
         return AT_SUCCESS;
     }
 
-    /* 计算两个参数的长度 */
+    /*  */
     usFirstParaLen  = (usFirstCommaPos - usPos) - (VOS_UINT16)VOS_StrLen(",");
     usSecondParaLen = usLen - usFirstCommaPos - (VOS_UINT16)(2 * VOS_StrLen("\""));
 
@@ -3070,11 +3070,11 @@ VOS_UINT32 AT_HandleApSndApduCmd(
 
         return AT_SUCCESS;
     }
-    /* 设置命令类型，操作类型和参数个数 */
+    /*  */
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_SET_PARA_CMD;
     gucAtCmdFmtType             = AT_EXTEND_CMD_TYPE;
 
-    /* 在扩展命令表中匹配此命令 */
+    /*  */
     ulResult = atMatchCmdName(ucIndex, g_stATParseCmd.ucCmdFmtType);
 
     if(ERR_MSP_SUCCESS != ulResult)
@@ -3099,22 +3099,22 @@ VOS_UINT32 AT_HandleApSndApduCmd(
 
 
 /*****************************************************************************
- 函 数 名  : AT_HandleApXsmsSndCmd
- 功能描述  : 处理AT^CCMGS命令的特殊函数(因为该命令的参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex    -- 用户索引
-             pucData    -- 输入的字符串
-             pusLen     -- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是^CCMGS命令,处理完毕
-             AT_FAILURE 不是^CCMGS命令
- 调用函数  :
- 被调函数  :
+     : AT_HandleApXsmsSndCmd
+   : AT^CCMGS(
+             )
+   : ucIndex    -- 
+             pucData    -- 
+             pusLen     -- 
+   : 
+     : AT_SUCCESS ^CCMGS,
+             AT_FAILURE ^CCMGS
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年10月30日
-    作    者   : h00300778
-    修改内容   : 新生成函数
+       :
+  1.       : 20141030
+           : h00300778
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_HandleApXsmsSndCmd(
     VOS_UINT8                           ucIndex,
@@ -3136,13 +3136,13 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
 
     usCmdlen = (VOS_UINT16)VOS_StrLen("AT^CCMGS=");
 
-    /* 待处理的字符串头部不是"AT^CCMGS="直接返回AT_FAILURE */
+    /* "AT^CCMGS="AT_FAILURE */
     if (0 != VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CCMGS=", usCmdlen))
     {
         return AT_FAILURE;
     }
 
-    /* 不支持AT^CCMGS=?命令 */
+    /* AT^CCMGS=? */
     if (0 == VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CCMGS=?", VOS_StrLen("AT^CCMGS=?")))
     {
         At_FormatResultData(ucIndex, AT_OK);
@@ -3150,7 +3150,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
         return AT_SUCCESS;
     }
 
-    /* 获取命令(不包含命令前缀AT)名称及长度 */
+    /* (AT) */
     usPos = (VOS_UINT16)VOS_StrLen("AT");
 
     g_stATParseCmd.stCmdName.usCmdNameLen = (VOS_UINT16)VOS_StrLen("^CCMGS");
@@ -3166,7 +3166,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
 
     usPos += (VOS_UINT16)VOS_StrLen("=");
 
-    /* 获取命令中的逗号位置和个数 */
+    /*  */
     usCommaCnt      = 0;
     usFirstCommaPos = 0;
     for ( usLoop = usPos; usLoop < usLen; usLoop++ )
@@ -3175,7 +3175,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
         {
             usCommaCnt++;
 
-            /* 记录下第一个逗号的位置 */
+            /*  */
             if (0 == usFirstCommaPos)
             {
                 usFirstCommaPos = usLoop + 1;
@@ -3183,7 +3183,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
         }
     }
 
-    /* 若逗号个数不为1，则AT命令结果返回失败 */
+    /* 1AT */
     if (1 != usCommaCnt)
     {
         AT_WARN_LOG("AT_HandleApXsmsSndCmd: usCommaCnt != 1!");
@@ -3193,7 +3193,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
         return AT_SUCCESS;
     }
 
-    /* 第二个参数是由引号包含起来的 */
+    /*  */
     ucHeadChar      = *(pucData + usFirstCommaPos);
     ucTailChar      = *(pucData + usLen - VOS_StrLen("\""));
     if ( ('"' != ucHeadChar)
@@ -3206,7 +3206,7 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
         return AT_SUCCESS;
     }
 
-    /* 计算两个参数的长度 */
+    /*  */
     usFirstParaLen  = (usFirstCommaPos - usPos) - (VOS_UINT16)VOS_StrLen(",");
     usSecondParaLen = usLen - usFirstCommaPos - (VOS_UINT16)(2 * VOS_StrLen("\""));
 
@@ -3218,11 +3218,11 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
 
         return AT_SUCCESS;
     }
-    /* 设置命令类型，操作类型和参数个数 */
+    /*  */
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_SET_PARA_CMD;
     gucAtCmdFmtType             = AT_EXTEND_CMD_TYPE;
 
-    /* 在扩展命令表中匹配此命令 */
+    /*  */
     ulResult = atMatchCmdName(ucIndex, g_stATParseCmd.ucCmdFmtType);
 
     if (ERR_MSP_SUCCESS != ulResult)
@@ -3246,22 +3246,22 @@ VOS_UINT32 AT_HandleApXsmsSndCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HandleApXsmsWriteCmd
- 功能描述  : 处理AT^CCMGW命令的特殊函数(因为该命令的参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex    -- 用户索引
-             pucData    -- 输入的字符串
-             pusLen     -- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是^CCMGS命令,处理完毕
-             AT_FAILURE 不是^CCMGS命令
- 调用函数  :
- 被调函数  :
+     : AT_HandleApXsmsWriteCmd
+   : AT^CCMGW(
+             )
+   : ucIndex    -- 
+             pucData    -- 
+             pusLen     -- 
+   : 
+     : AT_SUCCESS ^CCMGS,
+             AT_FAILURE ^CCMGS
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年10月30日
-    作    者   : h00300778
-    修改内容   : 新生成函数
+       :
+  1.       : 20141030
+           : h00300778
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_HandleApXsmsWriteCmd(
     VOS_UINT8                           ucIndex,
@@ -3286,13 +3286,13 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
 
     usCmdlen = (VOS_UINT16)VOS_StrLen("AT^CCMGW=");
 
-    /* 待处理的字符串头部不是"AT^CCMGW="直接返回AT_FAILURE */
+    /* "AT^CCMGW="AT_FAILURE */
     if (0 != VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CCMGW=", usCmdlen))
     {
         return AT_FAILURE;
     }
 
-    /* 不支持AT^CCMGS=?命令 */
+    /* AT^CCMGS=? */
     if (0 == VOS_StrNiCmp((VOS_CHAR *)pucData, "AT^CCMGW=?", VOS_StrLen("AT^CCMGW=?")))
     {
         At_FormatResultData(ucIndex, AT_OK);
@@ -3300,7 +3300,7 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 获取命令(不包含命令前缀AT)名称及长度 */
+    /* (AT) */
     usPos = (VOS_UINT16)VOS_StrLen("AT");
 
     g_stATParseCmd.stCmdName.usCmdNameLen = (VOS_UINT16)VOS_StrLen("^CCMGW");
@@ -3316,7 +3316,7 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
 
     usPos += (VOS_UINT16)VOS_StrLen("=");
 
-    /* 获取命令中的逗号位置和个数 */
+    /*  */
     usCommaCnt      = 0;
     usFirstCommaPos = 0;
     usSecondCommaPos= 0;
@@ -3327,13 +3327,13 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         {
             usCommaCnt++;
 
-            /* 记录下第一个逗号的位置 */
+            /*  */
             if (0 == usFirstCommaPos)
             {
                 usFirstCommaPos = usLoop + 1;
             }
 
-            /* 记录下第二个逗号的位置 */
+            /*  */
             if ((0 == usSecondCommaPos)
                 && (2 == usCommaCnt))
             {
@@ -3342,7 +3342,7 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         }
     }
 
-    /* 若逗号个数不为2，则AT命令结果返回失败 */
+    /* 2AT */
     if (2 != usCommaCnt)
     {
         AT_WARN_LOG("AT_HandleApXsmsWriteCmd: usCommaCnt != 1!");
@@ -3352,7 +3352,7 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 第三个参数是由引号包含起来的 */
+    /*  */
     ucHeadChar      = *(pucData + usSecondCommaPos);
     ucTailChar      = *(pucData + usLen - VOS_StrLen("\""));
     if ( ('"' != ucHeadChar)
@@ -3365,12 +3365,12 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 计算三个参数的长度 */
+    /*  */
     usFirstParaLen  = (usFirstCommaPos - usPos) - (VOS_UINT16)VOS_StrLen(",");
     usSecondParaLen = usSecondCommaPos - usFirstCommaPos - (VOS_UINT16)VOS_StrLen(",");
     usThirdParaLen  = usLen - usSecondCommaPos - (VOS_UINT16)(2 * VOS_StrLen("\""));
 
-    /* 解析参数1<len>的值 */
+    /* 1<len> */
     if (AT_FAILURE == atAuc2ul(pucData + usCmdlen, usFirstParaLen, &ulLengthValue))
     {
         AT_WARN_LOG("AT_HandleApXsmsSndCmd: <length> value invalid");
@@ -3380,7 +3380,7 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 解析参数2<stat>的值 */
+    /* 2<stat> */
     if (AT_FAILURE == atAuc2ul(pucData + usFirstCommaPos,
                                usSecondParaLen,
                                &ulStatValue))
@@ -3392,11 +3392,11 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
         return AT_SUCCESS;
     }
 
-    /* 设置命令类型，操作类型和参数个数 */
+    /*  */
     g_stATParseCmd.ucCmdOptType = AT_CMD_OPT_SET_PARA_CMD;
     gucAtCmdFmtType             = AT_EXTEND_CMD_TYPE;
 
-    /* 在扩展命令表中匹配此命令 */
+    /*  */
     ulResult = atMatchCmdName(ucIndex, g_stATParseCmd.ucCmdFmtType);
 
     if (ERR_MSP_SUCCESS != ulResult)
@@ -3422,30 +3422,30 @@ VOS_UINT32 AT_HandleApXsmsWriteCmd(
 
 
 /*****************************************************************************
- 函 数 名  : At_HandleApModemSpecialCmd
- 功能描述  : 处理AP-MODEM的特殊命令(因为AP-MODEM的某些装备命令的参数长度超过
-             解析器处理上限，需要进行特殊处理)
- 输入参数  : ucIndex --- 用户索引
-             pucData --- 输入的字符串
-             pusLen --- 字符串长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS 是AP-MODEM的特殊命令,处理完毕
-             AT_FAILURE 不是AP-MODEM的特殊命令
- 调用函数  :
- 被调函数  :
+     : At_HandleApModemSpecialCmd
+   : AP-MODEM(AP-MODEM
+             )
+   : ucIndex --- 
+             pucData --- 
+             pusLen --- 
+   : 
+     : AT_SUCCESS AP-MODEM,
+             AT_FAILURE AP-MODEM
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年04月21日
-    作    者   : L47619
-    修改内容   : AP-Modem锁网锁卡项目新增函数
+       :
+  1.       : 20120421
+           : L47619
+       : AP-Modem
 
-  2.日    期   : 2012年09月08日
-    作    者   : l00198894
-    修改内容   : ISDB 安全存储项目增加两个AT命令的特殊处理
+  2.       : 20120908
+           : l00198894
+       : ISDB AT
 
-  3.日    期   : 2017年9月18日
-    作    者   : l00198894
-    修改内容   : DTS2017091812548: 删除安全存储相关AT命令^APSEC
+  3.       : 2017918
+           : l00198894
+       : DTS2017091812548: AT^APSEC
 *****************************************************************************/
 VOS_UINT32 At_HandleApModemSpecialCmd(
     VOS_UINT8                           ucIndex,
@@ -3455,7 +3455,7 @@ VOS_UINT32 At_HandleApModemSpecialCmd(
 {
     VOS_UINT8                          *pucSystemAppConfig;
 
-    /* 获取当前产品形态 */
+    /*  */
     pucSystemAppConfig = AT_GetSystemAppConfigAddr();
 
     if ( SYSTEM_APP_ANDROID != *pucSystemAppConfig)
@@ -3463,20 +3463,20 @@ VOS_UINT32 At_HandleApModemSpecialCmd(
         return AT_FAILURE;
     }
 
-    /* 处理AT^FACAUTHPUBKEYEX=<index>,<total>,<pubkey>设置命令(参数<pubkey>超长) */
+    /* AT^FACAUTHPUBKEYEX=<index>,<total>,<pubkey>(<pubkey>) */
     if (AT_SUCCESS == AT_HandleFacAuthPubKeyExCmd(ucIndex, pucData, usLen))
     {
         return AT_SUCCESS;
     }
 
 
-    /* 处理AT^SIMLOCKDATAWRITE=<simlock_data_write>设置命令(参数<simlock_data_write>超长) */
+    /* AT^SIMLOCKDATAWRITE=<simlock_data_write>(<simlock_data_write>) */
     if (AT_SUCCESS == AT_HandleSimLockDataWriteCmd(ucIndex, pucData, usLen))
     {
         return AT_SUCCESS;
     }
 
-    /* 处理AT^CISA=<length>,<command> */
+    /* AT^CISA=<length>,<command> */
     if (AT_SUCCESS == AT_HandleApSndApduCmd(ucIndex, pucData, usLen))
     {
         return AT_SUCCESS;
@@ -3494,57 +3494,57 @@ VOS_UINT32 At_HandleApModemSpecialCmd(
     }
 
 
-    /* 删除对^EOPLMN设置命令的特殊解析 */
+    /* ^EOPLMN */
 
     return AT_FAILURE;
 }
 /* Added by L47619 for AP-Modem Personalisation Project, 2012/04/18, end */
 
 /*****************************************************************************
- 函 数 名  : At_CheckUsimStatus
- 功能描述  : 检查当前卡状态
- 输入参数  : TAF_UINT8* pucCmdName
- 输出参数  : 无
- 返 回 值  : TAF_UINT32 检查结果
- 调用函数  :
- 被调函数  :
+     : At_CheckUsimStatus
+   : 
+   : TAF_UINT8* pucCmdName
+   : 
+     : TAF_UINT32 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年11月16日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-  2.日    期   : 2010年11月16日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010111503638，如果卡不存在，上报错误卡不存在而不是SIM
+       :
+  1.       : 20101116
+           : 
+       : 
+  2.       : 20101116
+           : 
+       : DTS2010111503638SIM
                  FAILURE
-  3.日    期   : 2010年11月16日
-    作    者   : 欧阳飞
-    修改内容   : DTS2010120901306，CBC查询电量AT命令不需要查询卡状态
-  4.日    期   : 2011年2月21日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011021000325，PIN码开启后VODAFONE后台发送短信失败
-  5.日    期   : 2011年08月15日
-    作    者   : f00179208
-    修改内容   : DTS2011081400488，AT^CSNR应无需检查PIN码，但在解PIN前该AT未生效
-  6.日    期   : 2011年10月10日
-    作    者   : 崔军强/c64416
-    修改内容   : 新方案由标志位判断是否需要检查PIN码状态
-  7.日    期   : 2011年10月27日
-    作    者   : 傅映君/f62575
-    修改内容   : 同步卡状态判断：函数At_CheckUsimStatus=>全局变量g_stAtUsimStatusCtx.enCardStatus
-  8.日    期   : 2012年03月06日
-    作    者   : l00130025
-    修改内容   : DTS2012022501847:MP先下发开机,Sim未上报卡状态时，
-                  CLCK查询返回 10:Sim not insert，导致MP认为卡无效,需要修改返回Sim Busy
-  9.日    期   : 2012年12月24日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-  10.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  11.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
+  3.       : 20101116
+           : 
+       : DTS2010120901306CBCAT
+  4.       : 2011221
+           : /f62575
+       : DTS2011021000325PINVODAFONE
+  5.       : 20110815
+           : f00179208
+       : DTS2011081400488AT^CSNRPINPINAT
+  6.       : 20111010
+           : /c64416
+       : PIN
+  7.       : 20111027
+           : /f62575
+       : At_CheckUsimStatus=>g_stAtUsimStatusCtx.enCardStatus
+  8.       : 20120306
+           : l00130025
+       : DTS2012022501847:MP,Sim
+                  CLCK 10:Sim not insertMP,Sim Busy
+  9.       : 20121224
+           : l60609
+       : DSDA Phase II
+  10.       : 2013222
+           : l60609
+       : DSDA PHASE III
+  11.       : 20130517
+           : m00217266
+       : nv
 *****************************************************************************/
 TAF_UINT32 At_CheckUsimStatus (
     TAF_UINT8                          *pucCmdName,
@@ -3580,7 +3580,7 @@ TAF_UINT32 At_CheckUsimStatus (
 
 
 
-    /* 快速开机模式，不检查 PIN 状态 */
+    /*  PIN  */
     /* Modified by l60609 for DSDA Phase III, 2013-3-4, Begin */
     if (NV_OK != NV_ReadEx(enModemId, en_NV_Item_FollowOn_OpenSpeed_Flag, (VOS_VOID*)(&stQuickStartFlg), sizeof(NAS_NVIM_FOLLOWON_OPENSPEED_FLAG_STRU)))
     {
@@ -3592,7 +3592,7 @@ TAF_UINT32 At_CheckUsimStatus (
         return AT_SUCCESS;
     }
 
-    /*SMS相关命令掉卡流程需要在业务模块内部处理，此处仅处理CMGL，其他命令的处理待确认*/
+    /*SMSCMGL*/
     if (0 == VOS_StrCmp((TAF_CHAR*)pucCmdName, "+CMGL"))
     {
         if (0 != pstSmsCtx->stCpmsInfo.stUsimStorage.ulTotalRec)
@@ -3641,9 +3641,9 @@ TAF_UINT32 At_CheckUsimStatus (
 
 /*****************************************************************************
  Prototype      : At_SetMode
- Description    : 设置模式
- Input          : ucIndex  --- 用户索引值
-                  Mode  --- 模式
+ Description    : 
+ Input          : ucIndex  --- 
+                  Mode  --- 
  Output         :
  Return Value   : ---
  Calls          : ---
@@ -3654,27 +3654,27 @@ TAF_UINT32 At_CheckUsimStatus (
     Author      : ---
     Modification: Created function
 
-  2.日    期   : 2007-03-27
-    作    者   : h59254
-    修改内容   : 问题单号:A32D09820(PC-Lint修改)
+  2.       : 2007-03-27
+           : h59254
+       : :A32D09820(PC-Lint)
 
-  3.日    期   : 2007-08-13
-    作    者   : s62952
-    问题单号   : A32D12683
+  3.       : 2007-08-13
+           : s62952
+       : A32D12683
 
-  4.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加ONLINE-COMMAND模式
+  4.       : 2013923
+           : A00165503
+       : UART-MODEM: ONLINE-COMMAND
 
-  5.日    期   : 2015年3月31日
-    作    者   : A00165503
-    修改内容   : DTS2015032704953: HSUART端口切换到CMD/ONLINE_CMD模式时,
-                 需要清除HSUART的缓存队列数据, 防止当前缓存队列满时, 主动上
-                 报的命令丢失
+  5.       : 2015331
+           : A00165503
+       : DTS2015032704953: HSUARTCMD/ONLINE_CMD,
+                 HSUART, , 
+                 
 *****************************************************************************/
 VOS_VOID At_SetMode(VOS_UINT8 ucIndex, AT_MODE_TYPE Mode, VOS_UINT8 ucSubMode)
 {
-    /* 进入ONLINE-COMMAND模式, 数传模式保持不变, 数传状态设为STOP */
+    /* ONLINE-COMMAND, , STOP */
     if ( (AT_DATA_MODE == gastAtClientTab[ucIndex].Mode)
       && (AT_ONLINE_CMD_MODE == Mode) )
     {
@@ -3682,13 +3682,13 @@ VOS_VOID At_SetMode(VOS_UINT8 ucIndex, AT_MODE_TYPE Mode, VOS_UINT8 ucSubMode)
     }
 
 
-    /* 退出数传模式 */
+    /*  */
     if ( ( (AT_ONLINE_CMD_MODE == gastAtClientTab[ucIndex].Mode)
         || (AT_DATA_MODE == gastAtClientTab[ucIndex].Mode) )
       && (AT_CMD_MODE == Mode) )
     {
-        /* 为了与Q的流程一致,改为先回应NO CARRIER，再拉低DCD信号，
-           故拉低DCD信号的操作放置在At_FormatResultData中处理*/
+        /* Q,NO CARRIERDCD
+           DCDAt_FormatResultData*/
 
         gastAtClientTab[ucIndex].DataMode = AT_DATA_BUTT_MODE;
         gastAtClientTab[ucIndex].DataState = AT_DATA_STOP_STATE;
@@ -3716,14 +3716,14 @@ VOS_VOID At_SetMode(VOS_UINT8 ucIndex, AT_MODE_TYPE Mode, VOS_UINT8 ucSubMode)
 
 /*****************************************************************************
  Prototype      : At_CountDigit
- Description    : 用来获取数字字符串中特定字符的第几次出现的地址
-                  注意，用此函数时必须保证输入的字符串的正确性，即后面没有其它非法字符
- Input          : pData   --- 查找字符串
-                  ulLen   --- 字串长度
-                  Char    --- 查找的字符
-                  ulIndex --- 第几个字符
+ Description    : 
+                  
+ Input          : pData   --- 
+                  ulLen   --- 
+                  Char    --- 
+                  ulIndex --- 
  Output         :
- Return Value   : 返回地址指针
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -3731,9 +3731,9 @@ VOS_VOID At_SetMode(VOS_UINT8 ucIndex, AT_MODE_TYPE Mode, VOS_UINT8 ucSubMode)
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
- 2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+ 2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 *****************************************************************************/
 TAF_UINT32 AT_CountDigit(TAF_UINT8 *pData,TAF_UINT32 ulLen,TAF_UINT8 Char,TAF_UINT32 ulIndex)
 {
@@ -3745,7 +3745,7 @@ TAF_UINT32 AT_CountDigit(TAF_UINT8 *pData,TAF_UINT32 ulLen,TAF_UINT8 Char,TAF_UI
 
     pTmp  = pData;
 
-    /*检查输入参数*/
+    /**/
     if( (Char == *pTmp) || (Char == *((pTmp + ulLen) - 1)))
     {
         return 0;
@@ -3754,7 +3754,7 @@ TAF_UINT32 AT_CountDigit(TAF_UINT8 *pData,TAF_UINT32 ulLen,TAF_UINT8 Char,TAF_UI
     pCheck = pData;
     while( TmpLen++ < ulLen )
     {
-        /*判断是否是数字或者是特定字符*/
+        /**/
         if(( (*pCheck >= '0') && (*pCheck <= '9') )|| ((*pCheck == Char) && (*(pCheck+1) != Char)))
         {
             pCheck++;
@@ -3781,42 +3781,42 @@ TAF_UINT32 AT_CountDigit(TAF_UINT8 *pData,TAF_UINT32 ulLen,TAF_UINT8 Char,TAF_UI
     return 0;
 }
 /*****************************************************************************
- 函 数 名  : At_InterTimerOutProc
- 功能描述  : AT命令定时器超时处理
- 输入参数  : VOS_UINT8  ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : At_InterTimerOutProc
+   : AT
+   : VOS_UINT8  ucIndex 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年3月21日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 2010321
+           : s62952
+       : 
 
-  2.日    期   : 2012年9月24日
-    作    者   : l00171473
-    修改内容   : for V7R1C50_At_Abort, 添加打断命令的超时处理
+  2.       : 2012924
+           : l00171473
+       : for V7R1C50_At_Abort, 
 
-  3.日    期   : 2012年12月28日
-    作    者   : f62575
-    修改内容   : DTS2012122700666, 解决TR1M定时器在TC1M定时器前超时发送GCF仪器不期望的CP-ERROR问题
+  3.       : 20121228
+           : f62575
+       : DTS2012122700666, TR1MTC1MGCFCP-ERROR
 
-  4.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+  4.       : 2013221
+           : l60609
+       : DSDA PHASE III
 
-  5.日    期   : 2013年5月6日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
+  5.       : 201356
+           : s00217060
+       : ATC
 
-  6.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 增加UART端口PPP拨号支持
+  6.       : 2013923
+           : A00165503
+       : UART-MODEM: UARTPPP
 
-  7.日    期   : 2015年3月12日
-    作    者   : A00165503
-    修改内容   : DTS2015032409785: 增加水线检测功能
+  7.       : 2015312
+           : A00165503
+       : DTS2015032409785: 
 *****************************************************************************/
 VOS_VOID At_InterTimerOutProc(
     VOS_UINT8                           ucIndex
@@ -3828,7 +3828,7 @@ VOS_VOID At_InterTimerOutProc(
     pstUartCtx = AT_GetUartCtxAddr();
     ulResult   = AT_FAILURE;
 
-    /*内部函数，不需要对输入参数进行检查*/
+    /**/
     switch(gastAtClientTab[ucIndex].CmdCurrentOpt)
     {
         case AT_CMD_COPS_SET_AUTOMATIC:
@@ -3839,8 +3839,8 @@ VOS_VOID At_InterTimerOutProc(
             break;
 
         case AT_CMD_CUSD_REQ:
-            /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
-            /* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
+            /* Deleted by s00217060 for ATC, 2013-4-8, begin */
+            /* Deleted by s00217060 for ATC, 2013-4-8, end */
             ulResult= AT_CME_NETWORK_TIMEOUT;
             break;
 
@@ -3848,14 +3848,14 @@ VOS_VOID At_InterTimerOutProc(
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_REL_PPP_REQ);
 
-            /*向PPP发送HDLC去使能操作*/
+            /*PPPHDLC*/
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_HDLC_DISABLE);
 
-            /* 返回命令模式 */
+            /*  */
             At_SetMode(ucIndex,AT_CMD_MODE,AT_NORMAL_MODE);
 
-            /* 送NO CARRIER消息 */
+            /* NO CARRIER */
             ulResult = AT_NO_CARRIER;
             break;
 
@@ -3863,7 +3863,7 @@ VOS_VOID At_InterTimerOutProc(
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_REL_PPP_RAW_REQ);
 
-            /*向PPP发送HDLC去使能操作*/
+            /*PPPHDLC*/
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_HDLC_DISABLE);
 
@@ -3873,7 +3873,7 @@ VOS_VOID At_InterTimerOutProc(
         case AT_CMD_H_PS_SET:
         case AT_CMD_PS_DATA_CALL_END_SET:
 
-            /* 返回命令模式 */
+            /*  */
             At_SetMode(ucIndex,AT_CMD_MODE,AT_NORMAL_MODE);
             ulResult = AT_ERROR;
             break;
@@ -3926,31 +3926,31 @@ VOS_VOID At_InterTimerOutProc(
 
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
+/* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
 /*****************************************************************************
- 函 数 名  : AT_DockHandleCmd
- 功能描述  : 转发DOCK发送过来的AT命令到E5通道
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_DockHandleCmd
+   : DOCKATE5
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月13日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2010年11月10日
-    作    者   : lijun 00171473
-    修改内容   : 增加透传给应用处理的AT命令
-  3.日    期   : 2010年12月24日
-    作    者   : lijun 00171473
-    修改内容   : DTS2010122403722 APDIALMODE命令不应发到应用处理
-  4.日    期   : 2011年10月10日
-    作    者   : 崔军强/c64416
-    修改内容   : 新方案由标志位判断是否DOCK命令
+       :
+  1.       : 2010913
+           : A00165503
+       : 
+  2.       : 20101110
+           : lijun 00171473
+       : AT
+  3.       : 20101224
+           : lijun 00171473
+       : DTS2010122403722 APDIALMODE
+  4.       : 20111010
+           : /c64416
+       : DOCK
 *****************************************************************************/
 VOS_UINT32 AT_DockHandleCmd(
     VOS_UINT8                           ucIndex,
@@ -3967,7 +3967,7 @@ VOS_UINT32 AT_DockHandleCmd(
         return AT_FAILURE;
     }
 
-    /* 将该AT命令从应用转发给E5 */
+    /* ATE5 */
     for (i = 0; i < AT_MAX_CLIENT_NUM; i++)
     {
         if (AT_APP_USER == gastAtClientTab[i].UserType)
@@ -3990,13 +3990,13 @@ VOS_UINT32 AT_DockHandleCmd(
 
 /*****************************************************************************
  Prototype      : At_MatchCmdName
- Description    : 命令名匹配
- Input          : ucIndex  --- 用户索引值
-                  CmdType  --- 命令类型
-                  pRetName --- 命令名返回地址
-                  pRetPara --- 参数脚本返回地址
+ Description    : 
+ Input          : ucIndex  --- 
+                  CmdType  --- 
+                  pRetName --- 
+                  pRetPara --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -4013,24 +4013,24 @@ TAF_UINT32 At_MatchCmdName (TAF_UINT16 ucIndex,TAF_UINT32 CmdType)
 
 
 /*****************************************************************************
- 函 数 名  : AT_HandleDockSetCmd
- 功能描述  : 处理DOCK设置命令,格式化命令字符串
- 输入参数  : ucIndex - 用户索引
-             pucData - 输入的字符串
-             usLen   - 长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS - 是DOCK设置命令
-             AT_FAILURE - 不是DOCK设置命令
- 调用函数  :
- 被调函数  :
+     : AT_HandleDockSetCmd
+   : DOCK,
+   : ucIndex - 
+             pucData - 
+             usLen   - 
+   : 
+     : AT_SUCCESS - DOCK
+             AT_FAILURE - DOCK
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月26日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月19日
-    作    者   : l00171473
-    修改内容   : V7R1C50_At_Abort, 保存命令信息, 打断处理中使用
+       :
+  1.       : 2010926
+           : A00165503
+       : 
+  2.       : 2012919
+           : l00171473
+       : V7R1C50_At_Abort, , 
 *****************************************************************************/
 VOS_UINT32 AT_HandleDockSetCmd(
     VOS_UINT8                           ucIndex,
@@ -4063,30 +4063,30 @@ VOS_UINT32 AT_HandleDockSetCmd(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvTiS0Expired
- 功能描述  : 处理S0定时器超时
- 输入参数  : REL_TIMER_MSG                      *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_RcvTiS0Expired
+   : S0
+   : REL_TIMER_MSG                      *pstMsg
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 2013221
+           : l60609
+       : 
 
-  2.日    期   : 2013年5月28日
-    作    者   : L60609
-    修改内容   : DTS2013052807080
+  2.       : 2013528
+           : L60609
+       : DTS2013052807080
 
-  3.日    期   : 2014年2月14日
-    作    者   : j00174725
-    修改内容   : TQE
+  3.       : 2014214
+           : j00174725
+       : TQE
 
-  4.日    期   : 2015年5月29日
-    作    者   : l00198894
-    修改内容   : TSTS
+  4.       : 2015529
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID AT_RcvTiS0Expired(
     REL_TIMER_MSG                      *pstMsg
@@ -4097,22 +4097,22 @@ VOS_VOID AT_RcvTiS0Expired(
     VOS_UINT8                           ucClientIndex;
     VOS_UINT16                          usReqClientId;
 
-    /* 根据timer name获取属于哪个index */
+    /* timer nameindex */
     ucClientIndex = (VOS_UINT8)(pstMsg->ulName >> 12);
 
     pstCcCtx = AT_GetModemCcCtxAddrFromClientId(ucClientIndex);
 
     TAF_MEM_SET_S(&stCallMgmtParam, sizeof(stCallMgmtParam), 0x00, sizeof(MN_CALL_SUPS_PARAM_STRU));
 
-    /* 目前只有voice支持自动接听功能，calltype 固定填为voice */
+    /* voicecalltype voice */
     stCallMgmtParam.enCallType    = MN_CALL_TYPE_VOICE;
     stCallMgmtParam.enCallSupsCmd = MN_CALL_SUPS_CMD_HOLD_ACT_ACPT_OTH;
 
     stCallMgmtParam.callId = (MN_CALL_ID_T)pstMsg->ulPara;
 
-    /* 来电ClientId为广播ClientId 0x3fff或者0x7fff，
-       AT在处理incoming事件时，判断已启动自动接听，启动定时器时ulName中带的是Client Index即0x3f或者0x7f
-       所以此处调用MN_CALL_Sups时需要填ClientId
+    /* ClientIdClientId 0x3fff0x7fff
+       ATincomingulNameClient Index0x3f0x7f
+       MN_CALL_SupsClientId
     */
     if (AT_BROADCAST_CLIENT_INDEX_MODEM_0 == ucClientIndex)
     {
@@ -4137,12 +4137,12 @@ VOS_VOID AT_RcvTiS0Expired(
     return;
 }
 
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
+/* Deleted by l00198894 for V9R1 STK, 2013/07/11 */
 
 /*****************************************************************************
  Prototype      : At_TimeOutProc
- Description    : ATC模块超时处理
- Input          : pMsg   --- 超时消息体
+ Description    : ATC
+ Input          : pMsg   --- 
  Output         :
  Return Value   :
  Calls          : ---
@@ -4152,32 +4152,32 @@ VOS_VOID AT_RcvTiS0Expired(
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期   : 2010年5月14日
-    作    者   : z00161729
-    修改内容   : 根据问题单号A32D19317:自动接听没有^CONN上报
-  3.日    期   : 2010年9月26日
-    作    者   : w00166186
-    修改内容   : 支持后台^DTMF
-  4.日    期   : 2010年11月09日
-    作    者   : s62952
-    修改内容   : 问题单号:DTS2010110502657按需拨号上报态频繁，导致AT阻塞
-  5.日    期   : 2011年06月09日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2011060304914,【E353s-2装备AT 2011.6.2】下发AT^TMODE=2/3后，单板不会返回OK
-                 而是直接切换模式，对比E367u返回OK后再进行切换
-  6.日    期   : 2013年2月21日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+  2.       : 2010514
+           : z00161729
+       : A32D19317:^CONN
+  3.       : 2010926
+           : w00166186
+       : ^DTMF
+  4.       : 20101109
+           : s62952
+       : :DTS2010110502657AT
+  5.       : 20110609
+           : f00179208
+       : :DTS2011060304914,E353s-2AT 2011.6.2AT^TMODE=2/3OK
+                 E367uOK
+  6.       : 2013221
+           : l60609
+       : DSDA PHASE III
 
-  7.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: RING脚定时器超时处理
+  7.       : 2013923
+           : A00165503
+       : UART-MODEM: RING
 *****************************************************************************/
 TAF_VOID At_TimeOutProc(
     REL_TIMER_MSG                       *pMsg
 )
 {
-    /* 局部变量声明及初始化 */
+    /*  */
     VOS_UINT8                           ucIndex;
 
     if (VOS_NULL_PTR == pMsg)
@@ -4192,7 +4192,7 @@ TAF_VOID At_TimeOutProc(
         switch(pMsg->ulName & 0x000000ff)
         {
             /* Modified by l60609 for DSDA Phase III, 2013-2-21, Begin */
-            /* 自动应答放在AT处理，不会进行上报，语音状态下，相当于接听了，但是没有指示 */
+            /* AT */
             case AT_S0_TIMER:
                 AT_RcvTiS0Expired(pMsg);
                 break;
@@ -4204,14 +4204,14 @@ TAF_VOID At_TimeOutProc(
                 break;
 
 
-            /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
+            /* Deleted by l00198894 for V9R1 STK, 2013/07/11 */
 
-    /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
+    /* Add by w00199382 for V7, 2012-04-07, Begin   */
 
             case AT_SHUTDOWN_TIMER:
                 mdrv_sysboot_shutdown();
                 break;
-    /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
+    /* Add by w00199382 for V7, 2012-04-07, End   */
 
             case AT_AUTH_PUBKEY_TIMER :
                 AT_ClearAuthPubkeyCtx();
@@ -4248,9 +4248,9 @@ TAF_VOID At_TimeOutProc(
 /*****************************************************************************
  Prototype      : At_GetStrContent
  Description    :
- Input          : ucIndex --- 用户索引
+ Input          : ucIndex --- 
  Output         :
- Return Value   : AT_XXX  --- ATC返回码
+ Return Value   : AT_XXX  --- ATC
  Calls          : ---
  Called By      : ---
 
@@ -4271,14 +4271,14 @@ TAF_UINT8* At_GetStrContent(TAF_UINT32 ulType)
     }
 }
 
-/* PC工程中AT从A核移到C核, At_sprintf有重复定义,故在此处添加条件编译宏 */
+/* PCATAC, At_sprintf, */
 
 /*****************************************************************************
  Prototype      : At_sprintf
  Description    :
  Input          :
  Output         :
- Return Value   : 返回地址指针
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -4287,23 +4287,23 @@ TAF_UINT8* At_GetStrContent(TAF_UINT32 ulType)
     Author      : ---
     Modification: Created function
 
-  2.日    期   : 2011年10月29日
-    作    者   : c64416
-    修改内容   : AT融合项目，移植V7R1的调用接口
+  2.       : 20111029
+           : c64416
+       : ATV7R1
 *****************************************************************************/
 /*lint -e713 -e507*/
 VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr,const VOS_CHAR *fmt,...)
 {
     VOS_INT32 slLength = 0;
     VOS_UINT32 ulNum = 0;
-    VOS_INT32 lNumSrc = 0;      /* 原始数据 */
-    VOS_INT32 slNum = 0;        /* 转换后的数据 */
+    VOS_INT32 lNumSrc = 0;      /*  */
+    VOS_INT32 slNum = 0;        /*  */
     VOS_UINT32 ulSignFlag = VOS_FALSE;
     VOS_CHAR *pData = NULL;
     VOS_CHAR *sc = NULL;
     VOS_CHAR *s = NULL;
     va_list args;
-    VOS_UINT32 ulLen1 = 0, ulLen2 = 0;   /* ulLen1:%后设置的长度; ulLen2:实际读取的长度 */
+    VOS_UINT32 ulLen1 = 0, ulLen2 = 0;   /* ulLen1:%; ulLen2: */
 
     if(pCurrAddr < pHeadAddr)
     {
@@ -4324,23 +4324,23 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
             {
                 pData++;
                 ulSignFlag = VOS_TRUE;
-                ulLen1 = 0;     /* 有符号整型打印符号 */
+                ulLen1 = 0;     /*  */
             }
 
             if('0' == (*pData))
             {
                 pData++;
-                ulLen1 = 0;     /* 指定的宽度，或填充 */
+                ulLen1 = 0;     /*  */
             }
 
-            /* 目前，只支持小于等于9位的宽度 */
+            /* 9 */
             if(('0' <= (*pData)) && ('9' >= (*pData)))
             {
-                ulLen1 = (VOS_UINT32)(VOS_INT32)((*pData) - '0');     /* 指定的宽度 */
+                ulLen1 = (VOS_UINT32)(VOS_INT32)((*pData) - '0');     /*  */
                 pData++;
             }
 
-            /* 目前，只会用到d,s,X,三种，其它一律认为出错 */
+            /* d,s,X, */
             switch(*pData)
             {
             case 'c':
@@ -4368,20 +4368,20 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
                 slNum = lNumSrc;
 
                 slLength++;
-                ulLen2++;                   /* 实际的宽度 */
+                ulLen2++;                   /*  */
 
                 while ((slNum > 9) || (slNum < (-9)))
                 {
                     slNum = slNum / 10;
                     slLength++;
-                    ulLen2++;               /* 实际的宽度 */
+                    ulLen2++;               /*  */
                 }
 
                 if(ulLen2 < ulLen1)
                 {
                     slLength += (VOS_INT32)(ulLen1- ulLen2);
                 }
-                else if(lNumSrc < 0 || ulSignFlag == VOS_TRUE)    /* 如果ulLen2 >= ulLen1,且lNumSrc<0，则要加上负号的一个空间 */
+                else if(lNumSrc < 0 || ulSignFlag == VOS_TRUE)    /* ulLen2 >= ulLen1,lNumSrc<0 */
                 {
                     slLength++;
                     ulSignFlag = VOS_FALSE;
@@ -4395,12 +4395,12 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
                 ulNum = va_arg(args, VOS_UINT32);
 
                 slLength++;
-                ulLen2++;                   /* 实际的宽度 */
+                ulLen2++;                   /*  */
                 while (ulNum > 9)
                 {
                     ulNum = ulNum / 10;
                     slLength++;
-                    ulLen2++;               /* 实际的宽度 */
+                    ulLen2++;               /*  */
                 }
 
                 if(ulLen2 < ulLen1)
@@ -4415,13 +4415,13 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
                 ulNum = va_arg(args, VOS_UINT32);
 
                 slLength++;
-                ulLen2++;                   /* 实际的宽度 */
+                ulLen2++;                   /*  */
 
                 while (ulNum > 0x0f)
                 {
                     ulNum = ulNum / 16;
                     slLength++;
-                    ulLen2++;               /* 实际的宽度 */
+                    ulLen2++;               /*  */
                 }
 
                 if(ulLen2 < ulLen1)
@@ -4437,7 +4437,7 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
         }
         else
         {
-            slLength++;     /* 加1 */
+            slLength++;     /* 1 */
         }
     }
     va_end(args);
@@ -4465,10 +4465,10 @@ VOS_INT32 At_sprintf(VOS_INT32 MaxLength,VOS_CHAR *pHeadAddr,VOS_CHAR *pCurrAddr
 /*lint -e713 -e507*/
 /*****************************************************************************
  Prototype      : At_sprintfUnsigned
- Description    : 无符号数的输出函数
+ Description    : 
  Input          :
  Output         :
- Return Value   : 返回地址指针
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -4498,7 +4498,7 @@ TAF_INT32 At_sprintfUnsigned(TAF_INT32 MaxLength,TAF_CHAR *headaddr,TAF_CHAR *cu
         if('%' == *pData)
         {
             pData++;
-            /* 目前，只会用到d,s,X,三种，其它一律认为出错 */
+            /* d,s,X, */
             switch(*pData)
             {
             case 's':
@@ -4535,10 +4535,10 @@ TAF_INT32 At_sprintfUnsigned(TAF_INT32 MaxLength,TAF_CHAR *headaddr,TAF_CHAR *cu
 
             case '0':
                 ulnum = va_arg(args, TAF_UINT32);
-                pData++;                                                        /*指向具体长度*/
+                pData++;                                                        /**/
 
                 Length += (*pData - '0');
-                pData++;                                                        /*跳过X字符*/
+                pData++;                                                        /*X*/
                 break;
 
             default:
@@ -4549,7 +4549,7 @@ TAF_INT32 At_sprintfUnsigned(TAF_INT32 MaxLength,TAF_CHAR *headaddr,TAF_CHAR *cu
         }
         else
         {
-            Length++;     /* 加1 */
+            Length++;     /* 1 */
         }
     }
     va_end(args);
@@ -4576,7 +4576,7 @@ TAF_INT32 At_sprintfUnsigned(TAF_INT32 MaxLength,TAF_CHAR *headaddr,TAF_CHAR *cu
  Description    :
  Input          :
  Output         :
- Return Value   : 返回地址指针
+ Return Value   : 
  Calls          : ---
  Called By      : ---
 
@@ -4584,9 +4584,9 @@ TAF_INT32 At_sprintfUnsigned(TAF_INT32 MaxLength,TAF_CHAR *headaddr,TAF_CHAR *cu
   1.Date        : 2008-04-14
     Author      : ---
     Modification: Created function
- 2.日    期   : 2011年10月22日
-   作    者   : f00179208
-   修改内容   : AT移植项目
+ 2.       : 20111022
+          : f00179208
+      : AT
 *****************************************************************************/
 TAF_VOID AT_MapCallTypeModeToClccMode(
     MN_CALL_TYPE_ENUM_U8                enCallType,
@@ -4597,13 +4597,13 @@ TAF_VOID AT_MapCallTypeModeToClccMode(
     {
     case MN_CALL_TYPE_VOICE:
     case MN_CALL_TYPE_EMERGENCY:
-    /* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
+    /* Added by n00269697 for V3R3C60_eCall, 2014-3-29, begin */
     case MN_CALL_TYPE_MIEC :
     case MN_CALL_TYPE_AIEC :
     case MN_CALL_TYPE_TEST :
     case MN_CALL_TYPE_RECFGURATION :
     case MN_CALL_TYPE_PSAP_ECALL:
-    /* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end */
+    /* Added by n00269697 for V3R3C60_eCall, 2014-3-29, end */
         *penClccMode = 0;
         break;
     case MN_CALL_TYPE_FAX:
@@ -4621,7 +4621,7 @@ TAF_VOID AT_MapCallTypeModeToClccMode(
  Description    :
  Input          :
  Output         :
- Return Value   : 返回AT操作类型
+ Return Value   : AT
  Calls          : ---
  Called By      : ---
 
@@ -4630,15 +4630,15 @@ TAF_VOID AT_MapCallTypeModeToClccMode(
     Author      : ---
     Modification: Created function
 
-  2.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : 修改圈复杂度
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目  :删除NAS_FEATURE_CCBS宏
-  4.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control: SS密码下移
+  2.       : 201032
+           : zhoujun /z40661
+       : 
+  3.       : 20120303
+           : s62952
+       : BalongV300R002 Build  :NAS_FEATURE_CCBS
+  4.       : 20130506
+           : f62575
+       : SS FDN&Call Control: SS
 *****************************************************************************/
 AT_CMD_CURRENT_OPT_ENUM At_GetMnOptType(MN_MMI_OPERATION_TYPE_ENUM_U8 enType)
 {
@@ -4669,7 +4669,7 @@ AT_CMD_CURRENT_OPT_ENUM At_GetMnOptType(MN_MMI_OPERATION_TYPE_ENUM_U8 enType)
     case TAF_MMI_REGISTER_PASSWD:/* TAF_MMI_REGISTER_PASSWD */
         return AT_CMD_SS_REGISTER_PSWD;
     /* Delete by f62575 for SS FDN&Call Control, 2013-05-06, begin */
-	/* Delete TAF_MMI_GET_PASSWD分支 */
+	/* Delete TAF_MMI_GET_PASSWD */
     /* Delete by f62575 for SS FDN&Call Control, 2013-05-06, end */
     case TAF_MMI_PROCESS_USSD_REQ:/* TAF_MMI_PROCESS_USSD_REQ */
         return AT_CMD_CUSD_REQ;
@@ -4678,13 +4678,13 @@ AT_CMD_CURRENT_OPT_ENUM At_GetMnOptType(MN_MMI_OPERATION_TYPE_ENUM_U8 enType)
     case TAF_MMI_INVOKE_CLIP:/* TAF_MMI_INVOKE_CLIP */
         return AT_CMD_CLIP_READ;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
+    /* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
     case TAF_MMI_DEACTIVATE_CCBS:/* TAF_MMI_DEACTIVATE_CCBS */
         return AT_CMD_SS_DEACTIVE_CCBS;
 
     case TAF_MMI_INTERROGATE_CCBS:
         return AT_CMD_SS_INTERROGATE_CCBS;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
+    /* Modified by s62952 for BalongV300R002 Build 2012-02-28, end */
 
     default:
         break;
@@ -4695,30 +4695,30 @@ AT_CMD_CURRENT_OPT_ENUM At_GetMnOptType(MN_MMI_OPERATION_TYPE_ENUM_U8 enType)
 }
 
 /*****************************************************************************
- 函 数 名  : At_UnlockSimLock
- 功能描述  : 支持AT^SIMLOCK解锁命令
- 输入参数  : VOS_UINT8  ucIndex 用户索引
-             pucData -- 以逗号开始的参数序列
-             usLen--当前从逗号开始的参数的长度
- 输出参数  : 无
- 返 回 值  : AT_OK --- 成功
-             AT_ERROR --- 失败
- 调用函数  :
- 被调函数  :
+     : At_UnlockSimLock
+   : AT^SIMLOCK
+   : VOS_UINT8  ucIndex 
+             pucData -- 
+             usLen--
+   : 
+     : AT_OK --- 
+             AT_ERROR --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年8月10日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2010年11月3日
-    作    者   : C00173809
-    修改内容   : AT融合项目，SIMLOCK设置函数改为异步消息。
-  3.日    期   : 2012年01月29日
-    作    者   : l00171473
-    修改内容   : DTSDTS2012013000257,SIMLOCK算法版本更新为2.0相关。
-  4.日    期   : 2012年2月20日
-    作    者   : l60609
-    修改内容   : B060 Prj:AT删除全局变量g_ucAtSimLockErrTimes
+       :
+  1.       : 2010810
+           : l00130025
+       : 
+  2.       : 2010113
+           : C00173809
+       : ATSIMLOCK
+  3.       : 20120129
+           : l00171473
+       : DTSDTS2012013000257,SIMLOCK2.0
+  4.       : 2012220
+           : l60609
+       : B060 Prj:ATg_ucAtSimLockErrTimes
 *****************************************************************************/
 VOS_UINT32 At_UnlockSimLock(
     VOS_UINT8                           ucIndex,
@@ -4743,9 +4743,9 @@ VOS_UINT32 At_UnlockSimLock(
                 stSimlockReq.ulPwdLen    = TAF_PH_ME_PERSONALISATION_PWD_LEN_MAX;
 
                 TAF_MEM_CPY_S(stSimlockReq.aucPwd, sizeof(stSimlockReq.aucPwd), pstPwdPara->aucPara, TAF_PH_ME_PERSONALISATION_PWD_LEN_MAX);
-                /* Modified by l00171473 for DTS2012013000257 SIMLOCK算法版本更新为2.0相关, 2012-01-29, Begin */
+                /* Modified by l00171473 for DTS2012013000257 SIMLOCK2.0, 2012-01-29, Begin */
                 stSimlockReq.aucPwd[stSimlockReq.ulPwdLen] = 0;
-                /* Modified by l00171473 for DTS2012013000257 SIMLOCK算法版本更新为2.0相关, 2012-01-29, End */
+                /* Modified by l00171473 for DTS2012013000257 SIMLOCK2.0, 2012-01-29, End */
             }
         }
     }
@@ -4757,10 +4757,10 @@ VOS_UINT32 At_UnlockSimLock(
                                                   sizeof(stSimlockReq),
                                                   I0_WUEPS_PID_DRV_AGENT))
     {
-        /*设置当前操作模式 */
+        /* */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_DRV_AGENT_SIMLOCK_SET_REQ;
 
-        /* 由于SIMLOCK特殊处理，这里即使返回等待异步消息解析器也不会起定时器*/
+        /* SIMLOCK*/
         if(AT_SUCCESS != At_StartTimer(AT_SET_PARA_TIME, ucIndex))
         {
             At_FormatResultData(ucIndex, AT_ERROR);
@@ -4777,21 +4777,21 @@ VOS_UINT32 At_UnlockSimLock(
 
 }
 
-/* Added by L60609 for AT Project，2011-10-10,  Begin*/
+/* Added by L60609 for AT Project2011-10-10,  Begin*/
 /*****************************************************************************
- 函 数 名  : AT_RcvFuncReg
- 功能描述  : 记录各物理端口对应的接收数据函数
- 输入参数  : AT_PHY_PORT_ENUM_UINT32 ulPhyPort
+     : AT_RcvFuncReg
+   : 
+   : AT_PHY_PORT_ENUM_UINT32 ulPhyPort
              pAtDataRcvFunc pRcvFunc
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111010
+           : /l60609
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_RcvFuncReg(AT_PHY_PORT_ENUM_UINT32 ulPhyPort, CBTCPM_RCV_FUNC pRcvFunc)
@@ -4813,26 +4813,26 @@ VOS_VOID AT_RcvFuncReg(AT_PHY_PORT_ENUM_UINT32 ulPhyPort, CBTCPM_RCV_FUNC pRcvFu
 }
 
 
-/* Added by L60609 for AT Project，2011-10-10,  End*/
+/* Added by L60609 for AT Project2011-10-10,  End*/
 
 /*****************************************************************************
- 函 数 名  : At_ProcXmlText
- 功能描述  : XML文本输入处理函数
- 输入参数  : VOS_UINT8  ucIndex 通道索引
-             TAF_UINT8 *pData   数据内容
-             TAF_UINT16 usLen   数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_ProcXmlText
+   : XML
+   : VOS_UINT8  ucIndex 
+             TAF_UINT8 *pData   
+             TAF_UINT16 usLen   
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年06月27日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目新增函数
-  2.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 20120627
+           : y00213812
+       : V7R1C50 A-GPS
+  2.       : 2013220
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLen)
 {
@@ -4847,24 +4847,24 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
     pstAgpsCtx = AT_GetModemAgpsCtxAddrFromClientId(ucIndex);
     /* Modified by l60609 for DSDA Phase III, 2013-2-20, End */
 
-    /* 局部变量初始化 */
+    /*  */
     usTmpLen           = usLen;
     enXmlProcType      = AT_XML_PROC_TYPE_BUTT;
     enCposOpType       = MTA_AT_CPOS_BUTT;
 
-    /* 收到"Ctrl-Z"字符，发送本条消息 */
+    /* "Ctrl-Z" */
     if (AT_CTRL_Z == pData[usTmpLen - 1])
     {
         usTmpLen       -= 1;
         enXmlProcType  = AT_XML_PROC_TYPE_FINISH;
         enCposOpType   = MTA_AT_CPOS_SEND;
     }
-    /* 收到"CR"字符，继续等待输入 */
+    /* "CR" */
     else if (AT_CR == pData[usTmpLen - 1])
     {
         enXmlProcType  = AT_XML_PROC_TYPE_CONTINUE;
     }
-    /* 收到"ESC"字符，取消本条消息发送 */
+    /* "ESC" */
     else if (AT_ESC == pData[usTmpLen - 1])
     {
         usTmpLen       -= 1;
@@ -4877,10 +4877,10 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
     }
 
     /* Modified by l60609 for DSDA Phase III, 2013-2-20, Begin */
-    /* 把缓冲区的字符加到XML码流中 */
+    /* XML */
     if (MTA_AT_CPOS_CANCEL != enCposOpType)
     {
-        /* XML码流长度判断 */
+        /* XML */
         if (AT_XML_MAX_LEN < ((pstAgpsCtx->stXml.pcXmlTextCur - pstAgpsCtx->stXml.pcXmlTextHead) + usTmpLen))
         {
             return AT_ERROR;
@@ -4894,7 +4894,7 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
         pstAgpsCtx->stXml.pcXmlTextCur += usTmpLen;
     }
 
-    /* 下发XML码流或继续等待输入 */
+    /* XML */
     if (AT_XML_PROC_TYPE_FINISH == enXmlProcType)
     {
         pstCposSetReq = (AT_MTA_CPOS_REQ_STRU*)PS_MEM_ALLOC( WUEPS_PID_AT,
@@ -4906,10 +4906,10 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
         }
         TAF_MEM_SET_S(pstCposSetReq, sizeof(AT_MTA_CPOS_REQ_STRU), 0x00, sizeof(AT_MTA_CPOS_REQ_STRU));
 
-        /* 填写消息结构 */
+        /*  */
         pstCposSetReq->enCposOpType = enCposOpType;
 
-        /* 当用户输入了Ctrl-Z才将码流发给MTA */
+        /* Ctrl-ZMTA */
         if (MTA_AT_CPOS_SEND == enCposOpType)
         {
             pstCposSetReq->ulXmlLength  = (VOS_UINT32)(pstAgpsCtx->stXml.pcXmlTextCur - pstAgpsCtx->stXml.pcXmlTextHead);
@@ -4919,7 +4919,7 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
                        pstCposSetReq->ulXmlLength);
         }
 
-        /* 发送到MTA模块 */
+        /* MTA */
         ulResult = AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                           gastAtClientTab[ucIndex].opId,
                                           ID_AT_MTA_CPOS_SET_REQ,
@@ -4927,7 +4927,7 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
                                           sizeof(AT_MTA_CPOS_REQ_STRU),
                                           I0_UEPS_PID_MTA);
 
-        /* 释放XML码流结构 */
+        /* XML */
         PS_MEM_FREE(WUEPS_PID_AT, pstCposSetReq);
 
         if (TAF_SUCCESS != ulResult)
@@ -4936,7 +4936,7 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
             return AT_ERROR;
         }
 
-        /* 设置AT模块实体的状态为等待异步返回 */
+        /* AT */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CPOS_SET;
 
         return AT_WAIT_ASYNC_RETURN;
@@ -4946,21 +4946,21 @@ VOS_UINT32 At_ProcXmlText ( TAF_UINT8 ucIndex, TAF_UINT8 *pData, TAF_UINT16 usLe
     return AT_WAIT_XML_INPUT;
 }
 
-/* 删除^EOPLMN设置命令的参数解析函数，使用通用AT参数解析器解析 */
+/* ^EOPLMNAT */
 
 /*****************************************************************************
- 函 数 名  : At_CheckCurrRatModeIsCL
- 功能描述  : 判断当前的接入模式是CL
- 输入参数  : TAF_UINT8  ucIndex
- 输出参数  : 无
- 返 回 值  : TAF_UINT32 检查结果
- 调用函数  :
- 被调函数  :
+     : At_CheckCurrRatModeIsCL
+   : CL
+   : TAF_UINT8  ucIndex
+   : 
+     : TAF_UINT32 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : f00279542
-    修改内容   : 新生成函数
+       :
+  1.       : 20151027
+           : f00279542
+       : 
 *****************************************************************************/
 TAF_UINT32 At_CheckCurrRatModeIsCL (
     VOS_UINT8                           ucIndex
@@ -4974,7 +4974,7 @@ TAF_UINT32 At_CheckCurrRatModeIsCL (
 
     ulGetModemIdRslt = AT_GetModemIdFromClient(ucIndex, &enModemId);
 
-    /* 获取modemid失败，默认不拦截相应的AT命令 */
+    /* modemidAT */
     if (VOS_OK != ulGetModemIdRslt)
     {
         AT_ERR_LOG("At_CurrRatModeIsCL:Get Modem Id fail!");

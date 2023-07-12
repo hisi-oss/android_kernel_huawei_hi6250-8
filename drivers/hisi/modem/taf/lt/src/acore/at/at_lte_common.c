@@ -68,11 +68,11 @@
 #include <linux/syscalls.h>
 #include "mdrv_om.h"
 
-/*lint -e767 原因:Log打印*/
+/*lint -e767 :Log*/
 #define    THIS_FILE_ID        MSP_FILE_ID_AT_LTE_COMMON_C
 /*lint +e767 */
 
-/* 发送缓冲区
+/* 
  */
 AT_SEND_DATA_BUFFER_STRU gstLAtSendData = {{0},};
 VOS_UINT8 *pgucLAtSndCodeAddr = &gstLAtSendData.aucBuffer[2];
@@ -93,7 +93,7 @@ AT_ERROR_CODE_TABLE_STRU g_stErrCodeTable[] = {
     {APP_ERR_NUM_VALUE_INVALID,                 AT_CME_INCORRECT_PARAMETERS},
     {APP_ERR_NUM_LEN_INVALID,                   AT_CME_INCORRECT_PARAMETERS},
 
-    /* 拨号错误
+    /* 
  */
     {APP_ERR_SM_APN_LEN_ILLEGAL,                AT_CME_APN_LEN_ILLEGAL},
     {APP_ERR_SM_APN_SYNTACTICAL_ERROR,          AT_CME_APN_SYNTACTICAL_ERROR},
@@ -119,7 +119,7 @@ AT_ERROR_CODE_TABLE_STRU g_stErrCodeTable[] = {
     {ERR_MSP_NV_NOT_SUPPORT_LENTH,      AT_DEVICE_NV_WRITE_FAIL_OVERLEN},
     {ERR_MSP_NV_BAD_BLOCK,              AT_DEVICE_NV_WRITE_FAIL_BADFLASH},
     {ERR_MSP_NV_ERROR_WRITE,            AT_DEVICE_NV_WRITE_FAIL_UNKNOWN},
-    /* 装备 ERROR CODE
+    /*  ERROR CODE
  */
     {ERR_MSP_SUCCESS,                   AT_OK},
     {ERR_MSP_FAILURE,                   AT_ERROR},
@@ -190,8 +190,8 @@ int ftm_create_dir(char *path)
 {
     int fd;
 
-    /* 如果文件夹不存在，创建新文件夹*/
-    fd = sys_access(path, 0); //F_OK, 检查文件是否存在
+    /* */
+    fd = sys_access(path, 0); //F_OK, 
     if(0 != fd)
     {
         fd  = sys_mkdir(path, 0660);
@@ -226,29 +226,29 @@ int ftm_close_dir(int fd)
 
 /******************************************************************************
  */
-/* 函数名称: atChgErrorCode
+/* : atChgErrorCode
  */
-/* 功能描述: 把其他模块返回的错误码转换成AT的错误码
- */
-/*
- */
-/* 参数说明:
- */
-/*   usTafErrorCode [in] 错误码
+/* : AT
  */
 /*
  */
-/* 返 回 值:
+/* :
  */
-/*    返回AT的错误码
+/*   usTafErrorCode [in] 
  */
 /*
  */
-/* 调用要求: TODO: ...
+/*   :
  */
-/* 调用举例: TODO: ...
+/*    AT
  */
-/* 作    者: 崔军强/00064416 [2009-08-11]
+/*
+ */
+/* : TODO: ...
+ */
+/* : TODO: ...
+ */
+/*     : /00064416 [2009-08-11]
  */
 /******************************************************************************
  */
@@ -275,35 +275,35 @@ static VOS_UINT32 ChgErrorCode(VOS_UINT32 usTafErrorCode)
 
 /******************************************************************************
  */
-/* 函数名称: CmdErrProc
+/* : CmdErrProc
  */
-/* 功能描述: 错误码转换及AT回复上报
- */
-/*
- */
-/* 参数说明:
- */
-/*   ucClientId [in] 客户端ID
- */
-/*   ulErrCode [in]  错误码
- */
-/*   usBufLen [in]   回复信息
- */
-/*   pucBuf [in]     回复信息长度
+/* : AT
  */
 /*
  */
-/* 返 回 值:
+/* :
  */
-/*    无
+/*   ucClientId [in] ID
+ */
+/*   ulErrCode [in]  
+ */
+/*   usBufLen [in]   
+ */
+/*   pucBuf [in]     
  */
 /*
  */
-/* 调用要求: TODO: ...
+/*   :
  */
-/* 调用举例: TODO: ...
+/*    
  */
-/* 作    者: 崔军强/00064416 [2009-08-11]
+/*
+ */
+/* : TODO: ...
+ */
+/* : TODO: ...
+ */
+/*     : /00064416 [2009-08-11]
  */
 /******************************************************************************
  */
@@ -314,7 +314,7 @@ VOS_VOID CmdErrProc(VOS_UINT8 ucClientId, VOS_UINT32 ulErrCode, VOS_UINT16 usBuf
     if(NULL != pucBuf)
     {
         /*MSP_MEMCPY(gstAtSendData.aucBuffer, pucBuf, usBufLen); */
-        /*改成下面的以匹配函数 At_FormatResultData */
+        /* At_FormatResultData */
         MSP_MEMCPY(pgucAtSndCodeAddr, AT_CMD_MAX_LEN + 20 - 3, pucBuf, usBufLen);
     }
 
@@ -335,29 +335,29 @@ VOS_VOID CmdErrProc(VOS_UINT8 ucClientId, VOS_UINT32 ulErrCode, VOS_UINT16 usBuf
 
 /******************************************************************************
  */
-/* 函数名称: atSendFtmDataMsg
+/* : atSendFtmDataMsg
  */
-/* 功能描述: AT模块给FTM 模块发送消息
+/* : ATFTM 
  */
 /*
  */
-/* 参数说明:
+/* :
  */
-/*   TaskId [in] 接收PID
+/*   TaskId [in] PID
  */
-/*   MsgId  [in] 消息ID
+/*   MsgId  [in] ID
  */
-/*   ulClientId [in] 端口号
+/*   ulClientId [in] 
  */
-/*   pData  [in] 数据起始
+/*   pData  [in] 
  */
-/*   uLen   [in] 数据长度
+/*   uLen   [in] 
  */
-/* 返 回 值:
+/*   :
  */
-/*    ERR_MSP_SUCCESS成功
+/*    ERR_MSP_SUCCESS
  */
-/*    非ERR_MSP_SUCCESS失败
+/*    ERR_MSP_SUCCESS
  */
 
 /******************************************************************************
@@ -393,28 +393,28 @@ VOS_UINT32 atSendFtmDataMsg(VOS_UINT32 TaskId, VOS_UINT32 MsgId, VOS_UINT32 ulCl
 
 
 /*****************************************************************************
- 函 数 名  : atSendL4aDataMsg
- 功能描述  : AT给L4A模块发送消息
- 输入参数  : VOS_UINT32 TaskId
+     : atSendL4aDataMsg
+   : ATL4A
+   : VOS_UINT32 TaskId
              VOS_UINT32 MsgId
              VOS_UINT32 ulClientId
              IN VOS_VOID* pData
              VOS_UINT32 uLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : c64416
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月6日
-    作    者   : c64416
-    修改内容   : 适配L4A优化方案
-  3.日    期   : 2016年8月18日
-    作    者   : w00316404
-    修改内容   : 双L编译修改
+       :
+  1.       : 2012825
+           : c64416
+       : 
+  2.       : 201366
+           : c64416
+       : L4A
+  3.       : 2016818
+           : w00316404
+       : L
 
 *****************************************************************************/
 VOS_UINT32 atSendL4aDataMsg(MN_CLIENT_ID_T usClientId, VOS_UINT32 TaskId, VOS_UINT32 MsgId, VOS_VOID* pData, VOS_UINT32 uLen)
@@ -440,7 +440,7 @@ VOS_UINT32 atSendL4aDataMsg(MN_CLIENT_ID_T usClientId, VOS_UINT32 TaskId, VOS_UI
     return u32Ret;
 }
 
-/* 定义了LTE与TDS私有AT命令 */
+/* LTETDSAT */
 
 
 AT_PAR_CMD_ELEMENT_STRU g_astAtTLCmdTbl[] = {
@@ -470,28 +470,28 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtTLCmdTbl[] = {
 
 /*****************************************************************************
 
- 函 数 名  : At_RegisterTLCmdTable
+     : At_RegisterTLCmdTable
 
- 功能描述  : 向AT解析器注册TDS/LTE专有命令表
+   : ATTDS/LTE
 
- 输入参数  : 无
+   : 
 
- 输出参数  : 无
+   : 
 
- 返 回 值  : VOS_UINT32
+     : VOS_UINT32
 
- 调用函数  :
+   :
 
- 被调函数  :
+   :
 
- 修改历史  :
+   :
 
-  1.日    期   : 2013年9月22日
+  1.       : 2013922
 
 
-     作    者   : c64416
+            : c64416
 
-     修改内容   : 新生成函数
+        : 
 
 
 *****************************************************************************/

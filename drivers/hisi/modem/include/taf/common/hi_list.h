@@ -110,7 +110,7 @@ typedef struct msp_list_header HI_LIST_S;
 #define msp_list_for_index(pos, i, head, index) \
     for (pos = (head)->next, i=0; (pos != (head) && i < index); pos = pos->next,i++)
 
-/* Added by m00217266 for 双VoWiFi项目, 2017-3-13, begin */
+/* Added by m00217266 for VoWiFi, 2017-3-13, begin */
 /**
  * msp_list_empty    -    is list empty
  * @head:    the head for your list.
@@ -126,7 +126,7 @@ typedef struct msp_list_header HI_LIST_S;
  */
 #define msp_list_first_entry(pos, type, member) \
     msp_list_entry((pos)->next, type, member)
-/* Added by m00217266 for 双VoWiFi项目, 2017-3-13, end */
+/* Added by m00217266 for VoWiFi, 2017-3-13, end */
 
 /*lint -esym(752,__list_add_msp)*/
 extern void __list_add_msp(struct msp_list_header * newnew,

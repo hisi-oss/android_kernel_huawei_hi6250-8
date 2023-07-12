@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "vos.h"
 #include "Taf_Tafm_Remote.h"
@@ -63,18 +63,18 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_SSA_APP_REMOTE_C
 
 /*****************************************************************************
  Prototype      : Taf_RegisterSSReq
- Description    : APP/AT发起RegisterSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATRegisterSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -84,10 +84,10 @@
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_RegisterSSReq ( MN_CLIENT_ID_T               ClientId,
                                        MN_OPERATION_ID_T           OpId,
@@ -104,12 +104,12 @@ TAF_UINT32 TAF_RegisterSSReq ( MN_CLIENT_ID_T               ClientId,
 
 /*****************************************************************************
  Prototype      : Taf_EraseSSReq
- Description    : APP/AT发起EraseSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATEraseSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -119,10 +119,10 @@ TAF_UINT32 TAF_RegisterSSReq ( MN_CLIENT_ID_T               ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_EraseSSReq ( MN_CLIENT_ID_T              ClientId,
                                     MN_OPERATION_ID_T          OpId,
@@ -138,12 +138,12 @@ TAF_UINT32 TAF_EraseSSReq ( MN_CLIENT_ID_T              ClientId,
 
 /*****************************************************************************
  Prototype      : Taf_ActivateSSReq
- Description    : APP/AT发起ActivateSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATActivateSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -153,10 +153,10 @@ TAF_UINT32 TAF_EraseSSReq ( MN_CLIENT_ID_T              ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_ActivateSSReq(
     MN_CLIENT_ID_T                      ClientId,
@@ -175,12 +175,12 @@ TAF_UINT32 TAF_ActivateSSReq(
 
 /*****************************************************************************
  Prototype      : TAF_DeativateSSReq
- Description    : APP/AT发起DeactivateSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATDeactivateSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -190,13 +190,13 @@ TAF_UINT32 TAF_ActivateSSReq(
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2007-11-07
     Author      : F62575
-    Modification: 问题单A32D13382(文档校对发现问题)
+    Modification: A32D13382()
   4.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_DeactivateSSReq ( MN_CLIENT_ID_T                ClientId,
                                          MN_OPERATION_ID_T             OpId,
@@ -212,12 +212,12 @@ TAF_UINT32 TAF_DeactivateSSReq ( MN_CLIENT_ID_T                ClientId,
 
 /*****************************************************************************
  Prototype      : Taf_InterrogateSSReq
- Description    : APP/AT发起InterrogateSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATInterrogateSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -227,10 +227,10 @@ TAF_UINT32 TAF_DeactivateSSReq ( MN_CLIENT_ID_T                ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_InterrogateSSReq ( MN_CLIENT_ID_T                    ClientId,
                                            MN_OPERATION_ID_T               OpId,
@@ -246,12 +246,12 @@ TAF_UINT32 TAF_InterrogateSSReq ( MN_CLIENT_ID_T                    ClientId,
 
 /*****************************************************************************
  Prototype      : Taf_RegisterPasswordReq
- Description    : APP/AT发起RegisterPassword操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATRegisterPassword
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -261,10 +261,10 @@ TAF_UINT32 TAF_InterrogateSSReq ( MN_CLIENT_ID_T                    ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_RegisterPasswordReq ( MN_CLIENT_ID_T           ClientId,
                                                 MN_OPERATION_ID_T       OpId,
@@ -280,12 +280,12 @@ TAF_UINT32 TAF_RegisterPasswordReq ( MN_CLIENT_ID_T           ClientId,
 
 /*****************************************************************************
  Prototype      : Taf_ProcessUnstructuredSSReq
- Description    : APP/AT发起ProcessUntructuredSS操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATProcessUntructuredSS
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -295,13 +295,13 @@ TAF_UINT32 TAF_RegisterPasswordReq ( MN_CLIENT_ID_T           ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2008-12-06
     Author      : s62952
-    Modification: 问题单AT2D07296
+    Modification: AT2D07296
   4.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_ProcessUnstructuredSSReq ( MN_CLIENT_ID_T                   ClientId,
                                                         MN_OPERATION_ID_T              OpId,
@@ -330,18 +330,18 @@ TAF_UINT32 TAF_ProcessUnstructuredSSReq ( MN_CLIENT_ID_T                   Clien
 }
 
 
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, begin */
-/* Deleted by s00217060 for 主动上报AT命令控制下移至C核, 2013-5-6, end */
+/* Deleted by s00217060 for ATC, 2013-5-6, begin */
+/* Deleted by s00217060 for ATC, 2013-5-6, end */
 
 
 /*****************************************************************************
  Prototype      : Taf_EraseCCEntryReq
- Description    : APP/AT发起EraseCCEntry-Request操作，进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATEraseCCEntry-Request
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -351,7 +351,7 @@ TAF_UINT32 TAF_ProcessUnstructuredSSReq ( MN_CLIENT_ID_T                   Clien
     Modification: Created function
   2.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 VOS_UINT32 TAF_EraseCCEntryReq(MN_CLIENT_ID_T            ClientId,
                                    MN_OPERATION_ID_T                OpId,
@@ -368,12 +368,12 @@ VOS_UINT32 TAF_EraseCCEntryReq(MN_CLIENT_ID_T            ClientId,
 
 /*****************************************************************************
  Prototype      : TAF_SsReleaseComplete
- Description    : APP/AT发起ReleaseComplete操作，释放当前操作占用的链路,进行大端编码后发送
- Input          : ClientId - APP/AT标识
-                  OpId     - 操作标识
-                  pPara    - 操作参数
+ Description    : APP/ATReleaseComplete,
+ Input          : ClientId - APP/AT
+                  OpId     - 
+                  pPara    - 
  Output         : --
- Return Value   : 操作结果
+ Return Value   : 
  Calls          : ---
  Called By      : --
 
@@ -383,10 +383,10 @@ VOS_UINT32 TAF_EraseCCEntryReq(MN_CLIENT_ID_T            ClientId,
     Modification: Created function
   2.Date        : 2007-10-16
     Author      : F62575
-    Modification: 问题单A32D13062(文档校对发现问题)
+    Modification: A32D13062()
   3.Date        : 2013-5-17
     Author      : W000176964
-    Modification: SS FDN&Call Control项目:修改消息发送PID为TAF
+    Modification: SS FDN&Call Control:PIDTAF
 *****************************************************************************/
 TAF_UINT32 TAF_SsReleaseComplete ( MN_CLIENT_ID_T      ClientId,
                                              MN_OPERATION_ID_T  OpId)

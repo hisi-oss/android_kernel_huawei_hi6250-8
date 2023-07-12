@@ -49,7 +49,7 @@
 
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "TafAgent.h"
 #include "TafAgentCtx.h"
@@ -59,7 +59,7 @@
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 extern VOS_UINT32 AT_GetDestPid(
     MN_CLIENT_ID_T                      usClientId,
@@ -67,22 +67,22 @@ extern VOS_UINT32 AT_GetDestPid(
 );
 
 /*****************************************************************************
-3 函数实现
+3 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_PidInit
- 功能描述  : TAF AGENT PID的初始化函数，该PID挂在OM FID之下。
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_PidInit
+   : TAF AGENT PIDPIDOM FID
+   : enum VOS_INIT_PHASE_DEFINE enPhase
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : c00173809
-    修改内容   : 新生成函数/PS融合项目
+       :
+  1.       : 20111222
+           : c00173809
+       : /PS
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
@@ -99,28 +99,28 @@ VOS_UINT32 TAF_AGENT_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_IsValidMsg
- 功能描述  : 判断是否是有效的消息
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_IsValidMsg
+   : 
+   : MsgBlock* pMsg
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : C00173809
-    修改内容   : 新生成函数/PS融合项目
+       :
+  1.       : 20111222
+           : C00173809
+       : /PS
 
-  2.日    期   : 2012年12月24日
-    作    者   : L60609
-    修改内容   : DSDA Phase II
-  3.日    期   : 2013年4月16日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-  4.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 20121224
+           : L60609
+       : DSDA Phase II
+  3.       : 2013416
+           : s00217060
+       : ATC
+  4.       : 2015625
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
 {
@@ -135,14 +135,14 @@ VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
     pstMsgHeader = (MSG_HEADER_STRU *)pstMsg;
 
     /* Modified by l60609 for DSDA Phase II, 2012-12-24, Begin */
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
+    /* Modified by s00217060 for ATC, 2013-4-16, begin */
     if ((I0_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I1_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I2_WUEPS_PID_TAF == pstMsgHeader->ulSenderPid)
      || (I0_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid)
      || (I1_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid)
      || (I2_UEPS_PID_MTA  == pstMsgHeader->ulSenderPid))
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
+    /* Modified by s00217060 for ATC, 2013-4-16, end */
     {
 
         if ((ID_TAFAGENT_APS_FIND_CID_FOR_DIAL_CNF <= pstMsgHeader->ulMsgName)
@@ -157,22 +157,22 @@ VOS_UINT32 TAF_AGENT_IsValidMsg(MsgBlock* pstMsg)
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_ClearAllSem
- 功能描述  : 清空所有的信号量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_ClearAllSem
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年04月17日
-    作    者   : f00179208
-    修改内容   : 新生成函数/C核单独复位项目
+       :
+  1.       : 20130417
+           : f00179208
+       : /C
 *****************************************************************************/
 VOS_VOID TAF_AGENT_ClearAllSem(VOS_VOID)
 {
-    /* 如果有锁的存在 */
+    /*  */
     if (VOS_TRUE == TAF_AGENT_GET_ACPU_CNF_SEM_LOCK_FLG())
     {
         VOS_SmV(TAF_AGENT_GetTafAcpuCnfSem());
@@ -182,27 +182,27 @@ VOS_VOID TAF_AGENT_ClearAllSem(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_ProcMsg
- 功能描述  : TAF AGENT的消息处理函数
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_ProcMsg
+   : TAF AGENT
+   : MsgBlock* pMsg
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : C00173809
-    修改内容   : 新生成函数/PS融合项目
+       :
+  1.       : 20111222
+           : C00173809
+       : /PS
 
-  2.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
+  2.       : 2012717
+           : A00165503
+       : DTS2012071607302: TAFAPI, ,
+                 API
 
-  3.日    期   : 2016年5月16日
-    作    者   : w00316404
-    修改内容   : DTS2016051400354: 添加可维可测信息
+  3.       : 2016516
+           : w00316404
+       : DTS2016051400354: 
 *****************************************************************************/
 VOS_VOID TAF_AGENT_ProcMsg(MsgBlock* pstMsg)
 {
@@ -223,19 +223,19 @@ VOS_VOID TAF_AGENT_ProcMsg(MsgBlock* pstMsg)
             return;
         }
 
-        /* 判断消息是否被释放 */
+        /*  */
         if (VOS_NULL_PTR == TAF_AGENT_GetTafAcpuCnfMsg())
         {
             TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "TAF_AGENT_ProcMsg: TafAcpuCnfMsg is VOS_NULL_PTR!");
 
-            /* 备份回复消息 */
+            /*  */
             pucMsg = TAF_AGENT_SaveMsg((VOS_UINT8*)pstMsg,pstMsg->ulLength);
 
             TAF_AGENT_SetTafAcpuCnfMsg(pucMsg);
 
             TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_FALSE);
 
-            /* 释放信号量，使得调用API任务继续运行 */
+            /* API */
             ulResult = VOS_SmV(TAF_AGENT_GetTafAcpuCnfSem());
 
             TAFAGENT_NORMAL_LOG1(ACPU_PID_TAFAGENT, "TAF_AGENT_ProcMsg: VOS_SmV result is %x\n", ulResult);
@@ -248,36 +248,36 @@ VOS_VOID TAF_AGENT_ProcMsg(MsgBlock* pstMsg)
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_FindCidForDial
- 功能描述  : 通过同步机制获取用于拨号的CID
- 输入参数  :
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_FindCidForDial
+   : CID
+   :
+   : VOS_VOID
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,发送同步消息
+       :
+  1.       : 20111218
+           : c00173809
+       : PS,
 
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
+  2.       : 201274
+           : A00165503
+       : DTS2012042102488: TAF AGENT, API
+                 
 
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
+  3.       : 2012717
+           : A00165503
+       : DTS2012071607302: TAFAPI, ,
+                 API
 
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
+  4.       : 2012726
+           : A00165503
+       : DTS2012072505555: TAFAPI, 
 
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
+  5.       : 20121221
+           : l00227485
+       : DSDA PhaseII
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_FindCidForDial(
     MN_CLIENT_ID_T                      usClientId,
@@ -292,7 +292,7 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_FindCidForDial!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -302,7 +302,7 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_APS_FIND_CID_FOR_DIAL_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                     sizeof(TAFAGENT_APS_FIND_CID_FOR_DIAL_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -314,18 +314,18 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_WUEPS_PID_TAF);
     pstMsg->enMsgId                     = ID_TAFAGENT_APS_FIND_CID_FOR_DIAL_REQ;
 
-     /* 设置信号量 */
+     /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -337,7 +337,7 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -389,37 +389,37 @@ VOS_UINT32 TAF_AGENT_FindCidForDial(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_SetPdpCidPara
- 功能描述  : 设置指定CID的参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
+     : TAF_AGENT_SetPdpCidPara
+   : CID
+   : MN_CLIENT_ID_T                      usClientId,
              TAF_PS_DIAL_PARA_STRU              *pstPdpPriPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,提供跨核同步API
+       :
+  1.       : 20111218
+           : c00173809
+       : PS,API
 
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
+  2.       : 201274
+           : A00165503
+       : DTS2012042102488: TAF AGENT, API
+                 
 
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
+  3.       : 2012717
+           : A00165503
+       : DTS2012071607302: TAFAPI, ,
+                 API
 
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
+  4.       : 2012726
+           : A00165503
+       : DTS2012072505555: TAFAPI, 
 
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
+  5.       : 20121221
+           : l00227485
+       : DSDA PhaseII
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_SetPdpCidPara(
     MN_CLIENT_ID_T                      usClientId,
@@ -434,7 +434,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_SetPdpCidPara!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -444,7 +444,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_APS_SET_CID_PARA_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_APS_SET_CID_PARA_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -456,7 +456,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_WUEPS_PID_TAF);
     pstMsg->enMsgId                     = ID_TAFAGENT_APS_SET_CID_PARA_REQ;
 
@@ -464,14 +464,14 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
 
     TAF_MEM_CPY_S((VOS_VOID*)&(pstMsg->stPdpPrimContextExt), sizeof(pstMsg->stPdpPrimContextExt), (VOS_VOID*)pstPdpPrimContextExt,sizeof(TAF_PDP_PRIM_CONTEXT_EXT_STRU));
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -483,7 +483,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -535,36 +535,36 @@ VOS_UINT32 TAF_AGENT_SetPdpCidPara(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_GetPdpCidPara
- 功能描述  : 查询指定CID的参数
- 输入参数  : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara,
+     : TAF_AGENT_GetPdpCidPara
+   : CID
+   : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara,
              VOS_UINT8                           ucCid
- 输出参数  : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara
- 调用函数  :
- 被调函数  :
+   : TAF_PDP_PRIM_CONTEXT_STRU                   *pstPdpPriPara
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月18日
-    作    者   : c00173809
-    修改内容   : PS融合项目,提供跨核同步API
+       :
+  1.       : 20111218
+           : c00173809
+       : PS,API
 
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
+  2.       : 201274
+           : A00165503
+       : DTS2012042102488: TAF AGENT, API
+                 
 
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
+  3.       : 2012717
+           : A00165503
+       : DTS2012071607302: TAFAPI, ,
+                 API
 
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
+  4.       : 2012726
+           : A00165503
+       : DTS2012072505555: TAFAPI, 
 
-  5.日    期   : 2012年12月21日
-    作    者   : l00227485
-    修改内容   : DSDA PhaseII
+  5.       : 20121221
+           : l00227485
+       : DSDA PhaseII
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetPdpCidPara(
     TAF_PDP_PRIM_CONTEXT_STRU          *pstPdpPriPara,
@@ -580,7 +580,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_GetPdpCidPara!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -590,7 +590,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_APS_GET_CID_PARA_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_APS_GET_CID_PARA_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -602,20 +602,20 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_WUEPS_PID_TAF);
     pstMsg->enMsgId                     = ID_TAFAGENT_APS_GET_CID_PARA_REQ;
 
     pstMsg->ucCid                       = ucCid;
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -627,7 +627,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -681,19 +681,19 @@ VOS_UINT32 TAF_AGENT_GetPdpCidPara(
 
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_SetPdpCidQosPara
- 功能描述  : 设置指定CID的QOS参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
+     : TAF_AGENT_SetPdpCidQosPara
+   : CIDQOS
+   : MN_CLIENT_ID_T                      usClientId,
              TAF_PS_PDP_QOS_SET_PARA_STRU       *pstQosPara
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年06月29日
-    作    者   : l60609
-    修改内容   : DTS2013062201514:增加设置QOS参数同步接口
+       :
+  1.       : 20130629
+           : l60609
+       : DTS2013062201514:QOS
 
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
@@ -709,7 +709,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_SetPdpCidQosPara!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -719,7 +719,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_APS_SET_CID_QOS_PARA_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_APS_SET_CID_QOS_PARA_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -731,7 +731,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_WUEPS_PID_TAF);
     pstMsg->ulMsgId                     = ID_TAFAGENT_APS_SET_CID_QOS_PARA_REQ;
 
@@ -739,14 +739,14 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
 
     TAF_MEM_CPY_S((VOS_VOID*)&(pstMsg->stQosPara), sizeof(pstMsg->stQosPara), (VOS_VOID*)pstQosPara, sizeof(TAF_PS_PDP_QOS_SET_PARA_STRU));
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -758,7 +758,7 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -810,18 +810,18 @@ VOS_UINT32 TAF_AGENT_SetPdpCidQosPara(
 }
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_GetPdpCidQosPara
- 功能描述  : 查询指定CID的参数
- 输入参数  : MN_CLIENT_ID_T                      usClientId,
+     : TAF_AGENT_GetPdpCidQosPara
+   : CID
+   : MN_CLIENT_ID_T                      usClientId,
              VOS_UINT8                           ucCid
- 输出参数  : TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosPara
- 调用函数  :
- 被调函数  :
+   : TAF_PS_PDP_QOS_QUERY_PARA_STRU     *pstQosPara
+   :
+   :
 
- 修改历史      :
-   1.日    期   : 2013年06月29日
-     作    者   : l60609
-     修改内容   : DTS2013062201514:增加设置QOS参数同步接口
+       :
+   1.       : 20130629
+            : l60609
+        : DTS2013062201514:QOS
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
     MN_CLIENT_ID_T                      usClientId,
@@ -837,7 +837,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_GetPdpCidQosPara!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -847,7 +847,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_APS_GET_CID_QOS_PARA_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_APS_GET_CID_QOS_PARA_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -859,19 +859,19 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_WUEPS_PID_TAF);
     pstMsg->ulMsgId                     = ID_TAFAGENT_APS_GET_CID_QOS_PARA_REQ;
     pstMsg->ucCid                       = ucCid;
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -883,7 +883,7 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -937,38 +937,38 @@ VOS_UINT32 TAF_AGENT_GetPdpCidQosPara(
 
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_GetCallInfo
- 功能描述  : 获取通话信息同步api
- 输入参数  : MN_CLIENT_ID_T                      usClientId
+     : TAF_AGENT_GetCallInfo
+   : api
+   : MN_CLIENT_ID_T                      usClientId
              VOS_UINT8                           *pucNumOfCalls
              MN_CALL_INFO_STRU                   *pstCallInfos
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : w00199382
-    修改内容   : 新生成函数
+       :
+  1.       : 20111227
+           : w00199382
+       : 
 
-  2.日    期   : 2012年7月4日
-    作    者   : A00165503
-    修改内容   : DTS2012042102488: TAF AGENT模块增加软调信息, 用于定位跨核API
-                 调用失败问题
+  2.       : 201274
+           : A00165503
+       : DTS2012042102488: TAF AGENT, API
+                 
 
-  3.日    期   : 2012年7月17日
-    作    者   : A00165503
-    修改内容   : DTS2012071607302: TAF跨核同步API实现优化, 防止异常出现后,
-                 所有API功能失效
+  3.       : 2012717
+           : A00165503
+       : DTS2012071607302: TAFAPI, ,
+                 API
 
-  4.日    期   : 2012年7月26日
-    作    者   : A00165503
-    修改内容   : DTS2012072505555: TAF跨核同步API实现优化, 增加消息为空保护
+  4.       : 2012726
+           : A00165503
+       : DTS2012072505555: TAFAPI, 
 
-  5.日    期   : 2013年3月13日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+  5.       : 2013313
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetCallInfoReq(
     MN_CLIENT_ID_T                      usClientId,
@@ -983,7 +983,7 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_GetCallInfoReq!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -993,14 +993,14 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
         return VOS_ERR;
     }
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 发送异步应用请求 */
+    /*  */
     /* Modified by l60609 for DSDA PhaseIII, 2013-3-13, begin */
     ulResult = MN_CALL_SendAppRequest(ID_TAFAGENT_MN_GET_CALL_INFO_REQ,
                                       usClientId, 0, 0,
@@ -1016,7 +1016,7 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -1074,20 +1074,20 @@ VOS_UINT32 TAF_AGENT_GetCallInfoReq(
     return ulResult;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
+/* Added by s00217060 for ATC, 2013-4-2, begin */
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_GetSysMode
- 功能描述  : 获取系统模式
- 输入参数  : AT_SYS_MODE_STRU                   *pstSysMode
- 输出参数  : AT_SYS_MODE_STRU                   *pstSysMode
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_GetSysMode
+   : 
+   : AT_SYS_MODE_STRU                   *pstSysMode
+   : AT_SYS_MODE_STRU                   *pstSysMode
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月2日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
+       :
+  1.       : 201342
+           : s00217060
+       : ATC
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetSysMode(
     VOS_UINT16                                 usClientId,
@@ -1102,7 +1102,7 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_GetSysMode!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -1112,7 +1112,7 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_MTA_GET_SYSMODE_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_MTA_GET_SYSMODE_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -1124,19 +1124,19 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_UEPS_PID_MTA);
 
     pstMsg->enMsgId                     = ID_TAFAGENT_MTA_GET_SYSMODE_REQ;
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -1148,7 +1148,7 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -1197,21 +1197,21 @@ VOS_UINT32 TAF_AGENT_GetSysMode(
 
     return ulResult;
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
+/* Added by s00217060 for ATC, 2013-4-2, end */
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_GetAntState
- 功能描述  : 获取天线状态
- 输入参数  : VOS_UINT16                   usClientId
- 输出参数  : VOS_UINT16                  *pusAntState
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_GetAntState
+   : 
+   : VOS_UINT16                   usClientId
+   : VOS_UINT16                  *pusAntState
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年8月2日
-    作    者   : z60575
-    修改内容   : 获取天线状态
+       :
+  1.       : 201382
+           : z60575
+       : 
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_GetAntState(
     VOS_UINT16                                 usClientId,
@@ -1226,7 +1226,7 @@ VOS_UINT32 TAF_AGENT_GetAntState(
 
     TAFAGENT_NORMAL_LOG(ACPU_PID_TAFAGENT, "ENTER TAF_AGENT_GetAntState!");
 
-    /* 如果同步信号量已锁，挂起任务，依次进入等待队列；如果同步信号量未锁，锁信号量。*/
+    /* */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuSyncSem(), 0);
     if (VOS_OK != ulResult)
     {
@@ -1236,7 +1236,7 @@ VOS_UINT32 TAF_AGENT_GetAntState(
         return VOS_ERR;
     }
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (TAFAGENT_MTA_GET_ANT_STATE_REQ_STRU*)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_TAFAGENT,
                                                                                sizeof(TAFAGENT_MTA_GET_ANT_STATE_REQ_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -1248,18 +1248,18 @@ VOS_UINT32 TAF_AGENT_GetAntState(
         return VOS_ERR;
     }
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverPid               = AT_GetDestPid(usClientId, I0_UEPS_PID_MTA);
     pstMsg->enMsgId                     = ID_TAFAGENT_MTA_GET_ANT_STATE_REQ;
 
-    /* 设置信号量 */
+    /*  */
     TAF_AGENT_SetTafAcpuCnfMsg(VOS_NULL_PTR);
 
     TAF_AGENT_ClearMsg();
 
     TAF_AGENT_SET_ACPU_CNF_SEM_LOCK_FLG(VOS_TRUE);
 
-    /* 将请求消息发送给CCPU */
+    /* CCPU */
     ulResult = PS_SEND_MSG(ACPU_PID_TAFAGENT, pstMsg);
     if (VOS_OK != ulResult)
     {
@@ -1271,7 +1271,7 @@ VOS_UINT32 TAF_AGENT_GetAntState(
         return VOS_ERR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待CCPU的回复后信号量解锁。 */
+    /* CCPU */
     ulResult = VOS_SmP(TAF_AGENT_GetTafAcpuCnfSem(), PS_SYNC_CNF_TIMEOUT_LEN);
     if (VOS_OK != ulResult)
     {
@@ -1322,18 +1322,18 @@ VOS_UINT32 TAF_AGENT_GetAntState(
 
 
 /*****************************************************************************
- 函 数 名  : TAF_AGENT_FidInit
- 功能描述  : TAF AGENT FID的初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : TAF_AGENT_FidInit
+   : TAF AGENT FID
+   : enum VOS_INIT_PHASE_DEFINE enPhase
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年02月17日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2013021700415,TAFAGENT单独起一个FID
+       :
+  1.       : 20130217
+           : f00179208
+       : :DTS2013021700415,TAFAGENTFID
 *****************************************************************************/
 VOS_UINT32 TAF_AGENT_FidInit (enum VOS_INIT_PHASE_DEFINE enPhase)
 {
@@ -1343,7 +1343,7 @@ VOS_UINT32 TAF_AGENT_FidInit (enum VOS_INIT_PHASE_DEFINE enPhase)
     {
         case VOS_IP_LOAD_CONFIG:
 
-            /* 网卡模块注册PID */
+            /* PID */
             ulRslt = VOS_RegisterPIDInfo(ACPU_PID_TAFAGENT,
                                         (Init_Fun_Type)TAF_AGENT_PidInit,
                                         (Msg_Fun_Type)TAF_AGENT_ProcMsg);

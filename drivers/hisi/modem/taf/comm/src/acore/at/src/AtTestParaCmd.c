@@ -47,17 +47,17 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 
 #include "AtCheckFunc.h"
 #include "ATCmdProc.h"
 #include "AtDataProc.h"
 #include "Taf_Tafm_Remote.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
+/* Added by l00167671 for NV , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
+/* Added by l00167671 for NV , 2013-05-17, end*/
 
 #include "AtTestParaCmd.h"
 
@@ -68,39 +68,39 @@
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgdcont
- 功能描述  : cgdcont测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgdcont
+   : cgdcont
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : PS融合项目
-  3.日    期   : 2012年04月10日
-    作    者   : s62952
-    修改内容   : 问题单号:DTS2012040902843
-  3.日    期   : 2012年05月03日
-    作    者   : w00199382
-    修改内容   : 问题单号:DTS2012042602550
-  4.日    期   : 2012年5月26日
-    作    者   : A00165503
-    修改内容   : DTS2012052404203: +CGDCONT命令增加对<CID 0>的支持
-  5.日    期   : 2012年8月10日
-    作    者   : z60575
-    修改内容   : DTS2012081006711: 添加对IPV6能力的判断
-  6.日    期   : 2013年05月25日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-  7.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增参数
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 20111219
+           : c00173809
+       : PS
+  3.       : 20120410
+           : s62952
+       : :DTS2012040902843
+  3.       : 20120503
+           : w00199382
+       : :DTS2012042602550
+  4.       : 2012526
+           : A00165503
+       : DTS2012052404203: +CGDCONT<CID 0>
+  5.       : 2012810
+           : z60575
+       : DTS2012081006711: IPV6
+  6.       : 20130525
+           : f00179208
+       : V3R3 PPP PROJECT
+  7.       : 20130708
+           : Y00213812
+       : VoLTE_PhaseI 
 *****************************************************************************/
 VOS_UINT32 At_TestCgdcont(VOS_UINT8 ucIndex)
 {
@@ -132,30 +132,30 @@ VOS_UINT32 At_TestCgdcont(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgdscont
- 功能描述  : cgdscont测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgdscont
+   : cgdscont
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : PS融合项目
-  3.日    期   : 2012年3月5日
-    作    者   : c00173809
-    修改内容   : DTS2012010604900,Cgdscont测试命令GU和L模式需要区分CID的最大取值范围
-  4.日    期   : 2011年5月2日
-    作    者   : w00199382
-    修改内容   : DTS2012042803139去除字符串后多余逗号
-  5.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目,修改主PDP参数范围
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 20111219
+           : c00173809
+       : PS
+  3.       : 201235
+           : c00173809
+       : DTS2012010604900,CgdscontGULCID
+  4.       : 201152
+           : w00199382
+       : DTS2012042803139
+  5.       : 20130708
+           : Y00213812
+       : VoLTE_PhaseI ,PDP
 *****************************************************************************/
 VOS_UINT32 At_TestCgdscont(VOS_UINT8 ucIndex)
 {
@@ -172,27 +172,27 @@ VOS_UINT32 At_TestCgdscont(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgtft
- 功能描述  : cgtft测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgtft
+   : cgtft
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2012年3月24日
-    作    者   : c00173809
-    修改内容   : DTS2012031901946,在测试命令中删除PPP协议
-  3.日    期   : 2012年8月10日
-    作    者   : z60575
-    修改内容   : DTS2012081006711: 添加对IPV6能力的判断
-  4.日    期   : 2015年9月28日
-    作    者   : W00316404
-    修改内容   : R11 TFT 协议升级
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 2012324
+           : c00173809
+       : DTS2012031901946,PPP
+  3.       : 2012810
+           : z60575
+       : DTS2012081006711: IPV6
+  4.       : 2015928
+           : W00316404
+       : R11 TFT 
 *****************************************************************************/
 VOS_UINT32 At_TestCgtft(VOS_UINT8 ucIndex)
 {
@@ -239,18 +239,18 @@ VOS_UINT32 At_TestCgtft(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgact
- 功能描述  : cgact测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgact
+   : cgact
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCgact(VOS_UINT8 ucIndex)
 {
@@ -265,52 +265,52 @@ VOS_UINT32 At_TestCgact(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgcmod
- 功能描述  : cgcmod测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgcmod
+   : cgcmod
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2011年12月19日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011120604361，CGEQNEG测试命令返回错误,CGCMOD返回错误
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 20111219
+           : /00130025
+       : DTS2011120604361CGEQNEG,CGCMOD
 *****************************************************************************/
 VOS_UINT32 At_TestCgcmod(VOS_UINT8 ucIndex)
 {
 
 
-    /* CGEQNEG的测试命令和CGCMODE的返回值相同，使用相同的函数 */
+    /* CGEQNEGCGCMODE */
    return At_TestCgeqnegPara(ucIndex);
 
 
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgpaddr
- 功能描述  : CGPADDR测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgpaddr
+   : CGPADDR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年3月5日
-    作    者   : c00173809
-    修改内容   : DTS2012010604900
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，删除卡状态判断
+       :
+  1.       : 201235
+           : c00173809
+       : DTS2012010604900
+  2.       : 20130708
+           : Y00213812
+       : VoLTE_PhaseI 
 *****************************************************************************/
 VOS_UINT32 At_TestCgpaddr(VOS_UINT8 ucIndex)
 {
-    /* 执行命令操作 */
+    /*  */
     if ( VOS_OK != TAF_PS_GetPdpContextInfo(WUEPS_PID_AT,
                                             AT_PS_BuildExClientId(gastAtClientTab[ucIndex].usClientId),
                                             0) )
@@ -324,18 +324,18 @@ VOS_UINT32 At_TestCgpaddr(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgautoPara
- 功能描述  : +CGAUTO测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgautoPara
+   : +CGAUTO
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月09日
-    作    者   : l00198894
-    修改内容   : 新增函数
+       :
+  1.       : 20120109
+           : l00198894
+       : 
 *****************************************************************************/
 VOS_UINT32 At_TestCgautoPara(VOS_UINT8 ucIndex)
 {
@@ -355,26 +355,26 @@ VOS_UINT32 At_TestCgautoPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestAuhtdata
- 功能描述  : Auhtdata测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestAuhtdata
+   : Auhtdata
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
 
-  2.日    期   : 2012年3月5日
-    作    者   : c00173809
-    修改内容   : DTS2012010604900,authdata测试命令GU和L模式需要区分CID的最大取值范围
+  2.       : 201235
+           : c00173809
+       : DTS2012010604900,authdataGULCID
 
-  3.日    期   : 2013年12月25日
-    作    者   : A00165503
-    修改内容   : DTS2013122403650: ^AUTHDATA命令支持CID0
+  3.       : 20131225
+           : A00165503
+       : DTS2013122403650: ^AUTHDATACID0
 *****************************************************************************/
 VOS_UINT32 At_TestAuhtdata(VOS_UINT8 ucIndex)
 {
@@ -390,21 +390,21 @@ VOS_UINT32 At_TestAuhtdata(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestNdisconn
- 功能描述  : Ndisconn测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestNdisconn
+   : Ndisconn
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2012年5月7日
-    作    者   : l60609
-    修改内容   : DTS2012050501603:CID范围错误
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 201257
+           : l60609
+       : DTS2012050501603:CID
 *****************************************************************************/
 VOS_UINT32 At_TestNdisconn(VOS_UINT8 ucIndex)
 {
@@ -422,21 +422,21 @@ VOS_UINT32 At_TestNdisconn(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestNdisDup
- 功能描述  : NdisDup测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestNdisDup
+   : NdisDup
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00184452
-    修改内容   : AT移植项目
-  2.日    期   : 2012年5月7日
-    作    者   : l60609
-    修改内容   : DTS2012050501603:CID范围错误
+       :
+  1.       : 20111018
+           : c00184452
+       : AT
+  2.       : 201257
+           : l60609
+       : DTS2012050501603:CID
 *****************************************************************************/
 VOS_UINT32 At_TestNdisDup(VOS_UINT8 ucIndex)
 {
@@ -455,22 +455,22 @@ VOS_UINT32 At_TestNdisDup(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgeqos
- 功能描述  : cgeqos测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgeqos
+   : cgeqos
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : c00184452
-    修改内容   : PS融合项目
+       :
+  1.       : 201218
+           : c00184452
+       : PS
 
-  2.日    期   : 2015年10月22日
-    作    者   : W00316404
-    修改内容   : R11 升级
+  2.       : 20151022
+           : W00316404
+       : R11 
 *****************************************************************************/
 VOS_UINT32 At_TestCgeqos(VOS_UINT8 ucIndex)
 {
@@ -486,18 +486,18 @@ VOS_UINT32 At_TestCgeqos(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgeqosrdp
- 功能描述  : cgeqosrdp测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgeqosrdp
+   : cgeqosrdp
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : c00184452
-    修改内容   : PS融合项目
+       :
+  1.       : 201218
+           : c00184452
+       : PS
 *****************************************************************************/
 VOS_UINT32 At_TestCgeqosrdp(VOS_UINT8 ucIndex)
 {
@@ -513,18 +513,18 @@ VOS_UINT32 At_TestCgeqosrdp(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgcontrdp
- 功能描述  : cgcontrdp测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgcontrdp
+   : cgcontrdp
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : c00184452
-    修改内容   : PS融合项目
+       :
+  1.       : 201218
+           : c00184452
+       : PS
 *****************************************************************************/
 VOS_UINT32 At_TestCgcontrdp(VOS_UINT8 ucIndex)
 {
@@ -540,18 +540,18 @@ VOS_UINT32 At_TestCgcontrdp(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgscontrdp
- 功能描述  : cgscontrdp测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgscontrdp
+   : cgscontrdp
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : c00184452
-    修改内容   : PS融合项目
+       :
+  1.       : 201218
+           : c00184452
+       : PS
 *****************************************************************************/
 VOS_UINT32 At_TestCgscontrdp(VOS_UINT8 ucIndex)
 {
@@ -567,18 +567,18 @@ VOS_UINT32 At_TestCgscontrdp(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgtftrdp
- 功能描述  : cgtftrdp测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgtftrdp
+   : cgtftrdp
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月8日
-    作    者   : c00184452
-    修改内容   : PS融合项目
+       :
+  1.       : 201218
+           : c00184452
+       : PS
 *****************************************************************************/
 VOS_UINT32 At_TestCgtftrdp(VOS_UINT8 ucIndex)
 {
@@ -592,28 +592,28 @@ VOS_UINT32 At_TestCgtftrdp(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
+/*DTS2012041102190 : h00135900 start in 2011-04-11 AT*/
 /*****************************************************************************
- 函 数 名  : AT_TestChrgEnablePara
- 功能描述  : ^TCHRENABLE=? 查询是否需要补电
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestChrgEnablePara
+   : ^TCHRENABLE=? 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年3月16日
-    作    者   : 崔军强
-    修改内容   : 新生成函数
+       :
+  1.       : 2012316
+           : 
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestChrgEnablePara(VOS_UINT8 ucIndex)
 {
-    /* DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合 */
+    /* DTS2012041102190 : h00135900 start in 2011-04-11 AT */
     VOS_INT32                           lChargeEnable = 0;
 
     lChargeEnable = mdrv_misc_get_charge_state(); /* BSP_TBAT_CHRStGet()) */
-    /* 只有TRUE/FLASE的返回值是有效的 */
+    /* TRUE/FLASE */
     if((lChargeEnable == TRUE)||( lChargeEnable == FALSE))
     {
         gstAtSendData.usBufLen = (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -624,28 +624,28 @@ VOS_UINT32 AT_TestChrgEnablePara(VOS_UINT8 ucIndex)
                                                   lChargeEnable);
         return AT_OK;
     }
-    /* DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合 */
+    /* DTS2012041102190 : h00135900 end in 2011-04-11 AT */
     else
     {
         return AT_ERROR;
     }
 }
-/* DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合 */
+/* DTS2012041102190 : h00135900 start in 2011-04-11 AT */
 
 
 /*****************************************************************************
- 函 数 名  : AT_TestCmutPara
- 功能描述  : +CMUT=? 测试命令
- 输入参数  : ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCmutPara
+   : +CMUT=? 
+   : ucIndex --- 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年9月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2012912
+           : A00165503
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCmutPara(VOS_UINT8 ucIndex)
@@ -665,21 +665,21 @@ VOS_UINT32 AT_TestCmutPara(VOS_UINT8 ucIndex)
 
 
 
-/* 如下函数并非此项目中新增, 只是从AtExtendCmd.c文件中移动到此文件而已 */
+/* , AtExtendCmd.c */
 
 /*****************************************************************************
- 函 数 名  : At_TestVtsPara
- 功能描述  : VTS测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestVtsPara
+   : VTS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestVtsPara(VOS_UINT8 ucIndex)
 {
@@ -697,18 +697,18 @@ VOS_UINT32 At_TestVtsPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCuus1Para
- 功能描述  : CUUS1测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCuus1Para
+   : CUUS1
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCuus1Para(VOS_UINT8 ucIndex)
 {
@@ -727,18 +727,18 @@ VOS_UINT32 At_TestCuus1Para(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCcwaPara
- 功能描述  : CCWA测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCcwaPara
+   : CCWA
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCcwaPara(VOS_UINT8 ucIndex)
 {
@@ -758,18 +758,18 @@ VOS_UINT32 At_TestCcwaPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCcfcPara
- 功能描述  : CCFC测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCcfcPara
+   : CCFC
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCcfcPara(VOS_UINT8 ucIndex)
 {
@@ -789,18 +789,18 @@ VOS_UINT32 At_TestCcfcPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCusdPara
- 功能描述  : CUSD测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCusdPara
+   : CUSD
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCusdPara(VOS_UINT8 ucIndex)
 {
@@ -820,22 +820,22 @@ VOS_UINT32 At_TestCusdPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCpwdPara
- 功能描述  : CPWD测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCpwdPara
+   : CPWD
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 
-  2.日    期   : 2012年5月7日
-    作    者   : A00165503
-    修改内容   : DTS2012050405948: +CPWD测试命令修订
+  2.       : 201257
+           : A00165503
+       : DTS2012050405948: +CPWD
 *****************************************************************************/
 VOS_UINT32 At_TestCpwdPara(VOS_UINT8 ucIndex)
 {
@@ -855,25 +855,25 @@ VOS_UINT32 At_TestCpwdPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestClckPara
- 功能描述  : CLCK测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestClckPara
+   : CLCK
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111018
+           : f00179208
+       : AT
 
-  2.日    期   : 2012年5月7日
-    作    者   : A00165503
-    修改内容   : DTS2012050405948: +CLCK测试命令修订
-  3.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
+  2.       : 201257
+           : A00165503
+       : DTS2012050405948: +CLCK
+  3.       : 201547
+           : w00316404
+       : M project A characeristic AT part
 *****************************************************************************/
 VOS_UINT32 At_TestClckPara(VOS_UINT8 ucIndex)
 {
@@ -893,18 +893,18 @@ VOS_UINT32 At_TestClckPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCpbsPara
- 功能描述  : CPBS测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCpbsPara
+   : CPBS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20111028
+           : f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCpbsPara(VOS_UINT8 ucIndex)
@@ -920,18 +920,18 @@ VOS_UINT32 AT_TestCpbsPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCpbrPara
- 功能描述  : CPBR测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCpbrPara
+   : CPBR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20111028
+           : f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCpbrPara(VOS_UINT8 ucIndex)
@@ -947,21 +947,21 @@ VOS_UINT32 AT_TestCpbrPara(VOS_UINT8 ucIndex)
 }
 /* Added by f62575 for AT Project, 2011-10-28, begin */
 /*****************************************************************************
- 函 数 名  : AT_TestCnmaPara
- 功能描述  : +CNMA命令的测试命令
- 输入参数  : VOS_UINT8 ucIndex  用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_TestCnmaPara
+   : +CNMA
+   : VOS_UINT8 ucIndex  
+   : 
+     : VOS_UINT32 ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 20111018
+           : /f62575
+       : 
+  2.       : 2013220
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 AT_TestCnmaPara(VOS_UINT8 ucIndex)
 {
@@ -970,7 +970,7 @@ VOS_UINT32 AT_TestCnmaPara(VOS_UINT8 ucIndex)
 
     pstSmsCtx = AT_GetModemSmsCtxAddrFromClientId(ucIndex);
 
-    if(AT_CMGF_MSG_FORMAT_PDU == pstSmsCtx->enCmgfMsgFormat)    /* TEXT方式参数检查 */
+    if(AT_CMGF_MSG_FORMAT_PDU == pstSmsCtx->enCmgfMsgFormat)    /* TEXT */
     {
         gstAtSendData.usBufLen = (TAF_UINT16)VOS_sprintf_s((TAF_CHAR*)pgucAtSndCodeAddr,
                                           AT_CMD_MAX_LEN + 20 - 3,
@@ -987,18 +987,18 @@ VOS_UINT32 AT_TestCnmaPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCpasPara
- 功能描述  : CPAS测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCpasPara
+   : CPAS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20111028
+           : f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCpasPara(VOS_UINT8 ucIndex)
@@ -1013,18 +1013,18 @@ VOS_UINT32 AT_TestCpasPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 /*****************************************************************************
- 函 数 名  : AT_TestCscbPara
- 功能描述  : +CSCB命令的测试命令
- 输入参数  : VOS_UINT8 ucIndex  用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_TestCscbPara
+   : +CSCB
+   : VOS_UINT8 ucIndex  
+   : 
+     : VOS_UINT32 ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : /f62575
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCscbPara(VOS_UINT8 ucIndex)
@@ -1037,21 +1037,21 @@ VOS_UINT32 AT_TestCscbPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCpmsPara
- 功能描述  : +CPMS命令的测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCpmsPara
+   : +CPMS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月20日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 20111018
+           : /f62575
+       : 
+  2.       : 2013220
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 AT_TestCpmsPara(VOS_UINT8 ucIndex)
 {
@@ -1086,22 +1086,22 @@ VOS_UINT32 AT_TestCpmsPara(VOS_UINT8 ucIndex)
 /* Added by f62575 for AT Project, 2011-10-28, end */
 
 /*****************************************************************************
- 函 数 名  : AT_TestCsgIdSearchPara
- 功能描述  : csg列表搜网查询命令
- 输入参数  : ucIndex - 索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCsgIdSearchPara
+   : csg
+   : ucIndex - 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月6日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
+       :
+  1.       : 201596
+           : z00161729
+       : LTE CSG
 *****************************************************************************/
 VOS_UINT32 AT_TestCsgIdSearchPara(VOS_UINT8 ucIndex)
 {
-    /* 核间通信最大缓存4K,需要分段查询分段上报结果 */
+    /* 4K, */
     TAF_MMA_PLMN_LIST_PARA_STRU         stPlmnListPara;
 
     stPlmnListPara.usQryNum    = TAF_MMA_MAX_CSG_ID_LIST_NUM;
@@ -1109,10 +1109,10 @@ VOS_UINT32 AT_TestCsgIdSearchPara(VOS_UINT8 ucIndex)
 
     if (VOS_TRUE == TAF_MMA_CsgListSearchReq(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPlmnListPara))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CSG_LIST_SEARCH;
 
-        /* 返回命令处理挂起状态 */
+        /*  */
         return AT_WAIT_ASYNC_RETURN;
     }
 
@@ -1121,24 +1121,24 @@ VOS_UINT32 AT_TestCsgIdSearchPara(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCopsPara
- 功能描述  : cops测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCopsPara
+   : cops
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : AT移植项目
-  2.日    期   : 2011年10月24日
-    作    者   : f00179208
-    修改内容   : AT移植项目:修改列表搜的定时器保护时间
-  3.日    期   : 2015年3月4日
-    作    者   : b00269685
-    修改内容   : 改为分段上报
+       :
+  1.       : 20111018
+           : c00173809
+       : AT
+  2.       : 20111024
+           : f00179208
+       : AT:
+  3.       : 201534
+           : b00269685
+       : 
 *****************************************************************************/
 VOS_UINT32 At_TestCopsPara(TAF_UINT8 ucIndex)
 {
@@ -1154,10 +1154,10 @@ VOS_UINT32 At_TestCopsPara(TAF_UINT8 ucIndex)
 
     if (VOS_TRUE == Taf_PhonePlmnList(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPlmnListPara))
     {
-        /* 设置当前操作类型 */
+        /*  */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_COPS_TEST;
 
-        /* 返回命令处理挂起状态 */
+        /*  */
         return AT_WAIT_ASYNC_RETURN;
     }
     else
@@ -1167,24 +1167,24 @@ VOS_UINT32 At_TestCopsPara(TAF_UINT8 ucIndex)
 
 }
 /*****************************************************************************
- 函 数 名  : At_TestCpolPara
- 功能描述  : cpol测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCpolPara
+   : cpol
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : c00173809
-    修改内容   : AT移植项目
-  2.日    期   : 2013年2月22日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
-  3.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : Itertion 8 修改
+       :
+  1.       : 20111018
+           : c00173809
+       : AT
+  2.       : 2013222
+           : l60609
+       : DSDA PHASE III
+  3.       : 20150205
+           : y00307564
+       : Itertion 8 
 *****************************************************************************/
 VOS_UINT32 At_TestCpolPara(VOS_UINT8 ucIndex)
 {
@@ -1193,7 +1193,7 @@ VOS_UINT32 At_TestCpolPara(VOS_UINT8 ucIndex)
     /* Modified by l60609 for DSDA Phase III, 2013-2-22, Begin */
     AT_MODEM_NET_CTX_STRU              *pstNetCtx = VOS_NULL_PTR;
 
-    /* 参数检查 */
+    /*  */
     if (AT_CMD_OPT_TEST_CMD != g_stATParseCmd.ucCmdOptType)
     {
         return AT_ERROR;
@@ -1209,7 +1209,7 @@ VOS_UINT32 At_TestCpolPara(VOS_UINT8 ucIndex)
 
     if (VOS_TRUE == ulRst)
     {
-        /* 设置AT模块实体的状态为等待异步返回 */
+        /* AT */
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CPOL_TEST;
 
         return AT_WAIT_ASYNC_RETURN;
@@ -1219,27 +1219,27 @@ VOS_UINT32 At_TestCpolPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgeqnegPara
- 功能描述  : +CGEQNEQ命令的测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgeqnegPara
+   : +CGEQNEQ
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月24日
-    作    者   : 范晶/00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2011年12月19日
-    作    者   : 黎客来/00130025
-    修改内容   : 问题单DTS2011120604361，CGEQNEG测试命令返回错误
+       :
+  1.       : 20111024
+           : /00179208
+       : 
+  2.       : 20111219
+           : /00130025
+       : DTS2011120604361CGEQNEG
 *****************************************************************************/
 VOS_UINT32 At_TestCgeqnegPara(VOS_UINT8 ucIndex)
 {
 
-    /*CGEQNEG的测试命令和CGACT的查询命令的功能类似,都要获取当前各CID的激活
-    情况,向TAF查询当前各CID的激活情况*/
+    /*CGEQNEGCGACT,CID
+    ,TAFCID*/
     if ( VOS_OK != TAF_PS_GetPdpContextState(WUEPS_PID_AT,
                                              AT_PS_BuildExClientId(gastAtClientTab[ucIndex].usClientId),
                                              0) )
@@ -1247,45 +1247,45 @@ VOS_UINT32 At_TestCgeqnegPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /*发送查询消息成功后,将命令状态改为CGEQNEG*/
+    /*,CGEQNEG*/
     if(AT_SUCCESS != At_StartTimer(AT_QRY_PARA_TIME,ucIndex))
     {
         AT_ERR_LOG("At_TestParaCmd:ERROR:Start Timer");
         return AT_ERROR;
     }
 
-    /* 设置当前操作类型 */
+    /*  */
     gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_CGEQNEG_TEST;
-    return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
+    return AT_WAIT_ASYNC_RETURN;    /*  */
 
-    /*接下来到TAF事件上报的地方,获取当前哪些CID被激活,并打印当前哪些CID被激活.*/
+    /*TAF,CID,CID.*/
 
 
 }
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgeqreqPara
- 功能描述  : +CGEQREQ命令的测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgeqreqPara
+   : +CGEQREQ
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月24日
-    作    者   : 范晶/00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月24日
-    作    者   : f62575
-    修改内容   : DTS2011112307607,合入AT融合方案后不支持42M速率问题
-  3.日    期   : 2011年12月19日
-    作    者   : c00173809
-    修改内容   : PS融合项目
-  4.日    期   : 2012年03月17日
-    作    者   : w00199382
-    修改内容   : DTS2012031603201测试命令乱码
+       :
+  1.       : 20111024
+           : /00179208
+       : 
+  2.       : 20111124
+           : f62575
+       : DTS2011112307607,AT42M
+  3.       : 20111219
+           : c00173809
+       : PS
+  4.       : 20120317
+           : w00199382
+       : DTS2012031603201
 *****************************************************************************/
 VOS_UINT32 At_TestCgeqreqPara(VOS_UINT8 ucIndex)
 {
@@ -1319,18 +1319,18 @@ VOS_UINT32 At_TestCgeqreqPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestCgansPara
- 功能描述  : +CGANS测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgansPara
+   : +CGANS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月24日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111024
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCgansPara(VOS_UINT8 ucIndex)
 {
@@ -1351,18 +1351,18 @@ VOS_UINT32 At_TestCgansPara(VOS_UINT8 ucIndex)
 
 /* Added by l60609 for V3R3 PPP RPOJECT 2013-06-07, Begin */
 /*****************************************************************************
- 函 数 名  : At_TestCgansExtPara
- 功能描述  : ^CGANS命令的测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgansExtPara
+   : ^CGANS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年6月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201367
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 At_TestCgansExtPara(VOS_UINT8 ucIndex)
@@ -1384,46 +1384,46 @@ VOS_UINT32 At_TestCgansExtPara(VOS_UINT8 ucIndex)
 /* Added by l60609 for V3R3 PPP RPOJECT 2013-06-07, End*/
 
 /*****************************************************************************
- 函 数 名  : At_TestCgdnsPara
- 功能描述  : +CGDNS测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgdnsPara
+   : +CGDNS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月24日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  2.日    期   : 2012年4月30日
-    作    者   : z60575
-    修改内容   : DTS2012031400889,CGDNS命令需要返回激活的CID
+       :
+  1.       : 20111024
+           : f00179208
+       : AT
+  2.       : 2012430
+           : z60575
+       : DTS2012031400889,CGDNSCID
 *****************************************************************************/
 VOS_UINT32 At_TestCgdnsPara(VOS_UINT8 ucIndex)
 {
 
 
 
-    /* CGDNS的测试命令和CGCMODE的返回值相同，使用相同的函数 */
+    /* CGDNSCGCMODE */
     return At_TestCgeqnegPara(ucIndex);
 
 }
 
 
 /*****************************************************************************
- 函 数 名  : At_TestCgdataPara
- 功能描述  : +CGDATA测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : At_TestCgdataPara
+   : +CGDATA
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月25日
-    作    者   : f00179208
-    修改内容   : AT移植项目
+       :
+  1.       : 20111025
+           : f00179208
+       : AT
 *****************************************************************************/
 VOS_UINT32 At_TestCgdataPara(VOS_UINT8 ucIndex)
 {
@@ -1444,18 +1444,18 @@ VOS_UINT32 At_TestCgdataPara(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : AT_TestCbgPara
- 功能描述  : 测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCbgPara
+   : 
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : z00214637
-    修改内容   : AT^CBG 测试命令处理函数
+       :
+  1.       : 20121228
+           : z00214637
+       : AT^CBG 
 *****************************************************************************/
 VOS_UINT32 AT_TestCbgPara( VOS_UINT8 ucIndex )
 {
@@ -1469,18 +1469,18 @@ VOS_UINT32 AT_TestCbgPara( VOS_UINT8 ucIndex )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestNCellMonitorPara
- 功能描述  : ^NCELLMONITOR测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestNCellMonitorPara
+   : ^NCELLMONITOR
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年06月04日
-    作    者   : s00217060
-    修改内容   : V9R1_SVLTE: 新增函数
+       :
+  1.       : 20130604
+           : s00217060
+       : V9R1_SVLTE: 
 *****************************************************************************/
 VOS_UINT32 AT_TestNCellMonitorPara(VOS_UINT8 ucIndex)
 {
@@ -1495,28 +1495,28 @@ VOS_UINT32 AT_TestNCellMonitorPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestRefclkfreqPara
- 功能描述  : AT^REFCLKFREQ测试命令处理函数
- 输入参数  : ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestRefclkfreqPara
+   : AT^REFCLKFREQ
+   : ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
+       :
+  1.       : 20130722
+           : l00198894
+       : V9R1 AGPS
 *****************************************************************************/
 VOS_UINT32 AT_TestRefclkfreqPara(VOS_UINT8 ucIndex)
 {
-    /* 通道检查 */
+    /*  */
     if (VOS_FALSE == AT_IsApPort(ucIndex))
     {
         return AT_ERROR;
     }
 
-    /* 打印输出^REFCLKFREQ支持的参数设置范围 */
+    /* ^REFCLKFREQ */
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                    (VOS_CHAR*)pgucAtSndCodeAddr,
                                                    (VOS_CHAR*)pgucAtSndCodeAddr,
@@ -1527,18 +1527,18 @@ VOS_UINT32 AT_TestRefclkfreqPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCiregPara
- 功能描述  : +CIREG=?测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCiregPara
+   : +CIREG=?
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
+       :
+  1.       : 20130918
+           : Y00213812
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCiregPara(VOS_UINT8 ucIndex)
@@ -1554,18 +1554,18 @@ VOS_UINT32 AT_TestCiregPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_TestCirepPara
- 功能描述  : +CIREP=?测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_TestCirepPara
+   : +CIREP=?
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增函数
+       :
+  1.       : 20130918
+           : Y00213812
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_TestCirepPara(VOS_UINT8 ucIndex)
@@ -1582,18 +1582,18 @@ VOS_UINT32 AT_TestCirepPara(VOS_UINT8 ucIndex)
 
 
 /*****************************************************************************
- 函 数 名  : AT_TestUECenterPara
- 功能描述  : +CEUS=?
- 输入参数  : ucIndex --- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_TestUECenterPara
+   : +CEUS=?
+   : ucIndex --- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年09月07日
-    作    者   : lwx277467
-    修改内容   : 新生成函数
+       :
+  1.       : 20150907
+           : lwx277467
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_TestUECenterPara(VOS_UINT8 ucIndex)
 {
@@ -1607,18 +1607,18 @@ VOS_UINT32 AT_TestUECenterPara(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestFclass
- 功能描述  : +FCLASS=?
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_TestFclass
+   : +FCLASS=?
+   : ucIndex --- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年7月11日
-    作    者   : l00373346
-    修改内容   : 新生成函数
+       :
+  1.       : 2016711
+           : l00373346
+       : 
 
 *****************************************************************************/
 VOS_UINT32 At_TestFclass(VOS_UINT8 ucIndex)
@@ -1629,18 +1629,18 @@ VOS_UINT32 At_TestFclass(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_TestGci
- 功能描述  : +GCI=?
- 输入参数  : ucIndex --- 端口索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : At_TestGci
+   : +GCI=?
+   : ucIndex --- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2016年7月11日
-    作    者   : l00373346
-    修改内容   : 新生成函数
+       :
+  1.       : 2016711
+           : l00373346
+       : 
 
 *****************************************************************************/
 VOS_UINT32 At_TestGci(VOS_UINT8 ucIndex)

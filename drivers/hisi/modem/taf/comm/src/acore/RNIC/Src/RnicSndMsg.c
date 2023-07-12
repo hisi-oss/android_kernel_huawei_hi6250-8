@@ -47,41 +47,41 @@
 */
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "RnicSndMsg.h"
 #include "RnicLog.h"
 #include "RnicCdsInterface.h"
 #include "RnicDebug.h"
 
-/* Added by m00217266 for 双VoWiFi项目, 2017-2-18, begin */
+/* Added by m00217266 for VoWiFi, 2017-2-18, begin */
 #include "NetMgrCtrlVcom.h"
-/* Added by m00217266 for 双VoWiFi项目, 2017-2-18, end */
+/* Added by m00217266 for VoWiFi, 2017-2-18, end */
 
 
 #define    THIS_FILE_ID        PS_FILE_ID_RNIC_SND_MSG_C
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : RNIC_SendDialInfoMsg
- 功能描述  : RNIC发送给自己的拨号模式信息用于可维可测
- 输入参数  : RNIC_DEMAND_DIAL_INFO_MSG_ID_ENUM_UINT32                enMsgId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : RNIC_SendDialInfoMsg
+   : RNIC
+   : RNIC_DEMAND_DIAL_INFO_MSG_ID_ENUM_UINT32                enMsgId
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年2月1日
-    作    者   : w00199382
-    修改内容   : 新生成函数
+       :
+  1.       : 201221
+           : w00199382
+       : 
 
 *****************************************************************************/
 VOS_UINT32 RNIC_SendDialInfoMsg(
@@ -92,7 +92,7 @@ VOS_UINT32 RNIC_SendDialInfoMsg(
     RNIC_DIAL_MODE_STRU                *pstDialMode;
 
 
-    /* 内存分配 */
+    /*  */
     pstDialInfo = (RNIC_NOTIFY_MSG_STRU *)PS_ALLOC_MSG(ACPU_PID_RNIC,
                                                       sizeof(RNIC_NOTIFY_MSG_STRU) - VOS_MSG_HEAD_LENGTH);
     if (VOS_NULL_PTR == pstDialInfo)
@@ -103,7 +103,7 @@ VOS_UINT32 RNIC_SendDialInfoMsg(
 
     pstDialMode                         = RNIC_GetDialModeAddr();
 
-    /* 填充消息 */
+    /*  */
     pstDialInfo->ulSenderCpuId          = VOS_LOCAL_CPUID;
     pstDialInfo->ulSenderPid            = ACPU_PID_RNIC;
     pstDialInfo->ulReceiverCpuId        = VOS_LOCAL_CPUID;
@@ -123,19 +123,19 @@ VOS_UINT32 RNIC_SendDialInfoMsg(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SendCdsImsDataReq
- 功能描述  : 给CDS发送ID_RNIC_CDS_IMS_DATA_REQ
- 输入参数  : struct sk_buff                     *pstSkb
+     : RNIC_SendCdsImsDataReq
+   : CDSID_RNIC_CDS_IMS_DATA_REQ
+   : struct sk_buff                     *pstSkb
              RNIC_SPEC_CTX_STRU                 *pstNetCntxt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年10月26日
-    作    者   : n00269697
-    修改内容   : 新生成函数
+       :
+  1.       : 20151026
+           : n00269697
+       : 
 
 *****************************************************************************/
 VOS_UINT32 RNIC_SendCdsImsDataReq(
@@ -145,7 +145,7 @@ VOS_UINT32 RNIC_SendCdsImsDataReq(
 {
     RNIC_CDS_IMS_DATA_REQ_STRU         *pstSndMsg = VOS_NULL_PTR;
 
-    /* 内存分配 */
+    /*  */
     pstSndMsg = (RNIC_CDS_IMS_DATA_REQ_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_RNIC,
                                     sizeof(RNIC_CDS_IMS_DATA_REQ_STRU) - 4 + pstSkb->len);
 
@@ -156,20 +156,20 @@ VOS_UINT32 RNIC_SendCdsImsDataReq(
         return VOS_ERR;
     }
 
-    /* 填充消息头 */
+    /*  */
     pstSndMsg->ulSenderCpuId            = VOS_LOCAL_CPUID;
     pstSndMsg->ulSenderPid              = ACPU_PID_RNIC;
     pstSndMsg->ulReceiverCpuId          = VOS_LOCAL_CPUID;
     pstSndMsg->ulReceiverPid            = UEPS_PID_CDS;
     pstSndMsg->ulMsgId                  = ID_RNIC_CDS_IMS_DATA_REQ;
 
-    /* 填充消息 */
+    /*  */
     pstSndMsg->usModemId                = pstNetCntxt->enModemId;
     pstSndMsg->usDataLen                = (VOS_UINT16)pstSkb->len;
 
     TAF_MEM_CPY_S(pstSndMsg->aucData, pstSkb->len, pstSkb->data, pstSkb->len);
 
-    /* 发送消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(ACPU_PID_RNIC, pstSndMsg))
     {
         RNIC_ERROR_LOG(ACPU_PID_RNIC, "RNIC_SendCdsImsDataReq: Send msg failed!");
@@ -181,25 +181,25 @@ VOS_UINT32 RNIC_SendCdsImsDataReq(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_TrigImsDataProcEvent
- 功能描述  :
- 输入参数  : RNIC_RMNET_ID_ENUM_UINT8 enRmNetId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_TrigImsDataProcEvent
+   :
+   : RNIC_RMNET_ID_ENUM_UINT8 enRmNetId
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年11月26日
-    作    者   : n00269697
-    修改内容   : 新生成函数
+       :
+  1.       : 20151126
+           : n00269697
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_TrigImsDataProcEvent(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
 {
     RNIC_IMS_DATA_PROC_IND_STRU         *pstSndMsg = VOS_NULL_PTR;
 
-    /* 内存分配 */
+    /*  */
     pstSndMsg = (RNIC_IMS_DATA_PROC_IND_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(ACPU_PID_RNIC,
                                     sizeof(RNIC_IMS_DATA_PROC_IND_STRU));
 
@@ -209,7 +209,7 @@ VOS_VOID RNIC_TrigImsDataProcEvent(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
         return;
     }
 
-    /* 填充消息头 */
+    /*  */
     pstSndMsg->ulSenderCpuId            = VOS_LOCAL_CPUID;
     pstSndMsg->ulSenderPid              = ACPU_PID_RNIC;
     pstSndMsg->ulReceiverCpuId          = VOS_LOCAL_CPUID;
@@ -217,7 +217,7 @@ VOS_VOID RNIC_TrigImsDataProcEvent(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
     pstSndMsg->enMsgId                  = ID_RNIC_IMS_DATA_PROC_IND;
     pstSndMsg->enRmNetId                = enRmNetId;
 
-    /* 发送消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(ACPU_PID_RNIC, pstSndMsg))
     {
         RNIC_DEV_ERR_PRINTK("RNIC_TrigImsDataProcEvent: Send msg failed!");
@@ -226,20 +226,20 @@ VOS_VOID RNIC_TrigImsDataProcEvent(RNIC_RMNET_ID_ENUM_UINT8 enRmNetId)
     return;
 }
 
-/* Modified by m00217266 for L-C互操作项目, 2014-01-06, Begin */
+/* Modified by m00217266 for L-C, 2014-01-06, Begin */
 /*****************************************************************************
- 函 数 名  : RNIC_SndRnicRmnetConfigReq
- 功能描述  : RNIC内部发送PDP 状态信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : RNIC_SndRnicRmnetConfigReq
+   : RNICPDP 
+   :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2014118
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
@@ -248,7 +248,7 @@ VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
 {
     RNIC_RMNET_CONFIG_REQ_STRU         *pstSndMsg = VOS_NULL_PTR;
 
-    /* 内存分配 */
+    /*  */
     pstSndMsg = (RNIC_RMNET_CONFIG_REQ_STRU *)PS_ALLOC_MSG(ACPU_PID_RNIC,
                         sizeof(RNIC_RMNET_CONFIG_REQ_STRU) - VOS_MSG_HEAD_LENGTH);
 
@@ -258,14 +258,14 @@ VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
         return VOS_ERR;
     }
 
-    /* 填充消息头 */
+    /*  */
     pstSndMsg->ulSenderCpuId            = VOS_LOCAL_CPUID;
     pstSndMsg->ulSenderPid              = ACPU_PID_RNIC;
     pstSndMsg->ulReceiverCpuId          = VOS_LOCAL_CPUID;
     pstSndMsg->ulReceiverPid            = ACPU_PID_RNIC;
     pstSndMsg->enMsgId                  = ID_RNIC_RMNET_CONFIG_REQ;
 
-    /* 填充消息 */
+    /*  */
     pstSndMsg->enModemType              = pstConfigInfo->enModemType;
     pstSndMsg->enRmnetStatus            = pstConfigInfo->enRmnetStatus;
     pstSndMsg->enIpType                 = pstConfigInfo->enIpType;
@@ -274,7 +274,7 @@ VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
     pstSndMsg->ucRmNetId                = pstConfigInfo->ucRmNetId;
     pstSndMsg->usModemId                = pstConfigInfo->usModemId;
 
-    /* 发送消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(ACPU_PID_RNIC, pstSndMsg))
     {
         RNIC_ERROR_LOG(ACPU_PID_RNIC, "RNIC_SndRnicRmnetConfigMsg: Send msg failed!");
@@ -285,18 +285,18 @@ VOS_UINT32 RNIC_SndRnicRmnetConfigReq(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SendConfigInfoMsg
- 功能描述  : 可维可测，记录外部调用点的初始入参
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : RNIC_SendConfigInfoMsg
+   : 
+   : 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2014128
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
@@ -305,7 +305,7 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
 {
     RNIC_RMNET_CONFIG_REQ_STRU          *pstSndMsg = VOS_NULL_PTR;
 
-    /* 内存分配 */
+    /*  */
     pstSndMsg = (RNIC_RMNET_CONFIG_REQ_STRU *)PS_ALLOC_MSG(ACPU_PID_RNIC,
                         sizeof(RNIC_RMNET_CONFIG_REQ_STRU) - VOS_MSG_HEAD_LENGTH);
 
@@ -315,7 +315,7 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
         return;
     }
 
-    /* 填充消息 */
+    /*  */
     pstSndMsg->enModemType              = pstConfigInfo->enModemType;
     pstSndMsg->enRmnetStatus            = pstConfigInfo->enRmnetStatus;
     pstSndMsg->enIpType                 = pstConfigInfo->enIpType;
@@ -330,7 +330,7 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
     pstSndMsg->ulReceiverPid            = ACPU_PID_RNIC;
     pstSndMsg->enMsgId                  = ID_RNIC_MNTN_RMNET_CONFIG_INFO;
 
-    /* 发送消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(ACPU_PID_RNIC, pstSndMsg))
     {
         RNIC_ERROR_LOG(ACPU_PID_RNIC, "RNIC_SndRnicRmnetConfigMsg: Send msg failed!");
@@ -340,22 +340,22 @@ VOS_VOID RNIC_MNTN_SndRmnetConfigInfoMsg(
     return;
 }
 
-/* Modified by m00217266 for L-C互操作项目, 2014-01-06, End */
+/* Modified by m00217266 for L-C, 2014-01-06, End */
 
-/* Added by m00217266 for 双VoWiFi项目, 2017-2-18, begin */
+/* Added by m00217266 for VoWiFi, 2017-2-18, begin */
 /*****************************************************************************
- 函 数 名  : RNIC_FillNetManagerMsgPdnCfgInfo
- 功能描述  : 填写rnic发给netmanager消息中的pdn cfg info
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_FillNetManagerMsgPdnCfgInfo
+   : rnicnetmanagerpdn cfg info
+   : pstMsg:IMSA
+   : 
+     : VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2017218
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_FillNetManagerMsgPdnCfgInfo(
@@ -363,7 +363,7 @@ VOS_VOID RNIC_FillNetManagerMsgPdnCfgInfo(
     IMSA_RNIC_PDN_INFO_CONFIG_STRU     *pSrcPdnInfo
 )
 {
-    /* 对stRnicNmMsg中参数进行赋值 */
+    /* stRnicNmMsg */
     pDestPdnInfo->bitOpIpv4PdnInfo     = pSrcPdnInfo->bitOpIpv4PdnInfo;
     pDestPdnInfo->bitOpIpv6PdnInfo     = pSrcPdnInfo->bitOpIpv6PdnInfo;
     pDestPdnInfo->bitOpSockPortInfo    = pSrcPdnInfo->bitOpSockPortInfo;
@@ -371,7 +371,7 @@ VOS_VOID RNIC_FillNetManagerMsgPdnCfgInfo(
     pDestPdnInfo->enModemId    = pSrcPdnInfo->enModemId;
     pDestPdnInfo->enRatType    = pSrcPdnInfo->enRatType;
 
-    /* 对ipv4的pdn进行赋值 */
+    /* ipv4pdn */
     TAF_MEM_CPY_S(&(pDestPdnInfo->stIpv4PdnInfo),
                   sizeof(NM_IPV4_PDN_INFO_STRU),
                   &(pSrcPdnInfo->stIpv4PdnInfo),
@@ -391,18 +391,18 @@ VOS_VOID RNIC_FillNetManagerMsgPdnCfgInfo(
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SndNetManagerPdpActInd
- 功能描述  : RNIC模块发送给NetManager模块的pdp act ind消息
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SndNetManagerPdpActInd
+   : RNICNetManagerpdp act ind
+   : pstMsg:IMSA
+   : 
+     : VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2017218
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_SndNetManagerPdpActInd(
@@ -420,25 +420,25 @@ VOS_VOID RNIC_SndNetManagerPdpActInd(
 
     RNIC_FillNetManagerMsgPdnCfgInfo(&(stRnicNmMsg.unMsgInfo.stPdnCfgInfo), &(pstRcvInd->stPdnInfo));
 
-    /* 调用虚拟设备提供的发送接口发送消息 */
+    /*  */
     NM_CTRL_SendMsg(&stRnicNmMsg, sizeof(NM_MSG_STRU));
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SndNetManagerPdpDeactInd
- 功能描述  : RNIC模块发送给NetManager模块的pdp deact ind消息
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SndNetManagerPdpDeactInd
+   : RNICNetManagerpdp deact ind
+   : pstMsg:IMSA
+   : 
+     : VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2017218
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_SndNetManagerPdpDeactInd(
@@ -454,29 +454,29 @@ VOS_VOID RNIC_SndNetManagerPdpDeactInd(
     stRnicNmMsg.enMsgId     = ID_NM_PDN_DEACT_IND;
     stRnicNmMsg.ulMsgLen    = sizeof(NM_PDN_DEACT_IND_STRU);
 
-    /* 对stRnicNmMsg中参数进行赋值 */
+    /* stRnicNmMsg */
     stRnicNmMsg.unMsgInfo.stPdnDeactInd.enModemId   = pstRcvInd->enModemId;
     stRnicNmMsg.unMsgInfo.stPdnDeactInd.enRatType   = pstRcvInd->enRatType;
 
-    /* 调用虚拟设备提供的发送接口发送消息 */
+    /*  */
     NM_CTRL_SendMsg(&stRnicNmMsg, sizeof(NM_MSG_STRU));
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SndNetManagerPdpModifyInd
- 功能描述  : RNIC模块发送给NetManager模块的pdp modify ind消息
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SndNetManagerPdpModifyInd
+   : RNICNetManagerpdp modify ind
+   : pstMsg:IMSA
+   : 
+     : VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2017218
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_SndNetManagerPdpModifyInd(
@@ -494,25 +494,25 @@ VOS_VOID RNIC_SndNetManagerPdpModifyInd(
 
     RNIC_FillNetManagerMsgPdnCfgInfo(&(stRnicNmMsg.unMsgInfo.stPdnCfgInfo), &(pstRcvInd->stPdnInfo));
 
-    /* 调用虚拟设备提供的发送接口发送消息 */
+    /*  */
     NM_CTRL_SendMsg(&stRnicNmMsg, sizeof(NM_MSG_STRU));
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : RNIC_SndNetManagerModemResetInd
- 功能描述  : RNIC模块发送给NetManager模块的modem reset ind消息
- 输入参数  : pstMsg:IMSA消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
+     : RNIC_SndNetManagerModemResetInd
+   : RNICNetManagermodem reset ind
+   : pstMsg:IMSA
+   : 
+     : VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2017年2月18日
-    作    者   : m00217266
-    修改内容   : 新生成函数
+       :
+  1.       : 2017218
+           : m00217266
+       : 
 
 *****************************************************************************/
 VOS_VOID RNIC_SndNetManagerModemResetInd(VOS_VOID)
@@ -524,10 +524,10 @@ VOS_VOID RNIC_SndNetManagerModemResetInd(VOS_VOID)
     stRnicNmMsg.enMsgId     = ID_NM_MODEM_RESET_IND;
     stRnicNmMsg.ulMsgLen    = 0;
 
-    /* 调用虚拟设备提供的发送接口发送消息 */
+    /*  */
     NM_CTRL_SendMsg(&stRnicNmMsg, sizeof(NM_MSG_STRU));
 
     return;
 }
-/* Added by m00217266 for 双VoWiFi项目, 2017-2-18, end */
+/* Added by m00217266 for VoWiFi, 2017-2-18, end */
 

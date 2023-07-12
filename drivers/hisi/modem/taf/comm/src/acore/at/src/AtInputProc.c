@@ -47,7 +47,7 @@
 */
 
 /*****************************************************************************
-   1 头文件包含
+   1 
 *****************************************************************************/
 #include "ATCmdProc.h"
 
@@ -66,9 +66,9 @@
 #include "AtMntn.h"
 #include "AcpuReset.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
+/* Added by l00167671 for NV , 2013-05-17, begin */
 #include "NasNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
+/* Added by l00167671 for NV , 2013-05-17, end*/
 
 #include "AtInternalMsg.h"
 #include  "product_config.h"
@@ -76,44 +76,44 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_AT_INPUTPROC_C
 
 /*****************************************************************************
-   2 全局变量定义
+   2 
 *****************************************************************************/
 VOS_UINT32                              g_ulAtUsbDebugFlag = VOS_FALSE;
 
 /*****************************************************************************
- 全局变量名   : g_astAtHsicCtx
- 全局变量功能 : HSIC AT通道上下文
-                由于向底软注册的上行接收和下行释放回调函数中，入口参数均无通道索引，
-                无法区分是哪个通道来的数据，所以对每一个HSIC AT通道，都提供一个上行
-                接收及下行释放回调，以此来区分不同的通道
+    : g_astAtHsicCtx
+  : HSIC AT
+                
+                HSIC AT
+                
 
-1. 日    期   : 2012年2月24日
-   作    者   : L47619
-   修改内容   : 新增结构体
-2. 日    期   : 2012年6月28日
-   作    者   : L47619
-   修改内容   : 增加UDI_ACM_HSIC_ACM10_ID的HSIC通道4的上下文
-3. 日    期   : 2012年8月30日
-   作    者   : l00198894
-   修改内容   : 修改UDI_ACM_HSIC_ACM10_ID为UDI_ACM_HSIC_ACM12_ID
+1.        : 2012224
+          : L47619
+      : 
+2.        : 2012628
+          : L47619
+      : UDI_ACM_HSIC_ACM10_IDHSIC4
+3.        : 2012830
+          : l00198894
+      : UDI_ACM_HSIC_ACM10_IDUDI_ACM_HSIC_ACM12_ID
 
 *****************************************************************************/
 
-/* AT/DIAG通道的链路索引 */
+/* AT/DIAG */
 VOS_UINT8                               gucOmDiagIndex    = AT_MAX_CLIENT_NUM;
 
-/* USB NCM的UDI句柄 */
+/* USB NCMUDI */
 UDI_HANDLE                              g_ulAtUdiNdisHdl  = UDI_INVALID_HANDLE;
 
-/* 该变量目前只保存USB-MODEM, HSIC-MODEM和HS-UART的句柄，后续需要添加需要与PL讨论 */
+/* USB-MODEM, HSIC-MODEMHS-UARTPL */
 UDI_HANDLE                              g_alAtUdiHandle[AT_CLIENT_BUTT] = {UDI_INVALID_HANDLE};
 
-/* AT帧结构与DRV 值之间的对应关系 */
+/* ATDRV  */
 AT_UART_FORMAT_PARAM_STRU               g_astAtUartFormatTab[] =
 {
     /* auto detect (not support) */
@@ -145,27 +145,27 @@ AT_UART_FORMAT_PARAM_STRU               g_astAtUartFormatTab[] =
 
 
 /*****************************************************************************
-   3 函数、变量声明
+   3 
 *****************************************************************************/
 
 /*****************************************************************************
-   4 函数实现
+   4 
 *****************************************************************************/
 
 /*****************************************************************************
- 函 数 名  : AT_GetAtMsgStruMsgLength
- 功能描述  : 获取结构为AT_MSG_STRU的消息长度，作为申请消息内存块的长度输入
- 输入参数  : VOS_UINT32 ulInfoLength   消息中信息字段长度，即结构AT_MSG_STRU中usLen记录的长度
-             VOS_UINT32 *pulMsgLength  结构为AT_MSG_STRU的消息长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_GetAtMsgStruMsgLength
+   : AT_MSG_STRU
+   : VOS_UINT32 ulInfoLength   AT_MSG_STRUusLen
+             VOS_UINT32 *pulMsgLength  AT_MSG_STRU
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年4月22日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数, DTS2011041502672
+       :
+  1.       : 2011422
+           : /f62575
+       : , DTS2011041502672
 
 *****************************************************************************/
 VOS_VOID AT_GetAtMsgStruMsgLength(
@@ -187,19 +187,19 @@ VOS_VOID AT_GetAtMsgStruMsgLength(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetUserTypeFromIndex
- 功能描述  : 通过端口客户索引获取注册该端口的客户类型
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_GetUserTypeFromIndex
+   : 
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pucUserType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年4月22日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数, DTS2011041502672
+       :
+  1.       : 2011422
+           : /f62575
+       : , DTS2011041502672
 
 *****************************************************************************/
 VOS_VOID AT_GetUserTypeFromIndex(
@@ -220,24 +220,24 @@ VOS_VOID AT_GetUserTypeFromIndex(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_VcomCmdStreamEcho
- 功能描述  : Vcom AT口的回显处理
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_VcomCmdStreamEcho
+   : Vcom AT
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年12月5日
-    作    者   : l00227485
-    修改内容   : 新生成函数
+       :
+  1.       : 2012125
+           : l00227485
+       : 
 
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID AT_VcomCmdStreamEcho(
     VOS_UINT8                           ucIndex,
@@ -249,8 +249,8 @@ VOS_VOID AT_VcomCmdStreamEcho(
 
     pucSystemAppConfig                  = AT_GetSystemAppConfigAddr();
 
-    /* E5形态无需回显 */
-    /* AGPS通道无需回显 */
+    /* E5 */
+    /* AGPS */
     if ( (SYSTEM_APP_WEBUI != *pucSystemAppConfig)
       && (AT_CLIENT_TAB_APP9_INDEX != ucIndex)
       && (AT_CLIENT_TAB_APP12_INDEX != ucIndex)
@@ -264,18 +264,18 @@ VOS_VOID AT_VcomCmdStreamEcho(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetAts3Value
- 功能描述  : 在调试模式下设置ATS3的值
- 输入参数  : VOS_UINT8 ucValue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_SetAts3Value
+   : ATS3
+   : VOS_UINT8 ucValue
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年04月10日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20130410
+           : f00179208
+       : 
 *****************************************************************************/
 VOS_VOID AT_SetAts3Value(VOS_UINT8 ucValue)
 {
@@ -288,20 +288,20 @@ VOS_VOID AT_SetAts3Value(VOS_UINT8 ucValue)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CmdStreamEcho
- 功能描述  : AT通道命令回显
- 输入参数  : VOS_UINT8         ucIndex
+     : AT_CmdStreamEcho
+   : AT
+   : VOS_UINT8         ucIndex
              VOS_UINT8*        pData
              VOS_UINT16        usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015527
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_CmdStreamEcho(
@@ -317,10 +317,10 @@ VOS_VOID AT_CmdStreamEcho(
     ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
     ulMuxUserFlg  = AT_CheckMuxUser(ucIndex);
 
-    /* 判断pData码流的结尾是否为<CR><LF>形式，代码中2为回车换行两个字符长度 */
+    /* pData<CR><LF>2 */
     if ((usLen > 2) && (ucAtS3 == pData[usLen - 2]) && (ucAtS4 == pData[usLen - 1]))
     {
-        /* 删去结尾的<LF>字符 */
+        /* <LF> */
         usEchoLen = usLen - 1;
     }
     else
@@ -330,7 +330,7 @@ VOS_VOID AT_CmdStreamEcho(
 
     if(AT_USBCOM_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /*向USB COM口发送数据*/
+        /*USB COM*/
         DMS_COM_SEND(AT_USB_COM_PORT_NO, pData, usEchoLen);
         AT_MNTN_TraceCmdResult(ucIndex, pData, usEchoLen);
     }
@@ -341,7 +341,7 @@ VOS_VOID AT_CmdStreamEcho(
     }
     else if(AT_PCUI2_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /*向PCUI2口发送数据*/
+        /*PCUI2*/
         DMS_COM_SEND(AT_PCUI2_PORT_NO, pData, usEchoLen);
         AT_MNTN_TraceCmdResult(ucIndex, pData, usEchoLen);
     }
@@ -351,7 +351,7 @@ VOS_VOID AT_CmdStreamEcho(
     }
     else if (AT_APP_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /* VCOM AT口的回显处理 */
+        /* VCOM AT */
         AT_VcomCmdStreamEcho(ucIndex, pData, usEchoLen);
     }
     else if (AT_SOCK_USER == gastAtClientTab[ucIndex].UserType)
@@ -363,13 +363,13 @@ VOS_VOID AT_CmdStreamEcho(
     }
     else if (AT_NDIS_USER == gastAtClientTab[ucIndex].UserType)
     {
-        /* NDIS AT口无需回显 */
+        /* NDIS AT */
         AT_WARN_LOG("AT_CmdStreamEcho:WARNING: NDIS AT");
     }
     else if (VOS_TRUE == ulHsicUserFlg)
     {
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  End */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  Begin */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  End */
     }
     else if (VOS_TRUE == ulMuxUserFlg)
     {
@@ -387,10 +387,10 @@ VOS_VOID AT_CmdStreamEcho(
 /*****************************************************************************
  Prototype      : At_CmdStreamPreProc
  Description    :
- Input          : ucChar --- 字符
+ Input          : ucChar --- 
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -398,48 +398,48 @@ VOS_VOID AT_CmdStreamEcho(
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
-  3.日    期 : 2010-07-09
-    作    者 : S62952
-    修改内容 : 问题单号:DTS2010071000707
-  4.日    期 : 2010-08-05
-    作    者 : S62952
-    修改内容 : 问题单号:DTS2010080401112
-  5.日    期 : 2010-12-23
-    作    者 : S62952
-    修改内容 : 问题单号:DTS2010122002081,E5回显关闭
-  6.日    期 : 2011年02月24日
-    作    者 : A00165503
-    修改内容 : 问题单号: DTS2011022404828，MODEM口下发AT命令，返回结果不完整
-  7.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 直接调用DRV/DMS向端口发送数据
-  8.日    期   : 2011年10月19日
-    作    者   : S62952
-    修改内容   : AT Project: 修改modem口方式接口
-  9.日    期   : 2012年2月24日
-    作    者   : L47619
-    修改内容   : V7R1C50 IPC项目:新增HSIC AT通道处理回显的逻辑
- 10.日    期   : 2012年5月29日
-    作    者   : f62575
-    修改内容   : DTS2012052902986，删除错误合入的定位信息
- 11.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : MUX：增加mux通道处理
- 12.日    期   : 2012年11月28日
-    作    者   : l00227485
-    修改内容   : DSDA:新增VCOM AT通道处理回显的逻辑
- 13.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
- 14.日    期   : 2014年4月22日
-    作    者   : A00165503
-    修改内容   : DTS2014042208020: 去除APPVCOM9和APPVCOM12的主动上报处理
- 15.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
+  3.     : 2010-07-09
+         : S62952
+     : :DTS2010071000707
+  4.     : 2010-08-05
+         : S62952
+     : :DTS2010080401112
+  5.     : 2010-12-23
+         : S62952
+     : :DTS2010122002081,E5
+  6.     : 20110224
+         : A00165503
+     : : DTS2011022404828MODEMAT
+  7.       : 2011103
+           : /l60609
+       : AT Project: DRV/DMS
+  8.       : 20111019
+           : S62952
+       : AT Project: modem
+  9.       : 2012224
+           : L47619
+       : V7R1C50 IPC:HSIC AT
+ 10.       : 2012529
+           : f62575
+       : DTS2012052902986
+ 11.       : 201286
+           : l60609
+       : MUXmux
+ 12.       : 20121128
+           : l00227485
+       : DSDA:VCOM AT
+ 13.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
+ 14.       : 2014422
+           : A00165503
+       : DTS2014042208020: APPVCOM9APPVCOM12
+ 15.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_CmdStreamPreProc(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 usLen)
 {
@@ -455,18 +455,18 @@ VOS_UINT32 At_CmdStreamPreProc(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 u
                    gucAtEType, gastAtClientTab[ucIndex].UserType, ucAtS3);
     }
 
-    /* 处理通道回显 */
+    /*  */
     if( AT_E_ECHO_CMD == gucAtEType )
     {
         AT_CmdStreamEcho(ucIndex, pData, usLen);
     }
 
-    /* MAC系统上的MP后台问题:AT+CMGS=**<CR><^z><Z>(或AT+CMGW=**<CR><^z><Z>)
-       为了规避该问题，需要在接收到如上形式的码流后，
-       需要将命令后的无效字符<^z><Z>删去 */
+    /* MACMP:AT+CMGS=**<CR><^z><Z>(AT+CMGW=**<CR><^z><Z>)
+       
+       <^z><Z> */
     AT_DiscardInvalidCharForSms(pData, &usLen);
 
-    /* 解析到如下字符才将码流以消息方式发送到AT的消息队列中: <CR>/<ctrl-z>/<ESC> */
+    /* AT: <CR>/<ctrl-z>/<ESC> */
     while(usCount++ < usLen)
     {
         if (At_CheckSplitChar((*((pData + usCount) - 1))))
@@ -515,7 +515,7 @@ VOS_UINT32 At_CmdStreamPreProc(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 u
 
 /*****************************************************************************
  Prototype      : AT_StopFlowCtrl
- Description    : AT启动流控
+ Description    : AT
  Input          : ucIndex
  Output         : ---
  Return Value   : VOS_VOID
@@ -528,9 +528,9 @@ VOS_UINT32 At_CmdStreamPreProc(VOS_UINT8 ucIndex, VOS_UINT8* pData, VOS_UINT16 u
     Author      : L47619
     Modification: Created function
 
-  2.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 修改管脚信号设置函数
+  2.       : 2013923
+           : A00165503
+       : UART-MODEM: 
 *****************************************************************************/
 VOS_VOID AT_StopFlowCtrl(VOS_UINT8 ucIndex)
 {
@@ -554,24 +554,24 @@ VOS_VOID AT_StopFlowCtrl(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : At_OmDataProc
- 功能描述  : 调用OM提供的各端口接收数据函数发送数据，不需要再区分数据模式
- 输入参数  : VOS_UINT8                           ucPortNo
+     : At_OmDataProc
+   : OM
+   : VOS_UINT8                           ucPortNo
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111010
+           : /l60609
+       : 
 
-  2.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_OmDataProc (
     VOS_UINT8                           ucPortNo,
@@ -581,7 +581,7 @@ VOS_UINT32 At_OmDataProc (
 {
     VOS_UINT32                          ulRst;
 
-    /*OM只处理UART PCUI CTRL口的数据*/
+    /*OMUART PCUI CTRL*/
     switch(ucPortNo)
     {
         case AT_UART_PORT_NO:
@@ -643,24 +643,24 @@ VOS_UINT32 At_OmDataProc (
 }
 
 /*****************************************************************************
- 函 数 名  : At_DataStreamPreProc
- 功能描述  : AT数据预处理函数
- 输入参数  : TAF_UINT8 ucIndex
+     : At_DataStreamPreProc
+   : AT
+   : TAF_UINT8 ucIndex
              TAF_UINT8 DataMode
              TAF_UINT8* pData
              TAF_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : TAF_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : TAF_UINT32
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 修改OM的接收数据函数
+  2.       : 20111010
+           : /l60609
+       : OM
 
 *****************************************************************************/
 TAF_UINT32 At_DataStreamPreProc (TAF_UINT8 ucIndex,TAF_UINT8 DataMode,TAF_UINT8* pData, TAF_UINT16 usLen)
@@ -670,18 +670,18 @@ TAF_UINT32 At_DataStreamPreProc (TAF_UINT8 ucIndex,TAF_UINT8 DataMode,TAF_UINT8*
     AT_LOG1("At_DataStreamPreProc usLen:",usLen);
     AT_LOG1("At_DataStreamPreProc DataMode:",DataMode);
 
-    switch(DataMode)    /* 当前用户的数传类型 */
+    switch(DataMode)    /*  */
     {
         case AT_CSD_DATA_MODE:
             break;
 
-        /* Modified by L60609 for AT Project，2011-10-04,  Begin*/
-        /*调用OM提供的各端口接收数据函数发送数据，不需要再区分数据模式*/
+        /* Modified by L60609 for AT Project2011-10-04,  Begin*/
+        /*OM*/
         case AT_DIAG_DATA_MODE:
         case AT_OM_DATA_MODE:
             At_OmDataProc(gastAtClientTab[ucIndex].ucPortNo, pData,usLen);
             break;
-        /* Modified by L60609 for AT Project，2011-10-04,  End*/
+        /* Modified by L60609 for AT Project2011-10-04,  End*/
 
         default:
             AT_WARN_LOG("At_DataStreamPreProc DataMode Wrong!");
@@ -690,38 +690,38 @@ TAF_UINT32 At_DataStreamPreProc (TAF_UINT8 ucIndex,TAF_UINT8 DataMode,TAF_UINT8*
     return AT_SUCCESS;
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
+/* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
 /*****************************************************************************
- 函 数 名  : AT_CsdDataModeRcvModemMsc
- 功能描述  : 处理在CS可视电话的情况下，收到管脚信号后挂断电话
- 输入参数  : ucIndex -- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_CsdDataModeRcvModemMsc
+   : CS
+   : ucIndex -- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2010年7月28日
-    作    者   : z00161729
-    修改内容   : DTS2010082602962:收到多条管脚信号变化指示时发起多次挂断电话操作
-  3.日    期   : 2011年10月24日
-    作    者   : f00179208
-    修改内容   : AT移植项目,与VP交互处遗留
-  3.日    期   : 2011年12月28日
-    作    者   : w00199382
-    修改内容   : PS融合项目添加同步API
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
+       :
+  1.       : 2010518
+           : h44270
+       : 
+  2.       : 2010728
+           : z00161729
+       : DTS2010082602962:
+  3.       : 20111024
+           : f00179208
+       : AT,VP
+  3.       : 20111228
+           : w00199382
+       : PSAPI
+  4.       : 2012810
+           : L00171473
+       : DTS2012082204471, TQE
 *****************************************************************************/
 VOS_UINT32  AT_CsdDataModeRcvModemMsc(
     VOS_UINT8                           ucIndex
 )
 {
-    /* Modified by w00199382 for PS Project，2011-12-06,  Begin*/
+    /* Modified by w00199382 for PS Project2011-12-06,  Begin*/
     TAFAGERNT_MN_CALL_INFO_STRU         astCallInfos[MN_CALL_MAX_NUM];
     VOS_UINT32                          i;
     VOS_UINT8                           ucNumOfCalls;
@@ -731,8 +731,8 @@ VOS_UINT32  AT_CsdDataModeRcvModemMsc(
     TAF_MEM_SET_S(astCallInfos, sizeof(astCallInfos), 0x00, sizeof(astCallInfos));
 
 
-    /* 查询当前的呼叫状态信息，如果有VIDEO类型的呼叫，则挂断该呼叫，目前由于不会存在多个VIDEO呼叫，
-       因此找到一个VIDEO类型的呼叫执行完毕后，即可退出 */
+    /* VIDEOVIDEO
+       VIDEO */
 
     /* Modified by l60609 for DSDA PhaseIII, 2013-3-13, begin */
     ulRlst          = TAF_AGENT_GetCallInfoReq(ucIndex, &ucNumOfCalls, astCallInfos);
@@ -744,7 +744,7 @@ VOS_UINT32  AT_CsdDataModeRcvModemMsc(
         {
             if (MN_CALL_TYPE_VIDEO == astCallInfos[i].enCallType)
             {
-                /* 未挂断过电话 */
+                /*  */
                 if (gastAtClientTab[ucIndex].CmdCurrentOpt != AT_CMD_END_SET)
                 {
                     TAF_LOG1(WUEPS_PID_AT, 0, PS_LOG_LEVEL_INFO, "At_SetHPara: ulNumOfCalls is ",(TAF_INT32)ucNumOfCalls);
@@ -764,46 +764,46 @@ VOS_UINT32  AT_CsdDataModeRcvModemMsc(
                 }
                 else
                 {
-                    /* 之前已做过挂断电话操作，又收到拉低DTR管脚信号消息，不做处理 */
+                    /* DTR */
                     return AT_SUCCESS;
                 }
             }
         }
     }
 
-    /* Modified by w00199382 for PS Project，2011-12-06,  End*/
+    /* Modified by w00199382 for PS Project2011-12-06,  End*/
 
     return AT_CME_UNKNOWN;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_PppDataModeRcvModemMsc
- 功能描述  : 处理在PPP拨号的情况下，收到管脚信号后发起去激活
- 输入参数  : ucIndex -- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_PppDataModeRcvModemMsc
+   : PPP
+   : ucIndex -- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
+       :
+  1.       : 2010518
+           : h44270
+       : 
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT移植项目, 修改断开拨号的接口
+  2.       : 20111020
+           : A00165503
+       : AT, 
 *****************************************************************************/
 VOS_UINT32  AT_PppDataModeRcvModemMsc(
     VOS_UINT8                           ucIndex,
     AT_DCE_MSC_STRU                     *pMscStru
 )
 {
-    /* 1.判断(AT_CMD_PS_DATA_CALL_END_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
-         的目的:若正常断开，则之前已经执行了PDP DEACTIVE流程，此时若再拉低DTR，则
-         无需再执行该异常流程
-        2.该分支的处理场景:若出于流控状态下,用户发起PPP断开，此时PPP报文无法交互，
-          只能在最后拉低DTR信号的时候，执行PPP断开操作
+    /* 1.(AT_CMD_PS_DATA_CALL_END_SET != gastAtClientTab[ucIndex].CmdCurrentOpt)
+         :PDP DEACTIVEDTR
+         
+        2.:,PPPPPP
+          DTRPPP
     */
     if (pMscStru->OP_Dtr && (0 == pMscStru->ucDtr))
     {
@@ -813,20 +813,20 @@ VOS_UINT32  AT_PppDataModeRcvModemMsc(
             return AT_SUCCESS;
         }
 
-        /* 若处于流控状态下，则PPP断开的协商报文是无法传到UE侧的，
-           UE只能在DTR信号拉低的时候,执行PPP拨号断开操作*/
+        /* PPPUE
+           UEDTR,PPP*/
         if (0 == (gastAtClientTab[ucIndex].ModemStatus & IO_CTRL_CTS))
         {
             AT_StopFlowCtrl((TAF_UINT8)ucIndex);
         }
 
-        /*向PPP发送释放PPP操作*/
+        /*PPPPPP*/
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId, PPP_AT_CTRL_REL_PPP_REQ);
 
-        /*向PPP发送HDLC去使能操作*/
+        /*PPPHDLC*/
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId, PPP_AT_CTRL_HDLC_DISABLE);
 
-        /* 停止Modem口的AT定时器以及AT链路的当前操作指示 */
+        /* ModemATAT */
         AT_STOP_TIMER_CMD_READY(ucIndex);
 
         /*EVENT - RCV Down DTR to Disconnect PPP in Abnormal procedure(PDP type:IP) ;index*/
@@ -838,14 +838,14 @@ VOS_UINT32  AT_PppDataModeRcvModemMsc(
                                       0,
                                       gastAtClientTab[ucIndex].ucCid) )
         {
-            /* 开定时器 */
+            /*  */
             if (AT_SUCCESS != At_StartTimer(AT_SET_PARA_TIME, ucIndex))
             {
                 AT_ERR_LOG("At_UsbModemStatusPreProc:ERROR:Start Timer");
                 return AT_FAILURE;
             }
 
-            /* 设置当前操作类型 */
+            /*  */
             gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_PS_DATA_CALL_END_SET;
         }
         else
@@ -858,22 +858,22 @@ VOS_UINT32  AT_PppDataModeRcvModemMsc(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_IpDataModeRcvModemMsc
- 功能描述  : 处理在IP拨号的情况下收到管脚信号后发起去激活
- 输入参数  : ucIndex -- 用户索引
- 输出参数  : 无
- 返 回 值  : AT_XXX  --- ATC返回码
- 调用函数  :
- 被调函数  :
+     : AT_IpDataModeRcvModemMsc
+   : IP
+   : ucIndex -- 
+   : 
+     : AT_XXX  --- ATC
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : h44270
-    修改内容   : 新生成函数
+       :
+  1.       : 2010518
+           : h44270
+       : 
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT移植项目, 修改断开拨号的接口
+  2.       : 20111020
+           : A00165503
+       : AT, 
 *****************************************************************************/
 VOS_UINT32  AT_IpDataModeRcvModemMsc(
     VOS_UINT8                           ucIndex,
@@ -882,7 +882,7 @@ VOS_UINT32  AT_IpDataModeRcvModemMsc(
 {
     if (pMscStru->OP_Dtr && (0 == pMscStru->ucDtr))
     {
-        /*若原先开启了流控，则需停止流控*/
+        /**/
         if (0 == (gastAtClientTab[ucIndex].ModemStatus & IO_CTRL_CTS))
         {
             AT_StopFlowCtrl((TAF_UINT8)ucIndex);
@@ -890,10 +890,10 @@ VOS_UINT32  AT_IpDataModeRcvModemMsc(
 
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId, PPP_AT_CTRL_REL_PPP_RAW_REQ);
 
-        /*向PPP发送HDLC去使能操作*/
+        /*PPPHDLC*/
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId, PPP_AT_CTRL_HDLC_DISABLE);
 
-        /* 停止Modem口的AT定时器以及AT链路的当前操作指示 */
+        /* ModemATAT */
         AT_STOP_TIMER_CMD_READY(ucIndex);;
 
         /*EVENT - RCV Down DTR to Disconnect PPP in Abnormal procedure(PDP type:PPP) ;index*/
@@ -918,19 +918,19 @@ VOS_UINT32  AT_IpDataModeRcvModemMsc(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_MODEM_ProcDtrChange
- 功能描述  : Modem DTR管脚处理
- 输入参数  : ucIndex   --- 端口索引
-             pstDceMsc --- 管脚信号(调用者保证非空)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_MODEM_ProcDtrChange
+   : Modem DTR
+   : ucIndex   --- 
+             pstDceMsc --- ()
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
+       :
+  1.       : 20130921
+           : j00174725
+       : 
 *****************************************************************************/
 VOS_VOID AT_MODEM_ProcDtrChange(
     VOS_UINT8                           ucIndex,
@@ -939,15 +939,15 @@ VOS_VOID AT_MODEM_ProcDtrChange(
 {
     if (1 == pstDceMsc->ucDtr)
     {
-        /*拉高DSR、CTS信号*/
+        /*DSRCTS*/
         AT_CtrlDSR(ucIndex, AT_IO_LEVEL_HIGH);
         AT_StopFlowCtrl(ucIndex);
     }
     else
     {
-        /* 参考Q实现，DSR信号在上电后一直保持拉高状态，即使收到DTR也不拉低DSR；
-           同时，PC在正常流程中一般不会拉低DTR信号，在异常流程中会将之拉低，
-           所以UE在收到DTR拉低 的时候，需要将DCD拉低 */
+        /* QDSRDTRDSR
+           PCDTR
+           UEDTR DCD */
         if ( (AT_DATA_MODE == gastAtClientTab[ucIndex].Mode)
           && (AT_CSD_DATA_MODE == gastAtClientTab[ucIndex].DataMode) )
         {
@@ -960,20 +960,20 @@ VOS_VOID AT_MODEM_ProcDtrChange(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_MODEM_WriteMscCmd
- 功能描述  : 封装MODEM管脚信号写接口
- 输入参数  : ucIndex    - 端口索引
-             pstDceMsc  - 管脚信号结构(由调用者保证非空)
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS - 成功
-             AT_FAILURE - 失败
- 调用函数  :
- 被调函数  :
+     : AT_MODEM_WriteMscCmd
+   : MODEM
+   : ucIndex    - 
+             pstDceMsc  - ()
+   : 
+     : AT_SUCCESS - 
+             AT_FAILURE - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 20131112
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_MODEM_WriteMscCmd(
     VOS_UINT8                           ucIndex,
@@ -983,7 +983,7 @@ VOS_UINT32 AT_MODEM_WriteMscCmd(
     UDI_HANDLE                          lUdiHandle;
     VOS_INT32                           lResult;
 
-    /* 检查UDI句柄有效性 */
+    /* UDI */
     lUdiHandle = g_alAtUdiHandle[ucIndex];
     if (UDI_INVALID_HANDLE == lUdiHandle)
     {
@@ -991,7 +991,7 @@ VOS_UINT32 AT_MODEM_WriteMscCmd(
         return AT_FAILURE;
     }
 
-    /* 写管脚信号 */
+    /*  */
     lResult = mdrv_udi_ioctl(lUdiHandle, ACM_MODEM_IOCTL_MSC_WRITE_CMD, pstDceMsc);
     if (VOS_OK != lResult)
     {
@@ -1004,26 +1004,26 @@ VOS_UINT32 AT_MODEM_WriteMscCmd(
 
 /*****************************************************************************
  Prototype      : AT_MODEM_StartFlowCtrl
- Description    : AT启动流控
+ Description    : AT
  Input          :
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
  History        : ---
-  1.日    期   : 2007-09-25
-    作    者   : L47619
-    修改内容   : Created function
+  1.       : 2007-09-25
+           : L47619
+       : Created function
 
-  2.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : PS融合项目，修改输入参数
+  2.       : 20111217
+           : c00173809
+       : PS
 
-  3.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 修改管脚信号设置函数
+  3.       : 2013923
+           : A00165503
+       : UART-MODEM: 
 *****************************************************************************/
 VOS_UINT32 AT_MODEM_StartFlowCtrl(
     VOS_UINT32                          ulParam1,
@@ -1052,26 +1052,26 @@ VOS_UINT32 AT_MODEM_StartFlowCtrl(
 
 /*****************************************************************************
  Prototype      : AT_MODEM_StopFlowCtrl
- Description    : AT解除流控
+ Description    : AT
  Input          :
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
  History        : ---
-  1.日    期   : 2007-09-25
-    作    者   : L47619
-    修改内容   : Created function
+  1.       : 2007-09-25
+           : L47619
+       : Created function
 
-  2.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : PS融合项目，修改输入参数
+  2.       : 20111217
+           : c00173809
+       : PS
 
-  3.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 修改管脚信号设置函数
+  3.       : 2013923
+           : A00165503
+       : UART-MODEM: 
 *****************************************************************************/
 VOS_UINT32 AT_MODEM_StopFlowCtrl(
     VOS_UINT32                          ulParam1,
@@ -1100,12 +1100,12 @@ VOS_UINT32 AT_MODEM_StopFlowCtrl(
 
 /*****************************************************************************
  Prototype      : AT_ModemStatusPreProc
- Description    : 管脚信号预处理
- Input          : ucIndex    --- 端口索引
-                  pMscStru   --- 管脚信号结构(由调用者保证非空)
+ Description    : 
+ Input          : ucIndex    --- 
+                  pMscStru   --- ()
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -1114,17 +1114,17 @@ VOS_UINT32 AT_MODEM_StopFlowCtrl(
     Author      : s62952
     Modification: Created function
 
-  3.日    期   : 2010年12月29日
-    作    者   : z00161729
-    修改内容   : 问题单DTS2010123000175:TME后台主叫主动挂断电话之后做被叫前几秒显示no number
+  3.       : 20101229
+           : z00161729
+       : DTS2010123000175:TMEno number
 
-  4.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加UART端口支持
+  4.       : 20130921
+           : j00174725
+       : UART-MODEM: UART
 
-  5.日    期   : 2013年12月20日
-    作    者   : A00165503
-    修改内容   : DTS2013121910186: DTR信号拉低时, 增加online-cmd模式判断
+  5.       : 20131220
+           : A00165503
+       : DTS2013121910186: DTR, online-cmd
 *****************************************************************************/
 VOS_UINT32 AT_ModemStatusPreProc(
     VOS_UINT8                           ucIndex,
@@ -1156,7 +1156,7 @@ VOS_UINT32 AT_ModemStatusPreProc(
 
     }
 
-    /* 数传模式响应MSC处理 */
+    /* MSC */
     if ( (AT_DATA_MODE == gastAtClientTab[ucIndex].Mode)
       || (AT_ONLINE_CMD_MODE == gastAtClientTab[ucIndex].Mode) )
     {
@@ -1182,8 +1182,8 @@ VOS_UINT32 AT_ModemStatusPreProc(
     }
     else
     {
-         /* 有可能在还没接听的时候，拉低管脚信号，此时还处于命令状态，
-            目前来说只有CSD模式下会有这样的情况 */
+         /* 
+            CSD */
          if ((pMscStru->OP_Dtr) && (0 == pMscStru->ucDtr))
          {
              AT_CsdDataModeRcvModemMsc(ucIndex);
@@ -1192,24 +1192,24 @@ VOS_UINT32 AT_ModemStatusPreProc(
 
     return AT_SUCCESS;
 }
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
+/* Modified by s62952 for BalongV300R002 Build 2012-02-28, end */
 
 /*****************************************************************************
- 函 数 名  : AT_ModemSetCtlStatus
- 功能描述  : 保存管脚信号
- 输入参数  : pMscStru --- 指向管脚信号的指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_ModemSetCtlStatus
+   : 
+   : pMscStru --- 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+       :
+  1.       : 20111017
+           : s62952
+       : 
+  2.       : 20130522
+           : f00179208
+       : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_VOID AT_ModemSetCtlStatus(
     VOS_UINT8                           ucIndex,
@@ -1221,7 +1221,7 @@ VOS_VOID AT_ModemSetCtlStatus(
         return;
     }
 
-    /*更新dsr信号*/
+    /*dsr*/
     if ( pMscStru->OP_Dsr )
     {
         if ( 1 == pMscStru->ucDsr )
@@ -1234,7 +1234,7 @@ VOS_VOID AT_ModemSetCtlStatus(
         }
     }
 
-    /*更新CTS信号*/
+    /*CTS*/
     if ( pMscStru->OP_Cts )
     {
         if ( 1 == pMscStru->ucCts )
@@ -1247,7 +1247,7 @@ VOS_VOID AT_ModemSetCtlStatus(
         }
     }
 
-    /*更新RI信号*/
+    /*RI*/
     if ( pMscStru->OP_Ri )
     {
         if ( 1 == pMscStru->ucRi )
@@ -1260,7 +1260,7 @@ VOS_VOID AT_ModemSetCtlStatus(
         }
     }
 
-    /*更新DCD信号*/
+    /*DCD*/
     if ( pMscStru->OP_Dcd )
     {
         if ( 1 == pMscStru->ucDcd )
@@ -1273,7 +1273,7 @@ VOS_VOID AT_ModemSetCtlStatus(
         }
     }
 
-    /*更新FC信号*/
+    /*FC*/
     if ( pMscStru->OP_Fc )
     {
         if ( 1 == pMscStru->ucFc )
@@ -1289,28 +1289,28 @@ VOS_VOID AT_ModemSetCtlStatus(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetModemStatus
- 功能描述  : 回复管脚信号
- 输入参数  : ucIndex  --- 索引
-             pMscStru --- 指向管脚信号的指针
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : AT_SetModemStatus
+   : 
+   : ucIndex  --- 
+             pMscStru --- 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : s62952
+       : 
 
-  2.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  2.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
 
-  3.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加UART端口支持
+  3.       : 20130921
+           : j00174725
+       : UART-MODEM: UART
 *****************************************************************************/
 VOS_UINT32 AT_SetModemStatus(
     VOS_UINT8                           ucIndex,
@@ -1329,13 +1329,13 @@ VOS_UINT32 AT_SetModemStatus(
         return AT_FAILURE;
     }
 
-    /* 更新本地管脚信号*/
+    /* */
     AT_ModemSetCtlStatus(ucIndex, pstMsc);
 
-    /* 输出管脚信号可维可测 */
+    /*  */
     AT_MNTN_TraceOutputMsc(ucIndex, pstMsc);
 
-    /* 写入管脚信号参数 */
+    /*  */
     switch (gastAtClientTab[ucIndex].UserType)
     {
         case AT_MODEM_USER:
@@ -1351,33 +1351,33 @@ VOS_UINT32 AT_SetModemStatus(
     return ulResult;
 }
 
-/* 删除At_SetModemStatusForFC函数, 功能和At_SetModemStatus重复 */
+/* At_SetModemStatusForFC, At_SetModemStatus */
 
 /*****************************************************************************
- 函 数 名  : At_ModemEst
- 功能描述  : Modem链路的建立
- 输入参数  : VOS_UINT8                           ucIndex
+     : At_ModemEst
+   : Modem
+   : VOS_UINT8                           ucIndex
              AT_CLIENT_ID_ENUM_UINT16            usClientId
              VOS_UINT8                           ucPortType
              AT_USER_TYPE                        ucUserType
              VOS_UINT8                           ucDlci
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+   : 
+     : VOS_UINT32
              AT_SUCCESS
              AT_FAILURE
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2007-11-14
     Author      : 62952
     Modification: Created function
-  2.日    期   : 2011年9月30日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id
-  3.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  2.       : 2011930
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id
+  3.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 At_ModemEst (
     VOS_UINT8                           ucIndex,
@@ -1386,10 +1386,10 @@ VOS_UINT32 At_ModemEst (
 )
 {
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = usClientId;
     gastAtClientTab[ucIndex].ucPortType      = ucPortNo;
     gastAtClientTab[ucIndex].ucDlci          = AT_MODEM_USER_DLCI;
@@ -1397,7 +1397,7 @@ VOS_UINT32 At_ModemEst (
     gastAtClientTab[ucIndex].UserType        = AT_MODEM_USER;
     gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
 
-    /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+    /* PS_MEMSET */
     gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
     gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
     gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -1411,26 +1411,26 @@ VOS_UINT32 At_ModemEst (
 }
 
 /*****************************************************************************
- 函 数 名  : At_ModemMscInd
- 功能描述  : Modem Msc Ind
- 输入参数  : VOS_UINT8                           ucIndex
+     : At_ModemMscInd
+   : Modem Msc Ind
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                           ucDlci
              AT_DCE_MSC_STRU                    *pMscStru
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2007-11-14
     Author      : s62952
     Modification: Created function
-  2.日    期   : 2011年10月17日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project
-  3.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  2.       : 20111017
+           : /l60609
+       : AT Project
+  3.       : 20130522
+           : f00179208
+       : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 At_ModemMscInd (
     VOS_UINT8                           ucIndex,
@@ -1448,12 +1448,12 @@ VOS_UINT32 At_ModemMscInd (
     pMsg = ( AT_PPP_MODEM_MSC_IND_MSG_STRU * )PS_ALLOC_MSG( PS_PID_APP_PPP, ulLength );
     if ( VOS_NULL_PTR == pMsg )
     {
-        /*打印出错信息---申请消息包失败:*/
+        /*---:*/
         AT_WARN_LOG("At_ModemMscInd: Alloc AT_PPP_MODEM_MSC_IND_MSG_STRU msg fail!");
         return AT_FAILURE;
     }
 
-    /*填写消息头:*/
+    /*:*/
     pMsg->MsgHeader.ulSenderCpuId   = VOS_LOCAL_CPUID;
     pMsg->MsgHeader.ulSenderPid     = PS_PID_APP_PPP;
     pMsg->MsgHeader.ulReceiverCpuId = VOS_LOCAL_CPUID;
@@ -1461,19 +1461,19 @@ VOS_UINT32 At_ModemMscInd (
     pMsg->MsgHeader.ulLength        = ulLength;
     pMsg->MsgHeader.ulMsgName       = AT_PPP_MODEM_MSC_IND_MSG;
 
-    /*填写消息体*/
+    /**/
     pMsg->ucIndex                   = ucIndex;
     pMsg->ucDlci                    = ucDlci;
 
-    /* 填写管脚数据 */
+    /*  */
     ulTmpAddr = (VOS_UINT_PTR)(pMsg->aucMscInd);
 
     TAF_MEM_CPY_S((VOS_VOID *)ulTmpAddr, sizeof(AT_DCE_MSC_STRU), (VOS_UINT8 *)pMscStru, sizeof(AT_DCE_MSC_STRU));
 
-    /* 发送消息 */
+    /*  */
     if ( VOS_OK != PS_SEND_MSG( PS_PID_APP_PPP, pMsg ) )
     {
-        /*打印警告信息---发送消息失败:*/
+        /*---:*/
         AT_WARN_LOG( "At_ModemMscInd:WARNING:SEND AT_PPP_MODEM_MSC_IND_MSG_STRU msg FAIL!" );
         return AT_FAILURE;
     }
@@ -1482,28 +1482,28 @@ VOS_UINT32 At_ModemMscInd (
 }
 
 /******************************************************************************
-函 数 名  : AT_UsbModemGetUlDataBuf
-功能描述  : 获取modem设备上行数据存储空间
-输入参数  :  ppstBuf    ----      上行数据指针
-输出参数  : 无
-返 回 值  : AT_SUCCESS ----      成功；
-            AT_FAILURE ----      失败
-调用函数  :
-被调函数  :
+    : AT_UsbModemGetUlDataBuf
+  : modem
+  :  ppstBuf    ----      
+  : 
+    : AT_SUCCESS ----      
+            AT_FAILURE ----      
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
-  2.日    期   : 2011年12月8日
-    作    者   : 鲁琳/l60609
-    修改内容   : Buf类型修改为IMM_ZC_STRU
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年05月27日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+  2.       : 2011128
+           : /l60609
+       : BufIMM_ZC_STRU
+  3.       : 2012810
+           : L00171473
+       : DTS2012082204471, TQE
+  4.       : 20130527
+           : f00179208
+       : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 AT_ModemGetUlDataBuf(
     VOS_UINT8                           ucIndex,
@@ -1517,9 +1517,9 @@ VOS_UINT32 AT_ModemGetUlDataBuf(
     TAF_MEM_SET_S(&stCtlParam, sizeof(stCtlParam), 0x00, sizeof(stCtlParam));
 
 
-    /* Modified by L60609 for PS Project，2011-12-06,  Begin*/
+    /* Modified by L60609 for PS Project2011-12-06,  Begin*/
 
-    /* 获取底软上行数据buffer */
+    /* buffer */
     ulResult = mdrv_udi_ioctl(g_alAtUdiHandle[ucIndex], ACM_IOCTL_GET_RD_BUFF, &stCtlParam);
 
     if ( VOS_OK != ulResult )
@@ -1541,39 +1541,39 @@ VOS_UINT32 AT_ModemGetUlDataBuf(
 
     *ppstBuf = (IMM_ZC_STRU *)stCtlParam.pVirAddr;
 
-    /* Modified by L60609 for PS Project，2011-12-06,  End*/
+    /* Modified by L60609 for PS Project2011-12-06,  End*/
     return AT_SUCCESS;
 }
 
 /*****************************************************************************
- 函 数 名  : At_ModemDataInd
- 功能描述  : USB Modem数据处理
- 输入参数  : VOS_UINT8                           ucPortType,
+     : At_ModemDataInd
+   : USB Modem
+   : VOS_UINT8                           ucPortType,
              VOS_UINT8                           ucDlci,
              IMM_ZC_STRU                        *pstData,
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+   : 
+     : VOS_UINT32
              AT_SUCCESS
              AT_SUCCESS
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
+       :
   1.Date        : 2007-11-14
     Author      : s62952
     Modification: Created function
-  2.日    期   : 2011年10月15日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配 client id
-  3.日    期   : 2011年12月8日
-    作    者   : 鲁琳/l60609
-    修改内容   : Buf类型修改为IMM_ZC_STRU
-  4.日    期   : 2011年12月8日
-    作    者   : w00199382
-    修改内容   : 添加CSD接口
-  5.日    期   : 2013年05月22日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  2.       : 20111015
+           : /l60609
+       : AT Project:  client id
+  3.       : 2011128
+           : /l60609
+       : BufIMM_ZC_STRU
+  4.       : 2011128
+           : w00199382
+       : CSD
+  5.       : 20130522
+           : f00179208
+       : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 At_ModemDataInd(
     VOS_UINT8                           ucIndex,
@@ -1581,56 +1581,56 @@ VOS_UINT32 At_ModemDataInd(
     IMM_ZC_STRU                        *pstData
 )
 {
-    /* Modified by L60609 for PS Project，2011-12-06,  Begin*/
+    /* Modified by L60609 for PS Project2011-12-06,  Begin*/
     AT_DCE_MSC_STRU                     stMscStru;
     VOS_UINT32                          ulRet;
-    /* pData为数据内容指针 */
+    /* pData */
     VOS_UINT8                          *pData;
-    /* usLen为数据内容的长度 */
+    /* usLen */
     VOS_UINT16                          usLen;
 
-    /* 检查index和Dlci是否正确 */
+    /* indexDlci */
     if (AT_CLIENT_TAB_MODEM_INDEX != ucIndex)
     {
-        /*释放内存*/
+        /**/
         AT_ModemFreeUlDataBuf(ucIndex, pstData);
         return AT_FAILURE;
     }
 
-    /* 从pstData(IMM_ZC_STRU类型)中取出数据内容和长度，分别保存在pData和usLen中 */
+    /* pstData(IMM_ZC_STRU)pDatausLen */
     pData = pstData->data;
     usLen = (VOS_UINT16)pstData->len;
 
     if ( AT_CMD_MODE == gastAtClientTab[ucIndex].Mode )
     {
-        /*若Modem通道已经切入命令态，但此时仍然收到PPP帧，则直接丢弃*/
+        /*ModemPPP*/
         if ((usLen > 0) && (0x7e == pData[0]) && (0x7e == pData[usLen - 1]))
         {
-            /*释放BSP内存*/
+            /*BSP*/
             AT_ModemFreeUlDataBuf(ucIndex, pstData);
             return AT_SUCCESS;
         }
 
         ulRet = At_CmdStreamPreProc(ucIndex,pData,usLen);
 
-        /*释放BSP内存*/
+        /*BSP*/
         AT_ModemFreeUlDataBuf(ucIndex, pstData);
         return ulRet;
     }
 
-    /* 根据modem口的状态进行分发*/
+    /* modem*/
     switch ( gastAtClientTab[ucIndex].DataMode )
     {
         case AT_PPP_DATA_MODE:
 
-            /* (AT2D17549)规避MAC 10.6.2系统拨号挂断失败问题.参照标杆的方式，
-               若接收数据为"+++"，则模拟拉底DTR信号的处理方式
+            /* (AT2D17549)MAC 10.6.2.
+               "+++"DTR
             */
             if (3 == usLen)
             {
                 if (('+' == pData[0]) && ('+' == pData[1]) && ('+' == pData[2]))
                 {
-                    /*模拟拉底DTR信号*/
+                    /*DTR*/
                     TAF_MEM_SET_S(&stMscStru, (VOS_SIZE_T)sizeof(stMscStru), 0x00, (VOS_SIZE_T)sizeof(stMscStru));
                     stMscStru.OP_Dtr = 1;
                     stMscStru.ucDtr  = 0;
@@ -1638,7 +1638,7 @@ VOS_UINT32 At_ModemDataInd(
                     break;
                 }
             }
-            /* PPP负责释放上行内存 */
+            /* PPP */
             PPP_PullPacketEvent(gastAtClientTab[ucIndex].usPppId, pstData);
             return AT_SUCCESS;
 
@@ -1647,7 +1647,7 @@ VOS_UINT32 At_ModemDataInd(
             {
                 if (('+' == pData[0]) && ('+' == pData[1]) && ('+' == pData[2]))
                 {
-                    /*模拟拉底DTR信号*/
+                    /*DTR*/
                     TAF_MEM_SET_S(&stMscStru, (VOS_SIZE_T)sizeof(stMscStru), 0x00, (VOS_SIZE_T)sizeof(stMscStru));
                     stMscStru.OP_Dtr = 1;
                     stMscStru.ucDtr  = 0;
@@ -1655,46 +1655,46 @@ VOS_UINT32 At_ModemDataInd(
                     break;
                 }
             }
-            /* PPP负责释放上行内存 */
+            /* PPP */
             PPP_PullRawDataEvent(gastAtClientTab[ucIndex].usPppId, pstData);
             return AT_SUCCESS;
 
-        /* Modified by s62952 for AT Project，2011-10-17,  Begin*/
+        /* Modified by s62952 for AT Project2011-10-17,  Begin*/
         case AT_CSD_DATA_MODE:
-            /* Added by w00199382 for PS Project，2011-12-06,  Begin*/
-            /* Added by w00199382 for PS Project，2011-12-06,  End*/
-         /* Modified by s62952 for AT Project，2011-10-17,  end*/
+            /* Added by w00199382 for PS Project2011-12-06,  Begin*/
+            /* Added by w00199382 for PS Project2011-12-06,  End*/
+         /* Modified by s62952 for AT Project2011-10-17,  end*/
 
         default:
             AT_WARN_LOG("At_ModemDataInd: DataMode Wrong!");
             break;
     }
 
-    /*释放内存*/
+    /**/
     AT_ModemFreeUlDataBuf(ucIndex, pstData);
-    /* Modified by L60609 for PS Project，2011-12-06,  End*/
+    /* Modified by L60609 for PS Project2011-12-06,  End*/
     return AT_SUCCESS;
 }
 
 /*****************************************************************************
-函 数 名  : AT_ModemInitUlDataBuf
-功能描述  : 封装MODEM设备管脚信号写接口
-输入参数  : ucIndex        ----   索引号
-            ulEachBuffSize ----   底软上行数据块BUFFER大小　
-            ulTotalBuffNum ----   底软上行数据块BUFFER个数
-输出参数  : 无
-返 回 值  : AT_SUCCESS     ----   成功；
-            AT_FAILURE     ----   失败
-调用函数  :
-被调函数  :
+    : AT_ModemInitUlDataBuf
+  : MODEM
+  : ucIndex        ----   
+            ulEachBuffSize ----   BUFFER
+            ulTotalBuffNum ----   BUFFER
+  : 
+    : AT_SUCCESS     ----   
+            AT_FAILURE     ----   
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月28日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 20130528
+          : f00179208
+      : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 AT_ModemInitUlDataBuf(
     VOS_UINT8                           ucIndex,
@@ -1706,7 +1706,7 @@ VOS_UINT32 AT_ModemInitUlDataBuf(
     VOS_INT32                           ulResult;
 
 
-    /* 填写需要释放的内存指针 */
+    /*  */
     stReadBuffInfo.u32BuffSize = ulEachBuffSize;
     stReadBuffInfo.u32BuffNum  = ulTotalBuffNum;
 
@@ -1724,25 +1724,25 @@ VOS_UINT32 AT_ModemInitUlDataBuf(
 }
 
 /*****************************************************************************
-函 数 名  : AT_ModemFreeUlDataBuf
-功能描述  : 释放上行内存
-输入参数  : pstBuf     ----      上行数据指针
-输出参数  : 无
-返 回 值  : AT_SUCCESS ----      成功；
-            AT_FAILURE ----      失败
-调用函数  :
-被调函数  :
+    : AT_ModemFreeUlDataBuf
+  : 
+  : pstBuf     ----      
+  : 
+    : AT_SUCCESS ----      
+            AT_FAILURE ----      
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月8日
-   作    者   : 鲁琳/l60609
-   修改内容   : Buf类型修改为IMM_ZC_STRU
- 3.日    期   : 2013年05月28日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 2011128
+          : /l60609
+      : BufIMM_ZC_STRU
+ 3.       : 20130528
+          : f00179208
+      : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_UINT32 AT_ModemFreeUlDataBuf(
     VOS_UINT8                           ucIndex,
@@ -1752,13 +1752,13 @@ VOS_UINT32 AT_ModemFreeUlDataBuf(
     ACM_WR_ASYNC_INFO                   stCtlParam;
     VOS_INT32                           ulResult;
 
-    /* Modified by L60609 for PS Project，2011-12-06,  Begin*/
-    /* 填写需要释放的内存指针 */
+    /* Modified by L60609 for PS Project2011-12-06,  Begin*/
+    /*  */
     stCtlParam.pVirAddr = (VOS_CHAR*)pstBuf;
     stCtlParam.pPhyAddr = VOS_NULL_PTR;
     stCtlParam.u32Size  = 0;
     stCtlParam.pDrvPriv = VOS_NULL_PTR;
-    /* Modified by L60609 for PS Project，2011-12-06,  End*/
+    /* Modified by L60609 for PS Project2011-12-06,  End*/
 
     ulResult = mdrv_udi_ioctl(g_alAtUdiHandle[ucIndex], ACM_IOCTL_RETURN_BUFF, &stCtlParam);
 
@@ -1776,22 +1776,22 @@ VOS_UINT32 AT_ModemFreeUlDataBuf(
 }
 
 /*****************************************************************************
-函 数 名  : AT_ModemFreeDlDataBuf
-功能描述  : 释放PPP模块下行数据内存，注册给底软使用
-输入参数  : pstBuf     ----      上行数据指针
-输出参数  : 无
-返 回 值  : AT_SUCCESS ----      成功；
-            AT_FAILURE ----      失败
-调用函数  :
-被调函数  :
+    : AT_ModemFreeDlDataBuf
+  : PPP
+  : pstBuf     ----      
+  : 
+    : AT_SUCCESS ----      
+            AT_FAILURE ----      
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月8日
-   作    者   : 鲁琳/l60609
-   修改内容   : Buf类型修改为IMM_ZC_STRU
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 2011128
+          : /l60609
+      : BufIMM_ZC_STRU
 *****************************************************************************/
 VOS_VOID AT_ModemFreeDlDataBuf(
     IMM_ZC_STRU                        *pstBuf
@@ -1799,40 +1799,40 @@ VOS_VOID AT_ModemFreeDlDataBuf(
 {
     AT_MODEM_DBG_DL_FREE_BUFF_NUM(1);
 
-    /* Modified by L60609 for PS Project，2011-12-06,  Begin*/
-    /* 释放pstBuf */
+    /* Modified by L60609 for PS Project2011-12-06,  Begin*/
+    /* pstBuf */
     IMM_ZcFree(pstBuf);
-    /* Modified by L60609 for PS Project，2011-12-06,  End*/
+    /* Modified by L60609 for PS Project2011-12-06,  End*/
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ModemWriteData
- 功能描述  : 封装MODEM设备数据写接口
- 输入参数  : ucIndex    ----      索引号
-             pstBuf     ----      上行数据指针
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS ----      成功；
-             AT_FAILURE ----      失败
- 调用函数  :
- 被调函数  :
+     : AT_ModemWriteData
+   : MODEM
+   : ucIndex    ----      
+             pstBuf     ----      
+   : 
+     : AT_SUCCESS ----      
+             AT_FAILURE ----      
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 
-  2.日    期   : 2011年12月8日
-    作    者   : 鲁琳/l60609
-    修改内容   : Buf类型修改为IMM_ZC_STRU
+  2.       : 2011128
+           : /l60609
+       : BufIMM_ZC_STRU
 
-  3.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  3.       : 20130528
+           : f00179208
+       : V3R3 PPP PROJECT
 
-  4.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 封装写失败后的内存释放流程
+  4.       : 2013921
+           : j00174725
+       : UART-MODEM: 
 *****************************************************************************/
 VOS_UINT32 AT_ModemWriteData(
     VOS_UINT8                           ucIndex,
@@ -1842,7 +1842,7 @@ VOS_UINT32 AT_ModemWriteData(
     ACM_WR_ASYNC_INFO                   stCtlParam;
     VOS_INT32                           ulResult;
 
-    /* 待写入数据内存地址 */
+    /*  */
     stCtlParam.pVirAddr                 = (VOS_CHAR*)pstBuf;
     stCtlParam.pPhyAddr                 = VOS_NULL_PTR;
     stCtlParam.u32Size                  = 0;
@@ -1854,7 +1854,7 @@ VOS_UINT32 AT_ModemWriteData(
         return AT_FAILURE;
     }
 
-    /* 异步方式写数，*/
+    /* */
     ulResult = mdrv_udi_ioctl(g_alAtUdiHandle[ucIndex], ACM_IOCTL_WRITE_ASYNC, &stCtlParam);
 
     if (VOS_OK != ulResult)
@@ -1871,36 +1871,36 @@ VOS_UINT32 AT_ModemWriteData(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendDataToModem
- 功能描述  : 下行发送数据给modem口
- 输入参数  : pucDataBuf   ----    待发送下行数据内存指针
-             usLen        ----    数据长度
- 输出参数  :
- 返 回 值  : AT_SUCCESS ----      成功；
-             AT_FAILURE ----      失败
- 调用函数  :
- 被调函数  :
+     : AT_SendDataToModem
+   : modem
+   : pucDataBuf   ----    
+             usLen        ----    
+   :
+     : AT_SUCCESS ----      
+             AT_FAILURE ----      
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 
-  2.日    期   : 2011年12月8日
-    作    者   : 鲁琳/l60609
-    修改内容   : Buf类型修改为IMM_ZC_STRU
+  2.       : 2011128
+           : /l60609
+       : BufIMM_ZC_STRU
 
-  3.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：修改IMM接口
+  3.       : 2012831
+           : l60609
+       : APIMM
 
-  4.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  4.       : 20130528
+           : f00179208
+       : V3R3 PPP PROJECT
 
-  5.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 删除写失败后的释放内存流程, 由写函数内部封装
+  5.       : 2013921
+           : j00174725
+       : UART-MODEM: , 
 *****************************************************************************/
 VOS_UINT32 AT_SendDataToModem(
     VOS_UINT8                           ucIndex,
@@ -1921,14 +1921,14 @@ VOS_UINT32 AT_SendDataToModem(
         return AT_FAILURE;
     }
 
-    /*此步骤不能少，用来偏移数据尾指针*/
-    /* Modified by l60609 for AP适配项目 ，2012-08-30 Begin */
+    /**/
+    /* Modified by l60609 for AP 2012-08-30 Begin */
     pstZcPutData = (VOS_CHAR *)IMM_ZcPut(pstData, usLen);
-    /* Modified by l60609 for AP适配项目 ，2012-08-30 End */
+    /* Modified by l60609 for AP 2012-08-30 End */
 
     TAF_MEM_CPY_S(pstZcPutData, usLen, pucDataBuf, usLen);
 
-    /*将数据写往MODEM设备，写成功后内存由底软负责释放*/
+    /*MODEM*/
     if (AT_SUCCESS != AT_ModemWriteData(ucIndex, pstData))
     {
         return AT_FAILURE;
@@ -1939,38 +1939,38 @@ VOS_UINT32 AT_SendDataToModem(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendZcDataToModem
- 功能描述  : 下行发送SK_buff数据给modem口
- 输入参数  : pucDataBuf   ----    待发送下行数据内存指针
-             usLen        ----    数据长度
- 输出参数  :
- 返 回 值  : AT_SUCCESS ----      成功；
-             AT_FAILURE ----      失败
- 调用函数  :
- 被调函数  :
+     : AT_SendZcDataToModem
+   : SK_buffmodem
+   : pucDataBuf   ----    
+             usLen        ----    
+   :
+     : AT_SUCCESS ----      
+             AT_FAILURE ----      
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 
-  2.日    期   : 2011年12月8日
-    作    者   : 鲁琳/l60609
-    修改内容   : Buf类型修改为IMM_ZC_STRU
+  2.       : 2011128
+           : /l60609
+       : BufIMM_ZC_STRU
 
-  3.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+  3.       : 20130528
+           : f00179208
+       : V3R3 PPP PROJECT
 
-  4.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加支持UART端口
+  4.       : 2013921
+           : j00174725
+       : UART-MODEM: UART
 
-  5.日    期   : 2015年3月31日
-    作    者   : A00165503
-    修改内容   : DTS2015032704953: HSUART端口切换到CMD/ONLINE_CMD模式时,
-                 需要清除HSUART的缓存队列数据, 防止当前缓存队列满时, 主动上
-                 报的命令丢失
+  5.       : 2015331
+           : A00165503
+       : DTS2015032704953: HSUARTCMD/ONLINE_CMD,
+                 HSUART, , 
+                 
 *****************************************************************************/
 VOS_UINT32 AT_SendZcDataToModem(
     VOS_UINT16                          usPppId,
@@ -2006,31 +2006,31 @@ VOS_UINT32 AT_SendZcDataToModem(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendCsdZcDataToModem
- 功能描述  : 下行发送SK_buff数据给modem口
- 输入参数  : pucDataBuf   ----    待发送下行数据内存指针
-             usLen        ----    数据长度
- 输出参数  :
- 返 回 值  : AT_SUCCESS ----      成功；
-             AT_FAILURE ----      失败
- 调用函数  :
- 被调函数  :
+     : AT_SendCsdZcDataToModem
+   : SK_buffmodem
+   : pucDataBuf   ----    
+             usLen        ----    
+   :
+     : AT_SUCCESS ----      
+             AT_FAILURE ----      
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
+       :
+  1.       : 20130528
+           : f00179208
+       : V3R3 PPP PROJECT
 
-  2.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 删除写失败后的释放内存流程, 由写函数内部封装
+  2.       : 2013921
+           : j00174725
+       : UART-MODEM: , 
 *****************************************************************************/
 VOS_UINT32 AT_SendCsdZcDataToModem(
     VOS_UINT8                           ucIndex,
     IMM_ZC_STRU                        *pstDataBuf
 )
 {
-    /*将数据写往MODEM设备，写成功后内存由底软负责释放*/
+    /*MODEM*/
     if (AT_SUCCESS != AT_ModemWriteData(ucIndex, pstDataBuf))
     {
         return AT_FAILURE;
@@ -2040,21 +2040,21 @@ VOS_UINT32 AT_SendCsdZcDataToModem(
 }
 
 /*****************************************************************************
-函 数 名  : AT_UsbModemEnableCB
-功能描述  : MODEM设备使能通知回调，注册给底软
-输入参数  : ucEnable    ----  是否使能
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
+    : AT_UsbModemEnableCB
+  : MODEM
+  : ucEnable    ----  
+  : 
+    : 
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月27日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 20130527
+          : f00179208
+      : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_VOID AT_UsbModemEnableCB(PS_BOOL_ENUM_UINT8 ucEnable)
 {
@@ -2068,24 +2068,24 @@ VOS_VOID AT_UsbModemEnableCB(PS_BOOL_ENUM_UINT8 ucEnable)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UsbModemReadDataCB
- 功能描述  : MODEM设备数据读回调，注册给底软
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_UsbModemReadDataCB
+   : MODEM
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
- 1.日    期   : 2011年10月18日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月8日
-   作    者   : 鲁琳/l60609
-   修改内容   : Buf类型修改为IMM_ZC_STRU
- 3.日    期   : 2013年05月25日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
+       :
+ 1.       : 20111018
+          : sunshaohua
+      : 
+ 2.       : 2011128
+          : /l60609
+      : BufIMM_ZC_STRU
+ 3.       : 20130525
+          : f00179208
+      : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_VOID AT_UsbModemReadDataCB( VOS_VOID )
 {
@@ -2095,43 +2095,43 @@ VOS_VOID AT_UsbModemReadDataCB( VOS_VOID )
 
     pstBuf          = VOS_NULL_PTR;
 
-    /* HSIC MODEM索引号 */
+    /* HSIC MODEM */
     ucIndex     = AT_CLIENT_TAB_MODEM_INDEX;
 
     AT_MODEM_DBG_UL_DATA_READ_CB_NUM(1);
 
-    /* Modified by L60609 for PS Project，2011-12-06,  Begin*/
+    /* Modified by L60609 for PS Project2011-12-06,  Begin*/
     if (AT_SUCCESS == AT_ModemGetUlDataBuf(ucIndex, &pstBuf))
     {
 
-        /*MODEM链路号 */
+        /*MODEM */
         ucDlci      = AT_MODEM_USER_DLCI;
 
-        /* 根据设备当前模式，分发上行数据 */
+        /*  */
         At_ModemDataInd(ucIndex, ucDlci, pstBuf);
     }
-    /* Modified by L60609 for PS Project，2011-12-06,  End*/
+    /* Modified by L60609 for PS Project2011-12-06,  End*/
 
     return;
 }
 
 /*****************************************************************************
-函 数 名  : AT_UsbModemReadMscCB
-功能描述  : 管脚信号处理
-输入参数  : pstRcvedMsc ----      底软通知管脚信号指针
-输出参数  : 无
-返 回 值  : AT_SUCCESS  ----      成功；
-            AT_FAILURE  ----      失败
-调用函数  :
-被调函数  :
+    : AT_UsbModemReadMscCB
+  : 
+  : pstRcvedMsc ----      
+  : 
+    : AT_SUCCESS  ----      
+            AT_FAILURE  ----      
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月25日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 20130525
+          : f00179208
+      : V3R3 PPP PROJECT
 *****************************************************************************/
 VOS_VOID AT_UsbModemReadMscCB(AT_DCE_MSC_STRU *pstRcvedMsc)
 {
@@ -2145,13 +2145,13 @@ VOS_VOID AT_UsbModemReadMscCB(AT_DCE_MSC_STRU *pstRcvedMsc)
         return;
     }
 
-    /* MODEM索引号 */
+    /* MODEM */
     ucIndex     = AT_CLIENT_TAB_MODEM_INDEX;
 
-    /*MODEM链路号 */
+    /*MODEM */
     ucDlci      = AT_MODEM_USER_DLCI;
 
-     /* 输入管脚信号可维可测 */
+     /*  */
     AT_MNTN_TraceInputMsc(ucIndex, pstRcvedMsc);
 
     At_ModemMscInd(ucIndex, ucDlci, pstRcvedMsc);
@@ -2160,27 +2160,27 @@ VOS_VOID AT_UsbModemReadMscCB(AT_DCE_MSC_STRU *pstRcvedMsc)
 }
 
 /*****************************************************************************
-函 数 名  : AT_UsbModemInit
-功能描述  : MODEM设备初始化
-输入参数  : VOS_VOID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
+    : AT_UsbModemInit
+  : MODEM
+  : VOS_VOID
+  : 
+    : VOS_VOID
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年10月17日
-   作    者   : sunshaohua
-   修改内容   : 新生成函数
- 2.日    期   : 2013年05月27日
-   作    者   : f00179208
-   修改内容   : V3R3 PPP PROJECT
- 3.日    期   : 2013年11月06日
-   作    者   : j00174725
-   修改内容   : V3R3 内存裁剪
- 4.日    期   : 2015年10月22日
-   作    者   : y00213812
-   修改内容   : 显式声明，下行数据不需要copy
+      :
+ 1.       : 20111017
+          : sunshaohua
+      : 
+ 2.       : 20130527
+          : f00179208
+      : V3R3 PPP PROJECT
+ 3.       : 20131106
+          : j00174725
+      : V3R3 
+ 4.       : 20151022
+          : y00213812
+      : copy
 *****************************************************************************/
 VOS_VOID AT_UsbModemInit( VOS_VOID )
 {
@@ -2190,7 +2190,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
     ucIndex         = AT_CLIENT_TAB_MODEM_INDEX;
     stParam.devid   = UDI_ACM_MODEM_ID;
 
-    /* 打开Device，获得ID */
+    /* DeviceID */
     g_alAtUdiHandle[ucIndex] = mdrv_udi_open(&stParam);
 
     if (UDI_INVALID_HANDLE == g_alAtUdiHandle[ucIndex])
@@ -2200,7 +2200,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 注册MODEM设备上行数据接收回调 */
+    /* MODEM */
     if (VOS_OK != mdrv_udi_ioctl (g_alAtUdiHandle[ucIndex], ACM_IOCTL_SET_READ_CB, AT_UsbModemReadDataCB))
     {
         AT_ERR_LOG("AT_UsbModemInit, ERROR, Set data read callback for modem failed!");
@@ -2208,7 +2208,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 注册MODEM下行数据内存释放接口 */
+    /* MODEM */
     if (VOS_OK != mdrv_udi_ioctl (g_alAtUdiHandle[ucIndex], ACM_IOCTL_SET_FREE_CB, AT_ModemFreeDlDataBuf))
     {
         AT_ERR_LOG("AT_UsbModemInit, ERROR, Set memory free callback for modem failed!");
@@ -2216,7 +2216,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 注册MODEM下行数据不需要拷贝 */
+    /* MODEM */
     if (VOS_OK != mdrv_udi_ioctl (g_alAtUdiHandle[ucIndex], ACM_IOCTL_WRITE_DO_COPY, (void *)0))
     {
         AT_ERR_LOG("AT_UsbModemInit, ERROR, Set not do copy for modem failed!");
@@ -2224,7 +2224,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 注册管脚信号通知回调 */
+    /*  */
     if (VOS_OK != mdrv_udi_ioctl (g_alAtUdiHandle[ucIndex], ACM_MODEM_IOCTL_SET_MSC_READ_CB, AT_UsbModemReadMscCB))
     {
         AT_ERR_LOG("AT_UsbModemInit, ERROR, Set msc read callback for modem failed!");
@@ -2232,7 +2232,7 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 注册MODEM设备使能、去使能通知回调 */
+    /* MODEM */
     if (VOS_OK != mdrv_udi_ioctl (g_alAtUdiHandle[ucIndex], ACM_MODEM_IOCTL_SET_REL_IND_CB, AT_UsbModemEnableCB))
     {
         AT_ERR_LOG("AT_UsbModemInit, ERROR, Set enable callback for modem failed!");
@@ -2240,13 +2240,13 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
         return;
     }
 
-    /* 设置MODEM设备上行数据buffer规格 */
+    /* MODEMbuffer */
     AT_ModemInitUlDataBuf(ucIndex, AT_MODEM_UL_DATA_BUFF_SIZE, AT_MODEM_UL_DATA_BUFF_NUM);
 
-    /* 初始化MODME统计信息 */
+    /* MODME */
     AT_InitModemStats();
 
-    /*注册client id*/
+    /*client id*/
     At_ModemEst(ucIndex, AT_CLIENT_ID_MODEM, AT_USB_MODEM_PORT_NO);
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_MODEM, ID_AT_MNTN_RESULT_MODEM);
@@ -2255,21 +2255,21 @@ VOS_VOID AT_UsbModemInit( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UsbModemClose
- 功能描述  : USB拔除时，关闭MODEM设备
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_UsbModemClose
+   : USBMODEM
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年1月6日
-    作    者   : 李军 l00171473
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月22日
-    作    者   : f00179208
-    修改内容   : DTS2012052205142, 增加VIDEO PHONE的流控
+       :
+  1.       : 201216
+           :  l00171473
+       : 
+  2.       : 2012522
+           : f00179208
+       : DTS2012052205142, VIDEO PHONE
 *****************************************************************************/
 VOS_VOID AT_UsbModemClose(VOS_VOID)
 {
@@ -2277,7 +2277,7 @@ VOS_VOID AT_UsbModemClose(VOS_VOID)
 
     ucIndex = AT_CLIENT_TAB_MODEM_INDEX;
 
-    /* 去注册MODEM流控点(经TTF确认未注册流控点也可以去注册流控点)。 */
+    /* MODEM(TTF) */
 
     AT_DeRegModemPsDataFCPoint(ucIndex, AT_GET_RABID_FROM_EXRABID(gastAtClientTab[ucIndex].ucExPsRabId));
 
@@ -2294,18 +2294,18 @@ VOS_VOID AT_UsbModemClose(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetUsbDebugFlag
- 功能描述  : 设置调试模式
- 输入参数  : VOS_UINT32 ulFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_SetUsbDebugFlag
+   : 
+   : VOS_UINT32 ulFlag
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年04月10日
-    作    者   : f00179208
-    修改内容   : 新生成函数
+       :
+  1.       : 20130410
+           : f00179208
+       : 
 *****************************************************************************/
 VOS_VOID AT_SetUsbDebugFlag(VOS_UINT32 ulFlag)
 {
@@ -2314,13 +2314,13 @@ VOS_VOID AT_SetUsbDebugFlag(VOS_UINT32 ulFlag)
 
 /*****************************************************************************
  Prototype      : At_RcvFromUsbCom
- Description    : AT注册给USB COM驱动的回调函数，用于从串口中获取数据
- Input          : ucPortNo     --    端口号
-                  pucData      --    AT从串口接收的数据指针
-                  uslength　   --    AT从串口接收的数据长度
+ Description    : ATUSB COM
+ Input          : ucPortNo     --    
+                  pucData      --    AT
+                  uslength   --    AT
  Output         : ---
- Return Value   : AT_DRV_FAILURE --- 成功
-                  AT_DRV_FAILURE --- 失败
+ Return Value   : AT_DRV_FAILURE --- 
+                  AT_DRV_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -2330,10 +2330,10 @@ VOS_VOID AT_SetUsbDebugFlag(VOS_UINT32 ulFlag)
     Modification: Created function
   2.Date        : 2012-02-24
     Author      : L47619
-    Modification: V7R1C50 IPC项目:增加HSIC AT通道处理AT命令的逻辑
-  3.日    期   : 2012年8月3日
-    作    者   : L60609
-    修改内容   : MUX项目：增加MUX AT通道处理AT命令的逻辑
+    Modification: V7R1C50 IPC:HSIC ATAT
+  3.       : 201283
+           : L60609
+       : MUXMUX ATAT
 *****************************************************************************/
 
 VOS_INT At_RcvFromUsbCom(
@@ -2344,10 +2344,10 @@ VOS_INT At_RcvFromUsbCom(
 {
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulRet;
-    /* Added by L60609 for MUX，2012-08-08,  Begin */
+    /* Added by L60609 for MUX2012-08-08,  Begin */
     VOS_UINT32                          ulMuxUserFlg;
     VOS_UINT32                          ulHsicUserFlg;
-    /* Added by L60609 for MUX，2012-08-08,  End */
+    /* Added by L60609 for MUX2012-08-08,  End */
 
     if (VOS_TRUE == g_ulAtUsbDebugFlag)
     {
@@ -2366,10 +2366,10 @@ VOS_INT At_RcvFromUsbCom(
         return AT_DRV_FAILURE;
     }
 
-    /*PCUI和CTRL共用*/
+    /*PCUICTRL*/
     for (ucIndex = 0; ucIndex < AT_MAX_CLIENT_NUM; ucIndex++)
     {
-        /* Modified by L60609 for MUX，2012-08-03,  Begin */
+        /* Modified by L60609 for MUX2012-08-03,  Begin */
         ulMuxUserFlg = AT_CheckMuxUser(ucIndex);
         ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
 
@@ -2388,7 +2388,7 @@ VOS_INT At_RcvFromUsbCom(
                 }
             }
         }
-        /* Modified by L60609 for MUX，2012-08-03,  End */
+        /* Modified by L60609 for MUX2012-08-03,  End */
     }
 
     if (VOS_TRUE == g_ulAtUsbDebugFlag)
@@ -2428,35 +2428,35 @@ VOS_INT At_RcvFromUsbCom(
 
 
 /*****************************************************************************
- 函 数 名  : At_UsbPcuiEst
- 功能描述  : USB PCUI链路的建立
- 输入参数  : TAF_UINT8 ucPortNo
- 输出参数  : 无
- 返 回 值  : VOS_OK
+     : At_UsbPcuiEst
+   : USB PCUI
+   : TAF_UINT8 ucPortNo
+   : 
+     : VOS_OK
              VOS_ERROR
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008-06-09
-    作    者   : L47619
-    修改内容   : Created function
-  2.日    期   : 2010年7月16日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单号：DTS2010071402189，支持AT模块多CLIENT ID的回放
-  3.日    期   : 2010年9月14日
-    作    者   : z00161729
-    修改内容   : DTS2010090901291:PC VOICE通话过程中,PC重启/待机/关机/休眠时电话无法挂断
-  4.日    期   : 2011年9月30日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id;DRV->DMS
-  5.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+       :
+  1.       : 2008-06-09
+           : L47619
+       : Created function
+  2.       : 2010716
+           : /f62575
+       : DTS2010071402189ATCLIENT ID
+  3.       : 2010914
+           : z00161729
+       : DTS2010090901291:PC VOICE,PC///
+  4.       : 2011930
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id;DRV->DMS
+  5.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_UINT32 At_UsbPcuiEst(VOS_UINT8 ucPortNo)
 {
-    /* Modified by L60609 for AT Project，2011-10-04,  Begin*/
+    /* Modified by L60609 for AT Project2011-10-04,  Begin*/
     VOS_UINT8                           ucIndex;
 
     if (AT_USB_COM_PORT_NO != ucPortNo)
@@ -2467,18 +2467,18 @@ VOS_UINT32 At_UsbPcuiEst(VOS_UINT8 ucPortNo)
 
     ucIndex = AT_CLIENT_TAB_PCUI_INDEX;
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_PCUI, ID_AT_MNTN_RESULT_PCUI);
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_PCUI;
     gastAtClientTab[ucIndex].ucPortNo        = ucPortNo;
     gastAtClientTab[ucIndex].UserType        = AT_USBCOM_USER;
     gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
 
-    /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+    /* PS_MEMSET */
     gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
     gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
     gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -2486,54 +2486,54 @@ VOS_UINT32 At_UsbPcuiEst(VOS_UINT8 ucPortNo)
     gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-    /* Modified by L60609 for AT Project，2011-10-14,  Begin*/
-    /*向DMS注册从串口中获取数据的回调函数*/
+    /* Modified by L60609 for AT Project2011-10-14,  Begin*/
+    /*DMS*/
     (VOS_VOID)DMS_COM_RCV_CALLBACK_REGI(ucPortNo, (pComRecv)At_RcvFromUsbCom);
 
 
-    /* Modified by L60609 for AT Project，2011-10-14,  End*/
+    /* Modified by L60609 for AT Project2011-10-14,  End*/
 
     AT_LOG1("At_UsbPcuiEst ucIndex:",ucIndex);
 
-    /* Modified by L60609 for AT Project，2011-10-04,  End*/
+    /* Modified by L60609 for AT Project2011-10-04,  End*/
     return VOS_OK;
 }
 
 
 /*****************************************************************************
- 函 数 名  : At_UsbCtrEst
- 功能描述  : AT PID在初始化时，需要执行control 链路的初始化工作
- 输入参数  : ucPortNo    - 端口号
- 输出参数  : 无
- 返 回 值  : VOS_OK
+     : At_UsbCtrEst
+   : AT PIDcontrol 
+   : ucPortNo    - 
+   : 
+     : VOS_OK
              VOS_ERROR
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2008年7月12日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 2008712
+           : s62952
+       : 
 
-  2.日    期   : 2011年10月03日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id;DRV->DMS
+  2.       : 20111003
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id;DRV->DMS
 
-  3.日    期   : 2011年11月15日
-    作    者   : o00132663
-    修改内容   : AT融合项目，根据检视意见修改M2特性宏使用逻辑
+  3.       : 20111115
+           : o00132663
+       : ATM2
 
-  4.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
+  4.      : 20130313
+          : z00214637
+      : BodySAR
 
-  5.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+  5.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_UINT32 At_UsbCtrEst(VOS_UINT8 ucPortNo)
 {
-    /* Modified by L60609 for AT Project，2011-10-04,  Begin*/
+    /* Modified by L60609 for AT Project2011-10-04,  Begin*/
     VOS_UINT8                           ucIndex;
 
 
@@ -2545,18 +2545,18 @@ VOS_UINT32 At_UsbCtrEst(VOS_UINT8 ucPortNo)
 
     ucIndex = AT_CLIENT_TAB_CTRL_INDEX;
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_CTRL, ID_AT_MNTN_RESULT_CTRL);
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_CTRL;
     gastAtClientTab[ucIndex].ucPortNo        = ucPortNo;
     gastAtClientTab[ucIndex].UserType        = AT_CTR_USER;
     gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
 
-    /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+    /* PS_MEMSET */
     gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
     gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
     gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -2565,27 +2565,27 @@ VOS_UINT32 At_UsbCtrEst(VOS_UINT8 ucPortNo)
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
 
-    /*向底软DMS从串口中获取数据的回调函数*/
+    /*DMS*/
     (VOS_VOID)DMS_COM_RCV_CALLBACK_REGI(ucPortNo, (pComRecv)At_RcvFromUsbCom);
-    /* Modified by L60609 for AT Project，2011-10-14,  End*/
+    /* Modified by L60609 for AT Project2011-10-14,  End*/
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : At_UsbPcui2Est
- 功能描述  : AT PID在初始化时，需要执行PCUI2链路的初始化工作
- 输入参数  : ucPortNo    - 端口号
- 输出参数  : 无
- 返 回 值  : VOS_OK
+     : At_UsbPcui2Est
+   : AT PIDPCUI2
+   : ucPortNo    - 
+   : 
+     : VOS_OK
              VOS_ERROR
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 At_UsbPcui2Est(VOS_UINT8 ucPortNo)
 {
@@ -2599,18 +2599,18 @@ VOS_UINT32 At_UsbPcui2Est(VOS_UINT8 ucPortNo)
 
     ucIndex = AT_CLIENT_TAB_PCUI2_INDEX;
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_PCUI2, ID_AT_MNTN_RESULT_PCUI2);
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_PCUI2;
     gastAtClientTab[ucIndex].ucPortNo        = ucPortNo;
     gastAtClientTab[ucIndex].UserType        = AT_PCUI2_USER;
     gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
 
-    /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+    /* PS_MEMSET */
     gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
     gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
     gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -2618,35 +2618,35 @@ VOS_UINT32 At_UsbPcui2Est(VOS_UINT8 ucPortNo)
     gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-    /*向底软DMS从串口中获取数据的回调函数*/
+    /*DMS*/
     (VOS_VOID)DMS_COM_RCV_CALLBACK_REGI(ucPortNo, (pComRecv)At_RcvFromUsbCom);
 
     return VOS_OK;
 }
 
 /******************************************************************************
- 函 数 名  : AT_UART_GetUlDataBuff
- 功能描述  : 获取UART设备上行数据存储空间
- 输入参数  : ucIndex    - 端口索引
- 输出参数  : ppucData   - 数据信息空间
-             pulLen     - 数据长度
- 返 回 值  : AT_SUCCESS - 成功
-             AT_FAILURE - 失败
- 调用函数  :
- 被调函数  :
+     : AT_UART_GetUlDataBuff
+   : UART
+   : ucIndex    - 
+   : ppucData   - 
+             pulLen     - 
+     : AT_SUCCESS - 
+             AT_FAILURE - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : sunshaohua
+       : 
 
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
+  2.       : 2012810
+           : L00171473
+       : DTS2012082204471, TQE
 
-  3.日    期   : 2013年9月25日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 增加UDI句柄有效性检查
+  3.       : 2013925
+           : j00174725
+       : UART-MODEM: UDI
 *****************************************************************************/
 VOS_UINT32 AT_UART_GetUlDataBuff(
     VOS_UINT8                           ucIndex,
@@ -2665,7 +2665,7 @@ VOS_UINT32 AT_UART_GetUlDataBuff(
         return AT_FAILURE;
     }
 
-    /* 获取底软上行数据BUFFER */
+    /* BUFFER */
     stCtlParam.pVirAddr = VOS_NULL_PTR;
     stCtlParam.pPhyAddr = VOS_NULL_PTR;
     stCtlParam.u32Size  = 0;
@@ -2692,29 +2692,29 @@ VOS_UINT32 AT_UART_GetUlDataBuff(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UART0_WriteDlDataSync
- 功能描述  : 封装UART设备同步写数据接口
- 输入参数  : ucIndex    - 端口索引
-             pucData    - 上行数据指针
-             ulLen      - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS - 成功
-             AT_FAILURE - 失败
- 调用函数  :
- 被调函数  :
+     : AT_UART0_WriteDlDataSync
+   : UART
+   : ucIndex    - 
+             pucData    - 
+             ulLen      - 
+   : 
+     : AT_SUCCESS - 
+             AT_FAILURE - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : sunshaohua
+       : 
 
-  2.日    期   : 2011年12月7日
-    作    者   : 李军 l00171473
-    修改内容   : DTS2011120801675 支持UART通道校准修改
+  2.       : 2011127
+           :  l00171473
+       : DTS2011120801675 UART
 
-  3.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 统一UDI句柄的维护
+  3.       : 20131112
+           : A00165503
+       : UART-MODEM: UDI
 *****************************************************************************/
 VOS_UINT32 AT_UART_WriteDataSync(
     VOS_UINT8                           ucIndex,
@@ -2725,7 +2725,7 @@ VOS_UINT32 AT_UART_WriteDataSync(
     UDI_HANDLE                          lUdiHandle;
     VOS_INT32                           lResult;
 
-    /* 检查UDI句柄有效性 */
+    /* UDI */
     lUdiHandle = g_alAtUdiHandle[ucIndex];
     if (UDI_INVALID_HANDLE == lUdiHandle)
     {
@@ -2733,7 +2733,7 @@ VOS_UINT32 AT_UART_WriteDataSync(
         return AT_FAILURE;
     }
 
-    /* 检查数据有效性 */
+    /*  */
     if ((VOS_NULL_PTR == pucData) || (0 == ulLen))
     {
         AT_ERR_LOG("AT_UART_WriteDataSync: DATA is invalid!\r\n");
@@ -2754,21 +2754,21 @@ VOS_UINT32 AT_UART_WriteDataSync(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UART_SendDlData
- 功能描述  : 写数据至UART设备
- 输入参数  : ucIndex    - 端口索引
-             pucData    - 数据地址
-             usLen      - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS - 成功
-             AT_FAILURE - 失败
- 调用函数  :
- 被调函数  :
+     : AT_UART_SendDlData
+   : UART
+   : ucIndex    - 
+             pucData    - 
+             usLen      - 
+   : 
+     : AT_SUCCESS - 
+             AT_FAILURE - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年09月21日
-    作    者   : j00174725
-    修改内容   : 新生成函数
+       :
+  1.       : 20130921
+           : j00174725
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_UART_SendDlData(
     VOS_UINT8                           ucIndex,
@@ -2776,30 +2776,30 @@ VOS_UINT32 AT_UART_SendDlData(
     VOS_UINT16                          usLen
 )
 {
-    /* 同步写UART设备, 数据无需释放 */
+    /* UART,  */
     return AT_UART_WriteDataSync(ucIndex, pucData, usLen);
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UART_SendRawDataFromOm
- 功能描述  : 下行发送OM数据给UART口, 提供给OM的接口
- 输入参数  : pucVirAddr - 待发送下行数据虚地址
-             pucPhyAddr - 待发送下行数据实地址
-             usLen   - 数据长度
- 输出参数  :
- 返 回 值  : VOS_OK  - 成功
-             VOS_ERR - 失败
- 调用函数  :
- 被调函数  :
+     : AT_UART_SendRawDataFromOm
+   : OMUART, OM
+   : pucVirAddr - 
+             pucPhyAddr - 
+             usLen   - 
+   :
+     : VOS_OK  - 
+             VOS_ERR - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 
-  2.日    期   : 2013年11月12日
-    作    者   : A00165503
-    修改内容   : UART-MODEM: 调用封装的UART同步写接口
+  2.       : 20131112
+           : A00165503
+       : UART-MODEM: UART
 *****************************************************************************/
 VOS_UINT32 AT_UART_SendRawDataFromOm(
     VOS_UINT8                          *pucVirAddr,
@@ -2822,18 +2822,18 @@ VOS_UINT32 AT_UART_SendRawDataFromOm(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HSUART_UlDataReadCB
- 功能描述  : UART设备数据读回调，注册给底软
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_HSUART_UlDataReadCB
+   : UART
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月18日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111018
+           : sunshaohua
+       : 
 *****************************************************************************/
 VOS_VOID AT_UART_UlDataReadCB(VOS_VOID)
 {
@@ -2846,7 +2846,7 @@ VOS_VOID AT_UART_UlDataReadCB(VOS_VOID)
 
     if (AT_SUCCESS == AT_UART_GetUlDataBuff(ucIndex, &pucData, &ulLen))
     {
-        /* 根据设备当前模式，分发上行数据 */
+        /*  */
         At_RcvFromUsbCom(AT_UART_PORT_NO, pucData, (VOS_UINT16)ulLen);
     }
 
@@ -2854,34 +2854,34 @@ VOS_VOID AT_UART_UlDataReadCB(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UART_InitLink
- 功能描述  : 根据NV项配置UART端口的工作模式
- 输入参数  : ucIndex ---- 端口索引
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_UART_InitLink
+   : NVUART
+   : ucIndex ---- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2010928
+           : A00165503
+       : 
 
-  2.日    期   : 2011年10月24日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配client id
+  2.       : 20111024
+           : /l60609
+       : AT Project: client id
 
-  3.日    期   : 2011年12月7日
-    作    者   : 李军 l00171473
-    修改内容   : DTS2011120801675, UART通道校准修改
+  3.       : 2011127
+           :  l00171473
+       : DTS2011120801675, UART
 
-  4.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
+  4.       : 2012810
+           : L00171473
+       : DTS2012082204471, TQE
 
-  5.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
+  5.       : 20130517
+           : m00217266
+       : nv
 *****************************************************************************/
 VOS_VOID AT_UART_InitLink(VOS_UINT8 ucIndex)
 {
@@ -2891,7 +2891,7 @@ VOS_VOID AT_UART_InitLink(VOS_UINT8 ucIndex)
     stDefaultLinkType.enUartLinkType = AT_UART_LINK_TYPE_BUTT;
 
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
     gastAtClientTab[ucIndex].ucPortNo  = AT_UART_PORT_NO;
@@ -2899,51 +2899,51 @@ VOS_VOID AT_UART_InitLink(VOS_UINT8 ucIndex)
     gastAtClientTab[ucIndex].ucUsed    = AT_CLIENT_USED;
 
 
-    /* 读取UART端口默认工作模式NV项 */
+    /* UARTNV */
     if (NV_OK != NV_ReadEx(MODEM_ID_0, en_NV_Item_DEFAULT_LINK_OF_UART,
                         &stDefaultLinkType.enUartLinkType,
                         sizeof(stDefaultLinkType.enUartLinkType)))
     {
-        /* NV项读取失败，将UART端口的工作模式设置为OM模式 */
+        /* NVUARTOM */
         AT_ERR_LOG("AT_UART_InitLink:Read NV failed!");
 
-        /*记录AT/OM通道所对应的索引号*/
+        /*AT/OM*/
         gucAtOmIndex = ucIndex;
 
-        /* 切换至OM数传模式 */
+        /* OM */
         At_SetMode(ucIndex, AT_DATA_MODE, AT_OM_DATA_MODE);
         gastAtClientTab[ucIndex].DataState = AT_DATA_START_STATE;
 
         AT_AddUsedClientId2Tab(AT_CLIENT_TAB_UART_INDEX);
 
-        /* 通知OAM切换UART至OM模式 */
+        /* OAMUARTOM */
         CBTCPM_NotifyChangePort(AT_UART_PORT);
     }
     else
     {
-        /* NV读取成功，检查UART端口的默认工作模式 */
+        /* NVUART */
         if (AT_UART_LINK_TYPE_AT != stDefaultLinkType.enUartLinkType)
         {
             AT_NORM_LOG("AT_UART_InitLink:DEFAULT UART LINK TYPE is OM!");
 
-            /*记录AT/OM通道所对应的索引号*/
+            /*AT/OM*/
             gucAtOmIndex = ucIndex;
 
-            /* 切换至OM数传模式 */
+            /* OM */
             At_SetMode(ucIndex, AT_DATA_MODE, AT_OM_DATA_MODE);
             gastAtClientTab[ucIndex].DataState = AT_DATA_START_STATE;
 
             AT_AddUsedClientId2Tab(AT_CLIENT_TAB_UART_INDEX);
 
-            /* 通知OAM切换UART至OM模式 */
+            /* OAMUARTOM */
             CBTCPM_NotifyChangePort(AT_UART_PORT);
         }
         else
         {
-            /* 填写用户表项 */
+            /*  */
             gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_UART;
 
-            /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+            /* PS_MEMSET */
             gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
             gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
             gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -2957,31 +2957,31 @@ VOS_VOID AT_UART_InitLink(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HSUART_InitPort
- 功能描述  : Uart设备初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_HSUART_InitPort
+   : Uart
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : sunshaohua
+       : 
 
-  2.日    期   : 2011年12月7日
-    作    者   : 李军 l00171473
-    修改内容   : DTS2011120801675: UART通道校准修改，底软UART的实现方式修改
-                 了，AT不用管理Buffer
+  2.       : 2011127
+           :  l00171473
+       : DTS2011120801675: UARTUART
+                 ATBuffer
 
-  3.日    期   : 2013年9月21日
-    作    者   : j00174725
-    修改内容   : UART-MODEM: 统一UDI句柄的维护
+  3.       : 2013921
+           : j00174725
+       : UART-MODEM: UDI
 
-  4.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+  4.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_VOID AT_UART_InitPort(VOS_VOID)
 {
@@ -2997,13 +2997,13 @@ VOS_VOID AT_UART_InitPort(VOS_VOID)
     lUdiHandle = mdrv_udi_open(&stParam);
     if (UDI_INVALID_HANDLE != lUdiHandle)
     {
-        /* 注册UART设备上行数据接收回调 */
+        /* UART */
         if (VOS_OK != mdrv_udi_ioctl (lUdiHandle, UART_IOCTL_SET_READ_CB, AT_UART_UlDataReadCB))
         {
             AT_ERR_LOG("AT_UART_InitPort: Reg data read callback failed!\r\n");
         }
 
-        /* 初始化UART链路 */
+        /* UART */
         AT_UART_InitLink(ucIndex);
         g_alAtUdiHandle[ucIndex] = lUdiHandle;
     }
@@ -3018,19 +3018,19 @@ VOS_VOID AT_UART_InitPort(VOS_VOID)
 
 
 /*****************************************************************************
- 函 数 名  : AT_CtrlDCD
- 功能描述  : 控制DCD信号
- 输入参数  : ucIndex   - 端口索引
-             enIoLevel - 信号电平
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CtrlDCD
+   : DCD
+   : ucIndex   - 
+             enIoLevel - 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2013923
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID AT_CtrlDCD(
     VOS_UINT8                           ucIndex,
@@ -3056,19 +3056,19 @@ VOS_VOID AT_CtrlDCD(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CtrlDSR
- 功能描述  : 控制DSR信号
- 输入参数  : ucIndex   - 端口索引
-             enIoLevel - 信号电平
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CtrlDSR
+   : DSR
+   : ucIndex   - 
+             enIoLevel - 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2013923
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID AT_CtrlDSR(
     VOS_UINT8                           ucIndex,
@@ -3094,19 +3094,19 @@ VOS_VOID AT_CtrlDSR(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CtrlCTS
- 功能描述  : 控制CTS信号
- 输入参数  : ucIndex   - 端口索引
-             enIoLevel - 信号电平
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CtrlCTS
+   : CTS
+   : ucIndex   - 
+             enIoLevel - 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2013923
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID AT_CtrlCTS(
     VOS_UINT8                           ucIndex,
@@ -3132,19 +3132,19 @@ VOS_VOID AT_CtrlCTS(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CtrlRI
- 功能描述  : 控制RI信号
- 输入参数  : ucIndex   - 端口索引
-             enIoLevel - 信号电平
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CtrlRI
+   : RI
+   : ucIndex   - 
+             enIoLevel - 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2013923
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID AT_CtrlRI(
     VOS_UINT8                           ucIndex,
@@ -3170,10 +3170,10 @@ VOS_VOID AT_CtrlRI(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetIoLevel
- 功能描述  : 获取指定信号电平
- 输入参数  : ucIndex          - 端口索引
-             ucIoCtrl         - 管脚信号定义:
+     : AT_GetIoLevel
+   : 
+   : ucIndex          - 
+             ucIoCtrl         - :
                                 IO_CTRL_FC
                                 IO_CTRL_DSR
                                 IO_CTRL_DTR
@@ -3181,16 +3181,16 @@ VOS_VOID AT_CtrlRI(
                                 IO_CTRL_CTS
                                 IO_CTRL_RI
                                 IO_CTRL_DCD
- 输出参数  : 无
- 返 回 值  : AT_IO_LEVEL_LOW  - 低电平
-             AT_IO_LEVEL_HIGH - 高电平
- 调用函数  :
- 被调函数  :
+   : 
+     : AT_IO_LEVEL_LOW  - 
+             AT_IO_LEVEL_HIGH - 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 2013923
+           : A00165503
+       : 
 *****************************************************************************/
 AT_IO_LEVEL_ENUM_UINT8 AT_GetIoLevel(
     VOS_UINT8                           ucIndex,
@@ -3206,19 +3206,19 @@ AT_IO_LEVEL_ENUM_UINT8 AT_GetIoLevel(
 }
 
 /*****************************************************************************
- 函 数 名  : App_VcomRecvCallbackRegister
- 功能描述  : 注册回调函数
- 输入参数  : uPortNo
+     : App_VcomRecvCallbackRegister
+   : 
+   : uPortNo
              pCallback
- 输出参数  : 无
- 返 回 值  : int
- 调用函数  :
- 被调函数  :
+   : 
+     : int
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : sunshaohua
+       : 
 *****************************************************************************/
 int  App_VcomRecvCallbackRegister(unsigned char  uPortNo, pComRecv pCallback)
 {
@@ -3226,27 +3226,27 @@ int  App_VcomRecvCallbackRegister(unsigned char  uPortNo, pComRecv pCallback)
 }
 
 /*****************************************************************************
- 函 数 名  : At_RcvFromAppCom
- 功能描述  : 注册给应用的接口，用于接收AT命令
- 输入参数  : ucVcomId    - VCOM设备索引号
-             *pData      - 指向数据的指针
-             uslength    - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : At_RcvFromAppCom
+   : AT
+   : ucVcomId    - VCOM
+             *pData      - 
+             uslength    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月20日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配 client id
-  3.日    期   : 2012年11月28日
-    作    者   : l00227485
-    修改内容   : DSDA:新增8个VCOM通道后的处理
+       :
+  1.       : 201097
+           : s62952
+       : 
+  2.       : 20111020
+           : /l60609
+       : AT Project:  client id
+  3.       : 20121128
+           : l00227485
+       : DSDA:8VCOM
 *****************************************************************************/
 VOS_INT AT_RcvFromAppCom(
     VOS_UINT8                           ucVcomId,
@@ -3262,7 +3262,7 @@ VOS_INT AT_RcvFromAppCom(
         AT_WARN_LOG("AT_RcvFromAppCom: Port No ERR!");
         return VOS_ERR;
     }
-    /* APPVCOM最后几个不是AT通道 */
+    /* APPVCOMAT */
     if (ucVcomId >= AT_VCOM_AT_CHANNEL_MAX)
     {
         AT_WARN_LOG("AT_RcvFromAppCom: Port No ERR!");
@@ -3280,10 +3280,10 @@ VOS_INT AT_RcvFromAppCom(
         return VOS_ERR;
     }
 
-    /* 根据端口号确定Index的值 */
+    /* Index */
     ucIndex = AT_CLIENT_TAB_APP_INDEX + ucVcomId;
 
-    /* 判断是否是APP通道 */
+    /* APP */
     if ((AT_APP_USER != gastAtClientTab[ucIndex].UserType)
      || (AT_CLIENT_NULL == gastAtClientTab[ucIndex].ucUsed))
     {
@@ -3311,28 +3311,28 @@ VOS_INT AT_RcvFromAppCom(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_AppComEst
- 功能描述  : AT PID在初始化时，需要执行APP链路的初始化工作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : AT_AppComEst
+   : AT PIDAPP
+   : 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月10日
-    作    者   : l60609
-    修改内容   : AP适配项目：增加CHDATA初始化
-  3.日    期   : 2012年11月29日
-    作    者   : l00227485
-    修改内容   : DSDA:新增VCOM AT通道的链路初始化
-  4.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+       :
+  1.       : 201097
+           : s62952
+       : 
+  2.       : 2012910
+           : l60609
+       : APCHDATA
+  3.       : 20121129
+           : l00227485
+       : DSDA:VCOM AT
+  4.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_INT32 AT_AppComEst(VOS_VOID)
 {
@@ -3343,14 +3343,14 @@ VOS_INT32 AT_AppComEst(VOS_VOID)
     {
         ucIndex = AT_CLIENT_TAB_APP_INDEX + ucLoop;
 
-        /* 清空对应表项 */
+        /*  */
         TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
         AT_ConfigTraceMsg(ucIndex, (ID_AT_CMD_APP + ucLoop), (ID_AT_MNTN_RESULT_APP + ucLoop));
 
         gastAtClientTab[ucIndex].usClientId     = AT_CLIENT_ID_APP + ucLoop;
 
-        /* 填写用户表项 */
+        /*  */
         gastAtClientTab[ucIndex].ucPortNo        = APP_VCOM_DEV_INDEX_0 + ucLoop;
         gastAtClientTab[ucIndex].UserType        = AT_APP_USER;
         gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
@@ -3361,7 +3361,7 @@ VOS_INT32 AT_AppComEst(VOS_VOID)
         gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
         g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-        /* 注册回调函数 */
+        /*  */
         APP_VCOM_RegDataCallback(gastAtClientTab[ucIndex].ucPortNo, (SEND_UL_AT_FUNC)AT_RcvFromAppCom);
 
     }
@@ -3370,25 +3370,25 @@ VOS_INT32 AT_AppComEst(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvFromSock
- 功能描述  : AT接收SOCK的数据
- 输入参数  : ucPortNo    - 端口号
-             *pData      - 指向数据的指针
-             uslength    - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
+     : AT_RcvFromSock
+   : ATSOCK
+   : ucPortNo    - 
+             *pData      - 
+             uslength    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月13日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月18日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配 client id
+       :
+  1.       : 2010913
+           : s62952
+       : 
+  2.       : 20111018
+           : /l60609
+       : AT Project:  client id
 
 *****************************************************************************/
 VOS_INT AT_RcvFromSock(
@@ -3438,27 +3438,27 @@ VOS_INT AT_RcvFromSock(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SockComEst
- 功能描述  : AT PID在初始化时，需要执行sock链路的初始化工作
- 输入参数  : ucPortNo    - 端口号
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : AT_SockComEst
+   : AT PIDsock
+   : ucPortNo    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 201097
+           : s62952
+       : 
 
-  2.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id
+  2.       : 2011103
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id
 
-  3.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+  3.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_INT32 AT_SockComEst(VOS_UINT8 ucPortNo)
 {
@@ -3488,33 +3488,33 @@ VOS_INT32 AT_SockComEst(VOS_UINT8 ucPortNo)
     gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-    /* Modified by s62952 for AT Project，2011-10-17,  Begin*/
-    /*向DMS注册从串口中获取数据的回调函数*/
+    /* Modified by s62952 for AT Project2011-10-17,  Begin*/
+    /*DMS*/
     (VOS_VOID)CPM_LogicRcvReg(CPM_AT_COMM,(CBTCPM_RCV_FUNC)AT_RcvFromSock);
-    /* Modified by s62952 for AT Project，2011-10-17,  end*/
+    /* Modified by s62952 for AT Project2011-10-17,  end*/
 
     return VOS_OK;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_RcvFromAppSock
- 功能描述  : 注册给应用的接口，用于接收AT命令
- 输入参数  : ucPortNo    - 端口号
-             *pData      - 指向数据的指针
-             uslength    - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : AT_RcvFromAppSock
+   : AT
+   : ucPortNo    - 
+             *pData      - 
+             uslength    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月18日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配 client id
+       :
+  1.       : 201097
+           : s62952
+       : 
+  2.       : 20111018
+           : /l60609
+       : AT Project:  client id
 
 *****************************************************************************/
 VOS_INT AT_RcvFromAppSock(
@@ -3573,30 +3573,30 @@ VOS_INT AT_RcvFromAppSock(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_AppSockComEst
- 功能描述  : AT PID在初始化时，需要执行E5 sock链路的初始化工作
- 输入参数  : ucPortNo    - 端口号
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : AT_AppSockComEst
+   : AT PIDE5 sock
+   : ucPortNo    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id
+       :
+  1.       : 201097
+           : s62952
+       : 
+  2.       : 2011103
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id
 
-  3.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+  3.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_INT32 AT_AppSockComEst(VOS_UINT8 ucPortNo)
 {
-    /* Modified by L60609 for AT Project，2011-10-04,  Begin*/
+    /* Modified by L60609 for AT Project2011-10-04,  Begin*/
     VOS_UINT8                           ucIndex;
 
     ucIndex = AT_CLIENT_TAB_APPSOCK_INDEX;
@@ -3609,10 +3609,10 @@ VOS_INT32 AT_AppSockComEst(VOS_UINT8 ucPortNo)
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_APPSOCK, ID_AT_MNTN_RESULT_APPSOCK);
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_APPSOCK;
     gastAtClientTab[ucIndex].ucPortNo        = ucPortNo;
     gastAtClientTab[ucIndex].UserType        = AT_APP_SOCK_USER;
@@ -3624,32 +3624,32 @@ VOS_INT32 AT_AppSockComEst(VOS_UINT8 ucPortNo)
     gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-    /* Modified by s62952 for AT Project，2011-10-17,  Begin*/
-    /*向DMS注册从串口中获取数据的回调函数*/
+    /* Modified by s62952 for AT Project2011-10-17,  Begin*/
+    /*DMS*/
     (VOS_VOID)App_VcomRecvCallbackRegister(ucPortNo, (pComRecv)AT_RcvFromAppSock);
-    /* Modified by s62952 for AT Project，2011-10-17,  end*/
+    /* Modified by s62952 for AT Project2011-10-17,  end*/
 
-    /* Modified by L60609 for AT Project，2011-10-04,  End*/
+    /* Modified by L60609 for AT Project2011-10-04,  End*/
 
     return VOS_OK;
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
+/* Modified by s62952 for BalongV300R002 Build 2012-02-28, begin */
 /******************************************************************************
- 函 数 名  : At_UsbGetWwanMode
- 功能描述  : 底软获取NDIS当前模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 1 : WCDMA
+     : At_UsbGetWwanMode
+   : NDIS
+   : 
+   : 
+     : 1 : WCDMA
              2 : CDMA
 
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年4月
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 20114
+           : s62952
+       : 
 ******************************************************************************/
 VOS_UINT32 At_UsbGetWwanMode(VOS_VOID)
 {
@@ -3657,31 +3657,31 @@ VOS_UINT32 At_UsbGetWwanMode(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UsbNcmConnStatusChgCB
- 功能描述  : NDIS网卡连接状态检测回调
- 输入参数  : enStatus --- 网卡状态
-             pBuffer  --- 数据
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_UsbNcmConnStatusChgCB
+   : NDIS
+   : enStatus --- 
+             pBuffer  --- 
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年9月5日
-    作    者   : A00165503
-    修改内容   : 新生成函数
+       :
+  1.       : 201595
+           : A00165503
+       : 
 *****************************************************************************/
 VOS_VOID AT_UsbNcmConnStatusChgCB(NCM_IOCTL_CONNECT_STUS_E enStatus, VOS_VOID *pBuffer)
 {
     AT_MSG_STRU                        *pstMsg = VOS_NULL_PTR;
 
     /*
-     * 发送网卡断开内部消息, 处理相关流程
+     * , 
      */
 
     if (NCM_IOCTL_STUS_BREAK == enStatus)
     {
-        /* 申请OSA消息 */
+        /* OSA */
         pstMsg = (AT_MSG_STRU *)AT_ALLOC_MSG_WITH_HDR(sizeof(AT_MSG_STRU));
         if (VOS_NULL_PTR == pstMsg)
         {
@@ -3689,17 +3689,17 @@ VOS_VOID AT_UsbNcmConnStatusChgCB(NCM_IOCTL_CONNECT_STUS_E enStatus, VOS_VOID *p
             return;
         }
 
-        /* 清空消息内容 */
+        /*  */
         TAF_MEM_SET_S(AT_GET_MSG_ENTITY(pstMsg), AT_GET_MSG_LENGTH(pstMsg), 0x00, AT_GET_MSG_LENGTH(pstMsg));
 
-        /* 填写消息头 */
+        /*  */
         AT_CFG_INTRA_MSG_HDR(pstMsg, ID_AT_NCM_CONN_STATUS_CMD);
 
-        /* 填写消息内容 */
+        /*  */
         pstMsg->ucType  = AT_NCM_CONN_STATUS_MSG;
         pstMsg->ucIndex = AT_CLIENT_TAB_NDIS_INDEX;
 
-        /* 发送消息 */
+        /*  */
         AT_SEND_MSG(pstMsg);
     }
 
@@ -3707,21 +3707,21 @@ VOS_VOID AT_UsbNcmConnStatusChgCB(NCM_IOCTL_CONNECT_STUS_E enStatus, VOS_VOID *p
 }
 
 /*****************************************************************************
- 函 数 名  : At_RcvFromNdisCom
- 功能描述  : NDIS注册给应用的接口，用于接收AT命令
- 输入参数  : ucPortNo    - 端口号
-             *pucData    - 指向数据的指针
-             uslength    - 数据长度
- 输出参数  : 无
- 返 回 值  : AT_SUCCESS --- 成功
-             AT_FAILURE --- 失败
- 调用函数  :
- 被调函数  :
+     : At_RcvFromNdisCom
+   : NDISAT
+   : ucPortNo    - 
+             *pucData    - 
+             uslength    - 
+   : 
+     : AT_SUCCESS --- 
+             AT_FAILURE --- 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年4月3日
-    作    者   : s62952
-    修改内容   : 新生成函数
+       :
+  1.       : 201143
+           : s62952
+       : 
 
 *****************************************************************************/
 VOS_INT AT_RcvFromNdisCom(
@@ -3732,14 +3732,14 @@ VOS_INT AT_RcvFromNdisCom(
     VOS_UINT8                           ucIndex;
     VOS_UINT32                          ulRet;
 
-    /* 参数检查 */
+    /*  */
     if (VOS_NULL_PTR == pucData)
     {
         AT_WARN_LOG("At_RcvFromNdisCom: pData is NULL PTR!");
         return VOS_ERR;
     }
 
-    /* 参数检查 */
+    /*  */
     if (0 == uslength)
     {
         AT_WARN_LOG("At_RcvFromNdisCom: uslength is 0!");
@@ -3748,7 +3748,7 @@ VOS_INT AT_RcvFromNdisCom(
 
     ucIndex = AT_CLIENT_TAB_NDIS_INDEX;
 
-    /* NDIS链路没有建立 */
+    /* NDIS */
     if ( (AT_NDIS_USER != gastAtClientTab[ucIndex].UserType)
        ||(AT_CLIENT_NULL == gastAtClientTab[ucIndex].ucUsed))
     {
@@ -3756,7 +3756,7 @@ VOS_INT AT_RcvFromNdisCom(
         return VOS_ERR;
     }
 
-    /*设置NDIS通道状态为可上报数据*/
+    /*NDIS*/
     DMS_SetNdisChanStatus(ACM_EVT_DEV_READY);
 
     if (AT_CMD_MODE == gastAtClientTab[ucIndex].Mode)
@@ -3779,47 +3779,47 @@ VOS_INT AT_RcvFromNdisCom(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_UsbNdisEst
- 功能描述  : AT PID在初始化时，需要执行6.2 版本NDIS AT链路的初始化工作
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
+     : AT_UsbNdisEst
+   : AT PID6.2 NDIS AT
+   : VOS_VOID
+   : 
+     : VOS_UINT32
              AT_SUCCESS
- 调用函数  :
- 被调函数  :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2009-08-31
-    作    者   : L47619
-    修改内容   : Created function
+       :
+  1.       : 2009-08-31
+           : L47619
+       : Created function
 
-  2.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 删除At_RegTafCallBackFunc;静态分配 client id
+  2.       : 2011103
+           : /l60609
+       : AT Project: At_RegTafCallBackFunc; client id
 
-  3.日    期   : 2013年11月06日
-    作    者   : j00174725
-    修改内容   : V3R3 内存裁剪
+  3.       : 20131106
+           : j00174725
+       : V3R3 
 *****************************************************************************/
 VOS_UINT32 AT_UsbNdisEst(VOS_VOID)
 {
-    /* Modified by L60609 for AT Project，2011-10-04,  Begin*/
+    /* Modified by L60609 for AT Project2011-10-04,  Begin*/
     VOS_UINT8                           ucIndex;
 
     ucIndex = AT_CLIENT_TAB_NDIS_INDEX;
 
-    /* 清空对应表项 */
+    /*  */
     TAF_MEM_SET_S(&gastAtClientTab[ucIndex], sizeof(AT_CLIENT_MANAGE_STRU), 0x00, sizeof(AT_CLIENT_MANAGE_STRU));
 
     AT_ConfigTraceMsg(ucIndex, ID_AT_CMD_NDIS, ID_AT_MNTN_RESULT_NDIS);
 
-    /* 填写用户表项 */
+    /*  */
     gastAtClientTab[ucIndex].usClientId      = AT_CLIENT_ID_NDIS;
     gastAtClientTab[ucIndex].ucPortNo        = AT_NDIS_PORT_NO;
     gastAtClientTab[ucIndex].UserType        = AT_NDIS_USER;
     gastAtClientTab[ucIndex].ucUsed          = AT_CLIENT_USED;
 
-    /* 以下可以不用填写，前面PS_MEMSET已经初始化，只为可靠起见 */
+    /* PS_MEMSET */
     gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
     gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;
     gastAtClientTab[ucIndex].DataMode        = AT_DATA_BUTT_MODE;
@@ -3827,25 +3827,25 @@ VOS_UINT32 AT_UsbNdisEst(VOS_VOID)
     gastAtClientTab[ucIndex].CmdCurrentOpt   = AT_CMD_CURRENT_OPT_BUTT;
     g_stParseContext[ucIndex].ucClientStatus = AT_FW_CLIENT_STATUS_READY;
 
-    /*初始化NDIS ADDR参数*/
+    /*NDIS ADDR*/
     TAF_MEM_SET_S(&gstAtNdisAddParam, sizeof(gstAtNdisAddParam), 0x00, sizeof(AT_DIAL_PARAM_STRU));
 
     return VOS_OK;
 }
 
 /*****************************************************************************
-函 数 名  : AT_OpenUsbNdis
-功能描述  : 打开NCM设备
-输入参数  : VOS_VOID
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
+    : AT_OpenUsbNdis
+  : NCM
+  : VOS_VOID
+  : 
+    : VOS_VOID
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2011年12月22日
-   作    者   : c00173809
-   修改内容   : PS融合项目，打开 NCM 设备
+      :
+ 1.       : 20111222
+          : c00173809
+      : PS NCM 
 *****************************************************************************/
 VOS_VOID AT_OpenUsbNdis(VOS_VOID)
 {
@@ -3854,7 +3854,7 @@ VOS_VOID AT_OpenUsbNdis(VOS_VOID)
 
     stParam.devid   = UDI_NCM_NDIS_ID;
 
-    /* 打开Device，获得ID */
+    /* DeviceID */
     g_ulAtUdiNdisHdl = mdrv_udi_open(&stParam);
 
     if (UDI_INVALID_HANDLE == g_ulAtUdiNdisHdl)
@@ -3864,8 +3864,8 @@ VOS_VOID AT_OpenUsbNdis(VOS_VOID)
         return;
     }
 
-    /* 注册DMS回调函数指针 */
-    /*lint -e732   类型不统一，暂时注掉，确认接口再解决*/
+    /* DMS */
+    /*lint -e732   */
     ulRst =  DMS_USB_NAS_REGFUNC((USBNdisStusChgFunc)AT_UsbNcmConnStatusChgCB,
                                  (USB_NAS_AT_CMD_RECV)AT_RcvFromNdisCom,
                                  (USB_NAS_GET_WWAN_MODE)At_UsbGetWwanMode);
@@ -3876,32 +3876,32 @@ VOS_VOID AT_OpenUsbNdis(VOS_VOID)
         return;
     }
     /*lint +e732*/
-    /* Modified by L60609 for AT Project，2011-10-04,  End*/
+    /* Modified by L60609 for AT Project2011-10-04,  End*/
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CloseUsbNdis
- 功能描述  : 关闭NCM设备
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CloseUsbNdis
+   : NCM
+   : VOS_VOID
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : c00173809
-    修改内容   : PS融合项目，关闭 NCM 设备
+       :
+  1.       : 20111222
+           : c00173809
+       : PS NCM 
 
-  2.日    期   : 2015年9月5日
-    作    者   : A00165503
-    修改内容   : DTS2015090105100: NDIS网卡禁用无法断开连接
+  2.       : 201595
+           : A00165503
+       : DTS2015090105100: NDIS
 *****************************************************************************/
 VOS_VOID AT_CloseUsbNdis(VOS_VOID)
 {
-    /* 断开NDIS网卡连接 */
+    /* NDIS */
     AT_UsbNcmConnStatusChgCB(NCM_IOCTL_STUS_BREAK, VOS_NULL_PTR);
 
     if (UDI_INVALID_HANDLE != g_ulAtUdiNdisHdl)
@@ -3914,23 +3914,23 @@ VOS_VOID AT_CloseUsbNdis(VOS_VOID)
     return;
 }
 
-/* Added by L60609 for MUX，2012-08-03,  Begin */
+/* Added by L60609 for MUX2012-08-03,  Begin */
 /*****************************************************************************
- 函 数 名  : AT_GetMuxSupportFlg
- 功能描述  : 获取是否支持MUX的标志
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
+     : AT_GetMuxSupportFlg
+   : MUX
+   : VOS_VOID
+   : 
+     : VOS_UINT8
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 201289
+           : l60609
+       : 
+  2.       : 201334
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT8 AT_GetMuxSupportFlg(VOS_VOID)
 {
@@ -3940,21 +3940,21 @@ VOS_UINT8 AT_GetMuxSupportFlg(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SetMuxSupportFlg
- 功能描述  : 设置是否支持MUX的标志
- 输入参数  : VOS_UINT8 ucMuxSupportFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_SetMuxSupportFlg
+   : MUX
+   : VOS_UINT8 ucMuxSupportFlg
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 201289
+           : l60609
+       : 
+  2.       : 201334
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_VOID AT_SetMuxSupportFlg(VOS_UINT8 ucMuxSupportFlg)
 {
@@ -3968,23 +3968,23 @@ VOS_VOID AT_SetMuxSupportFlg(VOS_UINT8 ucMuxSupportFlg)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckMuxDlci
- 功能描述  : 检查DLCI的有效性
- 输入参数  : AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckMuxDlci
+   : DLCI
+   : AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201288
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_CheckMuxDlci(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci)
 {
-    /* 此次开发只支持8个通道，DLCI从1到8。在1-8范围的返回VOS_OK，否则返回VOS_ERR */
+    /* 8DLCI181-8VOS_OKVOS_ERR */
     if ((enDlci >= AT_MUX_DLCI1_ID)
      && (enDlci < (AT_MUX_DLCI1_ID + AT_MUX_AT_CHANNEL_MAX)))
     {
@@ -3995,18 +3995,18 @@ VOS_UINT32 AT_CheckMuxDlci(AT_MUX_DLCI_TYPE_ENUM_UINT8 enDlci)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckMuxUser
- 功能描述  : 检查当前命令下发端口是否为MUX通道
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckMuxUser
+   : MUX
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : L60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201283
+           : L60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_CheckMuxUser(VOS_UINT8 ucIndex)
@@ -4015,18 +4015,18 @@ VOS_UINT32 AT_CheckMuxUser(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_IsHsicOrMuxUser
- 功能描述  : 判断是否为HSIC端口或者MUX端口
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_IsHsicOrMuxUser
+   : HSICMUX
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 2012813
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_IsHsicOrMuxUser(VOS_UINT8 ucIndex)
@@ -4037,7 +4037,7 @@ VOS_UINT32 AT_IsHsicOrMuxUser(VOS_UINT8 ucIndex)
     ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
     ulMuxUserFlg  = AT_CheckMuxUser(ucIndex);
 
-    /* 既不是HSIC端口，也不是MUX端口 */
+    /* HSICMUX */
     if ((VOS_FALSE == ulHsicUserFlg)
      && (VOS_FALSE == ulMuxUserFlg))
     {
@@ -4048,22 +4048,22 @@ VOS_UINT32 AT_IsHsicOrMuxUser(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_GetMuxDlciFromClientIdx
- 功能描述  : 根据client index获取MUX的dlci值
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_GetMuxDlciFromClientIdx
+   : client indexMUXdlci
+   : VOS_UINT8                           ucIndex
              AT_MUX_DLCI_TYPE_ENUM_UINT8        *penDlci
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年3月4日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 201286
+           : l60609
+       : 
+  2.       : 201334
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 AT_GetMuxDlciFromClientIdx(
     VOS_UINT8                           ucIndex,
@@ -4091,23 +4091,23 @@ VOS_UINT32 AT_GetMuxDlciFromClientIdx(
     return VOS_TRUE;
 }
 /*****************************************************************************
- 函 数 名  : AT_CheckPcuiCtrlConcurrent
- 功能描述  : 判断PCUI和CTRL口是否并发
- 输入参数  : VOS_UINT8
+     : AT_CheckPcuiCtrlConcurrent
+   : PCUICTRL
+   : VOS_UINT8
              VOS_UINT8
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年4月18日
-    作    者   : z00220246
-    修改内容   : 新生成函数
+       :
+  1.       : 2013418
+           : z00220246
+       : 
 
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 AT_CheckPcuiCtrlConcurrent(
     VOS_UINT8                           ucIndexOne,
@@ -4144,22 +4144,22 @@ VOS_UINT32 AT_CheckPcuiCtrlConcurrent(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_IsConcurrentPorts
- 功能描述  : 判断两个端口是否可以并发
- 输入参数  : VOS_UINT8                           ucIndexOne
+     : AT_IsConcurrentPorts
+   : 
+   : VOS_UINT8                           ucIndexOne
              VOS_UINT8                           ucIndexTwo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : L60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年11月29日
-    作    者   : f00179208
-    修改内容   : DSDA:增加 VCOM AT通道的并发执行
+       :
+  1.       : 201283
+           : L60609
+       : 
+  2.       : 20121129
+           : f00179208
+       : DSDA: VCOM AT
 *****************************************************************************/
 VOS_UINT32 AT_IsConcurrentPorts(
     VOS_UINT8                           ucIndexOne,
@@ -4173,7 +4173,7 @@ VOS_UINT32 AT_IsConcurrentPorts(
     VOS_UINT32                          ulHsicUserFlg2;
     VOS_UINT32                          ulAppUserFlg2;
 
-    /* 同一个通道不支持并发，由外层函数保证 */
+    /*  */
     ulMuxUserFlg1  = AT_CheckMuxUser(ucIndexOne);
     ulHsicUserFlg1 = AT_CheckHsicUser(ucIndexOne);
     ulAppUserFlg1  = AT_CheckAppUser(ucIndexOne);
@@ -4182,7 +4182,7 @@ VOS_UINT32 AT_IsConcurrentPorts(
     ulHsicUserFlg2 = AT_CheckHsicUser(ucIndexTwo);
     ulAppUserFlg2  = AT_CheckAppUser(ucIndexTwo);
 
-    /* 通道1是HSIC通道或MUX通道,通道2也是HSIC通道或MUX通道 */
+    /* 1HSICMUX,2HSICMUX */
     if ((VOS_TRUE == ulMuxUserFlg1)
      || (VOS_TRUE == ulHsicUserFlg1))
     {
@@ -4193,7 +4193,7 @@ VOS_UINT32 AT_IsConcurrentPorts(
         }
     }
 
-    /* 通道1是APP通道,通道2也是APP通道 */
+    /* 1APP,2APP */
     if (VOS_TRUE == ulAppUserFlg1)
     {
         if (VOS_TRUE == ulAppUserFlg2)
@@ -4202,7 +4202,7 @@ VOS_UINT32 AT_IsConcurrentPorts(
         }
     }
 
-    /* PCUI和CTRL口并发判断，仅供测试用 */
+    /* PCUICTRL */
     if (VOS_TRUE == AT_GetPcuiCtrlConcurrentFlag())
     {
         if (VOS_TRUE == AT_CheckPcuiCtrlConcurrent(ucIndexOne, ucIndexTwo))
@@ -4215,24 +4215,24 @@ VOS_UINT32 AT_IsConcurrentPorts(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_MuxCmdStreamEcho
- 功能描述  : MUX通道命令预处理回显
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_MuxCmdStreamEcho
+   : MUX
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201286
+           : l60609
+       : 
 
-  2.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : TSTS
+  2.       : 2015527
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_VOID AT_MuxCmdStreamEcho(
     VOS_UINT8                           ucIndex,
@@ -4259,18 +4259,18 @@ VOS_VOID AT_MuxCmdStreamEcho(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_MemSingleCopy
- 功能描述  : 获取给定内存单元实际使用的总字节数，包括整个数据链
- 输入参数  : pMemSrc  -- 要获取数据的TTF内存块头指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_MemSingleCopy
+   : 
+   : pMemSrc  -- TTF
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : sunshaohua
-    修改内容   : 新生成函数
+       :
+  1.       : 20111017
+           : sunshaohua
+       : 
 
 *****************************************************************************/
 VOS_VOID AT_MemSingleCopy(
@@ -4279,32 +4279,32 @@ VOS_VOID AT_MemSingleCopy(
     VOS_UINT32                          ulLen
 )
 {
-    /* 使用的内存可能为不可Cache，不能使用DM */
+    /* CacheDM */
     mdrv_memcpy(pucDest, pucSrc, (unsigned long)ulLen);
 
     return;
 }
 
-/* Added by j00174725 for V3R3 Cut Out Memory，2013-11-07,  Begin */
+/* Added by j00174725 for V3R3 Cut Out Memory2013-11-07,  Begin */
 
 /*****************************************************************************
- 函 数 名  : AT_SendMuxSelResultData
- 功能描述  : AT给MUX发送主动上报的数据
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_SendMuxSelResultData
+   : ATMUX
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月25日
-    作    者   : l60609
-    修改内容   : DSDA Phase III
+       :
+  1.       : 201287
+           : l60609
+       : 
+  2.       : 2013225
+           : l60609
+       : DSDA Phase III
 *****************************************************************************/
 VOS_UINT32 AT_SendMuxSelResultData(
     VOS_UINT8                           ucIndex,
@@ -4318,7 +4318,7 @@ VOS_UINT32 AT_SendMuxSelResultData(
 
     pCommCtx = AT_GetCommCtxAddr();
 
-    /* 匹配是否为MUX的index */
+    /* MUXindex */
     for (ucLoop = 0; ucLoop < AT_MUX_AT_CHANNEL_MAX; ucLoop++)
     {
         if (ucIndex == pCommCtx->stMuxCtx.astMuxClientTab[ucLoop].enAtClientTabIdx)
@@ -4332,7 +4332,7 @@ VOS_UINT32 AT_SendMuxSelResultData(
         return VOS_ERR;
     }
 
-    /* 该通道不允许主动上报AT命令 */
+    /* AT */
     if (AT_HSIC_REPORT_OFF == pCommCtx->stMuxCtx.astMuxClientTab[ucLoop].enRptType)
     {
         return VOS_ERR;
@@ -4346,20 +4346,20 @@ VOS_UINT32 AT_SendMuxSelResultData(
 
 
 /*****************************************************************************
- 函 数 名  : AT_SendMuxResultData
- 功能描述  : AT给MUX发送结果数据
- 输入参数  : VOS_UINT8                           ucIndex
+     : AT_SendMuxResultData
+   : ATMUX
+   : VOS_UINT8                           ucIndex
              VOS_UINT8                          *pData
              VOS_UINT16                          usLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201286
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SendMuxResultData(
@@ -4373,13 +4373,13 @@ VOS_UINT32 AT_SendMuxResultData(
 
     enDlci = AT_MUX_DLCI_TYPE_BUTT;
 
-    /* MUX特性是否支持，不支持直接返回失败 */
+    /* MUX */
     if (VOS_TRUE != AT_GetMuxSupportFlg())
     {
         return AT_FAILURE;
     }
 
-    /* 获取Dlci */
+    /* Dlci */
     ulRslt = AT_GetMuxDlciFromClientIdx(ucIndex, &enDlci);
 
     if (VOS_TRUE != ulRslt)
@@ -4389,7 +4389,7 @@ VOS_UINT32 AT_SendMuxResultData(
 
     AT_MNTN_TraceCmdResult(ucIndex, pData, usLen);
 
-    /* 向MUX发送数据 */
+    /* MUX */
     MUX_DlciDlDataSend(enDlci, pData, usLen);
 
     return AT_SUCCESS;
@@ -4397,19 +4397,19 @@ VOS_UINT32 AT_SendMuxResultData(
 
 
 /*****************************************************************************
- 函 数 名  : AT_SndDipcPdpActInd
- 功能描述  : AT向DIPC通道发送PDP激活消息
- 输入参数  : ucCid          ----  CID
+     : AT_SndDipcPdpActInd
+   : ATDIPCPDP
+   : ucCid          ----  CID
              ucRabId        ----  RABID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
+       :
+  1.       : 2012217
+           : L47619
+       : 
 *****************************************************************************/
 VOS_VOID AT_SndDipcPdpActInd(
     VOS_UINT16                          usClientId,
@@ -4426,28 +4426,28 @@ VOS_VOID AT_SndDipcPdpActInd(
 
     if ( VOS_NULL_PTR == pstAtDipcPdpAct )
     {
-        /*打印出错信息---申请消息包失败:*/
+        /*---:*/
         AT_WARN_LOG( "AT_SndDipcPdpActInd:ERROR:Allocates a message packet for AT_DIPC_PDP_ACT_STRU FAIL!" );
         return;
     }
 
     pstPsModemCtx = AT_GetModemPsCtxAddrFromClientId(usClientId);
 
-    /*填写消息头:*/
+    /*:*/
     pstAtDipcPdpAct->ulSenderCpuId   = VOS_LOCAL_CPUID;
     pstAtDipcPdpAct->ulSenderPid     = WUEPS_PID_AT;
     pstAtDipcPdpAct->ulReceiverCpuId = VOS_LOCAL_CPUID;
     pstAtDipcPdpAct->ulReceiverPid   = PS_PID_APP_DIPC;
     pstAtDipcPdpAct->ulLength        = ulLength;
-    /*填写消息体:*/
+    /*:*/
     pstAtDipcPdpAct->enMsgType       = ID_AT_DIPC_PDP_ACT_IND;
     pstAtDipcPdpAct->ucRabId         = ucRabId;
     pstAtDipcPdpAct->enUdiDevId      = (UDI_DEVICE_ID_E)pstPsModemCtx->astChannelCfg[ucCid].ulRmNetId;
 
-    /*发送该消息:*/
+    /*:*/
     if ( VOS_OK != PS_SEND_MSG( WUEPS_PID_AT, pstAtDipcPdpAct ) )
     {
-        /*打印警告信息---发送消息失败:*/
+        /*---:*/
         AT_WARN_LOG( "AT_SndDipcPdpActInd:WARNING:SEND AT_DIPC_PDP_ACT_STRU msg FAIL!" );
     }
 
@@ -4457,18 +4457,18 @@ VOS_VOID AT_SndDipcPdpActInd(
 
 
 /*****************************************************************************
- 函 数 名  : AT_SndDipcPdpDeactInd
- 功能描述  : AT向DIPC通道发送PDP去激活消息
- 输入参数  : ucRabId        ----  RABID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : AT_SndDipcPdpDeactInd
+   : ATDIPCPDP
+   : ucRabId        ----  RABID
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
+       :
+  1.       : 2012217
+           : L47619
+       : 
 *****************************************************************************/
 VOS_VOID AT_SndDipcPdpDeactInd(
     VOS_UINT8                           ucRabId
@@ -4482,25 +4482,25 @@ VOS_VOID AT_SndDipcPdpDeactInd(
 
     if ( VOS_NULL_PTR == pstAtDipcPdpDeact )
     {
-        /*打印出错信息---申请消息包失败:*/
+        /*---:*/
         AT_WARN_LOG( "AT_SndDipcPdpDeactInd:ERROR:Allocates a message packet for AT_DIPC_PDP_DEACT_STRU FAIL!" );
         return;
     }
 
-    /*填写消息头:*/
+    /*:*/
     pstAtDipcPdpDeact->ulSenderCpuId   = VOS_LOCAL_CPUID;
     pstAtDipcPdpDeact->ulSenderPid     = WUEPS_PID_AT;
     pstAtDipcPdpDeact->ulReceiverCpuId = VOS_LOCAL_CPUID;
     pstAtDipcPdpDeact->ulReceiverPid   = PS_PID_APP_DIPC;
     pstAtDipcPdpDeact->ulLength        = ulLength;
-    /*填写消息体:*/
+    /*:*/
     pstAtDipcPdpDeact->enMsgType       = ID_AT_DIPC_PDP_REL_IND;
     pstAtDipcPdpDeact->ucRabId         = ucRabId;
 
-    /*发送该消息:*/
+    /*:*/
     if ( VOS_OK != PS_SEND_MSG( WUEPS_PID_AT, pstAtDipcPdpDeact ) )
     {
-        /*打印警告信息---发送消息失败:*/
+        /*---:*/
         AT_WARN_LOG( "AT_SndDipcPdpDeactInd:WARNING:SEND AT_DIPC_PDP_DEACT_STRU msg FAIL!" );
     }
 
@@ -4509,19 +4509,19 @@ VOS_VOID AT_SndDipcPdpDeactInd(
 
 
 /*****************************************************************************
- 函 数 名  : AT_SetAtChdataCidActStatus
- 功能描述  : AP-MODEM形态，设置g_astAtChdataCfg中指定CID的PDP的激活状态
- 输入参数  : ucCid      ----      指定CID
-             ulIsCidAct ----      指定CID的PDP的激活状态
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_SetAtChdataCidActStatus
+   : AP-MODEMg_astAtChdataCfgCIDPDP
+   : ucCid      ----      CID
+             ulIsCidAct ----      CIDPDP
+   :
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
+       :
+  1.       : 2012217
+           : L47619
+       : 
 *****************************************************************************/
 VOS_VOID AT_SetAtChdataCidActStatus(
     VOS_UINT16                          usClientId,
@@ -4531,7 +4531,7 @@ VOS_VOID AT_SetAtChdataCidActStatus(
 {
     AT_MODEM_PS_CTX_STRU               *pstPsModemCtx = VOS_NULL_PTR;
 
-    /* 检查CID合法性 */
+    /* CID */
     if ( ucCid > TAF_MAX_CID_NV)
     {
         AT_ERR_LOG1("AT_SetAtChdataCidActStatus, WARNING, CID error:%d\r\n", ucCid);
@@ -4540,7 +4540,7 @@ VOS_VOID AT_SetAtChdataCidActStatus(
 
     pstPsModemCtx = AT_GetModemPsCtxAddrFromClientId(usClientId);
 
-    /* 清除CID与数传通道的映射关系 */
+    /* CID */
     pstPsModemCtx->astChannelCfg[ucCid].ulRmNetActFlg = ulIsCidAct;
 
     return;
@@ -4549,19 +4549,19 @@ VOS_VOID AT_SetAtChdataCidActStatus(
 
 
 /*****************************************************************************
- 函 数 名  : AT_CleanAtChdataCfg
- 功能描述  : AP-MODEM形态，将CID与数传通道的映射关系清除
- 输入参数  :
-             ucCid      ----      指定CID
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : AT_CleanAtChdataCfg
+   : AP-MODEMCID
+   :
+             ucCid      ----      CID
+   :
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年2月17日
-    作    者   : L47619
-    修改内容   : 新生成函数
+       :
+  1.       : 2012217
+           : L47619
+       : 
 *****************************************************************************/
 VOS_VOID AT_CleanAtChdataCfg(
     VOS_UINT16                          usClientId,
@@ -4570,7 +4570,7 @@ VOS_VOID AT_CleanAtChdataCfg(
 {
     AT_MODEM_PS_CTX_STRU               *pstPsModemCtx = VOS_NULL_PTR;
 
-    /* 检查CID合法性 */
+    /* CID */
     if ( ucCid > TAF_MAX_CID_NV)
     {
         AT_ERR_LOG1("AT_CleanAtChdataCfg, WARNING, CID error:%d\r\n", ucCid);
@@ -4579,35 +4579,35 @@ VOS_VOID AT_CleanAtChdataCfg(
 
     pstPsModemCtx = AT_GetModemPsCtxAddrFromClientId(usClientId);
 
-    /* 清除CID与数传通道的映射关系 */
+    /* CID */
     pstPsModemCtx->astChannelCfg[ucCid].ulUsed     = VOS_FALSE;
     pstPsModemCtx->astChannelCfg[ucCid].ulRmNetId  = AT_PS_INVALID_RMNET_ID;
 
-    /* 将指定CID的PDP的激活状态设置为未激活态 */
+    /* CIDPDP */
     pstPsModemCtx->astChannelCfg[ucCid].ulRmNetActFlg = VOS_FALSE;
 
     return;
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckHsicUser
- 功能描述  : 检查当前命令下发端口是否为HSIC通道
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : AT_CheckHsicUser
+   : HSIC
+   : ucIndex - 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年02月18日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年04月18日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目修改
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
+       :
+  1.       : 20120218
+           : l00198894
+       : 
+  2.       : 20120418
+           : l00198894
+       : AP-Modem
+  3.       : 20121213
+           : L00171473
+       : DTS2012121802573, TQE
 *****************************************************************************/
 VOS_UINT32 AT_CheckHsicUser(VOS_UINT8 ucIndex)
 {
@@ -4615,20 +4615,20 @@ VOS_UINT32 AT_CheckHsicUser(VOS_UINT8 ucIndex)
 
 }
 
-/* Added by l60609 for AP适配项目 ，2012-09-10 Begin */
+/* Added by l60609 for AP 2012-09-10 Begin */
 /*****************************************************************************
- 函 数 名  : AT_CheckAppUser
- 功能描述  : 检查当前命令下发端口是否为APP通道
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckAppUser
+   : APP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年9月10日
-    作    者   : L60609
-    修改内容   : 新生成函数
+       :
+  1.       : 2012910
+           : L60609
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_CheckAppUser(VOS_UINT8 ucIndex)
 {
@@ -4640,21 +4640,21 @@ VOS_UINT32 AT_CheckAppUser(VOS_UINT8 ucIndex)
     return VOS_TRUE;
 
 }
-/* Added by l60609 for AP适配项目 ，2012-09-10 End */
+/* Added by l60609 for AP 2012-09-10 End */
 
 /*****************************************************************************
- 函 数 名  : AT_CheckNdisUser
- 功能描述  : 检查当前命令下发端口是否为NDIS通道
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckNdisUser
+   : NDIS
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年5月2日
-    作    者   : l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 201352
+           : l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_CheckNdisUser(VOS_UINT8 ucIndex)
@@ -4669,18 +4669,18 @@ VOS_UINT32 AT_CheckNdisUser(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckHsUartUser
- 功能描述  : 判断是否为UART端口
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckHsUartUser
+   : UART
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : z00189113
-    修改内容   : 新增函数
+       :
+  1.       : 2013918
+           : z00189113
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_CheckHsUartUser(VOS_UINT8 ucIndex)
 {
@@ -4689,18 +4689,18 @@ VOS_UINT32 AT_CheckHsUartUser(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckModemUser
- 功能描述  : 判断是否为MODEM端口
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_CheckModemUser
+   : MODEM
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年9月18日
-    作    者   : z00189113
-    修改内容   : 新增函数
+       :
+  1.       : 2013918
+           : z00189113
+       : 
 *****************************************************************************/
 VOS_UINT32 AT_CheckModemUser(VOS_UINT8 ucIndex)
 {
@@ -4713,19 +4713,19 @@ VOS_UINT32 AT_CheckModemUser(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CheckUserType
- 功能描述  : 检查Index通道的UserType
- 输入参数  : VOS_UINT8            ucIndex
+     : AT_CheckUserType
+   : IndexUserType
+   : VOS_UINT8            ucIndex
              AT_USER_TYPE         enUserType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
+       :
+  1.       : 2015527
+           : l00198894
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_CheckUserType(
@@ -4742,27 +4742,27 @@ VOS_UINT32 AT_CheckUserType(
 }
 
 /*****************************************************************************
-函 数 名  : AT_InitFcMap
-功能描述  : 初始化g_stFcIdMaptoFcPri
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
+    : AT_InitFcMap
+  : g_stFcIdMaptoFcPri
+  : 
+  : 
+    : 
+  :
+  :
 
-修改历史      :
- 1.日    期   : 2012年2月17日
-   作    者   : L47619
-   修改内容   : 新生成函数
- 2.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : C核单独复位项目
+      :
+ 1.       : 2012217
+          : L47619
+      : 
+ 2.       : 20130417
+          : f00179208
+      : C
 *****************************************************************************/
 VOS_VOID AT_InitFcMap(VOS_VOID)
 {
     VOS_UINT8       ucLoop;
 
-    /* 初始化g_stFcIdMaptoFcPri */
+    /* g_stFcIdMaptoFcPri */
     for (ucLoop = 0; ucLoop < FC_ID_BUTT; ucLoop++)
     {
         g_stFcIdMaptoFcPri[ucLoop].ulUsed  = VOS_FALSE;
@@ -4773,28 +4773,28 @@ VOS_VOID AT_InitFcMap(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendDiagCmdFromOm
- 功能描述  : UE侧的OM调用该接口来完成向PC侧工具发送DIAG命令的功能
- 输入参数  : VOS_UINT8    ucPortNo  --    端口号
-             VOS_UINT8    ucType    --    工作模式
-             VOS_UINT8   *pData     --    下行DIAG命令的数据指针
-             VOS_UINT16   uslength  --    下行DIAG命令的数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SendDiagCmdFromOm
+   : UEOMPCDIAG
+   : VOS_UINT8    ucPortNo  --    
+             VOS_UINT8    ucType    --    
+             VOS_UINT8   *pData     --    DIAG
+             VOS_UINT16   uslength  --    DIAG
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 1.日    期   : 2008年6月09日
-   作    者   : L47619
-   修改内容   : 新生成函数
+ 1.       : 2008609
+          : L47619
+      : 
 
- 2.日    期   : 2010年9月27日
-   作    者   : A00165503
-   修改内容   : 增加发送数据端口参数
+ 2.       : 2010927
+          : A00165503
+      : 
 
- 3.日    期   : 2011年10月24日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: 静态分配 client id
+ 3.       : 20111024
+           : /l60609
+       : AT Project:  client id
 
 *****************************************************************************/
 VOS_UINT32 AT_SendDiagCmdFromOm(
@@ -4808,20 +4808,20 @@ VOS_UINT32 AT_SendDiagCmdFromOm(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendPcuiDataFromOm
- 功能描述  : 提供给OM的PCUI口发送数据接口
- 输入参数  : pucVirAddr - 待发送下行数据虚地址
-             pucPhyAddr - 待发送下行数据实地址
-             ulLength   - 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SendPcuiDataFromOm
+   : OMPCUI
+   : pucVirAddr - 
+             pucPhyAddr - 
+             ulLength   - 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111010
+           : /l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SendPcuiDataFromOm(
@@ -4844,20 +4844,20 @@ VOS_UINT32 AT_SendPcuiDataFromOm(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendCtrlDataFromOm
- 功能描述  : 提供给OM的CTRL口发送数据接口
- 输入参数  : pucVirAddr - 待发送下行数据虚地址
-             pucPhyAddr - 待发送下行数据实地址
-             ulLength   - 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SendCtrlDataFromOm
+   : OMCTRL
+   : pucVirAddr - 
+             pucPhyAddr - 
+             ulLength   - 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111010
+           : /l60609
+       : 
 
 *****************************************************************************/
 VOS_UINT32 AT_SendCtrlDataFromOm(
@@ -4880,20 +4880,20 @@ VOS_UINT32 AT_SendCtrlDataFromOm(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_SendPcui2DataFromOm
- 功能描述  : 提供给OM的Pcui2口发送数据接口
- 输入参数  : pucVirAddr - 待发送下行数据虚地址
-             pucPhyAddr - 待发送下行数据实地址
-             ulLength   - 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_SendPcui2DataFromOm
+   : OMPcui2
+   : pucVirAddr - 
+             pucPhyAddr - 
+             ulLength   - 
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : l00198894
-    修改内容   : TSTS
+       :
+  1.       : 2015522
+           : l00198894
+       : TSTS
 *****************************************************************************/
 VOS_UINT32 AT_SendPcui2DataFromOm(
     VOS_UINT8                          *pucVirAddr,
@@ -4916,22 +4916,22 @@ VOS_UINT32 AT_SendPcui2DataFromOm(
 
 
 /*****************************************************************************
- 函 数 名  : AT_QuerySndFunc
- 功能描述  : 提供给OM查询发送数据的函数接口
- 输入参数  : AT_PHY_PORT_ENUM_UINT32 ulPhyPort
- 输出参数  : 无
- 返 回 值  : pAtDataSndFunc
- 调用函数  :
- 被调函数  :
+     : AT_QuerySndFunc
+   : OM
+   : AT_PHY_PORT_ENUM_UINT32 ulPhyPort
+   : 
+     : pAtDataSndFunc
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年10月10日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
+       :
+  1.       : 20111010
+           : /l60609
+       : 
 
-  2.日    期   : 2013年12月02日
-    作    者   : j00174725
-    修改内容   : 高速UART校准
+  2.       : 20131202
+           : j00174725
+       : UART
 *****************************************************************************/
 CBTCPM_SEND_FUNC AT_QuerySndFunc(AT_PHY_PORT_ENUM_UINT32 ulPhyPort)
 {
@@ -4955,14 +4955,14 @@ CBTCPM_SEND_FUNC AT_QuerySndFunc(AT_PHY_PORT_ENUM_UINT32 ulPhyPort)
 
 /*****************************************************************************
  Prototype      : At_SendCmdMsg
- Description    : AT发送命令字符串
- Input          : ucIndex --- 用户ID
-                  pData   --- 数据
-                  usLen   --- 长度
-                  ucType  --- 消息类型
+ Description    : AT
+ Input          : ucIndex --- ID
+                  pData   --- 
+                  usLen   --- 
+                  ucType  --- 
  Output         : ---
- Return Value   : AT_SUCCESS --- 成功
-                  AT_FAILURE --- 失败
+ Return Value   : AT_SUCCESS --- 
+                  AT_FAILURE --- 
  Calls          : ---
  Called By      : ---
 
@@ -4970,9 +4970,9 @@ CBTCPM_SEND_FUNC AT_QuerySndFunc(AT_PHY_PORT_ENUM_UINT32 ulPhyPort)
   1.Date        : 2005-04-19
     Author      : ---
     Modification: Created function
-  2.日    期 : 2007-03-27
-    作    者 : h59254
-    修改内容 : 问题单号:A32D09820(PC-Lint修改)
+  2.     : 2007-03-27
+         : h59254
+     : :A32D09820(PC-Lint)
 *****************************************************************************/
 TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,TAF_UINT8 ucType)
 {
@@ -5002,7 +5002,7 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
         return AT_FAILURE;
     }
 
-    /* 增加自定义的ITEM，共4个字节 */
+    /* ITEM4 */
     AT_GetAtMsgStruMsgLength(usLen, &ulLength);
     pMsg = (AT_MSG_STRU *)PS_ALLOC_MSG(WUEPS_PID_AT, ulLength);
     if ( pMsg == TAF_NULL_PTR )
@@ -5015,13 +5015,13 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
     {
         if (pstMsgNumCtrlCtx->ulMsgCount > AT_MAX_MSG_NUM)
         {
-            /* 释放分配的内存空间 */
+            /*  */
             PS_FREE_MSG(WUEPS_PID_AT, pMsg);
 
             return AT_FAILURE;
         }
 
-        /* 队列加锁 */
+        /*  */
         /*lint -e571*/
         VOS_SpinLockIntLock(&(pstMsgNumCtrlCtx->stSpinLock), ulLockLevel);
         /*lint +e571*/
@@ -5031,7 +5031,7 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
         VOS_SpinUnlockIntUnlock(&(pstMsgNumCtrlCtx->stSpinLock), ulLockLevel);
     }
 
-    /* 拷贝本地缓存和实体索引到pMsg->aucValue;*/
+    /* pMsg->aucValue;*/
     pMsg->ulReceiverCpuId   = VOS_LOCAL_CPUID;
     pMsg->ulSenderPid       = WUEPS_PID_AT;
     pMsg->ulReceiverPid     = WUEPS_PID_AT;
@@ -5045,9 +5045,9 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
         pMsg->enMsgId = AT_GetCmdMsgID(ucIndex);
     }
 
-    pMsg->ucType            = ucType;     /* 类型 */
-    pMsg->ucIndex           = ucIndex;    /* 索引 */
-    pMsg->usLen             = usLen;    /* 长度 */
+    pMsg->ucType            = ucType;     /*  */
+    pMsg->ucIndex           = ucIndex;    /*  */
+    pMsg->usLen             = usLen;    /*  */
 
     enModemId               = MODEM_ID_0;
     if (VOS_OK != AT_GetModemIdFromClient(ucIndex, &enModemId))
@@ -5056,7 +5056,7 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
     }
 
     pMsg->enModemId     = (VOS_UINT8)enModemId;
-    /* 版本信息*/
+    /* */
     pMsg->enVersionId   = 0xAA;
     pMsg->aucReserved   = 0;
 
@@ -5064,16 +5064,16 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
     AT_GetUserTypeFromIndex(ucIndex, &pMsg->ucUserType);
 
 
-    /* 填写新消息内容 */
+    /*  */
     ulTmpAddr = (VOS_UINT_PTR)(pMsg->aucValue);
-    TAF_MEM_CPY_S((VOS_VOID*)ulTmpAddr, usLen, pData, usLen);  /* 内容 */
+    TAF_MEM_CPY_S((VOS_VOID*)ulTmpAddr, usLen, pData, usLen);  /*  */
 
-    /*发送消息到AT_PID;*/
+    /*AT_PID;*/
     if ( 0 != PS_SEND_MSG( WUEPS_PID_AT, pMsg ) )
     {
         AT_ERR_LOG("At_SendCmdMsg:ERROR:VOS_SendMsg");
 
-        /* 由于消息发送失败时，会触发整机复位，故此处不做ulMsgCount--操作 */
+        /* ulMsgCount-- */
 
         return AT_FAILURE;
     }
@@ -5081,18 +5081,18 @@ TAF_UINT32 At_SendCmdMsg (TAF_UINT8 ucIndex,TAF_UINT8* pData, TAF_UINT16 usLen,T
 }
 
 /*****************************************************************************
- 函 数 名  : AT_IsApPort
- 功能描述  : 判断是否为HSIC端口、MUX端口或者VCOM通道，即APP使用的通道
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : AT_IsApPort
+   : HSICMUXVCOMAPP
+   : VOS_UINT8 ucIndex
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2013年3月14日
-    作    者   : l60609
-    修改内容   : DSDA PHASE III
+       :
+  1.       : 2013314
+           : l60609
+       : DSDA PHASE III
 *****************************************************************************/
 VOS_UINT32 AT_IsApPort(VOS_UINT8 ucIndex)
 {
@@ -5103,7 +5103,7 @@ VOS_UINT32 AT_IsApPort(VOS_UINT8 ucIndex)
 
     if (0 == g_stAtDebugInfo.ucUnCheckApPortFlg)
     {
-        /* 初始化 */
+        /*  */
         pucSystemAppConfig                  = AT_GetSystemAppConfigAddr();
 
         ulHsicUserFlg = AT_CheckHsicUser(ucIndex);
@@ -5112,7 +5112,7 @@ VOS_UINT32 AT_IsApPort(VOS_UINT8 ucIndex)
 
         if (SYSTEM_APP_ANDROID == *pucSystemAppConfig)
         {
-            /* 如果是手机形态，需要判断HSIC端口，MUX端口，VCOM端口 */
+            /* HSICMUXVCOM */
             if ((VOS_FALSE == ulHsicUserFlg)
              && (VOS_FALSE == ulMuxUserFlg)
              && (VOS_FALSE == ulVcomUserFlg))
@@ -5122,7 +5122,7 @@ VOS_UINT32 AT_IsApPort(VOS_UINT8 ucIndex)
         }
         else
         {
-            /* 如果非手机形态，需要判断HSIC端口，MUX端口 */
+            /* HSICMUX */
             if ((VOS_FALSE == ulHsicUserFlg)
              && (VOS_FALSE == ulMuxUserFlg))
             {
@@ -5135,24 +5135,24 @@ VOS_UINT32 AT_IsApPort(VOS_UINT8 ucIndex)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ProcCCpuResetBefore
- 功能描述  : C核单独复位前的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : AT_ProcCCpuResetBefore
+   : C
+   : 
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月13日
-   作    者   : j00174725
-   修改内容   : 增加消息ID
- 3.日    期   : 2016年01月22日
-   作    者   : z00301431
-   修改内容   : DTS2015103001118,set modemstatus
+      :
+ 1.       : 20130417
+          : f00179208
+      : 
+ 2.       : 20131113
+          : j00174725
+      : ID
+ 3.       : 20160122
+          : z00301431
+      : DTS2015103001118,set modemstatus
 *****************************************************************************/
 VOS_INT AT_ProcCCpuResetBefore(VOS_VOID)
 {
@@ -5160,15 +5160,15 @@ VOS_INT AT_ProcCCpuResetBefore(VOS_VOID)
 
     printk("\n AT_ProcCCpuResetBefore enter, %u \n", VOS_GetSlice());
 
-    /* 设置处于复位前的标志 */
+    /*  */
     AT_SetResetFlag(VOS_TRUE);
 
     DMS_InitModemStatus();
 
-    /* 清除TAFAGENT所有的信号量 */
+    /* TAFAGENT */
     TAF_AGENT_ClearAllSem();
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (AT_MSG_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(WUEPS_PID_AT,
                                                          sizeof(AT_MSG_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -5177,27 +5177,27 @@ VOS_INT AT_ProcCCpuResetBefore(VOS_VOID)
         return VOS_ERROR;
     }
 
-    /* 初始化消息 */
+    /*  */
     TAF_MEM_SET_S((VOS_CHAR *)pstMsg + VOS_MSG_HEAD_LENGTH,
                (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH),
                0x00,
                (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = WUEPS_PID_AT;
     pstMsg->ucType                      = ID_CCPU_AT_RESET_START_IND;
 
     pstMsg->enMsgId                     = ID_AT_COMM_CCPU_RESET_START;
 
-    /* 发消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         printk("\n AT_ProcCCpuResetBefore send msg fail, %u \n", VOS_GetSlice());
         return VOS_ERROR;
     }
 
-    /* 等待回复信号量初始为锁状态，等待消息处理完后信号量解锁。 */
+    /*  */
     if (VOS_OK != VOS_SmP(AT_GetResetSem(), AT_RESET_TIMEOUT_LEN))
     {
         printk("\n AT_ProcCCpuResetBefore VOS_SmP fail, %u \n", VOS_GetSlice());
@@ -5206,7 +5206,7 @@ VOS_INT AT_ProcCCpuResetBefore(VOS_VOID)
         return VOS_ERROR;
     }
 
-    /* 记录复位前的次数 */
+    /*  */
     AT_DBG_SAVE_CCPU_RESET_BEFORE_NUM(1);
 
     printk("\n AT_ProcCCpuResetBefore succ, %u \n", VOS_GetSlice());
@@ -5215,21 +5215,21 @@ VOS_INT AT_ProcCCpuResetBefore(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_ProcCCpuResetAfter
- 功能描述  : C核单独复位前的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : AT_ProcCCpuResetAfter
+   : C
+   : 
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年11月13日
-   作    者   : j00174725
-   修改内容   : 增加消息ID
+      :
+ 1.       : 20130417
+          : f00179208
+      : 
+ 2.       : 20131113
+          : j00174725
+      : ID
 *****************************************************************************/
 VOS_INT AT_ProcCCpuResetAfter(VOS_VOID)
 {
@@ -5237,7 +5237,7 @@ VOS_INT AT_ProcCCpuResetAfter(VOS_VOID)
 
     printk("\n AT_ProcCCpuResetAfter enter, %u \n", VOS_GetSlice());
 
-    /* 构造消息 */
+    /*  */
     pstMsg = (AT_MSG_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(WUEPS_PID_AT,
                                                          sizeof(AT_MSG_STRU));
     if (VOS_NULL_PTR == pstMsg)
@@ -5246,27 +5246,27 @@ VOS_INT AT_ProcCCpuResetAfter(VOS_VOID)
         return VOS_ERROR;
     }
 
-    /* 初始化消息 */
+    /*  */
     TAF_MEM_SET_S((VOS_CHAR *)pstMsg + VOS_MSG_HEAD_LENGTH,
                (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH),
                0x00,
                (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-    /* 填写消息头 */
+    /*  */
     pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
     pstMsg->ulReceiverPid               = WUEPS_PID_AT;
     pstMsg->ucType                      = ID_CCPU_AT_RESET_END_IND;
 
     pstMsg->enMsgId                     = ID_AT_COMM_CCPU_RESET_END;
 
-    /* 发消息 */
+    /*  */
     if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
     {
         printk("\n AT_ProcCCpuResetAfter send msg fail, %u \n", VOS_GetSlice());
         return VOS_ERROR;
     }
 
-    /* 记录复位后的次数 */
+    /*  */
     AT_DBG_SAVE_CCPU_RESET_AFTER_NUM(1);
 
     printk("\n AT_ProcCCpuResetAfter succ, %u \n", VOS_GetSlice());
@@ -5275,31 +5275,31 @@ VOS_INT AT_ProcCCpuResetAfter(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : AT_CCpuResetCallback
- 功能描述  : C核单独复位时AT的回调处理函数
- 输入参数  : enParam    -- 0表示复位前， 其他表示复位后
-             iUserData  -- 用户数据
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+     : AT_CCpuResetCallback
+   : CAT
+   : enParam    -- 0 
+             iUserData  -- 
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月17日
-   作    者   : f00179208
-   修改内容   : 新生成函数
+      :
+ 1.       : 20130417
+          : f00179208
+      : 
 *****************************************************************************/
 VOS_INT AT_CCpuResetCallback(
     DRV_RESET_CB_MOMENT_E               enParam,
     VOS_INT                             iUserData
 )
 {
-    /* 复位前 */
+    /*  */
     if (MDRV_RESET_CB_BEFORE == enParam)
     {
         return AT_ProcCCpuResetBefore();
     }
-    /* 复位后 */
+    /*  */
     else if (MDRV_RESET_CB_AFTER == enParam)
     {
         return AT_ProcCCpuResetAfter();
@@ -5311,25 +5311,25 @@ VOS_INT AT_CCpuResetCallback(
 }
 
 /*****************************************************************************
- 函 数 名  : AT_HifiResetCallback
- 功能描述  : HIFI单独复位时AT的回调处理函数
- 输入参数  : lResetId -- 0表示复位前， 其他表示复位后
+     : AT_HifiResetCallback
+   : HIFIAT
+   : lResetId -- 0 
              iUserData
- 输出参数  : 无
- 返 回 值  : VOS_INT
- 调用函数  :
- 被调函数  :
+   : 
+     : VOS_INT
+   :
+   :
 
- 修改历史     :
- 1.日    期   : 2013年04月12日
-   作    者   : f00179208
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月08日
-   作    者   : L47619
-   修改内容   : Modified for HIFI Reset End Report
- 3.日    期   : 2013年11月13日
-   作    者   : j00174725
-   修改内容   : 增加消息ID
+      :
+ 1.       : 20130412
+          : f00179208
+      : 
+ 2.       : 20130708
+          : L47619
+      : Modified for HIFI Reset End Report
+ 3.       : 20131113
+          : j00174725
+      : ID
 *****************************************************************************/
 VOS_INT AT_HifiResetCallback(
     DRV_RESET_CB_MOMENT_E               enParam,
@@ -5338,11 +5338,11 @@ VOS_INT AT_HifiResetCallback(
 {
     AT_MSG_STRU                        *pstMsg = VOS_NULL_PTR;
 
-    /* 参数为0表示复位前调用 */
+    /* 0 */
     if (MDRV_RESET_CB_BEFORE == enParam)
     {
         printk("\n AT_HifiResetCallback before reset enter, %u \n", VOS_GetSlice());
-        /* 构造消息 */
+        /*  */
         pstMsg = (AT_MSG_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(WUEPS_PID_AT,
                                                              sizeof(AT_MSG_STRU));
         if (VOS_NULL_PTR == pstMsg)
@@ -5351,20 +5351,20 @@ VOS_INT AT_HifiResetCallback(
             return VOS_ERROR;
         }
 
-        /* 初始化消息 */
+        /*  */
         TAF_MEM_SET_S((VOS_CHAR *)pstMsg + VOS_MSG_HEAD_LENGTH,
                    (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH),
                    0x00,
                    (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-        /* 填写消息头 */
+        /*  */
         pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
         pstMsg->ulReceiverPid               = WUEPS_PID_AT;
         pstMsg->ucType                      = ID_HIFI_AT_RESET_START_IND;
 
         pstMsg->enMsgId                     = ID_AT_COMM_HIFI_RESET_START;
 
-        /* 发消息 */
+        /*  */
         if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
         {
             printk("\n AT_HifiResetCallback after reset alloc msg fail, %u \n", VOS_GetSlice());
@@ -5373,12 +5373,12 @@ VOS_INT AT_HifiResetCallback(
 
         return VOS_OK;
     }
-    /* 复位后 */
+    /*  */
     else if (MDRV_RESET_CB_AFTER == enParam)
     {
         printk("\n AT_HifiResetCallback after reset enter, %u \n", VOS_GetSlice());
         /* Added by L47619 for HIFI Reset End Report, 2013/07/08, begin */
-        /* 构造消息 */
+        /*  */
         pstMsg = (AT_MSG_STRU *)PS_ALLOC_MSG_WITH_HEADER_LEN(WUEPS_PID_AT,
                                                              sizeof(AT_MSG_STRU));
         if (VOS_NULL_PTR == pstMsg)
@@ -5387,20 +5387,20 @@ VOS_INT AT_HifiResetCallback(
             return VOS_ERROR;
         }
 
-        /* 初始化消息 */
+        /*  */
         TAF_MEM_SET_S((VOS_CHAR *)pstMsg + VOS_MSG_HEAD_LENGTH,
                    (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH),
                    0x00,
                    (VOS_SIZE_T)(sizeof(AT_MSG_STRU) - VOS_MSG_HEAD_LENGTH));
 
-        /* 填写消息头 */
+        /*  */
         pstMsg->ulReceiverCpuId             = VOS_LOCAL_CPUID;
         pstMsg->ulReceiverPid               = WUEPS_PID_AT;
         pstMsg->ucType                      = ID_HIFI_AT_RESET_END_IND;
 
         pstMsg->enMsgId                     = ID_AT_COMM_HIFI_RESET_END;
 
-        /* 发消息 */
+        /*  */
         if (VOS_OK != PS_SEND_MSG(WUEPS_PID_AT, pstMsg))
         {
             printk("\n AT_HifiResetCallback after reset send msg fail, %u \n", VOS_GetSlice());
@@ -5417,27 +5417,27 @@ VOS_INT AT_HifiResetCallback(
 
 
 /*****************************************************************************
-函 数 名  : AT_ModemeEnableCB
-功能描述  : MODEM设备使能通知
-输入参数  : ucEnable    ----  是否使能
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
+    : AT_ModemeEnableCB
+  : MODEM
+  : ucEnable    ----  
+  : 
+    : 
+  :
+  :
 
-修改历史      :
-  1.日    期   : 2013年05月25日
-    作    者   : 范晶/00179208
-    修改内容   : 新生成函数
+      :
+  1.       : 20130525
+           : /00179208
+       : 
 *****************************************************************************/
 VOS_VOID AT_ModemeEnableCB(
     VOS_UINT8                           ucIndex,
     PS_BOOL_ENUM_UINT8                  ucEnable
 )
 {
-    /* 设备默认处于生效状态，有数据就通过读回调接收，
-    　 设备失效时，根据当前状态，通知PPP，如处于数传态，
-       则通知AT去激活PDP.
+    /* 
+     PPP
+       ATPDP.
     */
     if (PS_FALSE == ucEnable)
     {
@@ -5446,13 +5446,13 @@ VOS_VOID AT_ModemeEnableCB(
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_REL_PPP_REQ);
 
-            /* 若原先开启了流控，则需停止流控 */
+            /*  */
             if (0 == (gastAtClientTab[ucIndex].ModemStatus & IO_CTRL_CTS))
             {
                 AT_StopFlowCtrl(ucIndex);
             }
 
-            /* 断开拨号 */
+            /*  */
             if (VOS_OK != TAF_PS_CallEnd(WUEPS_PID_AT,
                                          AT_PS_BuildExClientId(gastAtClientTab[ucIndex].usClientId),
                                          0,
@@ -5467,13 +5467,13 @@ VOS_VOID AT_ModemeEnableCB(
             PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                    PPP_AT_CTRL_REL_PPP_RAW_REQ);
 
-            /* 若原先开启了流控，则需停止流控 */
+            /*  */
             if (0 == (gastAtClientTab[ucIndex].ModemStatus & IO_CTRL_CTS))
             {
                 AT_StopFlowCtrl(ucIndex);
             }
 
-            /* 断开拨号 */
+            /*  */
             if ( VOS_OK != TAF_PS_CallEnd(WUEPS_PID_AT,
                                           AT_PS_BuildExClientId(gastAtClientTab[ucIndex].usClientId),
                                           0,
@@ -5485,19 +5485,19 @@ VOS_VOID AT_ModemeEnableCB(
         }
         else
         {
-            /* 空的else分支，避免PCLINT报错 */
+            /* elsePCLINT */
         }
 
-        /* 向PPP发送HDLC去使能操作 */
+        /* PPPHDLC */
         PPP_RcvAtCtrlOperEvent(gastAtClientTab[ucIndex].usPppId,
                                PPP_AT_CTRL_HDLC_DISABLE);
 
-        /* 停止定时器 */
+        /*  */
         AT_StopRelTimer(ucIndex, &gastAtClientTab[ucIndex].hTimer);
 
-        /* 管脚信号修改后，At_ModemRelInd函数只可能在USB被拔出的时候调用，
-           为了达到Modem口always-on的目的，此时需要将该AT链路的状态迁入
-           到正常的命令状态:
+        /* At_ModemRelIndUSB
+           Modemalways-onAT
+           :
         */
         gastAtClientTab[ucIndex].Mode            = AT_CMD_MODE;
         gastAtClientTab[ucIndex].IndMode         = AT_IND_MODE;

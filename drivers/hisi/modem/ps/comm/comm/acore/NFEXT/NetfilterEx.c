@@ -47,7 +47,7 @@
  */
 
 /******************************************************************************
-   1 头文件包含
+   1 
 ******************************************************************************/
 #include "product_config.h"
 
@@ -57,40 +57,40 @@
 #include "linux/inet.h"
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 
 #define THIS_FILE_ID PS_FILE_ID_ACPU_NFEX_C
 
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
-#define             PACKAGE_HEAD_LEN        (80)        /*设定的截取包头的长度*/
-#define             OM_SOCK_PORT_NUM        (3000)      /*与OM的宏SOCK_PORT_NUM保持一致*/
+#define             PACKAGE_HEAD_LEN        (80)        /**/
+#define             OM_SOCK_PORT_NUM        (3000)      /*OMSOCK_PORT_NUM*/
 /*****************************************************************************
-  3 外部函数变量声明
+  3 
 *****************************************************************************/
 
 extern NF_EXT_ENTITY_STRU           g_stExEntity;
 extern NF_EXT_FLOW_CTRL_ENTITY      g_stExFlowCtrlEntity;
 
 /******************************************************************************
-  4 函数实现
+  4 
 ******************************************************************************/
 /*****************************************************************************
- 函 数 名  : NFExt_IsOmData
- 功能描述  : 判断是否OM得数据,对于协议栈中得om数据不能抓包，否则抓包风暴
- 输入参数  : struct sk_buff *skb    待勾取报文的sk_buff结构
- 输出参数  : 无
- 返 回 值  : NF_EXT_FLAG_OM_DATA/NF_EXT_FLAG_NOT_OM_DATA
- 调用函数  :
- 被调函数  :
+     : NFExt_IsOmData
+   : OM,om
+   : struct sk_buff *skb    sk_buff
+   : 
+     : NF_EXT_FLAG_OM_DATA/NF_EXT_FLAG_NOT_OM_DATA
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 NF_EXT_FLAG_OM_DATA_ENUM_U32 NFExt_IsOmData(struct sk_buff *skb)
 {
@@ -104,13 +104,13 @@ NF_EXT_FLAG_OM_DATA_ENUM_U32 NFExt_IsOmData(struct sk_buff *skb)
 
     ipHeader        = (struct iphdr *)(skb_network_header(skb));
 
-    /*如果不是TCP报文则直接返回*/
+    /*TCP*/
     if ( NF_EXT_RPO_TCP != ipHeader->protocol )
     {
         return NF_EXT_FLAG_NOT_OM_DATA;
     }
 
-    /* 传输层的数据在ip层之后 */
+    /* ip */
     tcpHeader       = (struct tcphdr *)(skb_network_header(skb) + sizeof(struct iphdr));
 
     srcIp           = ipHeader->saddr;
@@ -129,21 +129,21 @@ NF_EXT_FLAG_OM_DATA_ENUM_U32 NFExt_IsOmData(struct sk_buff *skb)
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrDataExport
- 功能描述  : 将勾取网桥中转报文导出到SDT
- 输入参数  : struct sk_buff *skb,       待勾取报文的sk_buff结构
-             const struct net_device *device_in, 数据发送设备信息
-             const struct net_device *device_out, 数据接收设备信息
-             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_BrDataExport
+   : SDT
+   : struct sk_buff *skb,       sk_buff
+             const struct net_device *device_in, 
+             const struct net_device *device_out, 
+             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_BrDataExport( struct sk_buff *skb,
                                 const struct net_device *device_in,
@@ -153,7 +153,7 @@ VOS_VOID NFExt_BrDataExport( struct sk_buff *skb,
     VOS_UINT8                       *pucData;
     VOS_UINT32                       ulHookDataLen;
 
-    /* skb->data指向数据包的IP头部，上移14个字节令 pucData指向数据包的mac头部 */
+    /* skb->dataIP14 pucDatamac */
     pucData             = skb->data - MAC_HEADER_LENGTH;
     ulHookDataLen       = ((skb->len > NF_EXT_MAX_IP_SIZE) ? NF_EXT_MAX_IP_SIZE : skb->len) + MAC_HEADER_LENGTH;
 
@@ -161,21 +161,21 @@ VOS_VOID NFExt_BrDataExport( struct sk_buff *skb,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ArpDataExport
- 功能描述  : 将勾取ARP报文导出到SDT
- 输入参数  : struct sk_buff *skb,       待勾取报文的sk_buff结构
-             const struct net_device *device_in, 数据发送设备信息
-             const struct net_device *device_out, 数据接收设备信息
-             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_ArpDataExport
+   : ARPSDT
+   : struct sk_buff *skb,       sk_buff
+             const struct net_device *device_in, 
+             const struct net_device *device_out, 
+             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_ArpDataExport( struct sk_buff *skb,
                                     const struct net_device *device,
@@ -191,21 +191,21 @@ VOS_VOID NFExt_ArpDataExport( struct sk_buff *skb,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_IpDataExport
- 功能描述  : 将勾取IP报文导出到SDT
- 输入参数  : struct sk_buff *skb,       待勾取报文的sk_buff结构
-             const struct net_device *device_in, 数据发送设备信息
-             const struct net_device *device_out, 数据接收设备信息
-             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : NFExt_IpDataExport
+   : IPSDT
+   : struct sk_buff *skb,       sk_buff
+             const struct net_device *device_in, 
+             const struct net_device *device_out, 
+             TTF_MNTN_MSG_TYPE_ENUM_UINT16 usType  
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 VOS_VOID NFExt_IpDataExport( struct sk_buff *skb,
                          const struct net_device *device,
@@ -219,7 +219,7 @@ VOS_VOID NFExt_IpDataExport( struct sk_buff *skb,
         return;
     }
 
-    /* skb->data指向数据包的IP头部，上移14个字节令 pucData指向数据包的mac头部 */
+    /* skb->dataIP14 pucDatamac */
     pucData           = skb->data - MAC_HEADER_LENGTH;
     ulHookDataLen     = ((skb->len > NF_EXT_MAX_IP_SIZE) ? NF_EXT_MAX_IP_SIZE : skb->len) + MAC_HEADER_LENGTH;
 
@@ -229,22 +229,22 @@ VOS_VOID NFExt_IpDataExport( struct sk_buff *skb,
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(4, 1, 0))
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrPreRoutingHook
- 功能描述  : BRIGE钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrPreRoutingHook
+   : BRIGE
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrPreRoutingHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -252,7 +252,7 @@ unsigned int NFExt_BrPreRoutingHook(unsigned int hooknum,
                             const struct net_device *out,
                             int (*okfn)(struct sk_buff *))
 {
-    /* 判断是否OM的数据 */
+    /* OM */
     if ( NF_EXT_FLAG_OM_DATA == NFExt_IsOmData(skb) )
     {
         return NF_ACCEPT;
@@ -264,22 +264,22 @@ unsigned int NFExt_BrPreRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrPostRoutingHook
- 功能描述  : Bridge钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrPostRoutingHook
+   : Bridge
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrPostRoutingHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -298,22 +298,22 @@ unsigned int NFExt_BrPostRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrLocalInHook
- 功能描述  : Bridge钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrLocalInHook
+   : Bridge
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrLocalInHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -332,22 +332,22 @@ unsigned int NFExt_BrLocalInHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrLocalOutHook
- 功能描述  : Bridge钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrLocalOutHook
+   : Bridge
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrLocalOutHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -366,22 +366,22 @@ unsigned int NFExt_BrLocalOutHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrForwardHook
- 功能描述  : Bridge钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrForwardHook
+   : Bridge
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrForwardHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -395,22 +395,22 @@ unsigned int NFExt_BrForwardHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ArpInHook
- 功能描述  : ARP钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_ArpInHook
+   : ARP
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_ArpInHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -424,22 +424,22 @@ unsigned int NFExt_ArpInHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ArpOutHook
- 功能描述  : ARP钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_ArpOutHook
+   : ARP
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 
 unsigned int NFExt_ArpOutHook(unsigned int hooknum,
@@ -455,22 +455,22 @@ unsigned int NFExt_ArpOutHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4PreRoutingHook
- 功能描述  : IPV4钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4PreRoutingHook
+   : IPV4
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4PreRoutingHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -484,22 +484,22 @@ unsigned int NFExt_Ip4PreRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4PostRoutingHook
- 功能描述  : IPV4钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4PostRoutingHook
+   : IPV4
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 
 unsigned int NFExt_Ip4PostRoutingHook(unsigned int hooknum,
@@ -514,22 +514,22 @@ unsigned int NFExt_Ip4PostRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4LocalInHook
- 功能描述  : IPV4钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4LocalInHook
+   : IPV4
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4LocalInHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -544,22 +544,22 @@ unsigned int NFExt_Ip4LocalInHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4LocalOutHook
- 功能描述  : IPV4钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4LocalOutHook
+   : IPV4
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4LocalOutHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -573,22 +573,22 @@ unsigned int NFExt_Ip4LocalOutHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4ForwardHook
- 功能描述  : IPV4钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4ForwardHook
+   : IPV4
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4ForwardHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -602,22 +602,22 @@ unsigned int NFExt_Ip4ForwardHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6PreRoutingHook
- 功能描述  : IPV6钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6PreRoutingHook
+   : IPV6
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6PreRoutingHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -631,22 +631,22 @@ unsigned int NFExt_Ip6PreRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6PostRoutingHook
- 功能描述  : IPV6钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6PostRoutingHook
+   : IPV6
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6PostRoutingHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -660,22 +660,22 @@ unsigned int NFExt_Ip6PostRoutingHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6LocalInHook
- 功能描述  : IPV6钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6LocalInHook
+   : IPV6
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6LocalInHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -689,22 +689,22 @@ unsigned int NFExt_Ip6LocalInHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6LocalOutHook
- 功能描述  : IPV6钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6LocalOutHook
+   : IPV6
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6LocalOutHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -718,22 +718,22 @@ unsigned int NFExt_Ip6LocalOutHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6ForwardHook
- 功能描述  : IPV6钩子函数
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6ForwardHook
+   : IPV6
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6ForwardHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -747,28 +747,28 @@ unsigned int NFExt_Ip6ForwardHook(unsigned int hooknum,
 }
 
 /*****************************************************************************
-                        流控功能
+                        
 *****************************************************************************/
 
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrForwardFlowCtrlHook
- 功能描述  : 网桥forward流控点
- 输入参数  : unsigned int hooknum,          钩子函数的hooknum
-             struct sk_buff *skb,           待勾取报文的sk_buff结构
-             const struct net_device *in,   输入设备信息
-             const struct net_device *out,  输出设备信息
-             int (*okfn)(struct sk_buff *)  默认处理函数
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT 非流控状态
-             NF_DROP   流控状态，直接丢包
- 调用函数  :
- 被调函数  :
+     : NFExt_BrForwardFlowCtrlHook
+   : forward
+   : unsigned int hooknum,          hooknum
+             struct sk_buff *skb,           sk_buff
+             const struct net_device *in,   
+             const struct net_device *out,  
+             int (*okfn)(struct sk_buff *)  
+   : 
+     : NF_ACCEPT 
+             NF_DROP   
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrForwardFlowCtrlHook(unsigned int hooknum,
                             struct sk_buff *skb,
@@ -778,11 +778,11 @@ unsigned int NFExt_BrForwardFlowCtrlHook(unsigned int hooknum,
 {
     NF_EXT_STATS_INC(1, NF_EXT_STATS_BR_FC_ENTER);
 
-    /* 网桥转发统计 */
+    /*  */
     NF_EXT_TX_BYTES_INC(skb->len, NF_EXT_TX_BYTES_CNT_BR);
 
 
-    /* 当前在网桥forward流控状态，直接丢包 */
+    /* forward */
     if (NF_EXT_BR_FORWARD_FLOW_CTRL_MASK == (g_stExFlowCtrlEntity.ulFlowCtrlMsk & NF_EXT_BR_FORWARD_FLOW_CTRL_MASK))
     {
         NF_EXT_STATS_INC(1, NF_EXT_STATS_BR_FC_DROP);
@@ -794,26 +794,26 @@ unsigned int NFExt_BrForwardFlowCtrlHook(unsigned int hooknum,
 
 #else
 /*****************************************************************************
- 函 数 名  : NFExt_BrPreRoutingHook
- 功能描述  : BRIGE钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrPreRoutingHook
+   : BRIGE
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrPreRoutingHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
                                     const struct nf_hook_state *state)
 {
-    /* 判断是否OM的数据 */
+    /* OM */
     if ( NF_EXT_FLAG_OM_DATA == NFExt_IsOmData(skb) )
     {
         return NF_ACCEPT;
@@ -825,20 +825,20 @@ unsigned int NFExt_BrPreRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrPostRoutingHook
- 功能描述  : Bridge钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrPostRoutingHook
+   : Bridge
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrPostRoutingHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -855,20 +855,20 @@ unsigned int NFExt_BrPostRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrLocalInHook
- 功能描述  : Bridge钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrLocalInHook
+   : Bridge
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrLocalInHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -885,20 +885,20 @@ unsigned int NFExt_BrLocalInHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrLocalOutHook
- 功能描述  : Bridge钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrLocalOutHook
+   : Bridge
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrLocalOutHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -915,20 +915,20 @@ unsigned int NFExt_BrLocalOutHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_BrForwardHook
- 功能描述  : Bridge钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_BrForwardHook
+   : Bridge
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrForwardHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -940,20 +940,20 @@ unsigned int NFExt_BrForwardHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ArpInHook
- 功能描述  : ARP钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_ArpInHook
+   : ARP
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_ArpInHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -965,20 +965,20 @@ unsigned int NFExt_ArpInHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_ArpOutHook
- 功能描述  : ARP钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_ArpOutHook
+   : ARP
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 
 unsigned int NFExt_ArpOutHook(const struct nf_hook_ops *ops,
@@ -992,20 +992,20 @@ unsigned int NFExt_ArpOutHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4PreRoutingHook
- 功能描述  : IPV4钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4PreRoutingHook
+   : IPV4
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4PreRoutingHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1017,20 +1017,20 @@ unsigned int NFExt_Ip4PreRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4PostRoutingHook
- 功能描述  : IPV4钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4PostRoutingHook
+   : IPV4
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 
 unsigned int NFExt_Ip4PostRoutingHook(const struct nf_hook_ops *ops,
@@ -1043,20 +1043,20 @@ unsigned int NFExt_Ip4PostRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4LocalInHook
- 功能描述  : IPV4钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4LocalInHook
+   : IPV4
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4LocalInHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1069,20 +1069,20 @@ unsigned int NFExt_Ip4LocalInHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4LocalOutHook
- 功能描述  : IPV4钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4LocalOutHook
+   : IPV4
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4LocalOutHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1094,20 +1094,20 @@ unsigned int NFExt_Ip4LocalOutHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip4ForwardHook
- 功能描述  : IPV4钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip4ForwardHook
+   : IPV4
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip4ForwardHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1119,20 +1119,20 @@ unsigned int NFExt_Ip4ForwardHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6PreRoutingHook
- 功能描述  : IPV6钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6PreRoutingHook
+   : IPV6
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6PreRoutingHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1144,20 +1144,20 @@ unsigned int NFExt_Ip6PreRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6PostRoutingHook
- 功能描述  : IPV6钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6PostRoutingHook
+   : IPV6
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6PostRoutingHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1169,20 +1169,20 @@ unsigned int NFExt_Ip6PostRoutingHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6LocalInHook
- 功能描述  : IPV6钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6LocalInHook
+   : IPV6
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6LocalInHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1194,20 +1194,20 @@ unsigned int NFExt_Ip6LocalInHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6LocalOutHook
- 功能描述  : IPV6钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6LocalOutHook
+   : IPV6
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6LocalOutHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1219,20 +1219,20 @@ unsigned int NFExt_Ip6LocalOutHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
- 函 数 名  : NFExt_Ip6ForwardHook
- 功能描述  : IPV6钩子函数
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT
- 调用函数  :
- 被调函数  :
+     : NFExt_Ip6ForwardHook
+   : IPV6
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年11月22日
-    作    者   : caikai
-    修改内容   : Created
+       :
+  1.       : 20111122
+           : caikai
+       : Created
 *****************************************************************************/
 unsigned int NFExt_Ip6ForwardHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1244,24 +1244,24 @@ unsigned int NFExt_Ip6ForwardHook(const struct nf_hook_ops *ops,
 }
 
 /*****************************************************************************
-                        流控功能
+                        
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : NFExt_BrForwardFlowCtrlHook
- 功能描述  : 网桥forward流控点
- 输入参数  : const struct nf_hook_ops *ops,     钩子信息
-             struct sk_buff *skb,               待勾取报文的sk_buff结构
-             const struct nf_hook_state *state  钩子状态信息
- 输出参数  : 无
- 返 回 值  : NF_ACCEPT 非流控状态
-             NF_DROP   流控状态，直接丢包
- 调用函数  :
- 被调函数  :
+     : NFExt_BrForwardFlowCtrlHook
+   : forward
+   : const struct nf_hook_ops *ops,     
+             struct sk_buff *skb,               sk_buff
+             const struct nf_hook_state *state  
+   : 
+     : NF_ACCEPT 
+             NF_DROP   
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年01月11日
-    作    者   : t00148005
-    修改内容   : Created
+       :
+  1.       : 20120111
+           : t00148005
+       : Created
 *****************************************************************************/
 unsigned int NFExt_BrForwardFlowCtrlHook(const struct nf_hook_ops *ops,
                                     struct sk_buff *skb,
@@ -1269,11 +1269,11 @@ unsigned int NFExt_BrForwardFlowCtrlHook(const struct nf_hook_ops *ops,
 {
     NF_EXT_STATS_INC(1, NF_EXT_STATS_BR_FC_ENTER);
 
-    /* 网桥转发统计 */
+    /*  */
     NF_EXT_TX_BYTES_INC(skb->len, NF_EXT_TX_BYTES_CNT_BR);
 
 
-    /* 当前在网桥forward流控状态，直接丢包 */
+    /* forward */
     if (NF_EXT_BR_FORWARD_FLOW_CTRL_MASK == (g_stExFlowCtrlEntity.ulFlowCtrlMsk & NF_EXT_BR_FORWARD_FLOW_CTRL_MASK))
     {
         NF_EXT_STATS_INC(1, NF_EXT_STATS_BR_FC_DROP);

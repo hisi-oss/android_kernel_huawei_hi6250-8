@@ -48,7 +48,7 @@
 
 
 /*****************************************************************************
-  1 头文件包含
+  1 
 *****************************************************************************/
 #include "product_config.h"
 #include "Fc.h"
@@ -76,23 +76,23 @@
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_ACORE_FLOW_CTRL_C
 
 
 /*****************************************************************************
-  2 全局变量定义
+  2 
 *****************************************************************************/
 
-/* 网桥速率统计使用的变量 */
+/*  */
 FC_BRIDGE_RATE_STRU                     g_stFcBridgeRate;
 
-/* CDS流控使用的全局变量，FC IdRAB映射关系 */
+/* CDSFC IdRAB */
 
 FC_RAB_MAPPING_INFO_SET_STRU            g_astFcRabMappingInfoSet[MODEM_ID_BUTT];
 
-/* CPU流控使用，包括平滑次数，定时器 */
+/* CPU */
 FC_CPU_CTRL_STRU                        g_stFcCpuACtrl;
 
 FC_CPU_DRV_ASSEM_CONFIG_PARA_STRU       g_stCpuDriverAssePara =
@@ -102,7 +102,7 @@ FC_CPU_DRV_ASSEM_CONFIG_PARA_STRU       g_stCpuDriverAssePara =
     5,
     0,
     {
-    /* cpuload, PC驱动组包时延，UE驱动TX组包个数, UE驱动TX时延，UE驱动RX组包个数，UE驱动RX组包时延，保留域 */
+    /* cpuload, PCUETX, UETXUERXUERX */
         {
             85,{20, 40, 10, 10, 10, 56, {0, 0}}
         },
@@ -121,7 +121,7 @@ FC_CPU_DRV_ASSEM_CONFIG_PARA_STRU       g_stCpuDriverAssePara =
     }
 };
 
-/* 驱动组包参数实体结构 */
+/*  */
 FC_CPU_DRV_ASSEM_PARA_ENTITY_STRU  g_stDrvAssemParaEntity = {0, 0, 0, 0, 0, {0, 0, 0, 0}, {100, {0, 0, 0, 0, 0, 0, {0, 0}}}, VOS_NULL_PTR, VOS_NULL_PTR};
 
 VOS_SPINLOCK                       g_stFcMemSpinLock;
@@ -188,21 +188,21 @@ STATIC VOS_UINT32  FC_CDMA_UpProcess( VOS_VOID );
 STATIC VOS_UINT32  FC_GPRS_UpProcess( VOS_VOID );
 
 /*****************************************************************************
-  3 函数实现
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 函 数 名  : FC_CalcBridgeRate
- 功能描述  : 计算网桥上的速率,单位:bps
- 输入参数  : ulPeriod -- 网桥速率统计周期，单位毫秒
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_CalcBridgeRate
+   : ,:bps
+   : ulPeriod -- 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID  FC_BRIDGE_CalcRate( VOS_UINT32 ulPeriod )
@@ -222,7 +222,7 @@ STATIC VOS_VOID  FC_BRIDGE_CalcRate( VOS_UINT32 ulPeriod )
     ulCurrentByteCnt    = NFExt_GetBrBytesCnt();
     ulDeltaPacketCnt    = (ulCurrentByteCnt - ulLastByteCnt);
 
-    /* 换算成bps,注意防止计算溢出 */
+    /* bps, */
     if (ulDeltaPacketCnt < ulPeriod)
     {
         ulRate = (ulDeltaPacketCnt * 1000 * 8) / ulPeriod ;
@@ -241,18 +241,18 @@ STATIC VOS_VOID  FC_BRIDGE_CalcRate( VOS_UINT32 ulPeriod )
 
 
 /*****************************************************************************
- 函 数 名  : FC_ResetBridgeRate
- 功能描述  : 清除网桥速率统计
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_ResetBridgeRate
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID  FC_BRIDGE_ResetRate( VOS_VOID )
@@ -263,18 +263,18 @@ STATIC VOS_VOID  FC_BRIDGE_ResetRate( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_GetBridgeRate
- 功能描述  : 获取网桥速率统计值，单位:bps
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 网桥速率
- 调用函数  :
- 被调函数  :
+     : FC_GetBridgeRate
+   : :bps
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_BRIDGE_GetRate( VOS_VOID )
@@ -284,23 +284,23 @@ STATIC VOS_UINT32  FC_BRIDGE_GetRate( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_RmRateJudge
- 功能描述  : Rm速率是否达到引发CPU流控的门限
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:达到门限，VOS_FALSE:没有达到门限
- 调用函数  :
- 被调函数  :
+     : FC_RmRateJudge
+   : RmCPU
+   : 
+   : 
+     : VOS_TRUE:VOS_FALSE:
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_RmRateJudge( VOS_VOID )
 {
-    /* 如果网桥速率超过门限，则认为是速率高引起CPU高 */
+    /* CPU */
     if (g_stFcBridgeRate.ulRate > g_stFcCfg.stFcCfgCpuA.ulRmRateThreshold)
     {
         return VOS_TRUE;
@@ -310,19 +310,19 @@ STATIC VOS_UINT32  FC_RmRateJudge( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_RegDrvAssemFunc
- 功能描述  : 注册驱动组包参数调整回调函数
- 输入参数  : FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncUe  调整UE组包参数回调函数
-             FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncPc  调整PC组包参数回调函数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_RegDrvAssemFunc
+   : 
+   : FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncUe  UE
+             FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncPc  PC
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32 FC_ACORE_RegDrvAssemFunc(FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncUe, FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAssemParaFuncPc)
@@ -344,18 +344,18 @@ VOS_UINT32 FC_ACORE_RegDrvAssemFunc(FC_ACORE_DRV_ASSEMBLE_PARA_FUNC pFcDrvSetAss
 }
 
 /*****************************************************************************
- 函 数 名  : FC_ShowDrvAssemPara
- 功能描述  : 驱动可维可测打印信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_ShowDrvAssemPara
+   : 
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_ShowDrvAssemPara(VOS_VOID)
@@ -389,18 +389,18 @@ STATIC VOS_VOID FC_ShowDrvAssemPara(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_DrvAssemInit
- 功能描述  : 驱动组包参数初始化，从NV项中读出值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_DrvAssemInit
+   : NV
+   : 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_DrvAssemInit(VOS_VOID)
@@ -410,7 +410,7 @@ STATIC VOS_VOID FC_DrvAssemInit(VOS_VOID)
 
     ulRst = NV_ReadEx(MODEM_ID_0, en_NV_Item_FC_ACPU_DRV_ASSEMBLE_PARA, &stCpuDrvAssemPara, (VOS_UINT32)sizeof(FC_CPU_DRV_ASSEM_PARA_NV_STRU));
 
-    /* NV如果读取失败使用默认值 */
+    /* NV */
     if (NV_OK != ulRst)
     {
         FC_LOG(PS_PRINT_ERROR, "FC_DrvAssemInit Read NV fail!\n");
@@ -422,43 +422,43 @@ STATIC VOS_VOID FC_DrvAssemInit(VOS_VOID)
     g_stDrvAssemParaEntity.ulCurLev                 = FC_ACPU_DRV_ASSEM_LEV_1;
     g_stDrvAssemParaEntity.ucSetDrvFailCnt          = 0;
 
-    /* NV的长度与结构体的长度定义不一样只拷NV的部分 */
+    /* NVNV */
     PSACORE_MEM_CPY(&g_stCpuDriverAssePara, (VOS_UINT32)sizeof(FC_CPU_DRV_ASSEM_PARA_NV_STRU), &stCpuDrvAssemPara, (VOS_UINT32)sizeof(FC_CPU_DRV_ASSEM_PARA_NV_STRU));
 }
 
 /*****************************************************************************
- 函 数 名  : FC_JudgeAssemSmoothFactor
- 功能描述  : 调整平滑系数
- 输入参数  : FC_CPU_DRV_ASSEM_PARA_STRU pstDrvAssemPara 组包参数信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_JudgeAssemSmoothFactor
+   : 
+   : FC_CPU_DRV_ASSEM_PARA_STRU pstDrvAssemPara 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_JudgeAssemSmoothFactor(FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara)
 {
-    /* 平滑系数计算，连续多次超过才做出调整 */
+    /*  */
     if (g_stDrvAssemParaEntity.stCurAssemPara.ulCpuLoad > pstDrvAssemPara->ulCpuLoad)
     {
-        /* 下调档位平滑 */
+        /*  */
         g_stDrvAssemParaEntity.ucSmoothCntDown++;
         g_stDrvAssemParaEntity.ucSmoothCntUp = 0;
     }
     else if (g_stDrvAssemParaEntity.stCurAssemPara.ulCpuLoad < pstDrvAssemPara->ulCpuLoad)
     {
-        /* 上调档位平滑 */
+        /*  */
         g_stDrvAssemParaEntity.ucSmoothCntUp++;
         g_stDrvAssemParaEntity.ucSmoothCntDown = 0;
     }
     else
     {
-        /* 如果需要调整档已经与当前相同，平滑系数清零 */
+        /*  */
         g_stDrvAssemParaEntity.ucSmoothCntUp    = 0;
         g_stDrvAssemParaEntity.ucSmoothCntDown  = 0;
     }
@@ -466,18 +466,18 @@ STATIC VOS_VOID FC_JudgeAssemSmoothFactor(FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAsse
 
 
 /*****************************************************************************
- 函 数 名  : FC_GetCpuDrvAssemPara
- 功能描述  : 根据当前档位获取参数
- 输入参数  : VOS_UINT32 ulLev 档位值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_GetCpuDrvAssemPara
+   : 
+   : VOS_UINT32 ulLev 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC FC_CPU_DRV_ASSEM_PARA_STRU *FC_GetCpuDrvAssemPara(VOS_UINT32 ulLev)
@@ -491,18 +491,18 @@ STATIC FC_CPU_DRV_ASSEM_PARA_STRU *FC_GetCpuDrvAssemPara(VOS_UINT32 ulLev)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_JudgeCdsDlThres
- 功能描述  : 向CDS发送消息，内容为:CdsGuDlThres
- 输入参数  : VOS_UINT8 ucThres
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_JudgeCdsDlThres
+   : CDS:CdsGuDlThres
+   : VOS_UINT8 ucThres
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年06月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120614
+           : t00148005
+       : 
 *****************************************************************************/
 STATIC VOS_UINT32 FC_JudgeCdsDlThres(VOS_UINT8 ucThres)
 {
@@ -522,7 +522,7 @@ STATIC VOS_UINT32 FC_JudgeCdsDlThres(VOS_UINT8 ucThres)
     pstFcCdsThresChgMsg->ulReceiverCpuId = VOS_LOCAL_CPUID;
     pstFcCdsThresChgMsg->ulReceiverPid   = UEPS_PID_CDS;
 
-    /*lint --e(774) PS_SEND_MSG在lint时是宏替换为了一个表达式需要屏蔽告警 */
+    /*lint --e(774) PS_SEND_MSGlint */
     if (VOS_OK != PS_SEND_MSG(UEPS_PID_FLOWCTRL, pstFcCdsThresChgMsg))
     {
         FC_LOG(PS_PRINT_ERROR, "FC_JudgeCdsDlThres, Send Msg Fail\n");
@@ -533,30 +533,30 @@ STATIC VOS_UINT32 FC_JudgeCdsDlThres(VOS_UINT8 ucThres)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_GetCurrentAssemPara
- 功能描述  : 获取当前ASSEM参数
- 输入参数  : VOS_UINT32 ulAssemLev 根据当前CPU选出的档位值
- 输出参数  : pstDrvAssemPara
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_GetCurrentAssemPara
+   : ASSEM
+   : VOS_UINT32 ulAssemLev CPU
+   : pstDrvAssemPara
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年06月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120614
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC FC_CPU_DRV_ASSEM_PARA_STRU* FC_GetCurrentAssemPara(VOS_UINT32 ulAssemLev)
 {
     FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara;
 
-    /* 向上调整一步调到位 */
+    /*  */
     if (g_stDrvAssemParaEntity.ucSmoothCntUp >= g_stCpuDriverAssePara.ucSmoothCntUpLev)
     {
         g_stDrvAssemParaEntity.ulCurLev = ulAssemLev;
     }
-    /* 向下调整一个档位一个档位调整 */
+    /*  */
     else if (g_stDrvAssemParaEntity.ucSmoothCntDown >= g_stCpuDriverAssePara.ucSmoothCntDownLev)
     {
         if (g_stDrvAssemParaEntity.ulCurLev < (FC_ACPU_DRV_ASSEM_LEV_BUTT - 1))
@@ -575,32 +575,32 @@ STATIC FC_CPU_DRV_ASSEM_PARA_STRU* FC_GetCurrentAssemPara(VOS_UINT32 ulAssemLev)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_DoJudgeDrvAssem
- 功能描述  : 对驱动进行调整操作
- 输入参数  : FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara 选出档位参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_DoJudgeDrvAssem
+   : 
+   : FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_DoJudgeDrvAssem(FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara)
 {
-    /* 使能开关打开 */
+    /*  */
     if (FC_ACPU_DRV_ASSEM_PC_ON_MASK == (FC_ACPU_DRV_ASSEM_PC_ON_MASK & g_stCpuDriverAssePara.ucEnableMask))
     {
         if (VOS_NULL_PTR != g_stDrvAssemParaEntity.pDrvSetAssemParaFuncPc)
         {
-            /* 调用回调函数调整驱动组包参数，这里调整PC侧组包方案 */
+            /* PC */
             if (VOS_OK != g_stDrvAssemParaEntity.pDrvSetAssemParaFuncPc(&(pstDrvAssemPara->stDrvAssemPara)))
             {
                 FC_LOG(PS_PRINT_ERROR, "Set Driver Assemble parameter fail!\n");
-                /* 设置失败计数 */
+                /*  */
                 g_stDrvAssemParaEntity.ucSetDrvFailCnt++;
 
                 return;
@@ -608,34 +608,34 @@ STATIC VOS_VOID FC_DoJudgeDrvAssem(FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara)
         }
     }
 
-    /* 组包系数清零 */
+    /*  */
     g_stDrvAssemParaEntity.ucSmoothCntUp    = 0;
     g_stDrvAssemParaEntity.ucSmoothCntDown  = 0;
 
-    /* 设置失败次数清零 */
+    /*  */
     g_stDrvAssemParaEntity.ucSetDrvFailCnt  = 0;
 
-    /* 保存当前档位信息 */
+    /*  */
     PSACORE_MEM_CPY(&g_stDrvAssemParaEntity.stCurAssemPara, (VOS_UINT32)sizeof(FC_CPU_DRV_ASSEM_PARA_STRU), pstDrvAssemPara, (VOS_UINT32)sizeof(FC_CPU_DRV_ASSEM_PARA_STRU));
 
-    /* 可维可测 */
+    /*  */
     FC_MNTN_TraceDrvAssemPara(&(pstDrvAssemPara->stDrvAssemPara));
 
 }
 
 /*****************************************************************************
- 函 数 名  : FC_JudgeDrvAssemAction
- 功能描述  : 对驱动进行调整
- 输入参数  : VOS_UINT32 ulAssemLev 根据当前CPU选出的档位值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_JudgeDrvAssemAction
+   : 
+   : VOS_UINT32 ulAssemLev CPU
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_JudgeDrvAssemAction(VOS_UINT32 ulAssemLev)
@@ -645,7 +645,7 @@ STATIC VOS_VOID FC_JudgeDrvAssemAction(VOS_UINT32 ulAssemLev)
 
     pstDrvAssemPara = FC_GetCurrentAssemPara(ulAssemLev);
 
-    /* 超过平滑系数的水线之后再做出调整 */
+    /*  */
     if ( VOS_NULL_PTR != pstDrvAssemPara)
     {
         FC_DoJudgeDrvAssem(pstDrvAssemPara);
@@ -653,25 +653,25 @@ STATIC VOS_VOID FC_JudgeDrvAssemAction(VOS_UINT32 ulAssemLev)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_JudgeDrvToMaxPara
- 功能描述  : 将驱动调整到最大档位
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_JudgeDrvToMaxPara
+   : 
+   : VOS_VOID
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_JudgeDrvToMaxPara(VOS_VOID)
 {
     FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara;
 
-    /* 直接调整到最大档位 */
+    /*  */
     g_stDrvAssemParaEntity.ulCurLev = FC_ACPU_DRV_ASSEM_LEV_1;
 
     pstDrvAssemPara =  FC_GetCpuDrvAssemPara(FC_ACPU_DRV_ASSEM_LEV_1);
@@ -680,18 +680,18 @@ STATIC VOS_VOID FC_JudgeDrvToMaxPara(VOS_VOID)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_SelectDrvAssemParaRule
- 功能描述  : 通过CPU LOAD的情况选择参数档位
- 输入参数  : VOS_UINT32 ulCpuLoad 当前CPU LOAD情况
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_SelectDrvAssemParaRule
+   : CPU LOAD
+   : VOS_UINT32 ulCpuLoad CPU LOAD
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC FC_CPU_DRV_ASSEM_PARA_STRU* FC_SelectDrvAssemParaRule(VOS_UINT32 ulCpuLoad, VOS_UINT32 *pulAssemLev)
@@ -700,7 +700,7 @@ STATIC FC_CPU_DRV_ASSEM_PARA_STRU* FC_SelectDrvAssemParaRule(VOS_UINT32 ulCpuLoa
     FC_CPU_DRV_ASSEM_PARA_STRU      *pstCpuDrvAssemPara     = VOS_NULL_PTR;
     VOS_INT                          i;
 
-    /* 选出当前需要调整档位 */
+    /*  */
     for (i = 0; i < FC_ACPU_DRV_ASSEM_LEV_BUTT; i++)
     {
         pstCpuDrvAssemPara = &g_stCpuDriverAssePara.stCpuDrvAssemPara[i];
@@ -718,27 +718,27 @@ STATIC FC_CPU_DRV_ASSEM_PARA_STRU* FC_SelectDrvAssemParaRule(VOS_UINT32 ulCpuLoa
 
 
 /*****************************************************************************
- 函 数 名  : FC_JudgeDrvAssemPara
- 功能描述  : 通过CPU LOAD的情况调整驱动组包参数数
- 输入参数  : VOS_UINT32 ulCpuLoad 当前CPU LOAD情况
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_JudgeDrvAssemPara
+   : CPU LOAD
+   : VOS_UINT32 ulCpuLoad CPU LOAD
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2012年05月14日
-    作    者   : t00148005
-    修改内容   : 新生成函数
+       :
+  1.       : 20120514
+           : t00148005
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID FC_JudgeDrvAssemPara(VOS_UINT32 ulCpuLoad)
 {
     FC_CPU_DRV_ASSEM_PARA_STRU *pstDrvAssemPara;
-    /* 默认最高档 */
+    /*  */
     VOS_UINT32                  ulAssemLev       = FC_ACPU_DRV_ASSEM_LEV_1;
 
-    /* 使能开关未打开时，不再继续下面步骤 */
+    /*  */
     if (0 == g_stCpuDriverAssePara.ucEnableMask)
     {
         return;
@@ -751,7 +751,7 @@ STATIC VOS_VOID FC_JudgeDrvAssemPara(VOS_UINT32 ulCpuLoad)
         return;
     }
 
-    /* 根据CPU负载情况选择对应档位 */
+    /* CPU */
     pstDrvAssemPara = FC_SelectDrvAssemParaRule(ulCpuLoad, &ulAssemLev);
 
     if (VOS_NULL_PTR == pstDrvAssemPara)
@@ -761,26 +761,26 @@ STATIC VOS_VOID FC_JudgeDrvAssemPara(VOS_UINT32 ulCpuLoad)
         return;
     }
 
-    /* 根据当前档位计算平滑因子 */
+    /*  */
     FC_JudgeAssemSmoothFactor(pstDrvAssemPara);
 
-    /* 对驱动做出调整 */
+    /*  */
     FC_JudgeDrvAssemAction(ulAssemLev);
 }
 
 /*****************************************************************************
- 函 数 名  : FC_UmRateOverThreshold
- 功能描述  : 空口速率是否达到引发CPU流控的门限
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:达到门限，VOS_FALSE:没有达到门限
- 调用函数  :
- 被调函数  :
+     : FC_UmRateOverThreshold
+   : CPU
+   : 
+   : 
+     : VOS_TRUE:VOS_FALSE:
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_UmRateOverThreshold( VOS_VOID )
@@ -789,11 +789,11 @@ STATIC VOS_UINT32  FC_UmRateOverThreshold( VOS_VOID )
     VOS_UINT32                          ulDlRate;
 
 
-    /* 获取UM口速率 */
+    /* UM */
     ADS_GetCurrentRate(&ulUlRate, &ulDlRate);
 
 
-    /* 如果上行或下行速率超过门限，则认为是速率高引起CPU高 */
+    /* CPU */
     if ( (ulUlRate > g_stFcCfg.stFcCfgCpuA.ulUmUlRateThreshold)
         || (ulDlRate > g_stFcCfg.stFcCfgCpuA.ulUmDlRateThreshold) )
     {
@@ -805,70 +805,70 @@ STATIC VOS_UINT32  FC_UmRateOverThreshold( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_PsRateJudge
- 功能描述  : 判断是否有数传
- 输入参数  : 无
- 输出参数  : 速率超标VOS_TRUE，不超标VOS_FALSE
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_PsRateJudge
+   : 
+   : 
+   : VOS_TRUEVOS_FALSE
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_PsRateJudge( VOS_VOID )
 {
     /*
-    STICK形态判断空口速率
-    E5形态判断网桥速率
+    STICK
+    E5
     */
     return (FC_RmRateJudge());
 }
 
 
 /*****************************************************************************
- 函 数 名  : FC_GetPsRate
- 功能描述  : 获取数传速率
- 输入参数  : None
- 输出参数  : pulUlRate -- 上行速率输出指针，bps
-              pulDlRate -- 下行速率输出指针，bps
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
+     : FC_GetPsRate
+   : 
+   : None
+   : pulUlRate -- bps
+              pulDlRate -- bps
+     : VOS_VOID
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID  FC_GetPsRate( VOS_UINT32 *pulUlRate, VOS_UINT32 *pulDlRate )
 {
-    /* E5形态下，获取网桥速率 */
-   /* 网桥上，上下行速率都赋值成网桥速率 */
+    /* E5 */
+   /*  */
    *pulUlRate   = FC_BRIDGE_GetRate();
    *pulDlRate   = *pulUlRate;
 }
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_UpJudge
- 功能描述  : 是否触发CPU流控，第一次会做平滑处理
- 输入参数  : ulCpuLoad   -- 当前CPU空闲量0~100
-              pstFcCfgCpu -- CPU流控配置项
-              pstFcPolicy -- CPU流控策略实体
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要进行流控，VOS_FALSE:不需要
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_UpJudge
+   : CPU
+   : ulCpuLoad   -- CPU0~100
+              pstFcCfgCpu -- CPU
+              pstFcPolicy -- CPU
+   : 
+     : VOS_TRUE:VOS_FALSE:
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2011125
+           :
+       : 
 
 *****************************************************************************/
 VOS_UINT32 FC_CPUA_UpJudge
@@ -887,15 +887,15 @@ VOS_UINT32 FC_CPUA_UpJudge
         return VOS_FALSE;
     }
 
-    /* 已经达到CPU流控的最高级别，不用再进一步流控 */
+    /* CPU */
     if (pstFcPolicy->enHighestPri <= pstFcPolicy->enDonePri)
     {
         return VOS_FALSE;
     }
 
 
-    /* 是否进行平滑和速率判断  */
-    /* 如果已经开始进行CPU流控，则继续进行流控，不再进行平滑和速率的判断 */
+    /*   */
+    /* CPU */
     if ( FC_PRI_NULL != pstFcPolicy->enDonePri )
     {
         return VOS_TRUE;
@@ -917,7 +917,7 @@ VOS_UINT32 FC_CPUA_UpJudge
     g_stFcCpuACtrl.ulSmoothTimerLen  = 0;
 
 
-    /* 数传速率是否是CPU高的原因 */
+    /* CPU */
     ulResult    = FC_PsRateJudge();
     if (VOS_FALSE == ulResult)
     {
@@ -929,20 +929,20 @@ VOS_UINT32 FC_CPUA_UpJudge
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_DownJudge
- 功能描述  : 是否触发CPU解除流控
- 输入参数  : ulCpuLoad   -- 当前CPU空闲量0~100
-              pstFcCfgCpu -- CPU流控配置项
-              pstFcPolicy -- CPU流控策略实体
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要解除流控，VOS_FALSE:不需要
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_DownJudge
+   : CPU
+   : ulCpuLoad   -- CPU0~100
+              pstFcCfgCpu -- CPU
+              pstFcPolicy -- CPU
+   : 
+     : VOS_TRUE:VOS_FALSE:
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2011125
+           :
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32 FC_CPUA_DownJudge
@@ -963,18 +963,18 @@ STATIC VOS_UINT32 FC_CPUA_DownJudge
 
 
 /*****************************************************************************
- 函 数 名  : FC_RcvCpuLoad
- 功能描述  : A核流控模块提供的CPU负载处理接口
- 输入参数  : ulCpuLoad  --  当前CPU负载0~100
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
+     : FC_RcvCpuLoad
+   : ACPU
+   : ulCpuLoad  --  CPU0~100
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月5日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 2011125
+           :
+       : 
 
 *****************************************************************************/
 VOS_VOID FC_CPUA_RcvCpuLoad(VOS_UINT32  ulCpuLoad)
@@ -986,25 +986,25 @@ VOS_VOID FC_CPUA_RcvCpuLoad(VOS_UINT32  ulCpuLoad)
     VOS_UINT32                          ulDlRate;
 
 
-    /* 通过CPU LOAD调整驱动组包参数，不受CPU流控开关控制 */
+    /* CPU LOADCPU */
     FC_JudgeDrvAssemPara(ulCpuLoad);
 
 
-    /* 参数检查 */
+    /*  */
     if ( FC_POLICY_MASK_CPU_A != (FC_POLICY_MASK_CPU_A & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* CPU流控未使能 */
+        /* CPU */
         FC_LOG1(PS_PRINT_INFO, "FC_CPU_ProcessLoad, INFO, CPU FlowCtrl is disabled %d\n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return;
     }
 
-    /* 输出可维可测 */
+    /*  */
     FC_MNTN_TraceCpuLoad(ID_FC_MNTN_CPU_A_CPULOAD, ulCpuLoad);
 
     if ( 100 < ulCpuLoad )
     {
-        /* 参数非法 */
+        /*  */
         FC_LOG1(PS_PRINT_WARNING, "FC_CPU_ProcessLoad, WARNING, Invalid Cpu Load %d\n",
                 (VOS_INT32)ulCpuLoad);
         return;
@@ -1014,7 +1014,7 @@ VOS_VOID FC_CPUA_RcvCpuLoad(VOS_UINT32  ulCpuLoad)
     pstFcCfgCpu = &(g_stFcCfg.stFcCfgCpuA);
     pstFcPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CPU_A_MODEM_0);
 
-    /* 是否要进行CPU流控 */
+    /* CPU */
     ulStartCtrl = FC_CPUA_UpJudge(ulCpuLoad, pstFcCfgCpu, pstFcPolicy);
     if (VOS_TRUE == ulStartCtrl)
     {
@@ -1024,7 +1024,7 @@ VOS_VOID FC_CPUA_RcvCpuLoad(VOS_UINT32  ulCpuLoad)
     }
 
 
-    /* 进行CPU解流控判决 */
+    /* CPU */
     ulStartCtrl = FC_CPUA_DownJudge(ulCpuLoad, pstFcCfgCpu, pstFcPolicy);
     if ( VOS_TRUE ==  ulStartCtrl )
     {
@@ -1038,18 +1038,18 @@ VOS_VOID FC_CPUA_RcvCpuLoad(VOS_UINT32  ulCpuLoad)
 
 
 /*****************************************************************************
- 函 数 名  : FC_POLICY_CpuStopFcAttempt
- 功能描述  : 尝试解除CPU流控
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_POLICY_CpuStopFcAttempt
+   : CPU
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CPUA_StopFcAttempt( VOS_UINT32 ulParam1, VOS_UINT32 ulParam2 )
@@ -1064,7 +1064,7 @@ STATIC VOS_UINT32  FC_CPUA_StopFcAttempt( VOS_UINT32 ulParam1, VOS_UINT32 ulPara
     }
 
 
-    /*如果定时器已经开启，则不需要再次启动*/
+    /**/
     if (VOS_NULL_PTR == g_stFcCpuACtrl.pstStopAttemptTHandle)
     {
         if ( VOS_OK != VOS_StartRelTimer(&g_stFcCpuACtrl.pstStopAttemptTHandle,
@@ -1089,18 +1089,18 @@ STATIC VOS_UINT32  FC_CPUA_StopFcAttempt( VOS_UINT32 ulParam1, VOS_UINT32 ulPara
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_UpProcess
- 功能描述  : ACPU负载的流控处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK,失败VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_UpProcess
+   : ACPU
+   : 
+   : 
+     : VOS_OK,VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CPUA_UpProcess( VOS_VOID )
@@ -1108,12 +1108,12 @@ STATIC VOS_UINT32  FC_CPUA_UpProcess( VOS_VOID )
     FC_POLICY_STRU                     *pFcPolicy;
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pFcPolicy   = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CPU_A_MODEM_0);
     FC_POLICY_Up(pFcPolicy);
 
 
-    /* 已经是当前策略的最高级别了，执行回调函数 */
+    /*  */
     if (pFcPolicy->enDonePri == pFcPolicy->enHighestPri)
     {
         if (VOS_NULL_PTR != pFcPolicy->pPostFunc)
@@ -1127,18 +1127,18 @@ STATIC VOS_UINT32  FC_CPUA_UpProcess( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_DownProcess
- 功能描述  : ACPU负载的解除流控处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK,失败VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_DownProcess
+   : ACPU
+   : 
+   : 
+     : VOS_OK,VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CPUA_DownProcess( VOS_VOID )
@@ -1146,7 +1146,7 @@ STATIC VOS_UINT32  FC_CPUA_DownProcess( VOS_VOID )
     FC_POLICY_STRU                      *pPolicy;
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CPU_A_MODEM_0);
     FC_POLICY_Down(pPolicy);
 
@@ -1155,18 +1155,18 @@ STATIC VOS_UINT32  FC_CPUA_DownProcess( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_StopFlowCtrl
- 功能描述  : 根据CPU负载，判读是否可以提前解除CPU流控
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功VOS_OK,失败VOS_ERR
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_StopFlowCtrl
+   : CPUCPU
+   : 
+   : 
+     : VOS_OK,VOS_ERR
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CPUA_StopFlowCtrl( VOS_VOID )
@@ -1179,8 +1179,8 @@ STATIC VOS_UINT32  FC_CPUA_StopFlowCtrl( VOS_VOID )
     pstFcPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CPU_A_MODEM_0);
 
 
-    /* 当前CPU小于解流控门限值,解流控 */
-    /*lint --e(685) FEATURE_ACPU_STAT没打开ulCpuLoad为0所以第一个判断恒成立 */
+    /* CPU, */
+    /*lint --e(685) FEATURE_ACPU_STATulCpuLoad0 */
     if ( (ulCpuLoad <= pstFcCfgCpu->ulCpuUnderLoadVal)
          && (FC_PRI_NULL < pstFcPolicy->enDonePri) )
     {
@@ -1192,23 +1192,23 @@ STATIC VOS_UINT32  FC_CPUA_StopFlowCtrl( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CPUA_Init
- 功能描述  : ACPU负载流控的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CPUA_Init
+   : ACPU
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111222
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CPUA_Init( VOS_VOID )
 {
-    /* 增加使用宏开关判断是否注册回调函数 */
+    /*  */
 
     PSACORE_MEM_SET(&g_stFcBridgeRate, (VOS_UINT32)sizeof(FC_BRIDGE_RATE_STRU), 0, (VOS_UINT32)sizeof(FC_BRIDGE_RATE_STRU));
     PSACORE_MEM_SET(&g_stFcCpuACtrl, (VOS_UINT32)sizeof(g_stFcCpuACtrl), 0, (VOS_UINT32)sizeof(g_stFcCpuACtrl));
@@ -1218,20 +1218,20 @@ STATIC VOS_UINT32  FC_CPUA_Init( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_POLICY_CalcUpTargetFcPris
- 功能描述  : 内存递增时，根据内存占用量，计算出内存流控的目标流控级别，
-              内存策略只有一个优先级时，按照Lev3处理
- 输入参数  : pPolicy    -- 内存流控策略
-              ulMemValue -- 当前内存占用量
- 输出参数  : 无
- 返 回 值  : 目标流控级别
- 调用函数  :
- 被调函数  :
+     : FC_POLICY_CalcUpTargetFcPris
+   : 
+              Lev3
+   : pPolicy    -- 
+              ulMemValue -- 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 FC_PRI_ENUM_UINT8  FC_MEM_CalcUpTargetFcPri
@@ -1247,19 +1247,19 @@ FC_PRI_ENUM_UINT8  FC_MEM_CalcUpTargetFcPri
     pstMemCfg   = &(g_stFcCfg.stFcCfgMem);
     enTargetPri = pPolicy->enDonePri;
 
-    /* 内存策略只注册了一个优先级，按照Lev3处理 */
+    /* Lev3 */
     if (1 == pPolicy->ucPriCnt)
     {
-        /* 计算出目标流控优先级 */
+        /*  */
         if (ulMemValue <= pstMemCfg->astThreshold[FC_MEM_THRESHOLD_LEV_3].ulSetThreshold)
         {
             enTargetPri     = pPolicy->enHighestPri;
         }
     }
-    /* 内存策略只注册了多个优先级 */
+    /*  */
     else
     {
-        /* 计算出目标流控优先级 */
+        /*  */
         if (ulMemValue <= pstMemCfg->astThreshold[FC_MEM_THRESHOLD_LEV_4].ulSetThreshold)
         {
             enTargetPri     = FC_PRI_FOR_MEM_LEV_4;
@@ -1287,20 +1287,20 @@ FC_PRI_ENUM_UINT8  FC_MEM_CalcUpTargetFcPri
 
 
 /*****************************************************************************
- 函 数 名  : FC_MEM_CalcDownTargetFcPri
- 功能描述  : 内存递减时，根据内存占用量，计算出内存流控的目标解流控级别，
-              内存策略只有一个优先级时，按照Lev3处理
- 输入参数  : pPolicy    -- 内存流控策略
-              ulMemValue -- 当前内存占用量
- 输出参数  : 无
- 返 回 值  : 目标解流控级别
- 调用函数  :
- 被调函数  :
+     : FC_MEM_CalcDownTargetFcPri
+   : 
+              Lev3
+   : pPolicy    -- 
+              ulMemValue -- 
+   : 
+     : 
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011129
+           : g45205
+       : 
 
 *****************************************************************************/
 FC_PRI_ENUM_UINT8  FC_MEM_CalcDownTargetFcPri
@@ -1315,19 +1315,19 @@ FC_PRI_ENUM_UINT8  FC_MEM_CalcDownTargetFcPri
     pstMemCfg   = &(g_stFcCfg.stFcCfgMem);
     enTargetPri = pPolicy->enDonePri;
 
-    /* 内存策略只注册了一个优先级 */
+    /*  */
     if (1 == pPolicy->ucPriCnt)
     {
-        /* 计算出目标流控优先级 */
+        /*  */
         if (ulMemValue > pstMemCfg->astThreshold[FC_MEM_THRESHOLD_LEV_3].ulStopThreshold)
         {
             enTargetPri     = FC_PRI_NULL;
         }
     }
-    /* 内存策略只注册了多个优先级 */
+    /*  */
     else
     {
-        /* 计算出目标流控优先级 */
+        /*  */
         if (ulMemValue > pstMemCfg->astThreshold[FC_MEM_THRESHOLD_LEV_1].ulStopThreshold)
         {
             enTargetPri     = FC_PRI_NULL;
@@ -1355,18 +1355,18 @@ FC_PRI_ENUM_UINT8  FC_MEM_CalcDownTargetFcPri
 
 
 /*****************************************************************************
- 函 数 名  : FC_MEM_AdjustPriForUp
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_MEM_AdjustPriForUp
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111214
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_MEM_AdjustPriForUp
@@ -1378,13 +1378,13 @@ STATIC VOS_UINT32  FC_MEM_AdjustPriForUp
     FC_POLICY_STRU                     *pPolicy;
     FC_PRI_ENUM_UINT8                   enTargetPri;
 
-    /* 获取内存流控策略和内存流控配置 */
+    /*  */
     pPolicy         = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_MEM_MODEM_0);
 
-    /* 根据内存情况，重新刷新内存流控目标优先级 */
+    /*  */
     enTargetPri     = FC_MEM_CalcUpTargetFcPri(pPolicy, 0);
 
-    /* 目标优先级调整后，进行流控处理调整，符合新的流控优先级 */
+    /*  */
     if (pPolicy->enDonePri < enTargetPri)
     {
         FC_POLICY_UpToTargetPri(pPolicy, enTargetPri);
@@ -1407,18 +1407,18 @@ STATIC VOS_UINT32  FC_MEM_AdjustPriForUp
 
 
 /*****************************************************************************
- 函 数 名  : FC_POLICY_AdjustMemPri
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_POLICY_AdjustMemPri
+   :
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111214
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_MEM_AdjustPriForDown
@@ -1430,13 +1430,13 @@ STATIC VOS_UINT32  FC_MEM_AdjustPriForDown
     FC_POLICY_STRU                     *pPolicy;
     FC_PRI_ENUM_UINT8                   enTargetPri;
 
-    /* 获取内存流控策略和内存流控配置 */
+    /*  */
     pPolicy         = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_MEM_MODEM_0);
 
-    /* 根据内存情况，重新刷新内存流控目标优先级 */
+    /*  */
     enTargetPri     = FC_MEM_CalcDownTargetFcPri(pPolicy, 0);
 
-    /* 目标优先级调整后，进行流控处理调整，符合新的流控优先级 */
+    /*  */
     if (pPolicy->enDonePri < enTargetPri)
     {
         FC_POLICY_UpToTargetPri(pPolicy, enTargetPri);
@@ -1459,18 +1459,18 @@ STATIC VOS_UINT32  FC_MEM_AdjustPriForDown
 
 
 /*****************************************************************************
- 函 数 名  : FC_SndMemUpToTargetPriIndMsg
- 功能描述  : 发送内存流控到目标值的消息通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_SndMemUpToTargetPriIndMsg
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111220
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_MEM_SndUpToTargetPriIndMsg(FC_PRI_ENUM_UINT8 enTargetPri, VOS_UINT16 usMemFreeCnt)
@@ -1508,18 +1508,18 @@ STATIC VOS_UINT32  FC_MEM_SndUpToTargetPriIndMsg(FC_PRI_ENUM_UINT8 enTargetPri, 
 
 
 /*****************************************************************************
- 函 数 名  : FC_SndMemDownToTargetPriIndMsg
- 功能描述  : 发送内存流控到目标值的消息通知
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_SndMemDownToTargetPriIndMsg
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111220
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_MEM_SndDownToTargetPriIndMsg( FC_PRI_ENUM_UINT8 enTargetPri, VOS_UINT16 usMemFreeCnt)
@@ -1557,18 +1557,18 @@ STATIC VOS_UINT32  FC_MEM_SndDownToTargetPriIndMsg( FC_PRI_ENUM_UINT8 enTargetPr
 
 
 /*****************************************************************************
- 函 数 名  : FC_MEM_UpProcess
- 功能描述  : 内存流控策略入口函数
- 输入参数  : ulMemValue:内存个数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : FC_MEM_UpProcess
+   : 
+   : ulMemValue:
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_VOID FC_MEM_UpProcess( VOS_UINT32 ulMemValue  )
@@ -1577,10 +1577,10 @@ VOS_VOID FC_MEM_UpProcess( VOS_UINT32 ulMemValue  )
     FC_PRI_ENUM_UINT8                  enTargetPri;
     VOS_ULONG                           ulFlags = 0UL;
 
-    /* 参数检查 */
+    /*  */
     if ( FC_POLICY_MASK_MEM != (FC_POLICY_MASK_MEM & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_MEM_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return;
@@ -1591,16 +1591,16 @@ VOS_VOID FC_MEM_UpProcess( VOS_UINT32 ulMemValue  )
 
     if ((pPolicy->enDonePri < enTargetPri) && (pPolicy->enToPri < enTargetPri))
     {
-        /* 如果在软中断这类不可打断的任务中，就不发流控消息 */
-        /*lint --e(506,774,550,730) 屏蔽dummy未初始化的lint错误 */
-        /*lint --e{550,1072} 屏蔽dummy未访问的lint错误 */
+        /*  */
+        /*lint --e(506,774,550,730) dummylint */
+        /*lint --e{550,1072} dummylint */
         if (likely(preemptible()))
         {
             VOS_SpinLockIntLock(&g_stFcMemSpinLock, ulFlags);
             pPolicy->enToPri = enTargetPri;
             VOS_SpinUnlockIntUnlock(&g_stFcMemSpinLock , ulFlags);
 
-            /* 消息发送失败会单板复位，不再进行enToPri的恢复 */
+            /* enToPri */
             FC_MEM_SndUpToTargetPriIndMsg(enTargetPri, (VOS_UINT16)ulMemValue);
 
         }
@@ -1610,18 +1610,18 @@ VOS_VOID FC_MEM_UpProcess( VOS_UINT32 ulMemValue  )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_MEM_DownProcess
- 功能描述  : 内存使用量减少，可能触发解除流控
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_MEM_DownProcess
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_VOID  FC_MEM_DownProcess( VOS_UINT32 ulMemValue )
@@ -1630,10 +1630,10 @@ VOS_VOID  FC_MEM_DownProcess( VOS_UINT32 ulMemValue )
     FC_PRI_ENUM_UINT8                  enTargetPri;
     VOS_ULONG                           ulFlags = 0UL;
 
-    /* 参数检查 */
+    /*  */
     if ( FC_POLICY_MASK_MEM != (FC_POLICY_MASK_MEM & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_MEM_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return;
@@ -1644,16 +1644,16 @@ VOS_VOID  FC_MEM_DownProcess( VOS_UINT32 ulMemValue )
 
     if ((pPolicy->enDonePri > enTargetPri) && (pPolicy->enToPri > enTargetPri))
     {
-        /* 如果在软中断这类不可打断的任务中，就不发流控消息 */
-        /*lint --e(506,774,550,730) 屏蔽dummy未初始化的lint错误 */
-        /*lint --e{550,1072} 屏蔽dummy未访问的lint错误 */
+        /*  */
+        /*lint --e(506,774,550,730) dummylint */
+        /*lint --e{550,1072} dummylint */
         if (likely(preemptible()))
         {
             VOS_SpinLockIntLock(&g_stFcMemSpinLock, ulFlags);
             pPolicy->enToPri = enTargetPri;
             VOS_SpinUnlockIntUnlock(&g_stFcMemSpinLock, ulFlags);
 
-            /* 消息发送失败会单板复位，不再进行enToPri的恢复 */
+            /* enToPri */
             FC_MEM_SndDownToTargetPriIndMsg(enTargetPri, (VOS_UINT16)ulMemValue);
         }
     }
@@ -1663,35 +1663,35 @@ VOS_VOID  FC_MEM_DownProcess( VOS_UINT32 ulMemValue )
 
 
 /*****************************************************************************
- 函 数 名  : FC_MEM_Init
- 功能描述  : 内存流控初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_MEM_Init
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111227
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_MEM_Init( VOS_VOID )
 {
     VOS_SpinLockInit(&g_stFcMemSpinLock);
 
-    /* V9R1项目中判断ACPU内存流控使能则注册回调函数，否则不注册 */
-    /* 注册内存回调函数 */
+    /* V9R1ACPU */
+    /*  */
     if ( (FC_POLICY_MASK(FC_POLICY_ID_MEM) == (FC_POLICY_MASK(FC_POLICY_ID_MEM) & g_stFcCfg.ulFcEnbaleMask) ))
     {
-        /* A核内存流控策略初始化 */
+        /* A */
         g_astFcPolicy[FC_POLICY_ID_MEM].pAdjustForUpFunc    = FC_MEM_AdjustPriForUp;
         g_astFcPolicy[FC_POLICY_ID_MEM].pAdjustForDownFunc  = FC_MEM_AdjustPriForDown;
     }
     else
     {
-         /* A核内存流控策略初始化 */
+         /* A */
         g_astFcPolicy[FC_POLICY_ID_MEM].pAdjustForUpFunc    = VOS_NULL_PTR;
         g_astFcPolicy[FC_POLICY_ID_MEM].pAdjustForDownFunc  = VOS_NULL_PTR;
     }
@@ -1701,18 +1701,18 @@ STATIC VOS_UINT32  FC_MEM_Init( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CST_UpProcess
- 功能描述  : CST流控策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CST_UpProcess
+   : CST
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CST_UpProcess( VOS_UINT8 ucRabId )
@@ -1720,17 +1720,17 @@ STATIC VOS_UINT32  FC_CST_UpProcess( VOS_UINT8 ucRabId )
     FC_POLICY_STRU                     *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CST != (FC_POLICY_MASK_CST & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CST_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CST_MODEM_0);
     FC_POLICY_UpToTargetPri(pPolicy, pPolicy->enHighestPri);
 
@@ -1742,18 +1742,18 @@ STATIC VOS_UINT32  FC_CST_UpProcess( VOS_UINT8 ucRabId )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CST_DownProcess
- 功能描述  : CST解除流控策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CST_DownProcess
+   : CST
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CST_DownProcess( VOS_UINT8 ucRabId )
@@ -1761,17 +1761,17 @@ STATIC VOS_UINT32  FC_CST_DownProcess( VOS_UINT8 ucRabId )
     FC_POLICY_STRU                     *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CST != (FC_POLICY_MASK_CST & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CST_DownProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CST_MODEM_0);
     FC_POLICY_DownToTargetPri(pPolicy, FC_PRI_NULL);
 
@@ -1783,18 +1783,18 @@ STATIC VOS_UINT32  FC_CST_DownProcess( VOS_UINT8 ucRabId )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_GetFcInfo
- 功能描述  : 获取Fc流控实体
- 输入参数  : VOS_UINT8 ucRabId  需要查找的对应FC信息的Rab Id
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_GetFcInfo
+   : Fc
+   : VOS_UINT8 ucRabId  FCRab Id
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111212
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC FC_RAB_MAPPING_INFO_STRU  *FC_CDS_GetFcInfo( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -1808,7 +1808,7 @@ STATIC FC_RAB_MAPPING_INFO_STRU  *FC_CDS_GetFcInfo( VOS_UINT8 ucRabId, MODEM_ID_
     pstFcRabMappingInfoSet  = &g_astFcRabMappingInfoSet[enModemId];
     ulRabMask               = (VOS_UINT32)(1UL << ucRabId);
 
-    /*====================================*//* 遍历所有映射关系，如果找到包含指定RAB_ID的映射关系，则退出 */
+    /*====================================*//* RAB_ID */
     for (enFcId = 0; enFcId < pstFcRabMappingInfoSet->enFcIdCnt; enFcId++)
     {
         pstFcRabMappingInfo = &(pstFcRabMappingInfoSet->astFcRabMappingInfo[enFcId]);
@@ -1823,18 +1823,18 @@ STATIC FC_RAB_MAPPING_INFO_STRU  *FC_CDS_GetFcInfo( VOS_UINT8 ucRabId, MODEM_ID_
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_DelFcId
- 功能描述  : 删除FC Id对应的FC信息
- 输入参数  : FC_ID_ENUM_UINT8 enFcId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_DelFcId
+   : FC IdFC
+   : FC_ID_ENUM_UINT8 enFcId
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111217
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_CDS_DelFcId( FC_ID_ENUM_UINT8 enFcId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -1861,14 +1861,14 @@ VOS_UINT32  FC_CDS_DelFcId( FC_ID_ENUM_UINT8 enFcId, MODEM_ID_ENUM_UINT16 enMode
         return VOS_ERR;
     }
 
-    /* 将后面的映射关系拷贝过来，保持数组连续性 */
+    /*  */
     for (enShiftFcId = (FC_PRI_ENUM_UINT8)(enFcIdNum + 1); enShiftFcId < pstFcRabMappingInfoSet->enFcIdCnt; enShiftFcId++)
     {
         pstFcRabMappingInfo   = &(pstFcRabMappingInfoSet->astFcRabMappingInfo[enShiftFcId]);
         PSACORE_MEM_CPY((pstFcRabMappingInfo - 1), (VOS_UINT32)sizeof(FC_RAB_MAPPING_INFO_STRU), pstFcRabMappingInfo, (VOS_UINT32)sizeof(FC_RAB_MAPPING_INFO_STRU));
     }
 
-    /* 最后一个映射关系无法被拷贝覆盖，所以需要手动清除 */
+    /*  */
     PSACORE_MEM_SET(&(pstFcRabMappingInfoSet->astFcRabMappingInfo[enShiftFcId - 1]), (VOS_UINT32)sizeof(FC_RAB_MAPPING_INFO_STRU), 0, (VOS_UINT32)sizeof(FC_RAB_MAPPING_INFO_STRU));
     pstFcRabMappingInfoSet->enFcIdCnt--;
 
@@ -1877,19 +1877,19 @@ VOS_UINT32  FC_CDS_DelFcId( FC_ID_ENUM_UINT8 enFcId, MODEM_ID_ENUM_UINT16 enMode
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_AddRab
- 功能描述  : 增加ClentId到RAB映射
- 输入参数  : FC_ID_ENUM_UINT8 enFcId   对应业务所在设备的Fc Id
-             VOS_UINT8 ucRabId          对应业务的RabId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_AddRab
+   : ClentIdRAB
+   : FC_ID_ENUM_UINT8 enFcId   Fc Id
+             VOS_UINT8 ucRabId          RabId
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111217
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_CDS_AddRab(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -1909,7 +1909,7 @@ VOS_UINT32  FC_CDS_AddRab(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_ID_E
         return VOS_ERR;
     }
 
-    /*====================================*//* 遍历该FC的流控信息，如果找到包含指定RAB_ID的Fc Id，则退出 */
+    /*====================================*//* FCRAB_IDFc Id */
     for (enFcIdNum = 0; enFcIdNum < pstFcRabMappingInfoSet->enFcIdCnt; enFcIdNum++)
     {
         pstFcRabMappingInfo = &(pstFcRabMappingInfoSet->astFcRabMappingInfo[enFcIdNum]);
@@ -1932,7 +1932,7 @@ VOS_UINT32  FC_CDS_AddRab(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_ID_E
         return VOS_ERR;
     }
 
-    /*====================================*//* 如果是新的FC Id，则添加该Fc Id和RAB ID */
+    /*====================================*//* FC IdFc IdRAB ID */
     pstFcRabMappingInfo = &(pstFcRabMappingInfoSet->astFcRabMappingInfo[pstFcRabMappingInfoSet->enFcIdCnt]);
     pstFcRabMappingInfo->enFcId             = enFcId;
     pstFcRabMappingInfo->ulIncludeRabMask   = ulRabMask;
@@ -1945,18 +1945,18 @@ VOS_UINT32  FC_CDS_AddRab(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_ID_E
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_DelRab
- 功能描述  : 清除该RAB ID对应的流控信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_DelRab
+   : RAB ID
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111217
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_CDS_DelRab( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -1965,14 +1965,14 @@ VOS_UINT32  FC_CDS_DelRab( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
     VOS_UINT32                          ulRabMask;
 
 
-    /*====================================*//* 通过Rab Id来查找该Rab Id所在的FC实体 */
+    /*====================================*//* Rab IdRab IdFC */
     pstFcRabMappingInfo                 = FC_CDS_GetFcInfo(ucRabId, enModemId);
     if (VOS_NULL_PTR == pstFcRabMappingInfo)
     {
         return VOS_ERR;
     }
 
-    /* 清除该RabId的信息，如果该Fc上已经不存在不需要流控的RabId，则进行流控 */
+    /* RabIdFcRabId */
     ulRabMask       = (VOS_UINT32)(1UL << ucRabId);
 
     pstFcRabMappingInfo->ulIncludeRabMask  &= (~ulRabMask);
@@ -1986,7 +1986,7 @@ VOS_UINT32  FC_CDS_DelRab( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
         }
     }
 
-    /* 如果删除了RabId后，该FC上没有其它信息，则删除该FC ID对应的信息 */
+    /* RabIdFCFC ID */
     if (0 == pstFcRabMappingInfo->ulIncludeRabMask)
     {
         FC_CDS_DelFcId(pstFcRabMappingInfo->enFcId, enModemId);
@@ -1997,18 +1997,18 @@ VOS_UINT32  FC_CDS_DelRab( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_Init
- 功能描述  : AT Client流控初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_Init
+   : AT Client
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111220
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CDS_Init( VOS_VOID )
@@ -2020,18 +2020,18 @@ STATIC VOS_UINT32  FC_CDS_Init( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_UpProcess
- 功能描述  : CDS流控策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_UpProcess
+   : CDS
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -2039,10 +2039,10 @@ VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId 
     FC_RAB_MAPPING_INFO_STRU               *pstFcRabMappingInfo;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CDS != (FC_POLICY_MASK_CDS & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CST_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
@@ -2054,7 +2054,7 @@ VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId 
         return VOS_ERR;
     }
 
-    /*====================================*//* 通过RAB id来查找 Client流控实体 */
+    /*====================================*//* RAB id Client */
     pstFcRabMappingInfo         = FC_CDS_GetFcInfo(ucRabId, enModemId);
     if (VOS_NULL_PTR == pstFcRabMappingInfo)
     {
@@ -2062,7 +2062,7 @@ VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId 
     }
 
 
-    /*====================================*//* 如果该Fc流控实体已经流控，则无需处理，直接返回 */
+    /*====================================*//* Fc */
     if (0 == pstFcRabMappingInfo->ulNoFcRabMask)
     {
         return VOS_OK;
@@ -2070,7 +2070,7 @@ VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId 
 
 
     /*====================================*/
-    /* 去除该FC对应的没有流控的RAB掩码，如果为0，表明所有RAB都要求流控，该FC进行流控 */
+    /* FCRAB0RABFC */
     pstFcRabMappingInfo->ulNoFcRabMask   &= (~((VOS_UINT32)1 << ucRabId));
     if (0 == pstFcRabMappingInfo->ulNoFcRabMask)
     {
@@ -2082,18 +2082,18 @@ VOS_UINT32  FC_CDS_UpProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId 
 
 
 /*****************************************************************************
- 函 数 名  : FC_CDS_DownProcess
- 功能描述  : CDS解除流控策略
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDS_DownProcess
+   : CDS
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemId )
@@ -2101,10 +2101,10 @@ VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemI
     FC_RAB_MAPPING_INFO_STRU                  *pstFcRabMappingInfo;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CDS != (FC_POLICY_MASK_CDS & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CDS_DownProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
@@ -2117,7 +2117,7 @@ VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemI
         return VOS_ERR;
     }
 
-    /*====================================*//* 通过RAB id来查找 FC实体 */
+    /*====================================*//* RAB id FC */
     pstFcRabMappingInfo                 = FC_CDS_GetFcInfo(ucRabId, enModemId);
     if (VOS_NULL_PTR == pstFcRabMappingInfo)
     {
@@ -2126,7 +2126,7 @@ VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemI
 
 
     /*====================================*/
-    /* 如果该FC实体已经解除流控，则无需处理，直接返回 */
+    /* FC */
     if (0 != pstFcRabMappingInfo->ulNoFcRabMask)
     {
         pstFcRabMappingInfo->ulNoFcRabMask   |= ((VOS_UINT32)1 << ucRabId);
@@ -2135,7 +2135,7 @@ VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemI
 
 
     /*====================================*/
-    /* 增加v对应的没有流控的RAB掩码，如果为0，则该FC实体s需要进行解流控 */
+    /* vRAB0FCs */
     pstFcRabMappingInfo->ulNoFcRabMask   |= ((VOS_UINT32)1 << ucRabId);
     (VOS_VOID)FC_POINT_ClrFc(FC_POLICY_MASK_CDS, pstFcRabMappingInfo->enFcId);
 
@@ -2143,18 +2143,18 @@ VOS_UINT32  FC_CDS_DownProcess( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16 enModemI
 }
 
 /*****************************************************************************
- 函 数 名  : FC_UpProcess
- 功能描述  : 处理流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_UpProcess
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年08月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
+       :
+  1.       : 20150811
+           : c00184031
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID  FC_UpProcess(VOS_RATMODE_ENUM_UINT32 enRateMode)
@@ -2187,18 +2187,18 @@ STATIC VOS_VOID  FC_UpProcess(VOS_RATMODE_ENUM_UINT32 enRateMode)
 
 
 /*****************************************************************************
- 函 数 名  : FC_GPRS_UpProcess
- 功能描述  : 处理GPRS流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_GPRS_UpProcess
+   : GPRS
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_GPRS_UpProcess( VOS_VOID )
@@ -2206,17 +2206,17 @@ STATIC VOS_UINT32  FC_GPRS_UpProcess( VOS_VOID )
     FC_POLICY_STRU                      *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_GPRS != (FC_POLICY_MASK_GPRS & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_GPRS_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_GPRS_MODEM_0);
     FC_POLICY_UpToTargetPri(pPolicy, pPolicy->enHighestPri);
 
@@ -2224,18 +2224,18 @@ STATIC VOS_UINT32  FC_GPRS_UpProcess( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_CDMA_UpProcess
- 功能描述  : 处理CDMA流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDMA_UpProcess
+   : CDMA
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年08月08日
-    作    者   : c00184031
-    修改内容   : 新生成函数
+       :
+  1.       : 20150808
+           : c00184031
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CDMA_UpProcess( VOS_VOID )
@@ -2243,17 +2243,17 @@ STATIC VOS_UINT32  FC_CDMA_UpProcess( VOS_VOID )
     FC_POLICY_STRU                      *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CDMA != (FC_POLICY_MASK_CDMA & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CDMA_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CDMA_MODEM_0);
     FC_POLICY_UpToTargetPri(pPolicy, pPolicy->enHighestPri);
 
@@ -2261,18 +2261,18 @@ STATIC VOS_UINT32  FC_CDMA_UpProcess( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_DownProcess
- 功能描述  : 处理流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_DownProcess
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年08月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
+       :
+  1.       : 20150811
+           : c00184031
+       : 
 
 *****************************************************************************/
 STATIC VOS_VOID  FC_DownProcess(VOS_RATMODE_ENUM_UINT32 enRateMode)
@@ -2304,18 +2304,18 @@ STATIC VOS_VOID  FC_DownProcess(VOS_RATMODE_ENUM_UINT32 enRateMode)
 }
 
 /*****************************************************************************
- 函 数 名  : FC_GPRS_DownProcess
- 功能描述  : 处理GPRS解除流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_GPRS_DownProcess
+   : GPRS
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_GPRS_DownProcess( VOS_VOID )
@@ -2323,16 +2323,16 @@ STATIC VOS_UINT32  FC_GPRS_DownProcess( VOS_VOID )
     FC_POLICY_STRU                      *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_GPRS != (FC_POLICY_MASK_GPRS & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_GPRS_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_GPRS_MODEM_0);
     FC_POLICY_DownToTargetPri(pPolicy, FC_PRI_NULL);
 
@@ -2340,18 +2340,18 @@ STATIC VOS_UINT32  FC_GPRS_DownProcess( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_CDMA_DownProcess
- 功能描述  : 处理CDMA解除流控请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_CDMA_DownProcess
+   : CDMA
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2015年08月11日
-    作    者   : c00184031
-    修改内容   : 新生成函数
+       :
+  1.       : 20150811
+           : c00184031
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_CDMA_DownProcess( VOS_VOID )
@@ -2359,16 +2359,16 @@ STATIC VOS_UINT32  FC_CDMA_DownProcess( VOS_VOID )
     FC_POLICY_STRU                      *pPolicy;
 
 
-    /*====================================*//* 使能检查 */
+    /*====================================*//*  */
     if ( FC_POLICY_MASK_CDMA != (FC_POLICY_MASK_CDMA & g_stFcCfg.ulFcEnbaleMask) )
     {
-        /* 内存流控未使能 */
+        /*  */
         FC_LOG1(PS_PRINT_INFO, "FC_CDMA_UpProcess, INFO, MEM FlowCtrl is disabled %d \n",
                 (VOS_INT32)g_stFcCfg.ulFcEnbaleMask);
         return VOS_OK;
     }
 
-    /* 获取CPU流控策略实体，并调用通用流控策略 */
+    /* CPU */
     pPolicy = FC_POLICY_Get(FC_PRIVATE_POLICY_ID_CDMA_MODEM_0);
     FC_POLICY_DownToTargetPri(pPolicy, FC_PRI_NULL);
 
@@ -2376,19 +2376,19 @@ STATIC VOS_UINT32  FC_CDMA_DownProcess( VOS_VOID )
 }
 
 /*****************************************************************************
- 函 数 名  : FC_ChannelMapCreate
- 功能描述  : A核流控模块提供接口给AT配置通道与RABID映射关系
- 输入参数  : FC_ID_ENUM_UINT8 enFcId   通道对应的FC ID
-             VOS_UINT8 ucRabId          流控对应的RabId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_ChannelMapCreate
+   : AATRABID
+   : FC_ID_ENUM_UINT8 enFcId   FC ID
+             VOS_UINT8 ucRabId          RabId
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111217
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_VOID  FC_ChannelMapCreate(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16  enModemId)
@@ -2397,7 +2397,7 @@ VOS_VOID  FC_ChannelMapCreate(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_
     VOS_UINT32                          ulResult;
 
 
-    /* 参数检查，RabId范围为[5,15] */
+    /* RabId[5,15] */
     if ( (FC_UE_MIN_RAB_ID > ucRabId) || (FC_UE_MAX_RAB_ID < ucRabId) )
     {
         FC_LOG1(PS_PRINT_WARNING, "FC_ChannelMapCreate RabId Is Invalid %d\n", ucRabId);
@@ -2410,7 +2410,7 @@ VOS_VOID  FC_ChannelMapCreate(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_
         return;
     }
 
-    /* 发送消息 */
+    /*  */
     pstMsg = (FC_ADD_RAB_FCID_MAP_IND_STRU *)(VOS_UINT_PTR)VOS_AllocMsg(UEPS_PID_FLOWCTRL_A, \
                                    (VOS_UINT32)sizeof(FC_ADD_RAB_FCID_MAP_IND_STRU) - VOS_MSG_HEAD_LENGTH);
 
@@ -2438,18 +2438,18 @@ VOS_VOID  FC_ChannelMapCreate(FC_ID_ENUM_UINT8 enFcId, VOS_UINT8 ucRabId, MODEM_
 
 
 /*****************************************************************************
- 函 数 名  : FC_ChannelMapDelete
- 功能描述  : 当有一个RABID释放时，AT通过该接口删除流控模块映射关系
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_ChannelMapDelete
+   : RABIDAT
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111217
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_VOID  FC_ChannelMapDelete( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16  enModemId )
@@ -2458,7 +2458,7 @@ VOS_VOID  FC_ChannelMapDelete( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16  enModemI
     VOS_UINT32                          ulResult;
 
 
-    /* 参数检查，RabId范围为[5,15] */
+    /* RabId[5,15] */
     if ( (FC_UE_MIN_RAB_ID > ucRabId) || (FC_UE_MAX_RAB_ID < ucRabId) )
     {
         FC_LOG1(PS_PRINT_WARNING, "FC_ChannelMapDelete RabId Is Invalid %d\n", ucRabId);
@@ -2471,7 +2471,7 @@ VOS_VOID  FC_ChannelMapDelete( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16  enModemI
         return;
     }
 
-    /* 发送消息 */
+    /*  */
     pstMsg = (FC_DEL_RAB_FCID_MAP_IND_STRU *)(VOS_UINT_PTR)VOS_AllocMsg(UEPS_PID_FLOWCTRL_A, \
                                     (VOS_UINT32)sizeof(FC_DEL_RAB_FCID_MAP_IND_STRU) - VOS_MSG_HEAD_LENGTH);
 
@@ -2498,23 +2498,23 @@ VOS_VOID  FC_ChannelMapDelete( VOS_UINT8 ucRabId, MODEM_ID_ENUM_UINT16  enModemI
 
 
 /*****************************************************************************
- 函 数 名  : FC_RcvCstMsg
- 功能描述  : 接收CST消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_RcvCstMsg
+   : CST
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111212
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_RcvCstMsg( MsgBlock * pMsg )
 {
-    /*lint --e(826) 屏蔽宏里面从UINT8指针转成UINT32指针时产生的告警 */
+    /*lint --e(826) UINT8UINT32 */
     switch ( FC_GET_MSG_NAME32(pMsg) )
     {
         case ID_CST_FC_SET_FLOWCTRL_REQ:
@@ -2534,23 +2534,23 @@ STATIC VOS_UINT32  FC_RcvCstMsg( MsgBlock * pMsg )
 
 
 /*****************************************************************************
- 函 数 名  : FC_RcvCdsMsg
- 功能描述  : 接收处理CDS消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_RcvCdsMsg
+   : CDS
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111212
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_RcvCdsMsg( MsgBlock * pMsg )
 {
-    /*lint --e(826) 屏蔽宏里面从UINT8指针转成UINT32指针时产生的告警 */
+    /*lint --e(826) UINT8UINT32 */
     switch ( FC_GET_MSG_NAME32(pMsg) )
     {
         case ID_CDS_FC_STOP_CHANNEL_IND:
@@ -2572,18 +2572,18 @@ STATIC VOS_UINT32  FC_RcvCdsMsg( MsgBlock * pMsg )
 
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_PointReg
- 功能描述  : 初始化时，注册一些固定的流控点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_PointReg
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月22日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111222
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_ACORE_RegPoint( VOS_VOID )
@@ -2594,18 +2594,18 @@ STATIC VOS_UINT32  FC_ACORE_RegPoint( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_ACORE_RcvTimerMsg
- 功能描述  : 接收处理定时器消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_ACORE_RcvTimerMsg
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111219
+           : g45205
+       : 
 
 *****************************************************************************/
 STATIC VOS_UINT32  FC_ACORE_RcvTimerMsg(REL_TIMER_MSG *pTimerMsg)
@@ -2626,23 +2626,23 @@ STATIC VOS_UINT32  FC_ACORE_RcvTimerMsg(REL_TIMER_MSG *pTimerMsg)
 
 
 /*****************************************************************************
- 函 数 名  : FC_IntraMsgProc
- 功能描述  : 流控流控消息处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_IntraMsgProc
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111212
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_ACORE_RcvIntraMsg( MsgBlock * pMsg )
 {
-    /*lint --e(826) 屏蔽宏里面从UINT8指针转成UINT16指针时产生的告警 */
+    /*lint --e(826) UINT8UINT16 */
     switch( FC_GET_MSG_NAME16(pMsg) )
     {
         case ID_FC_REG_POINT_IND:
@@ -2719,18 +2719,18 @@ VOS_UINT32  FC_ACORE_RcvIntraMsg( MsgBlock * pMsg )
 
 
 /*****************************************************************************
- 函 数 名  : FC_MsgProc
- 功能描述  : 流控消息处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_MsgProc
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 20111212
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_ACORE_MsgProc( MsgBlock * pMsg )
@@ -2764,18 +2764,18 @@ VOS_UINT32  FC_ACORE_MsgProc( MsgBlock * pMsg )
 
 
 /*****************************************************************************
- 函 数 名  : FC_Init
- 功能描述  : 流控模块初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+     : FC_Init
+   : 
+   : 
+   : 
+     :
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : g45205
-    修改内容   : 新生成函数
+       :
+  1.       : 2011127
+           : g45205
+       : 
 
 *****************************************************************************/
 VOS_UINT32  FC_ACORE_Init( VOS_VOID )
@@ -2807,14 +2807,14 @@ VOS_UINT32  FC_ACORE_Init( VOS_VOID )
 
     FC_DrvAssemInit();
 
-    /* 创建信号量，用于C核单独复位时，通知底软FcACore的回调事务已完成 */
+    /* CFcACore */
     if ( VOS_OK != VOS_SmBCreate(ucSmName, 0, VOS_SEMA4_FIFO, (VOS_SEM *)&g_ulFcACoreCResetDoneSem) )
     {
         FC_LOG(PS_PRINT_ERROR,"FC_ACORE_Init, Create Sem Fail\n");
         return VOS_ERR;
     }
 
-    /* 注册回调函数到底软C核复位接口中 */
+    /* C */
     iRet    = mdrv_sysboot_register_reset_notify ("TTF_FcACore", FC_ACORE_CResetCallback, 0, FC_ACORE_CRESET_CALLBACK_PRIOR);
 
     if ( VOS_OK != iRet )
@@ -2828,18 +2828,18 @@ VOS_UINT32  FC_ACORE_Init( VOS_VOID )
 
 
 /*****************************************************************************
- 函 数 名  : FC_FidInit
- 功能描述  : 流控FID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
+     : FC_FidInit
+   : FID
+   : enum VOS_INIT_PHASE_DEFINE enPhase
+   : 
+     : VOS_UINT32
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   :
-    修改内容   : 新生成函数
+       :
+  1.       : 20111214
+           :
+       : 
 *****************************************************************************/
 VOS_UINT32 FC_ACORE_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {

@@ -460,16 +460,16 @@ struct rdr_exception_info_s g_mbb_exc_info[] =
 };
 
 /*****************************************************************************
-* 函 数 名  : dump_save_balong_rdr_info
-* 功能描述  : 在手机平台上更新rdr的global 头
+*     : dump_save_balong_rdr_info
+*   : rdrglobal 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_balong_rdr_info(u32 mod_id)
@@ -514,7 +514,7 @@ void dump_save_balong_rdr_info(u32 mod_id)
     memcpy(global_base_info->e_module, rdr_exc_info->e_from_module,(unsigned long)16);
     global_base_info->e_type = rdr_exc_info->e_exce_type;
 
-    /*这里为了hids工具显示，做了特殊处理，填充在rdr的ecore与注册给rdr的不一致*/
+    /*hidsrdrecorerdr*/
     if(core  == DUMP_CPU_COMM)
     {
         global_base_info->e_core = RDR_CP;
@@ -536,16 +536,16 @@ void dump_save_balong_rdr_info(u32 mod_id)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_save_modem_exc_info
-* 功能描述  : 保存rdr传递的参数
+*     : dump_save_modem_exc_info
+*   : rdr
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_save_rdr_exc_info(u32 modid, u32 etype, u64 coreid, char* logpath, pfn_cb_dump_done fndone)
@@ -571,16 +571,16 @@ void dump_save_rdr_exc_info(u32 modid, u32 etype, u64 coreid, char* logpath, pfn
 
 }
 /*****************************************************************************
-* 函 数 名  : modem_error_proc
-* 功能描述  : modem异常的特殊处理，主要针对dmss和noc异常
+*     : modem_error_proc
+*   : modemdmssnoc
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_callback_dmss_noc_proc(u32 modid)
@@ -621,16 +621,16 @@ void dump_callback_dmss_noc_proc(u32 modid)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_callback
-* 功能描述  : modem异常的回调处理函数
+*     : dump_callback
+*   : modem
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u32 dump_callback(u32 modid, u32 etype, u64 coreid, char* logpath, pfn_cb_dump_done fndone)
@@ -665,16 +665,16 @@ u32 dump_callback(u32 modid, u32 etype, u64 coreid, char* logpath, pfn_cb_dump_d
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_reset_fail_proc
-* 功能描述  : 单独复位失败的处理
+*     : dump_reset_fail_proc
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_reset_fail_proc(u32 rdr_modid)
@@ -705,16 +705,16 @@ void dump_reset_fail_proc(u32 rdr_modid)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_reset_success_proc
-* 功能描述  : 单独复位成功处理
+*     : dump_reset_success_proc
+*   : 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_reset_success_proc(void)
@@ -740,16 +740,16 @@ void dump_reset_success_proc(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_reset
-* 功能描述  : modem 复位处理函数
+*     : dump_reset
+*   : modem 
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 void dump_reset(u32 modid, u32 etype, u64 coreid)
@@ -798,16 +798,16 @@ void dump_reset(u32 modid, u32 etype, u64 coreid)
 
 
 /*****************************************************************************
-* 函 数 名  : dump_register_rdr_exc
-* 功能描述  : modem dump初始化第一阶段
+*     : dump_register_rdr_exc
+*   : modem dump
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 s32 dump_register_rdr_exc(void)
@@ -855,16 +855,16 @@ s32 dump_register_rdr_exc(void)
 
 }
 /*****************************************************************************
-* 函 数 名  : dump_get_rdr_exc_info
-* 功能描述  : 获取rdr的异常变量地址
+*     : dump_get_rdr_exc_info
+*   : rdr
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 
@@ -874,16 +874,16 @@ rdr_exc_info_s* dump_get_rdr_exc_info(void)
 }
 
 /*****************************************************************************
-* 函 数 名  : dump_match_rdr_mod_id
-* 功能描述  : 将drv的错误码转换为rdr的错误码
+*     : dump_match_rdr_mod_id
+*   : drvrdr
 *
-* 输入参数  :
-* 输出参数  :
+*   :
+*   :
 
-* 返 回 值  :
+*     :
 
 *
-* 修改记录  : 2016年1月4日17:05:33   lixiaofan  creat
+*   : 20161417:05:33   lixiaofan  creat
 *
 *****************************************************************************/
 u32 dump_match_rdr_mod_id(u32 drv_mod_id)

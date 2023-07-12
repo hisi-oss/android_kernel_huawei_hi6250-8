@@ -36,14 +36,14 @@ extern "C" {
 /*****************************************************************************
   2 Macro
 *****************************************************************************/
-/*公共错误码*/
+/**/
 #define APP_ERR_COMMON_SECTION_BEGIN                        (0)
 #define APP_ERR_SM_SECTION_BEGIN                            (200)
 #define APP_ERR_SM_NW_SECTION_BEGIN                         (400)
 #define APP_ERR_MM_SECTION_BEGIN                            (600)
 #define APP_ERR_MM_NW_SECTION_BEGIN							(800)
 
-/*公共错误码*/
+/**/
 #define APP_SUCCESS                                         (APP_ERR_COMMON_SECTION_BEGIN + 0)
 #define APP_FAILURE                                         (APP_ERR_COMMON_SECTION_BEGIN + 1)
 #define APP_ERR_NULL_PTR                                    (APP_ERR_COMMON_SECTION_BEGIN + 2)
@@ -72,13 +72,13 @@ extern "C" {
 #define APP_ERR_NOT_SUPPORT_NOW                             (APP_ERR_COMMON_SECTION_BEGIN + 24)
 #define APP_ERR_NOT_STARTED_YET                             (APP_ERR_COMMON_SECTION_BEGIN + 25)
 
-/* MM与APP错误码*/
+/* MMAPP*/
 #define APP_ERR_MM_ATTACH_FAIL_ACCESS_BARRED                (APP_ERR_MM_SECTION_BEGIN + 0)
 #define APP_ERR_MM_ATTACH_FAIL_LIMITE_SERVICE               (APP_ERR_MM_SECTION_BEGIN + 1)
 #define APP_ERR_MM_ATTACH_FAIL_UNSPECIFIED_ABNORMAL         (APP_ERR_MM_SECTION_BEGIN + 2)
 #define APP_ERR_MM_ATTACH_FAIL_ACT_DEFAULT_BEARER_FAIL      (APP_ERR_MM_SECTION_BEGIN + 3)
 
-/* MM与网侧错误码*/
+/* MM*/
  #define APP_ERR_MM_NW_REJ_ILLEGAL_UE                       (APP_ERR_MM_NW_SECTION_BEGIN + 0)
  #define APP_ERR_MM_NW_REJ_ILLEGAL_ME                       (APP_ERR_MM_NW_SECTION_BEGIN + 1)
  #define APP_ERR_MM_NW_REJ_EPS_SERV_NOT_ALLOW               (APP_ERR_MM_NW_SECTION_BEGIN + 2)
@@ -98,7 +98,7 @@ extern "C" {
  #define APP_ERR_MM_NW_REJ_OTHERS                           (APP_ERR_MM_NW_SECTION_BEGIN + 16)
 
 
-/* SM与APP错误码 */
+/* SMAPP */
 #define APP_ERR_SM_CALL_CID_INVALID                         (APP_ERR_SM_SECTION_BEGIN + 0)
 #define APP_ERR_SM_CALL_CID_ACTIVE                          (APP_ERR_SM_SECTION_BEGIN + 1)
 #define APP_ERR_SM_CALL_MOD_CID_NOT_MATCH                   (APP_ERR_SM_SECTION_BEGIN + 2)
@@ -154,7 +154,7 @@ extern "C" {
 
 
 
-/* SM与网侧错误码 */
+/* SM */
 #define APP_ERR_SM_NW_OPERATOR_DETERMINED_BARRING           (APP_ERR_SM_NW_SECTION_BEGIN + 0)
 #define APP_ERR_SM_NW_INSUFFICIENT_RESOURCES                (APP_ERR_SM_NW_SECTION_BEGIN + 1)
 #define APP_ERR_SM_NW_MISSING_OR_UKNOWN_APN                 (APP_ERR_SM_NW_SECTION_BEGIN + 2)
@@ -200,8 +200,8 @@ extern "C" {
 #define APP_ERR_SM_NW_BEARER_HANDLING_NOT_SUPPORTED               (APP_ERR_SM_NW_SECTION_BEGIN + 42)
 #define APP_ERR_SM_NW_MAXIMUM_NUMBER_OF_EPS_BEARERS_REACHED       (APP_ERR_SM_NW_SECTION_BEGIN + 43)
 
-#define NAS_MM_MAX_TA_NUM               64                  /* TA 列表最大个数 */
-#define NAS_MM_MAX_LA_NUM               64                  /* LA 列表最大个数 */
+#define NAS_MM_MAX_TA_NUM               64                  /* TA  */
+#define NAS_MM_MAX_LA_NUM               64                  /* LA  */
 
 #define NAS_MM_MAX_PLMN_NUM             64
 #define NAS_MM_MAX_UEID_BUF_SIZE        10                  /* UNIT: BYTE  */
@@ -221,11 +221,11 @@ extern "C" {
 #define NAS_MM_AUTH_KEY_NAS_INT_LEN     16
 
 #define NAS_MM_MIN_UE_NET_CAP_LEN       2
-#define NAS_MM_MAX_UE_NET_CAP_LEN       13                  /* UE网络能力最大长度为13BYTE */
+#define NAS_MM_MAX_UE_NET_CAP_LEN       13                  /* UE13BYTE */
 #define NAS_MM_MAX_MS_NET_CAP_LEN       8                   /* UNIT: BYTE  */
 
-#define NAS_MMC_MAX_UPLMN_NUM           NAS_MM_MAX_PLMN_NUM   /* USIM卡中UPLMN最大个数 */
-#define NAS_MMC_MAX_OPLMN_NUM           NAS_MM_MAX_PLMN_NUM   /* USIM卡中OPLMN最大个数 */
+#define NAS_MMC_MAX_UPLMN_NUM           NAS_MM_MAX_PLMN_NUM   /* USIMUPLMN */
+#define NAS_MMC_MAX_OPLMN_NUM           NAS_MM_MAX_PLMN_NUM   /* USIMOPLMN */
 
 #define NAS_EMM_USIM_SEQ_UINT32_LEN  2
 
@@ -270,10 +270,10 @@ extern "C" {
 
 
 /*****************************************************************************
- 枚举名    : NAS_MM_RAT_TYPE_ENUM
- 协议表格  :
- ASN.1描述 :
- 枚举说明  : 接入技术的取值
+     : NAS_MM_RAT_TYPE_ENUM
+   :
+ ASN.1 :
+   : 
 *****************************************************************************/
 enum NAS_MM_RAT_TYPE_ENUM
 {
@@ -289,41 +289,41 @@ typedef NAS_MM_RAT_TYPE_ENUM_UINT32  NAS_MMC_RAT_TYPE_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_MM_SEL_MODE_ENUM
- 枚举说明  : 选网模式
+     : NAS_MM_SEL_MODE_ENUM
+   : 
 *****************************************************************************/
 enum    NAS_MM_SEL_MODE_ENUM
 {
-    NAS_MM_PLMN_SEL_AUTO                = 0x00,    /* 自动网络选择模式 */
-    NAS_MM_PLMN_SEL_MANUAL              = 0x01,    /* 手动网络选择模式 */
-    /*NAS_MM_PLMN_SEL_NO_IMSI             = 0x02, */   /* 卡无效模式 */
+    NAS_MM_PLMN_SEL_AUTO                = 0x00,    /*  */
+    NAS_MM_PLMN_SEL_MANUAL              = 0x01,    /*  */
+    /*NAS_MM_PLMN_SEL_NO_IMSI             = 0x02, */   /*  */
     NAS_MM_PLMN_SEL_BUTT
 };
 typedef VOS_UINT32 NAS_MM_SEL_MODE_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_MM_UPDATE_STAT_ENUM
- 枚举说明  : EMM UPDATE状态
+     : NAS_MM_UPDATE_STAT_ENUM
+   : EMM UPDATE
 *****************************************************************************/
 enum    NAS_MM_UPDATE_STATE_ENUM
 {
-    NAS_MM_US_EU1_UPDATED               = 0x00,   /* 更新状态       */
-    NAS_MM_US_EU2_NOT_UPDATED           = 0x01,   /* 未更新状态     */
-    NAS_MM_US_EU3_ROAMING_NOT_ALLOWED   = 0x02,   /* 漫游不允许状态 */
+    NAS_MM_US_EU1_UPDATED               = 0x00,   /*        */
+    NAS_MM_US_EU2_NOT_UPDATED           = 0x01,   /*      */
+    NAS_MM_US_EU3_ROAMING_NOT_ALLOWED   = 0x02,   /*  */
 
     NAS_MM_US_BUTT
 };
 typedef VOS_UINT32  NAS_MM_UPDATE_STATE_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : NAS_EMM_SOFT_USIM_AUTH_ALG_ENUM
- 结构说明  : 软USIM完成AUTH使用的算法
+     : NAS_EMM_SOFT_USIM_AUTH_ALG_ENUM
+   : USIMAUTH
 *****************************************************************************/
 enum NAS_EMM_SOFT_USIM_AUTH_ALG_ENUM
 {
-   NAS_EMM_SOFT_USIM_ALG_MILLENGE       = 0,    /* Millenge算法 */
-   NAS_EMM_SOFT_USIM_ALG_TEST           = 1,    /* Test算法 */
+   NAS_EMM_SOFT_USIM_ALG_MILLENGE       = 0,    /* Millenge */
+   NAS_EMM_SOFT_USIM_ALG_TEST           = 1,    /* Test */
 
    NAS_EMM_SOFT_USIM_ALG_BUTT
 };
@@ -338,8 +338,8 @@ enum NAS_MM_LRPLMNSI_ENUM
 typedef VOS_UINT8 NAS_MM_LRPLMNSI_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_UE_OPERATION_MODE_ENUM
- 结构说明  : UE的操作模式
+     : NAS_LMM_UE_OPERATION_MODE_ENUM
+   : UE
 *****************************************************************************/
 enum NAS_LMM_UE_OPERATION_MODE_ENUM
 {
@@ -353,8 +353,8 @@ enum NAS_LMM_UE_OPERATION_MODE_ENUM
 typedef VOS_UINT32   NAS_LMM_UE_OPERATION_MODE_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_CS_SERVICE_ENUM
- 结构说明  : UE附着的CS业务类型
+     : NAS_LMM_CS_SERVICE_ENUM
+   : UECS
 *****************************************************************************/
 enum NAS_LMM_CS_SERVICE_ENUM
 {
@@ -369,8 +369,8 @@ typedef VOS_UINT32   NAS_LMM_CS_SERVICE_ENUM_UINT32;
 
 /* h41410 for ue mode begin */
 /*****************************************************************************
- 枚举名    : NAS_LMM_GU_UE_MODE_ENUM
- 结构说明  : GU的UE操作模式
+     : NAS_LMM_GU_UE_MODE_ENUM
+   : GUUE
 *****************************************************************************/
 enum NAS_LMM_GU_UE_MODE_ENUM
 {
@@ -386,8 +386,8 @@ typedef VOS_UINT32   NAS_LMM_GU_UE_MODE_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_DISABLE_LTE_CAUSE_ENUM
- 结构说明  : DISABLE LTE的原因
+     : NAS_LMM_DISABLE_LTE_CAUSE_ENUM
+   : DISABLE LTE
 *****************************************************************************/
 enum NAS_LMM_DISABLE_LTE_CAUSE_ENUM
 {
@@ -399,13 +399,13 @@ typedef VOS_UINT32   NAS_LMM_DISABLE_LTE_CAUSE_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_SUP_ENUM
- 结构说明  : 是否支持某功能
+     : NAS_LMM_SUP_ENUM
+   : 
 *****************************************************************************/
 enum NAS_LMM_SUP_ENUM
 {
-   NAS_LMM_NOT_SUP                      = 0,    /* 即 NOT AVAILABLE */
-   NAS_LMM_SUP                          = 1,    /* 即 AVAILABLE */
+   NAS_LMM_NOT_SUP                      = 0,    /*  NOT AVAILABLE */
+   NAS_LMM_SUP                          = 1,    /*  AVAILABLE */
 
    NAS_LMM_SUP_BUTT
 };
@@ -413,8 +413,8 @@ typedef VOS_UINT32   NAS_LMM_SUP_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_SUP_VOICE_DOMAIN_ENUM
- 结构说明  : UE支持的Voice Domain类型
+     : NAS_LMM_SUP_VOICE_DOMAIN_ENUM
+   : UEVoice Domain
 *****************************************************************************/
 enum NAS_LMM_SUP_VOICE_DOMAIN_ENUM
 {
@@ -426,8 +426,8 @@ enum NAS_LMM_SUP_VOICE_DOMAIN_ENUM
 typedef VOS_UINT32   NAS_LMM_SUP_VOICE_DOMAIN_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_SUP_SMS_DOMAIN_ENUM
- 结构说明  : UE支持的SMS Domain类型
+     : NAS_LMM_SUP_SMS_DOMAIN_ENUM
+   : UESMS Domain
 *****************************************************************************/
 enum NAS_LMM_SUP_SMS_DOMAIN_ENUM
 {
@@ -441,12 +441,12 @@ typedef VOS_UINT32   NAS_LMM_SUP_SMS_DOMAIN_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_EMM_USAGE_SETTING_ENUM
- 结构说明  :
+     : NAS_EMM_USAGE_SETTING_ENUM
+   :
 *****************************************************************************/
 enum    NAS_EMM_USAGE_SETTING_ENUM
 {
-    EMM_SETTING_VOICE_CENTRIC                = 0x00, /*语音中心 */
+    EMM_SETTING_VOICE_CENTRIC                = 0x00, /* */
     EMM_SETTING_DATA_CENTRIC                ,
 
     EMM_USAGE_SETTING_BUTT
@@ -460,8 +460,8 @@ typedef NAS_EMM_USAGE_SETTING_UINT32    LNAS_LMM_UE_CENTER_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : NAS_LMM_VOICE_DOMAIN_ENUM
- 结构说明  : UE的Voice Domain类型
+     : NAS_LMM_VOICE_DOMAIN_ENUM
+   : UEVoice Domain
 *****************************************************************************/
 enum NAS_LMM_VOICE_DOMAIN_ENUM
 {
@@ -475,8 +475,8 @@ enum NAS_LMM_VOICE_DOMAIN_ENUM
 typedef VOS_UINT32   NAS_LMM_VOICE_DOMAIN_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : NAS_ESM_BEARER_PRIO_ENUM_UINT32
- 结构说明  :
+     : NAS_ESM_BEARER_PRIO_ENUM_UINT32
+   :
 *****************************************************************************/
 enum NAS_ESM_BEARER_PRIO_ENUM
 {
@@ -489,31 +489,31 @@ typedef VOS_UINT32   NAS_ESM_BEARER_PRIO_ENUM_UINT32;
 
 
 /*****************************************************************************
- 结构名称: LRRC_LNAS_CELL_TYPE_ENUM_UINT8
- 协议表格:
- ASN.1 描述:
- 结构说明:
+ : LRRC_LNAS_CELL_TYPE_ENUM_UINT8
+ :
+ ASN.1 :
+ :
 *****************************************************************************/
 enum NAS_MM_CELL_TYPE_ENUM
 {
-    NAS_MM_CELL_TYPE_MACRO      = 0,          /* 小区类型是宏小区 */
-    NAS_MM_CELL_TYPE_HYBRID     = 1,          /* 小区类型为混合小区 */
-    NAS_MM_CELL_TYPE_CSG        = 2,          /* 小区类型为CSG小区 */
+    NAS_MM_CELL_TYPE_MACRO      = 0,          /*  */
+    NAS_MM_CELL_TYPE_HYBRID     = 1,          /*  */
+    NAS_MM_CELL_TYPE_CSG        = 2,          /* CSG */
     NAS_MM_CELL_TYPE_BUTT
 };
 typedef VOS_UINT8 NAS_MM_CELL_TYPE_ENUM_UINT8;
 /*****************************************************************************
- 结构名称: NAS_BACKOFF_RAT_SUPPORT_ENUM_UINT32
- 协议表格:
- ASN.1 描述:
- 结构说明:
+ : NAS_BACKOFF_RAT_SUPPORT_ENUM_UINT32
+ :
+ ASN.1 :
+ :
 *****************************************************************************/
 enum NAS_BACKOFF_RAT_SUPPORT_ENUM
 {
-    NAS_BACKOFF_RAT_SUPPORT_ALL    = 0,          /* 支持GUL */
-    NAS_BACKOFF_RAT_SUPPORT_LTE    = 1,          /* 支持LTE */
-    NAS_BACKOFF_RAT_SUPPORT_GU     = 2,          /* 支持GU */
-    NAS_BACKOFF_RAT_SUPPORT_NONE   = 3,          /* GUL都不支持 */
+    NAS_BACKOFF_RAT_SUPPORT_ALL    = 0,          /* GUL */
+    NAS_BACKOFF_RAT_SUPPORT_LTE    = 1,          /* LTE */
+    NAS_BACKOFF_RAT_SUPPORT_GU     = 2,          /* GU */
+    NAS_BACKOFF_RAT_SUPPORT_NONE   = 3,          /* GUL */
     NAS_BACKOFF_RAT_SUPPORT_BUTT
 };
 typedef VOS_UINT32 NAS_BACKOFF_RAT_SUPPORT_ENUM_UINT32;
@@ -523,8 +523,8 @@ typedef VOS_UINT32 NAS_BACKOFF_RAT_SUPPORT_ENUM_UINT32;
 *****************************************************************************/
 
 /*****************************************************************************
-结构名称    :NAS_MM_PLMN_ID_STRU中
-使用说明    :
+    :NAS_MM_PLMN_ID_STRU
+    :
     MCC, Mobile country code (aucPlmnId[0], aucPlmnId[1] bits 1 to 4)
     MNC, Mobile network code (aucPlmnId[2], aucPlmnId[1] bits 5 to 8).
 
@@ -545,7 +545,7 @@ typedef VOS_UINT32 NAS_BACKOFF_RAT_SUPPORT_ENUM_UINT32;
     aucPlmnId[2] ||    MNC digit 2            |           MNC digit 1
     ---------------------------------------------------------------------------
 
-    AT命令：
+    AT
     at+cops=1,2,"mcc digit 1, mcc digit 2, mcc digit 3, mnc digit 1, mnc digit 2, mnc
 
 digit 3",2 :
@@ -558,7 +558,7 @@ digit 3",2 :
        7         |     8       |      9      |     4       |      5      |     6
     --------------------------------------------------------------------------------
 
-    在aucPlmnId[3]中的存放格式:
+    aucPlmnId[3]:
     ---------------------------------------------------------------------------
                  ||(BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
     ---------------------------------------------------------------------------
@@ -580,22 +580,22 @@ typedef NAS_MM_PLMN_ID_STRU             NAS_MMC_PLMN_ID_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MMC_OPRT_CTRL_LIST_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : Operator Controlled PLMN数据结构
+     : NAS_MMC_OPRT_CTRL_LIST_STRU
+   :
+ ASN.1 :
+   : Operator Controlled PLMN
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulPlmnNum;        /* PLMN ID个数   */
+    VOS_UINT32                          ulPlmnNum;        /* PLMN ID   */
     NAS_MM_PLMN_ID_STRU                 astPlmnId[NAS_MMC_MAX_OPLMN_NUM];
 } NAS_MMC_OPRT_CTRL_STRU;
 
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_LAC_STRU
-使用说明    :LAC信息 可参考24.008 10.5.1.3
+    :NAS_MM_LAC_STRU
+    :LAC 24.008 10.5.1.3
 *****************************************************************************/
 typedef struct
 {
@@ -609,8 +609,8 @@ typedef NAS_MM_LAC_STRU                 NAS_MMC_LAC_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_RAC_STRU
-使用说明    :RAC信息 可参考24.008 10.5.5.15
+    :NAS_MM_RAC_STRU
+    :RAC 24.008 10.5.5.15
 *****************************************************************************/
 typedef struct
 {
@@ -623,8 +623,8 @@ typedef NAS_MM_RAC_STRU                 NAS_MMC_RAC_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_TAC_STRU
-使用说明    :TAC信息  24.301  9.9.3.26
+    :NAS_MM_TAC_STRU
+    :TAC  24.301  9.9.3.26
 *****************************************************************************/
 typedef struct
 {
@@ -638,8 +638,8 @@ typedef NAS_MM_TAC_STRU                 NAS_MMC_TAC_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MM_LA_STRU
- 结构说明  : LA信息数据结构
+     : NAS_MM_LA_STRU
+   : LA
 *****************************************************************************/
 typedef struct
 {
@@ -651,8 +651,8 @@ typedef NAS_MM_LA_STRU                  NAS_MMC_LA_STRU;
 
 
 /*****************************************************************************
- 结构名    : NAS_MM_RA_STRU
- 结构说明  : RA信息数据结构
+     : NAS_MM_RA_STRU
+   : RA
 *****************************************************************************/
 typedef struct
 {
@@ -664,8 +664,8 @@ typedef NAS_MM_RA_STRU                  NAS_EMM_RA_STRU;
 typedef NAS_MM_RA_STRU                  NAS_MMC_RA_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MM_TA_STRU
- 结构说明  : TA信息数据结构
+     : NAS_MM_TA_STRU
+   : TA
 *****************************************************************************/
 typedef struct
 {
@@ -676,12 +676,12 @@ typedef NAS_MM_TA_STRU                  NAS_EMM_TA_STRU;
 typedef NAS_MM_TA_STRU                  NAS_MMC_TA_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MM_TA_LIST_STRU
- 结构说明  : TA信息数据结构
+     : NAS_MM_TA_LIST_STRU
+   : TA
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulTaNum;            /* TA的个数    */
+    VOS_UINT32                          ulTaNum;            /* TA    */
     NAS_MM_TA_STRU                      astTa[NAS_MM_MAX_TA_NUM];
 }NAS_MM_TA_LIST_STRU;
 
@@ -689,20 +689,20 @@ typedef NAS_MM_TA_LIST_STRU             NAS_EMM_TA_LIST_STRU;
 typedef NAS_MM_TA_LIST_STRU             NAS_MMC_TA_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MM_FORB_TA_LIST_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : FORB TA list数据结构
+     : NAS_MM_FORB_TA_LIST_STRU
+   :
+ ASN.1 :
+   : FORB TA list
 *****************************************************************************/
 typedef NAS_MM_TA_LIST_STRU             NAS_MM_FORB_TA_LIST_STRU;
 typedef NAS_MM_FORB_TA_LIST_STRU        NAS_EMM_FORB_TA_LIST_STRU;
 typedef NAS_MM_FORB_TA_LIST_STRU        NAS_MMC_FORB_TA_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_LA_LIST_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : LA list数据结构
+     : NAS_LA_LIST_STRU
+   :
+ ASN.1 :
+   : LA list
 *****************************************************************************/
 typedef struct
 {
@@ -713,18 +713,18 @@ typedef NAS_MM_LA_LIST_STRU             NAS_EMM_LA_LIST_STRU;
 typedef NAS_MM_LA_LIST_STRU             NAS_MMC_LA_LIST_STRU;
 
 /*****************************************************************************
- 结构名    : NAS_MM_FORB_LA_LIST_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : FORB LA list数据结构
+     : NAS_MM_FORB_LA_LIST_STRU
+   :
+ ASN.1 :
+   : FORB LA list
 *****************************************************************************/
 typedef NAS_MM_LA_LIST_STRU             NAS_MM_FORB_LA_LIST_STRU;
 typedef NAS_MM_FORB_LA_LIST_STRU        NAS_EMM_FORB_LA_LIST_STRU;
 typedef NAS_MM_FORB_LA_LIST_STRU        NAS_MMC_FORB_LA_LIST_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_PLMN_LIST_STRU
-使用说明    :10.5.13/3GPP TS 24.008 PLMN List information element
+    :NAS_MM_PLMN_LIST_STRU
+    :10.5.13/3GPP TS 24.008 PLMN List information element
 *****************************************************************************/
 typedef struct
 {
@@ -735,10 +735,10 @@ typedef NAS_MM_PLMN_LIST_STRU           NAS_EMM_PLMN_LIST_STRU;
 typedef NAS_MM_PLMN_LIST_STRU           NAS_MMC_PLMN_LIST_STRU;
 typedef NAS_MM_PLMN_LIST_STRU           NAS_ESM_PLMN_LIST_STRU;
 /*****************************************************************************
- 结构名    : NAS_MM_PLMN_ACT_LIST_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 带有接入技术的PLMN
+     : NAS_MM_PLMN_ACT_LIST_STRU
+   :
+ ASN.1 :
+   : PLMN
 *****************************************************************************/
 typedef struct
 {
@@ -747,9 +747,9 @@ typedef struct
 }NAS_MM_PLMN_ACT_LIST_STRU;
 
 /*==============================================================================
-结构名称    : NAS_MM_GUTI_HEAD_STRU
-结构说明    : 24.301 9.9.3.10  EPS mobile identity
-              两个成员的结构如下:
+    : NAS_MM_GUTI_HEAD_STRU
+    : 24.301 9.9.3.10  EPS mobile identity
+              :
               ----------------------------------------------------------
               (BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
               ----------------------------------------------------------
@@ -768,9 +768,9 @@ typedef NAS_MM_GUTI_HEAD_STRU           NAS_EMM_GUTI_HEAD_STRU;
 typedef NAS_MM_GUTI_HEAD_STRU           NAS_MMC_GUTI_HEAD_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MME_GROUPID_STRU
-使用说明    :NAS_MM_MME_GROUPID_STRU的相关参数
-协议描述的 各DIGIT与字节/位的关系如下:
+    :NAS_MM_MME_GROUPID_STRU
+    :NAS_MM_MME_GROUPID_STRU
+ DIGIT/:
     ----------------------------------------------------------------------------------
     (BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
     ----------------------------------------------------------------------------------
@@ -789,8 +789,8 @@ typedef NAS_MM_MME_GROUPID_STRU         NAS_EMM_MME_GROUPID_STRU;
 typedef NAS_MM_MME_GROUPID_STRU         NAS_MMC_MME_GROUPID_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MME_CODE_STRU
-使用说明    :NAS_MM_MME_CODE_STRU的相关参数
+    :NAS_MM_MME_CODE_STRU
+    :NAS_MM_MME_CODE_STRU
 *****************************************************************************/
 typedef struct
 {
@@ -802,9 +802,9 @@ typedef NAS_MM_MME_CODE_STRU            NAS_MMC_MME_CODE_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_MTMSI_STRU
-使用说明    :NAS_MM_MTMSI_STRU的相关参数
-协议描述的 各DIGIT与字节/位的关系如下:
+    :NAS_MM_MTMSI_STRU
+    :NAS_MM_MTMSI_STRU
+ DIGIT/:
     ----------------------------------------------------------------------------------
     (BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
     ----------------------------------------------------------------------------------
@@ -826,8 +826,8 @@ typedef NAS_MM_MTMSI_STRU               NAS_EMM_MTMSI_STRU;
 typedef NAS_MM_MTMSI_STRU               NAS_MMC_MTMSI_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_GUTI_STRU
-使用说明    :NAS_MM_GUTI_STRU的相关参数
+    :NAS_MM_GUTI_STRU
+    :NAS_MM_GUTI_STRU
 *****************************************************************************/
 typedef struct
 {
@@ -841,8 +841,8 @@ typedef NAS_MM_GUTI_STRU                NAS_EMM_GUTI_STRU;
 typedef NAS_MM_GUTI_STRU                NAS_MMC_GUTI_STRU;
 
 /*****************************************************************************
-结构名称    : NAS_MM_MBMSSER_ID_STRU
-使用说明    : 24.008 10.5.6.13
+    : NAS_MM_MBMSSER_ID_STRU
+    : 24.008 10.5.6.13
               MBMS Service ID (octet 3, 4 and 5)
               In the MBMS Service ID field bit 8 of octet 3 is the most
               significant bit and bit 1 of octet 5 the least significant bit.
@@ -858,8 +858,8 @@ typedef NAS_MM_MBMSSER_ID_STRU          NAS_EMM_MBMSSER_ID_STRU;
 typedef NAS_MM_MBMSSER_ID_STRU          NAS_MMC_MBMSSER_ID_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_TMGI_STRU
-使用说明    :NAS_MM_TMGI_STRU的相关参数
+    :NAS_MM_TMGI_STRU
+    :NAS_MM_TMGI_STRU
 *****************************************************************************/
 typedef struct
 {
@@ -873,8 +873,8 @@ typedef NAS_MM_TMGI_STRU                NAS_EMM_TMGI_STRU;
 typedef NAS_MM_TMGI_STRU                NAS_MMC_TMGI_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_TMGI_MBMS_HEAD_STRU
-使用说明    :NAS_MM_TMGI_MBMS_HEAD_STRU的相关参数
+    :NAS_MM_TMGI_MBMS_HEAD_STRU
+    :NAS_MM_TMGI_MBMS_HEAD_STRU
 *****************************************************************************/
 typedef struct
 {
@@ -886,8 +886,8 @@ typedef NAS_MM_TMGI_MBMS_HEAD_STRU      NAS_EMM_TMGI_MBMS_HEAD_STRU;
 typedef NAS_MM_TMGI_MBMS_HEAD_STRU      NAS_MMC_TMGI_MBMS_HEAD_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_TMGI_MBMS_STRU
-使用说明    :NAS_MM_TMGI_MBMS_STRU的相关参数
+    :NAS_MM_TMGI_MBMS_STRU
+    :NAS_MM_TMGI_MBMS_STRU
 *****************************************************************************/
 typedef struct
 {
@@ -904,8 +904,8 @@ typedef NAS_MM_TMGI_MBMS_STRU           NAS_MMC_TMGI_MBMS_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_DRX_STRU
-使用说明    :
+    :NAS_MM_DRX_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
@@ -917,8 +917,8 @@ typedef struct
 typedef NAS_MM_DRX_STRU                 NAS_EMM_DRX_STRU;
 typedef NAS_MM_DRX_STRU                 NAS_MMC_DRX_STRU;
 /*****************************************************************************
-结构名称    :NAS_MM_CSG_ID_HOME_NODEB_NAME_STRU
-使用说明    :
+    :NAS_MM_CSG_ID_HOME_NODEB_NAME_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
@@ -928,8 +928,8 @@ typedef struct
 }NAS_MM_CSG_ID_HOME_NODEB_NAME_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_CSG_INFO_STRU
-使用说明    :
+    :NAS_MM_CSG_INFO_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
@@ -940,8 +940,8 @@ typedef struct
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_NETWORK_ID_STRU
-使用说明    :
+    :NAS_MM_NETWORK_ID_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
@@ -960,7 +960,7 @@ typedef struct
     VOS_UINT32                          ulForbiddenInfo;
     VOS_UINT32                          ulCellStatus;
     VOS_UINT32                          aulLteBand[2];
-    VOS_UINT32                          ulArfcn;                                /* 驻留频点信息 */
+    VOS_UINT32                          ulArfcn;                                /*  */
     NAS_MM_CELL_TYPE_ENUM_UINT8         ucCellType;
     VOS_UINT8                           aucReserved[3];
     VOS_UINT32                          ulCsgId;
@@ -970,8 +970,8 @@ typedef NAS_MM_NETWORK_ID_STRU          NAS_MMC_NETWORK_ID_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_KSI_SN_STRU
-使用说明    :KSI and sequence number, 24.301 9.9.3.17
+    :NAS_MM_KSI_SN_STRU
+    :KSI and sequence number, 24.301 9.9.3.17
 *****************************************************************************/
 typedef struct
 {
@@ -982,8 +982,8 @@ typedef NAS_MM_KSI_SN_STRU              NAS_EMM_KSI_SN_STRU;
 typedef NAS_MM_KSI_SN_STRU              NAS_MCM_KSI_SN_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_NKSI_STRU
-使用说明    :NAS key set identifier, 24.301 9.9.3.19
+    :NAS_MM_NKSI_STRU
+    :NAS key set identifier, 24.301 9.9.3.19
 *****************************************************************************/
 typedef struct
 {
@@ -994,8 +994,8 @@ typedef NAS_MM_NKSI_STRU                NAS_EMM_NKSI_STRU;
 typedef NAS_MM_NKSI_STRU                NAS_MMC_NKSI_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_UE_NET_CAP_STRU
-使用说明    :24.301-950 9.9.3.34
+    :NAS_MM_UE_NET_CAP_STRU
+    :24.301-950 9.9.3.34
     --------------------------------------------------------------
     (BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
     --------------------------------------------------------------
@@ -1026,10 +1026,10 @@ typedef NAS_MM_UE_NET_CAP_STRU          NAS_MMC_UE_NET_CAP_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_MS_NET_CAP_STRU
-使用说明    :24.008 10.5.5.12
+    :NAS_MM_MS_NET_CAP_STRU
+    :24.008 10.5.5.12
 
-    aucMsNetCap数组中与协议描述的字节/位的关系如下:
+    aucMsNetCap/:
     --------------------------------------------------------------
     (BIT8)|(BIT7)|(BIT6)|(BIT5)|(BIT4)|(BIT3)|(BIT2)|(BIT1)
     --------------------------------------------------------------
@@ -1048,8 +1048,8 @@ typedef NAS_MM_MS_NET_CAP_STRU          NAS_EMM_MS_NET_CAP_STRU;
 typedef NAS_MM_MS_NET_CAP_STRU          NAS_MMC_MS_NET_CAP_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MS_CLASSMARK_1_STRU
-使用说明    :24.008 840 10.5.1.5
+    :NAS_MM_MS_CLASSMARK_1_STRU
+    :24.008 840 10.5.1.5
 *****************************************************************************/
 typedef struct
 {
@@ -1059,8 +1059,8 @@ typedef struct
 }NAS_MM_MS_CLASSMARK_1_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MS_CLASSMARK_2_STRU
-使用说明    :24.008 840 10.5.1.6
+    :NAS_MM_MS_CLASSMARK_2_STRU
+    :24.008 840 10.5.1.6
 *****************************************************************************/
 typedef struct
 {
@@ -1093,8 +1093,8 @@ typedef struct
 }NAS_MM_MS_CLASSMARK_2_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MS_CLASSMARK_3_STRU
-使用说明    :24.008 840 10.5.1.7
+    :NAS_MM_MS_CLASSMARK_3_STRU
+    :24.008 840 10.5.1.7
 *****************************************************************************/
 typedef struct
 {
@@ -1105,8 +1105,8 @@ typedef struct
 }NAS_MM_MS_CLASSMARK_3_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MS_CLASSMARK_STRU
-使用说明    :24.008 840 10.5.1.6
+    :NAS_MM_MS_CLASSMARK_STRU
+    :24.008 840 10.5.1.6
             0   EPS encryption algorithm *** not supported
             1   EPS encryption algorithm *** supported
 
@@ -1132,8 +1132,8 @@ typedef NAS_MM_MS_CLASSMARK_STRU        NAS_MMC_MS_CLASSMARK_STRU;
 
 
 /*****************************************************************************
-结构名称    :NAS_EMM_SRV_INFO_STRU
-使用说明    :MM的公用信息
+    :NAS_EMM_SRV_INFO_STRU
+    :MM
 
 *****************************************************************************/
 typedef struct
@@ -1150,8 +1150,8 @@ typedef struct
 }NAS_EMM_USIM_SEQ_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_EMM_USIM_CONTROL_STRU
-使用说明    :鉴权过程中RES的数据结构
+    :NAS_EMM_USIM_CONTROL_STRU
+    :RES
 *****************************************************************************/
 typedef struct
 {
@@ -1164,8 +1164,8 @@ typedef struct
 }NAS_EMM_USIM_CONTROL_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_EMM_SOFT_USIM_AUTH_PARAM_STRU
-使用说明    :软USIM模拟完成鉴权流程需要的参数,支持TEST和Millenge两种算法
+    :NAS_EMM_SOFT_USIM_AUTH_PARAM_STRU
+    :USIM,TESTMillenge
 *****************************************************************************/
 typedef struct
 {
@@ -1177,24 +1177,24 @@ typedef struct
 /*self-adaption NW cause modify begin for leili*/
 
 /*****************************************************************************
-结构名称    :NAS_LMM_ADAPTION_CAUSE_STRU
-使用说明    :用户配置网侧原因的数据结构
+    :NAS_LMM_ADAPTION_CAUSE_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                       ucCnCause;          /*网侧原因值*/
-    VOS_UINT8                       ucHplmnCause;       /*用户配置匹配HPLMN的原因值*/
-    VOS_UINT8                       ucNotHplmnCause;    /*用户配置不匹配HPLMN的原因值*/
+    VOS_UINT8                       ucCnCause;          /**/
+    VOS_UINT8                       ucHplmnCause;       /*HPLMN*/
+    VOS_UINT8                       ucNotHplmnCause;    /*HPLMN*/
     VOS_UINT8                       ucRsv;
 }NAS_LMM_ADAPTION_CAUSE_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_LMM_CONFIG_CAUSE_STRU
-使用说明    :用户配置网侧原因的数据结构
+    :NAS_LMM_CONFIG_CAUSE_STRU
+    :
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCauseNum;     /*用户配置的原因值数*/
+    VOS_UINT8                           ucCauseNum;     /**/
     VOS_UINT8                           aucRsv[3];
     NAS_LMM_ADAPTION_CAUSE_STRU         astAdaptCause[NAS_LMM_MAX_CAUSE_NUM];
 }LNAS_LMM_CONFIG_NWCAUSE_STRU;
@@ -1202,8 +1202,8 @@ typedef struct
 
 
 /*****************************************************************************
-结构名称    :NAS_MM_DAM_PLMN_LIST_STRU
-使用说明    :美国需求DAM生效的PLMN列表
+    :NAS_MM_DAM_PLMN_LIST_STRU
+    :DAMPLMN
 *****************************************************************************/
 typedef struct
 {
@@ -1212,12 +1212,12 @@ typedef struct
 } NAS_MM_DAM_PLMN_LIST_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_CONFIG_PDP_REJ_CAUSE_STRU
-使用说明    :NV配置的PDP激活被拒原因值列表
+    :NAS_CONFIG_PDP_REJ_CAUSE_STRU
+    :NVPDP
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                ucCauseNum;     /*用户配置的原因值数*/
+    VOS_UINT8                ucCauseNum;     /**/
     VOS_UINT8                aucRsv[3];
     VOS_UINT8                aucCause[NAS_MM_MAX_PDP_REJ_CAUSE_NUM];
 } NAS_CONFIG_PDP_REJ_CAUSE_STRU;
@@ -1227,29 +1227,29 @@ typedef NAS_CONFIG_PDP_REJ_CAUSE_STRU  NAS_CONFIG_PDP_TEMP_CAUSE_STRU;
 typedef NAS_MM_DAM_PLMN_LIST_STRU      NAS_DAM_IMSI_PLMN_LIST;
 
 /*****************************************************************************
-结构名称    :NAS_DAM_CONFIG_PLMN_PARA
-使用说明    :DAM需求配置的某运营商的MCC-MNC段和DAM生效的PLMN列表
+    :NAS_DAM_CONFIG_PLMN_PARA
+    :DAMMCC-MNCDAMPLMN
 *****************************************************************************/
 typedef struct
 {
-    NAS_DAM_IMSI_PLMN_LIST               stImsiPlmnList;  /* IMSI的MCC-MNC段列表  */
-    NAS_MM_DAM_PLMN_LIST_STRU            stDamPlmnList;   /* DAM特性生效的PLMN列表 */
+    NAS_DAM_IMSI_PLMN_LIST               stImsiPlmnList;  /* IMSIMCC-MNC  */
+    NAS_MM_DAM_PLMN_LIST_STRU            stDamPlmnList;   /* DAMPLMN */
 } NAS_DAM_CONFIG_PLMN_PARA;
 /*****************************************************************************
-结构名称    :NAS_CONFIG_BACKOFF_FX_PARA_STRU
-使用说明    :NV配置的Back-off算法参数Fx
+    :NAS_CONFIG_BACKOFF_FX_PARA_STRU
+    :NVBack-offFx
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8              ucFxIgnore;   /* 1小时内超时限定次数     */
-    VOS_UINT8              ucFxPerm;     /* 1小时内永久拒绝限定次数 */
-    VOS_UINT8              ucFxTemp;     /* 1小时内临时拒绝限定次数 */
+    VOS_UINT8              ucFxIgnore;   /* 1     */
+    VOS_UINT8              ucFxPerm;     /* 1 */
+    VOS_UINT8              ucFxTemp;     /* 1 */
     VOS_UINT8              ucRsv;
 } NAS_CONFIG_BACKOFF_FX_PARA_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_DAM_CONFIG_PLMN_PARA
-使用说明    :TMO定制需求生效的IMSI PLMN列表
+    :NAS_DAM_CONFIG_PLMN_PARA
+    :TMOIMSI PLMN
 *****************************************************************************/
 typedef struct
 {
@@ -1259,19 +1259,19 @@ typedef struct
 typedef NAS_TMO_IMSI_HPLMN_LIST LNAS_LMM_NV_TMO_IMSI_HPLMN_LIST_CONFIG_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_PLMN_T3402_STRU
-使用说明    :LNAS关于DATA RETRY特性T3402定时器针对PLMN列表维护的数据结构
+    :NAS_PLMN_T3402_STRU
+    :LNASDATA RETRYT3402PLMN
 *****************************************************************************/
 typedef struct
 {
-    NAS_MM_PLMN_ID_STRU                 stPlmnId;                               /* 受控制的PLMN ID */
-    VOS_UINT32                          ulTimerLen;                             /* 网侧分配的T3402定时器时长(UNIT: 秒) */
-    VOS_UINT32                          ulTimerRemainLen;                       /* 关机时Timer暂停状态下的剩余时长(UNIT: ms)*/
+    NAS_MM_PLMN_ID_STRU                 stPlmnId;                               /* PLMN ID */
+    VOS_UINT32                          ulTimerLen;                             /* T3402(UNIT: ) */
+    VOS_UINT32                          ulTimerRemainLen;                       /* Timer(UNIT: ms)*/
 }NAS_PLMN_T3402_STRU;
 
 /*****************************************************************************
-结构名称    :NAS_MM_MT_DETACH_TAU_PLMN_LIST_STRU
-使用说明    :TAU优化网络周期DETACH生效的PLMN列表
+    :NAS_MM_MT_DETACH_TAU_PLMN_LIST_STRU
+    :TAUDETACHPLMN
 *****************************************************************************/
 typedef struct
 {
@@ -1279,13 +1279,13 @@ typedef struct
     NAS_MM_PLMN_ID_STRU                 astPlmnId[NAS_MT_DETACH_TAU_PLMN_MAX_NUM];
 } NAS_MM_MT_DETACH_TAU_PLMN_LIST_STRU;
 /*****************************************************************************
-结构名称    :NAS_PLMN_T3396_STRU
-使用说明    :LNAS关于DATA RETRY特性T3396定时器针对PLMN列表维护的数据结构
+    :NAS_PLMN_T3396_STRU
+    :LNASDATA RETRYT3396PLMN
 *****************************************************************************/
 typedef struct
 {
-    NAS_MM_PLMN_ID_STRU                 stPlmnId;                               /* 受控制的PLMN ID */
-    VOS_UINT32                          ulT3396RemainLenForCustom;              /* 关机时Timer暂停状态下的剩余时长(UNIT: ms)*/
+    NAS_MM_PLMN_ID_STRU                 stPlmnId;                               /* PLMN ID */
+    VOS_UINT32                          ulT3396RemainLenForCustom;              /* Timer(UNIT: ms)*/
 }NAS_PLMN_T3396_STRU;
 
 /*****************************************************************************

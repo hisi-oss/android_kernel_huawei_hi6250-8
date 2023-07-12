@@ -58,37 +58,37 @@ extern "C" {
 #pragma pack(4)
 
 /*****************************************************************************
-  1 其他头文件包含
+  1 
 *****************************************************************************/
 #include "PsTypeDef.h"
 #include "AtMnInterface.h"
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
+/* Modified by s00217060 for VoLTE_PhaseI  , 2013-07-27, begin */
 #include "NasNvInterface.h"
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
+/* Modified by s00217060 for VoLTE_PhaseI  , 2013-07-27, end */
 #include "TafNvInterface.h"
 #include "MtaCommInterface.h"
 
 /*****************************************************************************
-  2 宏定义
+  2 
 *****************************************************************************/
-#define MTA_CPOS_XML_MAX_LEN            (1024)              /* MTA接收AT下发的XML码流最大长度 */
-#define MTA_CPOSR_XML_MAX_LEN           (1024)              /* MTA向AT上报的XML码流最大长度为1024 */
-#define MTA_SIMLOCK_PASSWORD_LEN        (16)                /* 锁网锁卡解锁密码的长度 */
+#define MTA_CPOS_XML_MAX_LEN            (1024)              /* MTAATXML */
+#define MTA_CPOSR_XML_MAX_LEN           (1024)              /* MTAATXML1024 */
+#define MTA_SIMLOCK_PASSWORD_LEN        (16)                /*  */
 
 #define MTA_CLIENTID_BROADCAST          (0xFFFF)
 #define MTA_INVALID_TAB_INDEX           (0x00)
 
 
-#define AT_MTA_WRR_AUTOTEST_MAX_PARA_NUM          (10) /* autotest命令下发参数最大个数 */
-#define MTA_AT_WRR_AUTOTEST_MAX_RSULT_NUM         (20) /* autotest命令上报结果最大个数 */
-#define MTA_AT_WRR_ONE_MEANRPT_MAX_CELL_NUM       (8)  /* 一次测量报告中小区最大个数 */
-#define MTA_AT_WRR_MAX_MEANRPT_NUM                (10) /* 上报最近测量报告的最大个数 */
+#define AT_MTA_WRR_AUTOTEST_MAX_PARA_NUM          (10) /* autotest */
+#define MTA_AT_WRR_AUTOTEST_MAX_RSULT_NUM         (20) /* autotest */
+#define MTA_AT_WRR_ONE_MEANRPT_MAX_CELL_NUM       (8)  /*  */
+#define MTA_AT_WRR_MAX_MEANRPT_NUM                (10) /*  */
 
 #define MTA_AT_WRR_MAX_NCELL_NUM                  (8)
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
+/* Added by s00217060 for ATC, 2013-3-25, begin */
 #define AT_MTA_RPT_CFG_MAX_SIZE                   (8)
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
+/* Added by s00217060 for ATC, 2013-3-25, end */
 
 #define AT_MTA_HANDLEDECT_MIN_TYPE                (0)
 #define AT_MTA_HANDLEDECT_MAX_TYPE                (4)
@@ -122,35 +122,35 @@ extern "C" {
 
 #define MTA_PMU_MAX_DIE_SN_LEN              (20)
 
-#define AT_MAX_RS_INFO_NUM                  (32)    /* LRRC最大RS信息个数 */
-#define AT_RS_INFO_MULTI                    (100)   /* LRRC将RSRP、RSRQ的值乘100，再报给MTA */
+#define AT_MAX_RS_INFO_NUM                  (32)    /* LRRCRS */
+#define AT_RS_INFO_MULTI                    (100)   /* LRRCRSRPRSRQ100MTA */
 
 /*****************************************************************************
-  3 枚举定义
+  3 
 *****************************************************************************/
 /*****************************************************************************
- 枚举名    : AT_MTA_MSG_TYPE_ENUM
- 结构说明  : AT与MTA消息接口枚举
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-2.日    期   : 2012年11月21日
-  作    者   : z00161729
-  修改内容  : 支持cerssi和nmr
-3.日    期   : 2012年12月26日
-  作    者   : m00217266
-  修改内容   :  添加WAS接口的消息ID
-4.日    期  : 2013年03月13日
-  作    者  : z00214637
-  修改内容  : BodySAR项目
-5.日    期   : 2013年3月25日
-  作    者   : s00217060
-  修改内容   : 添加主动上报下移至C核的消息ID
+     : AT_MTA_MSG_TYPE_ENUM
+   : ATMTA
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
+2.       : 20121121
+         : z00161729
+    : cerssinmr
+3.       : 20121226
+         : m00217266
+     :  WASID
+4.      : 20130313
+        : z00214637
+    : BodySAR
+5.       : 2013325
+         : s00217060
+     : CID
 *****************************************************************************/
 enum AT_MTA_MSG_TYPE_ENUM
 {
-    /* 消息名称 */                      /* 消息ID */        /* 备注, 生成ASN */
-    /* AT发给MTA的消息 */
+    /*  */                      /* ID */        /* , ASN */
+    /* ATMTA */
     ID_AT_MTA_CPOS_SET_REQ              = 0x0000,           /* _H2ASN_MsgChoice AT_MTA_CPOS_REQ_STRU        */
     ID_AT_MTA_CGPSCLOCK_SET_REQ         = 0x0001,           /* _H2ASN_MsgChoice AT_MTA_CGPSCLOCK_REQ_STRU   */
     ID_AT_MTA_SIMLOCKUNLOCK_SET_REQ     = 0x0003,           /* _H2ASN_MsgChoice AT_MTA_SIMLOCKUNLOCK_REQ_STRU */
@@ -169,12 +169,12 @@ enum AT_MTA_MSG_TYPE_ENUM
     ID_AT_MTA_WRR_CELLSRH_QRY_REQ       = 0x000E,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
 
     ID_AT_MTA_BODY_SAR_SET_REQ          = 0x000F,           /* _H2ASN_MsgChoice AT_MTA_BODY_SAR_SET_REQ_STRU */
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
+    /* Added by s00217060 for ATC, 2013-3-25, begin */
     ID_AT_MTA_CURC_SET_NOTIFY           = 0x0010,           /* _H2ASN_MsgChoice AT_MTA_CURC_SET_NOTIFY_STRU */
     ID_AT_MTA_CURC_QRY_REQ              = 0x0011,           /* _H2ASN_MsgChoice AT_MTA_CURC_QRY_REQ_STRU */
     ID_AT_MTA_UNSOLICITED_RPT_SET_REQ   = 0x0012,           /* _H2ASN_MsgChoice AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU */
     ID_AT_MTA_UNSOLICITED_RPT_QRY_REQ   = 0x0013,           /* _H2ASN_MsgChoice AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU */
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
+    /* Added by s00217060 for ATC, 2013-3-25, end */
 
     ID_AT_MTA_IMEI_VERIFY_QRY_REQ       = 0x0014,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
     ID_AT_MTA_CGSN_QRY_REQ              = 0x0015,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
@@ -187,9 +187,9 @@ enum AT_MTA_MSG_TYPE_ENUM
     ID_AT_MTA_HANDLEDECT_SET_REQ        = 0x001A,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
     ID_AT_MTA_HANDLEDECT_QRY_REQ        = 0x001B,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
+    /* Added by l00198894 for +ECID, 2013-12-09, begin */
     ID_AT_MTA_ECID_SET_REQ              = 0x001C,           /* _H2ASN_MsgChoice AT_MTA_ECID_SET_REQ_STRU */
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
+    /* Added by l00198894 for +ECID, 2013-12-09, end */
 
     ID_AT_MTA_MIPICLK_QRY_REQ           = 0x001D,           /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
 
@@ -272,11 +272,11 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_AT_MTA_RFIC_DIE_ID_QRY_REQ       = 0x005D,
 
-    /* Added by c00380008 for Wifi共天线 & VoLTE视频调速, 2016-8-22, begin */
+    /* Added by c00380008 for Wifi & VoLTE, 2016-8-22, begin */
     ID_AT_MTA_CRRCONN_SET_REQ           = 0x005E,
     ID_AT_MTA_CRRCONN_QRY_REQ           = 0x005F,
     ID_AT_MTA_VTRLQUALRPT_SET_REQ       = 0x0060,
-    /* Added by c00380008 for Wifi共天线 & VoLTE视频调速, 2016-8-22, end */
+    /* Added by c00380008 for Wifi & VoLTE, 2016-8-22, end */
 
     ID_AT_MTA_PMU_DIE_SN_QRY_REQ        = 0x0061,
 
@@ -292,7 +292,7 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_AT_MTA_PHY_COM_CFG_SET_REQ       = 0x0068,
 
-    /* MTA发给AT的消息 */
+    /* MTAAT */
     ID_MTA_AT_CPOS_SET_CNF              = 0x1000,           /* _H2ASN_MsgChoice MTA_AT_CPOS_CNF_STRU        */
     ID_MTA_AT_CGPSCLOCK_SET_CNF         = 0x1001,           /* _H2ASN_MsgChoice MTA_AT_CGPSCLOCK_CNF_STRU   */
     ID_MTA_AT_CPOSR_IND                 = 0x1002,           /* _H2ASN_MsgChoice MTA_AT_CPOSR_IND_STRU       */
@@ -314,11 +314,11 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_MTA_AT_BODY_SAR_SET_CNF          = 0x1010,           /* _H2ASN_MsgChoice MTA_AT_RESULT_CNF_STRU */
 
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
+    /* Added by s00217060 for ATC, 2013-3-25, begin */
     ID_MTA_AT_CURC_QRY_CNF              = 0x1011,           /* _H2ASN_MsgChoice MTA_AT_CURC_QRY_CNF_STRU */
     ID_MTA_AT_UNSOLICITED_RPT_SET_CNF   = 0x1012,           /* _H2ASN_MsgChoice MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU */
     ID_MTA_AT_UNSOLICITED_RPT_QRY_CNF   = 0x1013,           /* _H2ASN_MsgChoice MTA_AT_UNSOLICITED_RPT_QRY_CNF_STRU */
-    /* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
+    /* Added by s00217060 for ATC, 2013-3-25, end */
 
     ID_MTA_AT_IMEI_VERIFY_QRY_CNF       = 0x1014,            /* _H2ASN_MsgChoice AT_MTA_RESERVE_STRU */
     ID_MTA_AT_CGSN_QRY_CNF              = 0x1015,            /* _H2ASN_MsgChoice MTA_AT_CGSN_QRY_CNF_STRU */
@@ -335,9 +335,9 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_MTA_AT_PS_TRANSFER_IND           = 0x101E,           /* _H2ASN_MsgChoice MTA_AT_PS_TRANSFER_IND_STRU */
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
+    /* Added by l00198894 for +ECID, 2013-12-09, begin */
     ID_MTA_AT_ECID_SET_CNF              = 0x101F,           /* _H2ASN_MsgChoice MTA_AT_ECID_SET_CNF_STRU */
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
+    /* Added by l00198894 for +ECID, 2013-12-09, end */
 
     ID_MTA_AT_MIPICLK_QRY_CNF           = 0x1020,           /* _H2ASN_MsgChoice MTA_AT_RF_LCD_MIPICLK_CNF_STRU */
     ID_MTA_AT_MIPICLK_INFO_IND          = 0x1021,           /* _H2ASN_MsgChoice MTA_AT_RF_LCD_MIPICLK_IND_STRU */
@@ -436,14 +436,14 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_MTA_AT_RFIC_DIE_ID_QRY_CNF       = 0x1071,
 
-    /* Added by c00380008 for Wifi共天线 & VoLTE视频调速, 2016-8-30, begin */
+    /* Added by c00380008 for Wifi & VoLTE, 2016-8-30, begin */
     ID_MTA_AT_CRRCONN_SET_CNF           = 0x1072,
     ID_MTA_AT_CRRCONN_QRY_CNF           = 0x1073,
     ID_MTA_AT_CRRCONN_STATUS_IND        = 0x1074,
     ID_MTA_AT_VTRLQUALRPT_SET_CNF       = 0x1075,
     ID_MTA_AT_RL_QUALITY_INFO_IND       = 0x1076,
     ID_MTA_AT_VIDEO_DIAG_INFO_RPT       = 0x1077,
-    /* Added by c00380008 for Wifi共天线 & VoLTE视频调速, 2016-8-30, end */
+    /* Added by c00380008 for Wifi & VoLTE, 2016-8-30, end */
 
     ID_MTA_AT_PMU_DIE_SN_QRY_CNF        = 0x1078,
 
@@ -463,48 +463,48 @@ enum AT_MTA_MSG_TYPE_ENUM
 
     ID_MTA_AT_PHY_COM_CFG_SET_CNF       = 0x1086,
 
-    /* 最后一条消息 */
+    /*  */
     ID_AT_MTA_MSG_TYPE_BUTT
 
 };
 typedef VOS_UINT32 AT_MTA_MSG_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_RESULT_ENUM
- 结构说明  : MTA向AT回复的结果码枚举
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+     : MTA_AT_RESULT_ENUM
+   : MTAAT
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 enum MTA_AT_RESULT_ENUM
 {
-    /* 与AT模块对应的标准错误码 */
-    MTA_AT_RESULT_NO_ERROR                      = 0x000000,                     /* 消息处理正常 */
-    MTA_AT_RESULT_ERROR,                                                        /* 消息处理出错 */
+    /* AT */
+    MTA_AT_RESULT_NO_ERROR                      = 0x000000,                     /*  */
+    MTA_AT_RESULT_ERROR,                                                        /*  */
     MTA_AT_RESULT_INCORRECT_PARAMETERS,
     MTA_AT_RESULT_OPTION_TIMEOUT,
 
-    /* 预留对应AT标准命令错误码 */
+    /* AT */
 
-    /* 装备命令特有错误码 */
+    /*  */
     MTA_AT_RESULT_DEVICE_ERROR_BASE             = 0x100000,
-    MTA_AT_RESULT_DEVICE_SEC_IDENTIFY_FAIL,                                     /* 产线鉴权失败 */
-    MTA_AT_RESULT_DEVICE_SEC_SIGNATURE_FAIL,                                    /* 签名校验失败 */
-    MTA_AT_RESULT_DEVICE_SEC_DK_INCORRECT,                                      /* 端口密码错误 */
-    MTA_AT_RESULT_DEVICE_SEC_UNLOCK_KEY_INCORRECT,                              /* 解锁密码错误 */
-    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_LEN_ERROR,                               /* 物理号长度错误 */
-    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_VALUE_ERROR,                             /* 物理号码错误 */
-    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_TYPE_ERROR,                              /* 物理号类型错误 */
-    MTA_AT_RESULT_DEVICE_SEC_RSA_ENCRYPT_FAIL,                                  /* RSA加密失败 */
-    MTA_AT_RESULT_DEVICE_SEC_RSA_DECRYPT_FAIL,                                  /* RSA解密失败 */
-    MTA_AT_RESULT_DEVICE_SEC_GET_RAND_NUMBER_FAIL,                              /* 获取随机数失败(crypto_rand) */
-    MTA_AT_RESULT_DEVICE_SEC_WRITE_HUK_FAIL,                                    /* HUK写入错误 */
-    MTA_AT_RESULT_DEVICE_SEC_FLASH_ERROR,                                       /* Flash错误 */
-    MTA_AT_RESULT_DEVICE_SEC_NV_ERROR,                                          /* NV读写错误 */
-    MTA_AT_RESULT_DEVICE_SEC_OTHER_ERROR,                                       /* 其它错误 */
+    MTA_AT_RESULT_DEVICE_SEC_IDENTIFY_FAIL,                                     /*  */
+    MTA_AT_RESULT_DEVICE_SEC_SIGNATURE_FAIL,                                    /*  */
+    MTA_AT_RESULT_DEVICE_SEC_DK_INCORRECT,                                      /*  */
+    MTA_AT_RESULT_DEVICE_SEC_UNLOCK_KEY_INCORRECT,                              /*  */
+    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_LEN_ERROR,                               /*  */
+    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_VALUE_ERROR,                             /*  */
+    MTA_AT_RESULT_DEVICE_SEC_PH_PHYNUM_TYPE_ERROR,                              /*  */
+    MTA_AT_RESULT_DEVICE_SEC_RSA_ENCRYPT_FAIL,                                  /* RSA */
+    MTA_AT_RESULT_DEVICE_SEC_RSA_DECRYPT_FAIL,                                  /* RSA */
+    MTA_AT_RESULT_DEVICE_SEC_GET_RAND_NUMBER_FAIL,                              /* (crypto_rand) */
+    MTA_AT_RESULT_DEVICE_SEC_WRITE_HUK_FAIL,                                    /* HUK */
+    MTA_AT_RESULT_DEVICE_SEC_FLASH_ERROR,                                       /* Flash */
+    MTA_AT_RESULT_DEVICE_SEC_NV_ERROR,                                          /* NV */
+    MTA_AT_RESULT_DEVICE_SEC_OTHER_ERROR,                                       /*  */
 
 
-    /* 私有命令特有错误码 */
+    /*  */
     MTA_AT_RESULT_PRICMD_ERROR_BASE             = 0x200000,
 
     MTA_AT_RESULT_BUTT
@@ -512,11 +512,11 @@ enum MTA_AT_RESULT_ENUM
 typedef VOS_UINT32 MTA_AT_RESULT_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_CGPSCLOCK_ENUM
- 结构说明  : RF芯片GPS时钟状态枚举
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
+     : MTA_AT_CGPSCLOCK_ENUM
+   : RFGPS
+ 1.       : 20120625
+          : h44270
+      : Added for AGPS
 *****************************************************************************/
 enum MTA_AT_CGPSCLOCK_ENUM
 {
@@ -528,11 +528,11 @@ typedef VOS_UINT32 MTA_AT_CGPSCLOCK_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : MTA_AT_CPOS_OPERATE_TYPE_ENUM
- 结构说明  : +CPOS XML码流输入操作类型枚举
- 1.日    期   : 2012年06月25日
-   作    者   : h44270
-   修改内容   : Added for AGPS
+     : MTA_AT_CPOS_OPERATE_TYPE_ENUM
+   : +CPOS XML
+ 1.       : 20120625
+          : h44270
+      : Added for AGPS
 *****************************************************************************/
 enum MTA_AT_CPOS_OPERATE_TYPE_ENUM
 {
@@ -543,55 +543,55 @@ enum MTA_AT_CPOS_OPERATE_TYPE_ENUM
 typedef VOS_UINT32 MTA_AT_CPOS_OPERATE_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
-枚举名    : AT_MTA_PERS_CATEGORY_ENUM
-枚举说明  : 锁网锁卡的Category类型
+    : AT_MTA_PERS_CATEGORY_ENUM
+  : Category
 
-  1.日    期   : 2012年9月18日
-    作    者   : l00198894
-    修改内容   : STK补充特性及DCM需求开发项目新增枚举
+  1.       : 2012918
+           : l00198894
+       : STKDCM
 *****************************************************************************/
 enum AT_MTA_PERS_CATEGORY_ENUM
 {
-    AT_MTA_PERS_CATEGORY_NETWORK                    = 0x00,                     /* Category: 锁网 */
-    AT_MTA_PERS_CATEGORY_NETWORK_SUBSET             = 0x01,                     /* Category: 锁子网 */
-    AT_MTA_PERS_CATEGORY_SERVICE_PROVIDER           = 0x02,                     /* Category: 锁SP */
-    AT_MTA_PERS_CATEGORY_CORPORATE                  = 0x03,                     /* Category: 锁团体 */
-    AT_MTA_PERS_CATEGORY_SIM_USIM                   = 0x04,                     /* Category: 锁(U)SIM卡 */
+    AT_MTA_PERS_CATEGORY_NETWORK                    = 0x00,                     /* Category:  */
+    AT_MTA_PERS_CATEGORY_NETWORK_SUBSET             = 0x01,                     /* Category:  */
+    AT_MTA_PERS_CATEGORY_SERVICE_PROVIDER           = 0x02,                     /* Category: SP */
+    AT_MTA_PERS_CATEGORY_CORPORATE                  = 0x03,                     /* Category:  */
+    AT_MTA_PERS_CATEGORY_SIM_USIM                   = 0x04,                     /* Category: (U)SIM */
 
     AT_MTA_PERS_CATEGORY_BUTT
 };
 typedef VOS_UINT8 AT_MTA_PERS_CATEGORY_ENUM_UINT8;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
+/* Added by s00217060 for ATC, 2013-3-25, begin */
 /*****************************************************************************
-枚举名    : AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM
-枚举说明  : 主动上报请求类型
+    : AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM
+  : 
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 新增枚举
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 enum AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM
 {
-    AT_MTA_RPT_GENERAL_CONTROL_NO_REPORT      = 0x00,                           /* 禁止所有的主动上报 */
-    AT_MTA_RPT_GENERAL_CONTROL_REPORT         = 0x01,                           /* 打开所有的主动上报 */
-    AT_MTA_RPT_GENERAL_CONTROL_CUSTOM         = 0x02,                           /* 按BIT位控制对应命令的主动上报 */
+    AT_MTA_RPT_GENERAL_CONTROL_NO_REPORT      = 0x00,                           /*  */
+    AT_MTA_RPT_GENERAL_CONTROL_REPORT         = 0x01,                           /*  */
+    AT_MTA_RPT_GENERAL_CONTROL_CUSTOM         = 0x02,                           /* BIT */
 
     AT_MTA_RPT_GENERAL_CONTROL_BUTT
 };
 typedef VOS_UINT8 AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
-枚举名    : AT_MTA_RPT_SET_TYPE_ENUM
-枚举说明  : 主动上报请求类型
+    : AT_MTA_RPT_SET_TYPE_ENUM
+  : 
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 新增枚举
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 enum AT_MTA_RPT_SET_TYPE_ENUM
 {
-    AT_MTA_SET_MODE_RPT_TYPE            = 0,                                 /* Category: 设置模式变化是否主动上报 */
+    AT_MTA_SET_MODE_RPT_TYPE            = 0,                                 /* Category:  */
     AT_MTA_SET_SRVST_RPT_TYPE,
     AT_MTA_SET_RSSI_RPT_TYPE,
     AT_MTA_SET_TIME_RPT_TYPE,
@@ -608,12 +608,12 @@ enum AT_MTA_RPT_SET_TYPE_ENUM
 typedef VOS_UINT32 AT_MTA_RPT_SET_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
-枚举名    : AT_MTA_RPT_QRY_TYPE_ENUM
-枚举说明  : 主动上报请求类型
+    : AT_MTA_RPT_QRY_TYPE_ENUM
+  : 
 
-  1.日    期   : 2013年4月10日
-    作    者   : l00167671
-    修改内容   : 新增枚举
+  1.       : 2013410
+           : l00167671
+       : 
 *****************************************************************************/
 enum AT_MTA_RPT_QRY_TYPE_ENUM
 {
@@ -625,48 +625,48 @@ enum AT_MTA_RPT_QRY_TYPE_ENUM
 };
 typedef VOS_UINT32 AT_MTA_RPT_QRY_TYPE_ENUM_UINT32;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
+/* Added by s00217060 for ATC, 2013-3-25, end */
 
 /*****************************************************************************
- 枚举名    : AT_MTA_CMD_RPT_FLG_ENUM
- 结构说明  : AT命令上报开关标志枚举
+     : AT_MTA_CMD_RPT_FLG_ENUM
+   : AT
 
-  1.日    期   : 2013年07月22日
-    作    者   : l00198894
-    修改内容   : V9R1 AGPS
+  1.       : 20130722
+           : l00198894
+       : V9R1 AGPS
 *****************************************************************************/
 enum AT_MTA_CMD_RPT_FLG_ENUM
 {
-    AT_MTA_CMD_RPT_FLG_OFF              = 0,                        /* AT命令不主动上报 */
-    AT_MTA_CMD_RPT_FLG_ON,                                          /* AT命令主动上报 */
+    AT_MTA_CMD_RPT_FLG_OFF              = 0,                        /* AT */
+    AT_MTA_CMD_RPT_FLG_ON,                                          /* AT */
     AT_MTA_CMD_RPT_FLG_BUTT
 };
 typedef VOS_UINT8 AT_MTA_CMD_RPT_FLG_ENUM_UINT8;
 /*****************************************************************************
- 枚举名    : AT_MTA_CMD_CLEAR_FREQ_FLG_ENUM
- 结构说明  : 清除历史频点信息枚举
+     : AT_MTA_CMD_CLEAR_FREQ_FLG_ENUM
+   : 
 
-  1.日    期   : 2016年2月4日
-    作    者   : y00358807
-    修改内容   :
+  1.       : 201624
+           : y00358807
+       :
 *****************************************************************************/
 enum AT_MTA_CLEAR_FREQ_FLG_ENUM
 {
-    AT_MTA_CLEAR_FREQ_FLG_NOT_CSG_HISTORY_FREQ              = 0,                /* 清除非CSG历史频点 */
-    AT_MTA_CLEAR_FREQ_FLG_CSG_HISTORY_FREQ,                                     /* 清除CSG历史频点 */
-    AT_MTA_CLEAR_FREQ_FLG_ALL_FREQ,                                         /* 清除所有历史频点 */
+    AT_MTA_CLEAR_FREQ_FLG_NOT_CSG_HISTORY_FREQ              = 0,                /* CSG */
+    AT_MTA_CLEAR_FREQ_FLG_CSG_HISTORY_FREQ,                                     /* CSG */
+    AT_MTA_CLEAR_FREQ_FLG_ALL_FREQ,                                         /*  */
     AT_MTA_CLEAR_FREQ_FLG_BUTT
 };
 typedef VOS_UINT8 AT_MTA_CLEAR_FREQ_FLG_ENUM_UINT8;
 
 
 /*****************************************************************************
- 枚举名    : AT_MTA_CMD_RATMODE_ENUM
- 结构说明  : AT命令带接入模式RatMode枚举
+     : AT_MTA_CMD_RATMODE_ENUM
+   : ATRatMode
 
-  1.日    期   : 2014年04月8日
-    作    者   : g00261581
-    修改内容   : 新建
+  1.       : 2014048
+           : g00261581
+       : 
 *****************************************************************************/
 enum AT_MTA_CMD_RATMODE_ENUM
 {
@@ -680,29 +680,29 @@ enum AT_MTA_CMD_RATMODE_ENUM
 typedef VOS_UINT8 AT_MTA_CMD_RATMODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_JAM_RESULT_ENUM
- 结构说明  : JAM DETECT REPORT上报结果枚举
+     : MTA_AT_JAM_RESULT_ENUM
+   : JAM DETECT REPORT
 
-  1.日    期   : 2014年05月5日
-    作    者   : g00261581
-    修改内容   : 新建
+  1.       : 2014055
+           : g00261581
+       : 
 *****************************************************************************/
 enum MTA_AT_JAM_RESULT_ENUM
 {
-    MTA_AT_JAM_RESULT_JAM_DISAPPEARED        = 0x00,                            /* 状态正常无干扰 */
-    MTA_AT_JAM_RESULT_JAM_DISCOVERED,                                           /* 干扰存在 */
+    MTA_AT_JAM_RESULT_JAM_DISAPPEARED        = 0x00,                            /*  */
+    MTA_AT_JAM_RESULT_JAM_DISCOVERED,                                           /*  */
 
     MTA_AT_JAM_RESULT_BUTT
 };
 typedef VOS_UINT32 MTA_AT_JAM_RESULT_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_FREQLOCK_RATMODE_ENUM
- 结构说明  : AT模块与MTA之间的接入模式枚举
+     : AT_MTA_FREQLOCK_RATMODE_ENUM
+   : ATMTA
 
-  1.日    期   : 2014年06月11日
-    作    者   : g00261581
-    修改内容   : 新增
+  1.       : 20140611
+           : g00261581
+       : 
 *****************************************************************************/
 enum AT_MTA_FREQLOCK_RATMODE_ENUM
 {
@@ -719,12 +719,12 @@ enum AT_MTA_FREQLOCK_RATMODE_ENUM
 typedef VOS_UINT8 AT_MTA_FREQLOCK_RATMODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_GSM_BAND_ENUM
- 结构说明  : AT模块与MTA之间的BAND值枚举
+     : AT_MTA_GSM_BAND_ENUM
+   : ATMTABAND
 
-  1.日    期   : 2014年06月11日
-    作    者   : g00261581
-    修改内容   : 新增
+  1.       : 20140611
+           : g00261581
+       : 
 *****************************************************************************/
 enum AT_MTA_GSM_BAND_ENUM
 {
@@ -738,12 +738,12 @@ enum AT_MTA_GSM_BAND_ENUM
 typedef VOS_UINT16 AT_MTA_GSM_BAND_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_CFG_ENUM
- 结构说明  : 使能/去使能枚举
+     : AT_MTA_CFG_ENUM
+   : /
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum AT_MTA_CFG_ENUM
 {
@@ -754,12 +754,12 @@ enum AT_MTA_CFG_ENUM
 typedef VOS_UINT8 AT_MTA_CFG_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_MBMS_SERVICE_STATE_SET_ENUM
- 结构说明  : MBMS Service状态设置枚举
+     : AT_MTA_MBMS_SERVICE_STATE_SET_ENUM
+   : MBMS Service
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum AT_MTA_MBMS_SERVICE_STATE_SET_ENUM
 {
@@ -771,12 +771,12 @@ enum AT_MTA_MBMS_SERVICE_STATE_SET_ENUM
 typedef VOS_UINT8 AT_MTA_MBMS_SERVICE_STATE_SET_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_MBMS_CAST_MODE_ENUM
- 结构说明  : MBMS广播模式是单播/组播枚举
+     : AT_MTA_MBMS_CAST_MODE_ENUM
+   : MBMS/
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum AT_MTA_MBMS_CAST_MODE_ENUM
 {
@@ -787,12 +787,12 @@ enum AT_MTA_MBMS_CAST_MODE_ENUM
 typedef VOS_UINT8 AT_MTA_MBMS_CAST_MODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM
- 结构说明  : EMBMS 功能状态枚举
+     : MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM
+   : EMBMS 
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM
 {
@@ -803,12 +803,12 @@ enum MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM
 typedef VOS_UINT8 MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_MBMS_SERVICE_EVENT_ENUM
- 结构说明  : MBMS 服务状态事件枚举
+     : MTA_AT_MBMS_SERVICE_EVENT_ENUM
+   : MBMS 
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum MTA_AT_MBMS_SERVICE_EVENT_ENUM
 {
@@ -821,32 +821,32 @@ enum MTA_AT_MBMS_SERVICE_EVENT_ENUM
 typedef VOS_UINT8 MTA_AT_MBMS_SERVICE_EVENT_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_COEX_BW_TYPE_ENUM
- 枚举说明  : LTE&WIFI宽带类型枚举
+     : AT_MTA_COEX_BW_TYPE_ENUM
+   : LTE&WIFI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 enum AT_MTA_COEX_BW_TYPE_ENUM
 {
-    AT_MTA_COEX_BAND_WIDTH_6RB          = 0,                                    /* 宽带1.4M */
-    AT_MTA_COEX_BAND_WIDTH_15RB         = 1,                                    /* 宽带3M */
-    AT_MTA_COEX_BAND_WIDTH_25RB         = 2,                                    /* 宽带5M */
-    AT_MTA_COEX_BAND_WIDTH_50RB         = 3,                                    /* 宽带10M */
-    AT_MTA_COEX_BAND_WIDTH_75RB         = 4,                                    /* 宽带15M */
-    AT_MTA_COEX_BAND_WIDTH_100RB        = 5,                                    /* 宽带20M */
+    AT_MTA_COEX_BAND_WIDTH_6RB          = 0,                                    /* 1.4M */
+    AT_MTA_COEX_BAND_WIDTH_15RB         = 1,                                    /* 3M */
+    AT_MTA_COEX_BAND_WIDTH_25RB         = 2,                                    /* 5M */
+    AT_MTA_COEX_BAND_WIDTH_50RB         = 3,                                    /* 10M */
+    AT_MTA_COEX_BAND_WIDTH_75RB         = 4,                                    /* 15M */
+    AT_MTA_COEX_BAND_WIDTH_100RB        = 5,                                    /* 20M */
     AT_MTA_COEX_BAND_WIDTH_BUTT
 };
 typedef VOS_UINT16 AT_MTA_COEX_BW_TYPE_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_COEX_CFG_ENUM
- 枚举说明  : LTE&WIFI共存方案配置枚举
+     : AT_MTA_COEX_CFG_ENUM
+   : LTE&WIFI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 
 *****************************************************************************/
 enum AT_MTA_COEX_CFG_ENUM
@@ -858,12 +858,12 @@ enum AT_MTA_COEX_CFG_ENUM
 typedef VOS_UINT16 AT_MTA_COEX_CFG_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_LTE_LOW_POWER_ENUM
- 枚举说明  : 低功耗枚举
+     : AT_MTA_LTE_LOW_POWER_ENUM
+   : 
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 
 *****************************************************************************/
 enum AT_MTA_LTE_LOW_POWER_ENUM
@@ -875,12 +875,12 @@ enum AT_MTA_LTE_LOW_POWER_ENUM
 typedef VOS_UINT8 AT_MTA_LTE_LOW_POWER_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_MBMS_PRIORITY_ENUM
- 枚举说明  : 服务优先枚举
+     : AT_MTA_MBMS_PRIORITY_ENUM
+   : 
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 
 *****************************************************************************/
 enum AT_MTA_MBMS_PRIORITY_ENUM
@@ -901,75 +901,75 @@ enum AT_MTA_UE_CENTER_TYPE_ENUM
 typedef VOS_UINT32 AT_MTA_UE_CENTER_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_BODY_SAR_STATE_ENUM
- 结构说明  : Body SAR 状态枚举
- 1.日    期   : 2015年10月30日
-   作    者   : w00316404
-   修改内容   : 新增枚举(开源整改A、C核解耦)
+     : AT_MTA_BODY_SAR_STATE_ENUM
+   : Body SAR 
+ 1.       : 20151030
+          : w00316404
+      : (AC)
 *****************************************************************************/
 enum AT_MTA_BODY_SAR_STATE_ENUM
 {
-    AT_MTA_BODY_SAR_OFF                 = 0,                                    /* Body SAR功能关闭 */
-    AT_MTA_BODY_SAR_ON,                                                         /* Body SAR功能开启 */
+    AT_MTA_BODY_SAR_OFF                 = 0,                                    /* Body SAR */
+    AT_MTA_BODY_SAR_ON,                                                         /* Body SAR */
     AT_MTA_BODY_SAR_STATE_BUTT
 };
 typedef VOS_UINT16 AT_MTA_BODY_SAR_STATE_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_REFCLOCK_STATUS_ENUM
- 枚举说明  : GPS参考时钟锁定状态枚举
+     : MTA_AT_REFCLOCK_STATUS_ENUM
+   : GPS
 
- 1.日    期   : 2015年10月30日
-   作    者   : w00316404
-   修改内容   : 新增枚举(开源整改A、C核解耦)
+ 1.       : 20151030
+          : w00316404
+      : (AC)
 *****************************************************************************/
 enum MTA_AT_REFCLOCK_STATUS_ENUM
 {
-    MTA_AT_REFCLOCK_UNLOCKED            = 0,                                    /* GPS参考时钟频率非锁定状态 */
-    MTA_AT_REFCLOCK_LOCKED,                                                     /* GPS参考时钟频率锁定状态 */
+    MTA_AT_REFCLOCK_UNLOCKED            = 0,                                    /* GPS */
+    MTA_AT_REFCLOCK_LOCKED,                                                     /* GPS */
     MTA_AT_REFCLOCK_STATUS_BUTT
 };
 typedef VOS_UINT16 MTA_AT_REFCLOCK_STATUS_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_GPHY_XPASS_MODE_ENUM
- 枚举说明  : G XPASS模式
+     : MTA_AT_GPHY_XPASS_MODE_ENUM
+   : G XPASS
 
- 1.日    期   : 2015年10月30日
-   作    者   : w00316404
-   修改内容   : 新增枚举(开源整改A、C核解耦)
+ 1.       : 20151030
+          : w00316404
+      : (AC)
 *****************************************************************************/
 enum MTA_AT_GPHY_XPASS_MODE_ENUM
 {
-    MTA_AT_GPHY_XPASS_MODE_DISABLE      = 0,                                    /* 非XPASS模式，类似高铁 */
-    MTA_AT_GPHY_XPASS_MODE_ENABLE,                                              /* XPASS模式，类似高铁 */
+    MTA_AT_GPHY_XPASS_MODE_DISABLE      = 0,                                    /* XPASS */
+    MTA_AT_GPHY_XPASS_MODE_ENABLE,                                              /* XPASS */
     MTA_AT_GPHY_XPASS_MODE_BUTT
 };
 typedef VOS_UINT16 MTA_AT_GPHY_XPASS_MODE_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_WPHY_HIGHWAY_MODE_ENUM
- 枚举说明  : W高铁模式
+     : MTA_AT_WPHY_HIGHWAY_MODE_ENUM
+   : W
 
- 1.日    期   : 2015年10月30日
-   作    者   : w00316404
-   修改内容   : 新增枚举(开源整改A、C核解耦)
+ 1.       : 20151030
+          : w00316404
+      : (AC)
 *****************************************************************************/
 enum MTA_AT_WPHY_HIGHWAY_MODE_ENUM
 {
-    MTA_AT_WPHY_HIGHWAY_MODE_DISABLE    = 0,                                    /* W非高铁模式 */
-    MTA_AT_WPHY_HIGHWAY_MODE_ENABLE,                                            /* W高铁模式 */
+    MTA_AT_WPHY_HIGHWAY_MODE_DISABLE    = 0,                                    /* W */
+    MTA_AT_WPHY_HIGHWAY_MODE_ENABLE,                                            /* W */
     MTA_AT_WPHY_HIGHWAY_MODE_BUTT
 };
 typedef VOS_UINT16 MTA_AT_WPHY_HIGHWAY_MODE_ENUM_UINT16;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_NETMON_GSM_STATE_ENUM
- 结构说明  : network monitor 获取GSMf小区信息状态枚举
+     : MTA_AT_NETMON_GSM_STATE_ENUM
+   : network monitor GSMf
 
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新建
+  1.       : 20151019
+           : zwx247453
+       : 
 *****************************************************************************/
 enum MTA_AT_NETMON_GSM_STATE_ENUM
 {
@@ -982,12 +982,12 @@ enum MTA_AT_NETMON_GSM_STATE_ENUM
 typedef VOS_UINT32 MTA_AT_NETMON_GSM_STATE_ENUM_UINT32;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_NETMON_CELL_INFO_RESULT_ENUM
- 结构说明  : network monitor 小区信息查询制式枚举
+     : MTA_AT_NETMON_CELL_INFO_RESULT_ENUM
+   : network monitor 
 
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新建
+  1.       : 20151019
+           : zwx247453
+       : 
 *****************************************************************************/
 
 enum MTA_AT_NETMON_CELL_INFO_RAT_ENUM
@@ -1002,17 +1002,17 @@ typedef VOS_UINT32 MTA_AT_NETMON_CELL_INFO_RAT_ENUM_UINT32;
 
 
 /*****************************************************************************
- 枚举名    : MTA_TAF_CTZR_TYPE
- 结构说明  : CTZR上报方式枚举
+     : MTA_TAF_CTZR_TYPE
+   : CTZR
 
-  1.日    期   : 2015年11月17日
-    作    者   : h00360002
-    修改内容   : 新建
+  1.       : 20151117
+           : h00360002
+       : 
 *****************************************************************************/
 
 enum MTA_TAF_CTZR_TYPE
 {
-    MTA_TAF_CTZR_OFF            = 0x00,            /* CTZR去使能 */
+    MTA_TAF_CTZR_OFF            = 0x00,            /* CTZR */
     MTA_TAF_CTZR_CTZV           = 0x01,            /* CTZR:CTZV */
     MTA_TAF_CTZR_CTZE           = 0x02,            /* CTZR:CTZE */
     MTA_TAF_CTZR_BUTT
@@ -1020,12 +1020,12 @@ enum MTA_TAF_CTZR_TYPE
 typedef VOS_UINT32 MTA_TAF_CTZR_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
-枚举名    : AT_MTA_TYPE_ENUM
-枚举说明  : 数据上报通道类型
+    : AT_MTA_TYPE_ENUM
+  : 
 
-  1.日    期   : 2015年12月25日
-    作    者   : C00299064
-    修改内容   : 新增枚举
+  1.       : 20151225
+           : C00299064
+       : 
 *****************************************************************************/
 enum AT_MTA_AFC_CLK_STATUS_ENUM
 {
@@ -1037,46 +1037,46 @@ enum AT_MTA_AFC_CLK_STATUS_ENUM
 typedef VOS_UINT32 AT_MTA_AFC_CLK_STATUS_ENUM_UINT32;
 
 /*****************************************************************************
-枚举名    : AT_MTA_XCPOSR_CFG_ENUM
-枚举说明  : AT^XCPOSR中GPS芯片支持清除缓存辅助信息能力项
+    : AT_MTA_XCPOSR_CFG_ENUM
+  : AT^XCPOSRGPS
 
-  1.日    期   : 2016年03月08日
-    作    者   : h00360002
-    修改内容   : 新增枚举
+  1.       : 20160308
+           : h00360002
+       : 
 *****************************************************************************/
 enum AT_MTA_XCPOSR_CFG_ENUM
 {
-    AT_MTA_XCPOSR_CFG_DISABLE        = 0,                                       /* 不支持清除缓存 */
-    AT_MTA_XCPOSR_CFG_ENABLE,                                                   /* 支持清除缓存 */
+    AT_MTA_XCPOSR_CFG_DISABLE        = 0,                                       /*  */
+    AT_MTA_XCPOSR_CFG_ENABLE,                                                   /*  */
     AT_MTA_XCPOSR_CFG_BUTT
 };
 typedef VOS_UINT8 AT_MTA_XCPOSR_CFG_ENUM_UNIT8;
 
 /*****************************************************************************
-枚举名    : AT_MTA_FRAT_IGNITION_ENUM
-枚举说明  : AT^fratIgnition 设置ignition state
+    : AT_MTA_FRAT_IGNITION_ENUM
+  : AT^fratIgnition ignition state
 
 
-  1.日    期   : 2016年4月26日
-    作    者   : c00318887
-    修改内容   : 新增
+  1.       : 2016426
+           : c00318887
+       : 
 *****************************************************************************/
 enum AT_MTA_FRAT_IGNITION_ENUM
 {
-    AT_MTA_FRAT_IGNITION_STATT_OFF        = 0,                                  /* 不支持清除缓存 */
-    AT_MTA_FRAT_IGNITION_STATT_ON,                                                   /* 支持清除缓存 */
+    AT_MTA_FRAT_IGNITION_STATT_OFF        = 0,                                  /*  */
+    AT_MTA_FRAT_IGNITION_STATT_ON,                                                   /*  */
     AT_MTA_FRAT_IGNITION_STATT_BUTT
 };
 typedef VOS_UINT8 AT_MTA_FRAT_IGNITION_ENUM_UNIT8;
 
 
 /*****************************************************************************
-枚举名    : MTA_AT_AFC_CLK_UNLOCK_CAUSE_ENUM
-结构说明  : AFC时钟失锁原因值枚举
+    : MTA_AT_AFC_CLK_UNLOCK_CAUSE_ENUM
+  : AFC
 
-  1.日    期   : 2016年07月05日
-    作    者   : wx270776
-    修改内容   : 新增枚举
+  1.       : 20160705
+           : wx270776
+       : 
 *****************************************************************************/
 enum MTA_AT_AFC_CLK_UNLOCK_CAUSE_ENUM
 {
@@ -1087,12 +1087,12 @@ enum MTA_AT_AFC_CLK_UNLOCK_CAUSE_ENUM
 typedef VOS_UINT16  MTA_AT_AFC_CLK_UNLOCK_CAUSE_ENUM_UINT16;
 
 /*****************************************************************************
-枚举名    : MTA_AT_MODEM_ID_ENUM
-结构说明  : MTA报给AT Modem ID
+    : MTA_AT_MODEM_ID_ENUM
+  : MTAAT Modem ID
 
-  1.日    期   : 2016年07月07日
-    作    者   : wx270776
-    修改内容   : 新增枚举
+  1.       : 20160707
+           : wx270776
+       : 
 *****************************************************************************/
 enum MTA_AT_MODEM_ID_ENUM
 {
@@ -1105,12 +1105,12 @@ enum MTA_AT_MODEM_ID_ENUM
 typedef VOS_UINT8 MTA_AT_MODEM_ID_ENUM_UINT8;
 
 /*****************************************************************************
-枚举名    : MTA_AT_RAT_MODE_ENUM
-结构说明  : MTA报给AT Rat Mode
+    : MTA_AT_RAT_MODE_ENUM
+  : MTAAT Rat Mode
 
-  1.日    期   : 2016年07月07日
-    作    者   : wx270776
-    修改内容   : 新增枚举
+  1.       : 20160707
+           : wx270776
+       : 
 *****************************************************************************/
 enum MTA_AT_RAT_MODE_ENUM
 {
@@ -1126,12 +1126,12 @@ enum MTA_AT_RAT_MODE_ENUM
 typedef VOS_UINT8 MTA_AT_RAT_MODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : MTA_AT_DAY_LIGHT_SAVING_IND_ENUM
- 枚举说明  : 夏令时指示
+     : MTA_AT_DAY_LIGHT_SAVING_IND_ENUM
+   : 
 
-  1.日    期   : 2016年5月25日
-    作    者   : wx270776
-    修改内容   : 新增
+  1.       : 2016525
+           : wx270776
+       : 
 *****************************************************************************/
 enum MTA_AT_DAY_LIGHT_SAVING_IND_ENUM
 {
@@ -1143,12 +1143,12 @@ enum MTA_AT_DAY_LIGHT_SAVING_IND_ENUM
 typedef VOS_UINT8   MTA_AT_DAY_LIGHT_SAVING_IND_ENUM_UINT8;
 
 /*****************************************************************************
-枚举名    : MTA_AT_TIME_TYPE_ENUM
-枚举说明  : 时间类型指示
+    : MTA_AT_TIME_TYPE_ENUM
+  : 
 
-  1.日    期   : 2016年5月25日
-    作    者   : wx270776
-    修改内容   : 新增
+  1.       : 2016525
+           : wx270776
+       : 
 *****************************************************************************/
 enum MTA_AT_TIME_TYPE_ENUM
 {
@@ -1160,29 +1160,29 @@ enum MTA_AT_TIME_TYPE_ENUM
 typedef VOS_UINT8   MTA_AT_TIME_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
-枚举名    : AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM
-结构说明  : AT通知MTA进行Modem更新的类型
+    : AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM
+  : ATMTAModem
 
-  1.日    期   : 2016年8月8日
-    作    者   : h00313353
-    修改内容   : New
+  1.       : 201688
+           : h00313353
+       : New
 *****************************************************************************/
 enum AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM
 {
-    AT_MTA_MODEM_CAP_UPDATE_TYPE_CDMA_MODEM_SWITCH   = 0x00U,       /* AT^CDMAMODEMSWITCH导致的平台能力更新 */
-    AT_MTA_MODEM_CAP_UPDATE_TYPE_ACTIVE_MODEM        = 0x01U,       /* AT^ACTIVEMODEM导致的平台能力更新 */
+    AT_MTA_MODEM_CAP_UPDATE_TYPE_CDMA_MODEM_SWITCH   = 0x00U,       /* AT^CDMAMODEMSWITCH */
+    AT_MTA_MODEM_CAP_UPDATE_TYPE_ACTIVE_MODEM        = 0x01U,       /* AT^ACTIVEMODEM */
 
     AT_MTA_MODEM_CAP_UPDATE_TYPE_BUTT
 };
 typedef VOS_UINT8 AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_RS_INFO_TYPE_ENUM
- 结构说明  : MTA模块与AT间的参考信号类型枚举定义
+     : AT_MTA_RS_INFO_TYPE_ENUM
+   : MTAAT
 
-  1.日    期   : 2017年01月18日
-    作    者   : wx270776
-    修改内容   : 新增
+  1.       : 20170118
+           : wx270776
+       : 
 *****************************************************************************/
 enum AT_MTA_RS_INFO_TYPE_ENUM
 {
@@ -1193,39 +1193,39 @@ enum AT_MTA_RS_INFO_TYPE_ENUM
 typedef VOS_UINT32 AT_MTA_RS_INFO_TYPE_ENUM_UINT32;
 
 /*****************************************************************************
-  4 全局变量声明
+  4 
 *****************************************************************************/
 /*****************************************************************************
-  5 消息头定义
+  5 
 *******************************s**********************************************/
 /*****************************************************************************
-  6 消息定义
+  6 
 *****************************************************************************/
 /*****************************************************************************
-  7 STRUCT定义
+  7 STRUCT
 *****************************************************************************/
 
 /*****************************************************************************
-结构名    : AT_MTA_MSG_STRU
-结构说明  : AT模块与MTA模块间的消息结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : AT_MTA_MSG_STRU
+  : ATMTA
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER
-    VOS_UINT32                          ulMsgId;                                /* 消息名 */
+    VOS_UINT32                          ulMsgId;                                /*  */
     AT_APPCTRL_STRU                     stAppCtrl;
-    VOS_UINT8                           aucContent[4];                          /* 消息内容 */
+    VOS_UINT8                           aucContent[4];                          /*  */
 } AT_MTA_MSG_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_CPOS_REQ_MSG_STRU
-结构说明  : 来自AT的+CPOS请求消息子结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : MTA_AT_CPOS_REQ_MSG_STRU
+  : AT+CPOS
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
@@ -1235,37 +1235,37 @@ typedef struct
 } AT_MTA_CPOS_REQ_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_CPOS_CNF_STRU
-结构说明  : 发往AT的+CPOS回复消息子结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : MTA_AT_CPOS_CNF_STRU
+  : AT+CPOS
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 命令执行结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 } MTA_AT_CPOS_CNF_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_CPOSR_IND_STRU
-结构说明  : +CPOSR主动上报的消息结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : MTA_AT_CPOSR_IND_STRU
+  : +CPOSR
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
-    /* AT向MTA上报的XML码流最大长度为1024，同时还需预留一个字节存放字符串结尾的空字符 */
+    /* ATMTAXML1024 */
     VOS_CHAR                            acXmlText[MTA_CPOSR_XML_MAX_LEN + 1];
     VOS_UINT8                           aucRsv[3];
 } MTA_AT_CPOSR_IND_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_XCPOSRRPT_IND_STRU
-结构说明  : ^XCPOSRRPT主动上报的消息结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : MTA_AT_XCPOSRRPT_IND_STRU
+  : ^XCPOSRRPT
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
@@ -1273,30 +1273,30 @@ typedef struct
 } MTA_AT_XCPOSRRPT_IND_STRU;
 
 /*****************************************************************************
-结构名    : AT_MTA_CGPSCLOCK_REQ_STRU
-结构说明  : AT^CGPSCLOCK的回复消息结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
+    : AT_MTA_CGPSCLOCK_REQ_STRU
+  : AT^CGPSCLOCK
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_CGPSCLOCK_ENUM_UINT32        enGpsClockState;                        /* RF芯片GPS时钟状态 */
+    MTA_AT_CGPSCLOCK_ENUM_UINT32        enGpsClockState;                        /* RFGPS */
 } AT_MTA_CGPSCLOCK_REQ_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_CGPSCLOCK_CNF_STRU
-结构说明  : AT^CGPSCLOCK的回复消息结构
-1.日    期  : 2012年06月28日
-  作    者  : y00213812
-  修改内容  : V7R1C50 A_GPS项目新增结构
-2.日    期  : 2016年7月9日
-  作    者  : wx270776
-  修改内容  : CGPS CLOCK OPT
+    : MTA_AT_CGPSCLOCK_CNF_STRU
+  : AT^CGPSCLOCK
+1.      : 20120628
+        : y00213812
+    : V7R1C50 A_GPS
+2.      : 201679
+        : wx270776
+    : CGPS CLOCK OPT
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 命令执行结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 
     MTA_AT_MODEM_ID_ENUM_UINT8          enModemId;
     MTA_AT_RAT_MODE_ENUM_UINT8          enRatMode;
@@ -1305,11 +1305,11 @@ typedef struct
 } MTA_AT_CGPSCLOCK_CNF_STRU;
 
 /*****************************************************************************
-结构名    : AT_MTA_SIMLOCKUNLOCK_REQ_STRU
-结构说明  : AT^SIMLOCKUNLOCK的请求消息结构
-1.日    期  : 2012年09月18日
-  作    者  : l00198894
-  修改内容  : STK补充特性及DCM需求开发项目新增结构
+    : AT_MTA_SIMLOCKUNLOCK_REQ_STRU
+  : AT^SIMLOCKUNLOCK
+1.      : 20120918
+        : l00198894
+    : STKDCM
 *****************************************************************************/
 typedef struct
 {
@@ -1319,40 +1319,40 @@ typedef struct
 } AT_MTA_SIMLOCKUNLOCK_REQ_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_SIMLOCKUNLOCK_CNF_STRU
-结构说明  : AT^SIMLOCKUNLOCK的回复消息结构
-1.日    期  : 2012年09月18日
-  作    者  : l00198894
-  修改内容  : STK补充特性及DCM需求开发项目新增结构
+    : MTA_AT_SIMLOCKUNLOCK_CNF_STRU
+  : AT^SIMLOCKUNLOCK
+1.      : 20120918
+        : l00198894
+    : STKDCM
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 命令执行结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 } MTA_AT_SIMLOCKUNLOCK_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_QRY_NMR_REQ_STRU
- 结构说明  : AT获取NMR的消息请求结构
+     : AT_MTA_QRY_NMR_REQ_STRU
+   : ATNMR
 
-  1.日    期   : 2012年11月23日
-    作    者   : z00161729
-    修改内容   : NMR新增结构
+  1.       : 20121123
+           : z00161729
+       : NMR
 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRatType;
-    VOS_UINT8                           aucReserve[3];                          /* 预留后续使用 */
+    VOS_UINT8                           aucReserve[3];                          /*  */
 }AT_MTA_QRY_NMR_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_NMR_CNF_STRU
- 结构说明  : mta回复at模块nmr查询结果接口结构
+     : MTA_AT_QRY_NMR_CNF_STRU
+   : mtaatnmr
 
-  1.日    期   : 2012年11月23日
-    作    者   : z00161729
-    修改内容   : NMR新增结构
+  1.       : 20121123
+           : z00161729
+       : NMR
 
 *****************************************************************************/
 typedef struct
@@ -1360,33 +1360,33 @@ typedef struct
     MTA_AT_RESULT_ENUM_UINT32         enResult;
     VOS_UINT8                         ucTotalIndex;
     VOS_UINT8                         ucCurrIndex;
-    VOS_UINT16                        usNMRLen;                                 /* NMR数据长度 */
-    VOS_UINT8                         aucNMRData[4];                            /* NMR数据首地址 */
+    VOS_UINT16                        usNMRLen;                                 /* NMR */
+    VOS_UINT8                         aucNMRData[4];                            /* NMR */
 }MTA_AT_QRY_NMR_CNF_STRU;
 
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_RESEL_OFFSET_CFG_SET_REQ_STRU
- 结构说明  : AT向MTA发送WLTHRESHOLDCFG的重选参数
-  1.日    期   : 2012年12月10日
-    作    者   : t00212959
-    修改内容   : WLTHRESHOLDCFG新增结构
+     : AT_MTA_RESEL_OFFSET_CFG_SET_REQ_STRU
+   : ATMTAWLTHRESHOLDCFG
+  1.       : 20121210
+           : t00212959
+       : WLTHRESHOLDCFG
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                   ucOffsetFlg;                    /* 0:灭屏；1:亮屏*/
-    VOS_UINT8                                   aucReserve[3];                  /* 预留后续使用 */
+    VOS_UINT8                                   ucOffsetFlg;                    /* 0:1:*/
+    VOS_UINT8                                   aucReserve[3];                  /*  */
 }AT_MTA_RESEL_OFFSET_CFG_SET_NTF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_WRR_AUTOTEST_QRY_PARA_STRU
- 结构说明  : AS测试命令参数
+     : AT_MTA_WRR_AUTOTEST_QRY_PARA_STRU
+   : AS
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1397,12 +1397,12 @@ typedef struct
 }AT_MTA_WRR_AUTOTEST_QRY_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_AUTOTEST_QRY_RSLT_STRU
- 结构说明  : WAS测试命令返回结果
+     : MTA_AT_WRR_AUTOTEST_QRY_RSLT_STRU
+   : WAS
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1411,12 +1411,12 @@ typedef struct
 }MTA_AT_WRR_AUTOTEST_QRY_RSLT_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_AUTOTEST_QRY_CNF_STRU
- 结构说明  : WAS测试命令返回结果消息结构
+     : MTA_AT_WRR_AUTOTEST_QRY_CNF_STRU
+   : WAS
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1425,12 +1425,12 @@ typedef struct
 } MTA_AT_WRR_AUTOTEST_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CELLINFO_STRU
- 结构说明  : 小区信息结构
+     : MTA_AT_WRR_CELLINFO_STRU
+   : 
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1442,26 +1442,26 @@ typedef struct
 }MTA_AT_WRR_CELLINFO_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CELLINFO_RSLT_STRU
- 结构说明  : WRR回复MTA小区信息查询结构
+     : MTA_AT_WRR_CELLINFO_RSLT_STRU
+   : WRRMTA
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
      VOS_UINT32                     ulCellNum;
-     MTA_AT_WRR_CELLINFO_STRU       astWCellInfo[MTA_AT_WRR_MAX_NCELL_NUM];         /*最多支持W 8个邻区的查询*/
+     MTA_AT_WRR_CELLINFO_STRU       astWCellInfo[MTA_AT_WRR_MAX_NCELL_NUM];         /*W 8*/
 
 } MTA_AT_WRR_CELLINFO_RSLT_STRU;
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CELLINFO_QRY_CNF_STRU
- 结构说明  : WRR回复MTA小区信息查询结构
+     : MTA_AT_WRR_CELLINFO_QRY_CNF_STRU
+   : WRRMTA
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1470,28 +1470,28 @@ typedef struct
 } MTA_AT_WRR_CELLINFO_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_MEANRPT_STRU
- 结构说明  : 测量报告中的事件+小区
+     : MTA_AT_WRR_MEANRPT_STRU
+   : +
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                      usEventId;                                  /*对应的事件类型*/
+    VOS_UINT16                      usEventId;                                  /**/
     VOS_UINT16                      usCellNum;
     VOS_UINT16                      ausPrimaryScramCode[MTA_AT_WRR_ONE_MEANRPT_MAX_CELL_NUM];
 }MTA_AT_WRR_MEANRPT_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_MEANRPT_RSLT_STRU
- 结构说明  : 自动化测试AT^MEANRPT,
-             查询最近最多10次测量报告中的事件+小区
+     : MTA_AT_WRR_MEANRPT_RSLT_STRU
+   : AT^MEANRPT,
+             10+
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1500,12 +1500,12 @@ typedef struct
 }MTA_AT_WRR_MEANRPT_RSLT_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_MEANRPT_QRY_CNF_STRU
- 结构说明  : WRR给MTA回复^MEANRPT请求的消息结构
+     : MTA_AT_WRR_MEANRPT_QRY_CNF_STRU
+   : WRRMTA^MEANRPT
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1514,13 +1514,13 @@ typedef struct
 } MTA_AT_WRR_MEANRPT_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CSNR_QRY_CNF_STRU
- 结构说明  : WRR给MTA回复CSNR查询结果，MTA将查询得到的Rscp EcNo值和其他的Rssi CellId
-            参数一起上报给AT
+     : MTA_AT_WRR_CSNR_QRY_CNF_STRU
+   : WRRMTACSNRMTARscp EcNoRssi CellId
+            AT
 
-  1.日    期   : 2015年12月24日
-    作    者   : n00355355
-    修改内容   : 新生成
+  1.       : 20151224
+           : n00355355
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1529,12 +1529,12 @@ typedef struct
 }MTA_AT_ANTENNA_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_FREQLOCK_CTRL_STRU
- 结构说明  : WAS锁频控制结构
+     : MTA_AT_WRR_FREQLOCK_CTRL_STRU
+   : WAS
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1544,12 +1544,12 @@ typedef struct
 } MTA_AT_WRR_FREQLOCK_CTRL_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_FREQLOCK_SET_CNF_STRU
- 结构说明  : MTA给AT回的锁频控制结构
+     : MTA_AT_WRR_FREQLOCK_SET_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1557,12 +1557,12 @@ typedef struct
 } MTA_AT_WRR_FREQLOCK_SET_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_FREQLOCK_QRY_CNF_STRU
- 结构说明  : MTA给AT回的锁频控制结构
+     : MTA_AT_WRR_FREQLOCK_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1571,12 +1571,12 @@ typedef struct
 } MTA_AT_WRR_FREQLOCK_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_RRC_VERSION_SET_CNF_STRU
- 结构说明  : WRR给MTA上报version设置结果
+     : MTA_AT_WRR_RRC_VERSION_SET_CNF_STRU
+   : WRRMTAversion
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1584,12 +1584,12 @@ typedef struct
 } MTA_AT_WRR_RRC_VERSION_SET_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_RRC_VERSION_QRY_CNF_STRU
- 结构说明  : WRR给MTA上报version查询结果
+     : MTA_AT_WRR_RRC_VERSION_QRY_CNF_STRU
+   : WRRMTAversion
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1599,12 +1599,12 @@ typedef struct
 } MTA_AT_WRR_RRC_VERSION_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CELLSRH_SET_CNF_STRU
- 结构说明  : WRR给MTA上报cellsrh设置结果
+     : MTA_AT_WRR_CELLSRH_SET_CNF_STRU
+   : WRRMTAcellsrh
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1612,12 +1612,12 @@ typedef struct
 } MTA_AT_WRR_CELLSRH_SET_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_WRR_CELLSRH_QRY_CNF_STRU
- 结构说明  : WRR给MTA上报cellsrh查询结果
+     : MTA_AT_WRR_CELLSRH_QRY_CNF_STRU
+   : WRRMTAcellsrh
 
-  1.日    期   : 2012年12月29日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20121229
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1627,77 +1627,77 @@ typedef struct
 } MTA_AT_WRR_CELLSRH_QRY_CNF_STRU;
 
 /*****************************************************************************
-结构名    : AT_MMA_ANQUERY_2G_3G_PARA_STRU
-结构说明  : AT^ANQUERY查询操作的2G/3G结果上报结构
-  1.日    期   : 2016年1月12日
-    作    者   : n00355355
-    修改内容   : 新生成
+    : AT_MMA_ANQUERY_2G_3G_PARA_STRU
+  : AT^ANQUERY2G/3G
+  1.       : 2016112
+           : n00355355
+       : 
 *******************************************************************************/
 typedef struct
 {
     VOS_INT16                           sCpichRscp;
     VOS_INT16                           sCpichEcNo;
     VOS_UINT32                          ulCellId;
-    VOS_UINT8                           ucRssi;                                 /* Rssi, GU下使用*/
+    VOS_UINT8                           ucRssi;                                 /* Rssi, GU*/
     VOS_UINT8                           aucReserve[3];
 
 }AT_MTA_ANQUERY_2G_3G_PARA_STRU;
 
 /*****************************************************************************
-结构名    : AT_MMA_ANQUERY_4G_PARA_STRU
-结构说明  : AT^ANQUERY查询操作的LTE结果上报结构
+    : AT_MMA_ANQUERY_4G_PARA_STRU
+  : AT^ANQUERYLTE
 
-  1.日    期   : 2016年1月12日
-    作    者   : n00355355
-    修改内容   : 新生成
+  1.       : 2016112
+           : n00355355
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_INT16                           sRsrp;                                  /* 范围：(-141,-44), 99为无效 */
-    VOS_INT16                           sRsrq;                                  /* 范围：(-40, -6) , 99为无效 */
-    VOS_INT16                           sRssi;                                  /* Rssi, LTE下使用*/
+    VOS_INT16                           sRsrp;                                  /* (-141,-44), 99 */
+    VOS_INT16                           sRsrq;                                  /* (-40, -6) , 99 */
+    VOS_INT16                           sRssi;                                  /* Rssi, LTE*/
     VOS_UINT8                           aucReserve[2];
 }AT_MTA_ANQUERY_4G_PARA_STRU;
 
 /*****************************************************************************
-结构名    : AT_MMA_ANQUERY_PARA_STRU
-结构说明  : AT^ANQUERY查询操作的结果上报结构
-  1.日    期   : 2016年1月12日
-    作    者   : n00355355
-    修改内容   : 新生成
+    : AT_MMA_ANQUERY_PARA_STRU
+  : AT^ANQUERY
+  1.       : 2016112
+           : n00355355
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                               enServiceSysMode;                       /* 指示上报模式*/
+    VOS_UINT8                               enServiceSysMode;                       /* */
     VOS_UINT8                               aucReserve[3];
     union
     {
-        AT_MTA_ANQUERY_2G_3G_PARA_STRU      st2G3GCellSignInfo;                     /* Rssi, GU下使用*/
-        AT_MTA_ANQUERY_4G_PARA_STRU         st4GCellSignInfo;                       /* Rssi, LTE下使用*/
+        AT_MTA_ANQUERY_2G_3G_PARA_STRU      st2G3GCellSignInfo;                     /* Rssi, GU*/
+        AT_MTA_ANQUERY_4G_PARA_STRU         st4GCellSignInfo;                       /* Rssi, LTE*/
     }u;
 }AT_MTA_ANQUERY_PARA_STRU;
 
 /*****************************************************************************
-结构名    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
-结构说明  : Antenna Info qry cnf stru
+    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
+  : Antenna Info qry cnf stru
 
-  1.日    期   : 2015年12月23日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 20151223
+           : n00355355
+       : 
 ******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;      /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;      /*  */
     AT_MTA_ANQUERY_PARA_STRU            stAntennaInfo;
 }MTA_AT_ANTENNA_INFO_QRY_CNF_STRU;
 
 /*****************************************************************************
-结构名    : AT_MMA_CSNR_PARA_STRU
-结构说明  : AT+CSNR查询操作的结果上报结构
+    : AT_MMA_CSNR_PARA_STRU
+  : AT+CSNR
 
-  1.日    期   : 2016年1月12日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 2016112
+           : n00355355
+       : 
 *******************************************************************************/
 typedef struct
 {
@@ -1706,85 +1706,85 @@ typedef struct
 }AT_MTA_CSNR_PARA_STRU;
 
 /*****************************************************************************
-结构名    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
-结构说明  : Csnr Info qry cnf stru
+    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
+  : Csnr Info qry cnf stru
 
-  1.日    期   : 2015年12月23日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 20151223
+           : n00355355
+       : 
 ******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;      /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;      /*  */
     AT_MTA_CSNR_PARA_STRU              stCsnrPara;
 }MTA_AT_CSNR_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MMA_CSQLVL_PARA_STRU
- 结构说明  : CSQLVL查询操作的结果上报结构
-             包括RSCP 等级和RSCP 的绝对值
+     : AT_MMA_CSQLVL_PARA_STRU
+   : CSQLVL
+             RSCP RSCP 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usRscp;                                 /* RSCP 等级 */
-    VOS_UINT16                          usLevel;                                /* RSCP 的绝对值 */
+    VOS_UINT16                          usRscp;                                 /* RSCP  */
+    VOS_UINT16                          usLevel;                                /* RSCP  */
 }AT_MTA_CSQLVL_PARA_STRU;
 
 /*****************************************************************************
-结构名     : AT_MMA_CSQLVLEXT_PARA_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : CSQLVLEX查询操作的结果上报结构
-             包括CSQLVLEX查询获取到的信号格数和比特误码率百分比，当前版本不支持BER查询，填99
+     : AT_MMA_CSQLVLEXT_PARA_STRU
+   :
+ ASN.1 :
+   : CSQLVLEX
+             CSQLVLEXBER99
 
-  1.日    期   : 2016年1月12日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 2016112
+           : n00355355
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           enRssilv;                         /* CSQLVLEX查询获取到的信号格数 */
-    VOS_UINT8                           enBer;                            /* 比特误码率百分比，暂时不支持BER查询，填99*/
+    VOS_UINT8                           enRssilv;                         /* CSQLVLEX */
+    VOS_UINT8                           enBer;                            /* BER99*/
 }AT_MTA_CSQLVLEXT_PARA_STRU;
 
 /*****************************************************************************
-结构名    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
-结构说明  : CSQLVL Info qry cnf stru
+    : MMA_AT_ANTENNA_INFO_QRY_CNF_STRU
+  : CSQLVL Info qry cnf stru
 
-  1.日    期   : 2015年12月23日
-    作    者   : n00355355
-    修改内容   : 新建
+  1.       : 20151223
+           : n00355355
+       : 
 ******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;      /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;      /*  */
     AT_MTA_CSQLVL_PARA_STRU             stCsqLvlPara;
     AT_MTA_CSQLVLEXT_PARA_STRU          stCsqLvlExtPara;
     VOS_UINT8                           aucReserved[2];
 }MTA_AT_CSQLVL_QRY_CNF_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_FRAT_IGNITION_QRY_CNF_STRU
-结构说明  : fratIgnition qry cnf content
+    : MTA_AT_FRAT_IGNITION_QRY_CNF_STRU
+  : fratIgnition qry cnf content
 
-  1.日    期   : 2016年4月21日
-    作    者   : c00318887
-    修改内容   : FRAT IGNITION project 新建
+  1.       : 2016421
+           : c00318887
+       : FRAT IGNITION project 
 ******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
     AT_MTA_FRAT_IGNITION_ENUM_UNIT8     enFratIgnitionState;                    /* IgnitionState */
     VOS_UINT8                           aucReserved[3];
 }MTA_AT_FRAT_IGNITION_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_FRAT_IGNITION_SET_REQ_STRU
- 结构说明  : fratIgnition set req content
+     : AT_MTA_FRAT_IGNITION_SET_REQ_STRU
+   : fratIgnition set req content
 
-   1.日    期   : 2016年4月21日
-     作    者   : c00318887
-     修改内容   : FRAT IGNITION project 新建
+   1.       : 2016421
+            : c00318887
+        : FRAT IGNITION project 
 
 *****************************************************************************/
 typedef struct
@@ -1794,95 +1794,95 @@ typedef struct
 } AT_MTA_FRAT_IGNITION_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_FRAT_IGNITION_SET_REQ_STRU
- 结构说明  : fratIgnition set cnf content
+     : AT_MTA_FRAT_IGNITION_SET_REQ_STRU
+   : fratIgnition set cnf content
 
-   1.日    期   : 2016年4月21日
-     作    者   : c00318887
-     修改内容   : FRAT IGNITION project 新建
+   1.       : 2016421
+            : c00318887
+        : FRAT IGNITION project 
 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 查询操作结果*/
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* */
 } MTA_AT_FRAT_IGNITION_SET_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_BODY_SAR_SET_REQ_STRU
- 结构说明  : AT向MTA发送BODYSAR门限设置参数
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : ^BODYSARON新增结构
+     : AT_MTA_BODY_SAR_SET_REQ_STRU
+   : ATMTABODYSAR
+  1.       : 20130311
+           : z00214637
+       : ^BODYSARON
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_BODY_SAR_STATE_ENUM_UINT16   enState;       /* Body SAR状态 */
-    VOS_UINT16                          usRsv;         /* 保留位 */
-    MTA_BODY_SAR_PARA_STRU              stBodySARPara; /* Body SAR功率门限参数 */
+    AT_MTA_BODY_SAR_STATE_ENUM_UINT16   enState;       /* Body SAR */
+    VOS_UINT16                          usRsv;         /*  */
+    MTA_BODY_SAR_PARA_STRU              stBodySARPara; /* Body SAR */
 }AT_MTA_BODY_SAR_SET_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_RESULT_CNF_STRU
- 结构说明  : AT设置消息操作结果的回复消息结构体
- 1.日    期   : 2013年03月11日
-   作    者   : z00214637
-   修改内容   : 新增结构体
+     : MTA_AT_RESULT_CNF_STRU
+   : AT
+ 1.       : 20130311
+          : z00214637
+      : 
 *******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;      /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;      /*  */
 }MTA_AT_RESULT_CNF_STRU;
 
 /*******************************************************************************
- 结构名    : AT_MTA_RESERVE_STRU
- 结构说明  : AT与MTA消息保留结构体
- 1.日    期   : 2013年03月11日
-   作    者   : z00214637
-   修改内容   : 新增结构体
+     : AT_MTA_RESERVE_STRU
+   : ATMTA
+ 1.       : 20130311
+          : z00214637
+      : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           aucReserved[4]; /* 保留位 */
+    VOS_UINT8                           aucReserved[4]; /*  */
 }AT_MTA_RESERVE_STRU;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, begin */
+/* Added by s00217060 for ATC, 2013-3-25, begin */
 /*****************************************************************************
- 结构名    : AT_MTA_CSSN_RPT_FLG_STRU
- 结构说明  : CSSN是否主动上报标识结构体，包括CSSI是否主动上报和CSSU是否主动上报
+     : AT_MTA_CSSN_RPT_FLG_STRU
+   : CSSNCSSICSSU
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCssiRptFlg;                           /* 禁止或使能+CSSI的补充业务通知 0:不上报;1:上报 */
-    VOS_UINT8                           ucCssuRptFlg;                           /* 禁止或使能+CSSU的补充业务通知 0:不上报;1:上报 */
+    VOS_UINT8                           ucCssiRptFlg;                           /* +CSSI 0:;1: */
+    VOS_UINT8                           ucCssuRptFlg;                           /* +CSSU 0:;1: */
 } AT_MTA_CSSN_RPT_FLG_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_CURC_SET_NOTIFY_STRU
- 结构说明  : AT给MTA发送设置CURC请求
+     : AT_MTA_CURC_SET_NOTIFY_STRU
+   : ATMTACURC
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8     enCurcRptType;                  /* 主动上报模式，0:关闭所有的主动上报；1:打开所有的主动上报；2:根据RptCfg参数决定对应的bit位是否主动上报 */
-    VOS_UINT8                                   aucReserve[3];                  /* 保留字段 */
-    VOS_UINT8                                   aucRptCfg[AT_MTA_RPT_CFG_MAX_SIZE];                   /* 64bit主动上报标识 */
+    AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8     enCurcRptType;                  /* 0:1:2:RptCfgbit */
+    VOS_UINT8                                   aucReserve[3];                  /*  */
+    VOS_UINT8                                   aucRptCfg[AT_MTA_RPT_CFG_MAX_SIZE];                   /* 64bit */
 } AT_MTA_CURC_SET_NOTIFY_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_CURC_QRY_REQ_STRU
- 结构说明  : AT给MTA发送查询CURC请求
+     : AT_MTA_CURC_QRY_REQ_STRU
+   : ATMTACURC
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1890,31 +1890,31 @@ typedef struct
 } AT_MTA_CURC_QRY_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU
- 结构说明  : AT给MTA发送单个命令设置主动上报请求
+     : AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_RPT_SET_TYPE_ENUM_UINT32     enReqType;                              /* 请求类型 */
+    AT_MTA_RPT_SET_TYPE_ENUM_UINT32     enReqType;                              /*  */
 
     union
     {
-        VOS_UINT8                       ucModeRptFlg;                           /* mode是否主动上报标识 0:不上报，1:上报 */
-        VOS_UINT8                       ucSrvstRptFlg;                          /* service status是否主动上报标识 */
-        VOS_UINT8                       ucRssiRptFlg;                           /* rssi是否主动上报标识 */
-        VOS_UINT8                       ucTimeRptFlg;                           /* time是否主动上报标识 */
-        VOS_UINT8                       ucCtzrRptFlg;                           /* ctzr是否主动上报标识 */
-        VOS_UINT8                       ucDsFlowRptFlg;                         /* 流量是否主动上报标识 */
-        VOS_UINT8                       ucSimstRptFlg;                          /* sim卡状态是否主动上报标识 */
-        VOS_UINT8                       ucCregRptFlg;                           /* cs域注册状态是否主动上报标识 */
-        VOS_UINT8                       ucCgregRptFlg;                          /* ps域注册状态是否主动上报标识 */
-        VOS_UINT8                       ucCeregRptFlg;                          /* L注册状态是否主动上报标识 */
-        VOS_UINT8                       ucCsidRptFlg;                           /* CSID是否主动上报标识 */
-        VOS_UINT8                       ucClocinfoRptFlg;                       /* CLOCINFO是否主动上报标识 */
+        VOS_UINT8                       ucModeRptFlg;                           /* mode 0:1: */
+        VOS_UINT8                       ucSrvstRptFlg;                          /* service status */
+        VOS_UINT8                       ucRssiRptFlg;                           /* rssi */
+        VOS_UINT8                       ucTimeRptFlg;                           /* time */
+        VOS_UINT8                       ucCtzrRptFlg;                           /* ctzr */
+        VOS_UINT8                       ucDsFlowRptFlg;                         /*  */
+        VOS_UINT8                       ucSimstRptFlg;                          /* sim */
+        VOS_UINT8                       ucCregRptFlg;                           /* cs */
+        VOS_UINT8                       ucCgregRptFlg;                          /* ps */
+        VOS_UINT8                       ucCeregRptFlg;                          /* L */
+        VOS_UINT8                       ucCsidRptFlg;                           /* CSID */
+        VOS_UINT8                       ucClocinfoRptFlg;                       /* CLOCINFO */
     }u;
 
     VOS_UINT8                           aucReserve[3];
@@ -1922,12 +1922,12 @@ typedef struct
  } AT_MTA_UNSOLICITED_RPT_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU
- 结构说明  : AT给MTA发送查询单个命令主动上报请求
+     : AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1935,12 +1935,12 @@ typedef struct
 } AT_MTA_UNSOLICITED_RPT_QRY_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_NCELL_MONITOR_SET_REQ_STRU
- 结构说明  : AT给MTA发送NCELLMONITOR设置请求
+     : AT_MTA_NCELL_MONITOR_SET_REQ_STRU
+   : ATMTANCELLMONITOR
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1949,12 +1949,12 @@ typedef struct
 } AT_MTA_NCELL_MONITOR_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_CLEAR_HISTORY_FREQ_REQ_STRU
- 结构说明  : AT给MTA发送CHISFREQ设置请求
+     : AT_MTA_CLEAR_HISTORY_FREQ_REQ_STRU
+   : ATMTACHISFREQ
 
-  1.日    期   : 2016年2月4日
-    作    者   : y00358807
-    修改内容   : 创建
+  1.       : 201624
+           : y00358807
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1964,28 +1964,28 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : MTA_AT_CURC_QRY_CNF_STRU
- 结构说明  : MTA给AT发送查询CURC回复
+     : MTA_AT_CURC_QRY_CNF_STRU
+   : MTAATCURC
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32                   enResult;
-    AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8     enCurcRptType;                          /* 主动上报模式，0:关闭所有的主动上报；1:打开所有的主动上报；2:根据ReportCfg参数决定对应的bit位是否主动上报 */
+    AT_MTA_RPT_GENERAL_CTRL_TYPE_ENUM_UINT8     enCurcRptType;                          /* 0:1:2:ReportCfgbit */
     VOS_UINT8                                   aucReserve[3];
-    VOS_UINT8                                   aucRptCfg[AT_MTA_RPT_CFG_MAX_SIZE];  /* 主动上报标识 */
+    VOS_UINT8                                   aucRptCfg[AT_MTA_RPT_CFG_MAX_SIZE];  /*  */
 } MTA_AT_CURC_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU
- 结构说明  : MTA给AT发送单个命令设置主动上报回复
+     : MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013325
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -1993,15 +1993,15 @@ typedef struct
 } MTA_AT_UNSOLICITED_RPT_SET_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_UNSOLICITED_RPT_QRY_CNF_STRU
- 结构说明  : MTA给AT发送查询单个命令主动上报回复
+     : MTA_AT_UNSOLICITED_RPT_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2013年3月25日
-    作    者   : s00217060
-    修改内容   : 创建
-  2.日    期   : 2015年11月19日
-    作    者   : h00360002
-    修改内容   : ctzr添加ctze上报
+  1.       : 2013325
+           : s00217060
+       : 
+  2.       : 20151119
+           : h00360002
+       : ctzrctze
 *****************************************************************************/
 typedef struct
 {
@@ -2010,35 +2010,35 @@ typedef struct
 
     union
     {
-        VOS_UINT8                       ucTimeRptFlg;                           /* time是否主动上报标识 */
-        MTA_TAF_CTZR_TYPE_ENUM_UINT32   ucCtzrRptFlg;                           /* ctzr是否主动上报标识 */
-        AT_MTA_CSSN_RPT_FLG_STRU        stCssnRptFlg;                           /* cssn是否主动上报标识结构体 */
-        VOS_UINT8                       ucCusdRptFlg;                           /* cusd是否主动上报标识结构体 */
+        VOS_UINT8                       ucTimeRptFlg;                           /* time */
+        MTA_TAF_CTZR_TYPE_ENUM_UINT32   ucCtzrRptFlg;                           /* ctzr */
+        AT_MTA_CSSN_RPT_FLG_STRU        stCssnRptFlg;                           /* cssn */
+        VOS_UINT8                       ucCusdRptFlg;                           /* cusd */
     }u;
 
 } MTA_AT_UNSOLICITED_RPT_QRY_CNF_STRU;
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-3-25, end */
+/* Added by s00217060 for ATC, 2013-3-25, end */
 
 
 /*******************************************************************************
- 结构名    : MTA_AT_CGSN_QRY_CNF_STRU
- 结构说明  : ID_MTA_AT_CGSN_QRY_CNF消息
- 1.日    期   : 2013年05月25日
-   作    者   : Y00213812
-   修改内容   : 新增结构体
+     : MTA_AT_CGSN_QRY_CNF_STRU
+   : ID_MTA_AT_CGSN_QRY_CNF
+ 1.       : 20130525
+          : Y00213812
+      : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           aucImei[NV_ITEM_IMEI_SIZE]; /* IMEI号码 */
+    VOS_UINT8                           aucImei[NV_ITEM_IMEI_SIZE]; /* IMEI */
 }MTA_AT_CGSN_QRY_CNF_STRU;
 /*****************************************************************************
- 结构名    : MTA_AT_NCELL_MONITOR_QRY_CNF_STRU
- 结构说明  : MTA发给AT的查询异系统小区变化信息控制请求消息的回复
+     : MTA_AT_NCELL_MONITOR_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013531
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2049,12 +2049,12 @@ typedef struct
 } MTA_AT_NCELL_MONITOR_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_NCELL_MONITOR_IND_STRU
- 结构说明  : MTA发给AT的异系统小区变化主动上报信息
+     : MTA_AT_NCELL_MONITOR_IND_STRU
+   : MTAAT
 
-  1.日    期   : 2013年5月31日
-    作    者   : s00217060
-    修改内容   : 创建
+  1.       : 2013531
+           : s00217060
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2064,243 +2064,243 @@ typedef struct
 
 
 /*****************************************************************************
-结构名    : AT_MTA_REFCLKFREQ_SET_REQ_STRU
-结构说明  : AT^REFCLKFREQ设置命令的请求消息结构
+    : AT_MTA_REFCLKFREQ_SET_REQ_STRU
+  : AT^REFCLKFREQ
 
-1.日    期   : 2013年07月22日
-  作    者   : l00198894
-  修改内容   : V9R1 AGPS
+1.       : 20130722
+         : l00198894
+     : V9R1 AGPS
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_CMD_RPT_FLG_ENUM_UINT8       enRptFlg;                               /* 命令上报开关标志 */
-    VOS_UINT8                           aucReserved1[3];                        /* 保留位 */
+    AT_MTA_CMD_RPT_FLG_ENUM_UINT8       enRptFlg;                               /*  */
+    VOS_UINT8                           aucReserved1[3];                        /*  */
 } AT_MTA_REFCLKFREQ_SET_REQ_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_REFCLKFREQ_QRY_CNF_STRU
-结构说明  : AT^REFCLKFREQ查询命令的回复消息结构
+    : MTA_AT_REFCLKFREQ_QRY_CNF_STRU
+  : AT^REFCLKFREQ
 
-1.日    期   : 2013年07月22日
-  作    者   : l00198894
-  修改内容   : V9R1 AGPS
+1.       : 20130722
+         : l00198894
+     : V9R1 AGPS
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT32                          ulFreq;                                 /* GPS参考时钟的频率值，单位Hz */
-    VOS_UINT32                          ulPrecision;                            /* 当前GPS参考时钟的精度，单位ppb */
-    MTA_AT_REFCLOCK_STATUS_ENUM_UINT16  enStatus;                               /* 时钟频率锁定状态 */
-    VOS_UINT8                           aucReserved1[2];                        /* 保留位 */
+    VOS_UINT32                          ulFreq;                                 /* GPSHz */
+    VOS_UINT32                          ulPrecision;                            /* GPSppb */
+    MTA_AT_REFCLOCK_STATUS_ENUM_UINT16  enStatus;                               /*  */
+    VOS_UINT8                           aucReserved1[2];                        /*  */
 } MTA_AT_REFCLKFREQ_QRY_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_RFICSSIRD_REQ_STRU
- 结构说明  :
- 1.日    期   : 2015年10月29日
-   作    者   : x00316382
-   修改内容   : Added for tool
+     : AT_MTA_RFICSSIRD_REQ_STRU
+   :
+ 1.       : 20151029
+          : x00316382
+      : Added for tool
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usChannelNo;                            /* 接收端地址 */
+    VOS_UINT16                          usChannelNo;                            /*  */
     VOS_UINT16                          usRficReg;
 }AT_MTA_RFICSSIRD_REQ_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_RFICSSIRD_CNF_STRU
-结构说明  : AT^SSIRD查询命令的回复消息结构
+    : MTA_AT_RFICSSIRD_CNF_STRU
+  : AT^SSIRD
 
-1.日    期   : 2015年10月29日
-  作    者   : x00316382
-  修改内容   : Rfic SSI Rd
+1.       : 20151029
+         : x00316382
+     : Rfic SSI Rd
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulRegValue;                             /* 回复的寄存器的值 */
+    VOS_UINT32                          ulRegValue;                             /*  */
 } MTA_AT_RFICSSIRD_CNF_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_REFCLKFREQ_IND_STRU
-结构说明  : GPS参考时钟状态信息主动上报消息结构
+    : MTA_AT_REFCLKFREQ_IND_STRU
+  : GPS
 
-1.日    期   : 2013年07月22日
-  作    者   : l00198894
-  修改内容   : V9R1 AGPS
+1.       : 20130722
+         : l00198894
+     : V9R1 AGPS
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulFreq;                                 /* GPS参考时钟的频率值，单位Hz */
-    VOS_UINT32                          ulPrecision;                            /* 当前GPS参考时钟的精度，单位ppb */
-    MTA_AT_REFCLOCK_STATUS_ENUM_UINT16  enStatus;                               /* 时钟频率锁定状态 */
-    VOS_UINT8                           aucReserved1[2];                        /* 保留位 */
+    VOS_UINT32                          ulFreq;                                 /* GPSHz */
+    VOS_UINT32                          ulPrecision;                            /* GPSppb */
+    MTA_AT_REFCLOCK_STATUS_ENUM_UINT16  enStatus;                               /*  */
+    VOS_UINT8                           aucReserved1[2];                        /*  */
 } MTA_AT_REFCLKFREQ_IND_STRU;
 
 
 /*****************************************************************************
-结构名    : MTA_AT_HANDLEDECT_SET_CNF_STRU
-结构说明  : 设置物理层左右手手持状态信息cnf消息
+    : MTA_AT_HANDLEDECT_SET_CNF_STRU
+  : cnf
 
-1.日    期   : 2013年08月08日
-  作    者   : m00217266
-  修改内容   : AP Sensor
+1.       : 20130808
+         : m00217266
+     : AP Sensor
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 } MTA_AT_HANDLEDECT_SET_CNF_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_HANDLEDECT_QRY_CNF_STRU
-结构说明  : 查询物理层左右手手持状态信息cnf消息
+    : MTA_AT_HANDLEDECT_QRY_CNF_STRU
+  : cnf
 
-1.日    期   : 2013年08月08日
-  作    者   : m00217266
-  修改内容   : AP Sensor
+1.       : 20130808
+         : m00217266
+     : AP Sensor
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usHandle;                               /* 左右手类型 */
+    VOS_UINT16                          usHandle;                               /*  */
     VOS_UINT16                          aucReserved1[1];
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 } MTA_AT_HANDLEDECT_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_PS_TRANSFER_IND_STRU
- 结构说明  : 上报PS域迁移指示结构体
+     : MTA_AT_PS_TRANSFER_IND_STRU
+   : PS
 
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
+  1.       : 20131021
+           : l00198894
+       : V9R1C50 SVLTE
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucCause;                                /* PS域迁移原因值 */
-    VOS_UINT8                           aucReserved1[3];                        /* 保留位 */
+    VOS_UINT8                           ucCause;                                /* PS */
+    VOS_UINT8                           aucReserved1[3];                        /*  */
 } MTA_AT_PS_TRANSFER_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RF_LCD_MIPICLK_IND_STRU
- 结构说明  : 上报MIPICLK结构体
+     : MTA_AT_RF_LCD_MIPICLK_IND_STRU
+   : MIPICLK
 
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
+  1.       : 20140304
+           : j00174725
+       : RF&LCD INTRUSION
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usMipiClk;                              /* 主动上报MIPICLK值 */
-    VOS_UINT8                           aucReserved1[2];                        /* 保留位 */
+    VOS_UINT16                          usMipiClk;                              /* MIPICLK */
+    VOS_UINT8                           aucReserved1[2];                        /*  */
 } MTA_AT_RF_LCD_MIPICLK_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RF_LCD_MIPICLK_CNF_STRU
- 结构说明  : 上报MIPICLK结构体
+     : MTA_AT_RF_LCD_MIPICLK_CNF_STRU
+   : MIPICLK
 
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目新增
+  1.       : 20140304
+           : j00174725
+       : RF&LCD INTRUSION
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usMipiClk;                              /* 主动上报MIPICLK值 */
+    VOS_UINT16                          usMipiClk;                              /* MIPICLK */
     VOS_UINT16                          usResult;
 } MTA_AT_RF_LCD_MIPICLK_CNF_STRU;
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, begin */
+/* Added by l00198894 for +ECID, 2013-12-09, begin */
 /*******************************************************************************
- 结构名    : AT_MTA_ECID_SET_REQ_STRU
- 结构说明  : AT与MTA命令+ECID设置请求消息结构体
+     : AT_MTA_ECID_SET_REQ_STRU
+   : ATMTA+ECID
 
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增结构体
+  1.       : 20131210
+           : l00198894
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulVersion;                              /* 命令版本号 */
+    VOS_UINT32                          ulVersion;                              /*  */
 }AT_MTA_ECID_SET_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_ECID_SET_CNF_STRU
- 结构说明  : AT与MTA命令+ECID设置回复消息结构体
+     : MTA_AT_ECID_SET_CNF_STRU
+   : ATMTA+ECID
 
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增结构体
+  1.       : 20131210
+           : l00198894
+       : 
 *******************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT8                           aucCellInfoStr[4];                      /* 增强型小区信息字符串 */
+    VOS_UINT8                           aucCellInfoStr[4];                      /*  */
 }MTA_AT_ECID_SET_CNF_STRU;
-/* Added by l00198894 for 新增+ECID命令, 2013-12-09, end */
+/* Added by l00198894 for +ECID, 2013-12-09, end */
 
 /*****************************************************************************
- 结构名    : AT_MTA_RRC_PROTECT_PS_REQ_STRU
- 结构说明  : AT获取PSPROTECTMODE的消息请求结构
+     : AT_MTA_RRC_PROTECT_PS_REQ_STRU
+   : ATPSPROTECTMODE
 
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : PSPROTECTMODE新增结构
+  1.       : 2014325
+           : y00176023
+       : PSPROTECTMODE
 
 *****************************************************************************/
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                  enPsProtectFlg;
-    VOS_UINT8                           aucReserve[3];                          /* 预留后续使用 */
+    VOS_UINT8                           aucReserve[3];                          /*  */
 }AT_MTA_RRC_PROTECT_PS_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RRC_PROTECT_PS_CNF_STRU
- 结构说明  : AT获取PSPROTECTMODE的消息请求结构
+     : MTA_AT_RRC_PROTECT_PS_CNF_STRU
+   : ATPSPROTECTMODE
 
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : PSPROTECTMODE新增结构
+  1.       : 2014325
+           : y00176023
+       : PSPROTECTMODE
 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                          /* 返回给AT的结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                          /* AT */
 }MTA_AT_RRC_PROTECT_PS_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_PHY_INIT_CNF_STRU
- 结构说明  : AT获取PHYINIT的消息请求结构
+     : MTA_AT_PHY_INIT_CNF_STRU
+   : ATPHYINIT
 
-  1.日    期   : 2014年3月25日
-    作    者   : y00176023
-    修改内容   : PHYINIT新增结构
+  1.       : 2014325
+           : y00176023
+       : PHYINIT
 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           aucReserve[4];                          /* 预留后续使用 */
+    VOS_UINT8                           aucReserve[4];                          /*  */
 }AT_MTA_PHY_INIT_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_PHY_INIT_CNF_STRU
- 结构说明  : AT请求物理层初始化物理层回复的消息结构
+     : MTA_AT_PHY_INIT_CNF_STRU
+   : AT
 
-  1.日    期   : 2014年3月26日
-    作    者   : y00176023
-    修改内容   : PHYINIT新增结构
+  1.       : 2014326
+           : y00176023
+       : PHYINIT
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                          /* 返回给AT的结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                          /* AT */
 }MTA_AT_PHY_INIT_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU
- 结构说明  : AT发给MTA的设置DPDT TEST FLAG的消息结构
+     : AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU
+   : ATMTADPDT TEST FLAG
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2310,12 +2310,12 @@ typedef struct
 } AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_DPDT_VALUE_REQ_STRU
- 结构说明  : AT发给MTA的设置DPDT当前天线使用状态的消息结构
+     : AT_MTA_SET_DPDT_VALUE_REQ_STRU
+   : ATMTADPDT
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2325,12 +2325,12 @@ typedef struct
 } AT_MTA_SET_DPDT_VALUE_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_QRY_DPDT_VALUE_PARA_STRU
- 结构说明  : AT发给MTA的查询DPDT VAlUE的消息结构
+     : AT_MTA_QRY_DPDT_VALUE_PARA_STRU
+   : ATMTADPDT VAlUE
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2339,12 +2339,12 @@ typedef struct
 } AT_MTA_QRY_DPDT_VALUE_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_DPDTTEST_FLAG_CNF_STRU
- 结构说明  : MTA发往AT的设置DPDTTEST Flag开关回复消息结构
+     : MTA_AT_SET_DPDTTEST_FLAG_CNF_STRU
+   : MTAATDPDTTEST Flag
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2352,12 +2352,12 @@ typedef struct
 } MTA_AT_SET_DPDTTEST_FLAG_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_DPDT_VALUE_CNF_STRU
- 结构说明  : MTA发往AT的设置DPDT Value回复消息结构
+     : MTA_AT_SET_DPDT_VALUE_CNF_STRU
+   : MTAATDPDT Value
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2365,12 +2365,12 @@ typedef struct
 } MTA_AT_SET_DPDT_VALUE_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_DPDT_VALUE_CNF_STRU
- 结构说明  : MTA发往AT的回复查询DPDT VAlUE的消息结构
+     : MTA_AT_QRY_DPDT_VALUE_CNF_STRU
+   : MTAATDPDT VAlUE
 
-  1.日    期   : 2014年4月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014404
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2379,12 +2379,12 @@ typedef struct
 } MTA_AT_QRY_DPDT_VALUE_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_JAM_DETECT_REQ_STRU
- 结构说明  : AT发给MTA的设置Jamming Dectection Report的消息结构
+     : AT_MTA_SET_JAM_DETECT_REQ_STRU
+   : ATMTAJamming Dectection Report
 
-  1.日    期   : 2014年5月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014504
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2395,12 +2395,12 @@ typedef struct
 } AT_MTA_SET_JAM_DETECT_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_JAM_DETECT_CNF_STRU
- 结构说明  : MTA发给AT的设置Jamming Dectection Report的Cnf消息结构
+     : MTA_AT_SET_JAM_DETECT_CNF_STRU
+   : MTAATJamming Dectection ReportCnf
 
-  1.日    期   : 2014年5月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014504
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2408,12 +2408,12 @@ typedef struct
 } MTA_AT_SET_JAM_DETECT_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_JAM_DETECT_IND_STRU
- 结构说明  : MTA发给AT的Jamming Dectection Report的Ind上报消息结构
+     : MTA_AT_JAM_DETECT_IND_STRU
+   : MTAATJamming Dectection ReportInd
 
-  1.日    期   : 2014年5月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014504
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2421,16 +2421,16 @@ typedef struct
 } MTA_AT_JAM_DETECT_IND_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_FREQ_LOCK_REQ_STRU
- 结构说明  : AT发给MTA的设置锁频请求的消息结构
+     : AT_MTA_SET_FREQ_LOCK_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2014年6月11日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014611
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucEnableFlg;                            /* 1:锁频功能打开，0:功能关闭 */
+    VOS_UINT8                           ucEnableFlg;                            /* 1:0: */
     AT_MTA_FREQLOCK_RATMODE_ENUM_UINT8  enRatMode;
     VOS_UINT16                          usLockedFreq;
     AT_MTA_GSM_BAND_ENUM_UINT16         enBand;
@@ -2438,12 +2438,12 @@ typedef struct
 } AT_MTA_SET_FREQ_LOCK_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_FREQ_LOCK_CNF_STRU
- 结构说明  : MTA回复给AT设置锁频回复结果的消息结构
+     : MTA_AT_SET_FREQ_LOCK_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2014年6月11日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014611
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2451,28 +2451,28 @@ typedef struct
 } MTA_AT_SET_FREQ_LOCK_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_GSM_FREQLOCK_REQ_STRU
- 结构说明  : AT发给MTA的设置G模锁频请求的消息结构
+     : AT_MTA_SET_GSM_FREQLOCK_REQ_STRU
+   : ATMTAG
 
-  1.日    期   : 2014年08月05日
-    作    者   : j00174725
-    修改内容   : 创建
+  1.       : 20140805
+           : j00174725
+       : 
 *****************************************************************************/
 typedef struct
 {
-    PS_BOOL_ENUM_UINT8                  enableFlag;                             /* PS_TRUE:锁定，PS_FALSE:去锁定 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
-    VOS_UINT16                          usFreq;                                 /* 频点值 */
-    AT_MTA_GSM_BAND_ENUM_UINT16         enBand;                                 /* GSM频段 */
+    PS_BOOL_ENUM_UINT8                  enableFlag;                             /* PS_TRUE:PS_FALSE: */
+    VOS_UINT8                           aucReserved[3];                         /*  */
+    VOS_UINT16                          usFreq;                                 /*  */
+    AT_MTA_GSM_BAND_ENUM_UINT16         enBand;                                 /* GSM */
 } AT_MTA_SET_GSM_FREQLOCK_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_GSM_FREQLOCK_CNF_STRU
- 结构说明  : MTA回复给AT设置G模锁频回复结果的消息结构
+     : MTA_AT_SET_GSM_FREQLOCK_CNF_STRU
+   : MTAATG
 
-  1.日    期   : 2014年08月05日
-    作    者   : j00174725
-    修改内容   : 创建
+  1.       : 20140805
+           : j00174725
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2481,156 +2481,156 @@ typedef struct
 
 #if (FEATURE_ON == FEATURE_PROBE_FREQLOCK)
 /*****************************************************************************
- 枚举名    : AT_FREQLOCK_W_TYPE_ENUM
- 结构说明  : FREQLOCK命令W制式下锁频类型枚举
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+     : AT_FREQLOCK_W_TYPE_ENUM
+   : FREQLOCKW
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 enum AT_FREQLOCK_W_TYPE_ENUM
 {
-    AT_MTA_WCDMA_FREQLOCK_CMD_FREQ_ONLY         = 8,                            /* 对应CWAS锁频类型 */
-    AT_MTA_WCDMA_FREQLOCK_CMD_COMBINED          = 9,                            /* 对应CWAS锁频+扰码类型 */
+    AT_MTA_WCDMA_FREQLOCK_CMD_FREQ_ONLY         = 8,                            /* CWAS */
+    AT_MTA_WCDMA_FREQLOCK_CMD_COMBINED          = 9,                            /* CWAS+ */
     AT_MTA_WCDMA_FREQLOCK_CMD_BUTT
 };
 typedef VOS_UINT8 AT_MTA_WCDMA_FREQLOCK_CMD_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_M2M_FREQLOCK_TYPE_ENUM
- 结构说明  : FREQLOCK命令W制式下锁频类型枚举
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+     : AT_MTA_M2M_FREQLOCK_TYPE_ENUM
+   : FREQLOCKW
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 enum AT_MTA_M2M_FREQLOCK_TYPE_ENUM
 {
-    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_FREQ_ONLY     = 1,                            /* 锁频ONLY类型 */
-    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_FREQ_COMBINED = 2,                            /* 锁频+主扰码/扰码/物理小区ID */
+    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_FREQ_ONLY     = 1,                            /* ONLY */
+    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_FREQ_COMBINED = 2,                            /* +//ID */
     AT_MTA_M2M_FREQLOCK_TYPE_ENUM_BUTT
 };
 typedef VOS_UINT8 AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名    : AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU
- 结构说明  : AT发给MTA的设置G模锁频请求的消息结构
+     : AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU
+   : ATMTAG
 
-  1.日    期   : 2014年12月15日
-    作    者   : z00214637
-    修改内容   : 创建
+  1.       : 20141215
+           : z00214637
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                                  usFreq;                         /* 频点值 */
-    AT_MTA_GSM_BAND_ENUM_UINT16                 enBand;                         /* GSM频段 */
-    VOS_UINT32                                  ulReserve;                      /* 8字节对齐-代码检视 */
+    VOS_UINT16                                  usFreq;                         /*  */
+    AT_MTA_GSM_BAND_ENUM_UINT16                 enBand;                         /* GSM */
+    VOS_UINT32                                  ulReserve;                      /* 8- */
 } AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU
- 结构说明  : AT发给MTA的设置W模锁频请求的消息结构
+     : AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU
+   : ATMTAW
 
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /* 锁频类型 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
-    VOS_UINT16                                  usFreq;                         /* 频点值 */
-    VOS_UINT16                                  usPsc;                          /* WCDMA主扰码 */
+    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /*  */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
+    VOS_UINT16                                  usFreq;                         /*  */
+    VOS_UINT16                                  usPsc;                          /* WCDMA */
 }AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU
- 结构说明  : AT发给MTA的设置TD模锁频请求的消息结构
+     : AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU
+   : ATMTATD
 
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /* 锁频类型 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
-    VOS_UINT16                                  usFreq;                         /* 频点值 */
-    VOS_UINT16                                  usSc;                           /* TD-SCDMA扰码 */
+    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /*  */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
+    VOS_UINT16                                  usFreq;                         /*  */
+    VOS_UINT16                                  usSc;                           /* TD-SCDMA */
 }AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU
- 结构说明  : AT发给MTA的设置W模锁频请求的消息结构
+     : AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU
+   : ATMTAW
 
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /* 锁频类型 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
-    VOS_UINT16                                  usFreq;                         /* 频点值 */
-    VOS_UINT16                                  usPci;                          /* LTE物理小区ID */
+    AT_MTA_M2M_FREQLOCK_TYPE_ENUM_UINT8         ucFreqType;                     /*  */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
+    VOS_UINT16                                  usFreq;                         /*  */
+    VOS_UINT16                                  usPci;                          /* LTEID */
 }AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU;
 
 /*****************************************************************************
- 枚举名    : AT_FREQLOCK_FLAG_TYPE_ENUM
- 结构说明  : FREQLOCK命令FLAG标识(用于区分开启/关闭锁频)枚举
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+     : AT_FREQLOCK_FLAG_TYPE_ENUM
+   : FREQLOCKFLAG(/)
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 enum AT_FREQLOCK_FLAG_TYPE_ENUM
 {
-    AT_MTA_M2M_FREQLOCK_MODE_GSM            = 1,                                /* GSM制式 */
-    AT_MTA_M2M_FREQLOCK_MODE_WCDMA          = 2,                                /* WCDMA制式 */
-    AT_MTA_M2M_FREQLOCK_MODE_TDSCDMA        = 3,                                /* TD-SCDMA制式 */
-    AT_MTA_M2M_FREQLOCK_MODE_LTE            = 4,                                /* LTE制式 */
+    AT_MTA_M2M_FREQLOCK_MODE_GSM            = 1,                                /* GSM */
+    AT_MTA_M2M_FREQLOCK_MODE_WCDMA          = 2,                                /* WCDMA */
+    AT_MTA_M2M_FREQLOCK_MODE_TDSCDMA        = 3,                                /* TD-SCDMA */
+    AT_MTA_M2M_FREQLOCK_MODE_LTE            = 4,                                /* LTE */
     AT_MTA_M2M_FREQLOCK_MODE_BUTT
 };
 typedef VOS_UINT8 AT_MTA_M2M_FREQLOCK_MODE_ENUM_UINT8;
 
 /*****************************************************************************
- 枚举名    : AT_MTA_M2M_FREQLOCK_FLAG_ENUM_UINT8
- 结构说明  : FREQLOCK命令FLAG标识(用于区分开启/关闭锁频)枚举
-1.日    期  : 2014年10月21日
-  作    者  : z00214637
-  修改内容  : 新增结构
+     : AT_MTA_M2M_FREQLOCK_FLAG_ENUM_UINT8
+   : FREQLOCKFLAG(/)
+1.      : 20141021
+        : z00214637
+    : 
 *****************************************************************************/
 enum AT_MTA_M2M_FREQLOCK_FLAG_TYPE_ENUM
 {
-    AT_MTA_M2M_FREQLOCK_FLAG_TYPE_OFF       = 0,                                /* 锁频关闭 */
-    AT_MTA_M2M_FREQLOCK_FLAG_TYPE_ON        = 1,                                /* 锁频开启 */
+    AT_MTA_M2M_FREQLOCK_FLAG_TYPE_OFF       = 0,                                /*  */
+    AT_MTA_M2M_FREQLOCK_FLAG_TYPE_ON        = 1,                                /*  */
     AT_MTA_M2M_FREQLOCK_FLAG_TYPE_BUTT
 };
 typedef VOS_UINT8 AT_MTA_M2M_FREQLOCK_FLAG_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_M2M_FREQLOCK_REQ_STRU
- 结构说明  : AT发送给MTA的设置锁频请求消息结构
+     : AT_MTA_SET_M2M_FREQLOCK_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2014年10月20日
-    作    者   : z00214637
-    修改内容   : 创建
+  1.       : 20141020
+           : z00214637
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_M2M_FREQLOCK_FLAG_ENUM_UINT8         enableFlag;                                 /* 使能标识 */
-    AT_MTA_M2M_FREQLOCK_MODE_ENUM_UINT8         ucMode;                                     /* 锁频制式 */
-    VOS_UINT8                                   aucReserved[6];                             /* 保留 */
-    AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU           stGFreqPara;                                /* G模锁频消息结构 */
-    AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU         stWFreqPara;                                /* W模锁频消息结构 */
-    AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU       stTDFreqPara;                               /* TD模锁频消息结构 */
-    AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU           stLFreqPara;                                /* L模锁频消息结构 */
+    AT_MTA_M2M_FREQLOCK_FLAG_ENUM_UINT8         enableFlag;                                 /*  */
+    AT_MTA_M2M_FREQLOCK_MODE_ENUM_UINT8         ucMode;                                     /*  */
+    VOS_UINT8                                   aucReserved[6];                             /*  */
+    AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU           stGFreqPara;                                /* G */
+    AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU         stWFreqPara;                                /* W */
+    AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU       stTDFreqPara;                               /* TD */
+    AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU           stLFreqPara;                                /* L */
 } AT_MTA_SET_M2M_FREQLOCK_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_M2M_FREQLOCK_CNF_STRU
- 结构说明  : MTA回复AT锁频设置的回复消息结构
+     : MTA_AT_SET_M2M_FREQLOCK_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2014年10月20日
-    作    者   : z00214637
-    修改内容   : 创建
+  1.       : 20141020
+           : z00214637
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2638,31 +2638,31 @@ typedef struct
 } MTA_AT_SET_M2M_FREQLOCK_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_FREQLOCK_QRY_CNF_STRU
- 结构说明  : MTA回复AT查询FREQLOCK结果的消息结构
+     : MTA_AT_FREQLOCK_QRY_CNF_STRU
+   : MTAATFREQLOCK
 
-  1.日    期   : 2014年10月20日
-    作    者   : z00214637
-    修改内容   : 创建
+  1.       : 20141020
+           : z00214637
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                                   ucFreqState[MTA_FREQLOCK_MAX_MODE];     /* GUTL模式的锁频状态 */
-    AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU           stGFreqLockInfo;                        /* GSM锁频状态查询结果 */
-    AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU         stWFreqLockInfo;                        /* WCDMA锁频状态查询结果 */
-    AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU       stTFreqLockInfo;                        /* TD-SCDMA锁频状态查询结果 */
-    AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU           stLFreqLockInfo;                        /* LTE锁频状态查询结果 */
+    VOS_UINT8                                   ucFreqState[MTA_FREQLOCK_MAX_MODE];     /* GUTL */
+    AT_MTA_M2M_GSM_FREQLOCK_PARA_STRU           stGFreqLockInfo;                        /* GSM */
+    AT_MTA_M2M_WCDMA_FREQLOCK_PARA_STRU         stWFreqLockInfo;                        /* WCDMA */
+    AT_MTA_M2M_TDSCDMA_FREQLOCK_PARA_STRU       stTFreqLockInfo;                        /* TD-SCDMA */
+    AT_MTA_M2M_LTE_FREQLOCK_PARA_STRU           stLFreqLockInfo;                        /* LTE */
 } MTA_AT_QRY_M2M_FREQLOCK_CNF_STRU;
 #endif
 
 
 /*****************************************************************************
- 结构名    : MTA_AT_XPASS_INFO_IND_STRU
- 结构说明  : MTA主动上报的XPASS信息的消息结构
+     : MTA_AT_XPASS_INFO_IND_STRU
+   : MTAXPASS
 
-  1.日    期   : 2014年12月25日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20141225
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2672,12 +2672,12 @@ typedef struct
     VOS_UINT16                                    usResev2;
 } MTA_AT_XPASS_INFO_IND_STRU;
 /*****************************************************************************
- 结构名    : AT_MTA_SET_FEMCTRL_REQ_STRU
- 结构说明  : AT发给MTA的设置底软gpio、mipi口的消息结构
+     : AT_MTA_SET_FEMCTRL_REQ_STRU
+   : ATMTAgpiomipi
 
-  1.日    期   : 2014年12月11日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20141211
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2688,12 +2688,12 @@ typedef struct
 } AT_MTA_SET_FEMCTRL_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_FEMCTRL_CNF_STRU
- 结构说明  : MTA回复给AT设置底软gpio、mipi口的消息结构
+     : MTA_AT_SET_FEMCTRL_CNF_STRU
+   : MTAATgpiomipi
 
-  1.日    期   : 2014年12月11日
-    作    者   : m00217266
-    修改内容   : 创建
+  1.       : 20141211
+           : m00217266
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2701,52 +2701,52 @@ typedef struct
 } MTA_AT_SET_FEMCTRL_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_NVWRSECCTRL_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置NVWR命令安全控制的消息结构
+     : AT_MTA_NVWRSECCTRL_SET_REQ_STRU
+   : ATMTANVWR
 
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增结构体
+  1.       : 20150404
+           : l00198894
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSecType;                              /* 安全控制类型 */
-    VOS_UINT8                           ucSecStrFlg;                            /* 是否携带安全校验密文 */
+    VOS_UINT8                           ucSecType;                              /*  */
+    VOS_UINT8                           ucSecStrFlg;                            /*  */
     VOS_UINT8                           aucReserved[2];
-    VOS_UINT8                           aucSecString[AT_RSA_CIPHERTEXT_LEN];    /* 安全校验密文 */
+    VOS_UINT8                           aucSecString[AT_RSA_CIPHERTEXT_LEN];    /*  */
 } AT_MTA_NVWRSECCTRL_SET_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : AT_MTA_SET_FR_REQ_STRU
- 结构说明  : AT发给MTA设置FR请求
- 1.日    期   : 2015年06月01日
-   作    者   : wx270776
-   修改内容   : FR动态控制添加
+     : AT_MTA_SET_FR_REQ_STRU
+   : ATMTAFR
+ 1.       : 20150601
+          : wx270776
+      : FR
 *******************************************************************************/
 typedef struct
 {
-    PS_BOOL_ENUM_UINT8                          enActFrFlag;                    /* 激活FR标志，0:不激活  1:激活 */
-    VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
+    PS_BOOL_ENUM_UINT8                          enActFrFlag;                    /* FR0:  1: */
+    VOS_UINT8                                   aucRsv[3];                      /*  */
 }AT_MTA_SET_FR_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_SET_FR_CNF_STRU
- 结构说明  : MTA回复AT的FR设置响应
- 1.日    期   : 2015年06月01日
-   作    者   : wx270776
-   修改内容   : FR动态控制添加
+     : MTA_AT_SET_FR_CNF_STRU
+   : MTAATFR
+ 1.       : 20150601
+          : wx270776
+      : FR
 *******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32                   enRslt;                         /* FR设置及结果 */
+    MTA_AT_RESULT_ENUM_UINT32                   enRslt;                         /* FR */
 }MTA_AT_SET_FR_CNF_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_TIME_STRU
- 结构说明  : 时间格式
- 1.日    期   : 2016年05月25日
-   作    者   : wx270776
-   修改内容   : SIB16上报
+     : MTA_AT_TIME_STRU
+   : 
+ 1.       : 20160525
+          : wx270776
+      : SIB16
 *******************************************************************************/
 typedef struct
 {
@@ -2760,11 +2760,11 @@ typedef struct
 }MTA_AT_TIME_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_SIB16_TIME_UPDATE_STRU
- 结构说明  : LRRC报给MTA的时间更新消息
- 1.日    期   : 2016年05月25日
-   作    者   : wx270776
-   修改内容   : SIB16上报
+     : MTA_AT_SIB16_TIME_UPDATE_STRU
+   : LRRCMTA
+ 1.       : 20160525
+          : wx270776
+      : SIB16
 *******************************************************************************/
 typedef struct
 {
@@ -2776,12 +2776,12 @@ typedef struct
 }MTA_AT_SIB16_TIME_UPDATE_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_ACCESS_STRATUM_REL_ENUM
- 结构说明  : 通知AT接入层的协议版本
+     : MTA_AT_ACCESS_STRATUM_REL_ENUM
+   : AT
 
- 1.日    期   : 2016年11月17日
-   作    者   : wx270776
-   修改内容   : 新增
+ 1.       : 20161117
+          : wx270776
+      : 
 *****************************************************************************/
 enum MTA_AT_ACCESS_STRATUM_REL_ENUM
 {
@@ -2797,41 +2797,41 @@ enum MTA_AT_ACCESS_STRATUM_REL_ENUM
 typedef VOS_UINT8 MTA_AT_ACCESS_STRATUM_REL_ENUM_UINT8;
 
 /*****************************************************************************
- 结构名    : MTA_AT_ACCESS_STRATUM_REL_IND_STRU
- 结构说明  :
+     : MTA_AT_ACCESS_STRATUM_REL_IND_STRU
+   :
 
- 1.日    期   : 2016年11月17日
-   作    者   : wx270776
-   修改内容   : 新增
+ 1.       : 20161117
+          : wx270776
+      : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_ACCESS_STRATUM_REL_ENUM_UINT8        enAccessStratumRel; /* 指示AT接入层的协议版本 */
+    MTA_AT_ACCESS_STRATUM_REL_ENUM_UINT8        enAccessStratumRel; /* AT */
     VOS_UINT8                                   aucRsv[3];
 } MTA_AT_ACCESS_STRATUM_REL_IND_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置MBMS服务特性操作请求结构体
+     : AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU
+   : ATMTAMBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_CFG_ENUM_UINT8               enCfg;                                  /* 0:去使能，1:使能 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
+    AT_MTA_CFG_ENUM_UINT8               enCfg;                                  /* 0:1: */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 } AT_MTA_MBMS_SERVICE_OPTION_SET_REQ_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_PLMN_ID_STRU
- 结构说明  : PLMN ID结构体
+     : AT_MTA_PLMN_ID_STRU
+   : PLMN ID
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2840,12 +2840,12 @@ typedef struct
 } AT_MTA_PLMN_ID_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_TMGI_STRU
- 结构说明  : TMGI结构体
+     : AT_MTA_MBMS_TMGI_STRU
+   : TMGI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2854,42 +2854,42 @@ typedef struct
 } AT_MTA_MBMS_TMGI_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU
- 结构说明  : AT通知MTA MBMS服务状态设置请求结构体
+     : AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU
+   : ATMTA MBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_MBMS_SERVICE_STATE_SET_ENUM_UINT8    enStateSet;                     /* 状态设置 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
+    AT_MTA_MBMS_SERVICE_STATE_SET_ENUM_UINT8    enStateSet;                     /*  */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
     VOS_UINT32                                  ulAreaId;                       /* Area ID */
     AT_MTA_MBMS_TMGI_STRU                       stTMGI;                         /* TMGI */
 } AT_MTA_MBMS_SERVICE_STATE_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置MBMS广播模式为单播或组播操作请求结构体
+     : AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU
+   : ATMTAMBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_MBMS_CAST_MODE_ENUM_UINT8    enCastMode;                             /* 0:单播,1:组播 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
+    AT_MTA_MBMS_CAST_MODE_ENUM_UINT8    enCastMode;                             /* 0:,1: */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 } AT_MTA_MBMS_PREFERENCE_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU
- 结构说明  : MTA回复给AT查询SIB16网络时间结果
+     : MTA_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU
+   : MTAATSIB16
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -2898,113 +2898,113 @@ typedef struct
 } MTA_AT_MBMS_SIB16_NETWORK_TIME_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU
- 结构说明  : MTA回复给AT查询BSSI信号强度结果
+     : MTA_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU
+   : MTAATBSSI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT8                           ucBSSILevel;                            /* BSSI信号强度,0xFF:表示BSSI信号强度无效 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
+    VOS_UINT8                           ucBSSILevel;                            /* BSSI,0xFF:BSSI */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 } MTA_AT_MBMS_BSSI_SIGNAL_LEVEL_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU
- 结构说明  : MTA回复给AT查询网络信息结果
+     : MTA_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT32                          ulCellId;                               /* 小区ID */
+    VOS_UINT32                          ulCellId;                               /* ID */
 } MTA_AT_MBMS_NETWORK_INFO_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_EMBMS_STATUS_QRY_CNF_STRU
- 结构说明  : MTA回复给AT查询EMBMS功能状态结果
+     : MTA_AT_EMBMS_STATUS_QRY_CNF_STRU
+   : MTAATEMBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32                   enResult;
-    MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM_UINT8 enStatus;                       /* 功能状态 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
+    MTA_AT_EMBMS_FUNTIONALITY_STATUS_ENUM_UINT8 enStatus;                       /*  */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
 } MTA_AT_EMBMS_STATUS_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置MBMS主动上报配置操作请求结构体
+     : AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU
+   : ATMTAMBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_CFG_ENUM_UINT8                       enCfg;                          /* 0:关闭,1:打开 */
-    VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
+    AT_MTA_CFG_ENUM_UINT8                       enCfg;                          /* 0:,1: */
+    VOS_UINT8                                   aucReserved[3];                 /*  */
 } AT_MTA_MBMS_UNSOLICITED_CFG_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_SERVICE_EVENT_IND_STRU
- 结构说明  : MTA发给AT的MBMS服务事件主动上报信息
+     : MTA_AT_MBMS_SERVICE_EVENT_IND_STRU
+   : MTAATMBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_MBMS_SERVICE_EVENT_ENUM_UINT8    enEvent;                            /* 服务事件 */
-    VOS_UINT8                               aucReserved[3];                     /* 保留位 */
+    MTA_AT_MBMS_SERVICE_EVENT_ENUM_UINT8    enEvent;                            /*  */
+    VOS_UINT8                               aucReserved[3];                     /*  */
 } MTA_AT_MBMS_SERVICE_EVENT_IND_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置低功耗操作请求结构体
+     : AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
     AT_MTA_LTE_LOW_POWER_ENUM_UINT8         enLteLowPowerFlg;                   /* 0: Normal;1: Low Power Consumption */
-    VOS_UINT8                               aucReserved[3];                     /* 保留位 */
+    VOS_UINT8                               aucReserved[3];                     /*  */
 } AT_MTA_LOW_POWER_CONSUMPTION_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置Interest列表操作请求结构体
+     : AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU
+   : ATMTAInterest
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          aulFreqList[AT_MTA_INTEREST_FREQ_MAX_NUM];  /* 频点列表 */
-    AT_MTA_MBMS_PRIORITY_ENUM_UINT8     enMbmsPriority;                             /* VOS_FALSE: 单播优先;VOS_TRUE: MBMS优先 */
-    VOS_UINT8                           aucReserved[3];                             /* 保留位 */
+    VOS_UINT32                          aulFreqList[AT_MTA_INTEREST_FREQ_MAX_NUM];  /*  */
+    AT_MTA_MBMS_PRIORITY_ENUM_UINT8     enMbmsPriority;                             /* VOS_FALSE: ;VOS_TRUE: MBMS */
+    VOS_UINT8                           aucReserved[3];                             /*  */
 } AT_MTA_MBMS_INTERESTLIST_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_AVL_SERVICE_STRU
- 结构说明  : MBMS可用服务结构体
+     : MTA_AT_MBMS_AVL_SERVICE_STRU
+   : MBMS
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3016,27 +3016,27 @@ typedef struct
 } MTA_AT_MBMS_AVL_SERVICE_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU
- 结构说明  : MTA回复给AT查询可用服务列表操作结果
+     : MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT32                          ulAvlServiceNum;                                    /* 可用服务数,0:表示没有可用服务 */
-    MTA_AT_MBMS_AVL_SERVICE_STRU        astAvlServices[AT_MTA_MBMS_AVL_SERVICE_MAX_NUM];    /* 可用服务列表 */
+    VOS_UINT32                          ulAvlServiceNum;                                    /* ,0: */
+    MTA_AT_MBMS_AVL_SERVICE_STRU        astAvlServices[AT_MTA_MBMS_AVL_SERVICE_MAX_NUM];    /*  */
 } MTA_AT_MBMS_AVL_SERVICE_LIST_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_LRRC_COEX_PARA_STRU
- 结构说明  : LTE&WIFI共存参数结构体
+     : MTA_LRRC_COEX_PARA_STRU
+   : LTE&WIFI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3047,16 +3047,16 @@ typedef struct
     VOS_INT16                                   sTxPower;
     VOS_UINT16                                  usRxBegin;
     VOS_UINT16                                  usRxEnd;
-    VOS_UINT8                                   aucReserved[2];                 /* 保留位 */
+    VOS_UINT8                                   aucReserved[2];                 /*  */
 } AT_MTA_COEX_PARA_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置LTE&WIFI共存配置请求结构体
+     : AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU
+   : ATMTALTE&WIFI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3066,12 +3066,12 @@ typedef struct
 } AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_LTE_WIFI_COEX_QRY_CNF_STRU
- 结构说明  : MTA发给AT的查询LTE&WIFI共存配置请求结构体
+     : MTA_AT_LTE_WIFI_COEX_QRY_CNF_STRU
+   : MTAATLTE&WIFI
 
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增
+  1.       : 2015522
+           : w00316404
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3079,13 +3079,13 @@ typedef struct
 } MTA_AT_LTE_WIFI_COEX_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MEID_SET_REQ_STRU
- 结构说明  : AT^MEID设置请求结构
+     : AT_MTA_MEID_SET_REQ_STRU
+   : AT^MEID
 
- 修改历史      :
-  1.日    期   : 2015年07月23日
-    作    者   : z00316370
-    修改内容   : 新增加
+       :
+  1.       : 20150723
+           : z00316370
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3094,17 +3094,17 @@ typedef struct
 }AT_MTA_MEID_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MEID_QRY_CNF_STRU
- 结构说明  : AT^MEID查询请求结构
+     : MTA_AT_MEID_QRY_CNF_STRU
+   : AT^MEID
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : z00316370
-    修改内容   : 新增加
+       :
+  1.       : 20151218
+           : z00316370
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 查询操作结果*/
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* */
     VOS_UINT8                           aucEFRUIMID[MTA_AT_EFRUIMID_OCTET_LEN_EIGHT];
 }MTA_AT_MEID_QRY_CNF_STRU;
 
@@ -3112,68 +3112,68 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : MTA_AT_TRANSMODE_QRY_CNF_STRU
- 结构说明  : MTA发给AT查询传输模式结果的消息结构
+     : MTA_AT_TRANSMODE_QRY_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2015年07月30日
-    作    者   : lwx277467
-    修改内容   : 新增结构体
+  1.       : 20150730
+           : lwx277467
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 查询操作结果*/
-    VOS_UINT8                           ucTransMode;                            /* 传输模式*/
-    VOS_UINT8                           aucReserved[3];                         /*保留位*/
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* */
+    VOS_UINT8                           ucTransMode;                            /* */
+    VOS_UINT8                           aucReserved[3];                         /**/
 } MTA_AT_TRANSMODE_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_UE_CENTER_REQ_STRU
- 结构说明  : AT发给MTA设置UE Mode的消息结构
+     : AT_MTA_SET_UE_CENTER_REQ_STRU
+   : ATMTAUE Mode
 
-  1.日    期   : 2015年09月07日
-    作    者   : lwx277467
-    修改内容   : 新增结构体
+  1.       : 20150907
+           : lwx277467
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_UE_CENTER_TYPE_ENUM_UINT32   enUeCenter;                             /*UE模式*/
+    AT_MTA_UE_CENTER_TYPE_ENUM_UINT32   enUeCenter;                             /*UE*/
 } AT_MTA_SET_UE_CENTER_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_UE_CENTER_CNF_STRU
- 结构说明  : MTA发给AT设置UE Mode结果的消息结构
+     : MTA_AT_SET_UE_CENTER_CNF_STRU
+   : MTAATUE Mode
 
-  1.日    期   : 2015年09月07日
-    作    者   : lwx277467
-    修改内容   : 新增结构体
+  1.       : 20150907
+           : lwx277467
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 查询操作结果*/
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* */
 } MTA_AT_SET_UE_CENTER_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_UE_CENTER_CNF_STRU
- 结构说明  : MTA发给AT查询UE模式结果的消息结构
+     : MTA_AT_QRY_UE_CENTER_CNF_STRU
+   : MTAATUE
 
-  1.日    期   : 2015年09月07日
-    作    者   : lwx277467
-    修改内容   : 新增结构体
+  1.       : 20150907
+           : lwx277467
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 查询操作结果*/
-    AT_MTA_UE_CENTER_TYPE_ENUM_UINT32   enUeCenter;                             /*UE模式*/
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* */
+    AT_MTA_UE_CENTER_TYPE_ENUM_UINT32   enUeCenter;                             /*UE*/
 } MTA_AT_QRY_UE_CENTER_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : MTA_AT_NETMON_GSM_SCELL_INFO_STRU
- 结构说明  : MTA回复给AT network monitor小区查询结果
+     : MTA_AT_NETMON_GSM_SCELL_INFO_STRU
+   : MTAAT network monitor
 
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增
+  1.       : 20151019
+           : zwx247453
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3185,46 +3185,46 @@ typedef struct
 }MTA_AT_NETMON_GSM_SCELL_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_NETMON_SCELLL_INFO_UN
- 结构说明  : MTA 服务小区联合体结构
+     : MTA_AT_NETMON_SCELLL_INFO_UN
+   : MTA 
 
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增
+  1.       : 20151019
+           : zwx247453
+       : 
 *****************************************************************************/
 typedef union
 {
-    MTA_AT_NETMON_GSM_SCELL_INFO_STRU       stGsmSCellInfo;    /* GSM服务小区信息 */
-    RRC_MTA_NETMON_UTRAN_SCELL_INFO_STRU    stUtranSCellInfo;  /* WCDMA服务小区信息 */
-    MTA_NETMON_EUTRAN_SCELL_INFO_STRU       stLteSCellInfo;    /* LTE服务小区信息*/
+    MTA_AT_NETMON_GSM_SCELL_INFO_STRU       stGsmSCellInfo;    /* GSM */
+    RRC_MTA_NETMON_UTRAN_SCELL_INFO_STRU    stUtranSCellInfo;  /* WCDMA */
+    MTA_NETMON_EUTRAN_SCELL_INFO_STRU       stLteSCellInfo;    /* LTE*/
 }MTA_AT_NETMON_SCELL_INFO_UN;
 
 /*****************************************************************************
- 结构名    : MTA_AT_NETMON_GSM_SCELL_INFO_STRU
- 结构说明  : MTA回复给AT network monitor小区查询结果
+     : MTA_AT_NETMON_GSM_SCELL_INFO_STRU
+   : MTAAT network monitor
 
-  1.日    期   : 2015年10月19日
-    作    者   : zwx247453
-    修改内容   : 新增
+  1.       : 20151019
+           : zwx247453
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32                   enResult;               /* 查询结果是否成功 */
-    MTA_NETMON_CELL_TYPE_ENUM_UINT32            enCellType;             /* 0:查询服务小区，1:查询临区 */
-    RRC_MTA_NETMON_NCELL_INFO_STRU              stNCellInfo;            /*临区信息*/
-    MTA_AT_NETMON_CELL_INFO_RAT_ENUM_UINT32     enRatType;              /* 服务小区的接入技术类型 */
+    MTA_AT_RESULT_ENUM_UINT32                   enResult;               /*  */
+    MTA_NETMON_CELL_TYPE_ENUM_UINT32            enCellType;             /* 0:1: */
+    RRC_MTA_NETMON_NCELL_INFO_STRU              stNCellInfo;            /**/
+    MTA_AT_NETMON_CELL_INFO_RAT_ENUM_UINT32     enRatType;              /*  */
     MTA_AT_NETMON_SCELL_INFO_UN                 unSCellInfo;
 } MTA_AT_NETMON_CELL_INFO_STRU;
 
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_QRY_AFC_CLK_FREQ_XOCOEF_REQ_STRU
- 结构说明  :
+     : AT_MTA_QRY_AFC_CLK_FREQ_XOCOEF_REQ_STRU
+   :
 
-  1.日    期   : 2015年12月25日
-    作    者   : C00299064
-    修改内容   : 新增
+  1.       : 20151225
+           : C00299064
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3232,39 +3232,39 @@ typedef struct
 } AT_MTA_QRY_AFC_CLK_FREQ_XOCOEF_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_AFC_CLK_FREQ_XOCOEF_CNF_STRU
- 结构说明  :
+     : MTA_AT_QRY_AFC_CLK_FREQ_XOCOEF_CNF_STRU
+   :
 
-  1.日    期   : 2015年12月25日
-    作    者   : C00299064
-    修改内容   : 新增
+  1.       : 20151225
+           : C00299064
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
 
     AT_MTA_AFC_CLK_STATUS_ENUM_UINT32   enStatus;
-    VOS_INT32                           lDeviation;                                 /* 频偏 */
+    VOS_INT32                           lDeviation;                                 /*  */
 
-    /* 温度范围 */
+    /*  */
     VOS_INT16                           sCoeffStartTemp;
     VOS_INT16                           sCoeffEndTemp;
 
-    /* 多项式系数 */
-    VOS_UINT32                          aulCoeffMantissa[AT_MTA_GPS_XO_COEF_NUM];  /* a0,a1,a2,a3尾数 */
-    VOS_UINT16                          ausCoeffExponent[AT_MTA_GPS_XO_COEF_NUM];  /* a0,a1,a2,a3指数 */
+    /*  */
+    VOS_UINT32                          aulCoeffMantissa[AT_MTA_GPS_XO_COEF_NUM];  /* a0,a1,a2,a3 */
+    VOS_UINT16                          ausCoeffExponent[AT_MTA_GPS_XO_COEF_NUM];  /* a0,a1,a2,a3 */
 
 } MTA_AT_QRY_AFC_CLK_FREQ_XOCOEF_CNF_STRU;
 
 
 /*****************************************************************************
- 结构名    : AT_MTA_EVDO_SYS_EVENT_SET_REQ_STRU
- 结构说明  : AT^DOSYSEVENT设置请求结构
+     : AT_MTA_EVDO_SYS_EVENT_SET_REQ_STRU
+   : AT^DOSYSEVENT
 
- 修改历史      :
-  1.日    期   : 2015年12月30日
-    作    者   : z00316370
-    修改内容   : 新增加
+       :
+  1.       : 20151230
+           : z00316370
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3272,13 +3272,13 @@ typedef struct
 }AT_MTA_EVDO_SYS_EVENT_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_EVDO_SIG_MASK_SET_REQ_STRU
- 结构说明  : AT^DOSIGMASK设置请求结构
+     : AT_MTA_EVDO_SIG_MASK_SET_REQ_STRU
+   : AT^DOSIGMASK
 
- 修改历史      :
-  1.日    期   : 2015年12月30日
-    作    者   : z00316370
-    修改内容   : 新增加
+       :
+  1.       : 20151230
+           : z00316370
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3286,12 +3286,12 @@ typedef struct
 }AT_MTA_EVDO_SIG_MASK_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_EVDO_REVA_RLINK_INFO_IND_STRU
- 结构说明  : MTA发给AT的EVDO REVA RLING上报消息结构
+     : MTA_AT_EVDO_REVA_RLINK_INFO_IND_STRU
+   : MTAATEVDO REVA RLING
 
-  1.日    期   : 2014年5月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014504
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3300,12 +3300,12 @@ typedef struct
 } MTA_AT_EVDO_REVA_RLINK_INFO_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_EVDO_SIG_EXEVENT_IND_STRU
- 结构说明  : MTA发给AT的EVDO SIG EX EVENT上报消息结构
+     : MTA_AT_EVDO_SIG_EXEVENT_IND_STRU
+   : MTAATEVDO SIG EX EVENT
 
-  1.日    期   : 2014年5月04日
-    作    者   : g00261581
-    修改内容   : 创建
+  1.       : 2014504
+           : g00261581
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3314,83 +3314,83 @@ typedef struct
 } MTA_AT_EVDO_SIG_EXEVENT_IND_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_XCPOSR_REQ_STRU
- 结构说明  :
+     : AT_MTA_SET_XCPOSR_REQ_STRU
+   :
 
-  1.日    期   : 2016年03月08日
-    作    者   : h00360002
-    修改内容   : 新增
+  1.       : 20160308
+           : h00360002
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_XCPOSR_CFG_ENUM_UNIT8        enXcposrEnableCfg;                            /* GPS芯片是否支持清除辅助定位信息，上电开机默认为不支持 */
+    AT_MTA_XCPOSR_CFG_ENUM_UNIT8        enXcposrEnableCfg;                            /* GPS */
     VOS_UINT8                           aucReserved[3];
 } AT_MTA_SET_XCPOSR_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_XCPOSR_CNF_STRU
- 结构说明  :
+     : MTA_AT_QRY_XCPOSR_CNF_STRU
+   :
 
-  1.日    期   : 2016年03月08日
-    作    者   : h00360002
-    修改内容   : 新增
+  1.       : 20160308
+           : h00360002
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 命令执行结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
     AT_MTA_XCPOSR_CFG_ENUM_UNIT8        enXcposrEnableCfg;
     VOS_UINT8                           aucReserved[3];
 } MTA_AT_QRY_XCPOSR_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_XCPOSRRPT_REQ_STRU
- 结构说明  :
+     : AT_MTA_SET_XCPOSRRPT_REQ_STRU
+   :
 
-  1.日    期   : 2016年03月09日
-    作    者   : h00360002
-    修改内容   : 新增
+  1.       : 20160309
+           : h00360002
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucXcposrRptFlg;                         /* +XCPOSRRPT命令主动上报控制，上电开机默认为不允许主动上报 */
+    VOS_UINT8                           ucXcposrRptFlg;                         /* +XCPOSRRPT */
     VOS_UINT8                           aucReserved[3];
 } AT_MTA_SET_XCPOSRRPT_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_QRY_XCPOSR_CNF_STRU
- 结构说明  :
+     : MTA_AT_QRY_XCPOSR_CNF_STRU
+   :
 
-  1.日    期   : 2016年03月08日
-    作    者   : h00360002
-    修改内容   : 新增
+  1.       : 20160308
+           : h00360002
+       : 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 命令执行结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
     VOS_UINT8                           ucXcposrRptFlg;
     VOS_UINT8                           aucReserved[3];
 } MTA_AT_QRY_XCPOSRRPT_CNF_STRU;
 
 /*******************************************************************************
- 结构名    : AT_MTA_SET_SENSOR_REQ_STRU
- 结构说明  :
+     : AT_MTA_SET_SENSOR_REQ_STRU
+   :
 
-  1.日    期   : 2016年03月22日
-    作    者   : z00347560
-    修改内容   : 新增
+  1.       : 20160322
+           : z00347560
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucSensorStat;                              /* Sensor Hub 状态 */
+    VOS_UINT8                           ucSensorStat;                              /* Sensor Hub  */
     VOS_UINT8                           aucReserved[3];
 }AT_MTA_SET_SENSOR_REQ_STRU;
 /*****************************************************************************
- 结构名    : MTA_AT_SET_SENSOR_CNF_STRU
- 结构说明  : MTA发回复给AT设置Sensor Hub状态的消息结构
+     : MTA_AT_SET_SENSOR_CNF_STRU
+   : MTAATSensor Hub
 
-  1.日    期   : 2016年03月22日
-    作    者   : z00347560
-    修改内容   : 新增
+  1.       : 20160322
+           : z00347560
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3398,25 +3398,25 @@ typedef struct
 } MTA_AT_SET_SENSOR_CNF_STRU;
 
 /*******************************************************************************
- 结构名    : AT_MTA_SET_SCREEN_REQ_STRU
- 结构说明  :
+     : AT_MTA_SET_SCREEN_REQ_STRU
+   :
 
-  1.日    期   : 2016年03月22日
-    作    者   : z00347560
-    修改内容   : 新增
+  1.       : 20160322
+           : z00347560
+       : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucScreenStat;                              /* Screen 状态 */
+    VOS_UINT8                           ucScreenStat;                              /* Screen  */
     VOS_UINT8                           aucReserved[3];
 }AT_MTA_SET_SCREEN_REQ_STRU;
 /*****************************************************************************
- 结构名    : MTA_AT_SET_SCREEN_CNF_STRU
- 结构说明  : MTA发回复给AT设置亮灭屏状态的消息结构
+     : MTA_AT_SET_SCREEN_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2016年03月22日
-    作    者   : z00347560
-    修改内容   : 新增
+  1.       : 20160322
+           : z00347560
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3424,198 +3424,198 @@ typedef struct
 } MTA_AT_SET_SCREEN_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_RXTESTMODE_STRU
- 结构说明  : AT发给MTA的设置侦听测试模式请求结构体
+     : AT_MTA_SET_RXTESTMODE_STRU
+   : ATMTA
 
-  1.日    期   : 2016年07月07日
-    作    者   : l00373346
-    修改内容   : 新增
+  1.       : 20160707
+           : l00373346
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_CFG_ENUM_UINT8               enCfg;                                  /* 0:关闭,1:打开 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
+    AT_MTA_CFG_ENUM_UINT8               enCfg;                                  /* 0:,1: */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 } AT_MTA_SET_RXTESTMODE_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_SET_RXTESTMODE_CNF_STRU
- 结构说明  : AT设置侦听测试模式操作结果的回复消息结构体
- 1.日    期   : 2016年07月07日
-   作    者   : l00373346
-   修改内容   : 新增
+     : MTA_AT_SET_RXTESTMODE_CNF_STRU
+   : AT
+ 1.       : 20160707
+          : l00373346
+      : 
 *******************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 操作结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
 }MTA_AT_SET_RXTESTMODE_CNF_STRU;
 /*******************************************************************************
- 结构名    : MTA_AT_AFC_CLK_UNLOCK_IND_STRU
- 结构说明  : MTA通知AT模块AFC时钟失锁原因结构体
+     : MTA_AT_AFC_CLK_UNLOCK_IND_STRU
+   : MTAATAFC
 
- 1.日    期   : 2016年07月05日
-   作    者   : wx270776
-   修改内容   : 新增
+ 1.       : 20160705
+          : wx270776
+      : 
 *******************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usCause;
-    VOS_UINT16                          usReserved;        /* 保留位 */
+    VOS_UINT16                          usReserved;        /*  */
 }MTA_AT_AFC_CLK_UNLOCK_IND_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_DEVICE_FREQ_STRU
- 结构说明  : MTA向AT上报的最优频率内容
+     : MTA_AT_DEVICE_FREQ_STRU
+   : MTAAT
 
- 1.日    期   : 2016年07月27日
-   作    者   : s00370485
-   修改内容   : 动态调频干扰控制项目新增
+ 1.       : 20160727
+          : s00370485
+      : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucGroupID;                             /* 器件号 */
-    VOS_UINT8                           ucDeviceID;                            /* 设备号 */
-    VOS_UINT8                           ucCaseID;                              /* 器件最优频率类号 */
-    VOS_UINT8                           ucMode;                                /* 主动上报方式 */
+    VOS_UINT8                           ucGroupID;                             /*  */
+    VOS_UINT8                           ucDeviceID;                            /*  */
+    VOS_UINT8                           ucCaseID;                              /*  */
+    VOS_UINT8                           ucMode;                                /*  */
 } MTA_AT_DEVICE_FREQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_BEST_FREQ_CASE_IND_STRU
- 结构说明  : ID_MTA_AT_BEST_CASE_IND的消息结构
+     : MTA_AT_BEST_FREQ_CASE_IND_STRU
+   : ID_MTA_AT_BEST_CASE_IND
 
- 1.日    期   : 2016年07月27日
-   作    者   : s00370485
-   修改内容   : 动态调频干扰控制项目新增
+ 1.       : 20160727
+          : s00370485
+      : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucRptDeviceNum;                                    /* 要上报的激活器件数目 */
-    VOS_UINT8                           aucReserved[3];                                    /* 保留位 */
-    MTA_AT_DEVICE_FREQ_STRU             astDeviceFreqList[MTC_MTA_MAX_BESTFREQ_GROUPNUM];   /* 8组器件最优频率列表 */
+    VOS_UINT8                           ucRptDeviceNum;                                    /*  */
+    VOS_UINT8                           aucReserved[3];                                    /*  */
+    MTA_AT_DEVICE_FREQ_STRU             astDeviceFreqList[MTC_MTA_MAX_BESTFREQ_GROUPNUM];   /* 8 */
 } MTA_AT_BEST_FREQ_CASE_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_BESTFREQ_QRY_CNF_STRU
- 结构说明  : 上报BESTFRQ结构体
+     : MTA_AT_BESTFREQ_QRY_CNF_STRU
+   : BESTFRQ
 
-  1.日    期   : 2016年07月27日
-    作    者   : q00380176
-    修改内容   : dynamic_fm_intrusion_ctrl 项目新增
+  1.       : 20160727
+           : q00380176
+       : dynamic_fm_intrusion_ctrl 
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /* 消息处理结果 */
+    MTA_AT_RESULT_ENUM_UINT32           enResult;                               /*  */
     VOS_UINT8                           ucActiveDeviceNum;
     VOS_UINT8                           aucReserved[3];
     MTA_AT_DEVICE_FREQ_STRU             astDeviceInfoList[MTC_MTA_MAX_BESTFREQ_GROUPNUM];
 }MTA_AT_BESTFREQ_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SLAVE_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置SLAVE 的消息结构
+     : AT_MTA_SLAVE_SET_REQ_STRU
+   : ATMTASLAVE 
 
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增结构体
+  1.       : 20150404
+           : l00198894
+       : 
 *****************************************************************************/
 typedef struct
 {
     VOS_UINT32                           ucRatType;                              /*0-GSM 1-WCDMA*/
 } AT_MTA_SLAVE_SET_REQ_STRU;
 /*****************************************************************************
- 结构名    : MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU
- 结构说明  : MAT发给AT的设置RFIC DIE ID结果的消息结构体
+     : MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU
+   : MATATRFIC DIE ID
 
-  1.日    期   : 2016年08月27日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20160827
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
-    VOS_UINT16                          usRfic0DieIdValid;                       /*1-存在， 0-不存在*/
+    VOS_UINT16                          usRfic0DieIdValid;                       /*1- 0-*/
     VOS_UINT16                          usRfic1DieIdValid;
     VOS_UINT16                          ausRfic0DieId[MTA_RCM_MAX_DIE_ID_LEN];
     VOS_UINT16                          ausRfic1DieId[MTA_RCM_MAX_DIE_ID_LEN];
 } MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_PHY_COM_CFG_SET_REQ_STRU
- 结构说明  : AT发给MTA的请求设置PHY通用配置消息结构体
+     : AT_MTA_PHY_COM_CFG_SET_REQ_STRU
+   : ATMTAPHY
 
-  1.日    期   : 2017年01月24日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170124
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          usCmdType;                              /* 命令类型 */
-    VOS_UINT16                          usRatBitmap;                            /* 支持的rat模式，比bitmap */                           
-    VOS_UINT32                          ulPara1;                                /* 配置参数1 */
-    VOS_UINT32                          ulPara2;                                /* 配置参数2 */
-    VOS_UINT32                          ulPara3;                                /* 配置参数3 */
+    VOS_UINT16                          usCmdType;                              /*  */
+    VOS_UINT16                          usRatBitmap;                            /* ratbitmap */                           
+    VOS_UINT32                          ulPara1;                                /* 1 */
+    VOS_UINT32                          ulPara2;                                /* 2 */
+    VOS_UINT32                          ulPara3;                                /* 3 */
 } AT_MTA_PHY_COM_CFG_SET_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_PHY_COM_CFG_SET_CNF_STRU
- 结构说明  : MAT发给AT的回复设置PHY通用配置消息结果的消息结构体
+     : MTA_AT_PHY_COM_CFG_SET_CNF_STRU
+   : MATATPHY
 
-  1.日    期   : 2017年01月24日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170124
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32           enResult;
 } MTA_AT_PHY_COM_CFG_SET_CNF_STRU;
 
-/* Add by c00380008 for WIFI 共天线 2016-08-22, begin */
+/* Add by c00380008 for WIFI  2016-08-22, begin */
 /*****************************************************************************
- 结构名    : AT_MTA_CRRCONN_SET_REQ_STRU
- 结构说明  : AT发给MTA的设置CRRCONN 的消息结构
+     : AT_MTA_CRRCONN_SET_REQ_STRU
+   : ATMTACRRCONN 
 
-  1.日    期   : 2016年08月22日
-    作    者   : c00380008
-    修改内容   : 新增结构体
+  1.       : 20160822
+           : c00380008
+       : 
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_CFG_ENUM_UINT8               enEnable;                               /* 0关闭主动上报，1打开主动上报 */
-    VOS_UINT8                           aucReserved[3];                         /* 保留位 */
+    AT_MTA_CFG_ENUM_UINT8               enEnable;                               /* 01 */
+    VOS_UINT8                           aucReserved[3];                         /*  */
 }AT_MTA_SET_CRRCONN_REQ_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_CRRCONN_STATUS_IND_STRU
- 结构说明  : ID_MTA_AT_CRRCONN_STATUS_IND的消息结构
+     : MTA_AT_CRRCONN_STATUS_IND_STRU
+   : ID_MTA_AT_CRRCONN_STATUS_IND
 
- 1.日    期   : 2016年08月22日
-   作    者   : c00380008
-   修改内容   : 新增
+ 1.       : 20160822
+          : c00380008
+      : 
 *******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucStatus0;
     VOS_UINT8                           ucStatus1;
     VOS_UINT8                           ucStatus2;
-    VOS_UINT8                           ucReserved;                             /* 保留位 */
+    VOS_UINT8                           ucReserved;                             /*  */
 }MTA_AT_CRRCONN_STATUS_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_CRRCONN_CNF_STRU
- 结构说明  : MTA发回复给AT的消息结构
+     : MTA_AT_SET_CRRCONN_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2016年08月22日
-    作    者   : c00380008
-    修改内容   : 新增
+  1.       : 20160822
+           : c00380008
+       : 
 *****************************************************************************/
 typedef MTA_AT_RESULT_CNF_STRU MTA_AT_SET_CRRCONN_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_CRRCONN_CNF_STRU
- 结构说明  : MTA发回复给AT的消息结构
+     : MTA_AT_SET_CRRCONN_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2016年08月22日
-    作    者   : c00380008
-    修改内容   : 新增
+  1.       : 20160822
+           : c00380008
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3627,70 +3627,70 @@ typedef struct
 } MTA_AT_QRY_CRRCONN_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_SET_VTRLQUALRPT_REQ_STRU
- 结构说明  : AT发给MTA的设置VTRLQUALRPT 的消息结构
+     : AT_MTA_SET_VTRLQUALRPT_REQ_STRU
+   : ATMTAVTRLQUALRPT 
 
-  1.日    期   : 2016年08月30日
-    作    者   : c00380008
-    修改内容   : 新增结构体
+  1.       : 20160830
+           : c00380008
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulEnable;                               /* 0关闭主动上报，1打开主动上报 */
-    VOS_UINT32                          ulThreshold;                            /* LPDCP信息上报阈值 */
+    VOS_UINT32                          ulEnable;                               /* 01 */
+    VOS_UINT32                          ulThreshold;                            /* LPDCP */
 }AT_MTA_SET_VTRLQUALRPT_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RL_QUALITY_INFO_IND_STRU
- 结构说明  : LTE链路质量上信息报，上报周期600ms,ulRlQualityRptFlg为1时启动上报，配置为0时停止上报。bitVideoDiagPresent 为TRUE时
-NAS上报LTERLQUALINFO
+     : MTA_AT_RL_QUALITY_INFO_IND_STRU
+   : LTE600ms,ulRlQualityRptFlg10bitVideoDiagPresent TRUE
+NASLTERLQUALINFO
 
- 1.日    期   : 2016年08月30日
-   作    者   : c00380008
-   修改内容   : 新增
+ 1.       : 20160830
+          : c00380008
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_INT16                           sRsrp;                                  /*RSRP测量结果*/
-    VOS_INT16                           sRsrq;                                  /*RSRQ测量结果*/
-    VOS_INT16                           sRssi;                                  /*RSSI测量结果*/
-    VOS_UINT16                          usBler;                                 /*误码率*/
+    VOS_INT16                           sRsrp;                                  /*RSRP*/
+    VOS_INT16                           sRsrq;                                  /*RSRQ*/
+    VOS_INT16                           sRssi;                                  /*RSSI*/
+    VOS_UINT16                          usBler;                                 /**/
 } MTA_AT_RL_QUALITY_INFO_IND_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_VIDEO_DIAG_INFO_RPT_STRU
- 结构说明  : VoLTE视频诊断信息上报,连续上报间隔必须大于600ms.
+     : MTA_AT_VIDEO_DIAG_INFO_RPT_STRU
+   : VoLTE,600ms.
 
- 1.日    期  : 2016年08月30日
-   作    者  : c00380008
-   创建内容  : 新建
+ 1.      : 20160830
+         : c00380008
+     : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulCurrBuffTime;                         /*最老数据包缓存时长*/
-    VOS_UINT32                          ulCurrBuffPktNum;                       /*当前缓存数据包个数*/
-    VOS_UINT32                          ulMacUlThrput;                          /*MAC上行速率,只包含上行新授权速率，不包含重传授权。单位:bytes/s*/
-    VOS_UINT32                          ulMaxBuffTime;                          /*最大缓存时间，单位ms*/
+    VOS_UINT32                          ulCurrBuffTime;                         /**/
+    VOS_UINT32                          ulCurrBuffPktNum;                       /**/
+    VOS_UINT32                          ulMacUlThrput;                          /*MAC,:bytes/s*/
+    VOS_UINT32                          ulMaxBuffTime;                          /*ms*/
 }MTA_AT_VIDEO_DIAG_INFO_RPT_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_VTRLQUALRPT_CNF_STRU
- 结构说明  : MTA发回复给AT的消息结构
+     : MTA_AT_SET_VTRLQUALRPT_CNF_STRU
+   : MTAAT
 
-  1.日    期   : 2016年08月30日
-    作    者   : c00380008
-    修改内容   : 新增
+  1.       : 20160830
+           : c00380008
+       : 
 *****************************************************************************/
 typedef MTA_AT_RESULT_CNF_STRU MTA_AT_SET_VTRLQUALRPT_CNF_STRU;
-/* Add by c00380008 for WIFI 共天线连接态 2016-08-22, end */
+/* Add by c00380008 for WIFI  2016-08-22, end */
 
 /*****************************************************************************
- 结构名    : MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU
- 结构说明  : MAT发给AT的设置RFIC DIE ID结果的消息结构体
+     : MTA_AT_RFIC_DIE_ID_REQ_CNF_STRU
+   : MATATRFIC DIE ID
 
-  1.日    期   : 2016年08月27日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20160827
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3699,12 +3699,12 @@ typedef struct
 } MTA_AT_PMU_DIE_SN_REQ_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MIPI_WREX_REQ_STRU
- 结构说明  : AT发给MTA的请求写入MIPI数据的消息结构体
+     : AT_MTA_MIPI_WREX_REQ_STRU
+   : ATMTAMIPI
 
-  1.日    期   : 2017年01月16日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170116
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3717,12 +3717,12 @@ typedef struct
 } AT_MTA_MIPI_WREX_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MIPI_RDEX_REQ_STRU
- 结构说明  : AT发给MTA的请求读取MIPI数据的消息结构体
+     : AT_MTA_MIPI_RDEX_REQ_STRU
+   : ATMTAMIPI
 
-  1.日    期   : 2017年01月16日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170116
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3734,12 +3734,12 @@ typedef struct
 } AT_MTA_MIPI_RDEX_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MIPI_WREX_REQ_STRU
- 结构说明  : MAT发给AT的回复写入MIPI数据结果的消息结构体
+     : MTA_AT_MIPI_WREX_REQ_STRU
+   : MATATMIPI
 
-  1.日    期   : 2017年01月16日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170116
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3747,12 +3747,12 @@ typedef struct
 } MTA_AT_MIPI_WREX_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MIPI_RDEX_REQ_STRU
- 结构说明  : MAT发给AT的回复读取MIPI数据结果的消息结构体
+     : MTA_AT_MIPI_RDEX_REQ_STRU
+   : MATATMIPI
 
-  1.日    期   : 2017年01月16日
-    作    者   : xwx377961
-    修改内容   : 新增结构体
+  1.       : 20170116
+           : xwx377961
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3761,56 +3761,56 @@ typedef struct
 } MTA_AT_MIPI_RDEX_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_MODEM_CAP_UPDATE_REQ_STRU
- 结构说明  : AT通知MTA MODEM平台能力更新的消息结构
+     : AT_MTA_MODEM_CAP_UPDATE_REQ_STRU
+   : ATMTA MODEM
 
-  1.日    期   : 2016年8月8日
-    作    者   : h00313353
-    修改内容   : New
+  1.       : 201688
+           : h00313353
+       : New
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM_UINT8                 enModemCapUpdateType;   /* MODEM平台能力更新类型 */
+    AT_MTA_MODEM_CAP_UPDATE_TYPE_ENUM_UINT8                 enModemCapUpdateType;   /* MODEM */
     VOS_UINT8                                               aucReserved[3];
 } AT_MTA_MODEM_CAP_UPDATE_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_MODEM_CAP_UPDATE_CNF_STRU
- 结构说明  : MTA通知AT MODEM平台能力更新结果的消息结构
+     : MTA_AT_MODEM_CAP_UPDATE_CNF_STRU
+   : MTAAT MODEM
 
-  1.日    期   : 2016年8月8日
-    作    者   : h00313353
-    修改内容   : New
+  1.       : 201688
+           : h00313353
+       : New
 *****************************************************************************/
 typedef struct
 {
-    MTA_AT_RESULT_ENUM_UINT32                               enRslt;                 /* MODEM平台能力更新结果 */
+    MTA_AT_RESULT_ENUM_UINT32                               enRslt;                 /* MODEM */
 } MTA_AT_MODEM_CAP_UPDATE_CNF_STRU;
 
 /*******************************************************************************
- 结构名    : MTA_AT_LTE_CATEGORY_INFO_IND_STRU
- 结构说明  : ID_MTA_AT_LTE_CATEGORY_INFO_IND的消息结构
+     : MTA_AT_LTE_CATEGORY_INFO_IND_STRU
+   : ID_MTA_AT_LTE_CATEGORY_INFO_IND
 
- 1.日    期   : 2016年10月18日
-   作    者   : l00373346
-   修改内容   : 新增
+ 1.       : 20161018
+          : l00373346
+      : 
 *******************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucDlCategery;                           /* 下行category */
-    VOS_UINT8                           ucUlCategery;                           /* 上行category */
-    VOS_UINT8                           aucReserved[2];                         /* 保留位 */
+    VOS_UINT8                           ucDlCategery;                           /* category */
+    VOS_UINT8                           ucUlCategery;                           /* category */
+    VOS_UINT8                           aucReserved[2];                         /*  */
 } MTA_AT_LTE_CATEGORY_INFO_IND_STRU;
 
 /*****************************************************************************
-  8 UNION定义
+  8 UNION
 *****************************************************************************/
 /*****************************************************************************
-  9 OTHERS定义
+  9 OTHERS
 *****************************************************************************/
 
 /*****************************************************************************
-  H2ASN顶级消息结构定义
+  H2ASN
 *****************************************************************************/
 typedef struct
 {
@@ -3830,12 +3830,12 @@ typedef struct
 }AtMtaInterface_MSG;
 
 /*******************************************************************************
- 结构名    : AT_MTA_MODEM_TIME_STRU
- 结构说明  :
+     : AT_MTA_MODEM_TIME_STRU
+   :
 
-  1.日    期   : 2016年05月30日
-    作    者   : LWX331495
-    修改内容   : 新增
+  1.       : 20160530
+           : LWX331495
+       : 
 *******************************************************************************/
 typedef struct
 {
@@ -3849,12 +3849,12 @@ typedef struct
 }AT_MTA_MODEM_TIME_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_SET_TIME_CNF_STRU
- 结构说明  : MTA发回复给AT设置MODEM TIME状态的消息结构
+     : MTA_AT_SET_TIME_CNF_STRU
+   : MTAATMODEM TIME
 
-  1.日    期   : 2016年05月31日
-    作    者   : LWX331495
-    修改内容   : 新增
+  1.       : 20160531
+           : LWX331495
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3862,32 +3862,32 @@ typedef struct
 } MTA_AT_SET_TIME_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_BESTFREQ_SET_REQ_STRU
- 结构说明  : AT向MTA发送干扰控制主动上报设置请求
+     : AT_MTA_BESTFREQ_SET_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2016年07月26日
-    作    者   : p00371183
-    修改内容   : 新增
+  1.       : 20160726
+           : p00371183
+       : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT8                           ucDeviceID;      /* 需要设置的干扰器件ID, 0表示全部，1-255分别对应特定器件 */
-    VOS_UINT8                           ucMode;          /* 0表示关闭主动上报，1表示开启主动上报 */
+    VOS_UINT8                           ucDeviceID;      /* ID, 01-255 */
+    VOS_UINT8                           ucMode;          /* 01 */
     VOS_UINT8                           aucReserved[2];
 }AT_MTA_BESTFREQ_SET_REQ_STRU;
 
 
 /*****************************************************************************
- 枚举名    :MTA_AT_TAS_TEST_RATMODE_ENUM_UINT32
- 协议表格  :
- ASN.1描述 :
- 枚举说明  :睡眠唤醒时,接入模式定义
-            注意；双卡双待的枚举值定义与协议栈和DRV协商为GULT;
-            需要和DrvInterface.h中的PWC_COMM_MODE_E保持一致
+     :MTA_AT_TAS_TEST_RATMODE_ENUM_UINT32
+   :
+ ASN.1 :
+   :,
+            DRVGULT;
+            DrvInterface.hPWC_COMM_MODE_E
 
- 1.日    期   : 2016年9月28日
-   作    者   : LWX331495
-   修改内容   : 新增结构体
+ 1.       : 2016928
+          : LWX331495
+      : 
 *****************************************************************************/
 enum MTA_AT_RCM_TAS_TEST_RATMODE_ENUM
 {
@@ -3902,12 +3902,12 @@ enum MTA_AT_RCM_TAS_TEST_RATMODE_ENUM
 typedef VOS_UINT32 MTA_AT_TAS_TEST_RATMODE_ENUM_UINT32;
 
 /*****************************************************************************
- 结构名    : AT_MTA_TAS_TEST_CFG_NTE_STRU
- 结构说明  : AT发给MTA的设置TAS参数的消息结构体
+     : AT_MTA_TAS_TEST_CFG_NTE_STRU
+   : ATMTATAS
 
-  1.日    期   : 2016年09月28日
-    作    者   : LWX331495
-    修改内容   : 新增结构体
+  1.       : 20160928
+           : LWX331495
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3919,12 +3919,12 @@ typedef struct
 } AT_MTA_TAS_TEST_CFG_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_TAS_TEST_CFG_NTE_STRU
- 结构说明  : AT发给MTA的查询TAS参数的消息结构体
+     : AT_MTA_TAS_TEST_CFG_NTE_STRU
+   : ATMTATAS
 
-  1.日    期   : 2016年09月28日
-    作    者   : LWX331495
-    修改内容   : 新增结构体
+  1.       : 20160928
+           : LWX331495
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3932,12 +3932,12 @@ typedef struct
 } AT_MTA_TAS_TEST_QRY_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_TAS_TEST_CNF_NTE_STRU
- 结构说明  : MTA发往AT的回复配置TAS消息结构
+     : MTA_AT_TAS_TEST_CNF_NTE_STRU
+   : MTAATTAS
 
-  1.日    期   : 2016年9月28日
-    作    者   : LWX331495
-    修改内容   : 新增结构体
+  1.       : 2016928
+           : LWX331495
+       : 
 *****************************************************************************/
 typedef struct
 {
@@ -3945,28 +3945,28 @@ typedef struct
 } MTA_AT_TAS_TEST_CFG_CNF_STRU;
 
 /*****************************************************************************
-结构名    : MTA_AT_TX_STATEII_LEVEL_STRU
-结构说明  : MAS_TX_STATEII档位结构
+    : MTA_AT_TX_STATEII_LEVEL_STRU
+  : MAS_TX_STATEII
 
- 1.日    期   : 2016年9月28日
-   作    者   : LWX331495
-   修改内容   : 新增结构体
+ 1.       : 2016928
+          : LWX331495
+      : 
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT16                          uhwSrcAntTimeLength;                    /* 源(当前)天线时长，单位:ms */
-    VOS_UINT16                          uhwDestAntTimeLength;                   /* 目标天线时长，单位:ms */
-    VOS_INT16                           shwSrcAntTxPowerGain;                   /* 源(当前)天线发射功率提升值，单位:0.1dB */
-    VOS_INT16                           shwDestAntTxPowerGain;                  /* 目标天线发射功率提升值，单位:0.1dB */
+    VOS_UINT16                          uhwSrcAntTimeLength;                    /* ():ms */
+    VOS_UINT16                          uhwDestAntTimeLength;                   /* :ms */
+    VOS_INT16                           shwSrcAntTxPowerGain;                   /* ():0.1dB */
+    VOS_INT16                           shwDestAntTxPowerGain;                  /* :0.1dB */
 }MTA_AT_TX_STATEII_LEVEL_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_TX_STATEII_LEVEL_TABLE_STRU
- 结构说明  : MTA发给AT的回复，查询当前TAS配置的消息结构的子结构
+     : MTA_AT_TX_STATEII_LEVEL_TABLE_STRU
+   : MTAATTAS
 
-  1.日    期   : 2016年9月28日
-    作    者   : LWX331495
-    修改内容   : 新增结构体
+  1.       : 2016928
+           : LWX331495
+       : 
 *****************************************************************************/
 #define MAX_STATEII_LEVEL_ITEM          4
 typedef struct
@@ -3978,91 +3978,91 @@ typedef struct
 
 
 /*****************************************************************************
- 结构名    : MTA_AT_TAS_TEST_QRY_CNF_STRU
- 结构说明  : MTA收到RCM的回复，转发给AT的消息结构
+     : MTA_AT_TAS_TEST_QRY_CNF_STRU
+   : MTARCMAT
 
-  1.日    期   : 2016年10月24日
-    作    者   : LWX331495
-    修改内容   : 新增结构体
+  1.       : 20161024
+           : LWX331495
+       : 
 *****************************************************************************/
 typedef struct
 {
     MTA_AT_RESULT_ENUM_UINT32               enResult;
     MTA_AT_TAS_TEST_RATMODE_ENUM_UINT32     enRatMode;
-    VOS_UINT32                              ulCurrLevel;                        /* 当前档位索引 */
-    MTA_AT_TX_STATEII_LEVEL_STRU            stLevelInfo;                        /* 当前档位的具体内容 */
-    MTA_AT_TX_STATEII_LEVEL_TABLE_STRU      stUsedTable;                        /* 档位表 */
+    VOS_UINT32                              ulCurrLevel;                        /*  */
+    MTA_AT_TX_STATEII_LEVEL_STRU            stLevelInfo;                        /*  */
+    MTA_AT_TX_STATEII_LEVEL_TABLE_STRU      stUsedTable;                        /*  */
 }MTA_AT_TAS_TEST_QRY_CNF_STRU;
 
 /*****************************************************************************
- 结构名    : AT_MTA_RS_INFO_QRY_REQ_STRU
- 结构说明  : AT发送给MTA查询参考信号测量信息
+     : AT_MTA_RS_INFO_QRY_REQ_STRU
+   : ATMTA
 
-  1.日    期   : 2017年1月17日
-    作    者   : wx270776
-    修改内容   : 新增+RSRP/+RSRQ查询命令
+  1.       : 2017117
+           : wx270776
+       : +RSRP/+RSRQ
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_RS_INFO_TYPE_ENUM_UINT32     enRsInfoType;                           /* 0:查询RSRP，1:查询RSRQ */
+    AT_MTA_RS_INFO_TYPE_ENUM_UINT32     enRsInfoType;                           /* 0:RSRP1:RSRQ */
 }AT_MTA_RS_INFO_QRY_REQ_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RSRP_INFO_STRU
- 结构说明  : MTA回复AT查询LTE RSRP测量信息
+     : MTA_AT_RSRP_INFO_STRU
+   : MTAATLTE RSRP
 
-  1.日    期   : 2017年1月17日
-    作    者   : wx270776
-    修改内容   : 新增+RSRP查询命令
+  1.       : 2017117
+           : wx270776
+       : +RSRP
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulCellId;                               /* 小区ID */
-    VOS_UINT32                          ulEarfcn;                               /* 小区频点 */
-    VOS_INT32                           lRsrp;                                  /* 信号接收功率，LRRC乘100后的值，AT上报要带两位小数 */
+    VOS_UINT32                          ulCellId;                               /* ID */
+    VOS_UINT32                          ulEarfcn;                               /*  */
+    VOS_INT32                           lRsrp;                                  /* LRRC100AT */
 }MTA_AT_RSRP_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RSRQ_INFO_STRU
- 结构说明  : LRRC回复MTA查询LTE RSRQ测量信息
+     : MTA_AT_RSRQ_INFO_STRU
+   : LRRCMTALTE RSRQ
 
-  1.日    期   : 2017年1月17日
-    作    者   : wx270776
-    修改内容   : 新增+RSRQ查询命令
+  1.       : 2017117
+           : wx270776
+       : +RSRQ
 *****************************************************************************/
 typedef struct
 {
-    VOS_UINT32                          ulCellId;                               /* 小区ID */
-    VOS_UINT32                          ulEarfcn;                               /* 小区频点 */
-    VOS_INT32                           lRsrq;                                  /* 信号接收质量，LRRC乘100后的值，AT上报要带两位小数 */
+    VOS_UINT32                          ulCellId;                               /* ID */
+    VOS_UINT32                          ulEarfcn;                               /*  */
+    VOS_INT32                           lRsrq;                                  /* LRRC100AT */
 }MTA_AT_RSRQ_INFO_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RS_INFO_RSLT_STRU
- 结构说明  : MTA回复AT查询LTE参考信号测量信息结果
+     : MTA_AT_RS_INFO_RSLT_STRU
+   : MTAATLTE
 
-  1.日    期   : 2017年1月17日
-    作    者   : wx270776
-    修改内容   : 新增+RSRP/+RSRQ查询命令
+  1.       : 2017117
+           : wx270776
+       : +RSRP/+RSRQ
 *****************************************************************************/
 typedef struct
 {
-    AT_MTA_RS_INFO_TYPE_ENUM_UINT32     enRsInfoType;                           /* 0:查询RSRP，1:查询RSRQ */
+    AT_MTA_RS_INFO_TYPE_ENUM_UINT32     enRsInfoType;                           /* 0:RSRP1:RSRQ */
     VOS_UINT32                          ulRsInfoNum;
     union
     {
-        MTA_AT_RSRP_INFO_STRU           astRsrpInfo[AT_MAX_RS_INFO_NUM];        /* RSRP测量结果 */
-        MTA_AT_RSRQ_INFO_STRU           astRsrqInfo[AT_MAX_RS_INFO_NUM];        /* RSRQ测量结果 */
+        MTA_AT_RSRP_INFO_STRU           astRsrpInfo[AT_MAX_RS_INFO_NUM];        /* RSRP */
+        MTA_AT_RSRQ_INFO_STRU           astRsrqInfo[AT_MAX_RS_INFO_NUM];        /* RSRQ */
     }u;
 }MTA_AT_RS_INFO_RSLT_STRU;
 
 /*****************************************************************************
- 结构名    : MTA_AT_RS_INFO_QRY_CNF_STRU
- 结构说明  : MTA回复AT查询LTE参考信号测量信息
+     : MTA_AT_RS_INFO_QRY_CNF_STRU
+   : MTAATLTE
 
-  1.日    期   : 2017年1月17日
-    作    者   : wx270776
-    修改内容   : 新增+RSRP/+RSRQ查询命令
+  1.       : 2017117
+           : wx270776
+       : +RSRP/+RSRQ
 *****************************************************************************/
 typedef struct
 {
@@ -4071,7 +4071,7 @@ typedef struct
 }MTA_AT_RS_INFO_QRY_CNF_STRU;
 
 /*****************************************************************************
-  10 函数声明
+  10 
 *****************************************************************************/
 
 

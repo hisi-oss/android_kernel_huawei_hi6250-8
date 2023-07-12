@@ -85,13 +85,13 @@
 #include "v_int.h"
 #include "v_blkMem.h"
 
-/* LINUX 不支持 */
+/* LINUX  */
 
 
 
 
 /*****************************************************************************
-    协议栈打印打点方式下的.C文件宏定义
+    .C
 *****************************************************************************/
 #define    THIS_FILE_ID        PS_FILE_ID_V_QUEUE_C
 
@@ -162,7 +162,7 @@ VOS_CHAR g_acVosQueueBuf[VOS_QUEUE_BUF_SIZE];
 /*the location of buf which should be allocated */
 VOS_UINT32 g_ulVosQueueBufSuffix = 0;
 
-/* 自旋锁，用来作queue的临界资源保护 */
+/* queue */
 VOS_SPINLOCK             g_stVosQueueSpinLock;
 
 /*****************************************************************************
@@ -477,28 +477,28 @@ VOS_UINT32 VOS_AddQueue(VOS_UINT32 ulQueueID, int suffix,
         if ( vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut
             == vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QStart )
         {
-            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut            /* [false alarm]:前边已有严谨的判断  */
-                = vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEnd - 1; /* [false alarm]:前边已有严谨的判断  */
+            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut            /* [false alarm]:  */
+                = vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEnd - 1; /* [false alarm]:  */
         }
         else
         {
-            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut--;         /* [false alarm]:前边已有严谨的判断  */
+            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut--;         /* [false alarm]:  */
         }
 
-        *vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut = ulTmpValue; /* [false alarm]:前边已有严谨的判断  */
-        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEntries++;         /* [false alarm]:前边已有严谨的判断  */
-        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QUrgentSize++;      /* [false alarm]:前边已有严谨的判断  */
+        *vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QOut = ulTmpValue; /* [false alarm]:  */
+        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEntries++;         /* [false alarm]:  */
+        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QUrgentSize++;      /* [false alarm]:  */
     }
     else
     {
 
-        *vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QIn++ = AddressValue;     /* [false alarm]:前边已有严谨的判断  */
-        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEntries++;                /* [false alarm]:前边已有严谨的判断  */
+        *vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QIn++ = AddressValue;     /* [false alarm]:  */
+        vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEntries++;                /* [false alarm]:  */
         if (vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QIn
             == vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QEnd )
         {
-            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QIn            /* [false alarm]:前边已有严谨的判断  */
-                = vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QStart;  /* [false alarm]:前边已有严谨的判断  */
+            vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QIn            /* [false alarm]:  */
+                = vos_QueueCtrlBlcok[ulQueueID].Q[suffix].QStart;  /* [false alarm]:  */
         }
     }
 
@@ -664,18 +664,18 @@ VOS_UINT32 VOS_FixedQueueRead( VOS_UINT32 ulQueueID,
 }
 
 /*****************************************************************************
- 函 数 名  : VOS_FixedQueueReadMsg
- 功能描述  : 通过FID获取该FID消息队列中首条消息地址
- 输入参数  : VOS_UINT32 ulFidID
- 输出参数  : 无
- 返 回 值  : VOS_VOID*
- 调用函数  :
- 被调函数  :
+     : VOS_FixedQueueReadMsg
+   : FIDFID
+   : VOS_UINT32 ulFidID
+   : 
+     : VOS_VOID*
+   :
+   :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : s00207770
-    修改内容   : 新生成函数
+       :
+  1.       : 20141229
+           : s00207770
+       : 
 
 *****************************************************************************/
 VOS_VOID* VOS_FixedQueueReadMsg( VOS_UINT32 ulFidID )
