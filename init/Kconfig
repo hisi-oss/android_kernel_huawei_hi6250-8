@@ -989,12 +989,6 @@ config CGROUP_PIDS
 	  since the PIDs limit only affects a process's ability to fork, not to
 	  attach to a cgroup.
 
-config CGROUP_IOLIMIT
-	bool "IO bandwidth limit cgroup subsystem"
-	help
-	  Provides a cgroup implementing for io bandwidth while a process
-	  in the cgroup read or write.
-
 config CGROUP_DEVICE
 	bool "Device controller for cgroups"
 	help
