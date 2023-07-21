@@ -400,7 +400,7 @@ struct syscache_quota_msg {
 	unsigned int quota_size;
 };
 
-int hifi_send_msg(unsigned int mailcode, const void *data, unsigned int length);
+int hifi_send_msg(unsigned int mailcode, void *data, unsigned int length);
 void hifi_get_log_signal(void);
 void hifi_release_log_signal(void);
 void sochifi_watchdog_send_event(void);

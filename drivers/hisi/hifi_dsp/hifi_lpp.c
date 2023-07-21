@@ -339,7 +339,6 @@ static int hifi_misc_sync_write(unsigned char  *buff, unsigned int len)
 	if (!wait_reult) {
 		if (is_write_success) {
 			loge("wait completion timeout\n");
-			audio_dsm_report_info(AUDIO_CODEC, DSM_SOC_HIFI_SYNC_TIMEOUT, "soc hifi sync message timeout");
 			hifi_dump_panic_log();
 		}
 		ret = ERROR;
@@ -1121,8 +1120,6 @@ static int hifi_dsp_usbaudio_cmd(unsigned long arg)
 		usbaudio_ctrl_query_info(&output);
 	} else if ((unsigned int)USBAUDIO_USB_POWER_RESUME == input.msg_type) {
 		output.sr_status = usbaudio_ctrl_usb_resume();
-	} else if ((unsigned int)USBAUDIO_NV_ISREADY == input.msg_type) {
-		usbaudio_set_nv_ready();
 	} else {
 		/* do nothing */
 		loge("message type error. %x \n", input.msg_type);
@@ -1783,7 +1780,7 @@ void hifi_release_log_signal(void)
 	atomic_set(&s_hifi_in_saving, 0);/*lint !e446*/
 }
 
-int hifi_send_msg(unsigned int mailcode, const void *data, unsigned int length)
+int hifi_send_msg(unsigned int mailcode, void *data, unsigned int length)
 {
 	if (is_hifi_loaded()) {
 		return (unsigned int)mailbox_send_msg(mailcode, data, length);
