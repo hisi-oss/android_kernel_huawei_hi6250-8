@@ -9,5 +9,7 @@ config VOICE_PROXY_VOLTE
 config VOICE_PROXY_VOWIFI
      bool "vowifi voice device support"
 
+config VOICE_PROXY_RTT
+     bool "rtt voice device support"
 endmenu
 

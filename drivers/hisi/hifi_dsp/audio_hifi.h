@@ -14,6 +14,9 @@
 
 #include <linux/types.h>
 
+/*Each Short Audio Descriptor is 3-bytes long. There can be up to 31 bytes following any tag, therefore
+there may be up to 10 Short Audio Descriptors in the Audio Data Block (ADB).*/
+#define EDID_AUDIO_DATA_BLOCK_MAX 		(10)
 
 typedef enum
 {
@@ -100,13 +103,14 @@ struct misc_io_dump_buf_param {
 *****************************************************************************/
 #define PROXY_VOICE_CODEC_MAX_DATA_LEN (32)           /* 16 bit */
 #define PROXY_VOICE_RTP_MAX_DATA_LEN (256)          /* 16 bit */
+#define PROXY_HIFI_RTT_MAX_DATA_LEN   (256)
 /*****************************************************************************
   5 msg define
 *****************************************************************************/
 
 /* the MsgID define between PROXY and Voice */
 enum voice_proxy_voice_msg_id {
-	ID_VOICE_PROXY_RCTP_OM_INFO_NTF = 0xDDEC,
+	ID_VOICE_PROXY_RTCP_OM_INFO_NTF = 0xDDEC,
 	ID_PROXY_VOICE_RCTP_OM_INFO_CNF = 0xDDED,
 	ID_VOICE_PROXY_AJB_OM_INFO_NTF = 0xDDEE,
 	ID_PROXY_VOICE_AJB_OM_INFO_CNF = 0xDDEF,
@@ -126,6 +130,15 @@ enum voice_proxy_voice_msg_id {
 	ID_PROXY_VOICE_STATUS_IND = 0xDDFC,
 	ID_PROXY_VOICE_ENCRYPT_KEY_BEGIN = 0xDDFD,
 	ID_PROXY_VOICE_ENCRYPT_KEY_END = 0xDDFE,
+
+	ID_PROXY_RTT_HIFI_TX_NTF = 0xDFD1,      // Kernel将HAL层数据发送给HIFI
+	ID_HIFI_PROXY_RTT_TX_CNF = 0xDFD2,      // HIFI将处理完Kernel的消息后，返回确认消息
+	ID_HIFI_PROXY_RTT_RX_NTF = 0xDFD3,      // HiFi将RTT数据发送给Kernel
+	ID_PROXY_RTT_HIFI_RX_CNF = 0xDFD4,      // Kernel收到Hifi的RTT数据后，返回确认消息
+	ID_HIFI_PROXY_RTT_CHANNEL_STATUS_IND = 0xDFD5, // HIFI通知RTT的channel的状态，open还是close
+
+	ID_HIFI_PROXY_WIFI_STATUS_NTF = 0xDFD6, // HIFI通知VOWIFI上行状态
+
 	ID_PROXY_VOICE_DATA_MSGID_BUT
 };
 
@@ -133,9 +146,28 @@ enum voice_proxy_voice_msg_id {
  * 6 STRUCT define
  */
 
+struct evs_unpack_param {
+	uint16_t evs_mode; /* EVS Primary or AMRWB_IO */
+	uint16_t chan_aw_mode;
+	uint16_t chan_aw_offset;
+	uint16_t chan_aw_level;
+	uint16_t cmr_invalid; /* cmr is not exist or equals to 0x7 */
+	uint16_t payload_lenth;
+	uint16_t bandwidth;
+	uint16_t reserved;
+};
+
+/* ciq rx statistics */
+struct rtp_ciq_info {
+	uint8_t rtp_header_flag;
+	uint8_t payload_type;
+	uint16_t payload_length;
+	uint32_t time_stamp;
+};
 
 /*
  * describe: the struct of the Rx request between PROXY and hifi_voice by lte
+ * size of voice_proxy_lte_rx_notify should be equal to ps_unpacked_rx_data
  */
 struct voice_proxy_lte_rx_notify {
 	uint16_t msg_id;
@@ -149,7 +181,9 @@ struct voice_proxy_lte_rx_notify {
 	uint16_t quality_idx;
 	uint16_t data[PROXY_VOICE_CODEC_MAX_DATA_LEN];
 	uint32_t ssrc;
-	uint32_t reserved;
+	struct evs_unpack_param evs_para;
+	struct rtp_ciq_info ciq_info;
+	uint32_t recv_ts;
 };
 
 /*
@@ -167,6 +201,8 @@ struct voice_proxy_wifi_rx_notify {
 	uint8_t frag_max;
 	uint16_t reserved2;
 	uint8_t data[PROXY_VOICE_RTP_MAX_DATA_LEN];
+	uint32_t recv_ts; /* rtp packet recv timestamp is set on hifi receiving this packet */
+	uint32_t reserve;
 };
 
 /*
@@ -175,6 +211,7 @@ struct voice_proxy_wifi_rx_notify {
 struct voice_proxy_confirm {
 	uint16_t msg_id;
 	uint16_t modem_no;
+	uint32_t channel_id;
 	uint32_t result;
 };
 
@@ -218,30 +255,98 @@ struct voice_proxy_voice_encrypt_key_end {
 	bool encrypt_negotiation_result;
 	bool reserved2[3];
 };
+
+/*defined in hifi, kernel and hal use it*/
+struct proxy_rtt_hifi_tx_notify {
+	uint16_t msg_id;                                     // Kernel与HIFI之间的消息ID
+	uint8_t frag_seq;                                    // 当前序列号
+	uint8_t frag_seq_max;                               // 当前序列号最大值
+	uint32_t resv;                                       // 保留字段
+	uint16_t channel_id;                                // rtt文本的channelId
+	uint16_t data_len;                                  // 实际传输的字节大小
+	uint8_t data[PROXY_HIFI_RTT_MAX_DATA_LEN];       // 实际的数据,最大为256
+};
+
+/*defined in hifi, kernel and hal use it*/
+struct hifi_proxy_rtt_rx_notify {
+	uint16_t msg_id;                                    // Kernel与HIFI之间的消息ID
+	uint8_t frag_seq;                                   // 当前序列号
+	uint8_t frag_seq_max;                               // 当前序列号最大值
+	uint32_t resv;                                       // 保留字段
+	uint16_t channel_id;                                // rtt文本的channelId
+	uint16_t data_len;                                  // 实际传输的字节大小
+	uint8_t data[PROXY_HIFI_RTT_MAX_DATA_LEN];       // 实际的数据,最大为256
+};
+
+/*hifi to proxy:channel status indication*/
+struct hifi_proxy_rtt_channel_status_ind {
+	uint16_t msg_id;                                    // Kernel与HIFI之间的消息ID
+	uint8_t  channel_status;                           // 通道状态: 1-open; 0-close;
+	uint8_t  resv;                                      // 保留字段
+	uint32_t channel_id;                               // rtt文本的channelId
+};
+
+/*hifi to proxy:wifi status indication*/
+struct hifi_proxy_wifi_status_ind {
+	uint16_t msg_id;                                    // Kernel与HIFI之间的消息ID
+	uint8_t  status;                                    // 通道状态: 1-open; 0-close;
+	uint8_t  resv;                                      // 保留字段
+};
 /*
   *end
   */
 
+struct dp_edid_spec {
+	unsigned short format;
+	unsigned short channels;
+	unsigned short sampling;
+	unsigned short bitrate;
+};
+
+struct dp_edid_aparam {
+	unsigned int data_width;
+	unsigned int channel_num;
+	unsigned int sample_rate;
+};
+
+struct dp_edid_info {
+	struct dp_edid_spec spec[EDID_AUDIO_DATA_BLOCK_MAX];
+	unsigned int ext_acount;
+	struct dp_edid_aparam aparam;
+};
+
+/* voice bsd param hsm struct */
+struct voice_bsd_param_hsm {
+	unsigned int data_len;
+	unsigned char *pdata;
+};
+
 //下面是AP发给HiFi Misc设备的ioctl命令，需要HiFi Misc设备进行响应
 #define HIFI_MISC_IOCTL_ASYNCMSG		_IOWR('A', 0x70, struct misc_io_async_param)		  //AP向HiFi传递异步消息
 #define HIFI_MISC_IOCTL_SYNCMSG 		_IOW('A', 0x71, struct misc_io_sync_param)			  //AP向HiFi传递同步消息
-#define HIFI_MISC_IOCTL_SENDDATA_SYNC	_IOW('A', 0x72, struct misc_io_senddata_sync_param)    //AP向HiFi同步传递数据
 #define HIFI_MISC_IOCTL_GET_PHYS		_IOWR('A', 0x73, struct misc_io_get_phys_param) 	   //AP获取物理地址
 #define HIFI_MISC_IOCTL_TEST			_IOWR('A', 0x74, struct misc_io_senddata_sync_param)   //AP测试消息
 #define HIFI_MISC_IOCTL_WRITE_PARAMS	_IOWR('A', 0x75, struct misc_io_sync_param) 		   //写算法参数到HIFI
-#define HIFI_MISC_IOCTL_DUMP_HIFI		_IOWR('A', 0x76, struct misc_io_dump_buf_param) 	   //读取HIFI在DDR上的数据并传递至用户空间
+#define HIFI_MISC_IOCTL_DUMP_HIFI		_IOWR('A', 0x76, unsigned int) 	   //读取HIFI在DDR上的数据并传递至用户空间
 #define HIFI_MISC_IOCTL_DUMP_CODEC		_IOWR('A', 0x77, struct misc_io_dump_buf_param) 	   //读取CODEC寄存器并传递至用户空间
 #define HIFI_MISC_IOCTL_WAKEUP_THREAD	_IOW('A',  0x78, unsigned int) 	   //唤醒read线程,正常退出
 #define HIFI_MISC_IOCTL_DISPLAY_MSG		_IOWR('A', 0x79, struct misc_io_dump_buf_param) 	   //读取HIFI在DDR上的数据并传递至用户空间
 #define HIFI_MISC_IOCTL_WAKEUP_PCM_READ_THREAD _IOW('A',  0x7a, unsigned int)
-#define HIFI_MISC_IOCTL_AUDIO_EFFECT_PARAMS        _IOWR('A', 0x7B, struct misc_io_async_param)
+#define HIFI_MISC_IOCTL_AUDIO_EFFECT_PARAMS        _IOWR('A', 0x7B, struct misc_io_sync_param)
 #define HIFI_MISC_IOCTL_USBAUDIO        _IOW('A', 0x7C, struct misc_io_sync_param)      //for usbaudio
+#define HIFI_MISC_IOCTL_SMARTPA_PARAMS  _IOWR('A', 0x7D, struct misc_io_async_param)   //for smartpakit algo params
+#define HIFI_MISC_IOCTL_SOUNDTRIGGER        _IOW('A', 0x7E, struct misc_io_sync_param)
+#define HIFI_MISC_IOCTL_GET_DPAUDIO        _IOW('A', 0x7F, struct dp_edid_info)
+#define HIFI_MISC_IOCTL_SET_DPAUDIO        _IOW('A', 0x80, struct dp_edid_info)
+
+#define HIFI_MISC_IOCTL_KCOV_FAKE_MSG   _IOWR('A', 0x81, struct misc_io_dump_buf_param)
+#define HIFI_MISC_IOCTL_KCOV_FAKE_WTD   _IOW('A', 0x82, unsigned int)
 
 #ifdef CLT_VOICE
 #define CLT_HIFI_MISC_IOCTL_SEND_VOICE _IOWR('A', 0x90, struct misc_io_async_param)
 #endif
 
-#define HIFI_MISC_IOCTL_GET_VOICE_BSD_PARAM	_IOWR('A',  0x7c, unsigned int)    //获取Voice BSD参数
+#define HIFI_MISC_IOCTL_GET_VOICE_BSD_PARAM	_IOWR('A', 0x7c, struct voice_bsd_param_hsm)    //获取Voice BSD参数
 #define INT_TO_ADDR(low,high) (void*) (unsigned long)((unsigned long long)(low) | ((unsigned long long)(high)<<32))
 #define GET_LOW32(x) (unsigned int)(((unsigned long long)(unsigned long)(x))&0xffffffffULL)
 #define GET_HIG32(x) (unsigned int)((((unsigned long long)(unsigned long)(x))>>32)&0xffffffffULL)

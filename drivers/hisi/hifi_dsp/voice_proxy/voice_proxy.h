@@ -75,6 +75,13 @@ struct send_tfagent_data {
 	int8_t data[PROXY_VOICE_CODEC_MAX_DATA_LEN];
 };
 
+struct proxy_voice_cnf_cmd_code {
+	struct list_head list_node;
+	uint16_t msg_id;
+	uint16_t modem_no;
+	uint32_t channel_id;
+};
+
 struct voice_proxy_cmd_node {
 	struct list_head list_node;
 	uint16_t msg_id;
@@ -94,7 +101,7 @@ struct voice_proxy_data_node {
 
 typedef void (*register_mailbox_cb)(mb_msg_cb mail_cb);
 typedef int32_t (*read_mailbox_msg_cb)(void *mail_handle, int8_t *buf, int32_t *size);
-typedef int32_t (*mailbox_send_msg_cb)(uint32_t mailcode, uint16_t msg_id, void *buf, uint32_t size);
+typedef int32_t (*mailbox_send_msg_cb)(uint32_t mailcode, uint16_t msg_id, const void *buf, uint32_t size);
 
 typedef void (*voice_proxy_sign_init_cb)(void);
 typedef void (*voice_proxy_msg_cb)(int8_t *rev_buf, uint32_t buf_size);
@@ -117,7 +124,7 @@ struct voice_proxy_cmd_handle {
 };
 
 int64_t voice_proxy_get_timems(void);
-int32_t voice_proxy_add_work_queue_cmd(uint16_t msg_id, uint16_t modem_no);
+int32_t voice_proxy_add_work_queue_cmd(uint16_t msg_id, uint16_t modem_no, uint32_t channel_id);
 int32_t voice_proxy_create_data_node(struct voice_proxy_data_node **node, int8_t *data, int32_t size);
 void voice_proxy_register_msg_callback(uint16_t msg_id, voice_proxy_msg_cb callback);
 void voice_proxy_deregister_msg_callback(uint16_t msg_id);

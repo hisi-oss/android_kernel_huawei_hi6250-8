@@ -101,7 +101,7 @@ static struct volte_priv priv;
 static const short amrnb_frame_length[] =
 {12, 13, 15, 17, 19, 20, 26, 31, 5, 0, 0, 0, 0, 0, 0, 0};
 
-extern int32_t voice_proxy_mailbox_send_msg_cb(uint32_t mailcode, uint16_t msg_id, void *buf, uint32_t size);
+extern int32_t voice_proxy_mailbox_send_msg_cb(uint32_t mailcode, uint16_t msg_id, const void *buf, uint32_t size);
 
 static void volte_sign_init(void)
 {
@@ -349,7 +349,7 @@ int32_t proxy_enable_sec_key_negotiation(int32_t enable)
 		msg.encrypt_negotiation_result = false;
 	}
 
-	ret = voice_proxy_mailbox_send_msg_cb(MAILBOX_MAILCODE_ACPU_TO_HIFI_VOICE_RT,
+	ret = voice_proxy_mailbox_send_msg_cb(MAILBOX_MAILCODE_ACPU_TO_HIFI_VOICE,
                                               msg.msg_id,
                                               &msg,
                                               (unsigned int)sizeof(msg));
@@ -494,7 +494,7 @@ static void volte_receive_undecrypt_ntf(int8_t *rev_buf, uint32_t buf_size)
 		return;
 	}
 
-	voice_proxy_add_work_queue_cmd(ID_PROXY_VOICE_LTE_RX_CNF, VOICE_MC_MODEM0);
+	voice_proxy_add_work_queue_cmd(ID_PROXY_VOICE_LTE_RX_CNF, VOICE_MC_MODEM0, 0);
 
 	cnt++;
 }
@@ -515,7 +515,7 @@ static void volte_receive_unencrypt_ntf(int8_t *rev_buf, uint32_t buf_size)
 		return;
 	}
 
-	voice_proxy_add_work_queue_cmd(ID_PROXY_VOICE_LTE_TX_CNF, VOICE_MC_MODEM0);
+	voice_proxy_add_work_queue_cmd(ID_PROXY_VOICE_LTE_TX_CNF, VOICE_MC_MODEM0, 0);
 
 	cnt++;
 }
